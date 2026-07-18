@@ -1,0 +1,4 @@
+tables: finesine 10240, finetangent 4096, tantoangle 2049 (exact from tables.c)
+textures: 125 walls, 54 flats -> 2 sheet(s)
+E1M1: linedefs=475, nodes=236, sectors=85, segs=732, sidedefs=648, ssectors=237, things=138, vertexes=467
+gen_assets.h + gen_checkvals.h written
