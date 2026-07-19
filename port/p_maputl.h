@@ -23,6 +23,9 @@
 #define GRAVITY       FRACUNIT
 #define MAXMOVE       ( 30 * FRACUNIT )
 #define USERANGE      ( 64 * FRACUNIT )
+#define MELEERANGE    ( 64 * FRACUNIT )
+#define MISSILERANGE  ( 32 * 64 * FRACUNIT )
+#define FLOATSPEED    ( FRACUNIT * 4 )
 
 struct divline_t
 {

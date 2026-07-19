@@ -1,9 +1,11 @@
 // =============================================================================
-//   VirconDoom M4 "game" ROM -- walk E1M1: player movement with collision,
-//   momentum/friction, stairs step-up, gravity, view bobbing, usable doors.
+//   VirconDoom M6 "game" ROM -- it's a game: E1M1 with monsters (zombieman,
+//   shotgun guy, imp), fist/pistol/shotgun, damage/pickups/barrels, walk-over
+//   specials, the exit switch, death + respawn.
 //
-//   Controls: dpad up/down = move, left/right = turn, L/R = strafe,
-//             B = run, A = use (doors), X = detail toggle, Y = debug HUD.
+//   Controls: dpad up/down move, left/right turn, L/R strafe,
+//             A = fire, B = use, Y (hold) = run, X = cycle weapon,
+//             START+X = detail HI/LO, START+Y = debug HUD.
 //   Playsim runs at 30 Hz (one tic per rendered frame; PLAN.md 7.2).
 // =============================================================================
 
@@ -31,9 +33,13 @@
 #include "port\\r_things.h"
 #include "port\\r_bsp.h"
 #include "port\\p_maputl.h"
+#include "port\\p_sight.h"
 #include "port\\p_spec.h"
 #include "port\\p_map.h"
+#include "port\\p_inter.h"
 #include "port\\p_mobj.h"
+#include "port\\p_enemy.h"
+#include "port\\p_pspr.h"
 #include "port\\p_user.h"
 
 #define CEILCOLOR 0xFF202028
@@ -46,16 +52,19 @@ void ShowInt( int x, int y, int value )
     print_at( x, y, s );
 }
 
-void main()
+// (re)build the level and spawn everything; used at boot, after death,
+// and after the exit switch (level progression is M7 -- E1M1 restarts)
+void G_LoadLevel()
 {
-    InitTables();
-    R_InitTextureMapping();
-    R_InitSprites();
-    P_SetupLevel();
+    int i;
+
+    Z_FreeTags( PU_LEVEL, PU_PURGELEVEL );
     P_InitThinkers();
+    P_SetupLevel();
+    leveltime = 0;
+    gameexit = false;
 
     // spawn the player at map thing type 1
-    int i;
     for( i = 0; i < GEN_NUMTHINGS; i++ )
     {
         if( gen_things[i][3] == 1 )
@@ -66,10 +75,20 @@ void main()
         }
     }
 
-    // spawn everything else (pickups, decorations, static monsters -- M5)
     P_SpawnMapThings();
+    P_SetupPsprites( &player1 );
+}
 
-    bool showDebug = true;
+void main()
+{
+    InitTables();
+    R_InitTextureMapping();
+    R_InitSprites();
+    P_InitPickups();
+    P_InitActions();
+    G_LoadLevel();               // P_SetupLevel marks the zone level watermark
+
+    bool showDebug = false;
     bool lowDetail = false;
     int frame = 0;
     int lastFc = get_frame_counter();
@@ -79,7 +98,8 @@ void main()
     {
         // ---- input -> flattened ticcmd (g_game.c constants)
         select_gamepad( 0 );
-        bool run = gamepad_button_b() > 0;
+        bool startHeld = gamepad_button_start() > 0;
+        bool run = !startHeld && gamepad_button_y() > 0;
 
         int fm = 0;
         int sm = 0;
@@ -94,19 +114,52 @@ void main()
         player1.cmd_forwardmove = fm;
         player1.cmd_sidemove = sm;
         player1.cmd_angleturn = turn;
-        player1.cmd_use = gamepad_button_a() > 0;
+        player1.cmd_use = gamepad_button_b() > 0;
+        player1.cmd_attack = gamepad_button_a() > 0;
+        player1.cmd_newweapon = wp_nochange;
 
-        if( gamepad_button_y() == 1 ) showDebug = !showDebug;
-        if( gamepad_button_x() == 1 )
+        if( startHeld )
         {
-            lowDetail = !lowDetail;
-            R_SetDetail( lowDetail );
+            if( gamepad_button_y() == 1 ) showDebug = !showDebug;
+            if( gamepad_button_x() == 1 )
+            {
+                lowDetail = !lowDetail;
+                R_SetDetail( lowDetail );
+            }
+        }
+        else if( gamepad_button_x() == 1 )
+        {
+            // cycle owned weapons: fist -> pistol -> shotgun -> fist
+            int cur = player1.readyweapon;
+            if( player1.pendingweapon != wp_nochange )
+                cur = player1.pendingweapon;
+            int next = cur;
+            int tries = 0;
+            while( tries < NUMWEAPONS )
+            {
+                next = next + 1;
+                if( next > wp_shotgun )
+                    next = wp_fist;
+                if( player1.weaponowned[next] )
+                    break;
+                tries++;
+            }
+            player1.cmd_newweapon = next;
         }
 
-        // ---- one game tic (30 Hz)
-        P_PlayerThink( &player1 );
-        P_RunThinkers();
-        leveltime++;
+        // ---- one game tic (30 Hz); freeze the sim on the exit screen
+        if( !gameexit )
+        {
+            P_PlayerThink( &player1 );
+            P_RunThinkers();
+            leveltime++;
+        }
+
+        // respawn / next level requests
+        if( player1.playerstate == PST_REBORN )
+            G_LoadLevel();
+        if( gameexit && gamepad_button_a() == 1 )
+            G_LoadLevel();
 
         // ---- compute pass (records draw commands; GPU untouched)
         viewx = player1.mo->x;
@@ -129,9 +182,37 @@ void main()
         GPU_FillRect( 0, centery, 320, viewheight - centery, FLOORCOLOR );
         GPU_Flush();
 
+        // ---- status line (always on, above the view)
+        set_multiply_color( color_white );
+        print_at( 10, 0, "HP" );
+        ShowInt( 40, 0, player1.health );
+        print_at( 90, 0, "ARM" );
+        ShowInt( 135, 0, player1.armorpoints );
+        print_at( 190, 0, "AMMO" );
+        int wammo = weaponinfo[ player1.readyweapon ][WI_AMMO];
+        if( wammo == am_noammo )
+            print_at( 245, 0, "-" );
+        else
+            ShowInt( 245, 0, player1.ammo[wammo] );
+        print_at( 300, 0, "KILLS" );
+        ShowInt( 365, 0, player1.killcount );
+
+        if( player1.playerstate == PST_DEAD )
+            print_at( 240, 170, "YOU DIED - PRESS B" );
+        if( gameexit )
+        {
+            print_at( 210, 150, "LEVEL COMPLETE" );
+            print_at( 210, 180, "KILLS" );
+            ShowInt( 280, 180, player1.killcount );
+            print_at( 330, 180, "ITEMS" );
+            ShowInt( 400, 180, player1.itemcount );
+            print_at( 450, 180, "SECRETS" );
+            ShowInt( 540, 180, player1.secretcount );
+            print_at( 210, 210, "PRESS A TO RESTART" );
+        }
+
         if( showDebug )
         {
-            set_multiply_color( color_white );
             print_at( 10, 340, "X" );
             ShowInt( 25, 340, player1.mo->x >> FRACBITS );
             print_at( 90, 340, "Y" );
@@ -142,6 +223,8 @@ void main()
             ShowInt( 285, 340, player1.mo->subsector->sector - sectors );
             print_at( 340, 340, "FRAME" );
             ShowInt( 400, 340, frame );
+            print_at( 470, 340, "ZONE" );
+            ShowInt( 520, 340, Z_UsedWords() >> 10 );
             print_at( 10, 320, "SEGS" );
             ShowInt( 60, 320, perf_segs );
             print_at( 110, 320, "COLS" );

@@ -394,6 +394,100 @@ void R_DrawSprite( vissprite_t* spr )
     R_DrawVisSprite( spr );
 }
 
+// ---- player weapon overlay (r_things.c R_DrawPSprite, M6)
+// Screen-space sprite: scale FRACUNIT vertically, pspritescale horizontally
+// (halved in LO detail like upstream's detailshift), clipped only by the view.
+
+#define BASEYCENTER 100
+
+void R_DrawPSprite( pspdef_t* psp )
+{
+    fixed_t tx;
+    int x1;
+    int x2;
+    int lump;
+    int flip;
+    vissprite_t avis;
+    vissprite_t* vis;
+    fixed_t pspritescale;
+    fixed_t pspriteiscale;
+
+    pspritescale = ( viewwidth << FRACBITS ) / 320;
+    pspriteiscale = ( 320 << FRACBITS ) / viewwidth;
+
+    // decide which patch to use (psprites never rotate)
+    int frame = gen_states[ psp->state ][ST_FRAME] & FF_FRAMEMASK;
+    int fbase = gen_sprdef[ gen_states[ psp->state ][ST_SPRITE] ][0] + frame;
+    lump = gen_sprframe[fbase][1];
+    flip = gen_sprframe[fbase][9];
+
+    fixed_t sprwidth = gen_sprinfo[lump][3] << FRACBITS;
+    fixed_t leftoffset = gen_sprinfo[lump][5] << FRACBITS;
+    fixed_t topoffset = gen_sprinfo[lump][6] << FRACBITS;
+
+    // calculate edges of the shape
+    tx = psp->sx - 160 * FRACUNIT;
+
+    tx -= leftoffset;
+    x1 = ASR( centerxfrac + FixedMul( tx, pspritescale ), FRACBITS );
+    if( x1 > viewwidth )
+        return;                  // off the right side
+
+    tx += sprwidth;
+    x2 = ASR( centerxfrac + FixedMul( tx, pspritescale ), FRACBITS ) - 1;
+    if( x2 < 0 )
+        return;                  // off the left side
+
+    vis = &avis;
+    vis->mobjflags = 0;
+    vis->texturemid = ( BASEYCENTER << FRACBITS ) + FRACUNIT / 2
+                    - ( psp->sy - topoffset );
+    if( x1 < 0 ) vis->x1 = 0;
+    else vis->x1 = x1;
+    if( x2 >= viewwidth ) vis->x2 = viewwidth - 1;
+    else vis->x2 = x2;
+    vis->scale = FRACUNIT;       // vertical: full size at any detail level
+
+    if( flip )
+    {
+        vis->xiscale = -pspriteiscale;
+        vis->startfrac = sprwidth - 1;
+    }
+    else
+    {
+        vis->xiscale = pspriteiscale;
+        vis->startfrac = 0;
+    }
+
+    if( vis->x1 > x1 )
+        vis->startfrac += vis->xiscale * ( vis->x1 - x1 );
+
+    vis->patch = lump;
+
+    if( gen_states[ psp->state ][ST_FRAME] & FF_FULLBRIGHT )
+        vis->light = 255;        // muzzle flashes are fullbright
+    else
+        vis->light = player1.mo->subsector->sector->lightlevel;
+
+    mfloorclip = &screenheightarray[0];
+    mceilingclip = &negonearray[0];
+    R_DrawVisSprite( vis );
+}
+
+void R_DrawPlayerSprites()
+{
+    int i;
+
+    if( !player1.mo )
+        return;
+
+    for( i = 0; i < NUMPSPRITES; i++ )
+    {
+        if( player1.psprites[i].state )
+            R_DrawPSprite( &player1.psprites[i] );
+    }
+}
+
 void R_DrawMasked()
 {
     int i;
@@ -414,7 +508,9 @@ void R_DrawMasked()
             R_RenderMaskedSegRange( ds, ds->x1, ds->x2 );
     }
 
-    // psprites (weapon overlay): M6
+    // weapon overlay draws last: over everything, recorded last in the
+    // column stream
+    R_DrawPlayerSprites();
 }
 
 #endif

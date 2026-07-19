@@ -160,14 +160,26 @@ def load_sprites(wad, palette):
     return sprites
 
 # ---------------------------------------------------------------------------
-# Upstream info tables: sprite names, spawn states, mobjinfo (parsed from the
-# id source exactly like tables.c -- never derived by hand)
+# Upstream info tables: sprite names, FULL states, FULL mobjinfo, action-fn
+# names, mobjtype/sfx enums (parsed from the id source exactly like tables.c
+# -- never derived by hand).
+#
+# M6 bake formats:
+#   states[NUMSTATES][7]  = sprite, frame, tics, action(GEN_ACT_* index,
+#                           0 = none), nextstate, misc1, misc2
+#   mobjinfo[NUMMOBJTYPES][23] = upstream mobjinfo_t field order:
+#     0 doomednum  1 spawnstate  2 spawnhealth  3 seestate  4 seesound
+#     5 reactiontime  6 attacksound  7 painstate  8 painchance  9 painsound
+#     10 meleestate  11 missilestate  12 deathstate  13 xdeathstate
+#     14 deathsound  15 speed  16 radius  17 height  18 mass  19 damage
+#     20 activesound  21 flags  22 raisestate     (sounds = sfxenum indices)
 # ---------------------------------------------------------------------------
 def parse_info():
     droot = os.path.normpath(os.path.join(ROOT, '..', 'DOOM', 'linuxdoom-1.10'))
     info_c = open(os.path.join(droot, 'info.c')).read()
     info_h = open(os.path.join(droot, 'info.h')).read()
     pmobj_h = open(os.path.join(droot, 'p_mobj.h')).read()
+    sounds_h = open(os.path.join(droot, 'sounds.h')).read()
 
     # sprite names, order == SPR_* enum
     m = re.search(r'sprnames\[NUMSPRITES\]\s*=\s*\{(.*?)\};', info_c, re.S)
@@ -177,22 +189,43 @@ def parse_info():
     m = re.search(r'typedef enum\s*\{\s*(S_NULL.*?)NUMSTATES', info_h, re.S)
     snames = re.findall(r'(S_\w+)\s*,', m.group(1))
 
-    # states: (spritenum, frameword) per state
+    # mobjtype_t order (MT_PLAYER ... NUMMOBJTYPES)
+    m = re.search(r'typedef enum\s*\{\s*(MT_PLAYER.*?)NUMMOBJTYPES', info_h, re.S)
+    mtnames = re.findall(r'(MT_\w+)\s*,', m.group(1))
+
+    # sfxenum_t order (sfx_None ... NUMSFX)
+    m = re.search(r'typedef enum\s*\{\s*(sfx_None.*?)NUMSFX', sounds_h, re.S)
+    sfxnames = re.findall(r'(sfx_\w+)\s*,', m.group(1))
+
+    # states: all 7 fields per state (frame/tics/misc are plain decimals in
+    # info.c, incl. 32768 fullbright and -1 tics; action is {NULL} or {A_Xxx})
     m = re.search(r'states\[NUMSTATES\]\s*=\s*\{(.*?)\n\};', info_c, re.S)
-    entries = re.findall(r'\{\s*SPR_(\w+)\s*,\s*(\d+)\s*,', m.group(1))
+    entries = re.findall(
+        r'\{\s*SPR_(\w+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*\{\s*(\w*)\s*\}'
+        r'\s*,\s*(S_\w+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*\}', m.group(1))
     assert len(entries) == len(snames), (len(entries), len(snames))
-    states = [(sprnames.index(sp), int(fr)) for sp, fr in entries]
+    actnames = []                          # first-seen order; index 0 = none
+    states = []
+    for sp, fr, tics, act, nxt, m1, m2 in entries:
+        if act in ('', 'NULL'):
+            ai = 0
+        else:
+            if act not in actnames:
+                actnames.append(act)
+            ai = actnames.index(act) + 1
+        states.append([sprnames.index(sp), int(fr), int(tics), ai,
+                       snames.index(nxt), int(m1), int(m2)])
 
     # mobj flag values
     mf = dict((k, int(v, 0)) for k, v in
               re.findall(r'MF_(\w+)\s*=\s*(0x[0-9a-fA-F]+|\d+)', pmobj_h))
 
-    # mobjinfo: doomednum, spawnstate, radius, height, flags per type
+    # mobjinfo: all 23 fields per type
     m = re.search(r'mobjinfo\[NUMMOBJTYPES\]\s*=\s*\{(.*?)\n\};', info_c, re.S)
     body = re.sub(r'//[^\n]*', '', m.group(1))
     mobjinfo = []
     for ent in body.split('},'):
-        ent = ent.strip().lstrip('{').strip()
+        ent = ent.strip().lstrip('{').rstrip('}').strip()
         if not ent:
             continue
         f = [tok.strip() for tok in ent.split(',')]
@@ -200,13 +233,13 @@ def parse_info():
         def ev(tok):
             tok = tok.replace('FRACUNIT', '65536')
             tok = re.sub(r'MF_(\w+)', lambda g: str(mf[g.group(1)]), tok)
+            tok = re.sub(r'sfx_(\w+)',
+                         lambda g: str(sfxnames.index('sfx_' + g.group(1))), tok)
             tok = re.sub(r'S_(\w+)', lambda g: str(snames.index('S_' + g.group(1))), tok)
             return int(eval(tok))
-        doomednum = ev(f[0]); spawnstate = ev(f[1])
-        radius = ev(f[16]); height = ev(f[17]); flags = ev(f[21])
-        spr, frame = states[spawnstate]
-        mobjinfo.append([doomednum, spr, frame, radius, height, flags])
-    return sprnames, mobjinfo
+        mobjinfo.append([ev(tok) for tok in f])
+    assert len(mobjinfo) == len(mtnames), (len(mobjinfo), len(mtnames))
+    return sprnames, snames, mtnames, actnames, states, mobjinfo
 
 def build_spriteframes(sprnames, sprites):
     """Upstream R_InitSpriteDefs over the baked lump list. Returns
@@ -411,6 +444,14 @@ def bake_map(wad, mapname, texname_to_idx, flatname_to_idx):
     assert n < 32768, 'BLOCKMAP too large for signed 16-bit widening'
     out['blockmap'] = [s16(blockmap_raw, 2*i) for i in range(n)]
 
+    # REJECT: one byte per word so upstream's pnum>>3 / 1<<(pnum&7) indexing
+    # works verbatim on the console (P_CheckSight fast reject)
+    reject_raw = lump(9)
+    nsec = counts['sectors']
+    assert len(reject_raw) >= (nsec * nsec + 7) // 8, 'REJECT too short'
+    counts['reject'] = len(reject_raw)
+    out['reject'] = list(reject_raw)
+
     return counts, out
 
 # ---------------------------------------------------------------------------
@@ -519,7 +560,7 @@ def main():
 
     # ---- sprites -> own atlas sheets (GPU texids come after white)
     sprites = load_sprites(wad, palette)
-    sprnames, mobjinfo = parse_info()
+    sprnames, snames, mtnames, actnames, states, mobjinfo = parse_info()
     sprdef, sprframe = build_spriteframes(sprnames, sprites)
     spratlas = Atlas()
     sprinfo = []
@@ -537,9 +578,13 @@ def main():
     w('data/sprdef.bin', [v for row in sprdef for v in row])
     w('data/sprframe.bin', [v for row in sprframe for v in row])
     w('data/mobjinfo.bin', [v for row in mobjinfo for v in row])
+    w('data/states.bin', [v for row in states for v in row])
     report.append('sprites: %d lumps, %d names, %d frames, %d mobjtypes -> %d sheet(s)' %
                   (len(sprites), len(sprnames), len(sprframe), len(mobjinfo),
                    len(spratlas.sheets)))
+    report.append('states: %d x 7 words, %d action fns' %
+                  (len(states), len(actnames)))
+
 
     # ---- map
     counts, out = bake_map(wad, mapname, texname_to_idx, flatname_to_idx)
@@ -548,12 +593,17 @@ def main():
         w('data/%s_%s.bin' % (ml, key), words)
     report.append('%s: %s' % (mapname, ', '.join('%s=%d' % kv for kv in sorted(counts.items()))))
 
+    # mobjinfo field indices (upstream mobjinfo_t order; see parse_info)
+    MI_SPAWN, MI_SEE, MI_PAIN, MI_MELEE, MI_MISSILE = 1, 3, 7, 10, 11
+    MI_DEATH, MI_XDEATH, MI_RAISE = 12, 13, 22
+
     # every spawnable map thing must resolve: doomednum -> mobjinfo -> spawn
     # sprite frame with a valid lump (PC-side gate for P_SpawnMapThings)
     ed_to_mt = {}
     for mt, row in enumerate(mobjinfo):
         if row[0] != -1:
             ed_to_mt.setdefault(row[0], mt)
+    mt_used = set()
     for i in range(counts['things']):
         ttype = out['things'][i*5 + 3]
         opts = out['things'][i*5 + 4]
@@ -561,11 +611,54 @@ def main():
             continue
         assert ttype in ed_to_mt, 'no mobjinfo for doomednum %d' % ttype
         mt = ed_to_mt[ttype]
-        spr, frameword = mobjinfo[mt][1], mobjinfo[mt][2]
+        mt_used.add(mt)
+        spawnstate = mobjinfo[mt][MI_SPAWN]
+        spr, frameword = states[spawnstate][0], states[spawnstate][1]
         first, nframes = sprdef[spr]
         fr = frameword & 0x7FFF
         assert fr < nframes, (ttype, spr, fr, nframes)
         assert sprframe[first + fr][1] != -1, (ttype, spr, fr)
+
+    # M6 gate: every state REACHABLE in this ROM must have a placed sprite
+    # frame. Reachable = closure over nextstate from all state entry points of
+    # the map's mobj types + engine-spawned types (player, drops, imp fireball,
+    # puff, blood) + fist/pistol/shotgun psprite states. A global all-states
+    # check would fail: shareware doom1.wad ships no sprites for
+    # registered-game monsters whose states still exist in info.c.
+    for extra in ('MT_PLAYER', 'MT_CLIP', 'MT_SHOTGUN', 'MT_TROOPSHOT',
+                  'MT_PUFF', 'MT_BLOOD'):
+        mt_used.add(mtnames.index(extra))
+    seeds = []
+    for mt in mt_used:
+        mi = mobjinfo[mt]
+        seeds += [mi[MI_SPAWN], mi[MI_SEE], mi[MI_PAIN], mi[MI_MELEE],
+                  mi[MI_MISSILE], mi[MI_DEATH], mi[MI_XDEATH], mi[MI_RAISE]]
+    for sn in ('S_PLAY', 'S_PLAY_RUN1', 'S_PLAY_ATK1', 'S_PLAY_ATK2',
+               'S_PUFF3', 'S_BLOOD2', 'S_BLOOD3',
+               'S_PUNCH', 'S_PUNCHDOWN', 'S_PUNCHUP', 'S_PUNCH1',
+               'S_PISTOL', 'S_PISTOLDOWN', 'S_PISTOLUP', 'S_PISTOL1',
+               'S_PISTOLFLASH',
+               'S_SGUN', 'S_SGUNDOWN', 'S_SGUNUP', 'S_SGUN1', 'S_SGUNFLASH1'):
+        seeds.append(snames.index(sn))
+    reachable = set()
+    work = [s for s in seeds if s]
+    while work:
+        s = work.pop()
+        if s in reachable or s == 0:
+            continue
+        reachable.add(s)
+        work.append(states[s][4])
+    for s in sorted(reachable):
+        if states[s][2] == 0:
+            continue                       # zero-tic: cycled through, never drawn
+        spr, frameword = states[s][0], states[s][1]
+        fr = frameword & 0x7FFF
+        first, nframes = sprdef[spr]
+        assert fr < nframes, ('unresolvable state frame', snames[s],
+                              sprnames[spr], fr, nframes)
+        assert sprframe[first + fr][1] != -1, (snames[s], sprnames[spr], fr)
+    report.append('state reachability: %d states validated against sprites'
+                  % len(reachable))
 
     # ---- gen_assets.h
     sky_tex = texname_to_idx.get('SKY1', 0)
@@ -591,9 +684,35 @@ def main():
     lines.append('#define GEN_NUMSPRITES %d' % len(sprnames))
     lines.append('#define GEN_NUMSPRFRAMES %d' % len(sprframe))
     lines.append('#define GEN_NUMMOBJTYPES %d' % len(mobjinfo))
+    lines.append('#define GEN_NUMSTATES %d' % len(states))
+    lines.append('#define GEN_NUMACTIONS %d' % (len(actnames) + 1))
+    lines.append('')
+    lines.append('// action fn indices (states[s][3]; 0 = no action)')
+    for i, an in enumerate(actnames):
+        lines.append('#define GEN_ACT_%s %d' % (an, i + 1))
+    lines.append('')
+    lines.append('// statenum constants used by ported code')
+    for sn in ('S_NULL', 'S_PLAY', 'S_PLAY_RUN1', 'S_PLAY_ATK1', 'S_PLAY_ATK2',
+               'S_PUFF3', 'S_BLOOD2', 'S_BLOOD3',
+               'S_PUNCH', 'S_PUNCHDOWN', 'S_PUNCHUP', 'S_PUNCH1',
+               'S_PISTOL', 'S_PISTOLDOWN', 'S_PISTOLUP', 'S_PISTOL1',
+               'S_PISTOLFLASH',
+               'S_SGUN', 'S_SGUNDOWN', 'S_SGUNUP', 'S_SGUN1', 'S_SGUNFLASH1'):
+        lines.append('#define GEN_%s %d' % (sn, snames.index(sn)))
+    lines.append('')
+    lines.append('// mobjtype constants used by ported code')
+    for mn in ('MT_PLAYER', 'MT_POSSESSED', 'MT_SHOTGUY', 'MT_TROOP',
+               'MT_TROOPSHOT', 'MT_PUFF', 'MT_BLOOD', 'MT_CLIP', 'MT_SHOTGUN',
+               'MT_BARREL'):
+        lines.append('#define GEN_%s %d' % (mn, mtnames.index(mn)))
+    lines.append('')
+    lines.append('// sprite number constants used by P_TouchSpecialThing')
+    for spn in ('ARM1', 'ARM2', 'BON1', 'BON2', 'STIM', 'MEDI', 'CLIP',
+                'AMMO', 'SHEL', 'SBOX', 'ROCK', 'BROK', 'SHOT', 'MGUN'):
+        lines.append('#define GEN_SPR_%s %d' % (spn, sprnames.index(spn)))
     lines.append('')
     for key in ('vertexes', 'sectors', 'sidedefs', 'linedefs',
-                'ssectors', 'segs', 'nodes', 'things', 'blockmap'):
+                'ssectors', 'segs', 'nodes', 'things', 'blockmap', 'reject'):
         lines.append('#define GEN_NUM%s %d' % (key.upper(), counts[key]))
     lines.append('')
     lines.append('// texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat')
@@ -603,11 +722,13 @@ def main():
     lines.append('')
     lines.append('// sprites: sheet(texid),x,y,w,h,leftoffset,topoffset per lump;')
     lines.append('// sprdef: firstframe,numframes per SPR_*; sprframe: rotate,lump[8],flip[8];')
-    lines.append('// mobjinfo: doomednum,sprite,frame,radius,height,flags per MT_*')
+    lines.append('// mobjinfo: FULL upstream mobjinfo_t, 23 words per MT_* (see MI_* in')
+    lines.append('// doomdefs.h); states: sprite,frame,tics,action,nextstate,misc1,misc2')
     lines.append('embedded int[GEN_NUMSPRLUMPS][7] gen_sprinfo = "data\\\\sprinfo.bin";')
     lines.append('embedded int[GEN_NUMSPRITES][2] gen_sprdef = "data\\\\sprdef.bin";')
     lines.append('embedded int[GEN_NUMSPRFRAMES][17] gen_sprframe = "data\\\\sprframe.bin";')
-    lines.append('embedded int[GEN_NUMMOBJTYPES][6] gen_mobjinfo = "data\\\\mobjinfo.bin";')
+    lines.append('embedded int[GEN_NUMMOBJTYPES][23] gen_mobjinfo = "data\\\\mobjinfo.bin";')
+    lines.append('embedded int[GEN_NUMSTATES][7] gen_states = "data\\\\states.bin";')
     lines.append('')
     lines.append('// trig tables (fixed_t / BAM)')
     lines.append('embedded int[10240] finesine = "data\\\\finesine.bin";')
@@ -625,6 +746,7 @@ def main():
         'nodes': 'int[GEN_NUMNODES][14]',
         'things': 'int[GEN_NUMTHINGS][5]',
         'blockmap': 'int[GEN_NUMBLOCKMAP]',
+        'reject': 'int[GEN_NUMREJECT]',
     }
     for key, ty in decl.items():
         lines.append('embedded %s gen_%s = "data\\\\%s_%s.bin";' % (ty, key, ml, key))
@@ -773,6 +895,173 @@ def main():
     lines.append(carr('gen_pis_y', [y for x, y in pis_cases]))
     lines.append(carr('gen_pis_ss', pis_ss))
     lines.append(carr('gen_pis_floor', [subsector_floor(ss) for ss in pis_ss]))
+
+    # ---- P_CheckSight reference vectors (M6): full upstream p_sight.c walk
+    # over the BAKED lumps (REJECT + BSP + seg/line/sector data). The console
+    # FixedDiv is float32-based, so each expectation is computed with BOTH an
+    # exact divide and a float32-simulated divide; only vectors where the two
+    # agree are emitted (sight booleans robust to the documented deviation).
+    def f32(x):
+        return struct.unpack('<f', struct.pack('<f', x))[0]
+    def fixeddiv_f32(a, b):
+        if (abs(a) >> 14) >= abs(b):
+            return to_s32(0x7FFFFFFF if (a ^ b) >= 0 else 0x80000000)
+        c = f32(f32(f32(a) / f32(b)) * 65536.0)
+        return to_s32(int(c))       # CFI truncates toward zero
+    LN = out['linedefs']; SD = out['sidedefs']; SG = out['segs']
+    SS = out['ssectors']; SEC = out['sectors']; RJ = out['reject']
+    ND = out['nodes']; VX = out['vertexes']
+    numsectors_b = counts['sectors']
+    def sd_sector(sd):
+        return SD[sd*6 + 5]
+    def ss_sector(ssidx):
+        fs = SS[ssidx*2 + 1]
+        ld = SG[fs*6 + 4]; side = SG[fs*6 + 5]
+        return sd_sector(LN[ld*7 + 5 + side])
+    def divline_side(x, y, dl):
+        # exact upstream P_DivlineSide incl. the x==node->y quirk
+        dlx, dly, dldx, dldy = dl
+        if dldx == 0:
+            if x == dlx:
+                return 2
+            if x <= dlx:
+                return 1 if dldy > 0 else 0
+            return 1 if dldy < 0 else 0
+        if dldy == 0:
+            if x == dly:                       # upstream quirk: x vs node->y
+                return 2
+            if y <= dly:
+                return 1 if dldx < 0 else 0
+            return 1 if dldx > 0 else 0
+        dx = to_s32(x - dlx); dy = to_s32(y - dly)
+        left = to_s32((dldy >> 16) * (dx >> 16))
+        right = to_s32((dy >> 16) * (dldx >> 16))
+        if right < left:
+            return 0
+        if left == right:
+            return 2
+        return 1
+    def check_sight_ref(x1, y1, zstart, sn1, x2, y2, bz, tz, sn2, divfn):
+        pnum = sn1 * numsectors_b + sn2
+        if RJ[pnum >> 3] & (1 << (pnum & 7)):
+            return 0
+        state = {'top': to_s32(tz - zstart), 'bot': to_s32(bz - zstart)}
+        strace = (x1, y1, to_s32(x2 - x1), to_s32(y2 - y1))
+        seen_lines = set()
+        def intercept2(v2, v1):
+            den = to_s32(fixedmul_ref(v1[3] >> 8, v2[2])
+                         - fixedmul_ref(v1[2] >> 8, v2[3]))
+            if den == 0:
+                return 0
+            num = to_s32(fixedmul_ref(to_s32(v1[0] - v2[0]) >> 8, v1[3])
+                         + fixedmul_ref(to_s32(v2[1] - v1[1]) >> 8, v1[2]))
+            return divfn(num, den)
+        def cross_subsector(ssidx):
+            count = SS[ssidx*2]; segi = SS[ssidx*2 + 1]
+            for k in range(count):
+                sg = segi + k
+                ld = SG[sg*6 + 4]
+                if ld in seen_lines:
+                    continue
+                seen_lines.add(ld)
+                v1i = LN[ld*7]; v2i = LN[ld*7 + 1]
+                v1x, v1y = VX[v1i*2], VX[v1i*2 + 1]
+                v2x, v2y = VX[v2i*2], VX[v2i*2 + 1]
+                s1 = divline_side(v1x, v1y, strace)
+                s2 = divline_side(v2x, v2y, strace)
+                if s1 == s2:
+                    continue
+                divl = (v1x, v1y, to_s32(v2x - v1x), to_s32(v2y - v1y))
+                s1 = divline_side(strace[0], strace[1], divl)
+                s2 = divline_side(x2, y2, divl)
+                if s1 == s2:
+                    continue
+                flags = LN[ld*7 + 2]
+                if not (flags & 4):            # ML_TWOSIDED
+                    return False
+                side = SG[sg*6 + 5]
+                fsec = sd_sector(LN[ld*7 + 5 + side])
+                bsec = sd_sector(LN[ld*7 + 5 + (side ^ 1)])
+                ffl = SEC[fsec*7]; fcl = SEC[fsec*7 + 1]
+                bfl = SEC[bsec*7]; bcl = SEC[bsec*7 + 1]
+                if ffl == bfl and fcl == bcl:
+                    continue
+                opentop = fcl if fcl < bcl else bcl
+                openbottom = ffl if ffl > bfl else bfl
+                if openbottom >= opentop:
+                    return False
+                frac = intercept2(strace, divl)
+                if ffl != bfl:
+                    slope = divfn(to_s32(openbottom - zstart), frac)
+                    if slope > state['bot']:
+                        state['bot'] = slope
+                if fcl != bcl:
+                    slope = divfn(to_s32(opentop - zstart), frac)
+                    if slope < state['top']:
+                        state['top'] = slope
+                if state['top'] <= state['bot']:
+                    return False
+            return True
+        def cross_node(bspnum):
+            if bspnum & 0x8000:
+                if bspnum == to_s32(0xFFFFFFFF):
+                    return cross_subsector(0)
+                return cross_subsector(bspnum & 0x7FFF)
+            o = bspnum * 14
+            dl = (ND[o], ND[o+1], ND[o+2], ND[o+3])
+            side = divline_side(strace[0], strace[1], dl)
+            if side == 2:
+                side = 0
+            if not cross_node(ND[o + 12 + side]):
+                return False
+            if side == divline_side(x2, y2, dl):
+                return True
+            return cross_node(ND[o + 12 + (side ^ 1)])
+        return 1 if cross_node(counts['nodes'] - 1) else 0
+    # build cases: player start eye -> each monster/barrel; plus monster pairs
+    mon_types = {3004: 56 << 16, 9: 56 << 16, 3001: 56 << 16, 2035: 42 << 16}
+    def thing_pos(i):
+        return (out['things'][i*5] << 16, out['things'][i*5 + 1] << 16)
+    p1 = None
+    targets = []
+    for i in range(counts['things']):
+        tt = out['things'][i*5 + 3]
+        if tt == 1:
+            p1 = thing_pos(i)
+        elif tt in mon_types and not (out['things'][i*5 + 4] & 16):
+            targets.append((thing_pos(i), mon_types[tt]))
+    def eyeball(pos, height):
+        ssn = point_in_subsector_ref(pos[0], pos[1])
+        sec = ss_sector(ssn)
+        z = SEC[sec*7]
+        return pos[0], pos[1], to_s32(z + height - (height >> 2)), sec, z
+    sight_rows = []
+    px, py, pz_eye, psec, _ = eyeball(p1, 56 << 16)
+    pairs = [((px, py, pz_eye, psec), t) for t in targets]
+    # monster -> monster spot checks for coverage
+    for i in range(0, len(targets) - 1, 5):
+        (tp, th) = targets[i]
+        ex, ey, ez, esec, _ = eyeball(tp, th)
+        pairs.append(((ex, ey, ez, esec), targets[i + 1]))
+    for (sx, sy, sz, ssec), ((tx, ty), thgt) in pairs:
+        tssn = point_in_subsector_ref(tx, ty)
+        tsec = ss_sector(tssn)
+        tzf = SEC[tsec*7]
+        bz = tzf; tzt = to_s32(tzf + thgt)
+        r_exact = check_sight_ref(sx, sy, sz, ssec, tx, ty, bz, tzt, tsec,
+                                  fixeddiv_ref)
+        r_f32 = check_sight_ref(sx, sy, sz, ssec, tx, ty, bz, tzt, tsec,
+                                fixeddiv_f32)
+        if r_exact == r_f32 and len(sight_rows) < 32:
+            sight_rows.append([sx, sy, sz, ssec, tx, ty, bz, tzt, tsec,
+                               r_exact])
+    assert len(sight_rows) >= 12, 'too few stable sight vectors'
+    nsee = sum(r[9] for r in sight_rows)
+    assert 0 < nsee < len(sight_rows), 'sight vectors all one-sided'
+    lines.append('#define GEN_NUM_SIGHTCASES %d' % len(sight_rows))
+    for ci, nm in enumerate(('x1', 'y1', 'z1', 's1', 'x2', 'y2',
+                             'bz', 'tz', 's2', 'r')):
+        lines.append(carr('gen_sight_%s' % nm, [r[ci] for r in sight_rows]))
     lines.append('#endif')
     open(os.path.join(ROOT, 'port', 'gen_checkvals.h'), 'w').write('\n'.join(lines) + '\n')
 

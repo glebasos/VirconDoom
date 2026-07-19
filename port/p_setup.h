@@ -40,6 +40,8 @@ void P_LoadSectors()
         sectors[i].specialdata = NULL;
         sectors[i].linecount = 0;
         sectors[i].lines = NULL;
+        sectors[i].soundtarget = NULL;
+        sectors[i].soundtraversed = 0;
     }
 }
 

@@ -1,18 +1,23 @@
 // -----------------------------------------------------------------------------
-//  p_spec.h -- M4 subset of p_spec.c + p_floor.c (T_MovePlane) + p_doors.c:
+//  p_spec.h -- p_spec.c + p_floor.c + p_plats.c + p_doors.c subset for E1M1:
 //  sector neighbor queries, the vertical plane mover, manual door thinkers,
-//  and the use-line dispatch. Walk-over triggers (P_CrossSpecialLine) are a
-//  documented stub until M6.
+//  moving floors (W1 36 turbo lower), plats (WR 88 down-wait-up), walk-over
+//  triggers, the S1 11 exit switch, and damaging/secret sector specials.
 //
-//  DEVIATIONS: no crush/P_ChangeSector yet -- a closing door will not push
-//  the player out (it closes through them); no locked doors (E1 shareware
-//  M4 scope), no sounds yet.
+//  DEVIATIONS: no crush/P_ChangeSector -- a closing door/plat will not push
+//  things out; no locked doors; no light-effect thinkers (sector light
+//  specials render static); no sounds yet. E1M1's line special roster is
+//  exactly {1, 11, 36, 48(scroll: cosmetic, skipped), 88} -- others unported.
 // -----------------------------------------------------------------------------
 #ifndef P_SPEC_H
 #define P_SPEC_H
 
 #include "p_tick.h"
 #include "z_zone.h"
+
+// implemented in p_inter.h / p_map.h (later in the TU)
+void P_DamageMobj( mobj_t* target, mobj_t* inflictor, mobj_t* source, int damage );
+void P_SectorHeightClip( sector_t* sector );
 
 // ---- neighbor queries (p_spec.c)
 
@@ -67,9 +72,14 @@ fixed_t P_FindLowestCeilingSurrounding( sector_t* sec )
     return height;
 }
 
-// walk-over line triggers: M6 (stub keeps P_TryMove's call structure)
-void P_CrossSpecialLine( int linenum, int side, mobj_t* thing )
+int P_FindSectorFromLineTag( line_t* line, int start )
 {
+    int i;
+
+    for( i = start + 1; i < numsectors; i++ )
+        if( sectors[i].tag == line->tag )
+            return i;
+    return -1;
 }
 
 // ---- T_MovePlane (p_floor.c) -- result codes
@@ -80,6 +90,8 @@ void P_CrossSpecialLine( int linenum, int side, mobj_t* thing )
 int T_MovePlane( sector_t* sector, fixed_t speed, fixed_t dest,
                  boolean crush, int floorOrCeiling, int direction )
 {
+    int res = RES_OK;
+
     if( floorOrCeiling == 0 )
     {
         // floor
@@ -88,18 +100,20 @@ int T_MovePlane( sector_t* sector, fixed_t speed, fixed_t dest,
             if( sector->floorheight - speed < dest )
             {
                 sector->floorheight = dest;
-                return RES_PASTDEST;
+                res = RES_PASTDEST;
             }
-            sector->floorheight -= speed;
+            else
+                sector->floorheight -= speed;
         }
         else if( direction == 1 )
         {
             if( sector->floorheight + speed > dest )
             {
                 sector->floorheight = dest;
-                return RES_PASTDEST;
+                res = RES_PASTDEST;
             }
-            sector->floorheight += speed;
+            else
+                sector->floorheight += speed;
         }
     }
     else
@@ -110,21 +124,28 @@ int T_MovePlane( sector_t* sector, fixed_t speed, fixed_t dest,
             if( sector->ceilingheight - speed < dest )
             {
                 sector->ceilingheight = dest;
-                return RES_PASTDEST;
+                res = RES_PASTDEST;
             }
-            sector->ceilingheight -= speed;
+            else
+                sector->ceilingheight -= speed;
         }
         else if( direction == 1 )
         {
             if( sector->ceilingheight + speed > dest )
             {
                 sector->ceilingheight = dest;
-                return RES_PASTDEST;
+                res = RES_PASTDEST;
             }
-            sector->ceilingheight += speed;
+            else
+                sector->ceilingheight += speed;
         }
     }
-    return RES_OK;
+
+    // re-clip things standing in the sector so floors/lifts carry them
+    // (minimal P_ChangeSector: glue only, no crushing -- see header)
+    P_SectorHeightClip( sector );
+
+    return res;
 }
 
 // ---- manual doors (p_doors.c)
@@ -239,18 +260,291 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
         door->type = DOOR_NORMAL;
 }
 
+// ---- moving floors (p_floor.c subset: E1M1 needs turboLower via W1 36)
+
+#define FLOORSPEED FRACUNIT
+#define FLOOR_TURBOLOWER 0
+
+struct floormove_t
+{
+    thinker_t thinker;
+    int type;
+    boolean crush;
+    sector_t* sector;
+    int direction;
+    fixed_t floordestheight;
+    fixed_t speed;
+};
+
+void T_MoveFloor( void* p )
+{
+    floormove_t* floor = (floormove_t*)p;
+    int res;
+
+    res = T_MovePlane( floor->sector, floor->speed, floor->floordestheight,
+                       floor->crush, 0, floor->direction );
+
+    if( res == RES_PASTDEST )
+    {
+        floor->sector->specialdata = NULL;
+        P_RemoveThinker( &floor->thinker );
+    }
+}
+
+boolean EV_DoFloor( line_t* line, int floortype )
+{
+    int secnum;
+    boolean rtn;
+    sector_t* sec;
+    floormove_t* floor;
+
+    secnum = -1;
+    rtn = false;
+    while( true )
+    {
+        secnum = P_FindSectorFromLineTag( line, secnum );
+        if( secnum < 0 )
+            break;
+        sec = &sectors[secnum];
+
+        if( sec->specialdata )
+            continue;            // already moving
+
+        rtn = true;
+        floor = Z_CallocLevel( sizeof( floormove_t ) );
+        P_AddThinker( &floor->thinker );
+        sec->specialdata = (void*)floor;
+        floor->thinker.function = &T_MoveFloor;
+        floor->type = floortype;
+        floor->crush = false;
+
+        // turboLower: to 8 above highest surrounding floor, 4x speed
+        floor->direction = -1;
+        floor->sector = sec;
+        floor->speed = FLOORSPEED * 4;
+        floor->floordestheight = P_FindHighestFloorSurrounding( sec );
+        if( floor->floordestheight != sec->floorheight )
+            floor->floordestheight += 8 * FRACUNIT;
+    }
+    return rtn;
+}
+
+// ---- plats (p_plats.c subset: E1M1 needs downWaitUpStay via WR 88)
+
+#define PLATSPEED FRACUNIT
+#define PLATWAIT  3
+
+#define PLAT_UP      0
+#define PLAT_DOWN    1
+#define PLAT_WAITING 2
+
+struct plat_t
+{
+    thinker_t thinker;
+    sector_t* sector;
+    fixed_t speed;
+    fixed_t low;
+    fixed_t high;
+    int wait;
+    int count;
+    int status;
+    boolean crush;
+    int tag;
+};
+
+void T_PlatRaise( void* p )
+{
+    plat_t* plat = (plat_t*)p;
+    int res;
+
+    if( plat->status == PLAT_UP )
+    {
+        res = T_MovePlane( plat->sector, plat->speed, plat->high,
+                           plat->crush, 0, 1 );
+
+        if( res == RES_CRUSHED && !plat->crush )
+        {
+            plat->count = plat->wait;
+            plat->status = PLAT_DOWN;
+        }
+        else if( res == RES_PASTDEST )
+        {
+            // downWaitUpStay finished: remove
+            plat->sector->specialdata = NULL;
+            P_RemoveThinker( &plat->thinker );
+        }
+    }
+    else if( plat->status == PLAT_DOWN )
+    {
+        res = T_MovePlane( plat->sector, plat->speed, plat->low,
+                           false, 0, -1 );
+
+        if( res == RES_PASTDEST )
+        {
+            plat->count = plat->wait;
+            plat->status = PLAT_WAITING;
+        }
+    }
+    else if( plat->status == PLAT_WAITING )
+    {
+        plat->count--;
+        if( !plat->count )
+        {
+            if( plat->sector->floorheight == plat->low )
+                plat->status = PLAT_UP;
+            else
+                plat->status = PLAT_DOWN;
+        }
+    }
+}
+
+boolean EV_DoPlat( line_t* line, int amount )
+{
+    plat_t* plat;
+    int secnum;
+    boolean rtn;
+    sector_t* sec;
+
+    secnum = -1;
+    rtn = false;
+
+    while( true )
+    {
+        secnum = P_FindSectorFromLineTag( line, secnum );
+        if( secnum < 0 )
+            break;
+        sec = &sectors[secnum];
+
+        if( sec->specialdata )
+            continue;
+
+        rtn = true;
+        plat = Z_CallocLevel( sizeof( plat_t ) );
+        P_AddThinker( &plat->thinker );
+
+        plat->sector = sec;
+        plat->sector->specialdata = (void*)plat;
+        plat->thinker.function = &T_PlatRaise;
+        plat->crush = false;
+        plat->tag = line->tag;
+
+        // downWaitUpStay
+        plat->speed = PLATSPEED * 4;
+        plat->low = P_FindLowestFloorSurrounding( sec );
+        if( plat->low > sec->floorheight )
+            plat->low = sec->floorheight;
+        plat->high = sec->floorheight;
+        plat->wait = 35 * PLATWAIT;
+        plat->status = PLAT_DOWN;
+    }
+    return rtn;
+}
+
+// ---- level exit (G_ExitLevel: flag consumed by game.c)
+
+void G_ExitLevel()
+{
+    gameexit = true;
+}
+
+// ---- walk-over triggers (P_CrossSpecialLine, E1M1 roster)
+
+void P_CrossSpecialLine( int linenum, int side, mobj_t* thing )
+{
+    line_t* line = &lines[linenum];
+
+    if( !thing->player )
+    {
+        // monsters may only activate the WR plat (88) from this roster
+        if( line->special != 88 )
+            return;
+    }
+
+    if( line->special == 36 )
+    {
+        // W1: lower floor (turbo)
+        EV_DoFloor( line, FLOOR_TURBOLOWER );
+        line->special = 0;
+    }
+    else if( line->special == 88 )
+    {
+        // WR: plat down-wait-up-stay (retriggerable)
+        EV_DoPlat( line, 0 );
+    }
+}
+
 // use-line dispatch (P_UseSpecialLine subset: manual doors incl. the locked
-// variants treated as unlocked -- no key system yet)
+// variants treated as unlocked -- no key system yet -- and the exit switch)
 boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
 {
     int s = line->special;
+
+    if( !thing->player )
+    {
+        // monsters can only open ordinary repeatable doors
+        if( line->flags & ML_SECRET )
+            return false;
+        if( s != 1 )
+            return false;
+    }
+
     if( s == 1 || s == 26 || s == 27 || s == 28
      || s == 31 || s == 32 || s == 33 || s == 34 )
     {
         EV_VerticalDoor( line, thing );
         return true;
     }
+    if( s == 11 )
+    {
+        // exit switch
+        G_ExitLevel();
+        line->special = 0;
+        return true;
+    }
     return false;
+}
+
+// ---- damaging / secret sector specials (P_PlayerInSpecialSector; E1M1
+// sector special roster: 1/8/12 lights (static for now), 7 nukage -5, 9 secret)
+void P_PlayerInSpecialSector( player_t* player )
+{
+    sector_t* sector = player->mo->subsector->sector;
+
+    if( player->mo->z != sector->floorheight )
+        return;                  // not on ground
+
+    int sp = sector->special;
+
+    if( sp == 5 )
+    {
+        // hellslime damage
+        if( !player->powers[pw_ironfeet] )
+            if( !( leveltime & 0x1F ) )
+                P_DamageMobj( player->mo, NULL, NULL, 10 );
+    }
+    else if( sp == 7 )
+    {
+        // nukage damage
+        if( !player->powers[pw_ironfeet] )
+            if( !( leveltime & 0x1F ) )
+                P_DamageMobj( player->mo, NULL, NULL, 5 );
+    }
+    else if( sp == 16 || sp == 4 )
+    {
+        // super hellslime / strobe hurt
+        if( !player->powers[pw_ironfeet] || P_Random() < 5 )
+        {
+            if( !( leveltime & 0x1F ) )
+                P_DamageMobj( player->mo, NULL, NULL, 20 );
+        }
+    }
+    else if( sp == 9 )
+    {
+        // secret sector
+        player->secretcount++;
+        sector->special = 0;
+    }
+    // other specials: light effects, static in this port (M7)
 }
 
 #endif

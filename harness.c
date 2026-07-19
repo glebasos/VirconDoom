@@ -24,6 +24,9 @@
 #include "port\\r_gpu.h"
 #include "port\\r_segs.h"
 #include "port\\r_bsp.h"
+#include "port\\p_tick.h"
+#include "port\\p_maputl.h"
+#include "port\\p_sight.h"
 
 bool AllPassed = true;
 int  checkNum  = 0;
@@ -236,6 +239,48 @@ void main()
         subsector_t* qss = R_PointInSubsector( gen_pis_x[i], gen_pis_y[i] );
         Check( qss == &subsectors[ gen_pis_ss[i] ] );
         CheckEq( qss->sector->floorheight, gen_pis_floor[i] );
+    }
+
+    // --- group 15: M6 baked state machine tables (spot checks vs upstream
+    // info.c values: S_PISTOL2 = {SPR_PISG,1,6,{A_FirePistol},S_PISTOL3})
+    CheckEq( gen_states[GEN_S_PISTOL1 + 1][ST_FRAME], 1 );
+    CheckEq( gen_states[GEN_S_PISTOL1 + 1][ST_TICS], 6 );
+    CheckEq( gen_states[GEN_S_PISTOL1 + 1][ST_ACTION], GEN_ACT_A_FirePistol );
+    CheckEq( gen_states[GEN_S_NULL][ST_TICS], -1 );
+    CheckEq( gen_states[GEN_S_NULL][ST_NEXTSTATE], GEN_S_NULL );
+    // troop: doomednum 3001, spawnhealth 60, painchance 200, speed 8
+    CheckEq( gen_mobjinfo[GEN_MT_TROOP][MI_DOOMEDNUM], 3001 );
+    CheckEq( gen_mobjinfo[GEN_MT_TROOP][MI_SPAWNHEALTH], 60 );
+    CheckEq( gen_mobjinfo[GEN_MT_TROOP][MI_PAINCHANCE], 200 );
+    CheckEq( gen_mobjinfo[GEN_MT_TROOP][MI_SPEED], 8 );
+    CheckEq( gen_mobjinfo[GEN_MT_PLAYER][MI_HEIGHT], 56 * FRACUNIT );
+    // every state's sprite/nextstate/action index must be in range
+    bool stOk = true;
+    for( i = 0; i < GEN_NUMSTATES; i++ )
+    {
+        if( gen_states[i][ST_SPRITE] < 0
+         || gen_states[i][ST_SPRITE] >= GEN_NUMSPRITES ) stOk = false;
+        if( gen_states[i][ST_NEXTSTATE] < 0
+         || gen_states[i][ST_NEXTSTATE] >= GEN_NUMSTATES ) stOk = false;
+        if( gen_states[i][ST_ACTION] < 0
+         || gen_states[i][ST_ACTION] >= GEN_NUMACTIONS ) stOk = false;
+    }
+    Check( stOk );
+
+    // --- group 16: P_CheckSight vs PC reference walk over the baked
+    // REJECT + BSP (covers P_DivlineSide quirk semantics, InterceptVector2,
+    // slope accumulation, recursion). Vectors pre-screened on the PC to be
+    // robust against the float32 FixedDiv deviation.
+    for( i = 0; i < GEN_NUM_SIGHTCASES; i++ )
+    {
+        boolean sr = P_CheckSightRaw( gen_sight_x1[i], gen_sight_y1[i],
+                                      gen_sight_z1[i], gen_sight_s1[i],
+                                      gen_sight_x2[i], gen_sight_y2[i],
+                                      gen_sight_bz[i], gen_sight_tz[i],
+                                      gen_sight_s2[i] );
+        int sri = 0;
+        if( sr ) sri = 1;
+        CheckEq( sri, gen_sight_r[i] );
     }
 
     // --- group 14: projection tables

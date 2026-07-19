@@ -41,6 +41,8 @@ struct sector_t
     void* specialdata;       // active thinker (door/plat) or NULL (M4)
     int linecount;           // lines touching this sector (P_GroupLines)
     void* lines;             // line_t** array of them
+    void* soundtarget;       // mobj_t* that made noise here (P_NoiseAlert, M6)
+    int soundtraversed;      // 0 = untraversed, 1,2 = sndlines crossed
 };
 
 struct side_t

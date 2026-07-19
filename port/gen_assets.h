@@ -20,6 +20,136 @@
 #define GEN_NUMSPRITES 138
 #define GEN_NUMSPRFRAMES 261
 #define GEN_NUMMOBJTYPES 137
+#define GEN_NUMSTATES 967
+#define GEN_NUMACTIONS 75
+
+// action fn indices (states[s][3]; 0 = no action)
+#define GEN_ACT_A_Light0 1
+#define GEN_ACT_A_WeaponReady 2
+#define GEN_ACT_A_Lower 3
+#define GEN_ACT_A_Raise 4
+#define GEN_ACT_A_Punch 5
+#define GEN_ACT_A_ReFire 6
+#define GEN_ACT_A_FirePistol 7
+#define GEN_ACT_A_Light1 8
+#define GEN_ACT_A_FireShotgun 9
+#define GEN_ACT_A_Light2 10
+#define GEN_ACT_A_FireShotgun2 11
+#define GEN_ACT_A_CheckReload 12
+#define GEN_ACT_A_OpenShotgun2 13
+#define GEN_ACT_A_LoadShotgun2 14
+#define GEN_ACT_A_CloseShotgun2 15
+#define GEN_ACT_A_FireCGun 16
+#define GEN_ACT_A_GunFlash 17
+#define GEN_ACT_A_FireMissile 18
+#define GEN_ACT_A_Saw 19
+#define GEN_ACT_A_FirePlasma 20
+#define GEN_ACT_A_BFGsound 21
+#define GEN_ACT_A_FireBFG 22
+#define GEN_ACT_A_BFGSpray 23
+#define GEN_ACT_A_Explode 24
+#define GEN_ACT_A_Pain 25
+#define GEN_ACT_A_PlayerScream 26
+#define GEN_ACT_A_Fall 27
+#define GEN_ACT_A_XScream 28
+#define GEN_ACT_A_Look 29
+#define GEN_ACT_A_Chase 30
+#define GEN_ACT_A_FaceTarget 31
+#define GEN_ACT_A_PosAttack 32
+#define GEN_ACT_A_Scream 33
+#define GEN_ACT_A_SPosAttack 34
+#define GEN_ACT_A_VileChase 35
+#define GEN_ACT_A_VileStart 36
+#define GEN_ACT_A_VileTarget 37
+#define GEN_ACT_A_VileAttack 38
+#define GEN_ACT_A_StartFire 39
+#define GEN_ACT_A_Fire 40
+#define GEN_ACT_A_FireCrackle 41
+#define GEN_ACT_A_Tracer 42
+#define GEN_ACT_A_SkelWhoosh 43
+#define GEN_ACT_A_SkelFist 44
+#define GEN_ACT_A_SkelMissile 45
+#define GEN_ACT_A_FatRaise 46
+#define GEN_ACT_A_FatAttack1 47
+#define GEN_ACT_A_FatAttack2 48
+#define GEN_ACT_A_FatAttack3 49
+#define GEN_ACT_A_BossDeath 50
+#define GEN_ACT_A_CPosAttack 51
+#define GEN_ACT_A_CPosRefire 52
+#define GEN_ACT_A_TroopAttack 53
+#define GEN_ACT_A_SargAttack 54
+#define GEN_ACT_A_HeadAttack 55
+#define GEN_ACT_A_BruisAttack 56
+#define GEN_ACT_A_SkullAttack 57
+#define GEN_ACT_A_Metal 58
+#define GEN_ACT_A_SpidRefire 59
+#define GEN_ACT_A_BabyMetal 60
+#define GEN_ACT_A_BspiAttack 61
+#define GEN_ACT_A_Hoof 62
+#define GEN_ACT_A_CyberAttack 63
+#define GEN_ACT_A_PainAttack 64
+#define GEN_ACT_A_PainDie 65
+#define GEN_ACT_A_KeenDie 66
+#define GEN_ACT_A_BrainPain 67
+#define GEN_ACT_A_BrainScream 68
+#define GEN_ACT_A_BrainDie 69
+#define GEN_ACT_A_BrainAwake 70
+#define GEN_ACT_A_BrainSpit 71
+#define GEN_ACT_A_SpawnSound 72
+#define GEN_ACT_A_SpawnFly 73
+#define GEN_ACT_A_BrainExplode 74
+
+// statenum constants used by ported code
+#define GEN_S_NULL 0
+#define GEN_S_PLAY 149
+#define GEN_S_PLAY_RUN1 150
+#define GEN_S_PLAY_ATK1 154
+#define GEN_S_PLAY_ATK2 155
+#define GEN_S_PUFF3 95
+#define GEN_S_BLOOD2 91
+#define GEN_S_BLOOD3 92
+#define GEN_S_PUNCH 2
+#define GEN_S_PUNCHDOWN 3
+#define GEN_S_PUNCHUP 4
+#define GEN_S_PUNCH1 5
+#define GEN_S_PISTOL 10
+#define GEN_S_PISTOLDOWN 11
+#define GEN_S_PISTOLUP 12
+#define GEN_S_PISTOL1 13
+#define GEN_S_PISTOLFLASH 17
+#define GEN_S_SGUN 18
+#define GEN_S_SGUNDOWN 19
+#define GEN_S_SGUNUP 20
+#define GEN_S_SGUN1 21
+#define GEN_S_SGUNFLASH1 30
+
+// mobjtype constants used by ported code
+#define GEN_MT_PLAYER 0
+#define GEN_MT_POSSESSED 1
+#define GEN_MT_SHOTGUY 2
+#define GEN_MT_TROOP 11
+#define GEN_MT_TROOPSHOT 31
+#define GEN_MT_PUFF 37
+#define GEN_MT_BLOOD 38
+#define GEN_MT_CLIP 63
+#define GEN_MT_SHOTGUN 77
+#define GEN_MT_BARREL 30
+
+// sprite number constants used by P_TouchSpecialThing
+#define GEN_SPR_ARM1 55
+#define GEN_SPR_ARM2 56
+#define GEN_SPR_BON1 60
+#define GEN_SPR_BON2 61
+#define GEN_SPR_STIM 68
+#define GEN_SPR_MEDI 69
+#define GEN_SPR_CLIP 78
+#define GEN_SPR_AMMO 79
+#define GEN_SPR_SHEL 84
+#define GEN_SPR_SBOX 85
+#define GEN_SPR_ROCK 80
+#define GEN_SPR_BROK 81
+#define GEN_SPR_SHOT 92
+#define GEN_SPR_MGUN 88
 
 #define GEN_NUMVERTEXES 467
 #define GEN_NUMSECTORS 85
@@ -30,6 +160,7 @@
 #define GEN_NUMNODES 236
 #define GEN_NUMTHINGS 138
 #define GEN_NUMBLOCKMAP 3461
+#define GEN_NUMREJECT 904
 
 // texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat
 embedded int[GEN_NUMTEXTURES][6] gen_texinfo = "data\\texinfo.bin";
@@ -38,11 +169,13 @@ embedded int[GEN_NUMFLATS] gen_flatavg = "data\\flatavg.bin";
 
 // sprites: sheet(texid),x,y,w,h,leftoffset,topoffset per lump;
 // sprdef: firstframe,numframes per SPR_*; sprframe: rotate,lump[8],flip[8];
-// mobjinfo: doomednum,sprite,frame,radius,height,flags per MT_*
+// mobjinfo: FULL upstream mobjinfo_t, 23 words per MT_* (see MI_* in
+// doomdefs.h); states: sprite,frame,tics,action,nextstate,misc1,misc2
 embedded int[GEN_NUMSPRLUMPS][7] gen_sprinfo = "data\\sprinfo.bin";
 embedded int[GEN_NUMSPRITES][2] gen_sprdef = "data\\sprdef.bin";
 embedded int[GEN_NUMSPRFRAMES][17] gen_sprframe = "data\\sprframe.bin";
-embedded int[GEN_NUMMOBJTYPES][6] gen_mobjinfo = "data\\mobjinfo.bin";
+embedded int[GEN_NUMMOBJTYPES][23] gen_mobjinfo = "data\\mobjinfo.bin";
+embedded int[GEN_NUMSTATES][7] gen_states = "data\\states.bin";
 
 // trig tables (fixed_t / BAM)
 embedded int[10240] finesine = "data\\finesine.bin";
@@ -59,5 +192,6 @@ embedded int[GEN_NUMSEGS][6] gen_segs = "data\\e1m1_segs.bin";
 embedded int[GEN_NUMNODES][14] gen_nodes = "data\\e1m1_nodes.bin";
 embedded int[GEN_NUMTHINGS][5] gen_things = "data\\e1m1_things.bin";
 embedded int[GEN_NUMBLOCKMAP] gen_blockmap = "data\\e1m1_blockmap.bin";
+embedded int[GEN_NUMREJECT] gen_reject = "data\\e1m1_reject.bin";
 
 #endif

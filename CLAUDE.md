@@ -4,301 +4,234 @@ Porting id's DOOM to the Vircon32 fantasy console. **Read `PLAN.md` for the road
 `VIRCON32_C_DIALECT.md` for the dialect rules before writing any port code.** Methodology
 is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\VirconBox2D`).
 
+**CURRENT STATE (end of session 4, 2026-07-19): M0–M6 ALL CLOSED and
+emulator-confirmed.** E1M1 is a playable game, USER-VERIFIED first run: imps
+killable, secrets found, level completable via the exit switch. Harness GREEN
+231. **Next milestone: M7 "It looks like DOOM" (UI)** — see bottom.
+
 ## Layout
 
 | Path | What |
 |------|------|
 | `doom.wad` | Shareware IWAD v1.9 (verified). Input to wadtool; never shipped raw to the console. |
-| `tools/wadtool.py` | Host-side baker: WAD -> word-widened map lumps (`data/*.bin`), exact trig tables (parsed from upstream `tables.c`), texture-atlas PNG sheets (`textures/`), generated headers (`port/gen_assets.h`, `port/gen_checkvals.h`). Rerun after changing bake formats: `python tools/wadtool.py`. |
+| `tools/wadtool.py` | Host-side baker: WAD -> word-widened map lumps (`data/*.bin`), exact trig tables (parsed from upstream `tables.c`), texture+flat atlas sheets, sprite atlas sheets, sprite/mobjinfo tables (parsed from upstream `info.c`/`info.h`/`p_mobj.h`), generated headers (`port/gen_assets.h`, `port/gen_checkvals.h` incl. harness vectors). Rerun after changing bake formats: `python tools/wadtool.py`. |
 | `port/*.h` | The port, one header per upstream module, full implementations (single TU). |
-| `probes.c` | Machine-semantics probe ROM (signed wrap, shifts, fn ptrs, embedded data). |
-| `harness.c` | Known-value harness vs PC-computed reference vectors. GREEN/RED + FIRST FAIL CHECK #N. |
-| `walls.c` | M3 ROM: E1M1 textured walls, free-fly camera. |
+| `probes.c` | Machine-semantics probe ROM (GREEN 25, hardware-confirmed). |
+| `harness.c` | Known-value harness vs PC-computed reference vectors. **GREEN 188 current.** RED shows FIRST FAIL CHECK #N -> map to the Nth `Check(`/`CheckEq(` in harness.c. |
+| `walls.c` | M3 ROM: free-fly camera through E1M1 (now also planes/sky/gratings). |
+| `game.c` | **The main ROM** (M4+M5): walk E1M1 with collision, doors, sprites. |
 | `build.sh` | `bash build.sh <name>` -> compile/assemble/png2vircon/packrom -> `bin/<name>.v32`. |
 | `../DOOM/linuxdoom-1.10/` | Upstream source. Read-only reference; port out of it. |
 | `../DoomV32/`, `../Virconstein3D/` | Community Vircon32 3D renderers. Read-only references. |
 
+Single-TU include order (game.c): doomdefs, gen_assets, m_fixed, tables, m_random,
+m_bbox, z_zone, r_defs, p_setup, r_main, r_gpu, p_tick, r_plane, r_segs, r_things,
+r_bsp, p_maputl, **p_sight, p_spec, p_map, p_inter, p_mobj, p_enemy, p_pspr,
+p_user**. (r_things needs p_tick's mobj_t/pspdef_t/player1; r_bsp needs r_things.)
+Circular calls (p_map -> p_inter -> p_mobj etc.) use forward FUNCTION PROTOTYPES
+at file tops -- confirmed working in this dialect (probe-compiled first).
+
 ## Build & verify loop (human-in-the-loop, same contract as VirconBox2D)
 
 1. `python tools/wadtool.py` (only when bake formats change)
-2. `bash build.sh harness` / `walls` / `probes`
+2. `bash build.sh game` / `harness` / `walls` / `probes`
 3. **The user runs `bin/<name>.v32` in the emulator** (`E:\Soft\Vircon32\Emulator\Vircon32.exe`)
-   and reports: harness/probes -> screen color (GREEN/RED + first-fail number);
-   walls -> what the scene looks like.
-4. Map RED check #N to the Nth `Check(`/`CheckEq(` call. Diagnostics show EXPECTED/ACTUAL
-   for the first failing CheckEq.
+   and reports: harness/probes -> GREEN/RED + first-fail number; game/walls -> what
+   they see + the debug HUD numbers.
+4. No computer-use/screenshots; no autonomous readback. Compile+assemble+packrom success
+   and PC-side cross-checks (wadtool asserts, simulation scripts) are the only headless
+   signals. **Add PC-computed harness vectors for any new math module** (lesson: derive
+   expectations by RUNNING upstream code/PC sims, never mentally).
 
-No computer-use/screenshots; no autonomous readback (memcard/DebugLog are dead ends).
-Compile+assemble+packrom success and PC-side cross-checks are the only headless signals.
+Game controls (M6 remap): dpad move/turn, L/R strafe, **A fire, B use,
+Y (hold) run, X cycle weapon, START+X detail HI/LO, START+Y debug HUD.**
+Status line (always on, y=0): HP/ARM/AMMO/KILLS. Debug HUD:
+SEGS/COLS/DRAWS/VS/SLOW/HI-LO + PLN/FIL/SPR/MSK + X/Y/Z/SEC/FRAME/ZONE(kwords).
+Death: B respawns (level restarts). Exit switch: freezes sim, A restarts.
 
-## Port-specific conventions (beyond the dialect doc)
+## Dialect rules learned the hard way (beyond VIRCON32_C_DIALECT.md)
 
-- **angle_t is signed int with BAM bit patterns.** add/sub/<</logical-'>>' work unchanged.
-  Unsigned ordered compares are rewritten per site: `ULT(a,b)` = `((a)^MININT)<((b)^MININT)`,
+- **`>>` is LOGICAL.** Every upstream signed `>>` must be `ASR(x,n)` (m_fixed.h).
+  Angle `>>ANGLETOFINESHIFT` stays logical on purpose. This bug family caused BOTH
+  emergent M4 bugs (harness #123 viewangletox; R_PointOnSide wrong-sector collision).
+  **Grep every `>>` when porting a new module.**
+- **angle_t is signed int with BAM bit patterns.** add/sub/<< work unchanged. Unsigned
+  compares rewritten per site: `ULT(a,b)` = `((a)^MININT)<((b)^MININT)`,
   `span >= ANG180` -> `span < 0`. Mark converted sites with `// U`.
-- **`>>` on signed fixed values must use `ASR(x,n)`** (r_segs.h, branchless arithmetic
-  shift, harness-checked). Audit every upstream `>>` for signedness; angle shifts stay logical.
+- **NULL is -1** (address 0 is valid RAM). After ANY calloc/memset-zero of structs with
+  pointer fields, null the pointers EXPLICITLY (`if(ptr)` compiles to `ine R0,-1`).
+- **Pointer arithmetic limits:** `ptr - int`, `ptr[i]`, `&arr[idx]`, `ptr++`, ptr==ptr
+  all fine; **`ptr - array` and `ptr >= array` DO NOT COMPILE** — keep integer indices
+  alongside (see ds_count/opening_used in r_plane.h). Assign arrays to pointers via
+  `&arr[0]`, not bare array name.
 - **FixedMul is bit-exact** (16-bit half decomposition). **FixedDiv is float-based**
-  (documented deviation; tolerance |q|*2^-22; swap for long division if playsim bites).
-- **`&Function`** (not bare name) to take a function pointer; typedef syntax
-  `typedef void( int )* name;` void* round-trip works with explicit casts both ways.
-- WAD byte formats never reach the console: wadtool bakes word-widened lumps whose field
-  orders are documented in its docstring and mirrored by `p_setup.h`.
-- Wall rendering = GPU 1-texel-wide region draws scaled vertically (`port/r_gpu.h`),
-  tiling split at texture-height boundaries, fractional edges absorbed by per-run stretch.
+  (documented deviation; fine so far through M5).
+- `&Function` (not bare name) for fn pointers; typedef `typedef void( int )* name;`.
+- No `-2147483648` literal: use 0x80000000. No ternary/switch/#if/unsigned/64-bit.
+  Multi-line backslash macros WORK. `memset(ptr, wordvalue, WORDS)` = hardware SETS.
+  §9.1 raw asm blocks work (GPU_Flush inner loop is one).
 - Colors are ABGR (`0xAABBGGRR`). Multiply-color gray approximates COLORMAP light.
-- Vircon32 has no `-2147483648` literal: use `0x80000000` (wadtool emits hex for INT_MIN).
+- `viewheight` screen macro collides with player_t field -> field renamed `viewh`.
+- wadtool regex gotcha: `(\d+|0x…)` alternation eats the `0` of hex — hex first.
 
-## Status 2026-07-19 session 2 — two harness reds fixed; walls now double-buffered via cmd list
+## Architecture snapshot (what exists and why)
 
-- **Harness check #71 (bbox) fixed** — was a WRONG EXPECTATION in the harness, not a port
-  bug. Upstream `M_AddToBox` uses `if/else if`: with a freshly cleared box, `x < BOXLEFT`
-  (MAXINT) always wins first, so BOXRIGHT stays MININT after adds (100,·),(-50,·). The port
-  reproduced id's quirk bit-faithfully; the test now encodes the quirk + a third add
-  exercising the BOXRIGHT branch. Lesson recorded: RUN harness expectations against real
-  upstream code, never derive them mentally. Emulator re-run confirmed 71 green.
-- **Harness check #123 (viewangletox monotonicity) fixed — a REAL port bug**: in
-  `R_InitTextureMapping`, `(centerxfrac - t + FRACUNIT - 1) >> FRACBITS` goes negative for
-  tangents just above 1.0 and Vircon32 `>>` is logical → huge positive → clamped to the
-  WRONG end (viewwidth+1 instead of -1) → tail of viewangletox corrupted (320 instead
-  of 0). Missed site in the signed-`>>` audit; now `ASR(...)`. Invisible in normal play
-  because R_AddLine clamps lookups to ±clipangle (index ≲3072, corrupt zone was >3072),
-  but boundary hits could drop edge segs. `ASR` moved from r_segs.h to m_fixed.h.
-  **Expect GREEN 124 on next run; that closes core-math validation.**
-- **Walls: command-buffer rendering (the VS=2 flicker fix).** Measured first run: SEGS 34
-  / COLS 734 / DRAWS 855 / VS 2 at player start; user confirmed flicker whenever VS hits 2
-  (mid-render vsync presents a half-drawn frame; near-to-far draw order means far walls
-  blink). 60fps is unreachable at ~250-300 instr/column, so the loop is now split:
-  COMPUTE frame (BSP walk records runs into `wc_*` SoA arrays in r_gpu.h, zero GPU writes,
-  previous image stays presented) → end_frame → DRAW frame (clear + fills + `GPU_Flush()`
-  replay, ~100 instr/run, always fits budget) → end_frame. Every presented vsync is a
-  complete scene; stable 30fps (VS 2, or 3 if compute overruns — graceful). GPU_SetLight
-  now just latches `gpu_light_color`; flush dedups sheet/color switches. MAXWALLCMDS 2048,
-  overflow drops farthest runs.
-- **CONFIRMED by user: harness GREEN 124 (core math validated, M2 closed). Walls flicker
-  GONE.** VS floor is 2 by design; heavy scenes hit VS 3-4 (compute frame spans 2-3
-  vsyncs) with visible slowdown.
-- **Compute-frame hot path inlined (session 2 cont.).** R_RenderSegLoop now has:
-  (a) RECORD_COL multi-line macro — the single-run (no texture-wrap) column recorder
-  inlined per tier with per-seg hoisted atlas info + float texturemid; falls back to
-  GPU_DrawWallColumn for wrap/overflow cases, MUST stay record-equivalent to it;
-  (b) bit-exact inline FixedMul for texturecolumn with rw_distance halves hoisted per seg;
-  (c) clip arrays init via memset (hardware SETS). Multi-line backslash-continued
-  function-like macros CONFIRMED working in the compiler (tested). Estimated ~2x cut in
-  per-column cost (~230 -> ~115 instr single-tier).
-- **Round 1 result (user): median VS improved ~1, but min VS 2 / max VS 5 on the stairs.**
-  Stairs are the pathological case: many small 2-sided segs AND 16px step textures that
-  split every column into 3-4 tiled runs (multi-run slow path + command-count inflation
-  that can overflow the DRAW frame too).
-- **Round 2 fixes (built, awaiting run):**
-  1. **wadtool bakes vertical repeats of short wall textures up to 128px** and writes the
-     baked height into texinfo[4]. Safe with zero renderer changes: the baked image is
-     periodic in the logical height, so pegging offsets (multiples of it) hit identical
-     texels. Kills the stairs multi-run splits at the source. Still 2 sheets.
-  2. SlopeDiv inlined into R_PointToAngle (SLOPEDIV_ macro; also feeds R_CheckBBox 2x per
-     visited node). Bit-identical math — the 12 harness PTA vectors are the regression net.
-  3. R_ScaleFromGlobalAngle: FixedMul(projection,sineb) collapsed to `160*sineb` (exact),
-     FixedMul(rw_distance,sinea) inlined bit-exact, FixedDiv inlined (same float op order;
-     overflow guard folds into the 64*FRACUNIT clamp).
-  4. HUD line 2 gained SLOW = columns falling off RECORD_COL to the full function
-     (expect near-0 after the repeat bake outside genuinely tall walls).
-- **Round 2 result (user): harness GREEN 124 (SlopeDiv inline validated). Stairs still
-  VS 5: SEGS 59 / COLS 1048 / DRAWS 1474 / SLOW 632.** Diagnosis: SLOW 632/1048 = tall
-  walls (>128 texel span) wrap BY CONSTRUCTION at 128 bake target (no DOOM texture
-  exceeds 128); and 1474 draws x ~115 instr put the DRAW frame near a full vsync itself.
-- **Round 3 fixes (built, awaiting run):**
-  1. **Bake target raised to 256** (everything tiles, including 128-tall textures) —
-     tall-wall columns become single-run. Now **4 sheets** (walls.xml lists sheet0-3 +
-     white at TEXID 4; walls.xml is the ONLY xml with textures).
-  2. **GPU_Flush inner body is now a §9.1 asm block** (~50 instr/draw vs ~115): region
-     min/max/hotspot X share one register write (1-texel column), hotspot Y = region top,
-     scale X = 2.0 hoisted to ONE port write before the loop (nothing else touches
-     ScaleX; fills run before flush). First shipped asm-intrinsic code — assembles clean.
-- **Round 3 result (user): stairs VS 5 -> 4 (SEGS 55 / COLS 995 / DRAWS 1085 / SLOW 374).**
-  Draw frame is now cheap (~55k); the COMPUTE frame alone is ~3 vsyncs there. SLOW stays
-  a few hundred because any span crossing a 256-texel boundary wraps — taller bakes are
-  diminishing returns. The remaining 2x lever is column count itself.
-- **Round 4 (built, awaiting run): DOOM low-detail mode as a runtime toggle (X button).**
-  viewwidth/centerx/centerxfrac are now VARIABLES (were #defines) + colpix/colpix_f
-  (screen px per column, 2 or 4); R_SetDetail(low) switches 320<->160 columns and rebuilds
-  the projection tables. Vertical resolution unchanged. HUD shows HI/LO. Fills use
-  literal 320 (screen-width, detail-independent). R_ScaleFromGlobalAngle's projection
-  mul is `centerx * sineb` (still exact). Harness unaffected (defaults = high detail).
-- **Round 4 result (user): LO detail at the stairs = VS 3 (COLS 604 / DRAWS 702 /
-  SLOW 221), VS 5 never seen anymore. User accepted -> M3 PERF PASS CLOSED** (HI stays
-  the quality toggle; revisit only if playsim tics blow the budget).
+**Renderer = compute/draw split (the flicker fix).** COMPUTE frame: playsim tic + BSP
+walk + planes + sprites RECORD draw commands (wc_* column stream, fc_* fill stream in
+r_gpu.h) with zero GPU writes -> end_frame. DRAW frame: clear + backstop fills +
+`GPU_Flush()` (phase 1: white-texture span fills; phase 2: asm inner loop, ~50
+instr/draw, scaleX hoisted) -> end_frame. Every presented vsync is a complete scene;
+VS floor 2 (30 fps), heavy scenes 3-4, X toggles 160-column LO detail (~halves cost).
 
-## M4 status (built end of session 2 — NOT yet run in emulator)
+- `r_gpu.h` — command buffers (MAXWALLCMDS 3072, MAXFILLCMDS 1200; overflow drops
+  latest = masked first), GPU_DrawWallColumn (tiling wall column), GPU_RecordMaskedColumn
+  (no-wrap masked/sprite column, v clamped [0,lh)), GPU_RecordFill, GPU_SetLight latch.
+- `r_main.h` — projection/angles; viewwidth/centerx/centerxfrac are VARIABLES
+  (R_SetDetail); inline SLOPEDIV_/FixedMul/FixedDiv in hot paths (bit-exact,
+  harness-netted). View 320x168 @2x at SCRY0=12.
+- `r_plane.h` — visplanes (faithful machinery; spans = solid color fills of
+  gen_flatavg x sector light; top/bottom int[322] with +1 index shift, sentinel 255),
+  sky columns (SKY1, texturemid 100<<16, angle>>22, fullbright), drawsegs + openings
+  storage (index-based).
+- `r_segs.h` — RECORD_COL fast path (must stay record-equivalent to
+  GPU_DrawWallColumn), drawseg silhouettes + clip copies, visplane marking,
+  R_RenderMaskedSegRange (LOGICAL height texinfo[5]; transparency via region alpha,
+  not post runs).
+- `r_things.h` — vissprites: project (rotation `(ang-angle+0x90000000)>>29`), selection
+  sort by scale, drawseg silhouette clip scan, record columns. Sector light only;
+  FF_FULLBRIGHT=255; no distance diminishing anywhere (consistent policy).
+- `r_bsp.h` — solidsegs clip + BSP walk; R_Subsector: FindPlane x2 + R_AddSprites;
+  R_RenderView: clears -> walk -> R_DrawPlanes -> R_DrawMasked (all recording).
+- playsim (`p_*`) — thinkers (removal=flag, zone LEAKS by design), full collision
+  (P_TryMove/P_SlideMove/blockmap/PathTraverse), doors (DR 1/26-28, D1 31-34, no keys,
+  no crush), gravity/step-up/bobbing, P_SpawnMobj from gen_mobjinfo,
+  P_SpawnMapThings (skill 3 = options bit 1; skips types 1-4/11/MTF_ONLYNET;
+  MF_SPAWNCEILING -> ONCEILINGZ). Movement constants are upstream 35Hz values at
+  30Hz (~14% slower feel — tune by feel later per PLAN 7.2).
+  P_CrossSpecialLine is a STUB (M6). Monsters = static solid obstacles until M6.
 
-**bin/game.v32** = M4 "walk the map": player mobj with momentum/friction/gravity,
-collision + wall slide, 24-unit stair step-up with smooth eye raise, view bobbing,
-usable doors (A button). One playsim tic per 30fps frame (PLAN 7.2). Controls: dpad
-move/turn, L/R strafe, B run, A use, X detail, Y HUD.
+**Baked data contracts** (field orders in wadtool docstring, mirrored by p_setup.h):
+map lumps word-widened (blockmap SIGNED 1:1, terminator -1); texinfo[6] =
+sheet,x,y,w,BAKED h (vertical repeats to 256 for single-run tiling),LOGICAL h;
+gen_sprinfo[483][7] sheet(texid),x,y,w,h,leftoff,topoff; gen_sprdef[138][2]
+firstframe,numframes; gen_sprframe[261][17] rotate,lump[8],flip[8];
+gen_mobjinfo[137][6] doomednum,sprite,frame,radius,height,flags.
+GPU texids: sheet0-3 walls+flats, 4 white, 5-6 sprites (spr0/spr1; game.xml only —
+walls.xml stops at white). Harness vectors in gen_checkvals.h include 32
+R_PointInSubsector cases (PC BSP walk over baked nodes; regression net for the
+signed-shift class).
 
-New in the bake: BLOCKMAP widened SIGNED 1:1 (terminator -1; offsets valid as word
-indices; asserts lump < 32768 words). New port headers, in TU include order:
-- `p_tick.h` — thinker list + mobj_t/player_t structs. Deviations: removal via
-  `removed` flag (no fn-ptr==-1 trick); removed thinkers LEAK zone memory (bump alloc);
-  player field `viewheight` renamed `viewh` (collides with r_main.h screen macro!).
-- `p_maputl.h` — side/box/divline math, line opening, thing position links, block
-  iterators, P_PathTraverse. All signed `>>` audited to ASR.
-- `p_spec.h` — neighbor queries, T_MovePlane, T_VerticalDoor/EV_VerticalDoor (manual
-  door types 1/26-28 as DR, 31-34 as D1; locked = unlocked, no keys), P_UseSpecialLine,
-  P_CrossSpecialLine STUB (walk-over triggers M6). No crush: closing door passes
-  through the player. No switch statements anywhere (dialect: avoided, untested).
-- `p_map.h` — PIT_CheckLine/Thing, P_CheckPosition, P_TryMove, P_SlideMove (full
-  3-corner traverse + P_HitSlideLine w/ ULT angle compare), P_UseLines,
-  R_PointToAngle2 (saves/restores viewx/viewy).
-- `p_mobj.h` — P_XY/ZMovement, P_MobjThinker, P_SpawnMobj (hardcoded player info:
-  r=16, h=56), P_SpawnPlayer -> global `player1`.
-- `p_user.h` — P_Thrust, P_CalcHeight (bob + squat landing), P_MovePlayer,
-  P_PlayerThink (edge-triggered use).
-- p_setup.h: + line bbox/slopetype/validcount, sector thinglist/specialdata/lines
-  (P_GroupLines), P_LoadBlockMap (blocklinks Z_CallocLevel'd).
-- Movement constants are upstream 35Hz values run at 30Hz (~14% slower feel) —
-  PLAN 7.2 says tune by feel AFTER it walks.
+## Milestone history (compact; all emulator-confirmed)
 
-**FIRST RUN HUNG on any movement — FIXED.** Root cause: **NULL is -1 on Vircon32**
-(dialect doc §NULL: address 0 is valid) but `blocklinks` came from Z_CallocLevel
-zero-filled, so `if( mobj )` on an empty block saw 0 != -1 = "valid pointer" and
-P_BlockThingsIterator walked garbage chains at address 0. Fix: explicit NULL fill of
-blocklinks + explicit NULL pointer fields in P_SpawnMobj. **RULE: after ANY calloc/
-memset-zero of a struct with pointer fields, null the pointers explicitly.** (The
-emitted asm proves it: `if(ptr)` compiles to `ine R0, -1`.)
+- **M0 probes GREEN 25** — wraparound, shifts, 0x80000000, embedded data, fn-ptrs,
+  big initializers all behave as bet.
+- **M1/M2 wadtool + core math GREEN** — two harness reds along the way: #71 was a
+  WRONG EXPECTATION (upstream M_AddToBox if/else-if quirk — encode id's quirks, don't
+  "fix" them); #123 was a REAL missed signed-shift (R_InitTextureMapping).
+- **M3 walls + perf saga CLOSED** — command-buffer split killed flicker; rounds of
+  optimization (256px repeat bake, inline FixedMul/SlopeDiv/ScaleFromGlobalAngle,
+  asm GPU_Flush, RECORD_COL, LO-detail toggle) took stairs worst case VS 5 -> 3-4.
+  Lesson: render cost ~linear in columns; call elimination ~1 vsync; halving columns
+  is the only 2x lever.
+- **M4 walk the map CLOSED** — two launch bugs: blocklinks NULL-vs-0 hang (NULL=-1
+  rule) and R_PointOnSide missed ASR (wrong-sector floorz: sink-under-floor +
+  phantom walls; invisible in renderer because BSP side only affects draw order).
+  The exit-room "invisible walls" were VANILLA (ML_BLOCKING bar-grating windows,
+  linedefs 298-303) — now visible since M5 renders masked mids.
+- **M5 things visible CLOSED (first-run clean)** — solid-color visplanes, sky,
+  sprites w/ silhouette clipping, masked midtextures, 91 things spawned. PC-side
+  gates caught both build-time bugs (hex-regex flag zeroing, pointer-arith dialect
+  limits) before any emulator run.
+- **M6 it's a game CLOSED (first-run clean, one-shot session)** — baked state
+  machine + action tables, monster AI w/ REJECT sight, fist/pistol/shotgun,
+  damage/pickups/barrels, E1M1 specials, death/exit/restart. Harness 188 -> 231
+  (sight vectors + table spot checks). Details in the M6 section below.
 
-**First walk test result (user): fell under the floor near the first door; invisible
-walls before the door and on the pedestal at the top of the stairs.** Root cause
-FOUND AND FIXED: `R_PointOnSide` (r_main.h) had two missed signed-`>>` sites —
-`node->dy >> FRACBITS` / `node->dx >> FRACBITS` with logical shift → wrong BSP side
-whenever the slow path ran with negative node deltas (even count of negative operands
-skips the sign-XOR fast path) → `R_PointInSubsector` returned the NEIGHBOR subsector →
-playsim floorz/ceilingz from the wrong sector → sink under floor + phantom
-"too big a step up" walls. Invisible in the walls ROM because the BSP walk visits both
-children regardless of side (order-only), and `P_PointOnLineSide` (the line version)
-HAD the ASR fix — only the node version was missed. Now `ASR(...)` both.
+## M6 — "It's a game" (CLOSED session 4: one-shot build, first-run clean)
 
-Regression net added: wadtool emits 32 `R_PointInSubsector` vectors (player start +
-random bbox points, expected subsector + floorheight computed by a PC BSP walk with
-exact upstream arithmetic-shift semantics over the BAKED node words); harness group
-13b checks them (2 checks each). PC simulation confirms the old logical-shift code
-diverges on 3/32 vectors — the net has teeth. **Expected harness total is now
-GREEN 188** (was 124).
+Emulator-confirmed by user: monsters fight and die, weapons/pickups/drops work,
+lift/turbo-floor/secrets/exit all trigger, death+respawn works, harness 231.
+What exists (reference for later milestones):
 
-**Walk test round 2 (user): fix CONFIRMED — no more fall-under-floor, door + pedestal
-invisible walls gone, doors work.** Remaining report: "invisible walls left and right
-of the exit door" (sector 72, the blink-light exit room). Checked against the baked
-map: those are linedefs 298-300 (x=2888) and 301-303 (x=3128), flags 0x5 =
-ML_BLOCKING|ML_TWOSIDED with BRNBIGL/C/R masked midtextures — the exit room's
-bar-grating windows. Vanilla DOOM blocks there too; they only FEEL invisible because
-masked midtextures on 2-sided lines aren't rendered yet (masked-seg pass, planned
-with sprites in M5). NOT a playsim bug — playsim collision is now fully correct on
-E1M1. TODO carried to M5: render masked midtextures (gratings) so blocking lines are
-visible.
+- **wadtool** bakes gen_states[967][7] (sprite,frame,tics,ACTION idx,nextstate,
+  misc1,misc2), FULL 23-field gen_mobjinfo (upstream field order, MI_* indices in
+  doomdefs.h; sounds baked as sfxenum indices for M8), REJECT byte-per-word
+  (gen_reject; upstream pnum>>3 indexing verbatim), GEN_ACT_*/GEN_S_*/GEN_MT_*/
+  GEN_SPR_* defines, and TWO new PC gates: reachable-state sprite-frame closure
+  (global check impossible: shareware WAD lacks registered-game sprites; tics==0
+  states skipped — cycled through, never drawn) and 32 P_CheckSight vectors
+  computed by a full PC replication of the sight walk over BAKED lumps,
+  pre-screened to agree between exact and float32-simulated FixedDiv (27 exercise
+  the real BSP walk, 2 positive).
+- **Action dispatch**: baked action index -> mobj_actions[]/pspr_actions[]
+  (p_tick.h), filled by P_InitActions (p_pspr.h). Slots explicitly NULLed first
+  (zeroed globals are NOT null -- NULL is -1). Unported actions stay NULL = no-op.
+- **p_sight.h**: P_CheckSightRaw(coords) + P_CheckSight(mobjs); recursion works.
+  Upstream P_DivlineSide (x==node->y) quirk KEPT and mirrored in the PC ref.
+- **p_map.h**: full PIT_CheckThing (missile damage/species/overfly, pickups),
+  PTR_Aim/ShootTraverse, P_Line/AimLineAttack, P_RadiusAttack,
+  P_SectorHeightClip (minimal P_ChangeSector: T_MovePlane calls it so lifts/
+  floors carry things; no crush, straddlers missed -- documented).
+- **p_inter.h / p_mobj.h / p_enemy.h / p_pspr.h**: as planned. aimslope uses `/2`
+  (idiv truncates toward zero, probe 10) NOT ASR. Player friction stop returns
+  to S_PLAY from run frames. P_SpawnMapThings randomizes idle tics (pickups
+  animate). Monsters: possessed/shotguy/troop + barrels (A_Explode). Weapons:
+  fist/pistol/shotgun (all obtainable in SP E1M1; shotgun-guy drops work).
+- **p_spec.h**: T_MoveFloor (turboLower, W1 36), T_PlatRaise (downWaitUpStay,
+  WR 88, monster-activatable), exit switch 11 -> gameexit flag,
+  P_PlayerInSpecialSector (5/7/16/4 damage, 9 secrets; lights static),
+  monster gates on use/cross dispatch. E1M1 line roster: {1,11,36,48-skip,88}.
+- **r_things.h**: R_DrawPSprite + R_DrawPlayerSprites at R_DrawMasked tail;
+  screen-space, vertical scale FRACUNIT at both detail levels, horizontal
+  pspritescale = viewwidth<<16/320; fullbright muzzle flashes.
+- **p_user.h**: P_DeathThink (death cam faces attacker, B -> PST_REBORN),
+  weapon change, powers/damagecount counters, P_PlayerInSpecialSector call.
+- **game.c**: G_LoadLevel full restart path (Z_FreeTags rewind -> P_InitThinkers
+  -> P_SetupLevel -> respawn); exit freezes sim + overlay; status line.
 
-## M5 status — **CONFIRMED by user 2026-07-19: works on first run. Floors/
-## ceilings, sky/outside world, sprites/objects all good; harness GREEN 188.
-## M5 CLOSED.** (Perf numbers not reported — grab VS/HUD numbers next session
-## if anything feels slow.)
+Zone note: kills/corpses/puffs/blood churn mobjs and removed thinkers leak by
+design (bump allocator). Debug HUD shows ZONE (kwords used) — if long sessions
+exhaust 1.5 MWords, the free-list plan activates. Puff/blood are the churn
+kings (~28 words/shot; realistically fine, G_LoadLevel rewinds everything).
 
-**Everything in one shot: solid-color visplanes, sky, sprites, masked midtextures,
-all map things spawned.** All three ROMs rebuilt (game/walls/harness). Harness
-unchanged — still expect GREEN 188.
+## M7 — "It looks like DOOM" (NEXT: UI)
 
-wadtool additions:
-- texinfo grew to 6 words: [5] = LOGICAL height (pre-tiling; masked mids need it,
-  wall tiling keeps using baked [4]).
-- Sprite bake: all 483 S_START..S_END patches -> textures/spr0.png + spr1.png
-  (GPU texids 5,6 = TEXID_SPR0.., after white; game.xml updated — walls.xml does
-  NOT need them, the walls ROM draws no sprites). gen_sprinfo[483][7] =
-  sheet,x,y,w,h,leftoff,topoff.
-- info parsing (same philosophy as tables.c — never hand-derive): sprnames +
-  statenum_t + states(sprite,frame) + mobjinfo from upstream info.c/info.h,
-  MF_* values from p_mobj.h. **Regex gotcha fixed: `(\d+|0x..)` alternation ate
-  the 0 of hex literals -> all 0x flags parsed as 0 (barrel 0x6 instead of
-  0x80006). Order hex first.** Baked: gen_sprdef[138][2] (firstframe,numframes),
-  gen_sprframe[261][17] (rotate,lump[8],flip[8], upstream install algorithm run
-  on PC with asserts), gen_mobjinfo[137][6] (doomednum,sprite,frame,radius,
-  height,flags). PC gate: every E1M1 thing resolves to a valid spawn frame.
+Per PLAN.md. Suggested scope, roughly independent pieces:
 
-Port additions (single TU order: ...r_gpu, p_tick, r_plane, r_segs, r_things,
-r_bsp...):
-- **r_plane.h** (new): faithful visplane machinery (find/check/makespans) with
-  R_MapPlane reduced to ONE solid-color span fill (flat avg color x sector
-  light, gen_flatavg). top/bottom are int[322] with +1 index shift (upstream
-  relied on byte-struct padding for the minx-1/maxx+1 probes); sentinel stays
-  255. Sky planes draw real SKY1 columns via GPU_DrawWallColumn (texturemid
-  100<<16, scale FRACUNIT, angle>>22, fullbright); the 256-tall tiled bake
-  reproduces upstream's mod-128 wrap by periodicity. Also holds drawsegs +
-  openings storage: **index-based (ds_count/opening_used) because the dialect
-  rejects ptr-minus-array and ptr>=array; ptr = &arr[idx] and ptr[i] are fine.**
-- **r_segs.h**: drawseg silhouette bookkeeping (faithful, incl. openings copies
-  of ceiling/floorclip), visplane top/bottom marking in the seg loop,
-  maskedtexturecol capture, R_RenderMaskedSegRange (masked mid textures draw as
-  ONE column region using LOGICAL height, clipped by the drawseg's saved rows;
-  transparency = region alpha instead of post runs — documented deviation).
-- **r_things.h** (new): R_ProjectSprite (rotation pick `(ang-thing->angle+
-  0x90000000)>>29` logical), R_AddSprites per sector, selection sort by scale,
-  R_DrawSprite with the full drawseg silhouette clip scan, R_DrawVisSprite
-  recording masked columns. Light = sector light, FF_FULLBRIGHT = 255; no
-  scale-based diminishing (same policy as walls). No psprites/fuzz (M6).
-- **r_gpu.h**: fill-command buffer (MAXFILLCMDS 1200) drawn in GPU_Flush phase 1
-  (white texture selected once) before the column stream, so later-recorded
-  sprite/masked columns paint over planes; GPU_RecordMaskedColumn (no wrap,
-  v clamped to [0,lh)); MAXWALLCMDS 3072.
-- **r_bsp.h**: R_Subsector does the floor/ceiling R_FindPlane + R_AddSprites;
-  R_RenderView = clear planes/sprites -> BSP walk -> R_DrawPlanes ->
-  R_DrawMasked, all still recording into the command buffer (compute frame),
-  draw frame unchanged.
-- **p_mobj.h**: P_SpawnMobj now reads gen_mobjinfo (sprite/frame/radius/height/
-  flags); P_SpawnMapThings spawns everything at skill 3 (options bit 1; skips
-  types 1-4, 11, MTF_ONLYNET; MF_SPAWNCEILING -> ONCEILINGZ). 91 things spawn
-  on E1M1. Monsters are static solid obstacles (PIT_CheckThing already blocks);
-  pickups are MF_SPECIAL = walk-through. p_tick.h: mobj_t += sprite/frame,
-  full MF_* flag set.
-- game.c HUD line 3: PLN (visplanes) / FIL (span fills) / SPR (vissprites) /
-  MSK (masked columns).
+1. **Status bar (STBAR)**: wadtool bakes the STBAR patch + the red/gray digit
+   fonts (STTNUM*/STYSNUM*/STGNUM*) + face sprites (STF*) onto a UI atlas
+   sheet (new texid after spr1; game.xml gains one texture). Draw as plain GPU
+   regions each frame below the 336px view — screen rows 348..360 are free at
+   2x, or shrink the view? NO: keep view 320x168@2x (viewheight is a macro
+   baked into the projection; changing it touches R_InitTextureMapping,
+   centery, planes — expensive). Better: draw the bar as an overlay strip
+   scaled to fit y 348..360, or accept a slim 12px bar. Decide by look.
+   Numbers: health/armor %, ammo, arms panel, face (st_stuff.c face logic —
+   damagecount/attacker already exist for the ouch/turn faces).
+2. **Damage/bonus screen flashes**: damagecount/bonuscount already tick.
+   Approximation: full-screen alpha-blended red/gold GPU_FillRect over the
+   view AFTER GPU_Flush (draw frame, cheap). Alpha from count like the
+   palette-shift thresholds (st_stuff.c: >8*8 strongest red etc.).
+3. **Menus + automap + HU messages** (pick per session budget): menu = text
+   rows + gamepad nav (M_* patches bakeable same as STBAR); automap = line
+   draws (Vircon GPU has no line primitive — 1px-column fills or skip/defer);
+   pickup messages = print_at top line with a timeout (strings live in
+   upstream dstrings.h/d_englsh.h — bake or hand-copy the E1 subset).
+4. **Texture/flat animation + scroll (P_UpdateSpecials)**: anims are baked
+   texture-index ranges (animdefs in p_spec.c: NUKAGE1-3 flats etc.);
+   texturetranslation[] already exists and the renderer honors it; flats need
+   the same for gen_flatavg/flatinfo lookups (spans use flat AVERAGE colors —
+   animating the average still reads right). Line 48 scroll = sidedef
+   textureoffset += FRACUNIT per tic.
+5. **Light-effect thinkers** (T_LightFlash/T_StrobeFlash/T_Glow from
+   p_lights.c + P_SpawnSpecials): trivial ports, big atmosphere win — E1M1
+   sector specials 1/8/12 currently render static.
+6. **Level progression**: bake E1M2+ (wadtool --map already exists; needs
+   multi-map data/gen naming + per-map texture sets growing the atlas) and
+   intermission screen (kills/items/secrets tallies already counted). Could
+   defer to M8/M9 — decide with user.
 
-**User next: run bin/game.v32.** Check: (1) floors/ceilings are solid colors,
-no more void; sky visible in the courtyard; (2) the exit-room gratings are now
-VISIBLE (and still block); (3) things: armor bonuses on the pedestal, barrels,
-zombiemen/imps standing around — do they show, face you, rotate as you circle?
-(4) solid monsters/barrels block movement, bonuses don't; (5) VS numbers +
-new HUD line in typical rooms and at the stairs (HI and LO); (6) walls.v32
-also gained planes/sky/gratings — quick look. Harness: GREEN 188 unchanged.
-
-## Status 2026-07-19 end of session 1 — FIRST EMULATOR RUN RESULTS ARE IN
-
-- **probes.v32: GREEN (all 25).** Every machine-semantics bet is now hardware-confirmed:
-  signed wraparound, logical shifts, 0x80000000 literals, embedded ROM data, fn-ptr
-  void* round-trip, 200-entry struct initializer, struct copy.
-- **harness.v32: RED — exactly ONE unknown failure.** Total checks readout ~124.
-  Diagnostics showed EXPECTED 0 / ACTUAL 0, which means the first failure is a boolean
-  `Check(...)` (only `CheckEq` fills the diag values) — so FixedMul/tables/map-value
-  equality checks are NOT the culprit; suspects are the boolean groups: FixedDiv
-  tolerance, sin²+cos²≈1, angle group, bbox, zone, seg/side range scans, player-start
-  sector, viewangletox monotonicity, center-column angle. The fail NUMBER was unreadable
-  because the ShowInt overlapped the label text; **display fixed + rebuilt** (number now
-  at x=480). NEXT SESSION FIRST TASK: user re-runs harness.v32, reads the check number,
-  map it to the Nth `Check(`/`CheckEq(` in harness.c (count from the top).
-- **walls.v32: RENDERS E1M1 CORRECTLY.** User screenshot shows the hangar with correct
-  textures, perspective, tiers, and light contrast — the entire renderer chain
-  (bake -> load -> BSP -> clip -> project -> GPU columns) works. Two issues observed:
-  1. **100% CPU (GPU only 10%)** — over the 250k instr/frame budget, so frames span
-     multiple vsyncs.
-  2. **Far walls flicker** — almost certainly a symptom of (1): mid-render states get
-     presented (near segs draw first, far segs last, so far walls miss some vsyncs).
-     Not necessarily a correctness bug — treat as perf until proven otherwise.
-- Note: harness red does NOT invalidate the walls result; whatever the failing boolean
-  check is, it isn't visibly breaking wall geometry. Fix it before trusting playsim math.
-
-### Next session order
-1. Re-run harness.v32 (display fixed), get the check number, fix the red.
-2. Perf pass on the render loop (dialect doc §16 playbook — calls are ~10+2n instr):
-   - GPU_DrawWallColumn: hoist gen_texinfo reads (5 array indexings) into locals once,
-     common-case fast path (single run, no wrap) skipping the loop machinery;
-   - R_RenderSegLoop: the two FixedMul calls/column + GPU call overhead dominate —
-     consider manual inlining or §9.1 asm intrinsics AFTER measuring;
-   - measure first: count columns+draws per frame on the debug HUD before optimizing.
-   - If still over budget, pace explicitly to 30 fps (2x end_frame) for stable
-     presentation — playsim was planned for 30 Hz anyway (PLAN.md §7.2).
-3. Then M4 (movement/collision) or M5 (visplanes+sky+sprites) per PLAN.md.
+Perf note: UI draws land in the DRAW frame which has headroom (~50 instr/draw
+budget analysis in r_gpu.h); status bar + flash adds tens of draws, no risk.
+The COMPUTE frame is the tight one — M7 adds little there (light thinkers are
+cheap; P_UpdateSpecials is a handful of sectors).

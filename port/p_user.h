@@ -1,14 +1,16 @@
 // -----------------------------------------------------------------------------
 //  p_user.h -- ports p_user.c: thrust, view height/bobbing, player movement,
-//  use action. The ticcmd is flattened into player_t cmd_* fields, filled by
-//  the game loop from the gamepad each tic.
+//  use action, death cam, weapon switching, powers/counters. The ticcmd is
+//  flattened into player_t cmd_* fields, filled by the game loop each tic.
 // -----------------------------------------------------------------------------
 #ifndef P_USER_H
 #define P_USER_H
 
 #include "p_mobj.h"
+#include "p_pspr.h"
 
 #define MAXBOB 0x100000          // 16 pixels of bob
+#define ANG5 ( ANG90 / 18 )
 
 void P_Thrust( player_t* player, angle_t angle, fixed_t move )
 {
@@ -82,10 +84,71 @@ void P_MovePlayer( player_t* player )
         P_Thrust( player, player->mo->angle - ANG90, player->cmd_sidemove * 2048 );
 }
 
+// fall on your face when dying; decrease POV height to floor height
+void P_DeathThink( player_t* player )
+{
+    angle_t angle;
+    angle_t delta;
+
+    P_MovePsprites( player );
+
+    // fall to the ground
+    if( player->viewh > 6 * FRACUNIT )
+        player->viewh -= FRACUNIT;
+    if( player->viewh < 6 * FRACUNIT )
+        player->viewh = 6 * FRACUNIT;
+
+    player->deltaviewheight = 0;
+    player->onground = player->mo->z <= player->mo->floorz;
+    P_CalcHeight( player );
+
+    if( player->attacker && player->attacker != player->mo )
+    {
+        angle = R_PointToAngle2( player->mo->x, player->mo->y,
+                                 player->attacker->x, player->attacker->y );
+
+        delta = angle - player->mo->angle;
+
+        if( ULT( delta, ANG5 ) || ULT( -ANG5, delta ) )      // U
+        {
+            // looking at killer: fade damage flash down
+            player->mo->angle = angle;
+            if( player->damagecount )
+                player->damagecount--;
+        }
+        else if( delta >= 0 )                                // U: < ANG180
+            player->mo->angle += ANG5;
+        else
+            player->mo->angle -= ANG5;
+    }
+    else if( player->damagecount )
+        player->damagecount--;
+
+    if( player->cmd_use )
+        player->playerstate = PST_REBORN;    // game.c reloads the level
+}
+
 void P_PlayerThink( player_t* player )
 {
+    if( player->playerstate == PST_DEAD )
+    {
+        P_DeathThink( player );
+        return;
+    }
+
     P_MovePlayer( player );
     P_CalcHeight( player );
+
+    if( player->mo->subsector->sector->special )
+        P_PlayerInSpecialSector( player );
+
+    // check for weapon change (validated by the input mapper)
+    if( player->cmd_newweapon != wp_nochange )
+    {
+        int nw = player->cmd_newweapon;
+        if( player->weaponowned[nw] && nw != player->readyweapon )
+            player->pendingweapon = nw;
+    }
 
     // use button: edge-triggered like upstream usedown
     if( player->cmd_use )
@@ -98,6 +161,24 @@ void P_PlayerThink( player_t* player )
     }
     else
         player->use_latch = false;
+
+    // cycle psprites
+    P_MovePsprites( player );
+
+    // counters, time dependent power ups
+    if( player->powers[pw_strength] )
+        player->powers[pw_strength]++;       // counts up to diminish fade
+    if( player->powers[pw_invulnerability] )
+        player->powers[pw_invulnerability]--;
+    if( player->powers[pw_infrared] )
+        player->powers[pw_infrared]--;
+    if( player->powers[pw_ironfeet] )
+        player->powers[pw_ironfeet]--;
+
+    if( player->damagecount )
+        player->damagecount--;
+    if( player->bonuscount )
+        player->bonuscount--;
 }
 
 #endif
