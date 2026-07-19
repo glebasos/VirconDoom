@@ -37,6 +37,10 @@ struct sector_t
     int special;
     int tag;
     int validcount;
+    void* thinglist;         // mobj_t* head of things in sector (M4)
+    void* specialdata;       // active thinker (door/plat) or NULL (M4)
+    int linecount;           // lines touching this sector (P_GroupLines)
+    void* lines;             // line_t** array of them
 };
 
 struct side_t
@@ -49,6 +53,12 @@ struct side_t
     sector_t* sector;
 };
 
+// line slope types (doomdata.h)
+#define ST_HORIZONTAL 0
+#define ST_VERTICAL   1
+#define ST_POSITIVE   2
+#define ST_NEGATIVE   3
+
 struct line_t
 {
     vertex_t* v1;
@@ -59,6 +69,9 @@ struct line_t
     int special;
     int tag;
     int[2] sidenum;          // -1 = no side
+    fixed_t[4] bbox;         // M_AddToBox order (M4: PIT_CheckLine reject)
+    int slopetype;           // ST_* (M4: P_BoxOnLineSide)
+    int validcount;
     sector_t* frontsector;
     sector_t* backsector;    // NULL on one-sided lines
 };
@@ -91,6 +104,8 @@ struct node_t
     fixed_t[2][4] bbox;      // [child][BOXTOP/BOXBOTTOM/BOXLEFT/BOXRIGHT]
     int[2] children;         // & NF_SUBSECTOR -> subsector index
 };
+
+int validcount = 1;          // shared traversal stamp (p_maputl iterators)
 
 // level data (r_state.h)
 int numvertexes = 0;   vertex_t* vertexes = NULL;

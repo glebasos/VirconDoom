@@ -36,6 +36,10 @@ void P_LoadSectors()
         sectors[i].special = gen_sectors[i][5];
         sectors[i].tag = gen_sectors[i][6];
         sectors[i].validcount = 0;
+        sectors[i].thinglist = NULL;
+        sectors[i].specialdata = NULL;
+        sectors[i].linecount = 0;
+        sectors[i].lines = NULL;
     }
 }
 
@@ -72,6 +76,38 @@ void P_LoadLineDefs()
         ld->sidenum[1] = gen_linedefs[i][6];
         ld->dx = ld->v2->x - ld->v1->x;
         ld->dy = ld->v2->y - ld->v1->y;
+
+        if( !ld->dx )
+            ld->slopetype = ST_VERTICAL;
+        else if( !ld->dy )
+            ld->slopetype = ST_HORIZONTAL;
+        else if( FixedDiv( ld->dy, ld->dx ) > 0 )
+            ld->slopetype = ST_POSITIVE;
+        else
+            ld->slopetype = ST_NEGATIVE;
+
+        if( ld->v1->x < ld->v2->x )
+        {
+            ld->bbox[BOXLEFT] = ld->v1->x;
+            ld->bbox[BOXRIGHT] = ld->v2->x;
+        }
+        else
+        {
+            ld->bbox[BOXLEFT] = ld->v2->x;
+            ld->bbox[BOXRIGHT] = ld->v1->x;
+        }
+        if( ld->v1->y < ld->v2->y )
+        {
+            ld->bbox[BOXBOTTOM] = ld->v1->y;
+            ld->bbox[BOXTOP] = ld->v2->y;
+        }
+        else
+        {
+            ld->bbox[BOXBOTTOM] = ld->v2->y;
+            ld->bbox[BOXTOP] = ld->v1->y;
+        }
+        ld->validcount = 0;
+
         if( ld->sidenum[0] != -1 )
             ld->frontsector = sides[ ld->sidenum[0] ].sector;
         else
@@ -146,6 +182,69 @@ void P_LoadNodes()
     }
 }
 
+// ---- blockmap (M4 collision). gen_blockmap is the whole widened lump:
+//      [0]=orgx [1]=orgy [2]=width [3]=height, then width*height offsets
+//      (word indices into the lump), then blocklists (-1 terminated).
+fixed_t bmaporgx = 0;
+fixed_t bmaporgy = 0;
+int bmapwidth = 0;
+int bmapheight = 0;
+int* blockmaplump = NULL;
+int* blockmap = NULL;        // = blockmaplump + 4 (the offsets grid)
+void** blocklinks = NULL;    // mobj_t* head per block
+
+void P_LoadBlockMap()
+{
+    blockmaplump = gen_blockmap;
+    bmaporgx = gen_blockmap[0] << FRACBITS;
+    bmaporgy = gen_blockmap[1] << FRACBITS;
+    bmapwidth = gen_blockmap[2];
+    bmapheight = gen_blockmap[3];
+    blockmap = blockmaplump + 4;
+    int count = bmapwidth * bmapheight;
+    blocklinks = Z_CallocLevel( count );
+    // NULL is -1 on Vircon32 (dialect doc: address 0 is valid!) -- a zeroed
+    // buffer is NOT a buffer of null pointers. This exact bug hung the first
+    // game.v32 run: P_BlockThingsIterator walked "mobj" chains rooted at 0.
+    int i;
+    for( i = 0; i < count; i++ )
+        blocklinks[i] = NULL;
+}
+
+// build per-sector line lists (doors need neighbor queries)
+void P_GroupLines()
+{
+    int i;
+    int j;
+    line_t* li;
+
+    for( i = 0; i < numlines; i++ )
+    {
+        li = &lines[i];
+        li->frontsector->linecount++;
+        if( li->backsector && li->backsector != li->frontsector )
+            li->backsector->linecount++;
+    }
+    for( i = 0; i < numsectors; i++ )
+    {
+        sectors[i].lines = Z_Malloc( sectors[i].linecount, PU_LEVEL, NULL );
+        sectors[i].linecount = 0;      // reuse as fill cursor
+    }
+    for( i = 0; i < numlines; i++ )
+    {
+        li = &lines[i];
+        line_t** fl = (line_t**)li->frontsector->lines;
+        fl[ li->frontsector->linecount ] = li;
+        li->frontsector->linecount++;
+        if( li->backsector && li->backsector != li->frontsector )
+        {
+            line_t** bl = (line_t**)li->backsector->lines;
+            bl[ li->backsector->linecount ] = li;
+            li->backsector->linecount++;
+        }
+    }
+}
+
 void P_SetupLevel()
 {
     Z_MarkLevelStart();
@@ -156,6 +255,8 @@ void P_SetupLevel()
     P_LoadSubsectors();
     P_LoadSegs();
     P_LoadNodes();
+    P_LoadBlockMap();
+    P_GroupLines();
 
     int t;
     for( t = 0; t < GEN_NUMTEXTURES; t++ )

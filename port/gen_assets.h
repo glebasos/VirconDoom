@@ -23,6 +23,7 @@
 #define GEN_NUMSEGS 732
 #define GEN_NUMNODES 236
 #define GEN_NUMTHINGS 138
+#define GEN_NUMBLOCKMAP 3461
 
 // texinfo: sheet,x,y,w,h per texture; flatinfo: sheet,x,y per flat
 embedded int[GEN_NUMTEXTURES][5] gen_texinfo = "data\\texinfo.bin";
@@ -43,5 +44,6 @@ embedded int[GEN_NUMSSECTORS][2] gen_ssectors = "data\\e1m1_ssectors.bin";
 embedded int[GEN_NUMSEGS][6] gen_segs = "data\\e1m1_segs.bin";
 embedded int[GEN_NUMNODES][14] gen_nodes = "data\\e1m1_nodes.bin";
 embedded int[GEN_NUMTHINGS][5] gen_things = "data\\e1m1_things.bin";
+embedded int[GEN_NUMBLOCKMAP] gen_blockmap = "data\\e1m1_blockmap.bin";
 
 #endif

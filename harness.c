@@ -228,6 +228,16 @@ void main()
     Check( pss->sector->ceilingheight == ( 72 << FRACBITS ) );
     Check( pss->sector->lightlevel == 144 );
 
+    // --- group 13b: R_PointInSubsector vs PC BSP walk over the baked nodes
+    // (covers the R_PointOnSide slow path with negative node deltas — the
+    //  logical-shift bug that put the playsim in wrong sectors)
+    for( i = 0; i < GEN_NUM_PISCASES; i++ )
+    {
+        subsector_t* qss = R_PointInSubsector( gen_pis_x[i], gen_pis_y[i] );
+        Check( qss == &subsectors[ gen_pis_ss[i] ] );
+        CheckEq( qss->sector->floorheight, gen_pis_floor[i] );
+    }
+
     // --- group 14: projection tables
     R_InitTextureMapping();
     Check( clipangle > 0 );                          // FOV/2 as positive BAM

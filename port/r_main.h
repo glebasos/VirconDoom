@@ -76,8 +76,8 @@ int R_PointOnSide( fixed_t x, fixed_t y, node_t* node )
         return 0;
     }
 
-    left = FixedMul( node->dy >> FRACBITS, dx );
-    right = FixedMul( dy, node->dx >> FRACBITS );
+    left = FixedMul( ASR( node->dy, FRACBITS ), dx );   // signed: node deltas
+    right = FixedMul( dy, ASR( node->dx, FRACBITS ) );
 
     if( right < left )
         return 0;

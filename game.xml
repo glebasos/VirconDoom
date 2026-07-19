@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<rom-definition version="1.0">
+    <rom type="cartridge" title="VirconDoom" version="0.2" />
+    <binary path="obj/game.vbin" />
+    <textures>
+        <texture path="obj/sheet0.vtex" />
+        <texture path="obj/sheet1.vtex" />
+        <texture path="obj/sheet2.vtex" />
+        <texture path="obj/sheet3.vtex" />
+        <texture path="obj/white.vtex" />
+    </textures>
+    <sounds />
+</rom-definition>

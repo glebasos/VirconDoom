@@ -295,6 +295,15 @@ def bake_map(wad, mapname, texname_to_idx, flatname_to_idx):
                    s16(things_raw, o+8)]
     out['things'] = twords
 
+    # BLOCKMAP, widened 1:1 so the u16 word offsets stay valid as indices.
+    # Everything is widened SIGNED: the 0xFFFF blocklist terminator becomes -1
+    # (what the console loop compares against) and the origin header words keep
+    # their sign. Safe only while the lump is < 32768 words (offsets < n).
+    blockmap_raw = lump(10)
+    n = len(blockmap_raw)//2; counts['blockmap'] = n
+    assert n < 32768, 'BLOCKMAP too large for signed 16-bit widening'
+    out['blockmap'] = [s16(blockmap_raw, 2*i) for i in range(n)]
+
     return counts, out
 
 # ---------------------------------------------------------------------------
@@ -426,7 +435,7 @@ def main():
     lines.append('#define GEN_SKYFLATNUM %d' % sky_flat)
     lines.append('')
     for key in ('vertexes', 'sectors', 'sidedefs', 'linedefs',
-                'ssectors', 'segs', 'nodes', 'things'):
+                'ssectors', 'segs', 'nodes', 'things', 'blockmap'):
         lines.append('#define GEN_NUM%s %d' % (key.upper(), counts[key]))
     lines.append('')
     lines.append('// texinfo: sheet,x,y,w,h per texture; flatinfo: sheet,x,y per flat')
@@ -449,6 +458,7 @@ def main():
         'segs': 'int[GEN_NUMSEGS][6]',
         'nodes': 'int[GEN_NUMNODES][14]',
         'things': 'int[GEN_NUMTHINGS][5]',
+        'blockmap': 'int[GEN_NUMBLOCKMAP]',
     }
     for key, ty in decl.items():
         lines.append('embedded %s gen_%s = "data\\\\%s_%s.bin";' % (ty, key, ml, key))
@@ -550,6 +560,53 @@ def main():
     lines.append('#define GEN_CHECK_SEC0FLOOR %d' % s[0])
     lines.append('#define GEN_CHECK_SEC0CEIL %d' % s[1])
     lines.append('#define GEN_CHECK_SEC0LIGHT %d' % s[4])
+    # R_PointInSubsector reference vectors: exact upstream R_PointOnSide
+    # semantics (arithmetic shifts; Python >> is arithmetic) walked over the
+    # BAKED node words, so any port deviation (e.g. logical shift) goes RED.
+    nd = out['nodes']
+    def point_on_side_ref(x, y, nx, ny, ndx, ndy):
+        if ndx == 0:
+            if x <= nx:
+                return 1 if ndy > 0 else 0
+            return 1 if ndy < 0 else 0
+        if ndy == 0:
+            if y <= ny:
+                return 1 if ndx < 0 else 0
+            return 1 if ndx > 0 else 0
+        dx = to_s32(x - nx); dy = to_s32(y - ny)
+        if (ndy ^ ndx ^ dx ^ dy) & 0x80000000:
+            return 1 if (ndy ^ dx) & 0x80000000 else 0
+        left = fixedmul_ref(ndy >> 16, dx)
+        right = fixedmul_ref(dy, ndx >> 16)
+        return 0 if right < left else 1
+    def point_in_subsector_ref(x, y):
+        nodenum = counts['nodes'] - 1
+        while not (nodenum & 0x8000):
+            o = nodenum * 14
+            side = point_on_side_ref(x, y, nd[o], nd[o+1], nd[o+2], nd[o+3])
+            nodenum = nd[o + 12 + side]
+        return nodenum & 0x7FFF
+    def subsector_floor(ssidx):
+        firstseg = out['ssectors'][ssidx*2 + 1]
+        ld = out['segs'][firstseg*6 + 4]; segside = out['segs'][firstseg*6 + 5]
+        sd = out['linedefs'][ld*7 + 5 + segside]
+        sec = out['sidedefs'][sd*6 + 5]
+        return out['sectors'][sec*7 + 0]
+    vx = out['vertexes'][0::2]; vy = out['vertexes'][1::2]
+    pis_cases = []
+    for i in range(counts['things']):
+        if out['things'][i*5 + 3] == 1:      # player 1 start first
+            pis_cases.append((out['things'][i*5] << 16,
+                              out['things'][i*5 + 1] << 16))
+    while len(pis_cases) < 32:               # random fixed coords across bbox
+        pis_cases.append((random.randint(min(vx), max(vx)),
+                          random.randint(min(vy), max(vy))))
+    pis_ss = [point_in_subsector_ref(x, y) for x, y in pis_cases]
+    lines.append('#define GEN_NUM_PISCASES %d' % len(pis_cases))
+    lines.append(carr('gen_pis_x', [x for x, y in pis_cases]))
+    lines.append(carr('gen_pis_y', [y for x, y in pis_cases]))
+    lines.append(carr('gen_pis_ss', pis_ss))
+    lines.append(carr('gen_pis_floor', [subsector_floor(ss) for ss in pis_ss]))
     lines.append('#endif')
     open(os.path.join(ROOT, 'port', 'gen_checkvals.h'), 'w').write('\n'.join(lines) + '\n')
 

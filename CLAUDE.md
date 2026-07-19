@@ -124,11 +124,83 @@ Compile+assemble+packrom success and PC-side cross-checks are the only headless 
   the projection tables. Vertical resolution unchanged. HUD shows HI/LO. Fills use
   literal 320 (screen-width, detail-independent). R_ScaleFromGlobalAngle's projection
   mul is `centerx * sineb` (still exact). Harness unaffected (defaults = high detail).
-- **User next: walls.v32 at the stairs — press X and report VS/COLS in BOTH modes, and
-  say whether LO looks acceptable (it's authentic DOOM low-detail chunkiness).**
-- Expected: LO halves COLS/DRAWS -> VS 2-3 at the stairs. If LO at VS 2-3 is playable,
-  perf pass is DONE for M3 (ship HI as quality option); go M4 (movement/collision) or
-  M5 (visplanes/sky/sprites) per PLAN.md. Playsim budget = 2nd vsync of the 30fps frame.
+- **Round 4 result (user): LO detail at the stairs = VS 3 (COLS 604 / DRAWS 702 /
+  SLOW 221), VS 5 never seen anymore. User accepted -> M3 PERF PASS CLOSED** (HI stays
+  the quality toggle; revisit only if playsim tics blow the budget).
+
+## M4 status (built end of session 2 — NOT yet run in emulator)
+
+**bin/game.v32** = M4 "walk the map": player mobj with momentum/friction/gravity,
+collision + wall slide, 24-unit stair step-up with smooth eye raise, view bobbing,
+usable doors (A button). One playsim tic per 30fps frame (PLAN 7.2). Controls: dpad
+move/turn, L/R strafe, B run, A use, X detail, Y HUD.
+
+New in the bake: BLOCKMAP widened SIGNED 1:1 (terminator -1; offsets valid as word
+indices; asserts lump < 32768 words). New port headers, in TU include order:
+- `p_tick.h` — thinker list + mobj_t/player_t structs. Deviations: removal via
+  `removed` flag (no fn-ptr==-1 trick); removed thinkers LEAK zone memory (bump alloc);
+  player field `viewheight` renamed `viewh` (collides with r_main.h screen macro!).
+- `p_maputl.h` — side/box/divline math, line opening, thing position links, block
+  iterators, P_PathTraverse. All signed `>>` audited to ASR.
+- `p_spec.h` — neighbor queries, T_MovePlane, T_VerticalDoor/EV_VerticalDoor (manual
+  door types 1/26-28 as DR, 31-34 as D1; locked = unlocked, no keys), P_UseSpecialLine,
+  P_CrossSpecialLine STUB (walk-over triggers M6). No crush: closing door passes
+  through the player. No switch statements anywhere (dialect: avoided, untested).
+- `p_map.h` — PIT_CheckLine/Thing, P_CheckPosition, P_TryMove, P_SlideMove (full
+  3-corner traverse + P_HitSlideLine w/ ULT angle compare), P_UseLines,
+  R_PointToAngle2 (saves/restores viewx/viewy).
+- `p_mobj.h` — P_XY/ZMovement, P_MobjThinker, P_SpawnMobj (hardcoded player info:
+  r=16, h=56), P_SpawnPlayer -> global `player1`.
+- `p_user.h` — P_Thrust, P_CalcHeight (bob + squat landing), P_MovePlayer,
+  P_PlayerThink (edge-triggered use).
+- p_setup.h: + line bbox/slopetype/validcount, sector thinglist/specialdata/lines
+  (P_GroupLines), P_LoadBlockMap (blocklinks Z_CallocLevel'd).
+- Movement constants are upstream 35Hz values run at 30Hz (~14% slower feel) —
+  PLAN 7.2 says tune by feel AFTER it walks.
+
+**FIRST RUN HUNG on any movement — FIXED.** Root cause: **NULL is -1 on Vircon32**
+(dialect doc §NULL: address 0 is valid) but `blocklinks` came from Z_CallocLevel
+zero-filled, so `if( mobj )` on an empty block saw 0 != -1 = "valid pointer" and
+P_BlockThingsIterator walked garbage chains at address 0. Fix: explicit NULL fill of
+blocklinks + explicit NULL pointer fields in P_SpawnMobj. **RULE: after ANY calloc/
+memset-zero of a struct with pointer fields, null the pointers explicitly.** (The
+emitted asm proves it: `if(ptr)` compiles to `ine R0, -1`.)
+
+**First walk test result (user): fell under the floor near the first door; invisible
+walls before the door and on the pedestal at the top of the stairs.** Root cause
+FOUND AND FIXED: `R_PointOnSide` (r_main.h) had two missed signed-`>>` sites —
+`node->dy >> FRACBITS` / `node->dx >> FRACBITS` with logical shift → wrong BSP side
+whenever the slow path ran with negative node deltas (even count of negative operands
+skips the sign-XOR fast path) → `R_PointInSubsector` returned the NEIGHBOR subsector →
+playsim floorz/ceilingz from the wrong sector → sink under floor + phantom
+"too big a step up" walls. Invisible in the walls ROM because the BSP walk visits both
+children regardless of side (order-only), and `P_PointOnLineSide` (the line version)
+HAD the ASR fix — only the node version was missed. Now `ASR(...)` both.
+
+Regression net added: wadtool emits 32 `R_PointInSubsector` vectors (player start +
+random bbox points, expected subsector + floorheight computed by a PC BSP walk with
+exact upstream arithmetic-shift semantics over the BAKED node words); harness group
+13b checks them (2 checks each). PC simulation confirms the old logical-shift code
+diverges on 3/32 vectors — the net has teeth. **Expected harness total is now
+GREEN 188** (was 124).
+
+**Walk test round 2 (user): fix CONFIRMED — no more fall-under-floor, door + pedestal
+invisible walls gone, doors work.** Remaining report: "invisible walls left and right
+of the exit door" (sector 72, the blink-light exit room). Checked against the baked
+map: those are linedefs 298-300 (x=2888) and 301-303 (x=3128), flags 0x5 =
+ML_BLOCKING|ML_TWOSIDED with BRNBIGL/C/R masked midtextures — the exit room's
+bar-grating windows. Vanilla DOOM blocks there too; they only FEEL invisible because
+masked midtextures on 2-sided lines aren't rendered yet (masked-seg pass, planned
+with sprites in M5). NOT a playsim bug — playsim collision is now fully correct on
+E1M1. TODO carried to M5: render masked midtextures (gratings) so blocking lines are
+visible.
+
+**User next: re-run harness.v32 (expect GREEN 188), then bin/game.v32.** Report:
+(1) spawn at right place at eye height; (2) walk into walls — blocked? slides?
+(3) E1M1 stairs climb smoothly, pedestal reachable? (4) approach + enter the first
+door area — no fall-under-floor, no invisible walls? door opens with A, waits ~5s,
+closes, re-A while closing reopens? (5) drop off a ledge — gravity ok?
+(6) general feel (speed/turn) + VS numbers while walking.
 
 ## Status 2026-07-19 end of session 1 — FIRST EMULATOR RUN RESULTS ARE IN
 
