@@ -25,9 +25,11 @@
 #include "port\\p_setup.h"
 #include "port\\r_main.h"
 #include "port\\r_gpu.h"
-#include "port\\r_segs.h"
-#include "port\\r_bsp.h"
 #include "port\\p_tick.h"
+#include "port\\r_plane.h"
+#include "port\\r_segs.h"
+#include "port\\r_things.h"
+#include "port\\r_bsp.h"
 #include "port\\p_maputl.h"
 #include "port\\p_spec.h"
 #include "port\\p_map.h"
@@ -48,6 +50,7 @@ void main()
 {
     InitTables();
     R_InitTextureMapping();
+    R_InitSprites();
     P_SetupLevel();
     P_InitThinkers();
 
@@ -62,6 +65,9 @@ void main()
             break;
         }
     }
+
+    // spawn everything else (pickups, decorations, static monsters -- M5)
+    P_SpawnMapThings();
 
     bool showDebug = true;
     bool lowDetail = false;
@@ -112,10 +118,12 @@ void main()
         perf_columns = 0;
         perf_draws = 0;
         perf_slow = 0;
+        perf_fills = 0;
+        perf_masked = 0;
         R_RenderView();
         end_frame();
 
-        // ---- draw pass
+        // ---- draw pass (planes cover the view; keep cheap backstop fills)
         clear_screen( color_black );
         GPU_FillRect( 0, 0, 320, centery, CEILCOLOR );
         GPU_FillRect( 0, centery, 320, viewheight - centery, FLOORCOLOR );
@@ -146,6 +154,14 @@ void main()
             ShowInt( 475, 320, perf_slow );
             if( lowDetail ) print_at( 550, 320, "LO" );
             else            print_at( 550, 320, "HI" );
+            print_at( 10, 300, "PLN" );
+            ShowInt( 50, 300, perf_planes );
+            print_at( 110, 300, "FIL" );
+            ShowInt( 150, 300, perf_fills );
+            print_at( 220, 300, "SPR" );
+            ShowInt( 265, 300, perf_sprites );
+            print_at( 340, 300, "MSK" );
+            ShowInt( 385, 300, perf_masked );
         }
 
         frame++;

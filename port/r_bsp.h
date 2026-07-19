@@ -1,12 +1,14 @@
 // -----------------------------------------------------------------------------
 //  r_bsp.h -- ports r_bsp.c (solidsegs clipping + BSP traversal).
 //  Unsigned-angle comparisons adapted per r_main.h header notes (marked // U).
-//  v1: no drawsegs, no sprites (R_AddSprites call omitted in R_Subsector).
+//  M5: visplane finds + sprite projection in R_Subsector; masked/sprite pass
+//  and plane span recording appended to the compute frame in R_RenderView.
 // -----------------------------------------------------------------------------
 #ifndef R_BSP_H
 #define R_BSP_H
 
 #include "r_segs.h"
+#include "r_things.h"
 
 struct cliprange_t
 {
@@ -333,7 +335,22 @@ void R_Subsector( int num )
     count = sub->numlines;
     line = &segs[ sub->firstline ];
 
-    // (R_FindPlane / R_AddSprites: later milestones)
+    if( frontsector->floorheight < viewz )
+        floorplane = R_FindPlane( frontsector->floorheight,
+                                  frontsector->floorpic,
+                                  frontsector->lightlevel );
+    else
+        floorplane = NULL;
+
+    if( frontsector->ceilingheight > viewz
+     || frontsector->ceilingpic == skyflatnum )
+        ceilingplane = R_FindPlane( frontsector->ceilingheight,
+                                    frontsector->ceilingpic,
+                                    frontsector->lightlevel );
+    else
+        ceilingplane = NULL;
+
+    R_AddSprites( frontsector );
 
     while( count > 0 )
     {
@@ -373,8 +390,13 @@ void R_RenderView()
     R_ClearClipSegs();
     memset( ceilingclip, -1, viewwidth );          // hardware SETS, 1 cycle/word
     memset( floorclip, viewheight, viewwidth );
+    R_ClearPlanes();
+    R_ClearSprites();
+    validcount++;                                  // R_AddSprites sector stamp
     GPU_BeginFrame();
     R_RenderBSPNode( numnodes - 1 );
+    R_DrawPlanes();                                // spans + sky (records)
+    R_DrawMasked();                                // sprites + masked (records)
 }
 
 #endif

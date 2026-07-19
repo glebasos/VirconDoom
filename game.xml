@@ -8,6 +8,8 @@
         <texture path="obj/sheet2.vtex" />
         <texture path="obj/sheet3.vtex" />
         <texture path="obj/white.vtex" />
+        <texture path="obj/spr0.vtex" />
+        <texture path="obj/spr1.vtex" />
     </textures>
     <sounds />
 </rom-definition>

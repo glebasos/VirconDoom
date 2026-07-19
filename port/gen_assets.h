@@ -14,6 +14,12 @@
 #define GEN_NUMFLATS 54
 #define GEN_SKYTEXTURE 59
 #define GEN_SKYFLATNUM 53
+#define TEXID_SPR0 5
+#define GEN_NUMSPRSHEETS 2
+#define GEN_NUMSPRLUMPS 483
+#define GEN_NUMSPRITES 138
+#define GEN_NUMSPRFRAMES 261
+#define GEN_NUMMOBJTYPES 137
 
 #define GEN_NUMVERTEXES 467
 #define GEN_NUMSECTORS 85
@@ -25,10 +31,18 @@
 #define GEN_NUMTHINGS 138
 #define GEN_NUMBLOCKMAP 3461
 
-// texinfo: sheet,x,y,w,h per texture; flatinfo: sheet,x,y per flat
-embedded int[GEN_NUMTEXTURES][5] gen_texinfo = "data\\texinfo.bin";
+// texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat
+embedded int[GEN_NUMTEXTURES][6] gen_texinfo = "data\\texinfo.bin";
 embedded int[GEN_NUMFLATS][3] gen_flatinfo = "data\\flatinfo.bin";
 embedded int[GEN_NUMFLATS] gen_flatavg = "data\\flatavg.bin";
+
+// sprites: sheet(texid),x,y,w,h,leftoffset,topoffset per lump;
+// sprdef: firstframe,numframes per SPR_*; sprframe: rotate,lump[8],flip[8];
+// mobjinfo: doomednum,sprite,frame,radius,height,flags per MT_*
+embedded int[GEN_NUMSPRLUMPS][7] gen_sprinfo = "data\\sprinfo.bin";
+embedded int[GEN_NUMSPRITES][2] gen_sprdef = "data\\sprdef.bin";
+embedded int[GEN_NUMSPRFRAMES][17] gen_sprframe = "data\\sprframe.bin";
+embedded int[GEN_NUMMOBJTYPES][6] gen_mobjinfo = "data\\mobjinfo.bin";
 
 // trig tables (fixed_t / BAM)
 embedded int[10240] finesine = "data\\finesine.bin";

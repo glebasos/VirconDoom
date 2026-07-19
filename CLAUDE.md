@@ -195,12 +195,76 @@ with sprites in M5). NOT a playsim bug — playsim collision is now fully correc
 E1M1. TODO carried to M5: render masked midtextures (gratings) so blocking lines are
 visible.
 
-**User next: re-run harness.v32 (expect GREEN 188), then bin/game.v32.** Report:
-(1) spawn at right place at eye height; (2) walk into walls — blocked? slides?
-(3) E1M1 stairs climb smoothly, pedestal reachable? (4) approach + enter the first
-door area — no fall-under-floor, no invisible walls? door opens with A, waits ~5s,
-closes, re-A while closing reopens? (5) drop off a ledge — gravity ok?
-(6) general feel (speed/turn) + VS numbers while walking.
+## M5 status — **CONFIRMED by user 2026-07-19: works on first run. Floors/
+## ceilings, sky/outside world, sprites/objects all good; harness GREEN 188.
+## M5 CLOSED.** (Perf numbers not reported — grab VS/HUD numbers next session
+## if anything feels slow.)
+
+**Everything in one shot: solid-color visplanes, sky, sprites, masked midtextures,
+all map things spawned.** All three ROMs rebuilt (game/walls/harness). Harness
+unchanged — still expect GREEN 188.
+
+wadtool additions:
+- texinfo grew to 6 words: [5] = LOGICAL height (pre-tiling; masked mids need it,
+  wall tiling keeps using baked [4]).
+- Sprite bake: all 483 S_START..S_END patches -> textures/spr0.png + spr1.png
+  (GPU texids 5,6 = TEXID_SPR0.., after white; game.xml updated — walls.xml does
+  NOT need them, the walls ROM draws no sprites). gen_sprinfo[483][7] =
+  sheet,x,y,w,h,leftoff,topoff.
+- info parsing (same philosophy as tables.c — never hand-derive): sprnames +
+  statenum_t + states(sprite,frame) + mobjinfo from upstream info.c/info.h,
+  MF_* values from p_mobj.h. **Regex gotcha fixed: `(\d+|0x..)` alternation ate
+  the 0 of hex literals -> all 0x flags parsed as 0 (barrel 0x6 instead of
+  0x80006). Order hex first.** Baked: gen_sprdef[138][2] (firstframe,numframes),
+  gen_sprframe[261][17] (rotate,lump[8],flip[8], upstream install algorithm run
+  on PC with asserts), gen_mobjinfo[137][6] (doomednum,sprite,frame,radius,
+  height,flags). PC gate: every E1M1 thing resolves to a valid spawn frame.
+
+Port additions (single TU order: ...r_gpu, p_tick, r_plane, r_segs, r_things,
+r_bsp...):
+- **r_plane.h** (new): faithful visplane machinery (find/check/makespans) with
+  R_MapPlane reduced to ONE solid-color span fill (flat avg color x sector
+  light, gen_flatavg). top/bottom are int[322] with +1 index shift (upstream
+  relied on byte-struct padding for the minx-1/maxx+1 probes); sentinel stays
+  255. Sky planes draw real SKY1 columns via GPU_DrawWallColumn (texturemid
+  100<<16, scale FRACUNIT, angle>>22, fullbright); the 256-tall tiled bake
+  reproduces upstream's mod-128 wrap by periodicity. Also holds drawsegs +
+  openings storage: **index-based (ds_count/opening_used) because the dialect
+  rejects ptr-minus-array and ptr>=array; ptr = &arr[idx] and ptr[i] are fine.**
+- **r_segs.h**: drawseg silhouette bookkeeping (faithful, incl. openings copies
+  of ceiling/floorclip), visplane top/bottom marking in the seg loop,
+  maskedtexturecol capture, R_RenderMaskedSegRange (masked mid textures draw as
+  ONE column region using LOGICAL height, clipped by the drawseg's saved rows;
+  transparency = region alpha instead of post runs — documented deviation).
+- **r_things.h** (new): R_ProjectSprite (rotation pick `(ang-thing->angle+
+  0x90000000)>>29` logical), R_AddSprites per sector, selection sort by scale,
+  R_DrawSprite with the full drawseg silhouette clip scan, R_DrawVisSprite
+  recording masked columns. Light = sector light, FF_FULLBRIGHT = 255; no
+  scale-based diminishing (same policy as walls). No psprites/fuzz (M6).
+- **r_gpu.h**: fill-command buffer (MAXFILLCMDS 1200) drawn in GPU_Flush phase 1
+  (white texture selected once) before the column stream, so later-recorded
+  sprite/masked columns paint over planes; GPU_RecordMaskedColumn (no wrap,
+  v clamped to [0,lh)); MAXWALLCMDS 3072.
+- **r_bsp.h**: R_Subsector does the floor/ceiling R_FindPlane + R_AddSprites;
+  R_RenderView = clear planes/sprites -> BSP walk -> R_DrawPlanes ->
+  R_DrawMasked, all still recording into the command buffer (compute frame),
+  draw frame unchanged.
+- **p_mobj.h**: P_SpawnMobj now reads gen_mobjinfo (sprite/frame/radius/height/
+  flags); P_SpawnMapThings spawns everything at skill 3 (options bit 1; skips
+  types 1-4, 11, MTF_ONLYNET; MF_SPAWNCEILING -> ONCEILINGZ). 91 things spawn
+  on E1M1. Monsters are static solid obstacles (PIT_CheckThing already blocks);
+  pickups are MF_SPECIAL = walk-through. p_tick.h: mobj_t += sprite/frame,
+  full MF_* flag set.
+- game.c HUD line 3: PLN (visplanes) / FIL (span fills) / SPR (vissprites) /
+  MSK (masked columns).
+
+**User next: run bin/game.v32.** Check: (1) floors/ceilings are solid colors,
+no more void; sky visible in the courtyard; (2) the exit-room gratings are now
+VISIBLE (and still block); (3) things: armor bonuses on the pedestal, barrels,
+zombiemen/imps standing around — do they show, face you, rotate as you circle?
+(4) solid monsters/barrels block movement, bonuses don't; (5) VS numbers +
+new HUD line in typical rooms and at the stairs (HI and LO); (6) walls.v32
+also gained planes/sky/gratings — quick look. Harness: GREEN 188 unchanged.
 
 ## Status 2026-07-19 end of session 1 — FIRST EMULATOR RUN RESULTS ARE IN
 

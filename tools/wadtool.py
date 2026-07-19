@@ -142,6 +142,113 @@ def composite_textures(wad, palette):
             textures.append((name, img))
     return textures
 
+def load_sprites(wad, palette):
+    """Return list of (name, PIL image, width, height, leftoffset, topoffset)
+    for every sprite patch between S_START and S_END."""
+    start = wad.index['S_START']; end = wad.index['S_END']
+    sprites = []
+    for i in range(start+1, end):
+        name, fp, sz = wad.lumps[i]
+        if sz < 8:
+            continue                       # markers
+        patch = wad.read(i)
+        wdt = s16(patch, 0); hgt = s16(patch, 2)
+        lo = s16(patch, 4); to = s16(patch, 6)
+        img = Image.new('RGBA', (wdt, hgt), (0, 0, 0, 0))
+        draw_patch(img, patch, palette)
+        sprites.append((name, img, wdt, hgt, lo, to))
+    return sprites
+
+# ---------------------------------------------------------------------------
+# Upstream info tables: sprite names, spawn states, mobjinfo (parsed from the
+# id source exactly like tables.c -- never derived by hand)
+# ---------------------------------------------------------------------------
+def parse_info():
+    droot = os.path.normpath(os.path.join(ROOT, '..', 'DOOM', 'linuxdoom-1.10'))
+    info_c = open(os.path.join(droot, 'info.c')).read()
+    info_h = open(os.path.join(droot, 'info.h')).read()
+    pmobj_h = open(os.path.join(droot, 'p_mobj.h')).read()
+
+    # sprite names, order == SPR_* enum
+    m = re.search(r'sprnames\[NUMSPRITES\]\s*=\s*\{(.*?)\};', info_c, re.S)
+    sprnames = re.findall(r'"(\w{4})"', m.group(1))
+
+    # statenum_t order (S_NULL ... NUMSTATES)
+    m = re.search(r'typedef enum\s*\{\s*(S_NULL.*?)NUMSTATES', info_h, re.S)
+    snames = re.findall(r'(S_\w+)\s*,', m.group(1))
+
+    # states: (spritenum, frameword) per state
+    m = re.search(r'states\[NUMSTATES\]\s*=\s*\{(.*?)\n\};', info_c, re.S)
+    entries = re.findall(r'\{\s*SPR_(\w+)\s*,\s*(\d+)\s*,', m.group(1))
+    assert len(entries) == len(snames), (len(entries), len(snames))
+    states = [(sprnames.index(sp), int(fr)) for sp, fr in entries]
+
+    # mobj flag values
+    mf = dict((k, int(v, 0)) for k, v in
+              re.findall(r'MF_(\w+)\s*=\s*(0x[0-9a-fA-F]+|\d+)', pmobj_h))
+
+    # mobjinfo: doomednum, spawnstate, radius, height, flags per type
+    m = re.search(r'mobjinfo\[NUMMOBJTYPES\]\s*=\s*\{(.*?)\n\};', info_c, re.S)
+    body = re.sub(r'//[^\n]*', '', m.group(1))
+    mobjinfo = []
+    for ent in body.split('},'):
+        ent = ent.strip().lstrip('{').strip()
+        if not ent:
+            continue
+        f = [tok.strip() for tok in ent.split(',')]
+        assert len(f) == 23, f
+        def ev(tok):
+            tok = tok.replace('FRACUNIT', '65536')
+            tok = re.sub(r'MF_(\w+)', lambda g: str(mf[g.group(1)]), tok)
+            tok = re.sub(r'S_(\w+)', lambda g: str(snames.index('S_' + g.group(1))), tok)
+            return int(eval(tok))
+        doomednum = ev(f[0]); spawnstate = ev(f[1])
+        radius = ev(f[16]); height = ev(f[17]); flags = ev(f[21])
+        spr, frame = states[spawnstate]
+        mobjinfo.append([doomednum, spr, frame, radius, height, flags])
+    return sprnames, mobjinfo
+
+def build_spriteframes(sprnames, sprites):
+    """Upstream R_InitSpriteDefs over the baked lump list. Returns
+    (sprdef rows [firstframe, numframes], sprframe rows [rotate]+lump[8]+flip[8])."""
+    sprdef = []
+    sprframe = []
+    for name in sprnames:
+        temp = [{'rotate': -1, 'lump': [-1]*8, 'flip': [0]*8} for _ in range(29)]
+        maxframe = -1
+        def install(li, fr, rot, flip):
+            nonlocal maxframe
+            assert fr < 29 and rot <= 8, (name, fr, rot)
+            if fr > maxframe:
+                maxframe = fr
+            if rot == 0:
+                assert temp[fr]['rotate'] != 1, name
+                temp[fr]['rotate'] = 0
+                for r in range(8):
+                    temp[fr]['lump'][r] = li
+                    temp[fr]['flip'][r] = flip
+            else:
+                assert temp[fr]['rotate'] != 0, name
+                temp[fr]['rotate'] = 1
+                temp[fr]['lump'][rot-1] = li
+                temp[fr]['flip'][rot-1] = flip
+        for li, (lname, img, wdt, hgt, lo, to) in enumerate(sprites):
+            if lname[:4] == name:
+                install(li, ord(lname[4]) - 65, int(lname[5]), 0)
+                if len(lname) > 6:
+                    install(li, ord(lname[6]) - 65, int(lname[7]), 1)
+        first = len(sprframe)
+        nframes = maxframe + 1
+        for fr in range(nframes):
+            t = temp[fr]
+            # frames present must be complete (upstream I_Errors here)
+            assert t['rotate'] != -1, (name, fr)
+            if t['rotate'] == 1:
+                assert all(l != -1 for l in t['lump']), (name, fr)
+            sprframe.append([t['rotate']] + t['lump'] + t['flip'])
+        sprdef.append([first, nframes])
+    return sprdef, sprframe
+
 def load_flats(wad, palette):
     """Return list of (name, PIL image 64x64, avg_abgr) between F_START/F_END."""
     start = wad.index['F_START']; end = wad.index['F_END']
@@ -371,8 +478,10 @@ def main():
     # (multiples of it) land on identical texels. Renderer needs no changes.
     REPEAT_MIN = 256
     tiled = []
+    logical_h = []                         # pre-tiling height (masked mid textures)
     for nm, img in textures:
         h = img.height
+        logical_h.append(h)
         reps = REPEAT_MIN // h if 0 < h < REPEAT_MIN else 1
         if reps > 1:
             timg = Image.new('RGBA', (img.width, h * reps), (0, 0, 0, 0))
@@ -391,7 +500,7 @@ def main():
         placed[i] = atlas.add(textures[i][1])
     for i, (nm, img) in enumerate(textures):
         sh, x, y = placed[i]
-        texinfo += [sh, x, y, img.width, img.height]
+        texinfo += [sh, x, y, img.width, img.height, logical_h[i]]
     flatinfo = []
     flatavg = []
     for nm, img, avg in flats:
@@ -408,12 +517,55 @@ def main():
     report.append('textures: %d walls, %d flats -> %d sheet(s)' %
                   (len(textures), len(flats), len(atlas.sheets)))
 
+    # ---- sprites -> own atlas sheets (GPU texids come after white)
+    sprites = load_sprites(wad, palette)
+    sprnames, mobjinfo = parse_info()
+    sprdef, sprframe = build_spriteframes(sprnames, sprites)
+    spratlas = Atlas()
+    sprinfo = []
+    sorder = sorted(range(len(sprites)), key=lambda i: -sprites[i][1].height)
+    splaced = {}
+    for i in sorder:
+        splaced[i] = spratlas.add(sprites[i][1])
+    spr_texid0 = len(atlas.sheets) + 1     # walls sheets, then white, then sprites
+    for i, (nm, img, wdt, hgt, lo, to) in enumerate(sprites):
+        sh, x, y = splaced[i]
+        sprinfo += [spr_texid0 + sh, x, y, wdt, hgt, lo, to]
+    for i, sheet in enumerate(spratlas.sheets):
+        sheet.save(os.path.join(ROOT, 'textures', 'spr%d.png' % i))
+    w('data/sprinfo.bin', sprinfo)
+    w('data/sprdef.bin', [v for row in sprdef for v in row])
+    w('data/sprframe.bin', [v for row in sprframe for v in row])
+    w('data/mobjinfo.bin', [v for row in mobjinfo for v in row])
+    report.append('sprites: %d lumps, %d names, %d frames, %d mobjtypes -> %d sheet(s)' %
+                  (len(sprites), len(sprnames), len(sprframe), len(mobjinfo),
+                   len(spratlas.sheets)))
+
     # ---- map
     counts, out = bake_map(wad, mapname, texname_to_idx, flatname_to_idx)
     ml = mapname.lower()
     for key, words in out.items():
         w('data/%s_%s.bin' % (ml, key), words)
     report.append('%s: %s' % (mapname, ', '.join('%s=%d' % kv for kv in sorted(counts.items()))))
+
+    # every spawnable map thing must resolve: doomednum -> mobjinfo -> spawn
+    # sprite frame with a valid lump (PC-side gate for P_SpawnMapThings)
+    ed_to_mt = {}
+    for mt, row in enumerate(mobjinfo):
+        if row[0] != -1:
+            ed_to_mt.setdefault(row[0], mt)
+    for i in range(counts['things']):
+        ttype = out['things'][i*5 + 3]
+        opts = out['things'][i*5 + 4]
+        if ttype in (1, 2, 3, 4, 11) or (opts & 16):
+            continue
+        assert ttype in ed_to_mt, 'no mobjinfo for doomednum %d' % ttype
+        mt = ed_to_mt[ttype]
+        spr, frameword = mobjinfo[mt][1], mobjinfo[mt][2]
+        first, nframes = sprdef[spr]
+        fr = frameword & 0x7FFF
+        assert fr < nframes, (ttype, spr, fr, nframes)
+        assert sprframe[first + fr][1] != -1, (ttype, spr, fr)
 
     # ---- gen_assets.h
     sky_tex = texname_to_idx.get('SKY1', 0)
@@ -433,15 +585,29 @@ def main():
     lines.append('#define GEN_NUMFLATS %d' % len(flats))
     lines.append('#define GEN_SKYTEXTURE %d' % sky_tex)
     lines.append('#define GEN_SKYFLATNUM %d' % sky_flat)
+    lines.append('#define TEXID_SPR0 %d' % spr_texid0)
+    lines.append('#define GEN_NUMSPRSHEETS %d' % len(spratlas.sheets))
+    lines.append('#define GEN_NUMSPRLUMPS %d' % len(sprites))
+    lines.append('#define GEN_NUMSPRITES %d' % len(sprnames))
+    lines.append('#define GEN_NUMSPRFRAMES %d' % len(sprframe))
+    lines.append('#define GEN_NUMMOBJTYPES %d' % len(mobjinfo))
     lines.append('')
     for key in ('vertexes', 'sectors', 'sidedefs', 'linedefs',
                 'ssectors', 'segs', 'nodes', 'things', 'blockmap'):
         lines.append('#define GEN_NUM%s %d' % (key.upper(), counts[key]))
     lines.append('')
-    lines.append('// texinfo: sheet,x,y,w,h per texture; flatinfo: sheet,x,y per flat')
-    lines.append('embedded int[GEN_NUMTEXTURES][5] gen_texinfo = "data\\\\texinfo.bin";')
+    lines.append('// texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat')
+    lines.append('embedded int[GEN_NUMTEXTURES][6] gen_texinfo = "data\\\\texinfo.bin";')
     lines.append('embedded int[GEN_NUMFLATS][3] gen_flatinfo = "data\\\\flatinfo.bin";')
     lines.append('embedded int[GEN_NUMFLATS] gen_flatavg = "data\\\\flatavg.bin";')
+    lines.append('')
+    lines.append('// sprites: sheet(texid),x,y,w,h,leftoffset,topoffset per lump;')
+    lines.append('// sprdef: firstframe,numframes per SPR_*; sprframe: rotate,lump[8],flip[8];')
+    lines.append('// mobjinfo: doomednum,sprite,frame,radius,height,flags per MT_*')
+    lines.append('embedded int[GEN_NUMSPRLUMPS][7] gen_sprinfo = "data\\\\sprinfo.bin";')
+    lines.append('embedded int[GEN_NUMSPRITES][2] gen_sprdef = "data\\\\sprdef.bin";')
+    lines.append('embedded int[GEN_NUMSPRFRAMES][17] gen_sprframe = "data\\\\sprframe.bin";')
+    lines.append('embedded int[GEN_NUMMOBJTYPES][6] gen_mobjinfo = "data\\\\mobjinfo.bin";')
     lines.append('')
     lines.append('// trig tables (fixed_t / BAM)')
     lines.append('embedded int[10240] finesine = "data\\\\finesine.bin";')

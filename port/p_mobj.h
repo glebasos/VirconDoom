@@ -150,6 +150,7 @@ void P_MobjThinker( void* p )
     // state machine: M6
 }
 
+// type = MT_* index into the baked gen_mobjinfo (0 = MT_PLAYER)
 mobj_t* P_SpawnMobj( fixed_t x, fixed_t y, fixed_t z, int type )
 {
     mobj_t* mobj = Z_CallocLevel( sizeof( mobj_t ) );
@@ -166,11 +167,12 @@ mobj_t* P_SpawnMobj( fixed_t x, fixed_t y, fixed_t z, int type )
     mobj->type = type;
     mobj->x = x;
     mobj->y = y;
-    // minimal mobjinfo: type 0 = player
-    mobj->radius = 16 * FRACUNIT;
-    mobj->height = 56 * FRACUNIT;
-    mobj->flags = MF_SOLID | MF_SHOOTABLE | MF_DROPOFF | MF_PICKUP;
-    mobj->health = 100;
+    mobj->sprite = gen_mobjinfo[type][1];
+    mobj->frame = gen_mobjinfo[type][2];
+    mobj->radius = gen_mobjinfo[type][3];
+    mobj->height = gen_mobjinfo[type][4];
+    mobj->flags = gen_mobjinfo[type][5];
+    mobj->health = 100;          // spawnhealth not baked yet (M6)
 
     P_SetThingPosition( mobj );
 
@@ -188,6 +190,52 @@ mobj_t* P_SpawnMobj( fixed_t x, fixed_t y, fixed_t z, int type )
     P_AddThinker( &mobj->thinker );
 
     return mobj;
+}
+
+// spawn all map things except player/deathmatch starts (upstream
+// P_SpawnMapThing, skill fixed at 3 = bit 1 of the options word)
+void P_SpawnMapThings()
+{
+    int i;
+    int t;
+    int mt;
+    int ed;
+    int opts;
+    mobj_t* mo;
+    fixed_t z;
+
+    for( i = 0; i < GEN_NUMTHINGS; i++ )
+    {
+        ed = gen_things[i][3];
+        opts = gen_things[i][4];
+
+        if( ed >= 1 && ed <= 4 )
+            continue;            // player starts
+        if( ed == 11 )
+            continue;            // deathmatch start
+        if( opts & 16 )
+            continue;            // multiplayer only
+        if( !( opts & 2 ) )
+            continue;            // not on skill 3
+
+        mt = -1;
+        for( t = 0; t < GEN_NUMMOBJTYPES; t++ )
+            if( gen_mobjinfo[t][0] == ed )
+            {
+                mt = t;
+                break;
+            }
+        if( mt < 0 )
+            continue;            // unknown doomednum (wadtool asserts none)
+
+        z = ONFLOORZ;
+        if( gen_mobjinfo[mt][5] & MF_SPAWNCEILING )
+            z = ONCEILINGZ;
+
+        mo = P_SpawnMobj( gen_things[i][0] << FRACBITS,
+                          gen_things[i][1] << FRACBITS, z, mt );
+        mo->angle = ( gen_things[i][2] / 45 ) * ANG45;
+    }
 }
 
 // spawn the player at map thing (x, y in map units, angle in degrees)

@@ -22,6 +22,8 @@ int perf_segs = 0;         // R_StoreWallRange calls
 int perf_columns = 0;      // wall columns (fast-path records + slow calls)
 int perf_draws = 0;        // actual region draws (column runs)
 int perf_slow = 0;         // columns that fell off RECORD_COL to the full function
+int perf_fills = 0;        // plane span fills (M5)
+int perf_masked = 0;       // sprite + masked-mid columns (M5)
 
 // cached gen_texinfo row: columns of one seg share a texture, so the 5
 // indexed ROM reads happen once per texture change instead of per column
@@ -39,7 +41,7 @@ int gpu_ti_th = 0;
 // vsync can never present a half-rendered scene (the VS=2 flicker fix).
 // Overflow drops the farthest runs (recording is near-to-far).
 // -----------------------------------------------------------------------------
-#define MAXWALLCMDS 2048
+#define MAXWALLCMDS 3072
 int wallcmd_count = 0;
 int[MAXWALLCMDS] wc_sheet;
 int[MAXWALLCMDS] wc_color;
@@ -49,6 +51,16 @@ int[MAXWALLCMDS] wc_ry1;
 float[MAXWALLCMDS] wc_scaley;
 int[MAXWALLCMDS] wc_dx;            // screen position (already 2x + offset)
 int[MAXWALLCMDS] wc_dy;
+
+// solid-color fill commands (visplane spans; drawn BEFORE the column stream
+// so sprites/masked columns recorded later paint over floors and ceilings)
+#define MAXFILLCMDS 1200
+int fillcmd_count = 0;
+int[MAXFILLCMDS] fc_color;
+int[MAXFILLCMDS] fc_dx;            // screen coords
+int[MAXFILLCMDS] fc_dy;
+float[MAXFILLCMDS] fc_sx;          // white 8x8 region scale factors
+float[MAXFILLCMDS] fc_sy;
 
 int gpu_light_color = 0xFFFFFFFF;  // current seg light as multiply color
 
@@ -64,6 +76,67 @@ void GPU_BeginFrame()
 {
     gpu_cur_sheet = -1;
     wallcmd_count = 0;
+    fillcmd_count = 0;
+}
+
+// record a solid rect in view coords (x in columns, y in view rows)
+void GPU_RecordFill( int x, int y, int wcols, int hrows, int color )
+{
+    if( fillcmd_count >= MAXFILLCMDS )
+        return;
+    perf_fills++;
+    int n = fillcmd_count;
+    fillcmd_count = n + 1;
+    fc_color[n] = color;
+    fc_dx[n] = SCRX0 + colpix * x;
+    fc_dy[n] = SCRY0 + 2 * y;
+    fc_sx[n] = 0.125 * (float)( colpix * wcols );
+    fc_sy[n] = 0.25 * (float)hrows;
+}
+
+// record one masked column (sprite or masked mid texture): NO vertical
+// tiling, v clamped to [0,lh); transparent texels rely on region alpha
+void GPU_RecordMaskedColumn( int sheet, int rx, int ty, int lh,
+                             int scrx, int yl, int yh,
+                             float sprtopf, float fis )
+{
+    if( yh < yl )
+        return;
+    if( wallcmd_count >= MAXWALLCMDS )
+        return;
+
+    int rows = yh - yl + 1;
+    float vtop = ( (float)yl - sprtopf ) * fis;
+    if( vtop < 0.0 )
+        vtop = 0.0;
+    float vbot = vtop + (float)rows * fis;
+    if( vbot > (float)lh )
+        vbot = (float)lh;
+
+    int vi = (int)vtop;                    // vtop >= 0: CFI truncation = floor
+    if( vi >= lh )
+        vi = lh - 1;
+    int ce = (int)vbot;
+    if( (float)ce < vbot )
+        ce++;
+    int count = ce - vi;
+    if( count < 1 )
+        count = 1;
+    if( count > lh - vi )
+        count = lh - vi;
+
+    perf_masked++;
+    perf_draws++;
+    int n = wallcmd_count;
+    wallcmd_count = n + 1;
+    wc_sheet[n] = sheet;
+    wc_color[n] = gpu_light_color;
+    wc_rx[n] = rx;
+    wc_ry0[n] = ty + vi;
+    wc_ry1[n] = ty + vi + count - 1;
+    wc_scaley[n] = 2.0 * (float)rows / (float)count;
+    wc_dx[n] = SCRX0 + colpix * scrx;
+    wc_dy[n] = SCRY0 + 2 * yl;
 }
 
 void GPU_Flush()
@@ -72,6 +145,27 @@ void GPU_Flush()
     int cs = -1;
     int cc = -1;
 
+    // ---- phase 1: solid fills (plane spans), white texture selected once
+    if( fillcmd_count > 0 )
+    {
+        select_texture( TEXID_WHITE );
+        select_region( 0 );
+        define_region( 0, 0, 7, 7, 0, 0 );
+        for( i = 0; i < fillcmd_count; i++ )
+        {
+            if( fc_color[i] != cc )
+            {
+                cc = fc_color[i];
+                set_multiply_color( cc );
+            }
+            set_drawing_scale( fc_sx[i], fc_sy[i] );
+            draw_region_zoomed_at( fc_dx[i], fc_dy[i] );
+        }
+        fillcmd_count = 0;
+        cc = -1;
+    }
+
+    // ---- phase 2: column stream (walls, sky, then sprites/masked on top)
     // drawing scale X is the same for every wall column: set it ONCE
     float sx_ = colpix_f;
     asm

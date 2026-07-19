@@ -25,7 +25,10 @@
 #include "port\\p_setup.h"
 #include "port\\r_main.h"
 #include "port\\r_gpu.h"
+#include "port\\p_tick.h"
+#include "port\\r_plane.h"
 #include "port\\r_segs.h"
+#include "port\\r_things.h"
 #include "port\\r_bsp.h"
 
 #define CEILCOLOR 0xFF202028
@@ -42,6 +45,7 @@ void main()
 {
     InitTables();
     R_InitTextureMapping();
+    R_InitSprites();
     P_SetupLevel();
 
     // find player 1 start (thing type 1)

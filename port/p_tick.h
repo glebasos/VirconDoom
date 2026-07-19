@@ -41,6 +41,8 @@ struct mobj_t
     mobj_t* bprev;
 
     angle_t angle;
+    int sprite;                  // SPR_* (baked gen_sprdef index)
+    int frame;                   // frame letter + FF_FULLBRIGHT bit
     subsector_t* subsector;
 
     fixed_t floorz;              // nearest floor/ceiling from P_CheckPosition
@@ -59,20 +61,33 @@ struct mobj_t
     void* player;                // player_t* or NULL
 };
 
-// mobj flags (upstream values, subset used so far)
-#define MF_SPECIAL     1
-#define MF_SOLID       2
-#define MF_SHOOTABLE   4
-#define MF_NOSECTOR    8
-#define MF_NOBLOCKMAP  16
-#define MF_NOGRAVITY   0x200
-#define MF_DROPOFF     0x400
-#define MF_PICKUP      0x800
-#define MF_NOCLIP      0x1000
-#define MF_SLIDE       0x2000
-#define MF_FLOAT       0x4000
-#define MF_TELEPORT    0x8000
-#define MF_MISSILE     0x10000
+// mobj flags (upstream p_mobj.h values, full set -- baked mobjinfo uses them)
+#define MF_SPECIAL       1
+#define MF_SOLID         2
+#define MF_SHOOTABLE     4
+#define MF_NOSECTOR      8
+#define MF_NOBLOCKMAP    16
+#define MF_AMBUSH        32
+#define MF_JUSTHIT       64
+#define MF_JUSTATTACKED  128
+#define MF_SPAWNCEILING  256
+#define MF_NOGRAVITY     0x200
+#define MF_DROPOFF       0x400
+#define MF_PICKUP        0x800
+#define MF_NOCLIP        0x1000
+#define MF_SLIDE         0x2000
+#define MF_FLOAT         0x4000
+#define MF_TELEPORT      0x8000
+#define MF_MISSILE       0x10000
+#define MF_DROPPED       0x20000
+#define MF_SHADOW        0x40000
+#define MF_NOBLOOD       0x80000
+#define MF_CORPSE        0x100000
+#define MF_INFLOAT       0x200000
+#define MF_COUNTKILL     0x400000
+#define MF_COUNTITEM     0x800000
+#define MF_SKULLFLY      0x1000000
+#define MF_NOTDMATCH     0x2000000
 
 // ---- player (d_player.h subset + flattened ticcmd)
 struct player_t
