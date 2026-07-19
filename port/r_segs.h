@@ -18,7 +18,7 @@
 #include "r_main.h"
 #include "r_gpu.h"
 
-#define ASR( x, n ) ( ( (x) >> (n) ) | ( ( -( (x) < 0 ) ) << ( 32 - (n) ) ) )
+// ASR now lives in m_fixed.h (r_main.h needs it too)
 
 #define HEIGHTBITS 12
 #define HEIGHTUNIT 4096
@@ -72,6 +72,51 @@ int seg_light = 255;               // per-seg light level incl. fake contrast
 int[320] ceilingclip;
 int[320] floorclip;
 
+// Inlined fast path of GPU_DrawWallColumn (compute frame is 2-3x over budget in
+// heavy scenes; dialect #16: call elimination is the only lever that pays).
+// Handles the common single-run column (no texture-height wrap inside the
+// visible span); anything else falls back to the full function. Must stay
+// record-equivalent to GPU_DrawWallColumn's single-run case.
+#define RECORD_COL( SH, TX, TY, TW, TH, TMF, TEXN, TMID, ylv, yhv )           \
+{                                                                             \
+    if( (yhv) >= (ylv) )                                                      \
+    {                                                                         \
+        int rows_ = (yhv) - (ylv) + 1;                                        \
+        float vtop_ = (TMF) + (float)( (ylv) - centery ) * fis_;              \
+        float vbot_ = vtop_ + (float)rows_ * fis_;                            \
+        int vi_ = (int)vtop_;                                                 \
+        if( (float)vi_ > vtop_ ) vi_--;                                       \
+        int vw_ = vi_ % (TH);                                                 \
+        if( vw_ < 0 ) vw_ += (TH);                                            \
+        if( (float)( vi_ - vw_ + (TH) ) >= vbot_                              \
+         && wallcmd_count < MAXWALLCMDS )                                     \
+        {                                                                     \
+            perf_columns++;                                                   \
+            perf_draws++;                                                     \
+            int col_ = texturecolumn % (TW);                                  \
+            if( col_ < 0 ) col_ += (TW);                                      \
+            int ce_ = (int)vbot_;                                             \
+            if( (float)ce_ < vbot_ ) ce_++;                                   \
+            int cnt_ = ce_ - vi_;                                             \
+            if( cnt_ < 1 ) cnt_ = 1;                                          \
+            if( cnt_ > (TH) - vw_ ) cnt_ = (TH) - vw_;                        \
+            int n_ = wallcmd_count;                                           \
+            wallcmd_count = n_ + 1;                                           \
+            wc_sheet[n_] = (SH);                                              \
+            wc_color[n_] = gpu_light_color;                                   \
+            wc_rx[n_] = (TX) + col_;                                          \
+            wc_ry0[n_] = (TY) + vw_;                                          \
+            wc_ry1[n_] = (TY) + vw_ + cnt_ - 1;                               \
+            wc_scaley[n_] = 2.0 * (float)rows_ / (float)cnt_;                 \
+            wc_dx[n_] = SCRX0 + colpix * rw_x;                                \
+            wc_dy[n_] = SCRY0 + 2 * (ylv);                                    \
+        }                                                                     \
+        else                                                                  \
+            GPU_DrawWallColumn( rw_x, TEXN, texturecolumn, ylv, yhv,          \
+                                TMID, rw_scale );                             \
+    }                                                                         \
+}
+
 void R_RenderSegLoop()
 {
     int angle;
@@ -79,6 +124,46 @@ void R_RenderSegLoop()
     int yh;
     int mid;
     fixed_t texturecolumn = 0;
+    float fis_ = 1.0;
+
+    // per-seg hoists for the inlined hot path:
+    // FixedMul( finetangent, rw_distance ) half-decomposition of rw_distance
+    int rdl = rw_distance & 0xFFFF;
+    int rdh = rw_distance >> 16;              // logical: unsigned high half
+    // tier atlas info + texturemid pre-converted to float texels
+    int m_sh = 0; int m_tx = 0; int m_ty = 0; int m_tw = 1; int m_th = 1;
+    int t_sh = 0; int t_tx = 0; int t_ty = 0; int t_tw = 1; int t_th = 1;
+    int b_sh = 0; int b_tx = 0; int b_ty = 0; int b_tw = 1; int b_th = 1;
+    float m_tmf = 0.0;
+    float t_tmf = 0.0;
+    float b_tmf = 0.0;
+    if( midtexture )
+    {
+        m_sh = gen_texinfo[midtexture][0];
+        m_tx = gen_texinfo[midtexture][1];
+        m_ty = gen_texinfo[midtexture][2];
+        m_tw = gen_texinfo[midtexture][3];
+        m_th = gen_texinfo[midtexture][4];
+        m_tmf = (float)rw_midtexturemid * 0.0000152587890625;
+    }
+    if( toptexture )
+    {
+        t_sh = gen_texinfo[toptexture][0];
+        t_tx = gen_texinfo[toptexture][1];
+        t_ty = gen_texinfo[toptexture][2];
+        t_tw = gen_texinfo[toptexture][3];
+        t_th = gen_texinfo[toptexture][4];
+        t_tmf = (float)rw_toptexturemid * 0.0000152587890625;
+    }
+    if( bottomtexture )
+    {
+        b_sh = gen_texinfo[bottomtexture][0];
+        b_tx = gen_texinfo[bottomtexture][1];
+        b_ty = gen_texinfo[bottomtexture][2];
+        b_tw = gen_texinfo[bottomtexture][3];
+        b_th = gen_texinfo[bottomtexture][4];
+        b_tmf = (float)rw_bottomtexturemid * 0.0000152587890625;
+    }
 
     for( ; rw_x < rw_stopx; rw_x++ )
     {
@@ -96,15 +181,24 @@ void R_RenderSegLoop()
         {
             angle = ( rw_centerangle + xtoviewangle[rw_x] ) >> ANGLETOFINESHIFT;   // U logical ok
             angle = angle & 0xFFF;      // guard: finetangent has 4096 entries
-            texturecolumn = rw_offset - FixedMul( finetangent[angle], rw_distance );
-            texturecolumn = ASR( texturecolumn, FRACBITS );
+            // inline FixedMul( finetangent[angle], rw_distance ) -- bit-exact
+            // copy of m_fixed.h with rw_distance halves hoisted per seg
+            int ft = finetangent[angle];
+            int fl = ft & 0xFFFF;
+            int fh = ft >> 16;          // logical: unsigned high half
+            int r_ = ( ( fl * rdl ) >> 16 ) + fh * rdl + fl * rdh
+                   + ( ( fh * rdh ) << 16 );
+            if( ft < 0 ) r_ -= ( rw_distance << 16 );
+            if( rw_distance < 0 ) r_ -= ( ft << 16 );
+            texturecolumn = ASR( rw_offset - r_, FRACBITS );
+            fis_ = 65536.0 / (float)rw_scale;
         }
 
         if( midtexture )
         {
             // single sided line
-            GPU_DrawWallColumn( rw_x, midtexture, texturecolumn, yl, yh,
-                                rw_midtexturemid, rw_scale );
+            RECORD_COL( m_sh, m_tx, m_ty, m_tw, m_th, m_tmf,
+                        midtexture, rw_midtexturemid, yl, yh );
             ceilingclip[rw_x] = viewheight;
             floorclip[rw_x] = -1;
         }
@@ -121,8 +215,8 @@ void R_RenderSegLoop()
 
                 if( mid >= yl )
                 {
-                    GPU_DrawWallColumn( rw_x, toptexture, texturecolumn, yl, mid,
-                                        rw_toptexturemid, rw_scale );
+                    RECORD_COL( t_sh, t_tx, t_ty, t_tw, t_th, t_tmf,
+                                toptexture, rw_toptexturemid, yl, mid );
                     ceilingclip[rw_x] = mid;
                 }
                 else
@@ -144,8 +238,8 @@ void R_RenderSegLoop()
 
                 if( mid <= yh )
                 {
-                    GPU_DrawWallColumn( rw_x, bottomtexture, texturecolumn, mid, yh,
-                                        rw_bottomtexturemid, rw_scale );
+                    RECORD_COL( b_sh, b_tx, b_ty, b_tw, b_th, b_tmf,
+                                bottomtexture, rw_bottomtexturemid, mid, yh );
                     floorclip[rw_x] = mid;
                 }
                 else
@@ -174,6 +268,7 @@ void R_StoreWallRange( int start, int stop )
     fixed_t vtop;
     fixed_t scale2;
 
+    perf_segs++;
     sidedef = curline->sidedef;
     linedef = curline->linedef;
 

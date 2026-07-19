@@ -130,8 +130,10 @@ void main()
     Check( box[BOXTOP] == MININT && box[BOXLEFT] == MAXINT );
     M_AddToBox( box, 100, 200 );
     M_AddToBox( box, -50, 300 );
-    Check( box[BOXLEFT] == -50 && box[BOXRIGHT] == 100 );
-    Check( box[BOXBOTTOM] == 200 && box[BOXTOP] == 300 );
+    // upstream else-if quirk: while x keeps shrinking BOXLEFT, BOXRIGHT stays MININT
+    Check( box[BOXLEFT] == -50 && box[BOXRIGHT] == MININT );
+    M_AddToBox( box, 150, 100 );
+    Check( box[BOXRIGHT] == 150 && box[BOXBOTTOM] == 100 && box[BOXTOP] == 300 );
 
     // --- group 8: zone arena
     int used0 = Z_UsedWords();

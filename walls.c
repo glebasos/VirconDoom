@@ -59,7 +59,10 @@ void main()
     }
 
     bool showDebug = true;
+    bool lowDetail = false;
     int frame = 0;
+    int lastFc = get_frame_counter();
+    int vsyncs = 0;                    // hardware vsyncs the previous loop took
 
     while( true )
     {
@@ -95,16 +98,31 @@ void main()
             viewy += fcos * speed;
         }
         if( gamepad_button_y() == 1 ) showDebug = !showDebug;
+        if( gamepad_button_x() == 1 )
+        {
+            lowDetail = !lowDetail;
+            R_SetDetail( lowDetail );
+        }
 
         // eye height follows the floor
         subsector_t* ss = R_PointInSubsector( viewx, viewy );
         viewz = ss->sector->floorheight + 41 * FRACUNIT;
 
-        // ---- render
-        clear_screen( color_black );
-        GPU_FillRect( 0, 0, viewwidth, centery, CEILCOLOR );
-        GPU_FillRect( 0, centery, viewwidth, viewheight - centery, FLOORCOLOR );
+        // ---- compute pass: BSP walk + projection, GPU untouched (records
+        //      wall runs into the command buffer; previous image stays on
+        //      screen during this vsync, so nothing partial is ever shown)
+        perf_segs = 0;
+        perf_columns = 0;
+        perf_draws = 0;
+        perf_slow = 0;
         R_RenderView();
+        end_frame();
+
+        // ---- draw pass: replay is cheap and always fits one frame budget
+        clear_screen( color_black );
+        GPU_FillRect( 0, 0, 320, centery, CEILCOLOR );
+        GPU_FillRect( 0, centery, 320, viewheight - centery, FLOORCOLOR );
+        GPU_Flush();
 
         // ---- debug HUD
         if( showDebug )
@@ -118,9 +136,25 @@ void main()
             ShowInt( 205, 340, ss->sector - sectors );
             print_at( 260, 340, "FRAME" );
             ShowInt( 320, 340, frame );
+            // perf line: segs / columns / GPU draws this frame, vsyncs last frame
+            print_at( 10, 320, "SEGS" );
+            ShowInt( 60, 320, perf_segs );
+            print_at( 110, 320, "COLS" );
+            ShowInt( 160, 320, perf_columns );
+            print_at( 220, 320, "DRAWS" );
+            ShowInt( 280, 320, perf_draws );
+            print_at( 340, 320, "VS" );
+            ShowInt( 370, 320, vsyncs );
+            print_at( 420, 320, "SLOW" );
+            ShowInt( 475, 320, perf_slow );
+            if( lowDetail ) print_at( 550, 320, "LO" );
+            else            print_at( 550, 320, "HI" );
         }
 
         frame++;
         end_frame();
+        int fc = get_frame_counter();
+        vsyncs = fc - lastFc;
+        lastFc = fc;
     }
 }

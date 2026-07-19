@@ -19,6 +19,10 @@
 
 #include "doomdefs.h"
 
+// branchless two's-complement arithmetic shift right (Vircon32 `>>` is logical;
+// harness-checked). Use on every signed fixed-point shift ported from upstream.
+#define ASR( x, n ) ( ( (x) >> (n) ) | ( ( -( (x) < 0 ) ) << ( 32 - (n) ) ) )
+
 fixed_t FixedMul( fixed_t a, fixed_t b )
 {
     int al = a & 0xFFFF;

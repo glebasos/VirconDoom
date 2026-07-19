@@ -16,19 +16,23 @@
 
 #define ULT( a, b ) ( ( (a) ^ MININT ) < ( (b) ^ MININT ) )
 
-// view configuration: 320x168 internal, drawn 2x -> 640x336 on the 640x360 screen
+// view configuration: 320x168 internal drawn 2x wide, or 160x168 drawn 4x wide
+// (DOOM low-detail mode: half the columns = ~half the render cost; vertical
+// resolution never changes). R_SetDetail() switches at runtime.
 #define SCREENWIDTH 320
 #define SCREENHEIGHT 200
-#define viewwidth 320
 #define viewheight 168
-#define centerx 160
 #define centery 84
-#define centerxfrac 0x00A00000     // 160<<16
 #define centeryfrac 0x00540000     // 84<<16
-#define projection centerxfrac
 #define FIELDOFVIEW 2048
 #define SCRX0 0
 #define SCRY0 12
+
+int viewwidth = 320;
+int centerx = 160;
+fixed_t centerxfrac = 0x00A00000;  // centerx<<16 (doubles as the projection)
+int colpix = 2;                    // screen pixels per view column
+float colpix_f = 2.0;
 
 // view state
 fixed_t viewx = 0;
@@ -80,8 +84,21 @@ int R_PointOnSide( fixed_t x, fixed_t y, node_t* node )
     return 1;
 }
 
+// inline SlopeDiv (hot: called 2x per seg AND 2x per visited BSP node via
+// R_CheckBBox; the function call cost ~2x the work). Same math as tables.h.
+#define SLOPEDIV_( n, d, res ) {                     \
+    if( (d) < 512 ) res = SLOPERANGE;                \
+    else                                             \
+    {                                                \
+        res = ( (n) << 3 ) / ( (d) >> 8 );           \
+        if( res > SLOPERANGE ) res = SLOPERANGE;     \
+    }                                                \
+}
+
 angle_t R_PointToAngle( fixed_t x, fixed_t y )
 {
+    int sd;
+
     x -= viewx;
     y -= viewy;
 
@@ -93,17 +110,29 @@ angle_t R_PointToAngle( fixed_t x, fixed_t y )
         if( y >= 0 )
         {
             if( x > y )
-                return tantoangle[ SlopeDiv( y, x ) ];              // octant 0
+            {
+                SLOPEDIV_( y, x, sd );
+                return tantoangle[sd];               // octant 0
+            }
             else
-                return ANG90 - 1 - tantoangle[ SlopeDiv( x, y ) ];  // octant 1
+            {
+                SLOPEDIV_( x, y, sd );
+                return ANG90 - 1 - tantoangle[sd];   // octant 1
+            }
         }
         else
         {
             y = -y;
             if( x > y )
-                return -tantoangle[ SlopeDiv( y, x ) ];             // octant 8
+            {
+                SLOPEDIV_( y, x, sd );
+                return -tantoangle[sd];              // octant 8
+            }
             else
-                return ANG270 + tantoangle[ SlopeDiv( x, y ) ];     // octant 7
+            {
+                SLOPEDIV_( x, y, sd );
+                return ANG270 + tantoangle[sd];      // octant 7
+            }
         }
     }
     else
@@ -112,17 +141,29 @@ angle_t R_PointToAngle( fixed_t x, fixed_t y )
         if( y >= 0 )
         {
             if( x > y )
-                return ANG180 - 1 - tantoangle[ SlopeDiv( y, x ) ]; // octant 3
+            {
+                SLOPEDIV_( y, x, sd );
+                return ANG180 - 1 - tantoangle[sd];  // octant 3
+            }
             else
-                return ANG90 + tantoangle[ SlopeDiv( x, y ) ];      // octant 2
+            {
+                SLOPEDIV_( x, y, sd );
+                return ANG90 + tantoangle[sd];       // octant 2
+            }
         }
         else
         {
             y = -y;
             if( x > y )
-                return ANG180 + tantoangle[ SlopeDiv( y, x ) ];     // octant 4
+            {
+                SLOPEDIV_( y, x, sd );
+                return ANG180 + tantoangle[sd];      // octant 4
+            }
             else
-                return ANG270 - 1 - tantoangle[ SlopeDiv( x, y ) ]; // octant 5
+            {
+                SLOPEDIV_( x, y, sd );
+                return ANG270 - 1 - tantoangle[sd];  // octant 5
+            }
         }
     }
     return 0;
@@ -170,16 +211,32 @@ fixed_t R_ScaleFromGlobalAngle( angle_t visangle )
 
     sinea = finesine[ anglea >> ANGLETOFINESHIFT ];
     sineb = finesine[ angleb >> ANGLETOFINESHIFT ];
-    num = FixedMul( projection, sineb );
-    den = FixedMul( rw_distance, sinea );
+
+    // FixedMul( projection, sineb ) with projection = centerx<<16 is exactly:
+    num = centerx * sineb;
+
+    // inline FixedMul( rw_distance, sinea ) -- bit-exact m_fixed.h copy
+    int al = rw_distance & 0xFFFF;
+    int ah = rw_distance >> 16;        // logical: unsigned high half
+    int bl = sinea & 0xFFFF;
+    int bh = sinea >> 16;
+    den = ( ( al * bl ) >> 16 ) + ah * bl + al * bh + ( ( ah * bh ) << 16 );
+    if( rw_distance < 0 ) den -= ( sinea << 16 );
+    if( sinea < 0 ) den -= ( rw_distance << 16 );
 
     if( den > ( num >> 16 ) )
     {
-        scale = FixedDiv( num, den );
-        if( scale > 64 * FRACUNIT )
+        // inline FixedDiv( num, den ): same float op order as m_fixed.h;
+        // its MAXINT overflow guard collapses into the 64*FRACUNIT clamp
+        float q = ( (float)num / (float)den ) * 65536.0;
+        if( q > 4194304.0 )                // 64<<16 as float, pre-CFI clamp
             scale = 64 * FRACUNIT;
-        else if( scale < 256 )
-            scale = 256;
+        else
+        {
+            scale = (int)q;
+            if( scale < 256 )
+                scale = 256;
+        }
     }
     else
         scale = 64 * FRACUNIT;
@@ -205,7 +262,7 @@ void R_InitTextureMapping()
         else
         {
             t = FixedMul( finetangent[i], focallength );
-            t = ( centerxfrac - t + FRACUNIT - 1 ) >> FRACBITS;
+            t = ASR( centerxfrac - t + FRACUNIT - 1, FRACBITS );   // signed! (harness check 123)
             if( t < -1 )
                 t = -1;
             else if( t > viewwidth + 1 )
@@ -231,6 +288,29 @@ void R_InitTextureMapping()
     }
 
     clipangle = xtoviewangle[0];
+}
+
+// switch between 320-column (high) and 160-column (low) detail at runtime;
+// rebuilds the projection tables for the new column count
+void R_SetDetail( bool low )
+{
+    if( low )
+    {
+        viewwidth = 160;
+        centerx = 80;
+        centerxfrac = 80 << FRACBITS;
+        colpix = 4;
+        colpix_f = 4.0;
+    }
+    else
+    {
+        viewwidth = 320;
+        centerx = 160;
+        centerxfrac = 160 << FRACBITS;
+        colpix = 2;
+        colpix_f = 2.0;
+    }
+    R_InitTextureMapping();
 }
 
 subsector_t* R_PointInSubsector( fixed_t x, fixed_t y )

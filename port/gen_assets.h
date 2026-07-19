@@ -5,8 +5,10 @@
 // GPU texture ids (order must match the ROM XML <textures> list)
 #define TEXID_SHEET0 0
 #define TEXID_SHEET1 1
-#define TEXID_WHITE 2
-#define GEN_NUMSHEETS 2
+#define TEXID_SHEET2 2
+#define TEXID_SHEET3 3
+#define TEXID_WHITE 4
+#define GEN_NUMSHEETS 4
 
 #define GEN_NUMTEXTURES 125
 #define GEN_NUMFLATS 54

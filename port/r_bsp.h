@@ -369,14 +369,10 @@ void R_RenderBSPNode( int bspnum )
 
 void R_RenderView()
 {
-    int i;
     R_SetupFrame();
     R_ClearClipSegs();
-    for( i = 0; i < viewwidth; i++ )
-    {
-        ceilingclip[i] = -1;
-        floorclip[i] = viewheight;
-    }
+    memset( ceilingclip, -1, viewwidth );          // hardware SETS, 1 cycle/word
+    memset( floorclip, viewheight, viewwidth );
     GPU_BeginFrame();
     R_RenderBSPNode( numnodes - 1 );
 }

@@ -5,6 +5,8 @@
     <textures>
         <texture path="obj/sheet0.vtex" />
         <texture path="obj/sheet1.vtex" />
+        <texture path="obj/sheet2.vtex" />
+        <texture path="obj/sheet3.vtex" />
         <texture path="obj/white.vtex" />
     </textures>
     <sounds />

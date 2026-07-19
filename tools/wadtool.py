@@ -353,6 +353,26 @@ def main():
     texname_to_idx = {nm: i for i, (nm, _) in enumerate(textures)}
     flatname_to_idx = {nm: i for i, (nm, _, _) in enumerate(flats)}
 
+    # Bake vertical repeats of wall textures up to ~256px so typical column
+    # spans fit ONE atlas run (kills the multi-run splits that made stair and
+    # tall-wall scenes explode in draw commands; 128 was not enough — walls
+    # taller than 128 texels wrap by construction since no texture exceeds
+    # 128). texinfo height becomes the baked height; safe everywhere because
+    # the baked image is periodic in the logical height, so pegging offsets
+    # (multiples of it) land on identical texels. Renderer needs no changes.
+    REPEAT_MIN = 256
+    tiled = []
+    for nm, img in textures:
+        h = img.height
+        reps = REPEAT_MIN // h if 0 < h < REPEAT_MIN else 1
+        if reps > 1:
+            timg = Image.new('RGBA', (img.width, h * reps), (0, 0, 0, 0))
+            for r in range(reps):
+                timg.paste(img, (0, r * h))
+            img = timg
+        tiled.append((nm, img))
+    textures = tiled
+
     atlas = Atlas()
     texinfo = []
     # pack tallest first within walls for density, but keep INDEX order in texinfo

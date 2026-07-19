@@ -17,20 +17,116 @@
 
 int gpu_cur_sheet = -1;    // avoid redundant select_texture
 
+// per-frame perf counters (read by the debug HUD)
+int perf_segs = 0;         // R_StoreWallRange calls
+int perf_columns = 0;      // wall columns (fast-path records + slow calls)
+int perf_draws = 0;        // actual region draws (column runs)
+int perf_slow = 0;         // columns that fell off RECORD_COL to the full function
+
+// cached gen_texinfo row: columns of one seg share a texture, so the 5
+// indexed ROM reads happen once per texture change instead of per column
+int gpu_cache_texnum = -1;
+int gpu_ti_sheet = 0;
+int gpu_ti_tx = 0;
+int gpu_ti_ty = 0;
+int gpu_ti_tw = 0;
+int gpu_ti_th = 0;
+
+// -----------------------------------------------------------------------------
+// Wall draw command buffer. The BSP walk runs in a COMPUTE frame that touches
+// no GPU state (previous image stays presented), then GPU_Flush replays all
+// runs in a fast DRAW frame that always fits the instruction budget — so a
+// vsync can never present a half-rendered scene (the VS=2 flicker fix).
+// Overflow drops the farthest runs (recording is near-to-far).
+// -----------------------------------------------------------------------------
+#define MAXWALLCMDS 2048
+int wallcmd_count = 0;
+int[MAXWALLCMDS] wc_sheet;
+int[MAXWALLCMDS] wc_color;
+int[MAXWALLCMDS] wc_rx;            // atlas column x (region is 1 texel wide)
+int[MAXWALLCMDS] wc_ry0;
+int[MAXWALLCMDS] wc_ry1;
+float[MAXWALLCMDS] wc_scaley;
+int[MAXWALLCMDS] wc_dx;            // screen position (already 2x + offset)
+int[MAXWALLCMDS] wc_dy;
+
+int gpu_light_color = 0xFFFFFFFF;  // current seg light as multiply color
+
 void GPU_SetLight( int lightlevel )
 {
     int g = lightlevel;
     if( g < 32 ) g = 32;
     if( g > 255 ) g = 255;
-    int color = 0xFF000000 | ( g << 16 ) | ( g << 8 ) | g;
-    set_multiply_color( color );
+    gpu_light_color = 0xFF000000 | ( g << 16 ) | ( g << 8 ) | g;
 }
 
 void GPU_BeginFrame()
 {
     gpu_cur_sheet = -1;
+    wallcmd_count = 0;
+}
+
+void GPU_Flush()
+{
+    int i;
+    int cs = -1;
+    int cc = -1;
+
+    // drawing scale X is the same for every wall column: set it ONCE
+    float sx_ = colpix_f;
+    asm
+    {
+        "mov R0, {sx_}"
+        "out GPU_DrawingScaleX, R0"
+    }
+
+    for( i = 0; i < wallcmd_count; i++ )
+    {
+        if( wc_sheet[i] != cs )
+        {
+            cs = wc_sheet[i];
+            select_texture( cs );
+            select_region( 0 );
+        }
+        if( wc_color[i] != cc )
+        {
+            cc = wc_color[i];
+            set_multiply_color( cc );
+        }
+
+        // inline define_region + set_drawing_scale + draw_region_zoomed_at
+        // (~50 instr/draw instead of ~115 -- the draw frame was nearing a
+        // full vsync at 1474 draws). Region min/max/hotspot X are all the
+        // same atlas column; hotspot Y = region top.
+        int rx = wc_rx[i];
+        int ry0 = wc_ry0[i];
+        int ry1 = wc_ry1[i];
+        float sy = wc_scaley[i];
+        int dx = wc_dx[i];
+        int dy = wc_dy[i];
+        asm
+        {
+            "mov R0, {rx}"
+            "out GPU_RegionMinX, R0"
+            "out GPU_RegionMaxX, R0"
+            "out GPU_RegionHotSpotX, R0"
+            "mov R0, {ry0}"
+            "out GPU_RegionMinY, R0"
+            "out GPU_RegionHotSpotY, R0"
+            "mov R0, {ry1}"
+            "out GPU_RegionMaxY, R0"
+            "mov R0, {sy}"
+            "out GPU_DrawingScaleY, R0"
+            "mov R0, {dx}"
+            "out GPU_DrawingPointX, R0"
+            "mov R0, {dy}"
+            "out GPU_DrawingPointY, R0"
+            "out GPU_Command, GPUCommand_DrawRegionZoomed"
+        }
+    }
+    wallcmd_count = 0;
+    gpu_cur_sheet = -1;
     set_multiply_color( color_white );
-    set_drawing_scale( 1.0, 1.0 );
 }
 
 // Draw one wall column at view-space column scrx: texture texnum's column
@@ -42,21 +138,24 @@ void GPU_DrawWallColumn( int scrx, int texnum, int texcol, int yl, int yh,
     if( yh < yl )
         return;
 
-    int sheet = gen_texinfo[texnum][0];
-    int tx = gen_texinfo[texnum][1];
-    int ty = gen_texinfo[texnum][2];
-    int tw = gen_texinfo[texnum][3];
-    int th = gen_texinfo[texnum][4];
+    perf_columns++;
+    perf_slow++;
 
-    int col = texcol % tw;
-    if( col < 0 ) col += tw;
-    int x = tx + col;
-
-    if( sheet != gpu_cur_sheet )
+    if( texnum != gpu_cache_texnum )
     {
-        select_texture( sheet );
-        gpu_cur_sheet = sheet;
+        gpu_cache_texnum = texnum;
+        gpu_ti_sheet = gen_texinfo[texnum][0];
+        gpu_ti_tx = gen_texinfo[texnum][1];
+        gpu_ti_ty = gen_texinfo[texnum][2];
+        gpu_ti_tw = gen_texinfo[texnum][3];
+        gpu_ti_th = gen_texinfo[texnum][4];
     }
+    int ty = gpu_ti_ty;
+    int th = gpu_ti_th;
+
+    int col = texcol % gpu_ti_tw;
+    if( col < 0 ) col += gpu_ti_tw;
+    int x = gpu_ti_tx + col;
 
     float fs = (float)scale * 0.0000152587890625;    // scale/65536: pixels per texel
     float fis = 65536.0 / (float)scale;              // texels per pixel
@@ -98,12 +197,19 @@ void GPU_DrawWallColumn( int scrx, int texnum, int texcol, int yl, int yh,
         if( runEnd >= vbot ) yb = yl + rows;         // last run: close exactly
         int pixels = yb - ya;
 
-        if( pixels > 0 )
+        if( pixels > 0 && wallcmd_count < MAXWALLCMDS )
         {
-            select_region( 0 );
-            define_region( x, ty + vw, x, ty + vw + count - 1, x, ty + vw );
-            set_drawing_scale( 2.0, 2.0 * (float)pixels / (float)count );
-            draw_region_zoomed_at( SCRX0 + 2 * scrx, SCRY0 + 2 * ya );
+            perf_draws++;
+            int n = wallcmd_count;
+            wallcmd_count = n + 1;
+            wc_sheet[n] = gpu_ti_sheet;
+            wc_color[n] = gpu_light_color;
+            wc_rx[n] = x;
+            wc_ry0[n] = ty + vw;
+            wc_ry1[n] = ty + vw + count - 1;
+            wc_scaley[n] = 2.0 * (float)pixels / (float)count;
+            wc_dx[n] = SCRX0 + colpix * scrx;
+            wc_dy[n] = SCRY0 + 2 * ya;
         }
 
         ya = yb;

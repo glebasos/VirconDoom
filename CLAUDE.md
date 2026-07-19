@@ -49,6 +49,87 @@ Compile+assemble+packrom success and PC-side cross-checks are the only headless 
 - Colors are ABGR (`0xAABBGGRR`). Multiply-color gray approximates COLORMAP light.
 - Vircon32 has no `-2147483648` literal: use `0x80000000` (wadtool emits hex for INT_MIN).
 
+## Status 2026-07-19 session 2 — two harness reds fixed; walls now double-buffered via cmd list
+
+- **Harness check #71 (bbox) fixed** — was a WRONG EXPECTATION in the harness, not a port
+  bug. Upstream `M_AddToBox` uses `if/else if`: with a freshly cleared box, `x < BOXLEFT`
+  (MAXINT) always wins first, so BOXRIGHT stays MININT after adds (100,·),(-50,·). The port
+  reproduced id's quirk bit-faithfully; the test now encodes the quirk + a third add
+  exercising the BOXRIGHT branch. Lesson recorded: RUN harness expectations against real
+  upstream code, never derive them mentally. Emulator re-run confirmed 71 green.
+- **Harness check #123 (viewangletox monotonicity) fixed — a REAL port bug**: in
+  `R_InitTextureMapping`, `(centerxfrac - t + FRACUNIT - 1) >> FRACBITS` goes negative for
+  tangents just above 1.0 and Vircon32 `>>` is logical → huge positive → clamped to the
+  WRONG end (viewwidth+1 instead of -1) → tail of viewangletox corrupted (320 instead
+  of 0). Missed site in the signed-`>>` audit; now `ASR(...)`. Invisible in normal play
+  because R_AddLine clamps lookups to ±clipangle (index ≲3072, corrupt zone was >3072),
+  but boundary hits could drop edge segs. `ASR` moved from r_segs.h to m_fixed.h.
+  **Expect GREEN 124 on next run; that closes core-math validation.**
+- **Walls: command-buffer rendering (the VS=2 flicker fix).** Measured first run: SEGS 34
+  / COLS 734 / DRAWS 855 / VS 2 at player start; user confirmed flicker whenever VS hits 2
+  (mid-render vsync presents a half-drawn frame; near-to-far draw order means far walls
+  blink). 60fps is unreachable at ~250-300 instr/column, so the loop is now split:
+  COMPUTE frame (BSP walk records runs into `wc_*` SoA arrays in r_gpu.h, zero GPU writes,
+  previous image stays presented) → end_frame → DRAW frame (clear + fills + `GPU_Flush()`
+  replay, ~100 instr/run, always fits budget) → end_frame. Every presented vsync is a
+  complete scene; stable 30fps (VS 2, or 3 if compute overruns — graceful). GPU_SetLight
+  now just latches `gpu_light_color`; flush dedups sheet/color switches. MAXWALLCMDS 2048,
+  overflow drops farthest runs.
+- **CONFIRMED by user: harness GREEN 124 (core math validated, M2 closed). Walls flicker
+  GONE.** VS floor is 2 by design; heavy scenes hit VS 3-4 (compute frame spans 2-3
+  vsyncs) with visible slowdown.
+- **Compute-frame hot path inlined (session 2 cont.).** R_RenderSegLoop now has:
+  (a) RECORD_COL multi-line macro — the single-run (no texture-wrap) column recorder
+  inlined per tier with per-seg hoisted atlas info + float texturemid; falls back to
+  GPU_DrawWallColumn for wrap/overflow cases, MUST stay record-equivalent to it;
+  (b) bit-exact inline FixedMul for texturecolumn with rw_distance halves hoisted per seg;
+  (c) clip arrays init via memset (hardware SETS). Multi-line backslash-continued
+  function-like macros CONFIRMED working in the compiler (tested). Estimated ~2x cut in
+  per-column cost (~230 -> ~115 instr single-tier).
+- **Round 1 result (user): median VS improved ~1, but min VS 2 / max VS 5 on the stairs.**
+  Stairs are the pathological case: many small 2-sided segs AND 16px step textures that
+  split every column into 3-4 tiled runs (multi-run slow path + command-count inflation
+  that can overflow the DRAW frame too).
+- **Round 2 fixes (built, awaiting run):**
+  1. **wadtool bakes vertical repeats of short wall textures up to 128px** and writes the
+     baked height into texinfo[4]. Safe with zero renderer changes: the baked image is
+     periodic in the logical height, so pegging offsets (multiples of it) hit identical
+     texels. Kills the stairs multi-run splits at the source. Still 2 sheets.
+  2. SlopeDiv inlined into R_PointToAngle (SLOPEDIV_ macro; also feeds R_CheckBBox 2x per
+     visited node). Bit-identical math — the 12 harness PTA vectors are the regression net.
+  3. R_ScaleFromGlobalAngle: FixedMul(projection,sineb) collapsed to `160*sineb` (exact),
+     FixedMul(rw_distance,sinea) inlined bit-exact, FixedDiv inlined (same float op order;
+     overflow guard folds into the 64*FRACUNIT clamp).
+  4. HUD line 2 gained SLOW = columns falling off RECORD_COL to the full function
+     (expect near-0 after the repeat bake outside genuinely tall walls).
+- **Round 2 result (user): harness GREEN 124 (SlopeDiv inline validated). Stairs still
+  VS 5: SEGS 59 / COLS 1048 / DRAWS 1474 / SLOW 632.** Diagnosis: SLOW 632/1048 = tall
+  walls (>128 texel span) wrap BY CONSTRUCTION at 128 bake target (no DOOM texture
+  exceeds 128); and 1474 draws x ~115 instr put the DRAW frame near a full vsync itself.
+- **Round 3 fixes (built, awaiting run):**
+  1. **Bake target raised to 256** (everything tiles, including 128-tall textures) —
+     tall-wall columns become single-run. Now **4 sheets** (walls.xml lists sheet0-3 +
+     white at TEXID 4; walls.xml is the ONLY xml with textures).
+  2. **GPU_Flush inner body is now a §9.1 asm block** (~50 instr/draw vs ~115): region
+     min/max/hotspot X share one register write (1-texel column), hotspot Y = region top,
+     scale X = 2.0 hoisted to ONE port write before the loop (nothing else touches
+     ScaleX; fills run before flush). First shipped asm-intrinsic code — assembles clean.
+- **Round 3 result (user): stairs VS 5 -> 4 (SEGS 55 / COLS 995 / DRAWS 1085 / SLOW 374).**
+  Draw frame is now cheap (~55k); the COMPUTE frame alone is ~3 vsyncs there. SLOW stays
+  a few hundred because any span crossing a 256-texel boundary wraps — taller bakes are
+  diminishing returns. The remaining 2x lever is column count itself.
+- **Round 4 (built, awaiting run): DOOM low-detail mode as a runtime toggle (X button).**
+  viewwidth/centerx/centerxfrac are now VARIABLES (were #defines) + colpix/colpix_f
+  (screen px per column, 2 or 4); R_SetDetail(low) switches 320<->160 columns and rebuilds
+  the projection tables. Vertical resolution unchanged. HUD shows HI/LO. Fills use
+  literal 320 (screen-width, detail-independent). R_ScaleFromGlobalAngle's projection
+  mul is `centerx * sineb` (still exact). Harness unaffected (defaults = high detail).
+- **User next: walls.v32 at the stairs — press X and report VS/COLS in BOTH modes, and
+  say whether LO looks acceptable (it's authentic DOOM low-detail chunkiness).**
+- Expected: LO halves COLS/DRAWS -> VS 2-3 at the stairs. If LO at VS 2-3 is playable,
+  perf pass is DONE for M3 (ship HI as quality option); go M4 (movement/collision) or
+  M5 (visplanes/sky/sprites) per PLAN.md. Playsim budget = 2nd vsync of the 30fps frame.
+
 ## Status 2026-07-19 end of session 1 — FIRST EMULATOR RUN RESULTS ARE IN
 
 - **probes.v32: GREEN (all 25).** Every machine-semantics bet is now hardware-confirmed:
