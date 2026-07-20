@@ -163,6 +163,7 @@
 #define GEN_MT_TFOG 39
 #define GEN_MT_TELEPORTMAN 41
 #define GEN_MT_BRUISER 15
+#define GEN_MT_BRUISERSHOT 16
 #define GEN_MT_ROCKET 33
 
 // sprite number constants used by P_TouchSpecialThing

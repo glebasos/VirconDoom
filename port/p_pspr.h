@@ -505,6 +505,8 @@ void P_InitActions()
     mobj_actions[GEN_ACT_A_PosAttack] = &A_PosAttack;
     mobj_actions[GEN_ACT_A_SPosAttack] = &A_SPosAttack;
     mobj_actions[GEN_ACT_A_TroopAttack] = &A_TroopAttack;
+    mobj_actions[GEN_ACT_A_SargAttack] = &A_SargAttack;   // Demon/Spectre bite
+    mobj_actions[GEN_ACT_A_BruisAttack] = &A_BruisAttack; // Baron claw+fireball
     mobj_actions[GEN_ACT_A_Scream] = &A_Scream;
     mobj_actions[GEN_ACT_A_XScream] = &A_XScream;
     mobj_actions[GEN_ACT_A_Pain] = &A_Pain;

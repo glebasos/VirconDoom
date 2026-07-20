@@ -925,6 +925,7 @@ def main():
     # registered-game monsters whose states still exist in info.c.
     for extra in ('MT_PLAYER', 'MT_CLIP', 'MT_SHOTGUN', 'MT_TROOPSHOT',
                   'MT_PUFF', 'MT_BLOOD', 'MT_TFOG',    # MT_TFOG: teleport fog
+                  'MT_BRUISERSHOT',                    # Baron fireball (A_BruisAttack)
                   'MT_ROCKET'):                        # rocket-launcher missile
         mt_used.add(mtnames.index(extra))
     seeds = []
@@ -1095,7 +1096,7 @@ def main():
     for mn in ('MT_PLAYER', 'MT_POSSESSED', 'MT_SHOTGUY', 'MT_TROOP',
                'MT_TROOPSHOT', 'MT_PUFF', 'MT_BLOOD', 'MT_CLIP', 'MT_SHOTGUN',
                'MT_BARREL', 'MT_TFOG', 'MT_TELEPORTMAN', 'MT_BRUISER',
-               'MT_ROCKET'):
+               'MT_BRUISERSHOT', 'MT_ROCKET'):
         lines.append('#define GEN_%s %d' % (mn, mtnames.index(mn)))
     lines.append('')
     lines.append('// sprite number constants used by P_TouchSpecialThing')

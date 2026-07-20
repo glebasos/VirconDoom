@@ -17,8 +17,8 @@
 //  door/plat won't push things out;
 //  switch TEXTURES aren't swapped (BUTTONS unported -- cosmetic; swtchn still
 //  plays); teleport does no telefrag stomp (safe in SP). New monsters
-//  (Baron/Demon/Spectre) chase + are killable but don't attack yet
-//  (A_BruisAttack/A_SargAttack unported). NOT emulator-verified -- test per map.
+//  (Baron/Demon/Spectre) now chase AND attack (A_BruisAttack/A_SargAttack,
+//  session 11). NOT emulator-verified -- test per map.
 // -----------------------------------------------------------------------------
 #ifndef P_SPEC_H
 #define P_SPEC_H

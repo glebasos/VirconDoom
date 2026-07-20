@@ -29,10 +29,10 @@ key boxes drawn (ST_DrawKeys, STKEYS0..5 baked into the UI atlas, x=239,
 y=172/181/191). wadtool: STKEYS0-5 added to the UI atlas (now 81 elements),
 UI_KEYS + GEN_SPR_{BKEY,RKEY,YKEY} emitted. All gates green (keys already
 spawned+rendered, so no reachability change); harness/walls untouched.
-**REMAINING (optional polish, M9-ship close-out): new-monster attack AI
-(Baron/Demon/Spectre spawn + chase + are killable but don't attack yet),
-switch-texture swap (BUTTONS — cosmetic), per-map music (single E1M1 chiptune on
-all levels now). None block completion.** Post-M9: floor/ceiling textures
+**REMAINING (optional polish, M9-ship close-out): switch-texture swap
+(BUTTONS — cosmetic), per-map music (single E1M1 chiptune on all levels now).
+None block completion. [session 11: new-monster attack AI now DONE — built +
+gates green, needs emulator confirm; see DEVIATIONS/MONSTER ATTACK AI below.]** Post-M9: floor/ceiling textures
 (deliberately deferred — see below).
 
 Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
@@ -450,9 +450,20 @@ can ever soft-lock again. `A_Saw`'s turn-to-target is simplified to face directl
 
 DEVIATIONS (look-broken-but-arent): switch TEXTURES don't swap (BUTTONS unported
 — cosmetic; swtchn still plays, so a fired switch has no visual "pressed" cue);
-no crush/ceiling movers (E1 has none); Baron/Demon/Spectre chase + are killable
-but DON'T attack (A_BruisAttack/A_SargAttack unported — combat, not traversal, so
-beatability is unaffected). Music stays the single E1M1 chiptune on every level.
+no crush/ceiling movers (E1 has none). Music stays the single E1M1 chiptune on
+every level.
+
+MONSTER ATTACK AI — DONE (session 11, built + gates green, NEEDS EMULATOR CONFIRM).
+A_SargAttack (Demon/Spectre melee bite) + A_BruisAttack (Baron claw + BAL7
+fireball) ported into p_enemy.h verbatim from p_enemy.c (A_BruisAttack has NO
+A_FaceTarget by design — Baron faces in a prior state) and registered in
+P_InitActions. The fireball reuses the proven imp-missile path (P_SpawnMissile →
+MT_TROOPSHOT confirmed in M6); MT_BRUISERSHOT is index 16, its BAL7 spawn/death
+states already in the atlas. wadtool now emits GEN_MT_BRUISERSHOT and seeds
+MT_BRUISERSHOT into the reachability gate (334 → 339 states validated — proves
+BAL7 placed). Non-emitting defines, so harness stays GREEN 231. Now all E1
+monsters chase AND attack; only combat, not traversal, so beatability was already
+unaffected — this closes the last gameplay gap.
 
 VERIFICATION (session 9): user played all 9 maps via START+L/R warp + normal
 progression — maps load/render/play, specials feel right, weapons work. Not a

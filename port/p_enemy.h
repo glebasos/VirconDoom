@@ -569,6 +569,46 @@ void A_TroopAttack( void* p )
     P_SpawnMissile( actor, actor->target, GEN_MT_TROOPSHOT );
 }
 
+// Demon / Spectre melee bite (MT_SERGEANT / MT_SHADOWS share these states).
+void A_SargAttack( void* p )
+{
+    mobj_t* actor = (mobj_t*)p;
+    int damage;
+
+    if( !actor->target )
+        return;
+
+    A_FaceTarget( p );
+    if( P_CheckMeleeRange( actor ) )
+    {
+        damage = ( ( P_Random() % 10 ) + 1 ) * 4;
+        P_DamageMobj( actor->target, actor, actor, damage );
+    }
+}
+
+// Baron (MT_BRUISER) attack: melee claw in range, else a BAL7 fireball.
+// NOTE: upstream deliberately does NOT A_FaceTarget here (the Baron turns in a
+// prior state) -- kept faithful.
+void A_BruisAttack( void* p )
+{
+    mobj_t* actor = (mobj_t*)p;
+    int damage;
+
+    if( !actor->target )
+        return;
+
+    if( P_CheckMeleeRange( actor ) )
+    {
+        S_StartSound( actor, SFX_CLAW );
+        damage = ( P_Random() % 8 + 1 ) * 10;
+        P_DamageMobj( actor->target, actor, actor, damage );
+        return;
+    }
+
+    // launch a missile
+    P_SpawnMissile( actor, actor->target, GEN_MT_BRUISERSHOT );
+}
+
 void A_Scream( void* p )
 {
     mobj_t* actor = (mobj_t*)p;
@@ -619,9 +659,8 @@ void A_Explode( void* p )
 // A_BossDeath (p_enemy.c): on E1M8, when BOTH Bruisers (Barons) are dead, lower
 // the tag-666 floor to its lowest neighbour -- the only way out of E1M8 (its exit
 // is a sector-special-11 room reached past that floor via teleporters). This is
-// the sole boss-trigger needed for episode 1. Barons chase + take damage (M6 AI)
-// but don't attack yet (A_BruisAttack unported) -- still killable, so the level
-// completes. gamemap is 1-based.
+// the sole boss-trigger needed for episode 1. Barons chase, attack (A_BruisAttack,
+// session 11) and take damage -- killable, so the level completes. gamemap is 1-based.
 void A_BossDeath( void* p )
 {
     mobj_t* mo = (mobj_t*)p;
