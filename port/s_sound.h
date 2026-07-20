@@ -46,7 +46,12 @@ void*[S_NUMCH]   ch_id;                           // origin identity (or NULL)
 void S_Init()
 {
     int i;
-    set_global_volume( 1.0 );
+    // < 1.0 gives mix headroom: the SPU sums GlobalVolume*ChannelVolume*sample
+    // across channels and only clamps at final output (V32SPU.cpp), so a loud
+    // full-volume gunshot stacked with music + other sfx would otherwise clip
+    // (audible crackle). 0.72 keeps it loud while leaving room for ~4 stacked
+    // near-full sounds. Raise toward 1.0 for more loudness, lower if it clips.
+    set_global_volume( 0.72 );
     stop_all_channels();
     for( i = 0; i < S_NUMCH; i++ )
         ch_prio[i] = -1;

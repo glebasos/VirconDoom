@@ -27299,7 +27299,7 @@ __function_S_Init:
   push BP
   mov BP, SP
   isub SP, 2
-  mov R1, 1.000000
+  mov R1, 0.720000
   mov [SP], R1
   call __function_set_global_volume
   call __function_stop_all_channels

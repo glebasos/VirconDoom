@@ -45,7 +45,7 @@ ERROR even if uncalled -> the S_StartSound prototypes live in generated
 | Path | What |
 |------|------|
 | `doom.wad` | Shareware IWAD v1.9 (verified). Input to wadtool; never shipped raw to the console. |
-| `tools/wadtool.py` | Host-side baker: WAD -> word-widened map lumps (`data/*.bin`), exact trig tables (parsed from upstream `tables.c`), texture+flat atlas sheets, sprite atlas sheets, sprite/mobjinfo tables (parsed from upstream `info.c`/`info.h`/`p_mobj.h`), generated headers (`port/gen_assets.h`, `port/gen_checkvals.h` incl. harness vectors). Rerun after changing bake formats: `python tools/wadtool.py`. |
+| `tools/wadtool.py` | Host-side baker: WAD -> word-widened map lumps (`data/*.bin`), exact trig tables (parsed from upstream `tables.c`), texture+flat atlas sheets, sprite atlas sheets, sprite/mobjinfo tables (parsed from upstream `info.c`/`info.h`/`p_mobj.h`), **DMX sfx -> 44100Hz WAV + chiptune MUS music render (`sounds/*.wav`)**, generated headers (`port/gen_assets.h`, `port/gen_sounds.h`, `port/gen_checkvals.h` incl. harness vectors). Rerun after changing bake formats: `python tools/wadtool.py`. |
 | `port/*.h` | The port, one header per upstream module, full implementations (single TU). |
 | `probes.c` | Machine-semantics probe ROM (GREEN 25, hardware-confirmed). |
 | `harness.c` | Known-value harness vs PC-computed reference vectors. **GREEN 188 current.** RED shows FIRST FAIL CHECK #N -> map to the Nth `Check(`/`CheckEq(` in harness.c. |
@@ -55,11 +55,13 @@ ERROR even if uncalled -> the S_StartSound prototypes live in generated
 | `../DOOM/linuxdoom-1.10/` | Upstream source. Read-only reference; port out of it. |
 | `../DoomV32/`, `../Virconstein3D/` | Community Vircon32 3D renderers. Read-only references. |
 
-Single-TU include order (game.c): doomdefs, gen_assets, m_fixed, tables, m_random,
-m_bbox, z_zone, r_defs, p_setup, r_main, r_gpu, p_tick, r_plane, r_segs, r_things,
-r_bsp, p_maputl, p_sight, p_spec, p_map, p_inter, p_mobj, p_enemy, p_pspr,
-p_user, **st_bar** (LAST: uses player1, weaponinfo, R_PointToAngle2, gen_ui).
-(r_things needs p_tick's mobj_t/pspdef_t/player1; r_bsp needs r_things.)
+Single-TU include order (game.c): doomdefs, gen_assets, **gen_sounds**, m_fixed,
+tables, m_random, m_bbox, z_zone, r_defs, p_setup, r_main, r_gpu, p_tick, r_plane,
+r_segs, r_things, r_bsp, p_maputl, p_sight, p_spec, p_map, p_inter, p_mobj, p_enemy,
+p_pspr, p_user, **s_sound** (uses mobj_t/player1/M_Random), **st_bar** (LAST: uses
+player1, weaponinfo, R_PointToAngle2, gen_ui).
+(r_things needs p_tick's mobj_t/pspdef_t/player1; r_bsp needs r_things.
+gen_sounds is early so SFX_* + the S_StartSound prototypes reach the playsim.)
 Circular calls (p_map -> p_inter -> p_mobj etc.) use forward FUNCTION PROTOTYPES
 at file tops -- confirmed working in this dialect (probe-compiled first).
 
@@ -75,8 +77,10 @@ at file tops -- confirmed working in this dialect (probe-compiled first).
    signals. **Add PC-computed harness vectors for any new math module** (lesson: derive
    expectations by RUNNING upstream code/PC sims, never mentally).
 
-Game controls (M6 remap): dpad move/turn, L/R strafe, **A fire, B use,
-Y (hold) run, X cycle weapon, START+X detail HI/LO, START+Y debug HUD.**
+Game controls (current): dpad up/down move, dpad left/right turn, L/R strafe,
+**A fire, B use, Y (hold) run, X cycle weapon** (fist->pistol->shotgun); START is a
+modifier (held = movement suppressed): **START+Up/Down view size, START+X detail
+HI/LO, START+Y debug HUD.** (Also in README.md.)
 Status line (always on, y=0): HP/ARM/AMMO/KILLS. Debug HUD:
 SEGS/COLS/DRAWS/VS/SLOW/HI-LO + PLN/FIL/SPR/MSK + X/Y/Z/SEC/FRAME/ZONE(kwords).
 Death: B respawns (level restarts). Exit switch: freezes sim, A restarts.
