@@ -82,6 +82,7 @@ void G_LoadLevel()
     P_SpawnMapThings();
     P_SetupPsprites( &player1 );
     ST_Init();                   // reset face/arms state to the fresh player
+    S_StartMusic();              // (re)start the looping level music
 }
 
 void main()
@@ -177,6 +178,7 @@ void main()
             P_PlayerThink( &player1 );
             P_RunThinkers();
             ST_Ticker();             // advance the face widget in the sim tick
+            S_UpdateSounds( player1.mo );   // re-attenuate as the listener moves
             leveltime++;
         }
 

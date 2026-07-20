@@ -13,10 +13,6 @@ typedef int fixed_t;
 typedef int angle_t;
 typedef bool boolean;
 
-// forward prototype: playsim modules call S_StartSound (defined late in
-// s_sound.h, after mobj_t/player1). SFX_* ids come from gen_sounds.h.
-void S_StartSound( void* origin, int sfx_id );
-
 #define FRACBITS 16
 #define FRACUNIT 65536
 

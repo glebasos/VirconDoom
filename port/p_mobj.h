@@ -65,6 +65,9 @@ void P_ExplodeMissile( mobj_t* mo )
         mo->tics = 1;
 
     mo->flags &= ~MF_MISSILE;
+
+    if( gen_mobjinfo[ mo->type ][MI_DEATHSOUND] )
+        S_StartSound( mo, gen_mobjinfo[ mo->type ][MI_DEATHSOUND] );
 }
 
 void P_XYMovement( mobj_t* mo )
@@ -198,6 +201,7 @@ void P_ZMovement( mobj_t* mo )
                 // hard landing: squat down (view bounce handled in
                 // P_CalcHeight via deltaviewheight)
                 pl->deltaviewheight = ASR( mo->momz, 3 );
+                S_StartSound( mo, SFX_OOF );
             }
             mo->momz = 0;
         }
@@ -385,6 +389,9 @@ mobj_t* P_SpawnMissile( mobj_t* source, mobj_t* dest, int type )
 
     th = P_SpawnMobj( source->x, source->y,
                       source->z + 4 * 8 * FRACUNIT, type );
+
+    if( gen_mobjinfo[type][MI_SEESOUND] )
+        S_StartSound( th, gen_mobjinfo[type][MI_SEESOUND] );
 
     th->target = source;         // where it came from
     an = R_PointToAngle2( source->x, source->y, dest->x, dest->y );

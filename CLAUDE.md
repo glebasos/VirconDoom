@@ -4,13 +4,41 @@ Porting id's DOOM to the Vircon32 fantasy console. **Read `PLAN.md` for the road
 `VIRCON32_C_DIALECT.md` for the dialect rules before writing any port code.** Methodology
 is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\VirconBox2D`).
 
-**CURRENT STATE (session 5, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
-(harness GREEN 231). M7 UI FIRST PASS BUILT — status bar + variable view size +
-screen flashes; compile + PC-gates green, PARTIALLY emulator-verified.** E1M1 is
-a playable game (imps killable, secrets, exit switch, death/respawn). **Next: run
-`bin/game.v32`, finish emulator-verifying the M7 first pass, then the deferred M7
-pieces (menus / automap / HU messages / texture anim / light thinkers / level
-progression).** See the M7 section at the bottom for exactly what's done vs. left.
+**CURRENT STATE (session 6, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
+(harness GREEN 231). M7 UI FIRST PASS BUILT. M8 SOUND + MUSIC BUILT — full SFX
+engine (all E1M1 sites, distance attenuation, priority channel stealing) + a
+from-scratch chiptune render of the E1M1 music; PHASE-1 pistol pipeline was
+USER-CONFIRMED audible + correct pitch, the rest awaits full emulator verify.**
+E1M1 is a playable game. **Next: run `bin/game.v32` and verify sound/music (does
+the music LOOP after ~96s? near-vs-far monster volume? firefight channel steal?
+balance?), then the deferred M7 pieces (menus / automap / HU messages / texture
+anim / light thinkers / level progression).** See the M7/M8 notes for what's left.
+
+Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
+region blitter, no per-scanline scissor) cannot do perspective flat spans; PLAN §3
++ both sibling renderers punt to solid color, deferred post-M9. User confirmed
+keeping solid-color floors (session 6).
+
+## M8 — Sound + music (BUILT session 6; awaiting full emulator verify)
+
+wadtool bakes all 55 shareware `DS*` DMX sfx -> 44100Hz/16-bit mono WAV (pre-
+resampled so channel speed 1.0 = correct pitch), emits `port/gen_sounds.h`
+(`SFX_*` #defines, `gen_sfx_sound[sfxenum]`->Vircon sound_id, `gen_sfx_priority`),
+and rewrites game.xml's `<sounds>`. `port/s_sound.h` ports s_sound.c: distance
+attenuation re-evaluated each tic as the listener moves (S_UpdateSounds), M_Random
+pitch perturb (keeps P_Random gameplay determinism), one-per-origin + priority
+channel steal over SPU channels 0..14, bookkeeping reconciled vs
+`get_channel_state==channel_stopped`. NO STEREO PAN (SPU mono-per-channel) ->
+volume-by-distance only. Sector sounds use `sector.soundorg_{x,y}` (bbox center,
+computed in P_GroupLines). All E1M1 sites wired verbatim from upstream. MUSIC =
+from-scratch chiptune: `bake_music` parses D_E1M1 MUS (140Hz) + numpy square/noise
+synth -> full 96.5s loop WAV on RESERVED channel 15 (no soundfont/synth in env, so
+authentic instruments were impossible; user chose chiptune). **Two load-bearing
+gotchas:** (1) SPU `play_channel` copies the SOUND's PlayWithLoop into the channel
+(V32SPU.cpp) -> loop via `select_sound(id); set_sound_loop(true)` BEFORE play, not
+`set_channel_loop`. (2) A declared-but-undefined forward prototype is a COMPILE
+ERROR even if uncalled -> the S_StartSound prototypes live in generated
+`gen_sounds.h` (game.c-only), NOT `doomdefs.h` (shared, would break harness/walls).
 
 ## Layout
 

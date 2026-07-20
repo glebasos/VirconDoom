@@ -209,18 +209,23 @@
   %define global_soundtarget 1698283
   %define global_weaponinfo 1698284
   %define global_bulletslope 1698332
-  %define global_st_arms_x 1698333
-  %define global_st_arms_y 1698339
-  %define global_st_ammo_y 1698345
-  %define global_st_faceindex 1698349
-  %define global_st_facecount 1698350
-  %define global_st_face_priority 1698351
-  %define global_st_oldhealth 1698352
-  %define global_st_lastattackdown 1698353
-  %define global_st_randomnumber 1698354
-  %define global_st_oldweaponsowned 1698355
-  %define global_st_pain_lastcalc 1698363
-  %define global_st_pain_oldhealth 1698364
+  %define global_ch_prio 1698333
+  %define global_ch_att 1698348
+  %define global_ch_x 1698363
+  %define global_ch_y 1698378
+  %define global_ch_id 1698393
+  %define global_st_arms_x 1698408
+  %define global_st_arms_y 1698414
+  %define global_st_ammo_y 1698420
+  %define global_st_faceindex 1698424
+  %define global_st_facecount 1698425
+  %define global_st_face_priority 1698426
+  %define global_st_oldhealth 1698427
+  %define global_st_lastattackdown 1698428
+  %define global_st_randomnumber 1698429
+  %define global_st_oldweaponsowned 1698430
+  %define global_st_pain_lastcalc 1698438
+  %define global_st_pain_oldhealth 1698439
 
 __global_scope_initialization:
   push BP
@@ -1302,35 +1307,35 @@ __global_scope_initialization:
   mov R0, 110
   mov [global_st_arms_x], R0
   mov R0, 122
-  mov [1698334], R0
+  mov [1698409], R0
   mov R0, 134
-  mov [1698335], R0
+  mov [1698410], R0
   mov R0, 110
-  mov [1698336], R0
+  mov [1698411], R0
   mov R0, 122
-  mov [1698337], R0
+  mov [1698412], R0
   mov R0, 134
-  mov [1698338], R0
+  mov [1698413], R0
   mov R0, 172
   mov [global_st_arms_y], R0
   mov R0, 172
-  mov [1698340], R0
+  mov [1698415], R0
   mov R0, 172
-  mov [1698341], R0
+  mov [1698416], R0
   mov R0, 181
-  mov [1698342], R0
+  mov [1698417], R0
   mov R0, 181
-  mov [1698343], R0
+  mov [1698418], R0
   mov R0, 181
-  mov [1698344], R0
+  mov [1698419], R0
   mov R0, 173
   mov [global_st_ammo_y], R0
   mov R0, 179
-  mov [1698346], R0
+  mov [1698421], R0
   mov R0, 191
-  mov [1698347], R0
+  mov [1698422], R0
   mov R0, 185
-  mov [1698348], R0
+  mov [1698423], R0
   mov R0, 0
   mov [global_st_faceindex], R0
   mov R0, 0
@@ -2479,26 +2484,26 @@ __function_FixedMul:
   shl R1, 16
   iadd R0, R1
   mov [BP-6], R0
-__if_2070_start:
+__if_2073_start:
   mov R0, [BP+2]
   ilt R0, 0
-  jf R0, __if_2070_end
+  jf R0, __if_2073_end
   mov R0, [BP-6]
   mov R1, [BP+3]
   shl R1, 16
   isub R0, R1
   mov [BP-6], R0
-__if_2070_end:
-__if_2080_start:
+__if_2073_end:
+__if_2083_start:
   mov R0, [BP+3]
   ilt R0, 0
-  jf R0, __if_2080_end
+  jf R0, __if_2083_end
   mov R0, [BP-6]
   mov R1, [BP+2]
   shl R1, 16
   isub R0, R1
   mov [BP-6], R0
-__if_2080_end:
+__if_2083_end:
   mov R0, [BP-6]
 __function_FixedMul_return:
   pop R2
@@ -2514,42 +2519,42 @@ __function_FixedDiv:
   push R1
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_2098_start:
+__if_2101_start:
   mov R0, [BP-1]
   ilt R0, 0
-  jf R0, __if_2098_end
+  jf R0, __if_2101_end
   mov R0, [BP-1]
   isgn R0
   mov [BP-1], R0
-__if_2098_end:
+__if_2101_end:
   mov R0, [BP+3]
   mov [BP-2], R0
-__if_2109_start:
+__if_2112_start:
   mov R0, [BP-2]
   ilt R0, 0
-  jf R0, __if_2109_end
+  jf R0, __if_2112_end
   mov R0, [BP-2]
   isgn R0
   mov [BP-2], R0
-__if_2109_end:
-__if_2117_start:
+__if_2112_end:
+__if_2120_start:
   mov R0, [BP-1]
   shl R0, -14
   mov R1, [BP-2]
   ige R0, R1
-  jf R0, __if_2117_end
-__if_2125_start:
+  jf R0, __if_2120_end
+__if_2128_start:
   mov R0, [BP+2]
   mov R1, [BP+3]
   xor R0, R1
   ilt R0, 0
-  jf R0, __if_2125_end
+  jf R0, __if_2128_end
   mov R0, 0x80000000
   jmp __function_FixedDiv_return
-__if_2125_end:
+__if_2128_end:
   mov R0, 2147483647
   jmp __function_FixedDiv_return
-__if_2117_end:
+__if_2120_end:
   mov R0, [BP+2]
   cif R0
   mov R1, [BP+3]
@@ -2619,14 +2624,14 @@ __function_Z_Malloc:
   mov BP, SP
   isub SP, 1
   push R1
-__if_2569_start:
+__if_2572_start:
   mov R0, [global_zone_used]
   mov R1, [BP+2]
   iadd R0, R1
   igt R0, 1572864
-  jf R0, __if_2569_end
+  jf R0, __if_2572_end
   call __function_exit
-__if_2569_end:
+__if_2572_end:
   mov R0, global_zone_arena
   mov [BP-1], R0
   mov R0, [BP-1]
@@ -2686,13 +2691,13 @@ __function_Z_MarkLevelStart_return:
 __function_Z_FreeTags:
   push BP
   mov BP, SP
-__if_2611_start:
+__if_2614_start:
   mov R0, [BP+2]
   ile R0, 50
-  jf R0, __if_2611_end
+  jf R0, __if_2614_end
   mov R0, [global_zone_level_mark]
   mov [global_zone_used], R0
-__if_2611_end:
+__if_2614_end:
 __function_Z_FreeTags_return:
   mov SP, BP
   pop BP
@@ -2726,11 +2731,11 @@ __function_P_LoadVertexes:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_2802_start:
+__for_2809_start:
   mov R0, [BP-1]
   mov R1, [global_numvertexes]
   ilt R0, R1
-  jf R0, __for_2802_end
+  jf R0, __for_2809_end
   mov R0, __embedded_gen_vertexes
   mov R1, [BP-1]
   imul R1, 2
@@ -2753,13 +2758,13 @@ __for_2802_start:
   iadd R1, R2
   iadd R1, 1
   mov [R1], R0
-__for_2802_continue:
+__for_2809_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_2802_start
-__for_2802_end:
+  jmp __for_2809_start
+__for_2809_end:
 __function_P_LoadVertexes_return:
   mov SP, BP
   pop BP
@@ -2772,7 +2777,7 @@ __function_P_LoadSectors:
   mov R0, 85
   mov [global_numsectors], R0
   mov R2, [global_numsectors]
-  imul R2, 14
+  imul R2, 16
   mov [SP], R2
   mov R2, 50
   mov [SP+1], R2
@@ -2784,11 +2789,11 @@ __function_P_LoadSectors:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_2846_start:
+__for_2853_start:
   mov R0, [BP-1]
   mov R1, [global_numsectors]
   ilt R0, R1
-  jf R0, __for_2846_end
+  jf R0, __for_2853_end
   mov R0, __embedded_gen_sectors
   mov R1, [BP-1]
   imul R1, 7
@@ -2796,7 +2801,7 @@ __for_2846_start:
   mov R0, [R0]
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   mov [R1], R0
   mov R0, __embedded_gen_sectors
@@ -2807,7 +2812,7 @@ __for_2846_start:
   mov R0, [R0]
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 1
   mov [R1], R0
@@ -2819,7 +2824,7 @@ __for_2846_start:
   mov R0, [R0]
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 2
   mov [R1], R0
@@ -2831,7 +2836,7 @@ __for_2846_start:
   mov R0, [R0]
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 3
   mov [R1], R0
@@ -2843,7 +2848,7 @@ __for_2846_start:
   mov R0, [R0]
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 4
   mov [R1], R0
@@ -2855,7 +2860,7 @@ __for_2846_start:
   mov R0, [R0]
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 5
   mov [R1], R0
@@ -2867,66 +2872,66 @@ __for_2846_start:
   mov R0, [R0]
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 6
   mov [R1], R0
   mov R0, 0
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 7
   mov [R1], R0
   mov R0, -1
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 8
   mov [R1], R0
   mov R0, -1
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 9
   mov [R1], R0
   mov R0, 0
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 10
   mov [R1], R0
   mov R0, -1
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 11
   mov [R1], R0
   mov R0, -1
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 12
   mov [R1], R0
   mov R0, 0
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 13
   mov [R1], R0
-__for_2846_continue:
+__for_2853_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_2846_start
-__for_2846_end:
+  jmp __for_2853_start
+__for_2853_end:
 __function_P_LoadSectors_return:
   mov SP, BP
   pop BP
@@ -2951,11 +2956,11 @@ __function_P_LoadSideDefs:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_2982_start:
+__for_2989_start:
   mov R0, [BP-1]
   mov R1, [global_numsides]
   ilt R0, R1
-  jf R0, __for_2982_end
+  jf R0, __for_2989_end
   mov R0, __embedded_gen_sidedefs
   mov R1, [BP-1]
   imul R1, 6
@@ -3021,7 +3026,7 @@ __for_2982_start:
   iadd R1, R2
   iadd R1, 5
   mov R1, [R1]
-  imul R1, 14
+  imul R1, 16
   iadd R0, R1
   mov R1, [global_sides]
   mov R2, [BP-1]
@@ -3029,13 +3034,13 @@ __for_2982_start:
   iadd R1, R2
   iadd R1, 5
   mov [R1], R0
-__for_2982_continue:
+__for_2989_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_2982_start
-__for_2982_end:
+  jmp __for_2989_start
+__for_2989_end:
 __function_P_LoadSideDefs_return:
   mov SP, BP
   pop BP
@@ -3060,11 +3065,11 @@ __function_P_LoadLineDefs:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_3069_start:
+__for_3076_start:
   mov R0, [BP-1]
   mov R1, [global_numlines]
   ilt R0, R1
-  jf R0, __for_3069_end
+  jf R0, __for_3076_end
   mov R0, [global_lines]
   mov R1, [BP-1]
   imul R1, 17
@@ -3162,31 +3167,31 @@ __for_3069_start:
   mov R1, [BP-2]
   iadd R1, 3
   mov [R1], R0
-__if_3171_start:
+__if_3178_start:
   mov R1, [BP-2]
   iadd R1, 2
   mov R0, [R1]
   bnot R0
-  jf R0, __if_3171_else
+  jf R0, __if_3178_else
   mov R0, 1
   mov R1, [BP-2]
   iadd R1, 13
   mov [R1], R0
-  jmp __if_3171_end
-__if_3171_else:
-__if_3179_start:
+  jmp __if_3178_end
+__if_3178_else:
+__if_3186_start:
   mov R1, [BP-2]
   iadd R1, 3
   mov R0, [R1]
   bnot R0
-  jf R0, __if_3179_else
+  jf R0, __if_3186_else
   mov R0, 0
   mov R1, [BP-2]
   iadd R1, 13
   mov [R1], R0
-  jmp __if_3179_end
-__if_3179_else:
-__if_3187_start:
+  jmp __if_3186_end
+__if_3186_else:
+__if_3194_start:
   mov R3, [BP-2]
   iadd R3, 3
   mov R2, [R3]
@@ -3199,21 +3204,21 @@ __if_3187_start:
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_3187_else
+  jf R0, __if_3194_else
   mov R0, 2
   mov R1, [BP-2]
   iadd R1, 13
   mov [R1], R0
-  jmp __if_3187_end
-__if_3187_else:
+  jmp __if_3194_end
+__if_3194_else:
   mov R0, 3
   mov R1, [BP-2]
   iadd R1, 13
   mov [R1], R0
-__if_3187_end:
-__if_3179_end:
-__if_3171_end:
-__if_3203_start:
+__if_3194_end:
+__if_3186_end:
+__if_3178_end:
+__if_3210_start:
   mov R2, [BP-2]
   mov R1, [R2]
   mov R0, [R1]
@@ -3222,7 +3227,7 @@ __if_3203_start:
   mov R2, [R3]
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_3203_else
+  jf R0, __if_3210_else
   mov R2, [BP-2]
   mov R1, [R2]
   mov R0, [R1]
@@ -3238,8 +3243,8 @@ __if_3203_start:
   iadd R1, 9
   iadd R1, 3
   mov [R1], R0
-  jmp __if_3203_end
-__if_3203_else:
+  jmp __if_3210_end
+__if_3210_else:
   mov R2, [BP-2]
   iadd R2, 1
   mov R1, [R2]
@@ -3255,8 +3260,8 @@ __if_3203_else:
   iadd R1, 9
   iadd R1, 3
   mov [R1], R0
-__if_3203_end:
-__if_3245_start:
+__if_3210_end:
+__if_3252_start:
   mov R2, [BP-2]
   mov R1, [R2]
   iadd R1, 1
@@ -3267,7 +3272,7 @@ __if_3245_start:
   iadd R2, 1
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_3245_else
+  jf R0, __if_3252_else
   mov R2, [BP-2]
   mov R1, [R2]
   iadd R1, 1
@@ -3284,8 +3289,8 @@ __if_3245_start:
   mov R1, [BP-2]
   iadd R1, 9
   mov [R1], R0
-  jmp __if_3245_end
-__if_3245_else:
+  jmp __if_3252_end
+__if_3252_else:
   mov R2, [BP-2]
   iadd R2, 1
   mov R1, [R2]
@@ -3302,17 +3307,17 @@ __if_3245_else:
   mov R1, [BP-2]
   iadd R1, 9
   mov [R1], R0
-__if_3245_end:
+__if_3252_end:
   mov R0, 0
   mov R1, [BP-2]
   iadd R1, 14
   mov [R1], R0
-__if_3291_start:
+__if_3298_start:
   mov R0, [BP-2]
   iadd R0, 7
   mov R0, [R0]
   ine R0, -1
-  jf R0, __if_3291_else
+  jf R0, __if_3298_else
   mov R1, [global_sides]
   mov R2, [BP-2]
   iadd R2, 7
@@ -3324,20 +3329,20 @@ __if_3291_start:
   mov R1, [BP-2]
   iadd R1, 15
   mov [R1], R0
-  jmp __if_3291_end
-__if_3291_else:
+  jmp __if_3298_end
+__if_3298_else:
   mov R0, -1
   mov R1, [BP-2]
   iadd R1, 15
   mov [R1], R0
-__if_3291_end:
-__if_3313_start:
+__if_3298_end:
+__if_3320_start:
   mov R0, [BP-2]
   iadd R0, 7
   iadd R0, 1
   mov R0, [R0]
   ine R0, -1
-  jf R0, __if_3313_else
+  jf R0, __if_3320_else
   mov R1, [global_sides]
   mov R2, [BP-2]
   iadd R2, 7
@@ -3350,20 +3355,20 @@ __if_3313_start:
   mov R1, [BP-2]
   iadd R1, 16
   mov [R1], R0
-  jmp __if_3313_end
-__if_3313_else:
+  jmp __if_3320_end
+__if_3320_else:
   mov R0, -1
   mov R1, [BP-2]
   iadd R1, 16
   mov [R1], R0
-__if_3313_end:
-__for_3069_continue:
+__if_3320_end:
+__for_3076_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3069_start
-__for_3069_end:
+  jmp __for_3076_start
+__for_3076_end:
 __function_P_LoadLineDefs_return:
   mov SP, BP
   pop BP
@@ -3388,11 +3393,11 @@ __function_P_LoadSubsectors:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_3349_start:
+__for_3356_start:
   mov R0, [BP-1]
   mov R1, [global_numsubsectors]
   ilt R0, R1
-  jf R0, __for_3349_end
+  jf R0, __for_3356_end
   mov R0, __embedded_gen_ssectors
   mov R1, [BP-1]
   imul R1, 2
@@ -3422,13 +3427,13 @@ __for_3349_start:
   imul R2, 3
   iadd R1, R2
   mov [R1], R0
-__for_3349_continue:
+__for_3356_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3349_start
-__for_3349_end:
+  jmp __for_3356_start
+__for_3356_end:
 __function_P_LoadSubsectors_return:
   mov SP, BP
   pop BP
@@ -3453,11 +3458,11 @@ __function_P_LoadSegs:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_3399_start:
+__for_3406_start:
   mov R0, [BP-1]
   mov R1, [global_numsegs]
   ilt R0, R1
-  jf R0, __for_3399_end
+  jf R0, __for_3406_end
   mov R0, [global_segs]
   mov R1, [BP-1]
   imul R1, 8
@@ -3548,13 +3553,13 @@ __for_3399_start:
   mov R1, [BP-2]
   iadd R1, 6
   mov [R1], R0
-__if_3494_start:
+__if_3501_start:
   mov R1, [BP-3]
   iadd R1, 4
   mov R0, [R1]
   and R0, 4
   cib R0
-  jf R0, __if_3494_else
+  jf R0, __if_3501_else
   mov R1, [global_sides]
   mov R2, [BP-3]
   iadd R2, 7
@@ -3569,27 +3574,27 @@ __if_3494_start:
   mov R1, [BP-2]
   iadd R1, 7
   mov [R1], R0
-  jmp __if_3494_end
-__if_3494_else:
+  jmp __if_3501_end
+__if_3501_else:
   mov R0, -1
   mov R1, [BP-2]
   iadd R1, 7
   mov [R1], R0
-__if_3494_end:
-__for_3399_continue:
+__if_3501_end:
+__for_3406_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3399_start
-__for_3399_end:
+  jmp __for_3406_start
+__for_3406_end:
   mov R0, 0
   mov [BP-1], R0
-__for_3515_start:
+__for_3522_start:
   mov R0, [BP-1]
   mov R1, [global_numsubsectors]
   ilt R0, R1
-  jf R0, __for_3515_end
+  jf R0, __for_3522_end
   mov R1, [global_segs]
   mov R3, [global_subsectors]
   mov R4, [BP-1]
@@ -3606,13 +3611,13 @@ __for_3515_start:
   imul R2, 3
   iadd R1, R2
   mov [R1], R0
-__for_3515_continue:
+__for_3522_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3515_start
-__for_3515_end:
+  jmp __for_3522_start
+__for_3522_end:
 __function_P_LoadSegs_return:
   mov SP, BP
   pop BP
@@ -3637,11 +3642,11 @@ __function_P_LoadNodes:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_3550_start:
+__for_3557_start:
   mov R0, [BP-1]
   mov R1, [global_numnodes]
   ilt R0, R1
-  jf R0, __for_3550_end
+  jf R0, __for_3557_end
   mov R0, [global_nodes]
   mov R1, [BP-1]
   imul R1, 14
@@ -3683,10 +3688,10 @@ __for_3550_start:
   mov [R1], R0
   mov R0, 0
   mov [BP-3], R0
-__for_3600_start:
+__for_3607_start:
   mov R0, [BP-3]
   ilt R0, 4
-  jf R0, __for_3600_end
+  jf R0, __for_3607_end
   mov R0, __embedded_gen_nodes
   mov R2, [BP-1]
   imul R2, 14
@@ -3714,13 +3719,13 @@ __for_3600_start:
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__for_3600_continue:
+__for_3607_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_3600_start
-__for_3600_end:
+  jmp __for_3607_start
+__for_3607_end:
   mov R0, __embedded_gen_nodes
   mov R1, [BP-1]
   imul R1, 14
@@ -3740,13 +3745,13 @@ __for_3600_end:
   iadd R1, 12
   iadd R1, 1
   mov [R1], R0
-__for_3550_continue:
+__for_3557_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3550_start
-__for_3550_end:
+  jmp __for_3557_start
+__for_3557_end:
 __function_P_LoadNodes_return:
   mov SP, BP
   pop BP
@@ -3790,23 +3795,23 @@ __function_P_LoadBlockMap:
   mov R0, R1
   mov R0, 0
   mov [BP-2], R0
-__for_3723_start:
+__for_3730_start:
   mov R0, [BP-2]
   mov R1, [BP-1]
   ilt R0, R1
-  jf R0, __for_3723_end
+  jf R0, __for_3730_end
   mov R0, -1
   mov R1, [global_blocklinks]
   mov R2, [BP-2]
   iadd R1, R2
   mov [R1], R0
-__for_3723_continue:
+__for_3730_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_3723_start
-__for_3723_end:
+  jmp __for_3730_start
+__for_3730_end:
 __function_P_LoadBlockMap_return:
   mov SP, BP
   pop BP
@@ -3815,14 +3820,14 @@ __function_P_LoadBlockMap_return:
 __function_P_GroupLines:
   push BP
   mov BP, SP
-  isub SP, 8
+  isub SP, 11
   mov R0, 0
   mov [BP-1], R0
-__for_3744_start:
+__for_3751_start:
   mov R0, [BP-1]
   mov R1, [global_numlines]
   ilt R0, R1
-  jf R0, __for_3744_end
+  jf R0, __for_3751_end
   mov R0, [global_lines]
   mov R1, [BP-1]
   imul R1, 17
@@ -3836,12 +3841,12 @@ __for_3744_start:
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_3764_start:
+__if_3771_start:
   mov R1, [BP-3]
   iadd R1, 16
   mov R0, [R1]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_3767
+  jf R0, __LogicalAnd_ShortCircuit_3774
   mov R2, [BP-3]
   iadd R2, 16
   mov R1, [R2]
@@ -3850,8 +3855,8 @@ __if_3764_start:
   mov R2, [R3]
   ine R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_3767:
-  jf R0, __if_3764_end
+__LogicalAnd_ShortCircuit_3774:
+  jf R0, __if_3771_end
   mov R3, [BP-3]
   iadd R3, 16
   mov R2, [R3]
@@ -3860,24 +3865,24 @@ __LogicalAnd_ShortCircuit_3767:
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_3764_end:
-__for_3744_continue:
+__if_3771_end:
+__for_3751_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3744_start
-__for_3744_end:
+  jmp __for_3751_start
+__for_3751_end:
   mov R0, 0
   mov [BP-1], R0
-__for_3777_start:
+__for_3784_start:
   mov R0, [BP-1]
   mov R1, [global_numsectors]
   ilt R0, R1
-  jf R0, __for_3777_end
+  jf R0, __for_3784_end
   mov R3, [global_sectors]
   mov R4, [BP-1]
-  imul R4, 14
+  imul R4, 16
   iadd R3, R4
   iadd R3, 10
   mov R2, [R3]
@@ -3890,7 +3895,7 @@ __for_3777_start:
   mov R1, R0
   mov R2, [global_sectors]
   mov R3, [BP-1]
-  imul R3, 14
+  imul R3, 16
   iadd R2, R3
   iadd R2, 11
   mov [R2], R1
@@ -3898,24 +3903,24 @@ __for_3777_start:
   mov R0, 0
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 10
   mov [R1], R0
-__for_3777_continue:
+__for_3784_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3777_start
-__for_3777_end:
+  jmp __for_3784_start
+__for_3784_end:
   mov R0, 0
   mov [BP-1], R0
-__for_3805_start:
+__for_3812_start:
   mov R0, [BP-1]
   mov R1, [global_numlines]
   ilt R0, R1
-  jf R0, __for_3805_end
+  jf R0, __for_3812_end
   mov R0, [global_lines]
   mov R1, [BP-1]
   imul R1, 17
@@ -3944,12 +3949,12 @@ __for_3805_start:
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_3838_start:
+__if_3845_start:
   mov R1, [BP-3]
   iadd R1, 16
   mov R0, [R1]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_3841
+  jf R0, __LogicalAnd_ShortCircuit_3848
   mov R2, [BP-3]
   iadd R2, 16
   mov R1, [R2]
@@ -3958,8 +3963,8 @@ __if_3838_start:
   mov R2, [R3]
   ine R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_3841:
-  jf R0, __if_3838_end
+__LogicalAnd_ShortCircuit_3848:
+  jf R0, __if_3845_end
   mov R2, [BP-3]
   iadd R2, 16
   mov R1, [R2]
@@ -3983,14 +3988,199 @@ __LogicalAnd_ShortCircuit_3841:
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_3838_end:
-__for_3805_continue:
+__if_3845_end:
+__for_3812_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3805_start
-__for_3805_end:
+  jmp __for_3812_start
+__for_3812_end:
+  mov R0, 0
+  mov [BP-1], R0
+__for_3872_start:
+  mov R0, [BP-1]
+  mov R1, [global_numsectors]
+  ilt R0, R1
+  jf R0, __for_3872_end
+  mov R0, 2147483647
+  mov [BP-4], R0
+  mov R0, 0x80000000
+  mov [BP-5], R0
+  mov R0, 2147483647
+  mov [BP-6], R0
+  mov R0, 0x80000000
+  mov [BP-7], R0
+  mov R1, [global_sectors]
+  mov R2, [BP-1]
+  imul R2, 16
+  iadd R1, R2
+  iadd R1, 11
+  mov R0, [R1]
+  mov [BP-8], R0
+  mov R0, 0
+  mov [BP-2], R0
+__for_3901_start:
+  mov R0, [BP-2]
+  mov R2, [global_sectors]
+  mov R3, [BP-1]
+  imul R3, 16
+  iadd R2, R3
+  iadd R2, 10
+  mov R1, [R2]
+  ilt R0, R1
+  jf R0, __for_3901_end
+  mov R0, [BP-8]
+  mov R1, [BP-2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-3], R0
+__if_3919_start:
+  mov R2, [BP-3]
+  mov R1, [R2]
+  mov R0, [R1]
+  mov R1, [BP-4]
+  ilt R0, R1
+  jf R0, __if_3919_end
+  mov R2, [BP-3]
+  mov R1, [R2]
+  mov R0, [R1]
+  mov [BP-4], R0
+__if_3919_end:
+__if_3930_start:
+  mov R2, [BP-3]
+  mov R1, [R2]
+  mov R0, [R1]
+  mov R1, [BP-5]
+  igt R0, R1
+  jf R0, __if_3930_end
+  mov R2, [BP-3]
+  mov R1, [R2]
+  mov R0, [R1]
+  mov [BP-5], R0
+__if_3930_end:
+__if_3941_start:
+  mov R2, [BP-3]
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov R1, [BP-6]
+  ilt R0, R1
+  jf R0, __if_3941_end
+  mov R2, [BP-3]
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov [BP-6], R0
+__if_3941_end:
+__if_3952_start:
+  mov R2, [BP-3]
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov R1, [BP-7]
+  igt R0, R1
+  jf R0, __if_3952_end
+  mov R2, [BP-3]
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov [BP-7], R0
+__if_3952_end:
+__if_3963_start:
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  mov R0, [R1]
+  mov R1, [BP-4]
+  ilt R0, R1
+  jf R0, __if_3963_end
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  mov R0, [R1]
+  mov [BP-4], R0
+__if_3963_end:
+__if_3974_start:
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  mov R0, [R1]
+  mov R1, [BP-5]
+  igt R0, R1
+  jf R0, __if_3974_end
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  mov R0, [R1]
+  mov [BP-5], R0
+__if_3974_end:
+__if_3985_start:
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov R1, [BP-6]
+  ilt R0, R1
+  jf R0, __if_3985_end
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov [BP-6], R0
+__if_3985_end:
+__if_3996_start:
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov R1, [BP-7]
+  igt R0, R1
+  jf R0, __if_3996_end
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov [BP-7], R0
+__if_3996_end:
+__for_3901_continue:
+  mov R0, [BP-2]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-2], R1
+  jmp __for_3901_start
+__for_3901_end:
+  mov R0, [BP-4]
+  mov R1, [BP-5]
+  iadd R0, R1
+  idiv R0, 2
+  mov R1, [global_sectors]
+  mov R2, [BP-1]
+  imul R2, 16
+  iadd R1, R2
+  iadd R1, 14
+  mov [R1], R0
+  mov R0, [BP-6]
+  mov R1, [BP-7]
+  iadd R0, R1
+  idiv R0, 2
+  mov R1, [global_sectors]
+  mov R2, [BP-1]
+  imul R2, 16
+  iadd R1, R2
+  iadd R1, 15
+  mov [R1], R0
+__for_3872_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_3872_start
+__for_3872_end:
 __function_P_GroupLines_return:
   mov SP, BP
   pop BP
@@ -4012,10 +4202,10 @@ __function_P_SetupLevel:
   call __function_P_GroupLines
   mov R0, 0
   mov [BP-1], R0
-__for_3878_start:
+__for_4042_start:
   mov R0, [BP-1]
   ilt R0, 125
-  jf R0, __for_3878_end
+  jf R0, __for_4042_end
   mov R0, __embedded_gen_texinfo
   mov R1, [BP-1]
   imul R1, 6
@@ -4031,13 +4221,13 @@ __for_3878_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_3878_continue:
+__for_4042_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_3878_start
-__for_3878_end:
+  jmp __for_4042_start
+__for_4042_end:
 __function_P_SetupLevel_return:
   mov SP, BP
   pop BP
@@ -4052,55 +4242,55 @@ __function_R_PointOnSide:
   push R3
   push R4
   isub SP, 2
-__if_3971_start:
+__if_4135_start:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   bnot R0
-  jf R0, __if_3971_end
-__if_3976_start:
+  jf R0, __if_4135_end
+__if_4140_start:
   mov R0, [BP+2]
   mov R2, [BP+4]
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_3976_end
+  jf R0, __if_4140_end
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   igt R0, 0
   jmp __function_R_PointOnSide_return
-__if_3976_end:
+__if_4140_end:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 0
   jmp __function_R_PointOnSide_return
-__if_3971_end:
-__if_3991_start:
+__if_4135_end:
+__if_4155_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   bnot R0
-  jf R0, __if_3991_end
-__if_3996_start:
+  jf R0, __if_4155_end
+__if_4160_start:
   mov R0, [BP+3]
   mov R2, [BP+4]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_3996_end
+  jf R0, __if_4160_end
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   ilt R0, 0
   jmp __function_R_PointOnSide_return
-__if_3996_end:
+__if_4160_end:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   igt R0, 0
   jmp __function_R_PointOnSide_return
-__if_3991_end:
+__if_4155_end:
   mov R0, [BP+2]
   mov R2, [BP+4]
   mov R1, [R2]
@@ -4112,7 +4302,7 @@ __if_3991_end:
   mov R1, [R2]
   isub R0, R1
   mov [BP-2], R0
-__if_4023_start:
+__if_4187_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
@@ -4126,8 +4316,8 @@ __if_4023_start:
   xor R0, R1
   and R0, 0x80000000
   cib R0
-  jf R0, __if_4023_end
-__if_4037_start:
+  jf R0, __if_4187_end
+__if_4201_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
@@ -4135,13 +4325,13 @@ __if_4037_start:
   xor R0, R1
   and R0, 0x80000000
   cib R0
-  jf R0, __if_4037_end
+  jf R0, __if_4201_end
   mov R0, 1
   jmp __function_R_PointOnSide_return
-__if_4037_end:
+__if_4201_end:
   mov R0, 0
   jmp __function_R_PointOnSide_return
-__if_4023_end:
+__if_4187_end:
   mov R3, [BP+4]
   iadd R3, 3
   mov R2, [R3]
@@ -4178,14 +4368,14 @@ __if_4023_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_4105_start:
+__if_4269_start:
   mov R0, [BP-4]
   mov R1, [BP-3]
   ilt R0, R1
-  jf R0, __if_4105_end
+  jf R0, __if_4269_end
   mov R0, 0
   jmp __function_R_PointOnSide_return
-__if_4105_end:
+__if_4269_end:
   mov R0, 1
 __function_R_PointOnSide_return:
   iadd SP, 2
@@ -4210,82 +4400,82 @@ __function_R_PointToAngle:
   mov R1, [global_viewy]
   isub R0, R1
   mov [BP+3], R0
-__if_4124_start:
+__if_4288_start:
   mov R0, [BP+2]
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_4128
+  jf R0, __LogicalAnd_ShortCircuit_4292
   mov R1, [BP+3]
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_4128:
-  jf R0, __if_4124_end
+__LogicalAnd_ShortCircuit_4292:
+  jf R0, __if_4288_end
   mov R0, 0
   jmp __function_R_PointToAngle_return
-__if_4124_end:
-__if_4134_start:
+__if_4288_end:
+__if_4298_start:
   mov R0, [BP+2]
   ige R0, 0
-  jf R0, __if_4134_else
-__if_4139_start:
+  jf R0, __if_4298_else
+__if_4303_start:
   mov R0, [BP+3]
   ige R0, 0
-  jf R0, __if_4139_else
-__if_4144_start:
+  jf R0, __if_4303_else
+__if_4308_start:
   mov R0, [BP+2]
   mov R1, [BP+3]
   igt R0, R1
-  jf R0, __if_4144_else
-__if_4150_start:
+  jf R0, __if_4308_else
+__if_4314_start:
   mov R0, [BP+2]
   ilt R0, 512
-  jf R0, __if_4150_else
+  jf R0, __if_4314_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4150_end
-__if_4150_else:
+  jmp __if_4314_end
+__if_4314_else:
   mov R0, [BP+3]
   shl R0, 3
   mov R1, [BP+2]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4172_start:
+__if_4336_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4172_end
+  jf R0, __if_4336_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4172_end:
-__if_4150_end:
+__if_4336_end:
+__if_4314_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   jmp __function_R_PointToAngle_return
-  jmp __if_4144_end
-__if_4144_else:
-__if_4186_start:
+  jmp __if_4308_end
+__if_4308_else:
+__if_4350_start:
   mov R0, [BP+3]
   ilt R0, 512
-  jf R0, __if_4186_else
+  jf R0, __if_4350_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4186_end
-__if_4186_else:
+  jmp __if_4350_end
+__if_4350_else:
   mov R0, [BP+2]
   shl R0, 3
   mov R1, [BP+3]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4208_start:
+__if_4372_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4208_end
+  jf R0, __if_4372_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4208_end:
-__if_4186_end:
+__if_4372_end:
+__if_4350_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
@@ -4293,113 +4483,113 @@ __if_4186_end:
   isgn R0
   iadd R0, 1073741823
   jmp __function_R_PointToAngle_return
-__if_4144_end:
-  jmp __if_4139_end
-__if_4139_else:
+__if_4308_end:
+  jmp __if_4303_end
+__if_4303_else:
   mov R0, [BP+3]
   isgn R0
   mov [BP+3], R0
-__if_4229_start:
+__if_4393_start:
   mov R0, [BP+2]
   mov R1, [BP+3]
   igt R0, R1
-  jf R0, __if_4229_else
-__if_4235_start:
+  jf R0, __if_4393_else
+__if_4399_start:
   mov R0, [BP+2]
   ilt R0, 512
-  jf R0, __if_4235_else
+  jf R0, __if_4399_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4235_end
-__if_4235_else:
+  jmp __if_4399_end
+__if_4399_else:
   mov R0, [BP+3]
   shl R0, 3
   mov R1, [BP+2]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4257_start:
+__if_4421_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4257_end
+  jf R0, __if_4421_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4257_end:
-__if_4235_end:
+__if_4421_end:
+__if_4399_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   isgn R0
   jmp __function_R_PointToAngle_return
-  jmp __if_4229_end
-__if_4229_else:
-__if_4272_start:
+  jmp __if_4393_end
+__if_4393_else:
+__if_4436_start:
   mov R0, [BP+3]
   ilt R0, 512
-  jf R0, __if_4272_else
+  jf R0, __if_4436_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4272_end
-__if_4272_else:
+  jmp __if_4436_end
+__if_4436_else:
   mov R0, [BP+2]
   shl R0, 3
   mov R1, [BP+3]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4294_start:
+__if_4458_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4294_end
+  jf R0, __if_4458_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4294_end:
-__if_4272_end:
+__if_4458_end:
+__if_4436_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, -1073741824
   jmp __function_R_PointToAngle_return
-__if_4229_end:
-__if_4139_end:
-  jmp __if_4134_end
-__if_4134_else:
+__if_4393_end:
+__if_4303_end:
+  jmp __if_4298_end
+__if_4298_else:
   mov R0, [BP+2]
   isgn R0
   mov [BP+2], R0
-__if_4313_start:
+__if_4477_start:
   mov R0, [BP+3]
   ige R0, 0
-  jf R0, __if_4313_else
-__if_4318_start:
+  jf R0, __if_4477_else
+__if_4482_start:
   mov R0, [BP+2]
   mov R1, [BP+3]
   igt R0, R1
-  jf R0, __if_4318_else
-__if_4324_start:
+  jf R0, __if_4482_else
+__if_4488_start:
   mov R0, [BP+2]
   ilt R0, 512
-  jf R0, __if_4324_else
+  jf R0, __if_4488_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4324_end
-__if_4324_else:
+  jmp __if_4488_end
+__if_4488_else:
   mov R0, [BP+3]
   shl R0, 3
   mov R1, [BP+2]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4346_start:
+__if_4510_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4346_end
+  jf R0, __if_4510_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4346_end:
-__if_4324_end:
+__if_4510_end:
+__if_4488_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
@@ -4407,99 +4597,99 @@ __if_4324_end:
   isgn R0
   iadd R0, 2147483647
   jmp __function_R_PointToAngle_return
-  jmp __if_4318_end
-__if_4318_else:
-__if_4364_start:
+  jmp __if_4482_end
+__if_4482_else:
+__if_4528_start:
   mov R0, [BP+3]
   ilt R0, 512
-  jf R0, __if_4364_else
+  jf R0, __if_4528_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4364_end
-__if_4364_else:
+  jmp __if_4528_end
+__if_4528_else:
   mov R0, [BP+2]
   shl R0, 3
   mov R1, [BP+3]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4386_start:
+__if_4550_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4386_end
+  jf R0, __if_4550_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4386_end:
-__if_4364_end:
+__if_4550_end:
+__if_4528_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, 1073741824
   jmp __function_R_PointToAngle_return
-__if_4318_end:
-  jmp __if_4313_end
-__if_4313_else:
+__if_4482_end:
+  jmp __if_4477_end
+__if_4477_else:
   mov R0, [BP+3]
   isgn R0
   mov [BP+3], R0
-__if_4405_start:
+__if_4569_start:
   mov R0, [BP+2]
   mov R1, [BP+3]
   igt R0, R1
-  jf R0, __if_4405_else
-__if_4411_start:
+  jf R0, __if_4569_else
+__if_4575_start:
   mov R0, [BP+2]
   ilt R0, 512
-  jf R0, __if_4411_else
+  jf R0, __if_4575_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4411_end
-__if_4411_else:
+  jmp __if_4575_end
+__if_4575_else:
   mov R0, [BP+3]
   shl R0, 3
   mov R1, [BP+2]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4433_start:
+__if_4597_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4433_end
+  jf R0, __if_4597_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4433_end:
-__if_4411_end:
+__if_4597_end:
+__if_4575_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, 0x80000000
   jmp __function_R_PointToAngle_return
-  jmp __if_4405_end
-__if_4405_else:
-__if_4449_start:
+  jmp __if_4569_end
+__if_4569_else:
+__if_4613_start:
   mov R0, [BP+3]
   ilt R0, 512
-  jf R0, __if_4449_else
+  jf R0, __if_4613_else
   mov R0, 2048
   mov [BP-1], R0
-  jmp __if_4449_end
-__if_4449_else:
+  jmp __if_4613_end
+__if_4613_else:
   mov R0, [BP+2]
   shl R0, 3
   mov R1, [BP+3]
   shl R1, -8
   idiv R0, R1
   mov [BP-1], R0
-__if_4471_start:
+__if_4635_start:
   mov R0, [BP-1]
   igt R0, 2048
-  jf R0, __if_4471_end
+  jf R0, __if_4635_end
   mov R0, 2048
   mov [BP-1], R0
-__if_4471_end:
-__if_4449_end:
+__if_4635_end:
+__if_4613_end:
   mov R0, __embedded_tantoangle
   mov R1, [BP-1]
   iadd R0, R1
@@ -4507,9 +4697,9 @@ __if_4449_end:
   isgn R0
   iadd R0, -1073741825
   jmp __function_R_PointToAngle_return
-__if_4405_end:
-__if_4313_end:
-__if_4134_end:
+__if_4569_end:
+__if_4477_end:
+__if_4298_end:
   mov R0, 0
 __function_R_PointToAngle_return:
   pop R1
@@ -4529,38 +4719,38 @@ __function_R_PointToDist:
   mov R1, [global_viewx]
   isub R0, R1
   mov [BP-2], R0
-__if_4507_start:
+__if_4671_start:
   mov R0, [BP-2]
   ilt R0, 0
-  jf R0, __if_4507_end
+  jf R0, __if_4671_end
   mov R0, [BP-2]
   isgn R0
   mov [BP-2], R0
-__if_4507_end:
+__if_4671_end:
   mov R0, [BP+3]
   mov R1, [global_viewy]
   isub R0, R1
   mov [BP-3], R0
-__if_4520_start:
+__if_4684_start:
   mov R0, [BP-3]
   ilt R0, 0
-  jf R0, __if_4520_end
+  jf R0, __if_4684_end
   mov R0, [BP-3]
   isgn R0
   mov [BP-3], R0
-__if_4520_end:
-__if_4528_start:
+__if_4684_end:
+__if_4692_start:
   mov R0, [BP-3]
   mov R1, [BP-2]
   igt R0, R1
-  jf R0, __if_4528_end
+  jf R0, __if_4692_end
   mov R0, [BP-2]
   mov [BP-4], R0
   mov R0, [BP-3]
   mov [BP-2], R0
   mov R0, [BP-4]
   mov [BP-3], R0
-__if_4528_end:
+__if_4692_end:
   mov R1, __embedded_tantoangle
   mov R3, [BP-3]
   mov [SP], R3
@@ -4658,32 +4848,32 @@ __function_R_ScaleFromGlobalAngle:
   shl R1, 16
   iadd R0, R1
   mov [BP-7], R0
-__if_4667_start:
+__if_4831_start:
   mov R0, [global_rw_distance]
   ilt R0, 0
-  jf R0, __if_4667_end
+  jf R0, __if_4831_end
   mov R0, [BP-7]
   mov R1, [BP-4]
   shl R1, 16
   isub R0, R1
   mov [BP-7], R0
-__if_4667_end:
-__if_4677_start:
+__if_4831_end:
+__if_4841_start:
   mov R0, [BP-4]
   ilt R0, 0
-  jf R0, __if_4677_end
+  jf R0, __if_4841_end
   mov R0, [BP-7]
   mov R1, [global_rw_distance]
   shl R1, 16
   isub R0, R1
   mov [BP-7], R0
-__if_4677_end:
-__if_4687_start:
+__if_4841_end:
+__if_4851_start:
   mov R0, [BP-7]
   mov R1, [BP-6]
   shl R1, -16
   igt R0, R1
-  jf R0, __if_4687_else
+  jf R0, __if_4851_else
   mov R0, [BP-6]
   cif R0
   mov R1, [BP-7]
@@ -4691,30 +4881,30 @@ __if_4687_start:
   fdiv R0, R1
   fmul R0, 65536.000000
   mov [BP-12], R0
-__if_4705_start:
+__if_4869_start:
   mov R0, [BP-12]
   fgt R0, 4194304.000000
-  jf R0, __if_4705_else
+  jf R0, __if_4869_else
   mov R0, 4194304
   mov [BP-1], R0
-  jmp __if_4705_end
-__if_4705_else:
+  jmp __if_4869_end
+__if_4869_else:
   mov R0, [BP-12]
   cfi R0
   mov [BP-1], R0
-__if_4719_start:
+__if_4883_start:
   mov R0, [BP-1]
   ilt R0, 256
-  jf R0, __if_4719_end
+  jf R0, __if_4883_end
   mov R0, 256
   mov [BP-1], R0
-__if_4719_end:
-__if_4705_end:
-  jmp __if_4687_end
-__if_4687_else:
+__if_4883_end:
+__if_4869_end:
+  jmp __if_4851_end
+__if_4851_else:
   mov R0, 4194304
   mov [BP-1], R0
-__if_4687_end:
+__if_4851_end:
   mov R0, [BP-1]
 __function_R_ScaleFromGlobalAngle_return:
   pop R2
@@ -4739,33 +4929,33 @@ __function_R_InitTextureMapping:
   mov R0, R1
   mov R0, 0
   mov [BP-1], R0
-__for_4753_start:
+__for_4917_start:
   mov R0, [BP-1]
   ilt R0, 4096
-  jf R0, __for_4753_end
-__if_4763_start:
+  jf R0, __for_4917_end
+__if_4927_start:
   mov R0, __embedded_finetangent
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   igt R0, 131072
-  jf R0, __if_4763_else
+  jf R0, __if_4927_else
   mov R0, -1
   mov [BP-3], R0
-  jmp __if_4763_end
-__if_4763_else:
-__if_4775_start:
+  jmp __if_4927_end
+__if_4927_else:
+__if_4939_start:
   mov R0, __embedded_finetangent
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   ilt R0, -131072
-  jf R0, __if_4775_else
+  jf R0, __if_4939_else
   mov R0, [global_viewwidth]
   iadd R0, 1
   mov [BP-3], R0
-  jmp __if_4775_end
-__if_4775_else:
+  jmp __if_4939_end
+__if_4939_else:
   mov R2, __embedded_finetangent
   mov R3, [BP-1]
   iadd R2, R3
@@ -4793,63 +4983,63 @@ __if_4775_else:
   shl R1, 16
   or R0, R1
   mov [BP-3], R0
-__if_4833_start:
+__if_4997_start:
   mov R0, [BP-3]
   ilt R0, -1
-  jf R0, __if_4833_else
+  jf R0, __if_4997_else
   mov R0, -1
   mov [BP-3], R0
-  jmp __if_4833_end
-__if_4833_else:
-__if_4842_start:
+  jmp __if_4997_end
+__if_4997_else:
+__if_5006_start:
   mov R0, [BP-3]
   mov R1, [global_viewwidth]
   iadd R1, 1
   igt R0, R1
-  jf R0, __if_4842_end
+  jf R0, __if_5006_end
   mov R0, [global_viewwidth]
   iadd R0, 1
   mov [BP-3], R0
-__if_4842_end:
-__if_4833_end:
-__if_4775_end:
-__if_4763_end:
+__if_5006_end:
+__if_4997_end:
+__if_4939_end:
+__if_4927_end:
   mov R0, [BP-3]
   mov R1, global_viewangletox
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_4753_continue:
+__for_4917_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_4753_start
-__for_4753_end:
+  jmp __for_4917_start
+__for_4917_end:
   mov R0, 0
   mov [BP-2], R0
-__for_4858_start:
+__for_5022_start:
   mov R0, [BP-2]
   mov R1, [global_viewwidth]
   ile R0, R1
-  jf R0, __for_4858_end
+  jf R0, __for_5022_end
   mov R0, 0
   mov [BP-1], R0
-__while_4871_start:
-__while_4871_continue:
+__while_5035_start:
+__while_5035_continue:
   mov R0, global_viewangletox
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   mov R1, [BP-2]
   igt R0, R1
-  jf R0, __while_4871_end
+  jf R0, __while_5035_end
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __while_4871_start
-__while_4871_end:
+  jmp __while_5035_start
+__while_5035_end:
   mov R0, [BP-1]
   shl R0, 19
   isub R0, 1073741824
@@ -4857,34 +5047,34 @@ __while_4871_end:
   mov R2, [BP-2]
   iadd R1, R2
   mov [R1], R0
-__for_4858_continue:
+__for_5022_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_4858_start
-__for_4858_end:
+  jmp __for_5022_start
+__for_5022_end:
   mov R0, 0
   mov [BP-1], R0
-__for_4889_start:
+__for_5053_start:
   mov R0, [BP-1]
   ilt R0, 4096
-  jf R0, __for_4889_end
-__if_4899_start:
+  jf R0, __for_5053_end
+__if_5063_start:
   mov R0, global_viewangletox
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   ieq R0, -1
-  jf R0, __if_4899_else
+  jf R0, __if_5063_else
   mov R0, 0
   mov R1, global_viewangletox
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_4899_end
-__if_4899_else:
-__if_4911_start:
+  jmp __if_5063_end
+__if_5063_else:
+__if_5075_start:
   mov R0, global_viewangletox
   mov R1, [BP-1]
   iadd R0, R1
@@ -4892,21 +5082,21 @@ __if_4911_start:
   mov R1, [global_viewwidth]
   iadd R1, 1
   ieq R0, R1
-  jf R0, __if_4911_end
+  jf R0, __if_5075_end
   mov R0, [global_viewwidth]
   mov R1, global_viewangletox
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__if_4911_end:
-__if_4899_end:
-__for_4889_continue:
+__if_5075_end:
+__if_5063_end:
+__for_5053_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_4889_start
-__for_4889_end:
+  jmp __for_5053_start
+__for_5053_end:
   mov R0, [global_xtoviewangle]
   mov [global_clipangle], R0
 __function_R_InitTextureMapping_return:
@@ -4918,46 +5108,46 @@ __function_R_SetView:
   push BP
   mov BP, SP
   isub SP, 2
-__if_4977_start:
+__if_5141_start:
   mov R0, [BP+2]
   ile R0, 0
-  jf R0, __if_4977_else
+  jf R0, __if_5141_else
   mov R0, 384
   mov [BP-1], R0
   mov R0, 180
   mov [BP-2], R0
-  jmp __if_4977_end
-__if_4977_else:
-__if_4988_start:
+  jmp __if_5141_end
+__if_5141_else:
+__if_5152_start:
   mov R0, [BP+2]
   ieq R0, 1
-  jf R0, __if_4988_else
+  jf R0, __if_5152_else
   mov R0, 512
   mov [BP-1], R0
   mov R0, 236
   mov [BP-2], R0
-  jmp __if_4988_end
-__if_4988_else:
+  jmp __if_5152_end
+__if_5152_else:
   mov R0, 640
   mov [BP-1], R0
   mov R0, 296
   mov [BP-2], R0
-__if_4988_end:
-__if_4977_end:
-__if_5006_start:
+__if_5152_end:
+__if_5141_end:
+__if_5170_start:
   mov R0, [BP+3]
-  jf R0, __if_5006_else
+  jf R0, __if_5170_else
   mov R0, 4
   mov [global_colpix], R0
   mov R0, 4.000000
   mov [global_colpix_f], R0
-  jmp __if_5006_end
-__if_5006_else:
+  jmp __if_5170_end
+__if_5170_else:
   mov R0, 2
   mov [global_colpix], R0
   mov R0, 2.000000
   mov [global_colpix_f], R0
-__if_5006_end:
+__if_5170_end:
   mov R0, [BP-1]
   mov R1, [global_colpix]
   idiv R0, R1
@@ -5000,22 +5190,22 @@ __function_R_PointInSubsector:
   push R1
   push R2
   isub SP, 3
-__if_5078_start:
+__if_5242_start:
   mov R0, [global_numnodes]
   bnot R0
-  jf R0, __if_5078_end
+  jf R0, __if_5242_end
   mov R0, [global_subsectors]
   jmp __function_R_PointInSubsector_return
-__if_5078_end:
+__if_5242_end:
   mov R0, [global_numnodes]
   isub R0, 1
   mov [BP-3], R0
-__while_5088_start:
-__while_5088_continue:
+__while_5252_start:
+__while_5252_continue:
   mov R0, [BP-3]
   and R0, 32768
   bnot R0
-  jf R0, __while_5088_end
+  jf R0, __while_5252_end
   mov R0, [global_nodes]
   mov R1, [BP-3]
   imul R1, 14
@@ -5037,8 +5227,8 @@ __while_5088_continue:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-3], R0
-  jmp __while_5088_start
-__while_5088_end:
+  jmp __while_5252_start
+__while_5252_end:
   mov R0, [global_subsectors]
   mov R1, [BP-3]
   and R1, 32767
@@ -5078,20 +5268,20 @@ __function_GPU_SetLight:
   isub SP, 1
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_5229_start:
+__if_5393_start:
   mov R0, [BP-1]
   ilt R0, 32
-  jf R0, __if_5229_end
+  jf R0, __if_5393_end
   mov R0, 32
   mov [BP-1], R0
-__if_5229_end:
-__if_5236_start:
+__if_5393_end:
+__if_5400_start:
   mov R0, [BP-1]
   igt R0, 255
-  jf R0, __if_5236_end
+  jf R0, __if_5400_end
   mov R0, 255
   mov [BP-1], R0
-__if_5236_end:
+__if_5400_end:
   mov R0, [BP-1]
   shl R0, 16
   or R0, -16777216
@@ -5124,12 +5314,12 @@ __function_GPU_RecordFill:
   push BP
   mov BP, SP
   isub SP, 1
-__if_5275_start:
+__if_5439_start:
   mov R0, [global_fillcmd_count]
   ige R0, 1200
-  jf R0, __if_5275_end
+  jf R0, __if_5439_end
   jmp __function_GPU_RecordFill_return
-__if_5275_end:
+__if_5439_end:
   mov R0, [global_perf_fills]
   mov R1, R0
   iadd R1, 1
@@ -5186,19 +5376,19 @@ __function_GPU_RecordMaskedColumn:
   push BP
   mov BP, SP
   isub SP, 7
-__if_5342_start:
+__if_5506_start:
   mov R0, [BP+8]
   mov R1, [BP+7]
   ilt R0, R1
-  jf R0, __if_5342_end
+  jf R0, __if_5506_end
   jmp __function_GPU_RecordMaskedColumn_return
-__if_5342_end:
-__if_5347_start:
+__if_5506_end:
+__if_5511_start:
   mov R0, [global_wallcmd_count]
   ige R0, 3072
-  jf R0, __if_5347_end
+  jf R0, __if_5511_end
   jmp __function_GPU_RecordMaskedColumn_return
-__if_5347_end:
+__if_5511_end:
   mov R0, [BP+8]
   mov R1, [BP+7]
   isub R0, R1
@@ -5211,13 +5401,13 @@ __if_5347_end:
   mov R1, [BP+10]
   fmul R0, R1
   mov [BP-2], R0
-__if_5368_start:
+__if_5532_start:
   mov R0, [BP-2]
   flt R0, 0.000000
-  jf R0, __if_5368_end
+  jf R0, __if_5532_end
   mov R0, 0.000000
   mov [BP-2], R0
-__if_5368_end:
+__if_5532_end:
   mov R0, [BP-2]
   mov R1, [BP-1]
   cif R1
@@ -5225,65 +5415,65 @@ __if_5368_end:
   fmul R1, R2
   fadd R0, R1
   mov [BP-3], R0
-__if_5383_start:
+__if_5547_start:
   mov R0, [BP-3]
   mov R1, [BP+5]
   cif R1
   fgt R0, R1
-  jf R0, __if_5383_end
+  jf R0, __if_5547_end
   mov R0, [BP+5]
   cif R0
   mov [BP-3], R0
-__if_5383_end:
+__if_5547_end:
   mov R0, [BP-2]
   cfi R0
   mov [BP-4], R0
-__if_5396_start:
+__if_5560_start:
   mov R0, [BP-4]
   mov R1, [BP+5]
   ige R0, R1
-  jf R0, __if_5396_end
+  jf R0, __if_5560_end
   mov R0, [BP+5]
   isub R0, 1
   mov [BP-4], R0
-__if_5396_end:
+__if_5560_end:
   mov R0, [BP-3]
   cfi R0
   mov [BP-5], R0
-__if_5409_start:
+__if_5573_start:
   mov R0, [BP-5]
   cif R0
   mov R1, [BP-3]
   flt R0, R1
-  jf R0, __if_5409_end
+  jf R0, __if_5573_end
   mov R0, [BP-5]
   mov R1, R0
   iadd R1, 1
   mov [BP-5], R1
-__if_5409_end:
+__if_5573_end:
   mov R0, [BP-5]
   mov R1, [BP-4]
   isub R0, R1
   mov [BP-6], R0
-__if_5421_start:
+__if_5585_start:
   mov R0, [BP-6]
   ilt R0, 1
-  jf R0, __if_5421_end
+  jf R0, __if_5585_end
   mov R0, 1
   mov [BP-6], R0
-__if_5421_end:
-__if_5428_start:
+__if_5585_end:
+__if_5592_start:
   mov R0, [BP-6]
   mov R1, [BP+5]
   mov R2, [BP-4]
   isub R1, R2
   igt R0, R1
-  jf R0, __if_5428_end
+  jf R0, __if_5592_end
   mov R0, [BP+5]
   mov R1, [BP-4]
   isub R0, R1
   mov [BP-6], R0
-__if_5428_end:
+__if_5592_end:
   mov R0, [global_perf_masked]
   mov R1, R0
   iadd R1, 1
@@ -5369,10 +5559,10 @@ __function_GPU_Flush:
   mov [BP-2], R0
   mov R0, -1
   mov [BP-3], R0
-__if_5524_start:
+__if_5688_start:
   mov R0, [global_fillcmd_count]
   igt R0, 0
-  jf R0, __if_5524_end
+  jf R0, __if_5688_end
   mov R1, 4
   mov [SP], R1
   call __function_select_texture
@@ -5394,19 +5584,19 @@ __if_5524_start:
   call __function_define_region
   mov R0, 0
   mov [BP-1], R0
-__for_5540_start:
+__for_5704_start:
   mov R0, [BP-1]
   mov R1, [global_fillcmd_count]
   ilt R0, R1
-  jf R0, __for_5540_end
-__if_5550_start:
+  jf R0, __for_5704_end
+__if_5714_start:
   mov R0, global_fc_color
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   mov R1, [BP-3]
   ine R0, R1
-  jf R0, __if_5550_end
+  jf R0, __if_5714_end
   mov R0, global_fc_color
   mov R1, [BP-1]
   iadd R0, R1
@@ -5415,7 +5605,7 @@ __if_5550_start:
   mov R1, [BP-3]
   mov [SP], R1
   call __function_set_multiply_color
-__if_5550_end:
+__if_5714_end:
   mov R1, global_fc_sx
   mov R2, [BP-1]
   iadd R1, R2
@@ -5438,37 +5628,37 @@ __if_5550_end:
   mov R1, [R1]
   mov [SP+1], R1
   call __function_draw_region_zoomed_at
-__for_5540_continue:
+__for_5704_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_5540_start
-__for_5540_end:
+  jmp __for_5704_start
+__for_5704_end:
   mov R0, 0
   mov [global_fillcmd_count], R0
   mov R0, -1
   mov [BP-3], R0
-__if_5524_end:
+__if_5688_end:
   mov R0, [global_colpix_f]
   mov [BP-4], R0
   mov R0, [BP-4]
   out GPU_DrawingScaleX, R0
   mov R0, 0
   mov [BP-1], R0
-__for_5590_start:
+__for_5754_start:
   mov R0, [BP-1]
   mov R1, [global_wallcmd_count]
   ilt R0, R1
-  jf R0, __for_5590_end
-__if_5600_start:
+  jf R0, __for_5754_end
+__if_5764_start:
   mov R0, global_wc_sheet
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   mov R1, [BP-2]
   ine R0, R1
-  jf R0, __if_5600_end
+  jf R0, __if_5764_end
   mov R0, global_wc_sheet
   mov R1, [BP-1]
   iadd R0, R1
@@ -5480,15 +5670,15 @@ __if_5600_start:
   mov R1, 0
   mov [SP], R1
   call __function_select_region
-__if_5600_end:
-__if_5616_start:
+__if_5764_end:
+__if_5780_start:
   mov R0, global_wc_color
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   mov R1, [BP-3]
   ine R0, R1
-  jf R0, __if_5616_end
+  jf R0, __if_5780_end
   mov R0, global_wc_color
   mov R1, [BP-1]
   iadd R0, R1
@@ -5497,7 +5687,7 @@ __if_5616_start:
   mov R1, [BP-3]
   mov [SP], R1
   call __function_set_multiply_color
-__if_5616_end:
+__if_5780_end:
   mov R0, global_wc_rx
   mov R1, [BP-1]
   iadd R0, R1
@@ -5544,13 +5734,13 @@ __if_5616_end:
   mov R0, [BP-10]
   out GPU_DrawingPointY, R0
   out GPU_Command, GPUCommand_DrawRegionZoomed
-__for_5590_continue:
+__for_5754_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_5590_start
-__for_5590_end:
+  jmp __for_5754_start
+__for_5754_end:
   mov R0, 0
   mov [global_wallcmd_count], R0
   mov R0, -1
@@ -5567,13 +5757,13 @@ __function_GPU_DrawWallColumn:
   push BP
   mov BP, SP
   isub SP, 20
-__if_5684_start:
+__if_5848_start:
   mov R0, [BP+6]
   mov R1, [BP+5]
   ilt R0, R1
-  jf R0, __if_5684_end
+  jf R0, __if_5848_end
   jmp __function_GPU_DrawWallColumn_return
-__if_5684_end:
+__if_5848_end:
   mov R0, [global_perf_columns]
   mov R1, R0
   iadd R1, 1
@@ -5582,11 +5772,11 @@ __if_5684_end:
   mov R1, R0
   iadd R1, 1
   mov [global_perf_slow], R1
-__if_5693_start:
+__if_5857_start:
   mov R0, [BP+3]
   mov R1, [global_gpu_cache_texnum]
   ine R0, R1
-  jf R0, __if_5693_end
+  jf R0, __if_5857_end
   mov R0, [BP+3]
   mov [global_gpu_cache_texnum], R0
   mov R0, __embedded_gen_texinfo
@@ -5623,7 +5813,7 @@ __if_5693_start:
   iadd R0, 4
   mov R0, [R0]
   mov [global_gpu_ti_th], R0
-__if_5693_end:
+__if_5857_end:
   mov R0, [global_gpu_ti_ty]
   mov [BP-1], R0
   mov R0, [global_gpu_ti_th]
@@ -5632,15 +5822,15 @@ __if_5693_end:
   mov R1, [global_gpu_ti_tw]
   imod R0, R1
   mov [BP-3], R0
-__if_5747_start:
+__if_5911_start:
   mov R0, [BP-3]
   ilt R0, 0
-  jf R0, __if_5747_end
+  jf R0, __if_5911_end
   mov R0, [BP-3]
   mov R1, [global_gpu_ti_tw]
   iadd R0, R1
   mov [BP-3], R0
-__if_5747_end:
+__if_5911_end:
   mov R0, [global_gpu_ti_tx]
   mov R1, [BP-3]
   iadd R0, R1
@@ -5680,43 +5870,43 @@ __if_5747_end:
   mov R0, [BP-7]
   cfi R0
   mov [BP-10], R0
-__if_5804_start:
+__if_5968_start:
   mov R0, [BP-10]
   cif R0
   mov R1, [BP-7]
   fgt R0, R1
-  jf R0, __if_5804_end
+  jf R0, __if_5968_end
   mov R0, [BP-10]
   mov R1, R0
   isub R1, 1
   mov [BP-10], R1
-__if_5804_end:
+__if_5968_end:
   mov R0, [BP+5]
   mov [BP-11], R0
   mov R0, [BP-2]
   cif R0
   mov [BP-12], R0
-__while_5818_start:
-__while_5818_continue:
+__while_5982_start:
+__while_5982_continue:
   mov R0, [BP-11]
   mov R1, [BP+5]
   mov R2, [BP-8]
   iadd R1, R2
   ilt R0, R1
-  jf R0, __while_5818_end
+  jf R0, __while_5982_end
   mov R0, [BP-10]
   mov R1, [BP-2]
   imod R0, R1
   mov [BP-13], R0
-__if_5830_start:
+__if_5994_start:
   mov R0, [BP-13]
   ilt R0, 0
-  jf R0, __if_5830_end
+  jf R0, __if_5994_end
   mov R0, [BP-13]
   mov R1, [BP-2]
   iadd R0, R1
   mov [BP-13], R0
-__if_5830_end:
+__if_5994_end:
   mov R0, [BP-10]
   mov R1, [BP-13]
   isub R0, R1
@@ -5724,51 +5914,51 @@ __if_5830_end:
   mov R1, [BP-12]
   fadd R0, R1
   mov [BP-14], R0
-__if_5846_start:
+__if_6010_start:
   mov R0, [BP-14]
   mov R1, [BP-9]
   fgt R0, R1
-  jf R0, __if_5846_end
+  jf R0, __if_6010_end
   mov R0, [BP-9]
   mov [BP-14], R0
-__if_5846_end:
+__if_6010_end:
   mov R0, [BP-14]
   cfi R0
   mov [BP-15], R0
-__if_5857_start:
+__if_6021_start:
   mov R0, [BP-15]
   cif R0
   mov R1, [BP-14]
   flt R0, R1
-  jf R0, __if_5857_end
+  jf R0, __if_6021_end
   mov R0, [BP-15]
   mov R1, R0
   iadd R1, 1
   mov [BP-15], R1
-__if_5857_end:
+__if_6021_end:
   mov R0, [BP-15]
   mov R1, [BP-10]
   isub R0, R1
   mov [BP-16], R0
-__if_5869_start:
+__if_6033_start:
   mov R0, [BP-16]
   ilt R0, 1
-  jf R0, __if_5869_end
+  jf R0, __if_6033_end
   mov R0, 1
   mov [BP-16], R0
-__if_5869_end:
-__if_5876_start:
+__if_6033_end:
+__if_6040_start:
   mov R0, [BP-16]
   mov R1, [BP-2]
   mov R2, [BP-13]
   isub R1, R2
   igt R0, R1
-  jf R0, __if_5876_end
+  jf R0, __if_6040_end
   mov R0, [BP-2]
   mov R1, [BP-13]
   isub R0, R1
   mov [BP-16], R0
-__if_5876_end:
+__if_6040_end:
   mov R0, [BP+5]
   cif R0
   mov R1, [BP-14]
@@ -5782,41 +5972,41 @@ __if_5876_end:
   fadd R0, 0.500000
   cfi R0
   mov [BP-18], R0
-__if_5905_start:
+__if_6069_start:
   mov R0, [BP-18]
   mov R1, [BP+5]
   mov R2, [BP-8]
   iadd R1, R2
   igt R0, R1
-  jf R0, __if_5905_end
+  jf R0, __if_6069_end
   mov R0, [BP+5]
   mov R1, [BP-8]
   iadd R0, R1
   mov [BP-18], R0
-__if_5905_end:
-__if_5916_start:
+__if_6069_end:
+__if_6080_start:
   mov R0, [BP-14]
   mov R1, [BP-9]
   fge R0, R1
-  jf R0, __if_5916_end
+  jf R0, __if_6080_end
   mov R0, [BP+5]
   mov R1, [BP-8]
   iadd R0, R1
   mov [BP-18], R0
-__if_5916_end:
+__if_6080_end:
   mov R0, [BP-18]
   mov R1, [BP-11]
   isub R0, R1
   mov [BP-19], R0
-__if_5930_start:
+__if_6094_start:
   mov R0, [BP-19]
   igt R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_5935
+  jf R0, __LogicalAnd_ShortCircuit_6099
   mov R1, [global_wallcmd_count]
   ilt R1, 3072
   and R0, R1
-__LogicalAnd_ShortCircuit_5935:
-  jf R0, __if_5930_end
+__LogicalAnd_ShortCircuit_6099:
+  jf R0, __if_6094_end
   mov R0, [global_perf_draws]
   mov R1, R0
   iadd R1, 1
@@ -5885,7 +6075,7 @@ __LogicalAnd_ShortCircuit_5935:
   mov R2, [BP-20]
   iadd R1, R2
   mov [R1], R0
-__if_5930_end:
+__if_6094_end:
   mov R0, [BP-18]
   mov [BP-11], R0
   mov R0, [BP-10]
@@ -5894,17 +6084,17 @@ __if_5930_end:
   mov R1, [BP-2]
   iadd R0, R1
   mov [BP-10], R0
-__if_6021_start:
+__if_6185_start:
   mov R0, [BP-11]
   mov R1, [BP+5]
   mov R2, [BP-8]
   iadd R1, R2
   ige R0, R1
-  jf R0, __if_6021_end
-  jmp __while_5818_end
-__if_6021_end:
-  jmp __while_5818_start
-__while_5818_end:
+  jf R0, __if_6185_end
+  jmp __while_5982_end
+__if_6185_end:
+  jmp __while_5982_start
+__while_5982_end:
 __function_GPU_DrawWallColumn_return:
   mov SP, BP
   pop BP
@@ -5914,17 +6104,17 @@ __function_GPU_FillScreen:
   push BP
   mov BP, SP
   isub SP, 6
-__if_6088_start:
+__if_6252_start:
   mov R0, [BP+4]
   ile R0, 0
-  jt R0, __LogicalOr_ShortCircuit_6093
+  jt R0, __LogicalOr_ShortCircuit_6257
   mov R1, [BP+5]
   ile R1, 0
   or R0, R1
-__LogicalOr_ShortCircuit_6093:
-  jf R0, __if_6088_end
+__LogicalOr_ShortCircuit_6257:
+  jf R0, __if_6252_end
   jmp __function_GPU_FillScreen_return
-__if_6088_end:
+__if_6252_end:
   mov R1, 4
   mov [SP], R1
   call __function_select_texture
@@ -6030,17 +6220,17 @@ __function_P_RunThinkers:
   isub SP, 3
   mov R0, [1608639]
   mov [BP-1], R0
-__while_6355_start:
-__while_6355_continue:
+__while_6519_start:
+__while_6519_continue:
   mov R0, [BP-1]
   mov R1, global_thinkercap
   ine R0, R1
-  jf R0, __while_6355_end
-__if_6361_start:
+  jf R0, __while_6519_end
+__if_6525_start:
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
-  jf R0, __if_6361_else
+  jf R0, __if_6525_else
   mov R1, [BP-1]
   mov R0, [R1]
   mov R2, [BP-1]
@@ -6054,14 +6244,14 @@ __if_6361_start:
   mov R1, [R2]
   iadd R1, 1
   mov [R1], R0
-  jmp __if_6361_end
-__if_6361_else:
-__if_6377_start:
+  jmp __if_6525_end
+__if_6525_else:
+__if_6541_start:
   mov R1, [BP-1]
   iadd R1, 2
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_6377_end
+  jf R0, __if_6541_end
   mov R1, [BP-1]
   iadd R1, 2
   mov R0, [R1]
@@ -6070,14 +6260,14 @@ __if_6377_start:
   mov [SP], R1
   mov R2, [BP-2]
   call R2
-__if_6377_end:
-__if_6361_end:
+__if_6541_end:
+__if_6525_end:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-1], R0
-  jmp __while_6355_start
-__while_6355_end:
+  jmp __while_6519_start
+__while_6519_end:
 __function_P_RunThinkers_return:
   mov SP, BP
   pop BP
@@ -6132,66 +6322,66 @@ __function_R_FindPlane:
   push R2
   push R3
   isub SP, 3
-__if_6508_start:
+__if_6672_start:
   mov R0, [BP+3]
   ieq R0, 53
-  jf R0, __if_6508_end
+  jf R0, __if_6672_end
   mov R0, 0
   mov [BP+2], R0
   mov R0, 0
   mov [BP+4], R0
-__if_6508_end:
+__if_6672_end:
   mov R0, 0
   mov [BP-2], R0
-__for_6519_start:
+__for_6683_start:
   mov R0, [BP-2]
   mov R1, [global_lastvisplane]
   ilt R0, R1
-  jf R0, __for_6519_end
+  jf R0, __for_6683_end
   mov R0, global_visplanes
   mov R1, [BP-2]
   imul R1, 649
   iadd R0, R1
   mov [BP-1], R0
-__if_6535_start:
+__if_6699_start:
   mov R0, [BP+2]
   mov R2, [BP-1]
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_6541
+  jf R0, __LogicalAnd_ShortCircuit_6705
   mov R1, [BP+3]
   mov R3, [BP-1]
   iadd R3, 1
   mov R2, [R3]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_6541:
-  jf R0, __LogicalAnd_ShortCircuit_6546
+__LogicalAnd_ShortCircuit_6705:
+  jf R0, __LogicalAnd_ShortCircuit_6710
   mov R1, [BP+4]
   mov R3, [BP-1]
   iadd R3, 2
   mov R2, [R3]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_6546:
-  jf R0, __if_6535_end
+__LogicalAnd_ShortCircuit_6710:
+  jf R0, __if_6699_end
   mov R0, [BP-1]
   jmp __function_R_FindPlane_return
-__if_6535_end:
-__for_6519_continue:
+__if_6699_end:
+__for_6683_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_6519_start
-__for_6519_end:
-__if_6552_start:
+  jmp __for_6683_start
+__for_6683_end:
+__if_6716_start:
   mov R0, [global_lastvisplane]
   ieq R0, 96
-  jf R0, __if_6552_end
+  jf R0, __if_6716_end
   mov R0, 1694492
   jmp __function_R_FindPlane_return
-__if_6552_end:
+__if_6716_end:
   mov R0, global_visplanes
   mov R1, [global_lastvisplane]
   imul R1, 649
@@ -6245,58 +6435,58 @@ __function_R_CheckPlane:
   push R1
   push R2
   isub SP, 3
-__if_6613_start:
+__if_6777_start:
   mov R0, [BP+3]
   mov R2, [BP+2]
   iadd R2, 3
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_6613_else
+  jf R0, __if_6777_else
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   mov [BP-1], R0
   mov R0, [BP+3]
   mov [BP-3], R0
-  jmp __if_6613_end
-__if_6613_else:
+  jmp __if_6777_end
+__if_6777_else:
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   mov [BP-3], R0
   mov R0, [BP+3]
   mov [BP-1], R0
-__if_6613_end:
-__if_6634_start:
+__if_6777_end:
+__if_6798_start:
   mov R0, [BP+4]
   mov R2, [BP+2]
   iadd R2, 4
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_6634_else
+  jf R0, __if_6798_else
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
   mov [BP-2], R0
   mov R0, [BP+4]
   mov [BP-4], R0
-  jmp __if_6634_end
-__if_6634_else:
+  jmp __if_6798_end
+__if_6798_else:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
   mov [BP-4], R0
   mov R0, [BP+4]
   mov [BP-2], R0
-__if_6634_end:
+__if_6798_end:
   mov R0, [BP-1]
   mov [BP-5], R0
-__for_6655_start:
+__for_6819_start:
   mov R0, [BP-5]
   mov R1, [BP-2]
   ile R0, R1
-  jf R0, __for_6655_end
-__if_6664_start:
+  jf R0, __for_6819_end
+__if_6828_start:
   mov R0, [BP+2]
   iadd R0, 5
   mov R1, [BP-5]
@@ -6304,21 +6494,21 @@ __if_6664_start:
   iadd R0, R1
   mov R0, [R0]
   ine R0, 255
-  jf R0, __if_6664_end
-  jmp __for_6655_end
-__if_6664_end:
-__for_6655_continue:
+  jf R0, __if_6828_end
+  jmp __for_6819_end
+__if_6828_end:
+__for_6819_continue:
   mov R0, [BP-5]
   mov R1, R0
   iadd R1, 1
   mov [BP-5], R1
-  jmp __for_6655_start
-__for_6655_end:
-__if_6674_start:
+  jmp __for_6819_start
+__for_6819_end:
+__if_6838_start:
   mov R0, [BP-5]
   mov R1, [BP-2]
   igt R0, R1
-  jf R0, __if_6674_end
+  jf R0, __if_6838_end
   mov R0, [BP-3]
   mov R1, [BP+2]
   iadd R1, 3
@@ -6329,14 +6519,14 @@ __if_6674_start:
   mov [R1], R0
   mov R0, [BP+2]
   jmp __function_R_CheckPlane_return
-__if_6674_end:
-__if_6689_start:
+__if_6838_end:
+__if_6853_start:
   mov R0, [global_lastvisplane]
   ieq R0, 96
-  jf R0, __if_6689_end
+  jf R0, __if_6853_end
   mov R0, [BP+2]
   jmp __function_R_CheckPlane_return
-__if_6689_end:
+__if_6853_end:
   mov R0, global_visplanes
   mov R1, [global_lastvisplane]
   imul R1, 649
@@ -6399,20 +6589,20 @@ __function_R_PlaneColor:
   mov [BP-1], R0
   mov R0, [BP+3]
   mov [BP-2], R0
-__if_6744_start:
+__if_6908_start:
   mov R0, [BP-2]
   ilt R0, 32
-  jf R0, __if_6744_end
+  jf R0, __if_6908_end
   mov R0, 32
   mov [BP-2], R0
-__if_6744_end:
-__if_6751_start:
+__if_6908_end:
+__if_6915_start:
   mov R0, [BP-2]
   igt R0, 255
-  jf R0, __if_6751_end
+  jf R0, __if_6915_end
   mov R0, 255
   mov [BP-2], R0
-__if_6751_end:
+__if_6915_end:
   mov R0, [BP-1]
   and R0, 255
   mov R1, [BP-2]
@@ -6451,18 +6641,18 @@ __function_R_MakeSpans:
   push BP
   mov BP, SP
   isub SP, 5
-__while_6820_start:
-__while_6820_continue:
+__while_6984_start:
+__while_6984_continue:
   mov R0, [BP+3]
   mov R1, [BP+5]
   ilt R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_6825
+  jf R0, __LogicalAnd_ShortCircuit_6989
   mov R1, [BP+3]
   mov R2, [BP+4]
   ile R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_6825:
-  jf R0, __while_6820_end
+__LogicalAnd_ShortCircuit_6989:
+  jf R0, __while_6984_end
   mov R1, global_spanstart
   mov R2, [BP+3]
   iadd R1, R2
@@ -6488,20 +6678,20 @@ __LogicalAnd_ShortCircuit_6825:
   mov R1, R0
   iadd R1, 1
   mov [BP+3], R1
-  jmp __while_6820_start
-__while_6820_end:
-__while_6849_start:
-__while_6849_continue:
+  jmp __while_6984_start
+__while_6984_end:
+__while_7013_start:
+__while_7013_continue:
   mov R0, [BP+4]
   mov R1, [BP+6]
   igt R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_6854
+  jf R0, __LogicalAnd_ShortCircuit_7018
   mov R1, [BP+4]
   mov R2, [BP+3]
   ige R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_6854:
-  jf R0, __while_6849_end
+__LogicalAnd_ShortCircuit_7018:
+  jf R0, __while_7013_end
   mov R1, global_spanstart
   mov R2, [BP+4]
   iadd R1, R2
@@ -6527,20 +6717,20 @@ __LogicalAnd_ShortCircuit_6854:
   mov R1, R0
   isub R1, 1
   mov [BP+4], R1
-  jmp __while_6849_start
-__while_6849_end:
-__while_6878_start:
-__while_6878_continue:
+  jmp __while_7013_start
+__while_7013_end:
+__while_7042_start:
+__while_7042_continue:
   mov R0, [BP+5]
   mov R1, [BP+3]
   ilt R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_6883
+  jf R0, __LogicalAnd_ShortCircuit_7047
   mov R1, [BP+5]
   mov R2, [BP+6]
   ile R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_6883:
-  jf R0, __while_6878_end
+__LogicalAnd_ShortCircuit_7047:
+  jf R0, __while_7042_end
   mov R0, [BP+2]
   mov R1, global_spanstart
   mov R2, [BP+5]
@@ -6550,20 +6740,20 @@ __LogicalAnd_ShortCircuit_6883:
   mov R1, R0
   iadd R1, 1
   mov [BP+5], R1
-  jmp __while_6878_start
-__while_6878_end:
-__while_6894_start:
-__while_6894_continue:
+  jmp __while_7042_start
+__while_7042_end:
+__while_7058_start:
+__while_7058_continue:
   mov R0, [BP+6]
   mov R1, [BP+4]
   igt R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_6899
+  jf R0, __LogicalAnd_ShortCircuit_7063
   mov R1, [BP+6]
   mov R2, [BP+5]
   ige R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_6899:
-  jf R0, __while_6894_end
+__LogicalAnd_ShortCircuit_7063:
+  jf R0, __while_7058_end
   mov R0, [BP+2]
   mov R1, global_spanstart
   mov R2, [BP+6]
@@ -6573,8 +6763,8 @@ __LogicalAnd_ShortCircuit_6899:
   mov R1, R0
   isub R1, 1
   mov [BP+6], R1
-  jmp __while_6894_start
-__while_6894_end:
+  jmp __while_7058_start
+__while_7058_end:
 __function_R_MakeSpans_return:
   mov SP, BP
   pop BP
@@ -6588,17 +6778,17 @@ __function_R_DrawPlanes:
   mov [global_perf_planes], R0
   mov R0, 0
   mov [BP-2], R0
-__for_6924_start:
+__for_7088_start:
   mov R0, [BP-2]
   mov R1, [global_lastvisplane]
   ilt R0, R1
-  jf R0, __for_6924_end
+  jf R0, __for_7088_end
   mov R0, global_visplanes
   mov R1, [BP-2]
   imul R1, 649
   iadd R0, R1
   mov [BP-1], R0
-__if_6940_start:
+__if_7104_start:
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
@@ -6606,28 +6796,28 @@ __if_6940_start:
   iadd R2, 4
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_6940_end
-  jmp __for_6924_continue
-__if_6940_end:
-__if_6947_start:
+  jf R0, __if_7104_end
+  jmp __for_7088_continue
+__if_7104_end:
+__if_7111_start:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   ieq R0, 53
-  jf R0, __if_6947_end
+  jf R0, __if_7111_end
   mov R0, -1
   mov [global_gpu_light_color], R0
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
   mov [BP-3], R0
-__for_6956_start:
+__for_7120_start:
   mov R0, [BP-3]
   mov R2, [BP-1]
   iadd R2, 4
   mov R1, [R2]
   ile R0, R1
-  jf R0, __for_6956_end
+  jf R0, __for_7120_end
   mov R0, [BP-1]
   iadd R0, 5
   mov R1, [BP-3]
@@ -6642,16 +6832,16 @@ __for_6956_start:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-7], R0
-__if_6984_start:
+__if_7148_start:
   mov R0, [BP-6]
   ine R0, 255
-  jf R0, __LogicalAnd_ShortCircuit_6989
+  jf R0, __LogicalAnd_ShortCircuit_7153
   mov R1, [BP-6]
   mov R2, [BP-7]
   ile R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_6989:
-  jf R0, __if_6984_end
+__LogicalAnd_ShortCircuit_7153:
+  jf R0, __if_7148_end
   mov R0, [global_viewangle]
   mov R1, global_xtoviewangle
   mov R2, [BP-3]
@@ -6675,16 +6865,16 @@ __LogicalAnd_ShortCircuit_6989:
   mov R1, 65536
   mov [SP+6], R1
   call __function_GPU_DrawWallColumn
-__if_6984_end:
-__for_6956_continue:
+__if_7148_end:
+__for_7120_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_6956_start
-__for_6956_end:
-  jmp __for_6924_continue
-__if_6947_end:
+  jmp __for_7120_start
+__for_7120_end:
+  jmp __for_7088_continue
+__if_7111_end:
   mov R3, [BP-1]
   iadd R3, 1
   mov R2, [R3]
@@ -6723,11 +6913,11 @@ __if_6947_end:
   iadd R1, 3
   mov R0, [R1]
   mov [BP-3], R0
-__for_7044_start:
+__for_7208_start:
   mov R0, [BP-3]
   mov R1, [BP-4]
   ile R0, R1
-  jf R0, __for_7044_end
+  jf R0, __for_7208_end
   mov R1, [BP-3]
   mov [SP], R1
   mov R1, [BP-1]
@@ -6757,20 +6947,20 @@ __for_7044_start:
   mov R1, [R1]
   mov [SP+4], R1
   call __function_R_MakeSpans
-__for_7044_continue:
+__for_7208_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_7044_start
-__for_7044_end:
-__for_6924_continue:
+  jmp __for_7208_start
+__for_7208_end:
+__for_7088_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_6924_start
-__for_6924_end:
+  jmp __for_7088_start
+__for_7088_end:
 __function_R_DrawPlanes_return:
   mov SP, BP
   pop BP
@@ -6826,10 +7016,10 @@ __function_R_RenderSegLoop:
   mov [BP-25], R0
   mov R0, 0.000000
   mov [BP-26], R0
-__if_7269_start:
+__if_7433_start:
   mov R0, [global_midtexture]
   cib R0
-  jf R0, __if_7269_end
+  jf R0, __if_7433_end
   mov R0, __embedded_gen_texinfo
   mov R1, [global_midtexture]
   imul R1, 6
@@ -6868,11 +7058,11 @@ __if_7269_start:
   cif R0
   fmul R0, 0.000015
   mov [BP-24], R0
-__if_7269_end:
-__if_7313_start:
+__if_7433_end:
+__if_7477_start:
   mov R0, [global_toptexture]
   cib R0
-  jf R0, __if_7313_end
+  jf R0, __if_7477_end
   mov R0, __embedded_gen_texinfo
   mov R1, [global_toptexture]
   imul R1, 6
@@ -6911,11 +7101,11 @@ __if_7313_start:
   cif R0
   fmul R0, 0.000015
   mov [BP-25], R0
-__if_7313_end:
-__if_7357_start:
+__if_7477_end:
+__if_7521_start:
   mov R0, [global_bottomtexture]
   cib R0
-  jf R0, __if_7357_end
+  jf R0, __if_7521_end
   mov R0, __embedded_gen_texinfo
   mov R1, [global_bottomtexture]
   imul R1, 6
@@ -6954,12 +7144,12 @@ __if_7357_start:
   cif R0
   fmul R0, 0.000015
   mov [BP-26], R0
-__if_7357_end:
-__for_7405_start:
+__if_7521_end:
+__for_7569_start:
   mov R0, [global_rw_x]
   mov R1, [global_rw_stopx]
   ilt R0, R1
-  jf R0, __for_7405_end
+  jf R0, __for_7569_end
   mov R0, [global_topfrac]
   iadd R0, 4096
   isub R0, 1
@@ -6972,7 +7162,7 @@ __for_7405_start:
   shl R1, 20
   or R0, R1
   mov [BP-2], R0
-__if_7444_start:
+__if_7608_start:
   mov R0, [BP-2]
   mov R1, global_ceilingclip
   mov R2, [global_rw_x]
@@ -6980,17 +7170,17 @@ __if_7444_start:
   mov R1, [R1]
   iadd R1, 1
   ilt R0, R1
-  jf R0, __if_7444_end
+  jf R0, __if_7608_end
   mov R0, global_ceilingclip
   mov R1, [global_rw_x]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, 1
   mov [BP-2], R0
-__if_7444_end:
-__if_7459_start:
+__if_7608_end:
+__if_7623_start:
   mov R0, [global_markceiling]
-  jf R0, __if_7459_end
+  jf R0, __if_7623_end
   mov R0, global_ceilingclip
   mov R1, [global_rw_x]
   iadd R0, R1
@@ -7000,26 +7190,26 @@ __if_7459_start:
   mov R0, [BP-2]
   isub R0, 1
   mov [BP-28], R0
-__if_7474_start:
+__if_7638_start:
   mov R0, [BP-28]
   mov R1, global_floorclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov R1, [R1]
   ige R0, R1
-  jf R0, __if_7474_end
+  jf R0, __if_7638_end
   mov R0, global_floorclip
   mov R1, [global_rw_x]
   iadd R0, R1
   mov R0, [R0]
   isub R0, 1
   mov [BP-28], R0
-__if_7474_end:
-__if_7487_start:
+__if_7638_end:
+__if_7651_start:
   mov R0, [BP-27]
   mov R1, [BP-28]
   ile R0, R1
-  jf R0, __if_7487_end
+  jf R0, __if_7651_end
   mov R0, [BP-27]
   mov R1, [global_ceilingplane]
   iadd R1, 5
@@ -7034,8 +7224,8 @@ __if_7487_start:
   iadd R2, 1
   iadd R1, R2
   mov [R1], R0
-__if_7487_end:
-__if_7459_end:
+__if_7651_end:
+__if_7623_end:
   mov R0, [global_bottomfrac]
   shl R0, -12
   mov R1, [global_bottomfrac]
@@ -7044,24 +7234,24 @@ __if_7459_end:
   shl R1, 20
   or R0, R1
   mov [BP-3], R0
-__if_7532_start:
+__if_7696_start:
   mov R0, [BP-3]
   mov R1, global_floorclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov R1, [R1]
   ige R0, R1
-  jf R0, __if_7532_end
+  jf R0, __if_7696_end
   mov R0, global_floorclip
   mov R1, [global_rw_x]
   iadd R0, R1
   mov R0, [R0]
   isub R0, 1
   mov [BP-3], R0
-__if_7532_end:
-__if_7545_start:
+__if_7696_end:
+__if_7709_start:
   mov R0, [global_markfloor]
-  jf R0, __if_7545_end
+  jf R0, __if_7709_end
   mov R0, [BP-3]
   iadd R0, 1
   mov [BP-27], R0
@@ -7071,26 +7261,26 @@ __if_7545_start:
   mov R0, [R0]
   isub R0, 1
   mov [BP-28], R0
-__if_7560_start:
+__if_7724_start:
   mov R0, [BP-27]
   mov R1, global_ceilingclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov R1, [R1]
   ile R0, R1
-  jf R0, __if_7560_end
+  jf R0, __if_7724_end
   mov R0, global_ceilingclip
   mov R1, [global_rw_x]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, 1
   mov [BP-27], R0
-__if_7560_end:
-__if_7573_start:
+__if_7724_end:
+__if_7737_start:
   mov R0, [BP-27]
   mov R1, [BP-28]
   ile R0, R1
-  jf R0, __if_7573_end
+  jf R0, __if_7737_end
   mov R0, [BP-27]
   mov R1, [global_floorplane]
   iadd R1, 5
@@ -7105,11 +7295,11 @@ __if_7573_start:
   iadd R2, 1
   iadd R1, R2
   mov [R1], R0
-__if_7573_end:
-__if_7545_end:
-__if_7594_start:
+__if_7737_end:
+__if_7709_end:
+__if_7758_start:
   mov R0, [global_segtextured]
-  jf R0, __if_7594_end
+  jf R0, __if_7758_end
   mov R0, [global_rw_centerangle]
   mov R1, global_xtoviewangle
   mov R2, [global_rw_x]
@@ -7150,26 +7340,26 @@ __if_7594_start:
   shl R1, 16
   iadd R0, R1
   mov [BP-32], R0
-__if_7652_start:
+__if_7816_start:
   mov R0, [BP-29]
   ilt R0, 0
-  jf R0, __if_7652_end
+  jf R0, __if_7816_end
   mov R0, [BP-32]
   mov R1, [global_rw_distance]
   shl R1, 16
   isub R0, R1
   mov [BP-32], R0
-__if_7652_end:
-__if_7662_start:
+__if_7816_end:
+__if_7826_start:
   mov R0, [global_rw_distance]
   ilt R0, 0
-  jf R0, __if_7662_end
+  jf R0, __if_7826_end
   mov R0, [BP-32]
   mov R1, [BP-29]
   shl R1, 16
   isub R0, R1
   mov [BP-32], R0
-__if_7662_end:
+__if_7826_end:
   mov R0, [global_rw_offset]
   mov R1, [BP-32]
   isub R0, R1
@@ -7187,16 +7377,16 @@ __if_7662_end:
   cif R1
   fdiv R0, R1
   mov [BP-6], R0
-__if_7594_end:
-__if_7706_start:
+__if_7758_end:
+__if_7870_start:
   mov R0, [global_midtexture]
   cib R0
-  jf R0, __if_7706_else
-__if_7710_start:
+  jf R0, __if_7870_else
+__if_7874_start:
   mov R0, [BP-3]
   mov R1, [BP-2]
   ige R0, R1
-  jf R0, __if_7710_end
+  jf R0, __if_7874_end
   mov R0, [BP-3]
   mov R1, [BP-2]
   isub R0, R1
@@ -7221,31 +7411,31 @@ __if_7710_start:
   mov R0, [BP-30]
   cfi R0
   mov [BP-32], R0
-__if_7751_start:
+__if_7915_start:
   mov R0, [BP-32]
   cif R0
   mov R1, [BP-30]
   fgt R0, R1
-  jf R0, __if_7751_end
+  jf R0, __if_7915_end
   mov R0, [BP-32]
   mov R1, R0
   isub R1, 1
   mov [BP-32], R1
-__if_7751_end:
+__if_7915_end:
   mov R0, [BP-32]
   mov R1, [BP-13]
   imod R0, R1
   mov [BP-33], R0
-__if_7764_start:
+__if_7928_start:
   mov R0, [BP-33]
   ilt R0, 0
-  jf R0, __if_7764_end
+  jf R0, __if_7928_end
   mov R0, [BP-33]
   mov R1, [BP-13]
   iadd R0, R1
   mov [BP-33], R0
-__if_7764_end:
-__if_7772_start:
+__if_7928_end:
+__if_7936_start:
   mov R0, [BP-32]
   mov R1, [BP-33]
   isub R0, R1
@@ -7254,12 +7444,12 @@ __if_7772_start:
   cif R0
   mov R1, [BP-31]
   fge R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_7784
+  jf R0, __LogicalAnd_ShortCircuit_7948
   mov R1, [global_wallcmd_count]
   ilt R1, 3072
   and R0, R1
-__LogicalAnd_ShortCircuit_7784:
-  jf R0, __if_7772_else
+__LogicalAnd_ShortCircuit_7948:
+  jf R0, __if_7936_else
   mov R0, [global_perf_columns]
   mov R1, R0
   iadd R1, 1
@@ -7272,52 +7462,52 @@ __LogicalAnd_ShortCircuit_7784:
   mov R1, [BP-12]
   imod R0, R1
   mov [BP-34], R0
-__if_7798_start:
+__if_7962_start:
   mov R0, [BP-34]
   ilt R0, 0
-  jf R0, __if_7798_end
+  jf R0, __if_7962_end
   mov R0, [BP-34]
   mov R1, [BP-12]
   iadd R0, R1
   mov [BP-34], R0
-__if_7798_end:
+__if_7962_end:
   mov R0, [BP-31]
   cfi R0
   mov [BP-35], R0
-__if_7810_start:
+__if_7974_start:
   mov R0, [BP-35]
   cif R0
   mov R1, [BP-31]
   flt R0, R1
-  jf R0, __if_7810_end
+  jf R0, __if_7974_end
   mov R0, [BP-35]
   mov R1, R0
   iadd R1, 1
   mov [BP-35], R1
-__if_7810_end:
+__if_7974_end:
   mov R0, [BP-35]
   mov R1, [BP-32]
   isub R0, R1
   mov [BP-36], R0
-__if_7822_start:
+__if_7986_start:
   mov R0, [BP-36]
   ilt R0, 1
-  jf R0, __if_7822_end
+  jf R0, __if_7986_end
   mov R0, 1
   mov [BP-36], R0
-__if_7822_end:
-__if_7829_start:
+__if_7986_end:
+__if_7993_start:
   mov R0, [BP-36]
   mov R1, [BP-13]
   mov R2, [BP-33]
   isub R1, R2
   igt R0, R1
-  jf R0, __if_7829_end
+  jf R0, __if_7993_end
   mov R0, [BP-13]
   mov R1, [BP-33]
   isub R0, R1
   mov [BP-36], R0
-__if_7829_end:
+__if_7993_end:
   mov R0, [global_wallcmd_count]
   mov [BP-37], R0
   mov R0, [BP-37]
@@ -7384,8 +7574,8 @@ __if_7829_end:
   mov R2, [BP-37]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_7772_end
-__if_7772_else:
+  jmp __if_7936_end
+__if_7936_else:
   mov R1, [global_rw_x]
   mov [SP], R1
   mov R1, [global_midtexture]
@@ -7401,8 +7591,8 @@ __if_7772_else:
   mov R1, [global_rw_scale]
   mov [SP+6], R1
   call __function_GPU_DrawWallColumn
-__if_7772_end:
-__if_7710_end:
+__if_7936_end:
+__if_7874_end:
   mov R0, [global_viewheight]
   mov R1, global_ceilingclip
   mov R2, [global_rw_x]
@@ -7413,12 +7603,12 @@ __if_7710_end:
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_7706_end
-__if_7706_else:
-__if_7940_start:
+  jmp __if_7870_end
+__if_7870_else:
+__if_8104_start:
   mov R0, [global_toptexture]
   cib R0
-  jf R0, __if_7940_else
+  jf R0, __if_8104_else
   mov R0, [global_pixhigh]
   shl R0, -12
   mov R1, [global_pixhigh]
@@ -7431,31 +7621,31 @@ __if_7940_start:
   mov R1, [global_pixhighstep]
   iadd R0, R1
   mov [global_pixhigh], R0
-__if_7970_start:
+__if_8134_start:
   mov R0, [BP-4]
   mov R1, global_floorclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov R1, [R1]
   ige R0, R1
-  jf R0, __if_7970_end
+  jf R0, __if_8134_end
   mov R0, global_floorclip
   mov R1, [global_rw_x]
   iadd R0, R1
   mov R0, [R0]
   isub R0, 1
   mov [BP-4], R0
-__if_7970_end:
-__if_7983_start:
+__if_8134_end:
+__if_8147_start:
   mov R0, [BP-4]
   mov R1, [BP-2]
   ige R0, R1
-  jf R0, __if_7983_else
-__if_7989_start:
+  jf R0, __if_8147_else
+__if_8153_start:
   mov R0, [BP-4]
   mov R1, [BP-2]
   ige R0, R1
-  jf R0, __if_7989_end
+  jf R0, __if_8153_end
   mov R0, [BP-4]
   mov R1, [BP-2]
   isub R0, R1
@@ -7480,31 +7670,31 @@ __if_7989_start:
   mov R0, [BP-30]
   cfi R0
   mov [BP-32], R0
-__if_8030_start:
+__if_8194_start:
   mov R0, [BP-32]
   cif R0
   mov R1, [BP-30]
   fgt R0, R1
-  jf R0, __if_8030_end
+  jf R0, __if_8194_end
   mov R0, [BP-32]
   mov R1, R0
   isub R1, 1
   mov [BP-32], R1
-__if_8030_end:
+__if_8194_end:
   mov R0, [BP-32]
   mov R1, [BP-18]
   imod R0, R1
   mov [BP-33], R0
-__if_8043_start:
+__if_8207_start:
   mov R0, [BP-33]
   ilt R0, 0
-  jf R0, __if_8043_end
+  jf R0, __if_8207_end
   mov R0, [BP-33]
   mov R1, [BP-18]
   iadd R0, R1
   mov [BP-33], R0
-__if_8043_end:
-__if_8051_start:
+__if_8207_end:
+__if_8215_start:
   mov R0, [BP-32]
   mov R1, [BP-33]
   isub R0, R1
@@ -7513,12 +7703,12 @@ __if_8051_start:
   cif R0
   mov R1, [BP-31]
   fge R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_8063
+  jf R0, __LogicalAnd_ShortCircuit_8227
   mov R1, [global_wallcmd_count]
   ilt R1, 3072
   and R0, R1
-__LogicalAnd_ShortCircuit_8063:
-  jf R0, __if_8051_else
+__LogicalAnd_ShortCircuit_8227:
+  jf R0, __if_8215_else
   mov R0, [global_perf_columns]
   mov R1, R0
   iadd R1, 1
@@ -7531,52 +7721,52 @@ __LogicalAnd_ShortCircuit_8063:
   mov R1, [BP-17]
   imod R0, R1
   mov [BP-34], R0
-__if_8077_start:
+__if_8241_start:
   mov R0, [BP-34]
   ilt R0, 0
-  jf R0, __if_8077_end
+  jf R0, __if_8241_end
   mov R0, [BP-34]
   mov R1, [BP-17]
   iadd R0, R1
   mov [BP-34], R0
-__if_8077_end:
+__if_8241_end:
   mov R0, [BP-31]
   cfi R0
   mov [BP-35], R0
-__if_8089_start:
+__if_8253_start:
   mov R0, [BP-35]
   cif R0
   mov R1, [BP-31]
   flt R0, R1
-  jf R0, __if_8089_end
+  jf R0, __if_8253_end
   mov R0, [BP-35]
   mov R1, R0
   iadd R1, 1
   mov [BP-35], R1
-__if_8089_end:
+__if_8253_end:
   mov R0, [BP-35]
   mov R1, [BP-32]
   isub R0, R1
   mov [BP-36], R0
-__if_8101_start:
+__if_8265_start:
   mov R0, [BP-36]
   ilt R0, 1
-  jf R0, __if_8101_end
+  jf R0, __if_8265_end
   mov R0, 1
   mov [BP-36], R0
-__if_8101_end:
-__if_8108_start:
+__if_8265_end:
+__if_8272_start:
   mov R0, [BP-36]
   mov R1, [BP-18]
   mov R2, [BP-33]
   isub R1, R2
   igt R0, R1
-  jf R0, __if_8108_end
+  jf R0, __if_8272_end
   mov R0, [BP-18]
   mov R1, [BP-33]
   isub R0, R1
   mov [BP-36], R0
-__if_8108_end:
+__if_8272_end:
   mov R0, [global_wallcmd_count]
   mov [BP-37], R0
   mov R0, [BP-37]
@@ -7643,8 +7833,8 @@ __if_8108_end:
   mov R2, [BP-37]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_8051_end
-__if_8051_else:
+  jmp __if_8215_end
+__if_8215_else:
   mov R1, [global_rw_x]
   mov [SP], R1
   mov R1, [global_toptexture]
@@ -7660,39 +7850,39 @@ __if_8051_else:
   mov R1, [global_rw_scale]
   mov [SP+6], R1
   call __function_GPU_DrawWallColumn
-__if_8051_end:
-__if_7989_end:
+__if_8215_end:
+__if_8153_end:
   mov R0, [BP-4]
   mov R1, global_ceilingclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_7983_end
-__if_7983_else:
+  jmp __if_8147_end
+__if_8147_else:
   mov R0, [BP-2]
   isub R0, 1
   mov R1, global_ceilingclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-__if_7983_end:
-  jmp __if_7940_end
-__if_7940_else:
-__if_8220_start:
+__if_8147_end:
+  jmp __if_8104_end
+__if_8104_else:
+__if_8384_start:
   mov R0, [global_markceiling]
-  jf R0, __if_8220_end
+  jf R0, __if_8384_end
   mov R0, [BP-2]
   isub R0, 1
   mov R1, global_ceilingclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-__if_8220_end:
-__if_7940_end:
-__if_8229_start:
+__if_8384_end:
+__if_8104_end:
+__if_8393_start:
   mov R0, [global_bottomtexture]
   cib R0
-  jf R0, __if_8229_else
+  jf R0, __if_8393_else
   mov R0, [global_pixlow]
   iadd R0, 4096
   isub R0, 1
@@ -7709,31 +7899,31 @@ __if_8229_start:
   mov R1, [global_pixlowstep]
   iadd R0, R1
   mov [global_pixlow], R0
-__if_8267_start:
+__if_8431_start:
   mov R0, [BP-4]
   mov R1, global_ceilingclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov R1, [R1]
   ile R0, R1
-  jf R0, __if_8267_end
+  jf R0, __if_8431_end
   mov R0, global_ceilingclip
   mov R1, [global_rw_x]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, 1
   mov [BP-4], R0
-__if_8267_end:
-__if_8280_start:
+__if_8431_end:
+__if_8444_start:
   mov R0, [BP-4]
   mov R1, [BP-3]
   ile R0, R1
-  jf R0, __if_8280_else
-__if_8286_start:
+  jf R0, __if_8444_else
+__if_8450_start:
   mov R0, [BP-3]
   mov R1, [BP-4]
   ige R0, R1
-  jf R0, __if_8286_end
+  jf R0, __if_8450_end
   mov R0, [BP-3]
   mov R1, [BP-4]
   isub R0, R1
@@ -7758,31 +7948,31 @@ __if_8286_start:
   mov R0, [BP-30]
   cfi R0
   mov [BP-32], R0
-__if_8327_start:
+__if_8491_start:
   mov R0, [BP-32]
   cif R0
   mov R1, [BP-30]
   fgt R0, R1
-  jf R0, __if_8327_end
+  jf R0, __if_8491_end
   mov R0, [BP-32]
   mov R1, R0
   isub R1, 1
   mov [BP-32], R1
-__if_8327_end:
+__if_8491_end:
   mov R0, [BP-32]
   mov R1, [BP-23]
   imod R0, R1
   mov [BP-33], R0
-__if_8340_start:
+__if_8504_start:
   mov R0, [BP-33]
   ilt R0, 0
-  jf R0, __if_8340_end
+  jf R0, __if_8504_end
   mov R0, [BP-33]
   mov R1, [BP-23]
   iadd R0, R1
   mov [BP-33], R0
-__if_8340_end:
-__if_8348_start:
+__if_8504_end:
+__if_8512_start:
   mov R0, [BP-32]
   mov R1, [BP-33]
   isub R0, R1
@@ -7791,12 +7981,12 @@ __if_8348_start:
   cif R0
   mov R1, [BP-31]
   fge R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_8360
+  jf R0, __LogicalAnd_ShortCircuit_8524
   mov R1, [global_wallcmd_count]
   ilt R1, 3072
   and R0, R1
-__LogicalAnd_ShortCircuit_8360:
-  jf R0, __if_8348_else
+__LogicalAnd_ShortCircuit_8524:
+  jf R0, __if_8512_else
   mov R0, [global_perf_columns]
   mov R1, R0
   iadd R1, 1
@@ -7809,52 +7999,52 @@ __LogicalAnd_ShortCircuit_8360:
   mov R1, [BP-22]
   imod R0, R1
   mov [BP-34], R0
-__if_8374_start:
+__if_8538_start:
   mov R0, [BP-34]
   ilt R0, 0
-  jf R0, __if_8374_end
+  jf R0, __if_8538_end
   mov R0, [BP-34]
   mov R1, [BP-22]
   iadd R0, R1
   mov [BP-34], R0
-__if_8374_end:
+__if_8538_end:
   mov R0, [BP-31]
   cfi R0
   mov [BP-35], R0
-__if_8386_start:
+__if_8550_start:
   mov R0, [BP-35]
   cif R0
   mov R1, [BP-31]
   flt R0, R1
-  jf R0, __if_8386_end
+  jf R0, __if_8550_end
   mov R0, [BP-35]
   mov R1, R0
   iadd R1, 1
   mov [BP-35], R1
-__if_8386_end:
+__if_8550_end:
   mov R0, [BP-35]
   mov R1, [BP-32]
   isub R0, R1
   mov [BP-36], R0
-__if_8398_start:
+__if_8562_start:
   mov R0, [BP-36]
   ilt R0, 1
-  jf R0, __if_8398_end
+  jf R0, __if_8562_end
   mov R0, 1
   mov [BP-36], R0
-__if_8398_end:
-__if_8405_start:
+__if_8562_end:
+__if_8569_start:
   mov R0, [BP-36]
   mov R1, [BP-23]
   mov R2, [BP-33]
   isub R1, R2
   igt R0, R1
-  jf R0, __if_8405_end
+  jf R0, __if_8569_end
   mov R0, [BP-23]
   mov R1, [BP-33]
   isub R0, R1
   mov [BP-36], R0
-__if_8405_end:
+__if_8569_end:
   mov R0, [global_wallcmd_count]
   mov [BP-37], R0
   mov R0, [BP-37]
@@ -7921,8 +8111,8 @@ __if_8405_end:
   mov R2, [BP-37]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_8348_end
-__if_8348_else:
+  jmp __if_8512_end
+__if_8512_else:
   mov R1, [global_rw_x]
   mov [SP], R1
   mov R1, [global_bottomtexture]
@@ -7938,45 +8128,45 @@ __if_8348_else:
   mov R1, [global_rw_scale]
   mov [SP+6], R1
   call __function_GPU_DrawWallColumn
-__if_8348_end:
-__if_8286_end:
+__if_8512_end:
+__if_8450_end:
   mov R0, [BP-4]
   mov R1, global_floorclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_8280_end
-__if_8280_else:
+  jmp __if_8444_end
+__if_8444_else:
   mov R0, [BP-3]
   iadd R0, 1
   mov R1, global_floorclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-__if_8280_end:
-  jmp __if_8229_end
-__if_8229_else:
-__if_8517_start:
+__if_8444_end:
+  jmp __if_8393_end
+__if_8393_else:
+__if_8681_start:
   mov R0, [global_markfloor]
-  jf R0, __if_8517_end
+  jf R0, __if_8681_end
   mov R0, [BP-3]
   iadd R0, 1
   mov R1, global_floorclip
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-__if_8517_end:
-__if_8229_end:
-__if_8526_start:
+__if_8681_end:
+__if_8393_end:
+__if_8690_start:
   mov R0, [global_maskedtexture]
-  jf R0, __if_8526_end
+  jf R0, __if_8690_end
   mov R0, [BP-5]
   mov R1, [global_maskedtexturecol]
   mov R2, [global_rw_x]
   iadd R1, R2
   mov [R1], R0
-__if_8526_end:
-__if_7706_end:
+__if_8690_end:
+__if_7870_end:
   mov R0, [global_rw_scale]
   mov R1, [global_rw_scalestep]
   iadd R0, R1
@@ -7989,13 +8179,13 @@ __if_7706_end:
   mov R1, [global_bottomstep]
   iadd R0, R1
   mov [global_bottomfrac], R0
-__for_7405_continue:
+__for_7569_continue:
   mov R0, [global_rw_x]
   mov R1, R0
   iadd R1, 1
   mov [global_rw_x], R1
-  jmp __for_7405_start
-__for_7405_end:
+  jmp __for_7569_start
+__for_7569_end:
 __function_R_RenderSegLoop_return:
   mov SP, BP
   pop BP
@@ -8005,12 +8195,12 @@ __function_R_StoreWallRange:
   push BP
   mov BP, SP
   isub SP, 11
-__if_8557_start:
+__if_8721_start:
   mov R0, [global_ds_count]
   ieq R0, 256
-  jf R0, __if_8557_end
+  jf R0, __if_8721_end
   jmp __function_R_StoreWallRange_return
-__if_8557_end:
+__if_8721_end:
   mov R0, global_drawsegs
   mov R1, [global_ds_count]
   imul R1, 12
@@ -8044,21 +8234,21 @@ __if_8557_end:
   mov R1, [global_rw_angle1]
   isub R0, R1
   mov [BP-4], R0
-__if_8593_start:
+__if_8757_start:
   mov R0, [BP-4]
   ilt R0, 0
-  jf R0, __if_8593_end
+  jf R0, __if_8757_end
   mov R0, [BP-4]
   isgn R0
   mov [BP-4], R0
-__if_8593_end:
-__if_8601_start:
+__if_8757_end:
+__if_8765_start:
   mov R0, [BP-4]
   igt R0, 1073741824
-  jf R0, __if_8601_end
+  jf R0, __if_8765_end
   mov R0, 1073741824
   mov [BP-4], R0
-__if_8601_end:
+__if_8765_end:
   mov R0, [BP-4]
   isgn R0
   iadd R0, 1073741824
@@ -8121,11 +8311,11 @@ __if_8601_end:
   mov R1, [BP-7]
   iadd R1, 3
   mov [R1], R0
-__if_8666_start:
+__if_8830_start:
   mov R0, [BP+3]
   mov R1, [BP+2]
   igt R0, R1
-  jf R0, __if_8666_else
+  jf R0, __if_8830_else
   mov R2, [global_viewangle]
   mov R3, global_xtoviewangle
   mov R4, [BP+3]
@@ -8149,15 +8339,15 @@ __if_8666_start:
   mov R1, [BP-7]
   iadd R1, 4
   mov [R1], R0
-  jmp __if_8666_end
-__if_8666_else:
+  jmp __if_8830_end
+__if_8830_else:
   mov R0, 0
   mov [global_rw_scalestep], R0
   mov R0, [global_rw_scale]
   mov R1, [BP-7]
   iadd R1, 4
   mov [R1], R0
-__if_8666_end:
+__if_8830_end:
   mov R0, [global_rw_scalestep]
   mov R1, [BP-7]
   iadd R1, 5
@@ -8185,11 +8375,11 @@ __if_8666_end:
   mov R1, [BP-7]
   iadd R1, 11
   mov [R1], R0
-__if_8734_start:
+__if_8898_start:
   mov R0, [global_backsector]
   ine R0, -1
   bnot R0
-  jf R0, __if_8734_else
+  jf R0, __if_8898_else
   mov R0, global_texturetranslation
   mov R2, [global_sidedef]
   iadd R2, 4
@@ -8201,13 +8391,13 @@ __if_8734_start:
   mov [global_markfloor], R0
   mov R0, 1
   mov [global_markceiling], R0
-__if_8750_start:
+__if_8914_start:
   mov R1, [global_linedef]
   iadd R1, 4
   mov R0, [R1]
   and R0, 16
   cib R0
-  jf R0, __if_8750_else
+  jf R0, __if_8914_else
   mov R1, [global_frontsector]
   mov R0, [R1]
   mov R1, global_textureheight_i
@@ -8223,11 +8413,11 @@ __if_8750_start:
   mov R1, [global_viewz]
   isub R0, R1
   mov [global_rw_midtexturemid], R0
-  jmp __if_8750_end
-__if_8750_else:
+  jmp __if_8914_end
+__if_8914_else:
   mov R0, [global_worldtop]
   mov [global_rw_midtexturemid], R0
-__if_8750_end:
+__if_8914_end:
   mov R0, [global_rw_midtexturemid]
   mov R2, [global_sidedef]
   iadd R2, 1
@@ -8254,8 +8444,8 @@ __if_8750_end:
   mov R1, [BP-7]
   iadd R1, 8
   mov [R1], R0
-  jmp __if_8734_end
-__if_8734_else:
+  jmp __if_8898_end
+__if_8898_else:
   mov R0, -1
   mov R1, [BP-7]
   iadd R1, 9
@@ -8268,13 +8458,13 @@ __if_8734_else:
   mov R1, [BP-7]
   iadd R1, 6
   mov [R1], R0
-__if_8820_start:
+__if_8984_start:
   mov R1, [global_frontsector]
   mov R0, [R1]
   mov R2, [global_backsector]
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_8820_else
+  jf R0, __if_8984_else
   mov R0, 1
   mov R1, [BP-7]
   iadd R1, 6
@@ -8284,14 +8474,14 @@ __if_8820_start:
   mov R1, [BP-7]
   iadd R1, 7
   mov [R1], R0
-  jmp __if_8820_end
-__if_8820_else:
-__if_8836_start:
+  jmp __if_8984_end
+__if_8984_else:
+__if_9000_start:
   mov R1, [global_backsector]
   mov R0, [R1]
   mov R1, [global_viewz]
   igt R0, R1
-  jf R0, __if_8836_end
+  jf R0, __if_9000_end
   mov R0, 1
   mov R1, [BP-7]
   iadd R1, 6
@@ -8300,9 +8490,9 @@ __if_8836_start:
   mov R1, [BP-7]
   iadd R1, 7
   mov [R1], R0
-__if_8836_end:
-__if_8820_end:
-__if_8850_start:
+__if_9000_end:
+__if_8984_end:
+__if_9014_start:
   mov R1, [global_frontsector]
   iadd R1, 1
   mov R0, [R1]
@@ -8310,7 +8500,7 @@ __if_8850_start:
   iadd R2, 1
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_8850_else
+  jf R0, __if_9014_else
   mov R1, [BP-7]
   iadd R1, 6
   mov R0, [R1]
@@ -8324,15 +8514,15 @@ __if_8850_start:
   mov R1, [BP-7]
   iadd R1, 8
   mov [R1], R0
-  jmp __if_8850_end
-__if_8850_else:
-__if_8866_start:
+  jmp __if_9014_end
+__if_9014_else:
+__if_9030_start:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [global_viewz]
   ilt R0, R1
-  jf R0, __if_8866_end
+  jf R0, __if_9030_end
   mov R1, [BP-7]
   iadd R1, 6
   mov R0, [R1]
@@ -8344,16 +8534,16 @@ __if_8866_start:
   mov R1, [BP-7]
   iadd R1, 8
   mov [R1], R0
-__if_8866_end:
-__if_8850_end:
-__if_8880_start:
+__if_9030_end:
+__if_9014_end:
+__if_9044_start:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
   mov R2, [global_frontsector]
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_8880_end
+  jf R0, __if_9044_end
   mov R0, global_negonearray
   mov R1, [BP-7]
   iadd R1, 10
@@ -8369,15 +8559,15 @@ __if_8880_start:
   mov R1, [BP-7]
   iadd R1, 6
   mov [R1], R0
-__if_8880_end:
-__if_8902_start:
+__if_9044_end:
+__if_9066_start:
   mov R1, [global_backsector]
   mov R0, [R1]
   mov R2, [global_frontsector]
   iadd R2, 1
   mov R1, [R2]
   ige R0, R1
-  jf R0, __if_8902_end
+  jf R0, __if_9066_end
   mov R0, global_screenheightarray
   mov R1, [BP-7]
   iadd R1, 9
@@ -8393,27 +8583,27 @@ __if_8902_start:
   mov R1, [BP-7]
   iadd R1, 6
   mov [R1], R0
-__if_8902_end:
-__if_8924_start:
+__if_9066_end:
+__if_9088_start:
   mov R1, [global_frontsector]
   iadd R1, 3
   mov R0, [R1]
   ieq R0, 53
-  jf R0, __LogicalAnd_ShortCircuit_8931
+  jf R0, __LogicalAnd_ShortCircuit_9095
   mov R2, [global_backsector]
   iadd R2, 3
   mov R1, [R2]
   ieq R1, 53
   and R0, R1
-__LogicalAnd_ShortCircuit_8931:
-  jf R0, __if_8924_end
+__LogicalAnd_ShortCircuit_9095:
+  jf R0, __if_9088_end
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [global_viewz]
   isub R0, R1
   mov [global_worldtop], R0
-__if_8924_end:
+__if_9088_end:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
@@ -8425,11 +8615,11 @@ __if_8924_end:
   mov R1, [global_viewz]
   isub R0, R1
   mov [global_worldlow], R0
-__if_8953_start:
+__if_9117_start:
   mov R0, [global_worldlow]
   mov R1, [global_worldbottom]
   ine R0, R1
-  jt R0, __LogicalOr_ShortCircuit_8959
+  jt R0, __LogicalOr_ShortCircuit_9123
   mov R2, [global_backsector]
   iadd R2, 2
   mov R1, [R2]
@@ -8438,8 +8628,8 @@ __if_8953_start:
   mov R2, [R3]
   ine R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_8959:
-  jt R0, __LogicalOr_ShortCircuit_8965
+__LogicalOr_ShortCircuit_9123:
+  jt R0, __LogicalOr_ShortCircuit_9129
   mov R2, [global_backsector]
   iadd R2, 4
   mov R1, [R2]
@@ -8448,20 +8638,20 @@ __LogicalOr_ShortCircuit_8959:
   mov R2, [R3]
   ine R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_8965:
-  jf R0, __if_8953_else
+__LogicalOr_ShortCircuit_9129:
+  jf R0, __if_9117_else
   mov R0, 1
   mov [global_markfloor], R0
-  jmp __if_8953_end
-__if_8953_else:
+  jmp __if_9117_end
+__if_9117_else:
   mov R0, 0
   mov [global_markfloor], R0
-__if_8953_end:
-__if_8975_start:
+__if_9117_end:
+__if_9139_start:
   mov R0, [global_worldhigh]
   mov R1, [global_worldtop]
   ine R0, R1
-  jt R0, __LogicalOr_ShortCircuit_8981
+  jt R0, __LogicalOr_ShortCircuit_9145
   mov R2, [global_backsector]
   iadd R2, 3
   mov R1, [R2]
@@ -8470,8 +8660,8 @@ __if_8975_start:
   mov R2, [R3]
   ine R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_8981:
-  jt R0, __LogicalOr_ShortCircuit_8987
+__LogicalOr_ShortCircuit_9145:
+  jt R0, __LogicalOr_ShortCircuit_9151
   mov R2, [global_backsector]
   iadd R2, 4
   mov R1, [R2]
@@ -8480,23 +8670,23 @@ __LogicalOr_ShortCircuit_8981:
   mov R2, [R3]
   ine R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_8987:
-  jf R0, __if_8975_else
+__LogicalOr_ShortCircuit_9151:
+  jf R0, __if_9139_else
   mov R0, 1
   mov [global_markceiling], R0
-  jmp __if_8975_end
-__if_8975_else:
+  jmp __if_9139_end
+__if_9139_else:
   mov R0, 0
   mov [global_markceiling], R0
-__if_8975_end:
-__if_8997_start:
+__if_9139_end:
+__if_9161_start:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
   mov R2, [global_frontsector]
   mov R1, [R2]
   ile R0, R1
-  jt R0, __LogicalOr_ShortCircuit_9005
+  jt R0, __LogicalOr_ShortCircuit_9169
   mov R2, [global_backsector]
   mov R1, [R2]
   mov R3, [global_frontsector]
@@ -8504,18 +8694,18 @@ __if_8997_start:
   mov R2, [R3]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_9005:
-  jf R0, __if_8997_end
+__LogicalOr_ShortCircuit_9169:
+  jf R0, __if_9161_end
   mov R0, 1
   mov [global_markceiling], R0
   mov R0, 1
   mov [global_markfloor], R0
-__if_8997_end:
-__if_9016_start:
+__if_9161_end:
+__if_9180_start:
   mov R0, [global_worldhigh]
   mov R1, [global_worldtop]
   ilt R0, R1
-  jf R0, __if_9016_end
+  jf R0, __if_9180_end
   mov R0, global_texturetranslation
   mov R2, [global_sidedef]
   iadd R2, 2
@@ -8523,17 +8713,17 @@ __if_9016_start:
   iadd R0, R1
   mov R0, [R0]
   mov [global_toptexture], R0
-__if_9027_start:
+__if_9191_start:
   mov R1, [global_linedef]
   iadd R1, 4
   mov R0, [R1]
   and R0, 8
   cib R0
-  jf R0, __if_9027_else
+  jf R0, __if_9191_else
   mov R0, [global_worldtop]
   mov [global_rw_toptexturemid], R0
-  jmp __if_9027_end
-__if_9027_else:
+  jmp __if_9191_end
+__if_9191_else:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
@@ -8550,13 +8740,13 @@ __if_9027_else:
   mov R1, [global_viewz]
   isub R0, R1
   mov [global_rw_toptexturemid], R0
-__if_9027_end:
-__if_9016_end:
-__if_9054_start:
+__if_9191_end:
+__if_9180_end:
+__if_9218_start:
   mov R0, [global_worldlow]
   mov R1, [global_worldbottom]
   igt R0, R1
-  jf R0, __if_9054_end
+  jf R0, __if_9218_end
   mov R0, global_texturetranslation
   mov R2, [global_sidedef]
   iadd R2, 3
@@ -8564,21 +8754,21 @@ __if_9054_start:
   iadd R0, R1
   mov R0, [R0]
   mov [global_bottomtexture], R0
-__if_9065_start:
+__if_9229_start:
   mov R1, [global_linedef]
   iadd R1, 4
   mov R0, [R1]
   and R0, 16
   cib R0
-  jf R0, __if_9065_else
+  jf R0, __if_9229_else
   mov R0, [global_worldtop]
   mov [global_rw_bottomtexturemid], R0
-  jmp __if_9065_end
-__if_9065_else:
+  jmp __if_9229_end
+__if_9229_else:
   mov R0, [global_worldlow]
   mov [global_rw_bottomtexturemid], R0
-__if_9065_end:
-__if_9054_end:
+__if_9229_end:
+__if_9218_end:
   mov R0, [global_rw_toptexturemid]
   mov R2, [global_sidedef]
   iadd R2, 1
@@ -8591,20 +8781,20 @@ __if_9054_end:
   mov R1, [R2]
   iadd R0, R1
   mov [global_rw_bottomtexturemid], R0
-__if_9084_start:
+__if_9248_start:
   mov R1, [global_sidedef]
   iadd R1, 4
   mov R0, [R1]
   cib R0
-  jf R0, __if_9084_end
-__if_9088_start:
+  jf R0, __if_9248_end
+__if_9252_start:
   mov R0, [global_opening_used]
   mov R1, [global_rw_stopx]
   mov R2, [global_rw_x]
   isub R1, R2
   iadd R0, R1
   ilt R0, 20480
-  jf R0, __if_9088_end
+  jf R0, __if_9252_end
   mov R0, 1
   mov [global_maskedtexture], R0
   mov R0, global_openings
@@ -8623,50 +8813,50 @@ __if_9088_start:
   isub R1, R2
   iadd R0, R1
   mov [global_opening_used], R0
-__if_9088_end:
-__if_9084_end:
-__if_8734_end:
+__if_9252_end:
+__if_9248_end:
+__if_8898_end:
   mov R0, 0
   mov [global_segtextured], R0
-__if_9124_start:
+__if_9288_start:
   mov R0, [global_midtexture]
   mov R1, [global_toptexture]
   or R0, R1
   mov R1, [global_bottomtexture]
   or R0, R1
   cib R0
-  jf R0, __if_9124_end
+  jf R0, __if_9288_end
   mov R0, 1
   mov [global_segtextured], R0
-__if_9124_end:
-__if_9133_start:
+__if_9288_end:
+__if_9297_start:
   mov R0, [global_maskedtexture]
-  jf R0, __if_9133_end
+  jf R0, __if_9297_end
   mov R0, 1
   mov [global_segtextured], R0
-__if_9133_end:
-__if_9138_start:
+__if_9297_end:
+__if_9302_start:
   mov R0, [global_segtextured]
-  jf R0, __if_9138_end
+  jf R0, __if_9302_end
   mov R0, [global_rw_normalangle]
   mov R1, [global_rw_angle1]
   isub R0, R1
   mov [BP-4], R0
-__if_9146_start:
+__if_9310_start:
   mov R0, [BP-4]
   ilt R0, 0
-  jf R0, __if_9146_end
+  jf R0, __if_9310_end
   mov R0, [BP-4]
   isgn R0
   mov [BP-4], R0
-__if_9146_end:
-__if_9154_start:
+__if_9310_end:
+__if_9318_start:
   mov R0, [BP-4]
   igt R0, 1073741824
-  jf R0, __if_9154_end
+  jf R0, __if_9318_end
   mov R0, 1073741824
   mov [BP-4], R0
-__if_9154_end:
+__if_9318_end:
   mov R0, __embedded_finesine
   mov R1, [BP-4]
   shl R1, -19
@@ -8681,16 +8871,16 @@ __if_9154_end:
   mov R1, R0
   mov [global_rw_offset], R1
   mov R0, R1
-__if_9173_start:
+__if_9337_start:
   mov R0, [global_rw_normalangle]
   mov R1, [global_rw_angle1]
   isub R0, R1
   ige R0, 0
-  jf R0, __if_9173_end
+  jf R0, __if_9337_end
   mov R0, [global_rw_offset]
   isgn R0
   mov [global_rw_offset], R0
-__if_9173_end:
+__if_9337_end:
   mov R0, [global_rw_offset]
   mov R2, [global_sidedef]
   mov R1, [R2]
@@ -8709,7 +8899,7 @@ __if_9173_end:
   iadd R1, 4
   mov R0, [R1]
   mov [global_seg_light], R0
-__if_9201_start:
+__if_9365_start:
   mov R2, [global_curline]
   mov R1, [R2]
   iadd R1, 1
@@ -8720,13 +8910,13 @@ __if_9201_start:
   iadd R2, 1
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_9201_else
+  jf R0, __if_9365_else
   mov R0, [global_seg_light]
   isub R0, 16
   mov [global_seg_light], R0
-  jmp __if_9201_end
-__if_9201_else:
-__if_9212_start:
+  jmp __if_9365_end
+__if_9365_else:
+__if_9376_start:
   mov R2, [global_curline]
   mov R1, [R2]
   mov R0, [R1]
@@ -8735,42 +8925,42 @@ __if_9212_start:
   mov R2, [R3]
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_9212_end
+  jf R0, __if_9376_end
   mov R0, [global_seg_light]
   iadd R0, 16
   mov [global_seg_light], R0
-__if_9212_end:
-__if_9201_end:
+__if_9376_end:
+__if_9365_end:
   mov R1, [global_seg_light]
   mov [SP], R1
   call __function_GPU_SetLight
-__if_9138_end:
-__if_9225_start:
+__if_9302_end:
+__if_9389_start:
   mov R1, [global_frontsector]
   mov R0, [R1]
   mov R1, [global_viewz]
   ige R0, R1
-  jf R0, __if_9225_end
+  jf R0, __if_9389_end
   mov R0, 0
   mov [global_markfloor], R0
-__if_9225_end:
-__if_9233_start:
+__if_9389_end:
+__if_9397_start:
   mov R1, [global_frontsector]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [global_viewz]
   ile R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_9240
+  jf R0, __LogicalAnd_ShortCircuit_9404
   mov R2, [global_frontsector]
   iadd R2, 3
   mov R1, [R2]
   ine R1, 53
   and R0, R1
-__LogicalAnd_ShortCircuit_9240:
-  jf R0, __if_9233_end
+__LogicalAnd_ShortCircuit_9404:
+  jf R0, __if_9397_end
   mov R0, 0
   mov [global_markceiling], R0
-__if_9233_end:
+__if_9397_end:
   mov R0, [global_worldtop]
   shl R0, -4
   mov R1, [global_worldtop]
@@ -8827,10 +9017,10 @@ __if_9233_end:
   isub R1, R2
   mov [global_bottomfrac], R1
   mov R0, R1
-__if_9326_start:
+__if_9490_start:
   mov R0, [global_backsector]
   ine R0, -1
-  jf R0, __if_9326_end
+  jf R0, __if_9490_end
   mov R0, [global_worldhigh]
   shl R0, -4
   mov R1, [global_worldhigh]
@@ -8847,11 +9037,11 @@ __if_9326_start:
   shl R1, 28
   or R0, R1
   mov [global_worldlow], R0
-__if_9377_start:
+__if_9541_start:
   mov R0, [global_worldhigh]
   mov R1, [global_worldtop]
   ilt R0, R1
-  jf R0, __if_9377_end
+  jf R0, __if_9541_end
   mov R1, [global_centeryfrac]
   shl R1, -4
   mov R3, [global_worldhigh]
@@ -8872,12 +9062,12 @@ __if_9377_start:
   isgn R1
   mov [global_pixhighstep], R1
   mov R0, R1
-__if_9377_end:
-__if_9398_start:
+__if_9541_end:
+__if_9562_start:
   mov R0, [global_worldlow]
   mov R1, [global_worldbottom]
   igt R0, R1
-  jf R0, __if_9398_end
+  jf R0, __if_9562_end
   mov R1, [global_centeryfrac]
   shl R1, -4
   mov R3, [global_worldlow]
@@ -8898,16 +9088,16 @@ __if_9398_start:
   isgn R1
   mov [global_pixlowstep], R1
   mov R0, R1
-__if_9398_end:
-__if_9326_end:
-__if_9419_start:
+__if_9562_end:
+__if_9490_end:
+__if_9583_start:
   mov R0, [global_markceiling]
-  jf R0, __LogicalAnd_ShortCircuit_9421
+  jf R0, __LogicalAnd_ShortCircuit_9585
   mov R1, [global_ceilingplane]
   ine R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_9421:
-  jf R0, __if_9419_else
+__LogicalAnd_ShortCircuit_9585:
+  jf R0, __if_9583_else
   mov R2, [global_ceilingplane]
   mov [SP], R2
   mov R2, [global_rw_x]
@@ -8919,19 +9109,19 @@ __LogicalAnd_ShortCircuit_9421:
   mov R1, R0
   mov [global_ceilingplane], R1
   mov R0, R1
-  jmp __if_9419_end
-__if_9419_else:
+  jmp __if_9583_end
+__if_9583_else:
   mov R0, 0
   mov [global_markceiling], R0
-__if_9419_end:
-__if_9436_start:
+__if_9583_end:
+__if_9600_start:
   mov R0, [global_markfloor]
-  jf R0, __LogicalAnd_ShortCircuit_9438
+  jf R0, __LogicalAnd_ShortCircuit_9602
   mov R1, [global_floorplane]
   ine R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_9438:
-  jf R0, __if_9436_else
+__LogicalAnd_ShortCircuit_9602:
+  jf R0, __if_9600_else
   mov R2, [global_floorplane]
   mov [SP], R2
   mov R2, [global_rw_x]
@@ -8943,45 +9133,45 @@ __LogicalAnd_ShortCircuit_9438:
   mov R1, R0
   mov [global_floorplane], R1
   mov R0, R1
-  jmp __if_9436_end
-__if_9436_else:
+  jmp __if_9600_end
+__if_9600_else:
   mov R0, 0
   mov [global_markfloor], R0
-__if_9436_end:
+__if_9600_end:
   call __function_R_RenderSegLoop
-__if_9454_start:
+__if_9618_start:
   mov R1, [BP-7]
   iadd R1, 6
   mov R0, [R1]
   and R0, 2
   cib R0
-  jt R0, __LogicalOr_ShortCircuit_9461
+  jt R0, __LogicalOr_ShortCircuit_9625
   mov R1, [global_maskedtexture]
   or R0, R1
-__LogicalOr_ShortCircuit_9461:
-  jf R0, __LogicalAnd_ShortCircuit_9463
+__LogicalOr_ShortCircuit_9625:
+  jf R0, __LogicalAnd_ShortCircuit_9627
   mov R2, [BP-7]
   iadd R2, 9
   mov R1, [R2]
   ieq R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_9463:
-  jf R0, __if_9454_end
-__if_9469_start:
+__LogicalAnd_ShortCircuit_9627:
+  jf R0, __if_9618_end
+__if_9633_start:
   mov R0, [global_opening_used]
   mov R1, [global_rw_stopx]
   mov R2, [BP+2]
   isub R1, R2
   iadd R0, R1
   ilt R0, 20480
-  jf R0, __if_9469_else
+  jf R0, __if_9633_else
   mov R0, [BP+2]
   mov [BP-8], R0
-__for_9484_start:
+__for_9648_start:
   mov R0, [BP-8]
   mov R1, [global_rw_stopx]
   ilt R0, R1
-  jf R0, __for_9484_end
+  jf R0, __for_9648_end
   mov R0, global_ceilingclip
   mov R1, [BP-8]
   iadd R0, R1
@@ -8994,13 +9184,13 @@ __for_9484_start:
   isub R2, R3
   iadd R1, R2
   mov [R1], R0
-__for_9484_continue:
+__for_9648_continue:
   mov R0, [BP-8]
   mov R1, R0
   iadd R1, 1
   mov [BP-8], R1
-  jmp __for_9484_start
-__for_9484_end:
+  jmp __for_9648_start
+__for_9648_end:
   mov R0, global_openings
   mov R1, [global_opening_used]
   mov R2, [BP+2]
@@ -9015,47 +9205,47 @@ __for_9484_end:
   isub R1, R2
   iadd R0, R1
   mov [global_opening_used], R0
-  jmp __if_9469_end
-__if_9469_else:
+  jmp __if_9633_end
+__if_9633_else:
   mov R0, global_negonearray
   mov R1, [BP-7]
   iadd R1, 9
   mov [R1], R0
-__if_9469_end:
-__if_9454_end:
-__if_9525_start:
+__if_9633_end:
+__if_9618_end:
+__if_9689_start:
   mov R1, [BP-7]
   iadd R1, 6
   mov R0, [R1]
   and R0, 1
   cib R0
-  jt R0, __LogicalOr_ShortCircuit_9532
+  jt R0, __LogicalOr_ShortCircuit_9696
   mov R1, [global_maskedtexture]
   or R0, R1
-__LogicalOr_ShortCircuit_9532:
-  jf R0, __LogicalAnd_ShortCircuit_9534
+__LogicalOr_ShortCircuit_9696:
+  jf R0, __LogicalAnd_ShortCircuit_9698
   mov R2, [BP-7]
   iadd R2, 10
   mov R1, [R2]
   ieq R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_9534:
-  jf R0, __if_9525_end
-__if_9540_start:
+__LogicalAnd_ShortCircuit_9698:
+  jf R0, __if_9689_end
+__if_9704_start:
   mov R0, [global_opening_used]
   mov R1, [global_rw_stopx]
   mov R2, [BP+2]
   isub R1, R2
   iadd R0, R1
   ilt R0, 20480
-  jf R0, __if_9540_else
+  jf R0, __if_9704_else
   mov R0, [BP+2]
   mov [BP-8], R0
-__for_9555_start:
+__for_9719_start:
   mov R0, [BP-8]
   mov R1, [global_rw_stopx]
   ilt R0, R1
-  jf R0, __for_9555_end
+  jf R0, __for_9719_end
   mov R0, global_floorclip
   mov R1, [BP-8]
   iadd R0, R1
@@ -9068,13 +9258,13 @@ __for_9555_start:
   isub R2, R3
   iadd R1, R2
   mov [R1], R0
-__for_9555_continue:
+__for_9719_continue:
   mov R0, [BP-8]
   mov R1, R0
   iadd R1, 1
   mov [BP-8], R1
-  jmp __for_9555_start
-__for_9555_end:
+  jmp __for_9719_start
+__for_9719_end:
   mov R0, global_openings
   mov R1, [global_opening_used]
   mov R2, [BP+2]
@@ -9089,25 +9279,25 @@ __for_9555_end:
   isub R1, R2
   iadd R0, R1
   mov [global_opening_used], R0
-  jmp __if_9540_end
-__if_9540_else:
+  jmp __if_9704_end
+__if_9704_else:
   mov R0, global_screenheightarray
   mov R1, [BP-7]
   iadd R1, 10
   mov [R1], R0
-__if_9540_end:
-__if_9525_end:
-__if_9596_start:
+__if_9704_end:
+__if_9689_end:
+__if_9760_start:
   mov R0, [global_maskedtexture]
-  jf R0, __LogicalAnd_ShortCircuit_9598
+  jf R0, __LogicalAnd_ShortCircuit_9762
   mov R2, [BP-7]
   iadd R2, 6
   mov R1, [R2]
   and R1, 2
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_9598:
-  jf R0, __if_9596_end
+__LogicalAnd_ShortCircuit_9762:
+  jf R0, __if_9760_end
   mov R1, [BP-7]
   iadd R1, 6
   mov R0, [R1]
@@ -9119,18 +9309,18 @@ __LogicalAnd_ShortCircuit_9598:
   mov R1, [BP-7]
   iadd R1, 8
   mov [R1], R0
-__if_9596_end:
-__if_9614_start:
+__if_9760_end:
+__if_9778_start:
   mov R0, [global_maskedtexture]
-  jf R0, __LogicalAnd_ShortCircuit_9616
+  jf R0, __LogicalAnd_ShortCircuit_9780
   mov R2, [BP-7]
   iadd R2, 6
   mov R1, [R2]
   and R1, 1
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_9616:
-  jf R0, __if_9614_end
+__LogicalAnd_ShortCircuit_9780:
+  jf R0, __if_9778_end
   mov R1, [BP-7]
   iadd R1, 6
   mov R0, [R1]
@@ -9142,7 +9332,7 @@ __LogicalAnd_ShortCircuit_9616:
   mov R1, [BP-7]
   iadd R1, 7
   mov [R1], R0
-__if_9614_end:
+__if_9778_end:
   mov R0, [global_ds_count]
   mov R1, R0
   iadd R1, 1
@@ -9180,7 +9370,7 @@ __function_R_RenderMaskedSegRange:
   iadd R1, 4
   mov R0, [R1]
   mov [BP-6], R0
-__if_9671_start:
+__if_9835_start:
   mov R2, [global_curline]
   mov R1, [R2]
   iadd R1, 1
@@ -9191,13 +9381,13 @@ __if_9671_start:
   iadd R2, 1
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_9671_else
+  jf R0, __if_9835_else
   mov R0, [BP-6]
   isub R0, 16
   mov [BP-6], R0
-  jmp __if_9671_end
-__if_9671_else:
-__if_9682_start:
+  jmp __if_9835_end
+__if_9835_else:
+__if_9846_start:
   mov R2, [global_curline]
   mov R1, [R2]
   mov R0, [R1]
@@ -9206,12 +9396,12 @@ __if_9682_start:
   mov R2, [R3]
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_9682_end
+  jf R0, __if_9846_end
   mov R0, [BP-6]
   iadd R0, 16
   mov [BP-6], R0
-__if_9682_end:
-__if_9671_end:
+__if_9846_end:
+__if_9835_end:
   mov R1, [BP-6]
   mov [SP], R1
   call __function_GPU_SetLight
@@ -9250,7 +9440,7 @@ __if_9671_end:
   iadd R0, 5
   mov R0, [R0]
   mov [BP-10], R0
-__if_9730_start:
+__if_9894_start:
   mov R2, [global_curline]
   iadd R2, 5
   mov R1, [R2]
@@ -9258,23 +9448,23 @@ __if_9730_start:
   mov R0, [R1]
   and R0, 16
   cib R0
-  jf R0, __if_9730_else
-__if_9737_start:
+  jf R0, __if_9894_else
+__if_9901_start:
   mov R1, [global_frontsector]
   mov R0, [R1]
   mov R2, [global_backsector]
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_9737_else
+  jf R0, __if_9901_else
   mov R1, [global_frontsector]
   mov R0, [R1]
   mov [BP-2], R0
-  jmp __if_9737_end
-__if_9737_else:
+  jmp __if_9901_end
+__if_9901_else:
   mov R1, [global_backsector]
   mov R0, [R1]
   mov [BP-2], R0
-__if_9737_end:
+__if_9901_end:
   mov R0, [BP-2]
   mov R1, [BP-10]
   shl R1, 16
@@ -9282,9 +9472,9 @@ __if_9737_end:
   mov R1, [global_viewz]
   isub R0, R1
   mov [BP-2], R0
-  jmp __if_9730_end
-__if_9730_else:
-__if_9762_start:
+  jmp __if_9894_end
+__if_9894_else:
+__if_9926_start:
   mov R1, [global_frontsector]
   iadd R1, 1
   mov R0, [R1]
@@ -9292,23 +9482,23 @@ __if_9762_start:
   iadd R2, 1
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_9762_else
+  jf R0, __if_9926_else
   mov R1, [global_frontsector]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-2], R0
-  jmp __if_9762_end
-__if_9762_else:
+  jmp __if_9926_end
+__if_9926_else:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-2], R0
-__if_9762_end:
+__if_9926_end:
   mov R0, [BP-2]
   mov R1, [global_viewz]
   isub R0, R1
   mov [BP-2], R0
-__if_9730_end:
+__if_9894_end:
   mov R0, [BP-2]
   mov R3, [global_curline]
   iadd R3, 4
@@ -9346,18 +9536,18 @@ __if_9730_end:
   mov [BP-14], R0
   mov R0, [BP+3]
   mov [BP-5], R0
-__for_9814_start:
+__for_9978_start:
   mov R0, [BP-5]
   mov R1, [BP+4]
   ile R0, R1
-  jf R0, __for_9814_end
-__if_9824_start:
+  jf R0, __for_9978_end
+__if_9988_start:
   mov R0, [BP-7]
   mov R1, [BP-5]
   iadd R0, R1
   mov R0, [R0]
   ine R0, 2147483647
-  jf R0, __if_9824_end
+  jf R0, __if_9988_end
   mov R1, [global_centeryfrac]
   mov R3, [BP-2]
   mov [SP], R3
@@ -9398,10 +9588,10 @@ __if_9824_start:
   shl R1, 16
   or R0, R1
   mov [BP-17], R0
-__if_9906_start:
+__if_10070_start:
   mov R0, [BP-8]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_9911
+  jf R0, __LogicalAnd_ShortCircuit_10075
   mov R1, [BP-17]
   mov R2, [BP-8]
   mov R3, [BP-5]
@@ -9409,19 +9599,19 @@ __if_9906_start:
   mov R2, [R2]
   ige R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_9911:
-  jf R0, __if_9906_end
+__LogicalAnd_ShortCircuit_10075:
+  jf R0, __if_10070_end
   mov R0, [BP-8]
   mov R1, [BP-5]
   iadd R0, R1
   mov R0, [R0]
   isub R0, 1
   mov [BP-17], R0
-__if_9906_end:
-__if_9923_start:
+__if_10070_end:
+__if_10087_start:
   mov R0, [BP-9]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_9928
+  jf R0, __LogicalAnd_ShortCircuit_10092
   mov R1, [BP-16]
   mov R2, [BP-9]
   mov R3, [BP-5]
@@ -9429,36 +9619,36 @@ __if_9923_start:
   mov R2, [R2]
   ile R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_9928:
-  jf R0, __if_9923_end
+__LogicalAnd_ShortCircuit_10092:
+  jf R0, __if_10087_end
   mov R0, [BP-9]
   mov R1, [BP-5]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, 1
   mov [BP-16], R0
-__if_9923_end:
-__if_9940_start:
+__if_10087_end:
+__if_10104_start:
   mov R0, [BP-16]
   ilt R0, 0
-  jf R0, __if_9940_end
+  jf R0, __if_10104_end
   mov R0, 0
   mov [BP-16], R0
-__if_9940_end:
-__if_9947_start:
+__if_10104_end:
+__if_10111_start:
   mov R0, [BP-17]
   mov R1, [global_viewheight]
   ige R0, R1
-  jf R0, __if_9947_end
+  jf R0, __if_10111_end
   mov R0, [global_viewheight]
   isub R0, 1
   mov [BP-17], R0
-__if_9947_end:
-__if_9956_start:
+__if_10111_end:
+__if_10120_start:
   mov R0, [BP-16]
   mov R1, [BP-17]
   ile R0, R1
-  jf R0, __if_9956_end
+  jf R0, __if_10120_end
   mov R0, [BP-7]
   mov R1, [BP-5]
   iadd R0, R1
@@ -9466,15 +9656,15 @@ __if_9956_start:
   mov R1, [BP-14]
   imod R0, R1
   mov [BP-18], R0
-__if_9968_start:
+__if_10132_start:
   mov R0, [BP-18]
   ilt R0, 0
-  jf R0, __if_9968_end
+  jf R0, __if_10132_end
   mov R0, [BP-18]
   mov R1, [BP-14]
   iadd R0, R1
   mov [BP-18], R0
-__if_9968_end:
+__if_10132_end:
   mov R0, [BP-15]
   cif R0
   fmul R0, 0.000015
@@ -9505,24 +9695,24 @@ __if_9968_end:
   mov R1, [BP-20]
   mov [SP+8], R1
   call __function_GPU_RecordMaskedColumn
-__if_9956_end:
+__if_10120_end:
   mov R0, 2147483647
   mov R1, [BP-7]
   mov R2, [BP-5]
   iadd R1, R2
   mov [R1], R0
-__if_9824_end:
+__if_9988_end:
   mov R0, [BP-3]
   mov R1, [BP-4]
   iadd R0, R1
   mov [BP-3], R0
-__for_9814_continue:
+__for_9978_continue:
   mov R0, [BP-5]
   mov R1, R0
   iadd R1, 1
   mov [BP-5], R1
-  jmp __for_9814_start
-__for_9814_end:
+  jmp __for_9978_start
+__for_9978_end:
 __function_R_RenderMaskedSegRange_return:
   mov SP, BP
   pop BP
@@ -9570,40 +9760,40 @@ __function_R_PointOnSegSide:
   mov R1, [BP-2]
   isub R0, R1
   mov [BP-4], R0
-__if_10101_start:
+__if_10265_start:
   mov R0, [BP-3]
   bnot R0
-  jf R0, __if_10101_end
-__if_10105_start:
+  jf R0, __if_10265_end
+__if_10269_start:
   mov R0, [BP+2]
   mov R1, [BP-1]
   ile R0, R1
-  jf R0, __if_10105_end
+  jf R0, __if_10269_end
   mov R0, [BP-4]
   igt R0, 0
   jmp __function_R_PointOnSegSide_return
-__if_10105_end:
+__if_10269_end:
   mov R0, [BP-4]
   ilt R0, 0
   jmp __function_R_PointOnSegSide_return
-__if_10101_end:
-__if_10117_start:
+__if_10265_end:
+__if_10281_start:
   mov R0, [BP-4]
   bnot R0
-  jf R0, __if_10117_end
-__if_10121_start:
+  jf R0, __if_10281_end
+__if_10285_start:
   mov R0, [BP+3]
   mov R1, [BP-2]
   ile R0, R1
-  jf R0, __if_10121_end
+  jf R0, __if_10285_end
   mov R0, [BP-3]
   ilt R0, 0
   jmp __function_R_PointOnSegSide_return
-__if_10121_end:
+__if_10285_end:
   mov R0, [BP-3]
   igt R0, 0
   jmp __function_R_PointOnSegSide_return
-__if_10117_end:
+__if_10281_end:
   mov R0, [BP+2]
   mov R1, [BP-1]
   isub R0, R1
@@ -9640,14 +9830,14 @@ __if_10117_end:
   mov R1, R0
   mov [BP-8], R1
   mov R0, R1
-__if_10195_start:
+__if_10359_start:
   mov R0, [BP-8]
   mov R1, [BP-7]
   ilt R0, R1
-  jf R0, __if_10195_end
+  jf R0, __if_10359_end
   mov R0, 0
   jmp __function_R_PointOnSegSide_return
-__if_10195_end:
+__if_10359_end:
   mov R0, 1
 __function_R_PointOnSegSide_return:
   iadd SP, 2
@@ -9695,12 +9885,12 @@ __function_R_ProjectSprite:
   mov R1, [BP-4]
   isub R0, R1
   mov [BP-6], R0
-__if_10261_start:
+__if_10425_start:
   mov R0, [BP-6]
   ilt R0, 262144
-  jf R0, __if_10261_end
+  jf R0, __if_10425_end
   jmp __function_R_ProjectSprite_return
-__if_10261_end:
+__if_10425_end:
   mov R2, [global_centerxfrac]
   mov [SP], R2
   mov R2, [BP-6]
@@ -9731,7 +9921,7 @@ __if_10261_end:
   iadd R0, R1
   isgn R0
   mov [BP-5], R0
-__if_10292_start:
+__if_10456_start:
   mov R2, [BP-5]
   mov [SP], R2
   call __function_abs
@@ -9740,9 +9930,9 @@ __if_10292_start:
   shl R2, 2
   igt R1, R2
   mov R0, R1
-  jf R0, __if_10292_end
+  jf R0, __if_10456_end
   jmp __function_R_ProjectSprite_return
-__if_10292_end:
+__if_10456_end:
   mov R1, [BP+2]
   iadd R1, 13
   mov R0, [R1]
@@ -9758,14 +9948,14 @@ __if_10292_end:
   mov R1, [BP-15]
   iadd R0, R1
   mov [BP-16], R0
-__if_10317_start:
+__if_10481_start:
   mov R0, __embedded_gen_sprframe
   mov R1, [BP-16]
   imul R1, 17
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_10317_else
+  jf R0, __if_10481_else
   mov R3, [BP+2]
   iadd R3, 4
   mov R2, [R3]
@@ -9804,8 +9994,8 @@ __if_10317_start:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-11], R0
-  jmp __if_10317_end
-__if_10317_else:
+  jmp __if_10481_end
+__if_10481_else:
   mov R0, __embedded_gen_sprframe
   mov R1, [BP-16]
   imul R1, 17
@@ -9820,7 +10010,7 @@ __if_10317_else:
   iadd R0, 9
   mov R0, [R0]
   mov [BP-11], R0
-__if_10317_end:
+__if_10481_end:
   mov R0, __embedded_gen_sprinfo
   mov R1, [BP-10]
   imul R1, 7
@@ -9872,13 +10062,13 @@ __if_10317_end:
   or R1, R2
   mov [BP-8], R1
   mov R0, R1
-__if_10437_start:
+__if_10601_start:
   mov R0, [BP-8]
   mov R1, [global_viewwidth]
   igt R0, R1
-  jf R0, __if_10437_end
+  jf R0, __if_10601_end
   jmp __function_R_ProjectSprite_return
-__if_10437_end:
+__if_10601_end:
   mov R0, [BP-5]
   mov R1, [BP-17]
   iadd R0, R1
@@ -9907,18 +10097,18 @@ __if_10437_end:
   isub R1, 1
   mov [BP-9], R1
   mov R0, R1
-__if_10479_start:
+__if_10643_start:
   mov R0, [BP-9]
   ilt R0, 0
-  jf R0, __if_10479_end
+  jf R0, __if_10643_end
   jmp __function_R_ProjectSprite_return
-__if_10479_end:
-__if_10484_start:
+__if_10643_end:
+__if_10648_start:
   mov R0, [global_visspr_count]
   ige R0, 64
-  jf R0, __if_10484_end
+  jf R0, __if_10648_end
   jmp __function_R_ProjectSprite_return
-__if_10484_end:
+__if_10648_end:
   mov R0, global_vissprites
   mov R1, [global_visspr_count]
   imul R1, 13
@@ -9972,36 +10162,36 @@ __if_10484_end:
   mov R1, [BP-12]
   iadd R1, 9
   mov [R1], R0
-__if_10535_start:
+__if_10699_start:
   mov R0, [BP-8]
   ilt R0, 0
-  jf R0, __if_10535_else
+  jf R0, __if_10699_else
   mov R0, 0
   mov R1, [BP-12]
   mov [R1], R0
-  jmp __if_10535_end
-__if_10535_else:
+  jmp __if_10699_end
+__if_10699_else:
   mov R0, [BP-8]
   mov R1, [BP-12]
   mov [R1], R0
-__if_10535_end:
-__if_10547_start:
+__if_10699_end:
+__if_10711_start:
   mov R0, [BP-9]
   mov R1, [global_viewwidth]
   ige R0, R1
-  jf R0, __if_10547_else
+  jf R0, __if_10711_else
   mov R0, [global_viewwidth]
   isub R0, 1
   mov R1, [BP-12]
   iadd R1, 1
   mov [R1], R0
-  jmp __if_10547_end
-__if_10547_else:
+  jmp __if_10711_end
+__if_10711_else:
   mov R0, [BP-9]
   mov R1, [BP-12]
   iadd R1, 1
   mov [R1], R0
-__if_10547_end:
+__if_10711_end:
   mov R2, 65536
   mov [SP], R2
   mov R2, [BP-7]
@@ -10010,10 +10200,10 @@ __if_10547_end:
   mov R1, R0
   mov [BP-14], R1
   mov R0, R1
-__if_10566_start:
+__if_10730_start:
   mov R0, [BP-11]
   cib R0
-  jf R0, __if_10566_else
+  jf R0, __if_10730_else
   mov R0, [BP-17]
   isub R0, 1
   mov R1, [BP-12]
@@ -10024,8 +10214,8 @@ __if_10566_start:
   mov R1, [BP-12]
   iadd R1, 8
   mov [R1], R0
-  jmp __if_10566_end
-__if_10566_else:
+  jmp __if_10730_end
+__if_10730_else:
   mov R0, 0
   mov R1, [BP-12]
   iadd R1, 6
@@ -10034,13 +10224,13 @@ __if_10566_else:
   mov R1, [BP-12]
   iadd R1, 8
   mov [R1], R0
-__if_10566_end:
-__if_10589_start:
+__if_10730_end:
+__if_10753_start:
   mov R1, [BP-12]
   mov R0, [R1]
   mov R1, [BP-8]
   igt R0, R1
-  jf R0, __if_10589_end
+  jf R0, __if_10753_end
   mov R1, [BP-12]
   iadd R1, 6
   mov R0, [R1]
@@ -10056,29 +10246,29 @@ __if_10589_start:
   mov R1, [BP-12]
   iadd R1, 6
   mov [R1], R0
-__if_10589_end:
+__if_10753_end:
   mov R0, [BP-10]
   mov R1, [BP-12]
   iadd R1, 10
   mov [R1], R0
-__if_10609_start:
+__if_10773_start:
   mov R1, [BP+2]
   iadd R1, 13
   mov R0, [R1]
   and R0, 32768
   cib R0
-  jf R0, __if_10609_else
+  jf R0, __if_10773_else
   mov R0, 255
   mov R1, [BP-12]
   iadd R1, 11
   mov [R1], R0
-  jmp __if_10609_end
-__if_10609_else:
+  jmp __if_10773_end
+__if_10773_else:
   mov R0, [global_spr_sectorlight]
   mov R1, [BP-12]
   iadd R1, 11
   mov [R1], R0
-__if_10609_end:
+__if_10773_end:
 __function_R_ProjectSprite_return:
   mov SP, BP
   pop BP
@@ -10088,15 +10278,15 @@ __function_R_AddSprites:
   push BP
   mov BP, SP
   isub SP, 2
-__if_10626_start:
+__if_10790_start:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
   mov R1, [global_validcount]
   ieq R0, R1
-  jf R0, __if_10626_end
+  jf R0, __if_10790_end
   jmp __function_R_AddSprites_return
-__if_10626_end:
+__if_10790_end:
   mov R0, [global_validcount]
   mov R1, [BP+2]
   iadd R1, 7
@@ -10109,20 +10299,20 @@ __if_10626_end:
   iadd R1, 8
   mov R0, [R1]
   mov [BP-1], R0
-__for_10640_start:
+__for_10804_start:
   mov R0, [BP-1]
   ine R0, -1
-  jf R0, __for_10640_end
+  jf R0, __for_10804_end
   mov R1, [BP-1]
   mov [SP], R1
   call __function_R_ProjectSprite
-__for_10640_continue:
+__for_10804_continue:
   mov R1, [BP-1]
   iadd R1, 7
   mov R0, [R1]
   mov [BP-1], R0
-  jmp __for_10640_start
-__for_10640_end:
+  jmp __for_10804_start
+__for_10804_end:
 __function_R_AddSprites_return:
   mov SP, BP
   pop BP
@@ -10134,31 +10324,31 @@ __function_R_SortVisSprites:
   isub SP, 5
   mov R0, 0
   mov [BP-1], R0
-__for_10664_start:
+__for_10828_start:
   mov R0, [BP-1]
   mov R1, [global_visspr_count]
   ilt R0, R1
-  jf R0, __for_10664_end
+  jf R0, __for_10828_end
   mov R0, [BP-1]
   mov R1, global_visspr_order
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_10664_continue:
+__for_10828_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_10664_start
-__for_10664_end:
+  jmp __for_10828_start
+__for_10828_end:
   mov R0, 0
   mov [BP-1], R0
-__for_10678_start:
+__for_10842_start:
   mov R0, [BP-1]
   mov R1, [global_visspr_count]
   isub R1, 1
   ilt R0, R1
-  jf R0, __for_10678_end
+  jf R0, __for_10842_end
   mov R0, [BP-1]
   mov [BP-3], R0
   mov R1, global_vissprites
@@ -10174,12 +10364,12 @@ __for_10678_start:
   mov R0, [BP-1]
   iadd R0, 1
   mov [BP-2], R0
-__for_10701_start:
+__for_10865_start:
   mov R0, [BP-2]
   mov R1, [global_visspr_count]
   ilt R0, R1
-  jf R0, __for_10701_end
-__if_10713_start:
+  jf R0, __for_10865_end
+__if_10877_start:
   mov R1, global_vissprites
   mov R2, global_visspr_order
   mov R3, [BP-2]
@@ -10191,7 +10381,7 @@ __if_10713_start:
   mov R0, [R1]
   mov R1, [BP-4]
   ilt R0, R1
-  jf R0, __if_10713_end
+  jf R0, __if_10877_end
   mov R1, global_vissprites
   mov R2, global_visspr_order
   mov R3, [BP-2]
@@ -10204,14 +10394,14 @@ __if_10713_start:
   mov [BP-4], R0
   mov R0, [BP-2]
   mov [BP-3], R0
-__if_10713_end:
-__for_10701_continue:
+__if_10877_end:
+__for_10865_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_10701_start
-__for_10701_end:
+  jmp __for_10865_start
+__for_10865_end:
   mov R0, global_visspr_order
   mov R1, [BP-1]
   iadd R0, R1
@@ -10230,13 +10420,13 @@ __for_10701_end:
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__for_10678_continue:
+__for_10842_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_10678_start
-__for_10678_end:
+  jmp __for_10842_start
+__for_10842_end:
 __function_R_SortVisSprites_return:
   mov SP, BP
   pop BP
@@ -10321,13 +10511,13 @@ __function_R_DrawVisSprite:
   mov R1, [BP+2]
   mov R0, [R1]
   mov [BP-12], R0
-__for_10825_start:
+__for_10989_start:
   mov R0, [BP-12]
   mov R2, [BP+2]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __for_10825_end
+  jf R0, __for_10989_end
   mov R0, [BP-7]
   shl R0, -16
   mov R1, [BP-7]
@@ -10336,16 +10526,16 @@ __for_10825_start:
   shl R1, 16
   or R0, R1
   mov [BP-13], R0
-__if_10861_start:
+__if_11025_start:
   mov R0, [BP-13]
   ige R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_10866
+  jf R0, __LogicalAnd_ShortCircuit_11030
   mov R1, [BP-13]
   mov R2, [BP-5]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_10866:
-  jf R0, __if_10861_end
+__LogicalAnd_ShortCircuit_11030:
+  jf R0, __if_11025_end
   mov R0, [BP-9]
   iadd R0, 65536
   isub R0, 1
@@ -10376,57 +10566,57 @@ __LogicalAnd_ShortCircuit_10866:
   shl R1, 16
   or R0, R1
   mov [BP-15], R0
-__if_10938_start:
+__if_11102_start:
   mov R0, [BP-15]
   mov R1, [global_mfloorclip]
   mov R2, [BP-12]
   iadd R1, R2
   mov R1, [R1]
   ige R0, R1
-  jf R0, __if_10938_end
+  jf R0, __if_11102_end
   mov R0, [global_mfloorclip]
   mov R1, [BP-12]
   iadd R0, R1
   mov R0, [R0]
   isub R0, 1
   mov [BP-15], R0
-__if_10938_end:
-__if_10951_start:
+__if_11102_end:
+__if_11115_start:
   mov R0, [BP-14]
   mov R1, [global_mceilingclip]
   mov R2, [BP-12]
   iadd R1, R2
   mov R1, [R1]
   ile R0, R1
-  jf R0, __if_10951_end
+  jf R0, __if_11115_end
   mov R0, [global_mceilingclip]
   mov R1, [BP-12]
   iadd R0, R1
   mov R0, [R0]
   iadd R0, 1
   mov [BP-14], R0
-__if_10951_end:
-__if_10964_start:
+__if_11115_end:
+__if_11128_start:
   mov R0, [BP-14]
   ilt R0, 0
-  jf R0, __if_10964_end
+  jf R0, __if_11128_end
   mov R0, 0
   mov [BP-14], R0
-__if_10964_end:
-__if_10971_start:
+__if_11128_end:
+__if_11135_start:
   mov R0, [BP-15]
   mov R1, [global_viewheight]
   ige R0, R1
-  jf R0, __if_10971_end
+  jf R0, __if_11135_end
   mov R0, [global_viewheight]
   isub R0, 1
   mov [BP-15], R0
-__if_10971_end:
-__if_10980_start:
+__if_11135_end:
+__if_11144_start:
   mov R0, [BP-14]
   mov R1, [BP-15]
   ile R0, R1
-  jf R0, __if_10980_end
+  jf R0, __if_11144_end
   mov R1, [BP-2]
   mov [SP], R1
   mov R1, [BP-3]
@@ -10448,21 +10638,21 @@ __if_10980_start:
   mov R1, [BP-11]
   mov [SP+8], R1
   call __function_GPU_RecordMaskedColumn
-__if_10980_end:
-__if_10861_end:
+__if_11144_end:
+__if_11025_end:
   mov R0, [BP-7]
   mov R2, [BP+2]
   iadd R2, 8
   mov R1, [R2]
   iadd R0, R1
   mov [BP-7], R0
-__for_10825_continue:
+__for_10989_continue:
   mov R0, [BP-12]
   mov R1, R0
   iadd R1, 1
   mov [BP-12], R1
-  jmp __for_10825_start
-__for_10825_end:
+  jmp __for_10989_start
+__for_10989_end:
 __function_R_DrawVisSprite_return:
   mov SP, BP
   pop BP
@@ -10475,13 +10665,13 @@ __function_R_DrawSprite:
   mov R1, [BP+2]
   mov R0, [R1]
   mov [BP-3], R0
-__for_11018_start:
+__for_11182_start:
   mov R0, [BP-3]
   mov R2, [BP+2]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __for_11018_end
+  jf R0, __for_11182_end
   mov R0, -2
   mov R1, global_spr_clipbot
   mov R2, [BP-3]
@@ -10492,26 +10682,26 @@ __for_11018_start:
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__for_11018_continue:
+__for_11182_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_11018_start
-__for_11018_end:
+  jmp __for_11182_start
+__for_11182_end:
   mov R0, [global_ds_count]
   isub R0, 1
   mov [BP-2], R0
-__for_11042_start:
+__for_11206_start:
   mov R0, [BP-2]
   ige R0, 0
-  jf R0, __for_11042_end
+  jf R0, __for_11206_end
   mov R0, global_drawsegs
   mov R1, [BP-2]
   imul R1, 12
   iadd R0, R1
   mov [BP-1], R0
-__if_11060_start:
+__if_11224_start:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
@@ -10519,7 +10709,7 @@ __if_11060_start:
   iadd R2, 1
   mov R1, [R2]
   igt R0, R1
-  jt R0, __LogicalOr_ShortCircuit_11068
+  jt R0, __LogicalOr_ShortCircuit_11232
   mov R2, [BP-1]
   iadd R2, 2
   mov R1, [R2]
@@ -10527,43 +10717,43 @@ __if_11060_start:
   mov R2, [R3]
   ilt R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_11068:
-  jt R0, __LogicalOr_ShortCircuit_11081
+__LogicalOr_ShortCircuit_11232:
+  jt R0, __LogicalOr_ShortCircuit_11245
   mov R2, [BP-1]
   iadd R2, 6
   mov R1, [R2]
   bnot R1
-  jf R1, __LogicalAnd_ShortCircuit_11076
+  jf R1, __LogicalAnd_ShortCircuit_11240
   mov R3, [BP-1]
   iadd R3, 11
   mov R2, [R3]
   ieq R2, -1
   and R1, R2
-__LogicalAnd_ShortCircuit_11076:
+__LogicalAnd_ShortCircuit_11240:
   or R0, R1
-__LogicalOr_ShortCircuit_11081:
-  jf R0, __if_11060_end
-  jmp __for_11042_continue
-__if_11060_end:
-__if_11083_start:
+__LogicalOr_ShortCircuit_11245:
+  jf R0, __if_11224_end
+  jmp __for_11206_continue
+__if_11224_end:
+__if_11247_start:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   mov R2, [BP+2]
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_11083_else
+  jf R0, __if_11247_else
   mov R1, [BP+2]
   mov R0, [R1]
   mov [BP-4], R0
-  jmp __if_11083_end
-__if_11083_else:
+  jmp __if_11247_end
+__if_11247_else:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-4], R0
-__if_11083_end:
-__if_11097_start:
+__if_11247_end:
+__if_11261_start:
   mov R1, [BP-1]
   iadd R1, 2
   mov R0, [R1]
@@ -10571,19 +10761,19 @@ __if_11097_start:
   iadd R2, 1
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_11097_else
+  jf R0, __if_11261_else
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-5], R0
-  jmp __if_11097_end
-__if_11097_else:
+  jmp __if_11261_end
+__if_11261_else:
   mov R1, [BP-1]
   iadd R1, 2
   mov R0, [R1]
   mov [BP-5], R0
-__if_11097_end:
-__if_11111_start:
+__if_11261_end:
+__if_11275_start:
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
@@ -10591,7 +10781,7 @@ __if_11111_start:
   iadd R2, 4
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_11111_else
+  jf R0, __if_11275_else
   mov R1, [BP-1]
   iadd R1, 4
   mov R0, [R1]
@@ -10600,8 +10790,8 @@ __if_11111_start:
   iadd R1, 3
   mov R0, [R1]
   mov [BP-6], R0
-  jmp __if_11111_end
-__if_11111_else:
+  jmp __if_11275_end
+__if_11275_else:
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
@@ -10610,20 +10800,20 @@ __if_11111_else:
   iadd R1, 4
   mov R0, [R1]
   mov [BP-6], R0
-__if_11111_end:
-__if_11135_start:
+__if_11275_end:
+__if_11299_start:
   mov R1, [BP-6]
   mov R3, [BP+2]
   iadd R3, 7
   mov R2, [R3]
   ilt R1, R2
-  jt R1, __LogicalOr_ShortCircuit_11154
+  jt R1, __LogicalOr_ShortCircuit_11318
   mov R2, [BP-7]
   mov R4, [BP+2]
   iadd R4, 7
   mov R3, [R4]
   ilt R2, R3
-  jf R2, __LogicalAnd_ShortCircuit_11153
+  jf R2, __LogicalAnd_ShortCircuit_11317
   mov R5, [BP+2]
   iadd R5, 2
   mov R4, [R5]
@@ -10639,17 +10829,17 @@ __if_11135_start:
   mov R3, R0
   bnot R3
   and R2, R3
-__LogicalAnd_ShortCircuit_11153:
+__LogicalAnd_ShortCircuit_11317:
   or R1, R2
-__LogicalOr_ShortCircuit_11154:
+__LogicalOr_ShortCircuit_11318:
   mov R0, R1
-  jf R0, __if_11135_end
-__if_11156_start:
+  jf R0, __if_11299_end
+__if_11320_start:
   mov R1, [BP-1]
   iadd R1, 11
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_11156_end
+  jf R0, __if_11320_end
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, [BP-4]
@@ -10657,14 +10847,14 @@ __if_11156_start:
   mov R1, [BP-5]
   mov [SP+2], R1
   call __function_R_RenderMaskedSegRange
-__if_11156_end:
-  jmp __for_11042_continue
-__if_11135_end:
+__if_11320_end:
+  jmp __for_11206_continue
+__if_11299_end:
   mov R1, [BP-1]
   iadd R1, 6
   mov R0, [R1]
   mov [BP-8], R0
-__if_11170_start:
+__if_11334_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -10672,12 +10862,12 @@ __if_11170_start:
   iadd R2, 7
   mov R1, [R2]
   ige R0, R1
-  jf R0, __if_11170_end
+  jf R0, __if_11334_end
   mov R0, [BP-8]
   and R0, 2
   mov [BP-8], R0
-__if_11170_end:
-__if_11179_start:
+__if_11334_end:
+__if_11343_start:
   mov R1, [BP+2]
   iadd R1, 5
   mov R0, [R1]
@@ -10685,29 +10875,29 @@ __if_11179_start:
   iadd R2, 8
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_11179_end
+  jf R0, __if_11343_end
   mov R0, [BP-8]
   and R0, 1
   mov [BP-8], R0
-__if_11179_end:
-__if_11188_start:
+__if_11343_end:
+__if_11352_start:
   mov R0, [BP-8]
   ieq R0, 1
-  jf R0, __if_11188_else
+  jf R0, __if_11352_else
   mov R0, [BP-4]
   mov [BP-3], R0
-__for_11193_start:
+__for_11357_start:
   mov R0, [BP-3]
   mov R1, [BP-5]
   ile R0, R1
-  jf R0, __for_11193_end
-__if_11202_start:
+  jf R0, __for_11357_end
+__if_11366_start:
   mov R0, global_spr_clipbot
   mov R1, [BP-3]
   iadd R0, R1
   mov R0, [R0]
   ieq R0, -2
-  jf R0, __if_11202_end
+  jf R0, __if_11366_end
   mov R2, [BP-1]
   iadd R2, 10
   mov R0, [R2]
@@ -10718,34 +10908,34 @@ __if_11202_start:
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__if_11202_end:
-__for_11193_continue:
+__if_11366_end:
+__for_11357_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_11193_start
-__for_11193_end:
-  jmp __if_11188_end
-__if_11188_else:
-__if_11217_start:
+  jmp __for_11357_start
+__for_11357_end:
+  jmp __if_11352_end
+__if_11352_else:
+__if_11381_start:
   mov R0, [BP-8]
   ieq R0, 2
-  jf R0, __if_11217_else
+  jf R0, __if_11381_else
   mov R0, [BP-4]
   mov [BP-3], R0
-__for_11222_start:
+__for_11386_start:
   mov R0, [BP-3]
   mov R1, [BP-5]
   ile R0, R1
-  jf R0, __for_11222_end
-__if_11231_start:
+  jf R0, __for_11386_end
+__if_11395_start:
   mov R0, global_spr_cliptop
   mov R1, [BP-3]
   iadd R0, R1
   mov R0, [R0]
   ieq R0, -2
-  jf R0, __if_11231_end
+  jf R0, __if_11395_end
   mov R2, [BP-1]
   iadd R2, 9
   mov R0, [R2]
@@ -10756,34 +10946,34 @@ __if_11231_start:
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__if_11231_end:
-__for_11222_continue:
+__if_11395_end:
+__for_11386_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_11222_start
-__for_11222_end:
-  jmp __if_11217_end
-__if_11217_else:
-__if_11246_start:
+  jmp __for_11386_start
+__for_11386_end:
+  jmp __if_11381_end
+__if_11381_else:
+__if_11410_start:
   mov R0, [BP-8]
   ieq R0, 3
-  jf R0, __if_11246_end
+  jf R0, __if_11410_end
   mov R0, [BP-4]
   mov [BP-3], R0
-__for_11251_start:
+__for_11415_start:
   mov R0, [BP-3]
   mov R1, [BP-5]
   ile R0, R1
-  jf R0, __for_11251_end
-__if_11261_start:
+  jf R0, __for_11415_end
+__if_11425_start:
   mov R0, global_spr_clipbot
   mov R1, [BP-3]
   iadd R0, R1
   mov R0, [R0]
   ieq R0, -2
-  jf R0, __if_11261_end
+  jf R0, __if_11425_end
   mov R2, [BP-1]
   iadd R2, 10
   mov R0, [R2]
@@ -10794,14 +10984,14 @@ __if_11261_start:
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__if_11261_end:
-__if_11276_start:
+__if_11425_end:
+__if_11440_start:
   mov R0, global_spr_cliptop
   mov R1, [BP-3]
   iadd R0, R1
   mov R0, [R0]
   ieq R0, -2
-  jf R0, __if_11276_end
+  jf R0, __if_11440_end
   mov R2, [BP-1]
   iadd R2, 9
   mov R0, [R2]
@@ -10812,67 +11002,67 @@ __if_11276_start:
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__if_11276_end:
-__for_11251_continue:
+__if_11440_end:
+__for_11415_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_11251_start
-__for_11251_end:
-__if_11246_end:
-__if_11217_end:
-__if_11188_end:
-__for_11042_continue:
+  jmp __for_11415_start
+__for_11415_end:
+__if_11410_end:
+__if_11381_end:
+__if_11352_end:
+__for_11206_continue:
   mov R0, [BP-2]
   mov R1, R0
   isub R1, 1
   mov [BP-2], R1
-  jmp __for_11042_start
-__for_11042_end:
+  jmp __for_11206_start
+__for_11206_end:
   mov R1, [BP+2]
   mov R0, [R1]
   mov [BP-3], R0
-__for_11291_start:
+__for_11455_start:
   mov R0, [BP-3]
   mov R2, [BP+2]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __for_11291_end
-__if_11303_start:
+  jf R0, __for_11455_end
+__if_11467_start:
   mov R0, global_spr_clipbot
   mov R1, [BP-3]
   iadd R0, R1
   mov R0, [R0]
   ieq R0, -2
-  jf R0, __if_11303_end
+  jf R0, __if_11467_end
   mov R0, [global_viewheight]
   mov R1, global_spr_clipbot
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__if_11303_end:
-__if_11315_start:
+__if_11467_end:
+__if_11479_start:
   mov R0, global_spr_cliptop
   mov R1, [BP-3]
   iadd R0, R1
   mov R0, [R0]
   ieq R0, -2
-  jf R0, __if_11315_end
+  jf R0, __if_11479_end
   mov R0, -1
   mov R1, global_spr_cliptop
   mov R2, [BP-3]
   iadd R1, R2
   mov [R1], R0
-__if_11315_end:
-__for_11291_continue:
+__if_11479_end:
+__for_11455_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_11291_start
-__for_11291_end:
+  jmp __for_11455_start
+__for_11455_end:
   mov R0, global_spr_clipbot
   mov [global_mfloorclip], R0
   mov R0, global_spr_cliptop
@@ -10989,13 +11179,13 @@ __function_R_DrawPSprite:
   or R1, R2
   mov [BP-2], R1
   mov R0, R1
-__if_11486_start:
+__if_11650_start:
   mov R0, [BP-2]
   mov R1, [global_viewwidth]
   igt R0, R1
-  jf R0, __if_11486_end
+  jf R0, __if_11650_end
   jmp __function_R_DrawPSprite_return
-__if_11486_end:
+__if_11650_end:
   mov R0, [BP-1]
   mov R1, [BP-24]
   iadd R0, R1
@@ -11024,12 +11214,12 @@ __if_11486_end:
   isub R1, 1
   mov [BP-3], R1
   mov R0, R1
-__if_11528_start:
+__if_11692_start:
   mov R0, [BP-3]
   ilt R0, 0
-  jf R0, __if_11528_end
+  jf R0, __if_11692_end
   jmp __function_R_DrawPSprite_return
-__if_11528_end:
+__if_11692_end:
   lea R0, [BP-18]
   mov [BP-19], R0
   mov R0, 0
@@ -11057,44 +11247,44 @@ __if_11528_end:
   mov R1, [BP-19]
   iadd R1, 9
   mov [R1], R0
-__if_11567_start:
+__if_11731_start:
   mov R0, [BP-2]
   ilt R0, 0
-  jf R0, __if_11567_else
+  jf R0, __if_11731_else
   mov R0, 0
   mov R1, [BP-19]
   mov [R1], R0
-  jmp __if_11567_end
-__if_11567_else:
+  jmp __if_11731_end
+__if_11731_else:
   mov R0, [BP-2]
   mov R1, [BP-19]
   mov [R1], R0
-__if_11567_end:
-__if_11579_start:
+__if_11731_end:
+__if_11743_start:
   mov R0, [BP-3]
   mov R1, [global_viewwidth]
   ige R0, R1
-  jf R0, __if_11579_else
+  jf R0, __if_11743_else
   mov R0, [global_viewwidth]
   isub R0, 1
   mov R1, [BP-19]
   iadd R1, 1
   mov [R1], R0
-  jmp __if_11579_end
-__if_11579_else:
+  jmp __if_11743_end
+__if_11743_else:
   mov R0, [BP-3]
   mov R1, [BP-19]
   iadd R1, 1
   mov [R1], R0
-__if_11579_end:
+__if_11743_end:
   mov R0, 65536
   mov R1, [BP-19]
   iadd R1, 7
   mov [R1], R0
-__if_11597_start:
+__if_11761_start:
   mov R0, [BP-5]
   cib R0
-  jf R0, __if_11597_else
+  jf R0, __if_11761_else
   mov R0, [BP-21]
   isgn R0
   mov R1, [BP-19]
@@ -11105,8 +11295,8 @@ __if_11597_start:
   mov R1, [BP-19]
   iadd R1, 6
   mov [R1], R0
-  jmp __if_11597_end
-__if_11597_else:
+  jmp __if_11761_end
+__if_11761_else:
   mov R0, [BP-21]
   mov R1, [BP-19]
   iadd R1, 8
@@ -11115,13 +11305,13 @@ __if_11597_else:
   mov R1, [BP-19]
   iadd R1, 6
   mov [R1], R0
-__if_11597_end:
-__if_11620_start:
+__if_11761_end:
+__if_11784_start:
   mov R1, [BP-19]
   mov R0, [R1]
   mov R1, [BP-2]
   igt R0, R1
-  jf R0, __if_11620_end
+  jf R0, __if_11784_end
   mov R1, [BP-19]
   iadd R1, 6
   mov R0, [R1]
@@ -11137,12 +11327,12 @@ __if_11620_start:
   mov R1, [BP-19]
   iadd R1, 6
   mov [R1], R0
-__if_11620_end:
+__if_11784_end:
   mov R0, [BP-4]
   mov R1, [BP-19]
   iadd R1, 10
   mov [R1], R0
-__if_11640_start:
+__if_11804_start:
   mov R0, __embedded_gen_states
   mov R2, [BP+2]
   mov R1, [R2]
@@ -11152,13 +11342,13 @@ __if_11640_start:
   mov R0, [R0]
   and R0, 32768
   cib R0
-  jf R0, __if_11640_else
+  jf R0, __if_11804_else
   mov R0, 255
   mov R1, [BP-19]
   iadd R1, 11
   mov [R1], R0
-  jmp __if_11640_end
-__if_11640_else:
+  jmp __if_11804_end
+__if_11804_else:
   mov R3, [global_player1]
   iadd R3, 14
   mov R2, [R3]
@@ -11168,7 +11358,7 @@ __if_11640_else:
   mov R1, [BP-19]
   iadd R1, 11
   mov [R1], R0
-__if_11640_end:
+__if_11804_end:
   mov R0, global_screenheightarray
   mov [global_mfloorclip], R0
   mov R0, global_negonearray
@@ -11185,41 +11375,41 @@ __function_R_DrawPlayerSprites:
   push BP
   mov BP, SP
   isub SP, 2
-__if_11678_start:
+__if_11842_start:
   mov R0, [global_player1]
   ine R0, -1
   bnot R0
-  jf R0, __if_11678_end
+  jf R0, __if_11842_end
   jmp __function_R_DrawPlayerSprites_return
-__if_11678_end:
+__if_11842_end:
   mov R0, 0
   mov [BP-1], R0
-__for_11683_start:
+__for_11847_start:
   mov R0, [BP-1]
   ilt R0, 2
-  jf R0, __for_11683_end
-__if_11693_start:
+  jf R0, __for_11847_end
+__if_11857_start:
   mov R1, 1608472
   mov R2, [BP-1]
   imul R2, 4
   iadd R1, R2
   mov R0, [R1]
   cib R0
-  jf R0, __if_11693_end
+  jf R0, __if_11857_end
   mov R1, 1608472
   mov R2, [BP-1]
   imul R2, 4
   iadd R1, R2
   mov [SP], R1
   call __function_R_DrawPSprite
-__if_11693_end:
-__for_11683_continue:
+__if_11857_end:
+__for_11847_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_11683_start
-__for_11683_end:
+  jmp __for_11847_start
+__for_11847_end:
 __function_R_DrawPlayerSprites_return:
   mov SP, BP
   pop BP
@@ -11234,11 +11424,11 @@ __function_R_DrawMasked:
   call __function_R_SortVisSprites
   mov R0, 0
   mov [BP-1], R0
-__for_11716_start:
+__for_11880_start:
   mov R0, [BP-1]
   mov R1, [global_visspr_count]
   ilt R0, R1
-  jf R0, __for_11716_end
+  jf R0, __for_11880_end
   mov R1, global_vissprites
   mov R2, global_visspr_order
   mov R3, [BP-1]
@@ -11248,31 +11438,31 @@ __for_11716_start:
   iadd R1, R2
   mov [SP], R1
   call __function_R_DrawSprite
-__for_11716_continue:
+__for_11880_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_11716_start
-__for_11716_end:
+  jmp __for_11880_start
+__for_11880_end:
   mov R0, [global_ds_count]
   isub R0, 1
   mov [BP-2], R0
-__for_11732_start:
+__for_11896_start:
   mov R0, [BP-2]
   ige R0, 0
-  jf R0, __for_11732_end
+  jf R0, __for_11896_end
   mov R0, global_drawsegs
   mov R1, [BP-2]
   imul R1, 12
   iadd R0, R1
   mov [BP-3], R0
-__if_11750_start:
+__if_11914_start:
   mov R1, [BP-3]
   iadd R1, 11
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_11750_end
+  jf R0, __if_11914_end
   mov R1, [BP-3]
   mov [SP], R1
   mov R2, [BP-3]
@@ -11284,14 +11474,14 @@ __if_11750_start:
   mov R1, [R2]
   mov [SP+2], R1
   call __function_R_RenderMaskedSegRange
-__if_11750_end:
-__for_11732_continue:
+__if_11914_end:
+__for_11896_continue:
   mov R0, [BP-2]
   mov R1, R0
   isub R1, 1
   mov [BP-2], R1
-  jmp __for_11732_start
-__for_11732_end:
+  jmp __for_11896_start
+__for_11896_end:
   call __function_R_DrawPlayerSprites
 __function_R_DrawMasked_return:
   mov SP, BP
@@ -11304,34 +11494,34 @@ __function_R_ClipSolidWallSegment:
   isub SP, 4
   mov R0, global_solidsegs
   mov [BP-2], R0
-__while_11783_start:
-__while_11783_continue:
+__while_11947_start:
+__while_11947_continue:
   mov R1, [BP-2]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [BP+2]
   isub R1, 1
   ilt R0, R1
-  jf R0, __while_11783_end
+  jf R0, __while_11947_end
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 2
   mov [BP-2], R1
-  jmp __while_11783_start
-__while_11783_end:
-__if_11792_start:
+  jmp __while_11947_start
+__while_11947_end:
+__if_11956_start:
   mov R0, [BP+2]
   mov R2, [BP-2]
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_11792_end
-__if_11798_start:
+  jf R0, __if_11956_end
+__if_11962_start:
   mov R0, [BP+3]
   mov R2, [BP-2]
   mov R1, [R2]
   isub R1, 1
   ilt R0, R1
-  jf R0, __if_11798_end
+  jf R0, __if_11962_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [BP+3]
@@ -11343,12 +11533,12 @@ __if_11798_start:
   mov R1, R0
   iadd R1, 2
   mov [global_newend], R1
-__while_11814_start:
-__while_11814_continue:
+__while_11978_start:
+__while_11978_continue:
   mov R0, [BP-1]
   mov R1, [BP-2]
   ine R0, R1
-  jf R0, __while_11814_end
+  jf R0, __while_11978_end
   lea R13, [BP-1]
   mov R13, [R13]
   mov R12, [BP-1]
@@ -11359,8 +11549,8 @@ __while_11814_continue:
   mov R1, R0
   isub R1, 2
   mov [BP-1], R1
-  jmp __while_11814_start
-__while_11814_end:
+  jmp __while_11978_start
+__while_11978_end:
   mov R0, [BP+2]
   mov R1, [BP-1]
   mov [R1], R0
@@ -11369,7 +11559,7 @@ __while_11814_end:
   iadd R1, 1
   mov [R1], R0
   jmp __function_R_ClipSolidWallSegment_return
-__if_11798_end:
+__if_11962_end:
   mov R1, [BP+2]
   mov [SP], R1
   mov R2, [BP-2]
@@ -11380,27 +11570,27 @@ __if_11798_end:
   mov R0, [BP+2]
   mov R1, [BP-2]
   mov [R1], R0
-__if_11792_end:
-__if_11848_start:
+__if_11956_end:
+__if_12012_start:
   mov R0, [BP+3]
   mov R2, [BP-2]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_11848_end
+  jf R0, __if_12012_end
   jmp __function_R_ClipSolidWallSegment_return
-__if_11848_end:
+__if_12012_end:
   mov R0, [BP-2]
   mov [BP-1], R0
-__while_11857_start:
-__while_11857_continue:
+__while_12021_start:
+__while_12021_continue:
   mov R0, [BP+3]
   mov R2, [BP-1]
   iadd R2, 2
   mov R1, [R2]
   isub R1, 1
   ige R0, R1
-  jf R0, __while_11857_end
+  jf R0, __while_12021_end
   mov R2, [BP-1]
   iadd R2, 1
   mov R1, [R2]
@@ -11416,23 +11606,23 @@ __while_11857_continue:
   mov R1, R0
   iadd R1, 2
   mov [BP-1], R1
-__if_11882_start:
+__if_12046_start:
   mov R0, [BP+3]
   mov R2, [BP-1]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_11882_end
+  jf R0, __if_12046_end
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [BP-2]
   iadd R1, 1
   mov [R1], R0
-  jmp __label_11904_crunch
-__if_11882_end:
-  jmp __while_11857_start
-__while_11857_end:
+  jmp __label_12068_crunch
+__if_12046_end:
+  jmp __while_12021_start
+__while_12021_end:
   mov R2, [BP-1]
   iadd R2, 1
   mov R1, [R2]
@@ -11445,23 +11635,23 @@ __while_11857_end:
   mov R1, [BP-2]
   iadd R1, 1
   mov [R1], R0
-__label_11904_crunch:
-__if_11905_start:
+__label_12068_crunch:
+__if_12069_start:
   mov R0, [BP-1]
   mov R1, [BP-2]
   ieq R0, R1
-  jf R0, __if_11905_end
+  jf R0, __if_12069_end
   jmp __function_R_ClipSolidWallSegment_return
-__if_11905_end:
-__while_11910_start:
-__while_11910_continue:
+__if_12069_end:
+__while_12074_start:
+__while_12074_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 2
   mov [BP-1], R1
   mov R1, [global_newend]
   ine R0, R1
-  jf R0, __while_11910_end
+  jf R0, __while_12074_end
   mov R0, [BP-2]
   iadd R0, 2
   mov [BP-2], R0
@@ -11471,8 +11661,8 @@ __while_11910_continue:
   mov R12, [R12]
   mov CR, 2
   movs
-  jmp __while_11910_start
-__while_11910_end:
+  jmp __while_12074_start
+__while_12074_end:
   mov R0, [BP-2]
   iadd R0, 2
   mov [global_newend], R0
@@ -11487,41 +11677,41 @@ __function_R_ClipPassWallSegment:
   isub SP, 3
   mov R0, global_solidsegs
   mov [BP-1], R0
-__while_11936_start:
-__while_11936_continue:
+__while_12100_start:
+__while_12100_continue:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [BP+2]
   isub R1, 1
   ilt R0, R1
-  jf R0, __while_11936_end
+  jf R0, __while_12100_end
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 2
   mov [BP-1], R1
-  jmp __while_11936_start
-__while_11936_end:
-__if_11945_start:
+  jmp __while_12100_start
+__while_12100_end:
+__if_12109_start:
   mov R0, [BP+2]
   mov R2, [BP-1]
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_11945_end
-__if_11951_start:
+  jf R0, __if_12109_end
+__if_12115_start:
   mov R0, [BP+3]
   mov R2, [BP-1]
   mov R1, [R2]
   isub R1, 1
   ilt R0, R1
-  jf R0, __if_11951_end
+  jf R0, __if_12115_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [BP+3]
   mov [SP+1], R1
   call __function_R_StoreWallRange
   jmp __function_R_ClipPassWallSegment_return
-__if_11951_end:
+__if_12115_end:
   mov R1, [BP+2]
   mov [SP], R1
   mov R2, [BP-1]
@@ -11529,25 +11719,25 @@ __if_11951_end:
   isub R1, 1
   mov [SP+1], R1
   call __function_R_StoreWallRange
-__if_11945_end:
-__if_11969_start:
+__if_12109_end:
+__if_12133_start:
   mov R0, [BP+3]
   mov R2, [BP-1]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_11969_end
+  jf R0, __if_12133_end
   jmp __function_R_ClipPassWallSegment_return
-__if_11969_end:
-__while_11975_start:
-__while_11975_continue:
+__if_12133_end:
+__while_12139_start:
+__while_12139_continue:
   mov R0, [BP+3]
   mov R2, [BP-1]
   iadd R2, 2
   mov R1, [R2]
   isub R1, 1
   ige R0, R1
-  jf R0, __while_11975_end
+  jf R0, __while_12139_end
   mov R2, [BP-1]
   iadd R2, 1
   mov R1, [R2]
@@ -11563,17 +11753,17 @@ __while_11975_continue:
   mov R1, R0
   iadd R1, 2
   mov [BP-1], R1
-__if_12000_start:
+__if_12164_start:
   mov R0, [BP+3]
   mov R2, [BP-1]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_12000_end
+  jf R0, __if_12164_end
   jmp __function_R_ClipPassWallSegment_return
-__if_12000_end:
-  jmp __while_11975_start
-__while_11975_end:
+__if_12164_end:
+  jmp __while_12139_start
+__while_12139_end:
   mov R2, [BP-1]
   iadd R2, 1
   mov R1, [R2]
@@ -11646,12 +11836,12 @@ __function_R_AddLine:
   mov R1, [BP-4]
   isub R0, R1
   mov [BP-5], R0
-__if_12085_start:
+__if_12249_start:
   mov R0, [BP-5]
   ilt R0, 0
-  jf R0, __if_12085_end
+  jf R0, __if_12249_end
   jmp __function_R_AddLine_return
-__if_12085_end:
+__if_12249_end:
   mov R0, [BP-3]
   mov [global_rw_angle1], R0
   mov R0, [BP-3]
@@ -11666,63 +11856,63 @@ __if_12085_end:
   mov R1, [global_clipangle]
   iadd R0, R1
   mov [BP-6], R0
-__if_12104_start:
+__if_12268_start:
   mov R0, [global_clipangle]
   imul R0, 2
   xor R0, 0x80000000
   mov R1, [BP-6]
   xor R1, 0x80000000
   ilt R0, R1
-  jf R0, __if_12104_end
+  jf R0, __if_12268_end
   mov R0, [BP-6]
   mov R1, [global_clipangle]
   imul R1, 2
   isub R0, R1
   mov [BP-6], R0
-__if_12125_start:
+__if_12289_start:
   mov R0, [BP-6]
   xor R0, 0x80000000
   mov R1, [BP-5]
   xor R1, 0x80000000
   ilt R0, R1
   bnot R0
-  jf R0, __if_12125_end
+  jf R0, __if_12289_end
   jmp __function_R_AddLine_return
-__if_12125_end:
+__if_12289_end:
   mov R0, [global_clipangle]
   mov [BP-3], R0
-__if_12104_end:
+__if_12268_end:
   mov R0, [global_clipangle]
   mov R1, [BP-4]
   isub R0, R1
   mov [BP-6], R0
-__if_12148_start:
+__if_12312_start:
   mov R0, [global_clipangle]
   imul R0, 2
   xor R0, 0x80000000
   mov R1, [BP-6]
   xor R1, 0x80000000
   ilt R0, R1
-  jf R0, __if_12148_end
+  jf R0, __if_12312_end
   mov R0, [BP-6]
   mov R1, [global_clipangle]
   imul R1, 2
   isub R0, R1
   mov [BP-6], R0
-__if_12169_start:
+__if_12333_start:
   mov R0, [BP-6]
   xor R0, 0x80000000
   mov R1, [BP-5]
   xor R1, 0x80000000
   ilt R0, R1
   bnot R0
-  jf R0, __if_12169_end
+  jf R0, __if_12333_end
   jmp __function_R_AddLine_return
-__if_12169_end:
+__if_12333_end:
   mov R0, [global_clipangle]
   isgn R0
   mov [BP-4], R0
-__if_12148_end:
+__if_12312_end:
   mov R0, [BP-3]
   iadd R0, 1073741824
   shl R0, -19
@@ -11741,32 +11931,32 @@ __if_12148_end:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-2], R0
-__if_12214_start:
+__if_12378_start:
   mov R0, [BP-1]
   mov R1, [BP-2]
   ieq R0, R1
-  jf R0, __if_12214_end
+  jf R0, __if_12378_end
   jmp __function_R_AddLine_return
-__if_12214_end:
+__if_12378_end:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
   mov [global_backsector], R0
-__if_12223_start:
+__if_12387_start:
   mov R0, [global_backsector]
   ine R0, -1
   bnot R0
-  jf R0, __if_12223_end
-  jmp __label_12285_clipsolid
-__if_12223_end:
-__if_12227_start:
+  jf R0, __if_12387_end
+  jmp __label_12449_clipsolid
+__if_12387_end:
+__if_12391_start:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
   mov R2, [global_frontsector]
   mov R1, [R2]
   ile R0, R1
-  jt R0, __LogicalOr_ShortCircuit_12235
+  jt R0, __LogicalOr_ShortCircuit_12399
   mov R2, [global_backsector]
   mov R1, [R2]
   mov R3, [global_frontsector]
@@ -11774,11 +11964,11 @@ __if_12227_start:
   mov R2, [R3]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_12235:
-  jf R0, __if_12227_end
-  jmp __label_12285_clipsolid
-__if_12227_end:
-__if_12240_start:
+__LogicalOr_ShortCircuit_12399:
+  jf R0, __if_12391_end
+  jmp __label_12449_clipsolid
+__if_12391_end:
+__if_12404_start:
   mov R1, [global_backsector]
   iadd R1, 1
   mov R0, [R1]
@@ -11786,18 +11976,18 @@ __if_12240_start:
   iadd R2, 1
   mov R1, [R2]
   ine R0, R1
-  jt R0, __LogicalOr_ShortCircuit_12248
+  jt R0, __LogicalOr_ShortCircuit_12412
   mov R2, [global_backsector]
   mov R1, [R2]
   mov R3, [global_frontsector]
   mov R2, [R3]
   ine R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_12248:
-  jf R0, __if_12240_end
-  jmp __label_12278_clippass
-__if_12240_end:
-__if_12253_start:
+__LogicalOr_ShortCircuit_12412:
+  jf R0, __if_12404_end
+  jmp __label_12442_clippass
+__if_12404_end:
+__if_12417_start:
   mov R1, [global_backsector]
   iadd R1, 3
   mov R0, [R1]
@@ -11805,7 +11995,7 @@ __if_12253_start:
   iadd R2, 3
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_12261
+  jf R0, __LogicalAnd_ShortCircuit_12425
   mov R2, [global_backsector]
   iadd R2, 2
   mov R1, [R2]
@@ -11814,8 +12004,8 @@ __if_12253_start:
   mov R2, [R3]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_12261:
-  jf R0, __LogicalAnd_ShortCircuit_12267
+__LogicalAnd_ShortCircuit_12425:
+  jf R0, __LogicalAnd_ShortCircuit_12431
   mov R2, [global_backsector]
   iadd R2, 4
   mov R1, [R2]
@@ -11824,8 +12014,8 @@ __LogicalAnd_ShortCircuit_12261:
   mov R2, [R3]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_12267:
-  jf R0, __LogicalAnd_ShortCircuit_12274
+__LogicalAnd_ShortCircuit_12431:
+  jf R0, __LogicalAnd_ShortCircuit_12438
   mov R3, [global_curline]
   iadd R3, 4
   mov R2, [R3]
@@ -11833,11 +12023,11 @@ __LogicalAnd_ShortCircuit_12267:
   mov R1, [R2]
   ieq R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_12274:
-  jf R0, __if_12253_end
+__LogicalAnd_ShortCircuit_12438:
+  jf R0, __if_12417_end
   jmp __function_R_AddLine_return
-__if_12253_end:
-__label_12278_clippass:
+__if_12417_end:
+__label_12442_clippass:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, [BP-2]
@@ -11845,7 +12035,7 @@ __label_12278_clippass:
   mov [SP+1], R1
   call __function_R_ClipPassWallSegment
   jmp __function_R_AddLine_return
-__label_12285_clipsolid:
+__label_12449_clipsolid:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, [BP-2]
@@ -11865,69 +12055,69 @@ __function_R_CheckBBox:
   push R2
   push R3
   isub SP, 2
-__if_12386_start:
+__if_12550_start:
   mov R0, [global_viewx]
   mov R1, [BP+2]
   iadd R1, 2
   mov R1, [R1]
   ile R0, R1
-  jf R0, __if_12386_else
+  jf R0, __if_12550_else
   mov R0, 0
   mov [BP-1], R0
-  jmp __if_12386_end
-__if_12386_else:
-__if_12395_start:
+  jmp __if_12550_end
+__if_12550_else:
+__if_12559_start:
   mov R0, [global_viewx]
   mov R1, [BP+2]
   iadd R1, 3
   mov R1, [R1]
   ilt R0, R1
-  jf R0, __if_12395_else
+  jf R0, __if_12559_else
   mov R0, 1
   mov [BP-1], R0
-  jmp __if_12395_end
-__if_12395_else:
+  jmp __if_12559_end
+__if_12559_else:
   mov R0, 2
   mov [BP-1], R0
-__if_12395_end:
-__if_12386_end:
-__if_12407_start:
+__if_12559_end:
+__if_12550_end:
+__if_12571_start:
   mov R0, [global_viewy]
   mov R1, [BP+2]
   mov R1, [R1]
   ige R0, R1
-  jf R0, __if_12407_else
+  jf R0, __if_12571_else
   mov R0, 0
   mov [BP-2], R0
-  jmp __if_12407_end
-__if_12407_else:
-__if_12416_start:
+  jmp __if_12571_end
+__if_12571_else:
+__if_12580_start:
   mov R0, [global_viewy]
   mov R1, [BP+2]
   iadd R1, 1
   mov R1, [R1]
   igt R0, R1
-  jf R0, __if_12416_else
+  jf R0, __if_12580_else
   mov R0, 1
   mov [BP-2], R0
-  jmp __if_12416_end
-__if_12416_else:
+  jmp __if_12580_end
+__if_12580_else:
   mov R0, 2
   mov [BP-2], R0
-__if_12416_end:
-__if_12407_end:
+__if_12580_end:
+__if_12571_end:
   mov R0, [BP-2]
   shl R0, 2
   mov R1, [BP-1]
   iadd R0, R1
   mov [BP-3], R0
-__if_12436_start:
+__if_12600_start:
   mov R0, [BP-3]
   ieq R0, 5
-  jf R0, __if_12436_end
+  jf R0, __if_12600_end
   mov R0, 1
   jmp __function_R_CheckBBox_return
-__if_12436_end:
+__if_12600_end:
   mov R0, [BP+2]
   mov R1, global_checkcoord
   mov R2, [BP-3]
@@ -11991,76 +12181,76 @@ __if_12436_end:
   mov R1, [BP-9]
   isub R0, R1
   mov [BP-10], R0
-__if_12497_start:
+__if_12661_start:
   mov R0, [BP-10]
   ilt R0, 0
-  jf R0, __if_12497_end
+  jf R0, __if_12661_end
   mov R0, 1
   jmp __function_R_CheckBBox_return
-__if_12497_end:
+__if_12661_end:
   mov R0, [BP-8]
   mov R1, [global_clipangle]
   iadd R0, R1
   mov [BP-11], R0
-__if_12508_start:
+__if_12672_start:
   mov R0, [global_clipangle]
   imul R0, 2
   xor R0, 0x80000000
   mov R1, [BP-11]
   xor R1, 0x80000000
   ilt R0, R1
-  jf R0, __if_12508_end
+  jf R0, __if_12672_end
   mov R0, [BP-11]
   mov R1, [global_clipangle]
   imul R1, 2
   isub R0, R1
   mov [BP-11], R0
-__if_12529_start:
+__if_12693_start:
   mov R0, [BP-11]
   xor R0, 0x80000000
   mov R1, [BP-10]
   xor R1, 0x80000000
   ilt R0, R1
   bnot R0
-  jf R0, __if_12529_end
+  jf R0, __if_12693_end
   mov R0, 0
   jmp __function_R_CheckBBox_return
-__if_12529_end:
+__if_12693_end:
   mov R0, [global_clipangle]
   mov [BP-8], R0
-__if_12508_end:
+__if_12672_end:
   mov R0, [global_clipangle]
   mov R1, [BP-9]
   isub R0, R1
   mov [BP-11], R0
-__if_12553_start:
+__if_12717_start:
   mov R0, [global_clipangle]
   imul R0, 2
   xor R0, 0x80000000
   mov R1, [BP-11]
   xor R1, 0x80000000
   ilt R0, R1
-  jf R0, __if_12553_end
+  jf R0, __if_12717_end
   mov R0, [BP-11]
   mov R1, [global_clipangle]
   imul R1, 2
   isub R0, R1
   mov [BP-11], R0
-__if_12574_start:
+__if_12738_start:
   mov R0, [BP-11]
   xor R0, 0x80000000
   mov R1, [BP-10]
   xor R1, 0x80000000
   ilt R0, R1
   bnot R0
-  jf R0, __if_12574_end
+  jf R0, __if_12738_end
   mov R0, 0
   jmp __function_R_CheckBBox_return
-__if_12574_end:
+__if_12738_end:
   mov R0, [global_clipangle]
   isgn R0
   mov [BP-9], R0
-__if_12553_end:
+__if_12717_end:
   mov R0, [BP-8]
   iadd R0, 1073741824
   shl R0, -19
@@ -12079,51 +12269,51 @@ __if_12553_end:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-14], R0
-__if_12620_start:
+__if_12784_start:
   mov R0, [BP-13]
   mov R1, [BP-14]
   ieq R0, R1
-  jf R0, __if_12620_end
+  jf R0, __if_12784_end
   mov R0, 0
   jmp __function_R_CheckBBox_return
-__if_12620_end:
+__if_12784_end:
   mov R0, [BP-14]
   mov R1, R0
   isub R1, 1
   mov [BP-14], R1
   mov R0, global_solidsegs
   mov [BP-12], R0
-__while_12631_start:
-__while_12631_continue:
+__while_12795_start:
+__while_12795_continue:
   mov R1, [BP-12]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [BP-14]
   ilt R0, R1
-  jf R0, __while_12631_end
+  jf R0, __while_12795_end
   mov R0, [BP-12]
   mov R1, R0
   iadd R1, 2
   mov [BP-12], R1
-  jmp __while_12631_start
-__while_12631_end:
-__if_12638_start:
+  jmp __while_12795_start
+__while_12795_end:
+__if_12802_start:
   mov R0, [BP-13]
   mov R2, [BP-12]
   mov R1, [R2]
   ige R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_12644
+  jf R0, __LogicalAnd_ShortCircuit_12808
   mov R1, [BP-14]
   mov R3, [BP-12]
   iadd R3, 1
   mov R2, [R3]
   ile R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_12644:
-  jf R0, __if_12638_end
+__LogicalAnd_ShortCircuit_12808:
+  jf R0, __if_12802_end
   mov R0, 0
   jmp __function_R_CheckBBox_return
-__if_12638_end:
+__if_12802_end:
   mov R0, 1
 __function_R_CheckBBox_return:
   iadd SP, 2
@@ -12157,12 +12347,12 @@ __function_R_Subsector:
   imul R1, 8
   iadd R0, R1
   mov [BP-2], R0
-__if_12681_start:
+__if_12845_start:
   mov R1, [global_frontsector]
   mov R0, [R1]
   mov R1, [global_viewz]
   ilt R0, R1
-  jf R0, __if_12681_else
+  jf R0, __if_12845_else
   mov R3, [global_frontsector]
   mov R2, [R3]
   mov [SP], R2
@@ -12178,25 +12368,25 @@ __if_12681_start:
   mov R1, R0
   mov [global_floorplane], R1
   mov R0, R1
-  jmp __if_12681_end
-__if_12681_else:
+  jmp __if_12845_end
+__if_12845_else:
   mov R0, -1
   mov [global_floorplane], R0
-__if_12681_end:
-__if_12698_start:
+__if_12845_end:
+__if_12862_start:
   mov R1, [global_frontsector]
   iadd R1, 1
   mov R0, [R1]
   mov R1, [global_viewz]
   igt R0, R1
-  jt R0, __LogicalOr_ShortCircuit_12705
+  jt R0, __LogicalOr_ShortCircuit_12869
   mov R2, [global_frontsector]
   iadd R2, 3
   mov R1, [R2]
   ieq R1, 53
   or R0, R1
-__LogicalOr_ShortCircuit_12705:
-  jf R0, __if_12698_else
+__LogicalOr_ShortCircuit_12869:
+  jf R0, __if_12862_else
   mov R3, [global_frontsector]
   iadd R3, 1
   mov R2, [R3]
@@ -12213,19 +12403,19 @@ __LogicalOr_ShortCircuit_12705:
   mov R1, R0
   mov [global_ceilingplane], R1
   mov R0, R1
-  jmp __if_12698_end
-__if_12698_else:
+  jmp __if_12862_end
+__if_12862_else:
   mov R0, -1
   mov [global_ceilingplane], R0
-__if_12698_end:
+__if_12862_end:
   mov R1, [global_frontsector]
   mov [SP], R1
   call __function_R_AddSprites
-__while_12722_start:
-__while_12722_continue:
+__while_12886_start:
+__while_12886_continue:
   mov R0, [BP-1]
   igt R0, 0
-  jf R0, __while_12722_end
+  jf R0, __while_12886_end
   mov R1, [BP-2]
   mov [SP], R1
   call __function_R_AddLine
@@ -12237,8 +12427,8 @@ __while_12722_continue:
   mov R1, R0
   isub R1, 1
   mov [BP-1], R1
-  jmp __while_12722_start
-__while_12722_end:
+  jmp __while_12886_start
+__while_12886_end:
 __function_R_Subsector_return:
   mov SP, BP
   pop BP
@@ -12248,27 +12438,27 @@ __function_R_RenderBSPNode:
   push BP
   mov BP, SP
   isub SP, 5
-__if_12739_start:
+__if_12903_start:
   mov R0, [BP+2]
   and R0, 32768
   cib R0
-  jf R0, __if_12739_end
-__if_12744_start:
+  jf R0, __if_12903_end
+__if_12908_start:
   mov R0, [BP+2]
   ieq R0, -1
-  jf R0, __if_12744_else
+  jf R0, __if_12908_else
   mov R1, 0
   mov [SP], R1
   call __function_R_Subsector
-  jmp __if_12744_end
-__if_12744_else:
+  jmp __if_12908_end
+__if_12908_else:
   mov R1, [BP+2]
   and R1, 32767
   mov [SP], R1
   call __function_R_Subsector
-__if_12744_end:
+__if_12908_end:
   jmp __function_R_RenderBSPNode_return
-__if_12739_end:
+__if_12903_end:
   mov R0, [global_nodes]
   mov R1, [BP+2]
   imul R1, 14
@@ -12291,7 +12481,7 @@ __if_12739_end:
   mov R1, [R1]
   mov [SP], R1
   call __function_R_RenderBSPNode
-__if_12773_start:
+__if_12937_start:
   mov R1, [BP-1]
   iadd R1, 4
   mov R2, [BP-2]
@@ -12300,7 +12490,7 @@ __if_12773_start:
   iadd R1, R2
   mov [SP], R1
   call __function_R_CheckBBox
-  jf R0, __if_12773_end
+  jf R0, __if_12937_end
   mov R1, [BP-1]
   iadd R1, 12
   mov R2, [BP-2]
@@ -12309,7 +12499,7 @@ __if_12773_start:
   mov R1, [R1]
   mov [SP], R1
   call __function_R_RenderBSPNode
-__if_12773_end:
+__if_12937_end:
 __function_R_RenderBSPNode_return:
   mov SP, BP
   pop BP
@@ -12357,27 +12547,27 @@ __function_P_AproxDistance:
   push BP
   mov BP, SP
   push R1
-__if_12835_start:
+__if_12999_start:
   mov R0, [BP+2]
   ilt R0, 0
-  jf R0, __if_12835_end
+  jf R0, __if_12999_end
   mov R0, [BP+2]
   isgn R0
   mov [BP+2], R0
-__if_12835_end:
-__if_12843_start:
+__if_12999_end:
+__if_13007_start:
   mov R0, [BP+3]
   ilt R0, 0
-  jf R0, __if_12843_end
+  jf R0, __if_13007_end
   mov R0, [BP+3]
   isgn R0
   mov [BP+3], R0
-__if_12843_end:
-__if_12851_start:
+__if_13007_end:
+__if_13015_start:
   mov R0, [BP+2]
   mov R1, [BP+3]
   ilt R0, R1
-  jf R0, __if_12851_end
+  jf R0, __if_13015_end
   mov R0, [BP+2]
   mov R1, [BP+3]
   iadd R0, R1
@@ -12385,7 +12575,7 @@ __if_12851_start:
   shl R1, -1
   isub R0, R1
   jmp __function_P_AproxDistance_return
-__if_12851_end:
+__if_13015_end:
   mov R0, [BP+2]
   mov R1, [BP+3]
   iadd R0, R1
@@ -12407,57 +12597,57 @@ __function_P_PointOnLineSide:
   push R3
   push R4
   isub SP, 2
-__if_12885_start:
+__if_13049_start:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   bnot R0
-  jf R0, __if_12885_end
-__if_12890_start:
+  jf R0, __if_13049_end
+__if_13054_start:
   mov R0, [BP+2]
   mov R3, [BP+4]
   mov R2, [R3]
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_12890_end
+  jf R0, __if_13054_end
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   igt R0, 0
   jmp __function_P_PointOnLineSide_return
-__if_12890_end:
+__if_13054_end:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 0
   jmp __function_P_PointOnLineSide_return
-__if_12885_end:
-__if_12906_start:
+__if_13049_end:
+__if_13070_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   bnot R0
-  jf R0, __if_12906_end
-__if_12911_start:
+  jf R0, __if_13070_end
+__if_13075_start:
   mov R0, [BP+3]
   mov R3, [BP+4]
   mov R2, [R3]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_12911_end
+  jf R0, __if_13075_end
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   ilt R0, 0
   jmp __function_P_PointOnLineSide_return
-__if_12911_end:
+__if_13075_end:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   igt R0, 0
   jmp __function_P_PointOnLineSide_return
-__if_12906_end:
+__if_13070_end:
   mov R0, [BP+2]
   mov R3, [BP+4]
   mov R2, [R3]
@@ -12507,14 +12697,14 @@ __if_12906_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_12997_start:
+__if_13161_start:
   mov R0, [BP-4]
   mov R1, [BP-3]
   ilt R0, R1
-  jf R0, __if_12997_end
+  jf R0, __if_13161_end
   mov R0, 0
   jmp __function_P_PointOnLineSide_return
-__if_12997_end:
+__if_13161_end:
   mov R0, 1
 __function_P_PointOnLineSide_return:
   iadd SP, 2
@@ -12538,12 +12728,12 @@ __function_P_BoxOnLineSide:
   mov [BP-1], R0
   mov R0, 0
   mov [BP-2], R0
-__if_13014_start:
+__if_13178_start:
   mov R1, [BP+3]
   iadd R1, 13
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_13014_else
+  jf R0, __if_13178_else
   mov R0, [BP+2]
   mov R0, [R0]
   mov R3, [BP+3]
@@ -12561,27 +12751,27 @@ __if_13014_start:
   mov R1, [R2]
   igt R0, R1
   mov [BP-2], R0
-__if_13038_start:
+__if_13202_start:
   mov R1, [BP+3]
   iadd R1, 2
   mov R0, [R1]
   ilt R0, 0
-  jf R0, __if_13038_end
+  jf R0, __if_13202_end
   mov R0, [BP-1]
   xor R0, 1
   mov [BP-1], R0
   mov R0, [BP-2]
   xor R0, 1
   mov [BP-2], R0
-__if_13038_end:
-  jmp __if_13014_end
-__if_13014_else:
-__if_13050_start:
+__if_13202_end:
+  jmp __if_13178_end
+__if_13178_else:
+__if_13214_start:
   mov R1, [BP+3]
   iadd R1, 13
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_13050_else
+  jf R0, __if_13214_else
   mov R0, [BP+2]
   iadd R0, 3
   mov R0, [R0]
@@ -12598,27 +12788,27 @@ __if_13050_start:
   mov R1, [R2]
   ilt R0, R1
   mov [BP-2], R0
-__if_13074_start:
+__if_13238_start:
   mov R1, [BP+3]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 0
-  jf R0, __if_13074_end
+  jf R0, __if_13238_end
   mov R0, [BP-1]
   xor R0, 1
   mov [BP-1], R0
   mov R0, [BP-2]
   xor R0, 1
   mov [BP-2], R0
-__if_13074_end:
-  jmp __if_13050_end
-__if_13050_else:
-__if_13086_start:
+__if_13238_end:
+  jmp __if_13214_end
+__if_13214_else:
+__if_13250_start:
   mov R1, [BP+3]
   iadd R1, 13
   mov R0, [R1]
   ieq R0, 2
-  jf R0, __if_13086_else
+  jf R0, __if_13250_else
   mov R2, [BP+2]
   iadd R2, 2
   mov R2, [R2]
@@ -12646,8 +12836,8 @@ __if_13086_start:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-  jmp __if_13086_end
-__if_13086_else:
+  jmp __if_13250_end
+__if_13250_else:
   mov R2, [BP+2]
   iadd R2, 3
   mov R2, [R2]
@@ -12675,17 +12865,17 @@ __if_13086_else:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_13086_end:
-__if_13050_end:
-__if_13014_end:
-__if_13133_start:
+__if_13250_end:
+__if_13214_end:
+__if_13178_end:
+__if_13297_start:
   mov R0, [BP-1]
   mov R1, [BP-2]
   ieq R0, R1
-  jf R0, __if_13133_end
+  jf R0, __if_13297_end
   mov R0, [BP-1]
   jmp __function_P_BoxOnLineSide_return
-__if_13133_end:
+__if_13297_end:
   mov R0, -1
 __function_P_BoxOnLineSide_return:
   iadd SP, 3
@@ -12705,55 +12895,55 @@ __function_P_PointOnDivlineSide:
   push R3
   push R4
   isub SP, 2
-__if_13154_start:
+__if_13318_start:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   bnot R0
-  jf R0, __if_13154_end
-__if_13159_start:
+  jf R0, __if_13318_end
+__if_13323_start:
   mov R0, [BP+2]
   mov R2, [BP+4]
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_13159_end
+  jf R0, __if_13323_end
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   igt R0, 0
   jmp __function_P_PointOnDivlineSide_return
-__if_13159_end:
+__if_13323_end:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 0
   jmp __function_P_PointOnDivlineSide_return
-__if_13154_end:
-__if_13174_start:
+__if_13318_end:
+__if_13338_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   bnot R0
-  jf R0, __if_13174_end
-__if_13179_start:
+  jf R0, __if_13338_end
+__if_13343_start:
   mov R0, [BP+3]
   mov R2, [BP+4]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_13179_end
+  jf R0, __if_13343_end
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   ilt R0, 0
   jmp __function_P_PointOnDivlineSide_return
-__if_13179_end:
+__if_13343_end:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   igt R0, 0
   jmp __function_P_PointOnDivlineSide_return
-__if_13174_end:
+__if_13338_end:
   mov R0, [BP+2]
   mov R2, [BP+4]
   mov R1, [R2]
@@ -12765,7 +12955,7 @@ __if_13174_end:
   mov R1, [R2]
   isub R0, R1
   mov [BP-2], R0
-__if_13206_start:
+__if_13370_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
@@ -12779,8 +12969,8 @@ __if_13206_start:
   xor R0, R1
   and R0, 0x80000000
   cib R0
-  jf R0, __if_13206_end
-__if_13220_start:
+  jf R0, __if_13370_end
+__if_13384_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
@@ -12788,13 +12978,13 @@ __if_13220_start:
   xor R0, R1
   and R0, 0x80000000
   cib R0
-  jf R0, __if_13220_end
+  jf R0, __if_13384_end
   mov R0, 1
   jmp __function_P_PointOnDivlineSide_return
-__if_13220_end:
+__if_13384_end:
   mov R0, 0
   jmp __function_P_PointOnDivlineSide_return
-__if_13206_end:
+__if_13370_end:
   mov R3, [BP+4]
   iadd R3, 3
   mov R2, [R3]
@@ -12843,14 +13033,14 @@ __if_13206_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_13330_start:
+__if_13494_start:
   mov R0, [BP-4]
   mov R1, [BP-3]
   ilt R0, R1
-  jf R0, __if_13330_end
+  jf R0, __if_13494_end
   mov R0, 0
   jmp __function_P_PointOnDivlineSide_return
-__if_13330_end:
+__if_13494_end:
   mov R0, 1
 __function_P_PointOnDivlineSide_return:
   iadd SP, 2
@@ -12944,13 +13134,13 @@ __function_P_InterceptVector:
   isub R1, R2
   mov [BP-3], R1
   mov R0, R1
-__if_13429_start:
+__if_13593_start:
   mov R0, [BP-3]
   ieq R0, 0
-  jf R0, __if_13429_end
+  jf R0, __if_13593_end
   mov R0, 0
   jmp __function_P_InterceptVector_return
-__if_13429_end:
+__if_13593_end:
   mov R3, [BP+3]
   mov R2, [R3]
   mov R4, [BP+2]
@@ -13027,17 +13217,17 @@ __function_P_LineOpening:
   push BP
   mov BP, SP
   isub SP, 2
-__if_13529_start:
+__if_13693_start:
   mov R0, [BP+2]
   iadd R0, 7
   iadd R0, 1
   mov R0, [R0]
   ieq R0, -1
-  jf R0, __if_13529_end
+  jf R0, __if_13693_end
   mov R0, 0
   mov [global_openrange], R0
   jmp __function_P_LineOpening_return
-__if_13529_end:
+__if_13693_end:
   mov R1, [BP+2]
   iadd R1, 15
   mov R0, [R1]
@@ -13046,7 +13236,7 @@ __if_13529_end:
   iadd R1, 16
   mov R0, [R1]
   mov [BP-2], R0
-__if_13550_start:
+__if_13714_start:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
@@ -13054,40 +13244,40 @@ __if_13550_start:
   iadd R2, 1
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_13550_else
+  jf R0, __if_13714_else
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   mov [global_opentop], R0
-  jmp __if_13550_end
-__if_13550_else:
+  jmp __if_13714_end
+__if_13714_else:
   mov R1, [BP-2]
   iadd R1, 1
   mov R0, [R1]
   mov [global_opentop], R0
-__if_13550_end:
-__if_13564_start:
+__if_13714_end:
+__if_13728_start:
   mov R1, [BP-1]
   mov R0, [R1]
   mov R2, [BP-2]
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_13564_else
+  jf R0, __if_13728_else
   mov R1, [BP-1]
   mov R0, [R1]
   mov [global_openbottom], R0
   mov R1, [BP-2]
   mov R0, [R1]
   mov [global_lowfloor], R0
-  jmp __if_13564_end
-__if_13564_else:
+  jmp __if_13728_end
+__if_13728_else:
   mov R1, [BP-2]
   mov R0, [R1]
   mov [global_openbottom], R0
   mov R1, [BP-1]
   mov R0, [R1]
   mov [global_lowfloor], R0
-__if_13564_end:
+__if_13728_end:
   mov R0, [global_opentop]
   mov R1, [global_openbottom]
   isub R0, R1
@@ -13101,19 +13291,19 @@ __function_P_UnsetThingPosition:
   push BP
   mov BP, SP
   isub SP, 2
-__if_13595_start:
+__if_13759_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 8
   bnot R0
-  jf R0, __if_13595_end
-__if_13603_start:
+  jf R0, __if_13759_end
+__if_13767_start:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_13603_end
+  jf R0, __if_13767_end
   mov R1, [BP+2]
   iadd R1, 8
   mov R0, [R1]
@@ -13122,13 +13312,13 @@ __if_13603_start:
   mov R1, [R2]
   iadd R1, 8
   mov [R1], R0
-__if_13603_end:
-__if_13612_start:
+__if_13767_end:
+__if_13776_start:
   mov R1, [BP+2]
   iadd R1, 8
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_13612_else
+  jf R0, __if_13776_else
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
@@ -13137,8 +13327,8 @@ __if_13612_start:
   mov R1, [R2]
   iadd R1, 7
   mov [R1], R0
-  jmp __if_13612_end
-__if_13612_else:
+  jmp __if_13776_end
+__if_13776_else:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
@@ -13148,21 +13338,21 @@ __if_13612_else:
   mov R1, [R2]
   iadd R1, 8
   mov [R1], R0
-__if_13612_end:
-__if_13595_end:
-__if_13629_start:
+__if_13776_end:
+__if_13759_end:
+__if_13793_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 16
   bnot R0
-  jf R0, __if_13629_end
-__if_13637_start:
+  jf R0, __if_13793_end
+__if_13801_start:
   mov R1, [BP+2]
   iadd R1, 9
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_13637_end
+  jf R0, __if_13801_end
   mov R1, [BP+2]
   iadd R1, 10
   mov R0, [R1]
@@ -13171,13 +13361,13 @@ __if_13637_start:
   mov R1, [R2]
   iadd R1, 10
   mov [R1], R0
-__if_13637_end:
-__if_13646_start:
+__if_13801_end:
+__if_13810_start:
   mov R1, [BP+2]
   iadd R1, 10
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_13646_else
+  jf R0, __if_13810_else
   mov R1, [BP+2]
   iadd R1, 9
   mov R0, [R1]
@@ -13186,8 +13376,8 @@ __if_13646_start:
   mov R1, [R2]
   iadd R1, 9
   mov [R1], R0
-  jmp __if_13646_end
-__if_13646_else:
+  jmp __if_13810_end
+__if_13810_else:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -13220,27 +13410,27 @@ __if_13646_else:
   shl R1, 9
   or R0, R1
   mov [BP-2], R0
-__if_13728_start:
+__if_13892_start:
   mov R0, [BP-1]
   ige R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_13733
+  jf R0, __LogicalAnd_ShortCircuit_13897
   mov R1, [BP-2]
   ige R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_13733:
-  jf R0, __LogicalAnd_ShortCircuit_13737
+__LogicalAnd_ShortCircuit_13897:
+  jf R0, __LogicalAnd_ShortCircuit_13901
   mov R1, [BP-1]
   mov R2, [global_bmapwidth]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_13737:
-  jf R0, __LogicalAnd_ShortCircuit_13741
+__LogicalAnd_ShortCircuit_13901:
+  jf R0, __LogicalAnd_ShortCircuit_13905
   mov R1, [BP-2]
   mov R2, [global_bmapheight]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_13741:
-  jf R0, __if_13728_end
+__LogicalAnd_ShortCircuit_13905:
+  jf R0, __if_13892_end
   mov R1, [BP+2]
   iadd R1, 9
   mov R0, [R1]
@@ -13252,9 +13442,9 @@ __LogicalAnd_ShortCircuit_13741:
   iadd R2, R3
   iadd R1, R2
   mov [R1], R0
-__if_13728_end:
-__if_13646_end:
-__if_13629_end:
+__if_13892_end:
+__if_13810_end:
+__if_13793_end:
 __function_P_UnsetThingPosition_return:
   mov SP, BP
   pop BP
@@ -13280,13 +13470,13 @@ __function_P_SetThingPosition:
   mov R1, [BP+2]
   iadd R1, 14
   mov [R1], R0
-__if_13772_start:
+__if_13936_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 8
   bnot R0
-  jf R0, __if_13772_end
+  jf R0, __if_13936_end
   mov R1, [BP-1]
   mov R0, [R1]
   mov [BP-2], R0
@@ -13300,31 +13490,31 @@ __if_13772_start:
   mov R1, [BP+2]
   iadd R1, 7
   mov [R1], R0
-__if_13794_start:
+__if_13958_start:
   mov R1, [BP-2]
   iadd R1, 8
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_13794_end
+  jf R0, __if_13958_end
   mov R0, [BP+2]
   mov R2, [BP-2]
   iadd R2, 8
   mov R1, [R2]
   iadd R1, 8
   mov [R1], R0
-__if_13794_end:
+__if_13958_end:
   mov R0, [BP+2]
   mov R1, [BP-2]
   iadd R1, 8
   mov [R1], R0
-__if_13772_end:
-__if_13809_start:
+__if_13936_end:
+__if_13973_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 16
   bnot R0
-  jf R0, __if_13809_end
+  jf R0, __if_13973_end
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -13357,27 +13547,27 @@ __if_13809_start:
   shl R1, 9
   or R0, R1
   mov [BP-4], R0
-__if_13889_start:
+__if_14053_start:
   mov R0, [BP-3]
   ige R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_13894
+  jf R0, __LogicalAnd_ShortCircuit_14058
   mov R1, [BP-4]
   ige R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_13894:
-  jf R0, __LogicalAnd_ShortCircuit_13898
+__LogicalAnd_ShortCircuit_14058:
+  jf R0, __LogicalAnd_ShortCircuit_14062
   mov R1, [BP-3]
   mov R2, [global_bmapwidth]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_13898:
-  jf R0, __LogicalAnd_ShortCircuit_13902
+__LogicalAnd_ShortCircuit_14062:
+  jf R0, __LogicalAnd_ShortCircuit_14066
   mov R1, [BP-4]
   mov R2, [global_bmapheight]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_13902:
-  jf R0, __if_13889_else
+__LogicalAnd_ShortCircuit_14066:
+  jf R0, __if_14053_else
   mov R0, [global_blocklinks]
   mov R1, [BP-4]
   mov R2, [global_bmapwidth]
@@ -13395,23 +13585,23 @@ __LogicalAnd_ShortCircuit_13902:
   mov R1, [BP+2]
   iadd R1, 9
   mov [R1], R0
-__if_13926_start:
+__if_14090_start:
   mov R0, [BP-5]
   mov R0, [R0]
   ine R0, -1
-  jf R0, __if_13926_end
+  jf R0, __if_14090_end
   mov R0, [BP+2]
   mov R1, [BP-5]
   mov R1, [R1]
   iadd R1, 10
   mov [R1], R0
-__if_13926_end:
+__if_14090_end:
   mov R0, [BP+2]
   lea R1, [BP-5]
   mov R1, [R1]
   mov [R1], R0
-  jmp __if_13889_end
-__if_13889_else:
+  jmp __if_14053_end
+__if_14053_else:
   mov R0, -1
   mov R1, [BP+2]
   iadd R1, 9
@@ -13420,8 +13610,8 @@ __if_13889_else:
   mov R1, [BP+2]
   iadd R1, 10
   mov [R1], R0
-__if_13889_end:
-__if_13809_end:
+__if_14053_end:
+__if_13973_end:
 __function_P_SetThingPosition_return:
   mov SP, BP
   pop BP
@@ -13435,30 +13625,30 @@ __function_P_BlockLinesIterator:
   push R2
   push R3
   isub SP, 1
-__if_13954_start:
+__if_14118_start:
   mov R0, [BP+2]
   ilt R0, 0
-  jt R0, __LogicalOr_ShortCircuit_13959
+  jt R0, __LogicalOr_ShortCircuit_14123
   mov R1, [BP+3]
   ilt R1, 0
   or R0, R1
-__LogicalOr_ShortCircuit_13959:
-  jt R0, __LogicalOr_ShortCircuit_13963
+__LogicalOr_ShortCircuit_14123:
+  jt R0, __LogicalOr_ShortCircuit_14127
   mov R1, [BP+2]
   mov R2, [global_bmapwidth]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_13963:
-  jt R0, __LogicalOr_ShortCircuit_13967
+__LogicalOr_ShortCircuit_14127:
+  jt R0, __LogicalOr_ShortCircuit_14131
   mov R1, [BP+3]
   mov R2, [global_bmapheight]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_13967:
-  jf R0, __if_13954_end
+__LogicalOr_ShortCircuit_14131:
+  jf R0, __if_14118_end
   mov R0, 1
   jmp __function_P_BlockLinesIterator_return
-__if_13954_end:
+__if_14118_end:
   mov R0, [global_blockmap]
   mov R1, [BP+3]
   mov R2, [global_bmapwidth]
@@ -13472,31 +13662,31 @@ __if_13954_end:
   mov R1, [BP-1]
   iadd R0, R1
   mov [BP-2], R0
-__for_13987_start:
+__for_14151_start:
   mov R0, [BP-2]
   mov R0, [R0]
   ine R0, -1
-  jf R0, __for_13987_end
+  jf R0, __for_14151_end
   mov R0, [global_lines]
   mov R1, [BP-2]
   mov R1, [R1]
   imul R1, 17
   iadd R0, R1
   mov [BP-3], R0
-__if_14003_start:
+__if_14167_start:
   mov R1, [BP-3]
   iadd R1, 14
   mov R0, [R1]
   mov R1, [global_validcount]
   ieq R0, R1
-  jf R0, __if_14003_end
-  jmp __for_13987_continue
-__if_14003_end:
+  jf R0, __if_14167_end
+  jmp __for_14151_continue
+__if_14167_end:
   mov R0, [global_validcount]
   mov R1, [BP-3]
   iadd R1, 14
   mov [R1], R0
-__if_14013_start:
+__if_14177_start:
   mov R2, [BP-3]
   mov [SP], R2
   mov R3, [BP+4]
@@ -13504,17 +13694,17 @@ __if_14013_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_14013_end
+  jf R0, __if_14177_end
   mov R0, 0
   jmp __function_P_BlockLinesIterator_return
-__if_14013_end:
-__for_13987_continue:
+__if_14177_end:
+__for_14151_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_13987_start
-__for_13987_end:
+  jmp __for_14151_start
+__for_14151_end:
   mov R0, 1
 __function_P_BlockLinesIterator_return:
   iadd SP, 1
@@ -13533,30 +13723,30 @@ __function_P_BlockThingsIterator:
   push R2
   push R3
   isub SP, 1
-__if_14028_start:
+__if_14192_start:
   mov R0, [BP+2]
   ilt R0, 0
-  jt R0, __LogicalOr_ShortCircuit_14033
+  jt R0, __LogicalOr_ShortCircuit_14197
   mov R1, [BP+3]
   ilt R1, 0
   or R0, R1
-__LogicalOr_ShortCircuit_14033:
-  jt R0, __LogicalOr_ShortCircuit_14037
+__LogicalOr_ShortCircuit_14197:
+  jt R0, __LogicalOr_ShortCircuit_14201
   mov R1, [BP+2]
   mov R2, [global_bmapwidth]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_14037:
-  jt R0, __LogicalOr_ShortCircuit_14041
+__LogicalOr_ShortCircuit_14201:
+  jt R0, __LogicalOr_ShortCircuit_14205
   mov R1, [BP+3]
   mov R2, [global_bmapheight]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_14041:
-  jf R0, __if_14028_end
+__LogicalOr_ShortCircuit_14205:
+  jf R0, __if_14192_end
   mov R0, 1
   jmp __function_P_BlockThingsIterator_return
-__if_14028_end:
+__if_14192_end:
   mov R0, [global_blocklinks]
   mov R1, [BP+3]
   mov R2, [global_bmapwidth]
@@ -13566,11 +13756,11 @@ __if_14028_end:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-1], R0
-__for_14046_start:
+__for_14210_start:
   mov R0, [BP-1]
   ine R0, -1
-  jf R0, __for_14046_end
-__if_14063_start:
+  jf R0, __for_14210_end
+__if_14227_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R3, [BP+4]
@@ -13578,17 +13768,17 @@ __if_14063_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_14063_end
+  jf R0, __if_14227_end
   mov R0, 0
   jmp __function_P_BlockThingsIterator_return
-__if_14063_end:
-__for_14046_continue:
+__if_14227_end:
+__for_14210_continue:
   mov R1, [BP-1]
   iadd R1, 9
   mov R0, [R1]
   mov [BP-1], R0
-  jmp __for_14046_start
-__for_14046_end:
+  jmp __for_14210_start
+__for_14210_end:
   mov R0, 1
 __function_P_BlockThingsIterator_return:
   iadd SP, 1
@@ -13608,25 +13798,25 @@ __function_PIT_AddLineIntercepts:
   push R3
   push R4
   isub SP, 3
-__if_14093_start:
+__if_14257_start:
   mov R0, [1697682]
   igt R0, 1048576
-  jt R0, __LogicalOr_ShortCircuit_14102
+  jt R0, __LogicalOr_ShortCircuit_14266
   mov R1, [1697683]
   igt R1, 1048576
   or R0, R1
-__LogicalOr_ShortCircuit_14102:
-  jt R0, __LogicalOr_ShortCircuit_14109
+__LogicalOr_ShortCircuit_14266:
+  jt R0, __LogicalOr_ShortCircuit_14273
   mov R1, [1697682]
   ilt R1, -1048576
   or R0, R1
-__LogicalOr_ShortCircuit_14109:
-  jt R0, __LogicalOr_ShortCircuit_14117
+__LogicalOr_ShortCircuit_14273:
+  jt R0, __LogicalOr_ShortCircuit_14281
   mov R1, [1697683]
   ilt R1, -1048576
   or R0, R1
-__LogicalOr_ShortCircuit_14117:
-  jf R0, __if_14093_else
+__LogicalOr_ShortCircuit_14281:
+  jf R0, __if_14257_else
   mov R4, [BP+2]
   mov R3, [R4]
   mov R2, [R3]
@@ -13659,8 +13849,8 @@ __LogicalOr_ShortCircuit_14117:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-  jmp __if_14093_end
-__if_14093_else:
+  jmp __if_14257_end
+__if_14257_else:
   mov R2, [global_trace]
   mov [SP], R2
   mov R2, [1697681]
@@ -13685,15 +13875,15 @@ __if_14093_else:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_14093_end:
-__if_14169_start:
+__if_14257_end:
+__if_14333_start:
   mov R0, [BP-1]
   mov R1, [BP-2]
   ieq R0, R1
-  jf R0, __if_14169_end
+  jf R0, __if_14333_end
   mov R0, 1
   jmp __function_PIT_AddLineIntercepts_return
-__if_14169_end:
+__if_14333_end:
   mov R1, [BP+2]
   mov [SP], R1
   lea R1, [BP-7]
@@ -13707,36 +13897,36 @@ __if_14169_end:
   mov R1, R0
   mov [BP-3], R1
   mov R0, R1
-__if_14186_start:
+__if_14350_start:
   mov R0, [BP-3]
   ilt R0, 0
-  jf R0, __if_14186_end
+  jf R0, __if_14350_end
   mov R0, 1
   jmp __function_PIT_AddLineIntercepts_return
-__if_14186_end:
-__if_14192_start:
+__if_14350_end:
+__if_14356_start:
   mov R0, [global_earlyout]
-  jf R0, __LogicalAnd_ShortCircuit_14194
+  jf R0, __LogicalAnd_ShortCircuit_14358
   mov R1, [BP-3]
   ilt R1, 65536
   and R0, R1
-__LogicalAnd_ShortCircuit_14194:
-  jf R0, __LogicalAnd_ShortCircuit_14201
+__LogicalAnd_ShortCircuit_14358:
+  jf R0, __LogicalAnd_ShortCircuit_14365
   mov R2, [BP+2]
   iadd R2, 16
   mov R1, [R2]
   ine R1, -1
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_14201:
-  jf R0, __if_14192_end
+__LogicalAnd_ShortCircuit_14365:
+  jf R0, __if_14356_end
   mov R0, 0
   jmp __function_PIT_AddLineIntercepts_return
-__if_14192_end:
-__if_14204_start:
+__if_14356_end:
+__if_14368_start:
   mov R0, [global_intercept_n]
   ilt R0, 128
-  jf R0, __if_14204_end
+  jf R0, __if_14368_end
   mov R0, [BP-3]
   mov R1, global_intercepts
   mov R2, [global_intercept_n]
@@ -13768,7 +13958,7 @@ __if_14204_start:
   mov R1, R0
   iadd R1, 1
   mov [global_intercept_n], R1
-__if_14204_end:
+__if_14368_end:
   mov R0, 1
 __function_PIT_AddLineIntercepts_return:
   iadd SP, 3
@@ -13792,9 +13982,9 @@ __function_PIT_AddThingIntercepts:
   xor R0, R1
   igt R0, 0
   mov [BP-7], R0
-__if_14267_start:
+__if_14431_start:
   mov R0, [BP-7]
-  jf R0, __if_14267_else
+  jf R0, __if_14431_else
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -13827,8 +14017,8 @@ __if_14267_start:
   mov R1, [R2]
   isub R0, R1
   mov [BP-4], R0
-  jmp __if_14267_end
-__if_14267_else:
+  jmp __if_14431_end
+__if_14431_else:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -13861,7 +14051,7 @@ __if_14267_else:
   mov R1, [R2]
   iadd R0, R1
   mov [BP-4], R0
-__if_14267_end:
+__if_14431_end:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, [BP-2]
@@ -13882,14 +14072,14 @@ __if_14267_end:
   mov R1, R0
   mov [BP-6], R1
   mov R0, R1
-__if_14341_start:
+__if_14505_start:
   mov R0, [BP-5]
   mov R1, [BP-6]
   ieq R0, R1
-  jf R0, __if_14341_end
+  jf R0, __if_14505_end
   mov R0, 1
   jmp __function_PIT_AddThingIntercepts_return
-__if_14341_end:
+__if_14505_end:
   mov R0, [BP-1]
   mov [BP-11], R0
   mov R0, [BP-2]
@@ -13910,17 +14100,17 @@ __if_14341_end:
   mov R1, R0
   mov [BP-12], R1
   mov R0, R1
-__if_14374_start:
+__if_14538_start:
   mov R0, [BP-12]
   ilt R0, 0
-  jf R0, __if_14374_end
+  jf R0, __if_14538_end
   mov R0, 1
   jmp __function_PIT_AddThingIntercepts_return
-__if_14374_end:
-__if_14380_start:
+__if_14538_end:
+__if_14544_start:
   mov R0, [global_intercept_n]
   ilt R0, 128
-  jf R0, __if_14380_end
+  jf R0, __if_14544_end
   mov R0, [BP-12]
   mov R1, global_intercepts
   mov R2, [global_intercept_n]
@@ -13952,7 +14142,7 @@ __if_14380_start:
   mov R1, R0
   iadd R1, 1
   mov [global_intercept_n], R1
-__if_14380_end:
+__if_14544_end:
   mov R0, 1
 __function_PIT_AddThingIntercepts_return:
   iadd SP, 3
@@ -13974,24 +14164,24 @@ __function_P_TraverseIntercepts:
   mov [BP-4], R0
   mov R0, [global_intercept_n]
   mov [BP-1], R0
-__while_14428_start:
-__while_14428_continue:
+__while_14592_start:
+__while_14592_continue:
   mov R0, [BP-1]
   mov R1, R0
   isub R1, 1
   mov [BP-1], R1
   cib R0
-  jf R0, __while_14428_end
+  jf R0, __while_14592_end
   mov R0, 2147483647
   mov [BP-2], R0
   mov R0, 0
   mov [BP-3], R0
-__for_14435_start:
+__for_14599_start:
   mov R0, [BP-3]
   mov R1, [global_intercept_n]
   ilt R0, R1
-  jf R0, __for_14435_end
-__if_14445_start:
+  jf R0, __for_14599_end
+__if_14609_start:
   mov R1, global_intercepts
   mov R2, [BP-3]
   imul R2, 4
@@ -13999,7 +14189,7 @@ __if_14445_start:
   mov R0, [R1]
   mov R1, [BP-2]
   ilt R0, R1
-  jf R0, __if_14445_end
+  jf R0, __if_14609_end
   mov R1, global_intercepts
   mov R2, [BP-3]
   imul R2, 4
@@ -14011,23 +14201,23 @@ __if_14445_start:
   imul R1, 4
   iadd R0, R1
   mov [BP-4], R0
-__if_14445_end:
-__for_14435_continue:
+__if_14609_end:
+__for_14599_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_14435_start
-__for_14435_end:
-__if_14465_start:
+  jmp __for_14599_start
+__for_14599_end:
+__if_14629_start:
   mov R0, [BP-2]
   mov R1, [BP+3]
   igt R0, R1
-  jf R0, __if_14465_end
+  jf R0, __if_14629_end
   mov R0, 1
   jmp __function_P_TraverseIntercepts_return
-__if_14465_end:
-__if_14471_start:
+__if_14629_end:
+__if_14635_start:
   mov R2, [BP-4]
   mov [SP], R2
   mov R3, [BP+2]
@@ -14035,15 +14225,15 @@ __if_14471_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_14471_end
+  jf R0, __if_14635_end
   mov R0, 0
   jmp __function_P_TraverseIntercepts_return
-__if_14471_end:
+__if_14635_end:
   mov R0, 2147483647
   mov R1, [BP-4]
   mov [R1], R0
-  jmp __while_14428_start
-__while_14428_end:
+  jmp __while_14592_start
+__while_14592_end:
   mov R0, 1
 __function_P_TraverseIntercepts_return:
   iadd SP, 1
@@ -14073,28 +14263,28 @@ __function_P_PathTraverse:
   mov [global_validcount], R1
   mov R0, 0
   mov [global_intercept_n], R0
-__if_14532_start:
+__if_14696_start:
   mov R0, [BP+2]
   mov R1, [global_bmaporgx]
   isub R0, R1
   and R0, 8388607
   ieq R0, 0
-  jf R0, __if_14532_end
+  jf R0, __if_14696_end
   mov R0, [BP+2]
   iadd R0, 65536
   mov [BP+2], R0
-__if_14532_end:
-__if_14551_start:
+__if_14696_end:
+__if_14715_start:
   mov R0, [BP+3]
   mov R1, [global_bmaporgy]
   isub R0, R1
   and R0, 8388607
   ieq R0, 0
-  jf R0, __if_14551_end
+  jf R0, __if_14715_end
   mov R0, [BP+3]
   iadd R0, 65536
   mov [BP+3], R0
-__if_14551_end:
+__if_14715_end:
   mov R0, [BP+2]
   mov [global_trace], R0
   mov R0, [BP+3]
@@ -14155,11 +14345,11 @@ __if_14551_end:
   shl R1, 9
   or R0, R1
   mov [BP-4], R0
-__if_14722_start:
+__if_14886_start:
   mov R0, [BP-3]
   mov R1, [BP-1]
   igt R0, R1
-  jf R0, __if_14722_else
+  jf R0, __if_14886_else
   mov R0, 1
   mov [BP-12], R0
   mov R0, [BP+2]
@@ -14190,13 +14380,13 @@ __if_14722_start:
   mov R1, R0
   mov [BP-6], R1
   mov R0, R1
-  jmp __if_14722_end
-__if_14722_else:
-__if_14784_start:
+  jmp __if_14886_end
+__if_14886_else:
+__if_14948_start:
   mov R0, [BP-3]
   mov R1, [BP-1]
   ilt R0, R1
-  jf R0, __if_14784_else
+  jf R0, __if_14948_else
   mov R0, -1
   mov [BP-12], R0
   mov R0, [BP+2]
@@ -14225,16 +14415,16 @@ __if_14784_start:
   mov R1, R0
   mov [BP-6], R1
   mov R0, R1
-  jmp __if_14784_end
-__if_14784_else:
+  jmp __if_14948_end
+__if_14948_else:
   mov R0, 0
   mov [BP-12], R0
   mov R0, 65536
   mov [BP-7], R0
   mov R0, 16777216
   mov [BP-6], R0
-__if_14784_end:
-__if_14722_end:
+__if_14948_end:
+__if_14886_end:
   mov R1, [BP+3]
   shl R1, -7
   mov R2, [BP+3]
@@ -14251,11 +14441,11 @@ __if_14722_end:
   iadd R1, R2
   mov [BP-9], R1
   mov R0, R1
-__if_14896_start:
+__if_15060_start:
   mov R0, [BP-4]
   mov R1, [BP-2]
   igt R0, R1
-  jf R0, __if_14896_else
+  jf R0, __if_15060_else
   mov R0, 1
   mov [BP-13], R0
   mov R0, [BP+3]
@@ -14286,13 +14476,13 @@ __if_14896_start:
   mov R1, R0
   mov [BP-5], R1
   mov R0, R1
-  jmp __if_14896_end
-__if_14896_else:
-__if_14958_start:
+  jmp __if_15060_end
+__if_15060_else:
+__if_15122_start:
   mov R0, [BP-4]
   mov R1, [BP-2]
   ilt R0, R1
-  jf R0, __if_14958_else
+  jf R0, __if_15122_else
   mov R0, -1
   mov [BP-13], R0
   mov R0, [BP+3]
@@ -14321,16 +14511,16 @@ __if_14958_start:
   mov R1, R0
   mov [BP-5], R1
   mov R0, R1
-  jmp __if_14958_end
-__if_14958_else:
+  jmp __if_15122_end
+__if_15122_else:
   mov R0, 0
   mov [BP-13], R0
   mov R0, 65536
   mov [BP-7], R0
   mov R0, 16777216
   mov [BP-5], R0
-__if_14958_end:
-__if_14896_end:
+__if_15122_end:
+__if_15060_end:
   mov R1, [BP+2]
   shl R1, -7
   mov R2, [BP+2]
@@ -14353,16 +14543,16 @@ __if_14896_end:
   mov [BP-11], R0
   mov R0, 0
   mov [BP-14], R0
-__for_15076_start:
+__for_15240_start:
   mov R0, [BP-14]
   ilt R0, 64
-  jf R0, __for_15076_end
-__if_15086_start:
+  jf R0, __for_15240_end
+__if_15250_start:
   mov R0, [BP+6]
   and R0, 1
   cib R0
-  jf R0, __if_15086_end
-__if_15091_start:
+  jf R0, __if_15250_end
+__if_15255_start:
   mov R2, [BP-10]
   mov [SP], R2
   mov R2, [BP-11]
@@ -14373,17 +14563,17 @@ __if_15091_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_15091_end
+  jf R0, __if_15255_end
   mov R0, 0
   jmp __function_P_PathTraverse_return
-__if_15091_end:
-__if_15086_end:
-__if_15100_start:
+__if_15255_end:
+__if_15250_end:
+__if_15264_start:
   mov R0, [BP+6]
   and R0, 2
   cib R0
-  jf R0, __if_15100_end
-__if_15105_start:
+  jf R0, __if_15264_end
+__if_15269_start:
   mov R2, [BP-10]
   mov [SP], R2
   mov R2, [BP-11]
@@ -14394,25 +14584,25 @@ __if_15105_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_15105_end
+  jf R0, __if_15269_end
   mov R0, 0
   jmp __function_P_PathTraverse_return
-__if_15105_end:
-__if_15100_end:
-__if_15114_start:
+__if_15269_end:
+__if_15264_end:
+__if_15278_start:
   mov R0, [BP-10]
   mov R1, [BP-3]
   ieq R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_15119
+  jf R0, __LogicalAnd_ShortCircuit_15283
   mov R1, [BP-11]
   mov R2, [BP-4]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_15119:
-  jf R0, __if_15114_end
-  jmp __for_15076_end
-__if_15114_end:
-__if_15123_start:
+__LogicalAnd_ShortCircuit_15283:
+  jf R0, __if_15278_end
+  jmp __for_15240_end
+__if_15278_end:
+__if_15287_start:
   mov R0, [BP-9]
   shl R0, -16
   mov R1, [BP-9]
@@ -14422,7 +14612,7 @@ __if_15123_start:
   or R0, R1
   mov R1, [BP-11]
   ieq R0, R1
-  jf R0, __if_15123_else
+  jf R0, __if_15287_else
   mov R0, [BP-9]
   mov R1, [BP-6]
   iadd R0, R1
@@ -14431,9 +14621,9 @@ __if_15123_start:
   mov R1, [BP-12]
   iadd R0, R1
   mov [BP-10], R0
-  jmp __if_15123_end
-__if_15123_else:
-__if_15155_start:
+  jmp __if_15287_end
+__if_15287_else:
+__if_15319_start:
   mov R0, [BP-8]
   shl R0, -16
   mov R1, [BP-8]
@@ -14443,7 +14633,7 @@ __if_15155_start:
   or R0, R1
   mov R1, [BP-10]
   ieq R0, R1
-  jf R0, __if_15155_end
+  jf R0, __if_15319_end
   mov R0, [BP-8]
   mov R1, [BP-5]
   iadd R0, R1
@@ -14452,15 +14642,15 @@ __if_15155_start:
   mov R1, [BP-13]
   iadd R0, R1
   mov [BP-11], R0
-__if_15155_end:
-__if_15123_end:
-__for_15076_continue:
+__if_15319_end:
+__if_15287_end:
+__for_15240_continue:
   mov R0, [BP-14]
   mov R1, R0
   iadd R1, 1
   mov [BP-14], R1
-  jmp __for_15076_start
-__for_15076_end:
+  jmp __for_15240_start
+__for_15240_end:
   mov R1, [BP+7]
   mov [SP], R1
   mov R1, 65536
@@ -14483,74 +14673,74 @@ __function_P_DivlineSide:
   push R1
   push R2
   push R3
-__if_15220_start:
+__if_15384_start:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   bnot R0
-  jf R0, __if_15220_end
-__if_15225_start:
+  jf R0, __if_15384_end
+__if_15389_start:
   mov R0, [BP+2]
   mov R2, [BP+4]
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_15225_end
+  jf R0, __if_15389_end
   mov R0, 2
   jmp __function_P_DivlineSide_return
-__if_15225_end:
-__if_15232_start:
+__if_15389_end:
+__if_15396_start:
   mov R0, [BP+2]
   mov R2, [BP+4]
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_15232_end
+  jf R0, __if_15396_end
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   igt R0, 0
   jmp __function_P_DivlineSide_return
-__if_15232_end:
+__if_15396_end:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 0
   jmp __function_P_DivlineSide_return
-__if_15220_end:
-__if_15247_start:
+__if_15384_end:
+__if_15411_start:
   mov R1, [BP+4]
   iadd R1, 3
   mov R0, [R1]
   bnot R0
-  jf R0, __if_15247_end
-__if_15252_start:
+  jf R0, __if_15411_end
+__if_15416_start:
   mov R0, [BP+2]
   mov R2, [BP+4]
   iadd R2, 1
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_15252_end
+  jf R0, __if_15416_end
   mov R0, 2
   jmp __function_P_DivlineSide_return
-__if_15252_end:
-__if_15259_start:
+__if_15416_end:
+__if_15423_start:
   mov R0, [BP+3]
   mov R2, [BP+4]
   iadd R2, 1
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_15259_end
+  jf R0, __if_15423_end
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   ilt R0, 0
   jmp __function_P_DivlineSide_return
-__if_15259_end:
+__if_15423_end:
   mov R1, [BP+4]
   iadd R1, 2
   mov R0, [R1]
   igt R0, 0
   jmp __function_P_DivlineSide_return
-__if_15247_end:
+__if_15411_end:
   mov R0, [BP+2]
   mov R2, [BP+4]
   mov R1, [R2]
@@ -14602,22 +14792,22 @@ __if_15247_end:
   or R1, R2
   imul R0, R1
   mov [BP-4], R0
-__if_15384_start:
+__if_15548_start:
   mov R0, [BP-4]
   mov R1, [BP-3]
   ilt R0, R1
-  jf R0, __if_15384_end
+  jf R0, __if_15548_end
   mov R0, 0
   jmp __function_P_DivlineSide_return
-__if_15384_end:
-__if_15390_start:
+__if_15548_end:
+__if_15554_start:
   mov R0, [BP-3]
   mov R1, [BP-4]
   ieq R0, R1
-  jf R0, __if_15390_end
+  jf R0, __if_15554_end
   mov R0, 2
   jmp __function_P_DivlineSide_return
-__if_15390_end:
+__if_15554_end:
   mov R0, 1
 __function_P_DivlineSide_return:
   pop R3
@@ -14677,13 +14867,13 @@ __function_P_InterceptVector2:
   isub R1, R2
   mov [BP-3], R1
   mov R0, R1
-__if_15464_start:
+__if_15628_start:
   mov R0, [BP-3]
   ieq R0, 0
-  jf R0, __if_15464_end
+  jf R0, __if_15628_end
   mov R0, 0
   jmp __function_P_InterceptVector2_return
-__if_15464_end:
+__if_15628_end:
   mov R3, [BP+3]
   mov R2, [R3]
   mov R4, [BP+2]
@@ -14775,11 +14965,11 @@ __function_P_CrossSubsector:
   mov [BP-5], R0
   mov R0, 0
   mov [BP-19], R0
-__for_15590_start:
+__for_15754_start:
   mov R0, [BP-19]
   mov R1, [BP-5]
   ilt R0, R1
-  jf R0, __for_15590_end
+  jf R0, __for_15754_end
   mov R0, [global_segs]
   mov R2, [BP-6]
   iadd R2, 2
@@ -14793,15 +14983,15 @@ __for_15590_start:
   iadd R1, 5
   mov R0, [R1]
   mov [BP-2], R0
-__if_15613_start:
+__if_15777_start:
   mov R1, [BP-2]
   iadd R1, 14
   mov R0, [R1]
   mov R1, [global_validcount]
   ieq R0, R1
-  jf R0, __if_15613_end
-  jmp __for_15590_continue
-__if_15613_end:
+  jf R0, __if_15777_end
+  jmp __for_15754_continue
+__if_15777_end:
   mov R0, [global_validcount]
   mov R1, [BP-2]
   iadd R1, 14
@@ -14839,13 +15029,13 @@ __if_15613_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_15649_start:
+__if_15813_start:
   mov R0, [BP-3]
   mov R1, [BP-4]
   ieq R0, R1
-  jf R0, __if_15649_end
-  jmp __for_15590_continue
-__if_15649_end:
+  jf R0, __if_15813_end
+  jmp __for_15754_continue
+__if_15813_end:
   mov R1, [BP-15]
   mov R0, [R1]
   mov [BP-14], R0
@@ -14887,23 +15077,23 @@ __if_15649_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_15696_start:
+__if_15860_start:
   mov R0, [BP-3]
   mov R1, [BP-4]
   ieq R0, R1
-  jf R0, __if_15696_end
-  jmp __for_15590_continue
-__if_15696_end:
-__if_15701_start:
+  jf R0, __if_15860_end
+  jmp __for_15754_continue
+__if_15860_end:
+__if_15865_start:
   mov R1, [BP-2]
   iadd R1, 4
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_15701_end
+  jf R0, __if_15865_end
   mov R0, 0
   jmp __function_P_CrossSubsector_return
-__if_15701_end:
+__if_15865_end:
   mov R1, [BP-1]
   iadd R1, 6
   mov R0, [R1]
@@ -14912,13 +15102,13 @@ __if_15701_end:
   iadd R1, 7
   mov R0, [R1]
   mov [BP-8], R0
-__if_15718_start:
+__if_15882_start:
   mov R1, [BP-7]
   mov R0, [R1]
   mov R2, [BP-8]
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_15726
+  jf R0, __LogicalAnd_ShortCircuit_15890
   mov R2, [BP-7]
   iadd R2, 1
   mov R1, [R2]
@@ -14927,11 +15117,11 @@ __if_15718_start:
   mov R2, [R3]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_15726:
-  jf R0, __if_15718_end
-  jmp __for_15590_continue
-__if_15718_end:
-__if_15731_start:
+__LogicalAnd_ShortCircuit_15890:
+  jf R0, __if_15882_end
+  jmp __for_15754_continue
+__if_15882_end:
+__if_15895_start:
   mov R1, [BP-7]
   iadd R1, 1
   mov R0, [R1]
@@ -14939,42 +15129,42 @@ __if_15731_start:
   iadd R2, 1
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_15731_else
+  jf R0, __if_15895_else
   mov R1, [BP-7]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-9], R0
-  jmp __if_15731_end
-__if_15731_else:
+  jmp __if_15895_end
+__if_15895_else:
   mov R1, [BP-8]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-9], R0
-__if_15731_end:
-__if_15745_start:
+__if_15895_end:
+__if_15909_start:
   mov R1, [BP-7]
   mov R0, [R1]
   mov R2, [BP-8]
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_15745_else
+  jf R0, __if_15909_else
   mov R1, [BP-7]
   mov R0, [R1]
   mov [BP-10], R0
-  jmp __if_15745_end
-__if_15745_else:
+  jmp __if_15909_end
+__if_15909_else:
   mov R1, [BP-8]
   mov R0, [R1]
   mov [BP-10], R0
-__if_15745_end:
-__if_15759_start:
+__if_15909_end:
+__if_15923_start:
   mov R0, [BP-10]
   mov R1, [BP-9]
   ige R0, R1
-  jf R0, __if_15759_end
+  jf R0, __if_15923_end
   mov R0, 0
   jmp __function_P_CrossSubsector_return
-__if_15759_end:
+__if_15923_end:
   mov R2, global_strace
   mov [SP], R2
   lea R2, [BP-14]
@@ -14983,13 +15173,13 @@ __if_15759_end:
   mov R1, R0
   mov [BP-17], R1
   mov R0, R1
-__if_15772_start:
+__if_15936_start:
   mov R1, [BP-7]
   mov R0, [R1]
   mov R2, [BP-8]
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_15772_end
+  jf R0, __if_15936_end
   mov R2, [BP-10]
   mov R3, [global_sightzstart]
   isub R2, R3
@@ -15000,16 +15190,16 @@ __if_15772_start:
   mov R1, R0
   mov [BP-18], R1
   mov R0, R1
-__if_15786_start:
+__if_15950_start:
   mov R0, [BP-18]
   mov R1, [global_s_bottomslope]
   igt R0, R1
-  jf R0, __if_15786_end
+  jf R0, __if_15950_end
   mov R0, [BP-18]
   mov [global_s_bottomslope], R0
-__if_15786_end:
-__if_15772_end:
-__if_15793_start:
+__if_15950_end:
+__if_15936_end:
+__if_15957_start:
   mov R1, [BP-7]
   iadd R1, 1
   mov R0, [R1]
@@ -15017,7 +15207,7 @@ __if_15793_start:
   iadd R2, 1
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_15793_end
+  jf R0, __if_15957_end
   mov R2, [BP-9]
   mov R3, [global_sightzstart]
   isub R2, R3
@@ -15028,30 +15218,30 @@ __if_15793_start:
   mov R1, R0
   mov [BP-18], R1
   mov R0, R1
-__if_15807_start:
+__if_15971_start:
   mov R0, [BP-18]
   mov R1, [global_s_topslope]
   ilt R0, R1
-  jf R0, __if_15807_end
+  jf R0, __if_15971_end
   mov R0, [BP-18]
   mov [global_s_topslope], R0
-__if_15807_end:
-__if_15793_end:
-__if_15814_start:
+__if_15971_end:
+__if_15957_end:
+__if_15978_start:
   mov R0, [global_s_topslope]
   mov R1, [global_s_bottomslope]
   ile R0, R1
-  jf R0, __if_15814_end
+  jf R0, __if_15978_end
   mov R0, 0
   jmp __function_P_CrossSubsector_return
-__if_15814_end:
-__for_15590_continue:
+__if_15978_end:
+__for_15754_continue:
   mov R0, [BP-19]
   mov R1, R0
   iadd R1, 1
   mov [BP-19], R1
-  jmp __for_15590_start
-__for_15590_end:
+  jmp __for_15754_start
+__for_15754_end:
   mov R0, 1
 __function_P_CrossSubsector_return:
   iadd SP, 3
@@ -15070,26 +15260,26 @@ __function_P_CrossBSPNode:
   push R2
   push R3
   isub SP, 3
-__if_15828_start:
+__if_15992_start:
   mov R0, [BP+2]
   and R0, 32768
   cib R0
-  jf R0, __if_15828_end
-__if_15833_start:
+  jf R0, __if_15992_end
+__if_15997_start:
   mov R0, [BP+2]
   ieq R0, -1
-  jf R0, __if_15833_end
+  jf R0, __if_15997_end
   mov R1, 0
   mov [SP], R1
   call __function_P_CrossSubsector
   jmp __function_P_CrossBSPNode_return
-__if_15833_end:
+__if_15997_end:
   mov R1, [BP+2]
   and R1, 32767
   mov [SP], R1
   call __function_P_CrossSubsector
   jmp __function_P_CrossBSPNode_return
-__if_15828_end:
+__if_15992_end:
   mov R0, [global_nodes]
   mov R1, [BP+2]
   imul R1, 14
@@ -15105,14 +15295,14 @@ __if_15828_end:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_15861_start:
+__if_16025_start:
   mov R0, [BP-2]
   ieq R0, 2
-  jf R0, __if_15861_end
+  jf R0, __if_16025_end
   mov R0, 0
   mov [BP-2], R0
-__if_15861_end:
-__if_15868_start:
+__if_16025_end:
+__if_16032_start:
   mov R2, [BP-1]
   iadd R2, 12
   mov R3, [BP-2]
@@ -15123,11 +15313,11 @@ __if_15868_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_15868_end
+  jf R0, __if_16032_end
   mov R0, 0
   jmp __function_P_CrossBSPNode_return
-__if_15868_end:
-__if_15877_start:
+__if_16032_end:
+__if_16041_start:
   mov R1, [BP-2]
   mov R3, [global_st2x]
   mov [SP], R3
@@ -15139,10 +15329,10 @@ __if_15877_start:
   mov R2, R0
   ieq R1, R2
   mov R0, R1
-  jf R0, __if_15877_end
+  jf R0, __if_16041_end
   mov R0, 1
   jmp __function_P_CrossBSPNode_return
-__if_15877_end:
+__if_16041_end:
   mov R1, [BP-1]
   iadd R1, 12
   mov R2, [BP-2]
@@ -15180,7 +15370,7 @@ __function_P_CheckSightRaw:
   and R1, 7
   shl R0, R1
   mov [BP-3], R0
-__if_15925_start:
+__if_16089_start:
   mov R0, __embedded_gen_reject
   mov R1, [BP-2]
   iadd R0, R1
@@ -15188,10 +15378,10 @@ __if_15925_start:
   mov R1, [BP-3]
   and R0, R1
   cib R0
-  jf R0, __if_15925_end
+  jf R0, __if_16089_end
   mov R0, 0
   jmp __function_P_CheckSightRaw_return
-__if_15925_end:
+__if_16089_end:
   mov R0, [global_validcount]
   mov R1, R0
   iadd R1, 1
@@ -15247,7 +15437,7 @@ __function_P_CheckSight:
   mov R0, [R1]
   mov R1, [global_sectors]
   isub R0, R1
-  idiv R0, 14
+  idiv R0, 16
   mov [BP-1], R0
   mov R2, [BP+3]
   iadd R2, 14
@@ -15255,7 +15445,7 @@ __function_P_CheckSight:
   mov R0, [R1]
   mov R1, [global_sectors]
   isub R0, R1
-  idiv R0, 14
+  idiv R0, 16
   mov [BP-2], R0
   mov R2, [BP+2]
   iadd R2, 4
@@ -15316,28 +15506,28 @@ __function_getNextSector:
   push BP
   mov BP, SP
   push R1
-__if_16036_start:
+__if_16200_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_16036_end
+  jf R0, __if_16200_end
   mov R0, -1
   jmp __function_getNextSector_return
-__if_16036_end:
-__if_16045_start:
+__if_16200_end:
+__if_16209_start:
   mov R1, [BP+2]
   iadd R1, 15
   mov R0, [R1]
   mov R1, [BP+3]
   ieq R0, R1
-  jf R0, __if_16045_end
+  jf R0, __if_16209_end
   mov R1, [BP+2]
   iadd R1, 16
   mov R0, [R1]
   jmp __function_getNextSector_return
-__if_16045_end:
+__if_16209_end:
   mov R1, [BP+2]
   iadd R1, 15
   mov R0, [R1]
@@ -15363,13 +15553,13 @@ __function_P_FindLowestFloorSurrounding:
   mov [BP-3], R0
   mov R0, 0
   mov [BP-1], R0
-__for_16069_start:
+__for_16233_start:
   mov R0, [BP-1]
   mov R2, [BP+2]
   iadd R2, 10
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __for_16069_end
+  jf R0, __for_16233_end
   mov R1, [BP-3]
   mov R2, [BP-1]
   iadd R1, R2
@@ -15379,28 +15569,28 @@ __for_16069_start:
   mov [SP+1], R1
   call __function_getNextSector
   mov [BP-4], R0
-__if_16087_start:
+__if_16251_start:
   mov R0, [BP-4]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_16089
+  jf R0, __LogicalAnd_ShortCircuit_16253
   mov R2, [BP-4]
   mov R1, [R2]
   mov R2, [BP-2]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_16089:
-  jf R0, __if_16087_end
+__LogicalAnd_ShortCircuit_16253:
+  jf R0, __if_16251_end
   mov R1, [BP-4]
   mov R0, [R1]
   mov [BP-2], R0
-__if_16087_end:
-__for_16069_continue:
+__if_16251_end:
+__for_16233_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_16069_start
-__for_16069_end:
+  jmp __for_16233_start
+__for_16233_end:
   mov R0, [BP-2]
 __function_P_FindLowestFloorSurrounding_return:
   iadd SP, 2
@@ -15425,13 +15615,13 @@ __function_P_FindHighestFloorSurrounding:
   mov [BP-3], R0
   mov R0, 0
   mov [BP-1], R0
-__for_16115_start:
+__for_16279_start:
   mov R0, [BP-1]
   mov R2, [BP+2]
   iadd R2, 10
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __for_16115_end
+  jf R0, __for_16279_end
   mov R1, [BP-3]
   mov R2, [BP-1]
   iadd R1, R2
@@ -15441,28 +15631,28 @@ __for_16115_start:
   mov [SP+1], R1
   call __function_getNextSector
   mov [BP-4], R0
-__if_16133_start:
+__if_16297_start:
   mov R0, [BP-4]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_16135
+  jf R0, __LogicalAnd_ShortCircuit_16299
   mov R2, [BP-4]
   mov R1, [R2]
   mov R2, [BP-2]
   igt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_16135:
-  jf R0, __if_16133_end
+__LogicalAnd_ShortCircuit_16299:
+  jf R0, __if_16297_end
   mov R1, [BP-4]
   mov R0, [R1]
   mov [BP-2], R0
-__if_16133_end:
-__for_16115_continue:
+__if_16297_end:
+__for_16279_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_16115_start
-__for_16115_end:
+  jmp __for_16279_start
+__for_16279_end:
   mov R0, [BP-2]
 __function_P_FindHighestFloorSurrounding_return:
   iadd SP, 2
@@ -15487,13 +15677,13 @@ __function_P_FindLowestCeilingSurrounding:
   mov [BP-3], R0
   mov R0, 0
   mov [BP-1], R0
-__for_16158_start:
+__for_16322_start:
   mov R0, [BP-1]
   mov R2, [BP+2]
   iadd R2, 10
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __for_16158_end
+  jf R0, __for_16322_end
   mov R1, [BP-3]
   mov R2, [BP-1]
   iadd R1, R2
@@ -15503,30 +15693,30 @@ __for_16158_start:
   mov [SP+1], R1
   call __function_getNextSector
   mov [BP-4], R0
-__if_16176_start:
+__if_16340_start:
   mov R0, [BP-4]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_16178
+  jf R0, __LogicalAnd_ShortCircuit_16342
   mov R2, [BP-4]
   iadd R2, 1
   mov R1, [R2]
   mov R2, [BP-2]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_16178:
-  jf R0, __if_16176_end
+__LogicalAnd_ShortCircuit_16342:
+  jf R0, __if_16340_end
   mov R1, [BP-4]
   iadd R1, 1
   mov R0, [R1]
   mov [BP-2], R0
-__if_16176_end:
-__for_16158_continue:
+__if_16340_end:
+__for_16322_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_16158_start
-__for_16158_end:
+  jmp __for_16322_start
+__for_16322_end:
   mov R0, [BP-2]
 __function_P_FindLowestCeilingSurrounding_return:
   iadd SP, 2
@@ -15545,15 +15735,15 @@ __function_P_FindSectorFromLineTag:
   mov R0, [BP+3]
   iadd R0, 1
   mov [BP-1], R0
-__for_16194_start:
+__for_16358_start:
   mov R0, [BP-1]
   mov R1, [global_numsectors]
   ilt R0, R1
-  jf R0, __for_16194_end
-__if_16205_start:
+  jf R0, __for_16358_end
+__if_16369_start:
   mov R1, [global_sectors]
   mov R2, [BP-1]
-  imul R2, 14
+  imul R2, 16
   iadd R1, R2
   iadd R1, 6
   mov R0, [R1]
@@ -15561,17 +15751,17 @@ __if_16205_start:
   iadd R2, 6
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_16205_end
+  jf R0, __if_16369_end
   mov R0, [BP-1]
   jmp __function_P_FindSectorFromLineTag_return
-__if_16205_end:
-__for_16194_continue:
+__if_16369_end:
+__for_16358_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_16194_start
-__for_16194_end:
+  jmp __for_16358_start
+__for_16358_end:
   mov R0, -1
 __function_P_FindSectorFromLineTag_return:
   pop R2
@@ -15588,73 +15778,73 @@ __function_T_MovePlane:
   isub SP, 1
   mov R0, 0
   mov [BP-1], R0
-__if_16228_start:
+__if_16392_start:
   mov R0, [BP+6]
   ieq R0, 0
-  jf R0, __if_16228_else
-__if_16233_start:
+  jf R0, __if_16392_else
+__if_16397_start:
   mov R0, [BP+7]
   ieq R0, -1
-  jf R0, __if_16233_else
-__if_16239_start:
+  jf R0, __if_16397_else
+__if_16403_start:
   mov R1, [BP+2]
   mov R0, [R1]
   mov R1, [BP+3]
   isub R0, R1
   mov R1, [BP+4]
   ilt R0, R1
-  jf R0, __if_16239_else
+  jf R0, __if_16403_else
   mov R0, [BP+4]
   mov R1, [BP+2]
   mov [R1], R0
   mov R0, 2
   mov [BP-1], R0
-  jmp __if_16239_end
-__if_16239_else:
+  jmp __if_16403_end
+__if_16403_else:
   mov R1, [BP+2]
   mov R0, [R1]
   mov R1, [BP+3]
   isub R0, R1
   mov R1, [BP+2]
   mov [R1], R0
-__if_16239_end:
-  jmp __if_16233_end
-__if_16233_else:
-__if_16258_start:
+__if_16403_end:
+  jmp __if_16397_end
+__if_16397_else:
+__if_16422_start:
   mov R0, [BP+7]
   ieq R0, 1
-  jf R0, __if_16258_end
-__if_16263_start:
+  jf R0, __if_16422_end
+__if_16427_start:
   mov R1, [BP+2]
   mov R0, [R1]
   mov R1, [BP+3]
   iadd R0, R1
   mov R1, [BP+4]
   igt R0, R1
-  jf R0, __if_16263_else
+  jf R0, __if_16427_else
   mov R0, [BP+4]
   mov R1, [BP+2]
   mov [R1], R0
   mov R0, 2
   mov [BP-1], R0
-  jmp __if_16263_end
-__if_16263_else:
+  jmp __if_16427_end
+__if_16427_else:
   mov R1, [BP+2]
   mov R0, [R1]
   mov R1, [BP+3]
   iadd R0, R1
   mov R1, [BP+2]
   mov [R1], R0
-__if_16263_end:
-__if_16258_end:
-__if_16233_end:
-  jmp __if_16228_end
-__if_16228_else:
-__if_16283_start:
+__if_16427_end:
+__if_16422_end:
+__if_16397_end:
+  jmp __if_16392_end
+__if_16392_else:
+__if_16447_start:
   mov R0, [BP+7]
   ieq R0, -1
-  jf R0, __if_16283_else
-__if_16289_start:
+  jf R0, __if_16447_else
+__if_16453_start:
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
@@ -15662,15 +15852,15 @@ __if_16289_start:
   isub R0, R1
   mov R1, [BP+4]
   ilt R0, R1
-  jf R0, __if_16289_else
+  jf R0, __if_16453_else
   mov R0, [BP+4]
   mov R1, [BP+2]
   iadd R1, 1
   mov [R1], R0
   mov R0, 2
   mov [BP-1], R0
-  jmp __if_16289_end
-__if_16289_else:
+  jmp __if_16453_end
+__if_16453_else:
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
@@ -15679,14 +15869,14 @@ __if_16289_else:
   mov R1, [BP+2]
   iadd R1, 1
   mov [R1], R0
-__if_16289_end:
-  jmp __if_16283_end
-__if_16283_else:
-__if_16308_start:
+__if_16453_end:
+  jmp __if_16447_end
+__if_16447_else:
+__if_16472_start:
   mov R0, [BP+7]
   ieq R0, 1
-  jf R0, __if_16308_end
-__if_16313_start:
+  jf R0, __if_16472_end
+__if_16477_start:
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
@@ -15694,15 +15884,15 @@ __if_16313_start:
   iadd R0, R1
   mov R1, [BP+4]
   igt R0, R1
-  jf R0, __if_16313_else
+  jf R0, __if_16477_else
   mov R0, [BP+4]
   mov R1, [BP+2]
   iadd R1, 1
   mov [R1], R0
   mov R0, 2
   mov [BP-1], R0
-  jmp __if_16313_end
-__if_16313_else:
+  jmp __if_16477_end
+__if_16477_else:
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
@@ -15711,10 +15901,10 @@ __if_16313_else:
   mov R1, [BP+2]
   iadd R1, 1
   mov [R1], R0
-__if_16313_end:
-__if_16308_end:
-__if_16283_end:
-__if_16228_end:
+__if_16477_end:
+__if_16472_end:
+__if_16447_end:
+__if_16392_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_SectorHeightClip
@@ -15732,37 +15922,44 @@ __function_T_VerticalDoor:
   isub SP, 8
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_16361_start:
+__if_16525_start:
   mov R1, [BP-1]
   iadd R1, 8
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_16361_else
+  jf R0, __if_16525_else
   mov R2, [BP-1]
   iadd R2, 10
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_16370_start:
+__if_16534_start:
   mov R1, [BP-1]
   iadd R1, 10
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_16370_end
+  jf R0, __if_16534_end
   mov R0, -1
   mov R1, [BP-1]
   iadd R1, 8
   mov [R1], R0
-__if_16370_end:
-  jmp __if_16361_end
-__if_16361_else:
-__if_16380_start:
+  mov R2, [BP-1]
+  iadd R2, 5
+  mov R1, [R2]
+  mov [SP], R1
+  mov R1, 21
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
+__if_16534_end:
+  jmp __if_16525_end
+__if_16525_else:
+__if_16549_start:
   mov R1, [BP-1]
   iadd R1, 8
   mov R0, [R1]
   ieq R0, -1
-  jf R0, __if_16380_else
+  jf R0, __if_16549_else
   mov R3, [BP-1]
   iadd R3, 5
   mov R2, [R3]
@@ -15786,10 +15983,10 @@ __if_16380_start:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_16401_start:
+__if_16570_start:
   mov R0, [BP-2]
   ieq R0, 2
-  jf R0, __if_16401_end
+  jf R0, __if_16570_end
   mov R0, -1
   mov R2, [BP-1]
   iadd R2, 5
@@ -15799,15 +15996,15 @@ __if_16401_start:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_RemoveThinker
-__if_16401_end:
-  jmp __if_16380_end
-__if_16380_else:
-__if_16415_start:
+__if_16570_end:
+  jmp __if_16549_end
+__if_16549_else:
+__if_16584_start:
   mov R1, [BP-1]
   iadd R1, 8
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_16415_end
+  jf R0, __if_16584_end
   mov R3, [BP-1]
   iadd R3, 5
   mov R2, [R3]
@@ -15830,16 +16027,16 @@ __if_16415_start:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_16433_start:
+__if_16602_start:
   mov R0, [BP-2]
   ieq R0, 2
-  jf R0, __if_16433_end
-__if_16438_start:
+  jf R0, __if_16602_end
+__if_16607_start:
   mov R1, [BP-1]
   iadd R1, 4
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_16438_else
+  jf R0, __if_16607_else
   mov R0, 0
   mov R1, [BP-1]
   iadd R1, 8
@@ -15850,8 +16047,8 @@ __if_16438_start:
   mov R1, [BP-1]
   iadd R1, 10
   mov [R1], R0
-  jmp __if_16438_end
-__if_16438_else:
+  jmp __if_16607_end
+__if_16607_else:
   mov R0, -1
   mov R2, [BP-1]
   iadd R2, 5
@@ -15861,11 +16058,11 @@ __if_16438_else:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_RemoveThinker
-__if_16438_end:
-__if_16433_end:
-__if_16415_end:
-__if_16380_end:
-__if_16361_end:
+__if_16607_end:
+__if_16602_end:
+__if_16584_end:
+__if_16549_end:
+__if_16525_end:
 __function_T_VerticalDoor_return:
   mov SP, BP
   pop BP
@@ -15874,16 +16071,16 @@ __function_T_VerticalDoor_return:
 __function_EV_VerticalDoor:
   push BP
   mov BP, SP
-  isub SP, 3
-__if_16470_start:
+  isub SP, 4
+__if_16639_start:
   mov R0, [BP+2]
   iadd R0, 7
   iadd R0, 1
   mov R0, [R0]
   ieq R0, -1
-  jf R0, __if_16470_end
+  jf R0, __if_16639_end
   jmp __function_EV_VerticalDoor_return
-__if_16470_end:
+__if_16639_end:
   mov R1, [global_sides]
   mov R2, [BP+2]
   iadd R2, 7
@@ -15894,72 +16091,77 @@ __if_16470_end:
   iadd R1, 5
   mov R0, [R1]
   mov [BP-1], R0
-__if_16488_start:
+__if_16657_start:
   mov R1, [BP-1]
   iadd R1, 9
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_16488_end
+  jf R0, __if_16657_end
   mov R1, [BP-1]
   iadd R1, 9
   mov R0, [R1]
   mov [BP-2], R0
-__if_16497_start:
+__if_16666_start:
   mov R1, [BP+2]
   iadd R1, 5
   mov R0, [R1]
   ieq R0, 1
-  jt R0, __LogicalOr_ShortCircuit_16504
+  jt R0, __LogicalOr_ShortCircuit_16673
   mov R2, [BP+2]
   iadd R2, 5
   mov R1, [R2]
   ieq R1, 26
   or R0, R1
-__LogicalOr_ShortCircuit_16504:
-  jt R0, __LogicalOr_ShortCircuit_16509
+__LogicalOr_ShortCircuit_16673:
+  jt R0, __LogicalOr_ShortCircuit_16678
   mov R2, [BP+2]
   iadd R2, 5
   mov R1, [R2]
   ieq R1, 27
   or R0, R1
-__LogicalOr_ShortCircuit_16509:
-  jt R0, __LogicalOr_ShortCircuit_16514
+__LogicalOr_ShortCircuit_16678:
+  jt R0, __LogicalOr_ShortCircuit_16683
   mov R2, [BP+2]
   iadd R2, 5
   mov R1, [R2]
   ieq R1, 28
   or R0, R1
-__LogicalOr_ShortCircuit_16514:
-  jf R0, __if_16497_end
-__if_16518_start:
+__LogicalOr_ShortCircuit_16683:
+  jf R0, __if_16666_end
+__if_16687_start:
   mov R1, [BP-2]
   iadd R1, 8
   mov R0, [R1]
   ieq R0, -1
-  jf R0, __if_16518_else
+  jf R0, __if_16687_else
   mov R0, 1
   mov R1, [BP-2]
   iadd R1, 8
   mov [R1], R0
-  jmp __if_16518_end
-__if_16518_else:
-__if_16529_start:
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, 20
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
+  jmp __if_16687_end
+__if_16687_else:
+__if_16702_start:
   mov R1, [BP+3]
   iadd R1, 32
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_16529_end
+  jf R0, __if_16702_end
   jmp __function_EV_VerticalDoor_return
-__if_16529_end:
+__if_16702_end:
   mov R0, -1
   mov R1, [BP-2]
   iadd R1, 8
   mov [R1], R0
-__if_16518_end:
-__if_16497_end:
+__if_16687_end:
+__if_16666_end:
   jmp __function_EV_VerticalDoor_return
-__if_16488_end:
+__if_16657_end:
   mov R2, 11
   mov [SP], R2
   call __function_Z_CallocLevel
@@ -15985,6 +16187,11 @@ __if_16488_end:
   mov R1, [BP-2]
   iadd R1, 8
   mov [R1], R0
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, 20
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
   mov R0, 131072
   mov R1, [BP-2]
   iadd R1, 7
@@ -16002,33 +16209,33 @@ __if_16488_end:
   iadd R2, 6
   mov [R2], R1
   mov R0, R1
-__if_16587_start:
+__if_16763_start:
   mov R1, [BP+2]
   iadd R1, 5
   mov R0, [R1]
   ieq R0, 31
-  jt R0, __LogicalOr_ShortCircuit_16594
+  jt R0, __LogicalOr_ShortCircuit_16770
   mov R2, [BP+2]
   iadd R2, 5
   mov R1, [R2]
   ieq R1, 32
   or R0, R1
-__LogicalOr_ShortCircuit_16594:
-  jt R0, __LogicalOr_ShortCircuit_16599
+__LogicalOr_ShortCircuit_16770:
+  jt R0, __LogicalOr_ShortCircuit_16775
   mov R2, [BP+2]
   iadd R2, 5
   mov R1, [R2]
   ieq R1, 33
   or R0, R1
-__LogicalOr_ShortCircuit_16599:
-  jt R0, __LogicalOr_ShortCircuit_16604
+__LogicalOr_ShortCircuit_16775:
+  jt R0, __LogicalOr_ShortCircuit_16780
   mov R2, [BP+2]
   iadd R2, 5
   mov R1, [R2]
   ieq R1, 34
   or R0, R1
-__LogicalOr_ShortCircuit_16604:
-  jf R0, __if_16587_else
+__LogicalOr_ShortCircuit_16780:
+  jf R0, __if_16763_else
   mov R0, 1
   mov R1, [BP-2]
   iadd R1, 4
@@ -16037,13 +16244,13 @@ __LogicalOr_ShortCircuit_16604:
   mov R1, [BP+2]
   iadd R1, 5
   mov [R1], R0
-  jmp __if_16587_end
-__if_16587_else:
+  jmp __if_16763_end
+__if_16763_else:
   mov R0, 0
   mov R1, [BP-2]
   iadd R1, 4
   mov [R1], R0
-__if_16587_end:
+__if_16763_end:
 __function_EV_VerticalDoor_return:
   mov SP, BP
   pop BP
@@ -16081,10 +16288,23 @@ __function_T_MoveFloor:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_16657_start:
+__if_16833_start:
+  mov R0, [global_leveltime]
+  and R0, 7
+  bnot R0
+  jf R0, __if_16833_end
+  mov R2, [BP-1]
+  iadd R2, 6
+  mov R1, [R2]
+  mov [SP], R1
+  mov R1, 22
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
+__if_16833_end:
+__if_16843_start:
   mov R0, [BP-2]
   ieq R0, 2
-  jf R0, __if_16657_end
+  jf R0, __if_16843_end
   mov R0, -1
   mov R2, [BP-1]
   iadd R2, 6
@@ -16094,7 +16314,14 @@ __if_16657_start:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_RemoveThinker
-__if_16657_end:
+  mov R2, [BP-1]
+  iadd R2, 6
+  mov R1, [R2]
+  mov [SP], R1
+  mov R1, 19
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
+__if_16843_end:
 __function_T_MoveFloor_return:
   mov SP, BP
   pop BP
@@ -16111,10 +16338,10 @@ __function_EV_DoFloor:
   mov [BP-1], R0
   mov R0, 0
   mov [BP-2], R0
-__while_16689_start:
-__while_16689_continue:
+__while_16879_start:
+__while_16879_continue:
   mov R0, 1
-  jf R0, __while_16689_end
+  jf R0, __while_16879_end
   mov R2, [BP+2]
   mov [SP], R2
   mov R2, [BP-1]
@@ -16123,25 +16350,25 @@ __while_16689_continue:
   mov R1, R0
   mov [BP-1], R1
   mov R0, R1
-__if_16697_start:
+__if_16887_start:
   mov R0, [BP-1]
   ilt R0, 0
-  jf R0, __if_16697_end
-  jmp __while_16689_end
-__if_16697_end:
+  jf R0, __if_16887_end
+  jmp __while_16879_end
+__if_16887_end:
   mov R0, [global_sectors]
   mov R1, [BP-1]
-  imul R1, 14
+  imul R1, 16
   iadd R0, R1
   mov [BP-3], R0
-__if_16708_start:
+__if_16898_start:
   mov R1, [BP-3]
   iadd R1, 9
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_16708_end
-  jmp __while_16689_continue
-__if_16708_end:
+  jf R0, __if_16898_end
+  jmp __while_16879_continue
+__if_16898_end:
   mov R0, 1
   mov [BP-2], R0
   mov R2, 10
@@ -16189,14 +16416,14 @@ __if_16708_end:
   iadd R2, 8
   mov [R2], R1
   mov R0, R1
-__if_16762_start:
+__if_16952_start:
   mov R1, [BP-4]
   iadd R1, 8
   mov R0, [R1]
   mov R2, [BP-3]
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_16762_end
+  jf R0, __if_16952_end
   mov R1, [BP-4]
   iadd R1, 8
   mov R0, [R1]
@@ -16204,9 +16431,9 @@ __if_16762_start:
   mov R1, [BP-4]
   iadd R1, 8
   mov [R1], R0
-__if_16762_end:
-  jmp __while_16689_start
-__while_16689_end:
+__if_16952_end:
+  jmp __while_16879_start
+__while_16879_end:
   mov R0, [BP-2]
 __function_EV_DoFloor_return:
   iadd SP, 2
@@ -16222,12 +16449,12 @@ __function_T_PlatRaise:
   isub SP, 8
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_16805_start:
+__if_16995_start:
   mov R1, [BP-1]
   iadd R1, 10
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_16805_else
+  jf R0, __if_16995_else
   mov R3, [BP-1]
   iadd R3, 4
   mov R2, [R3]
@@ -16252,17 +16479,17 @@ __if_16805_start:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_16824_start:
+__if_17014_start:
   mov R0, [BP-2]
   ieq R0, 1
-  jf R0, __LogicalAnd_ShortCircuit_16831
+  jf R0, __LogicalAnd_ShortCircuit_17021
   mov R2, [BP-1]
   iadd R2, 11
   mov R1, [R2]
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_16831:
-  jf R0, __if_16824_else
+__LogicalAnd_ShortCircuit_17021:
+  jf R0, __if_17014_else
   mov R1, [BP-1]
   iadd R1, 8
   mov R0, [R1]
@@ -16273,12 +16500,12 @@ __LogicalAnd_ShortCircuit_16831:
   mov R1, [BP-1]
   iadd R1, 10
   mov [R1], R0
-  jmp __if_16824_end
-__if_16824_else:
-__if_16842_start:
+  jmp __if_17014_end
+__if_17014_else:
+__if_17032_start:
   mov R0, [BP-2]
   ieq R0, 2
-  jf R0, __if_16842_end
+  jf R0, __if_17032_end
   mov R0, -1
   mov R2, [BP-1]
   iadd R2, 4
@@ -16288,16 +16515,23 @@ __if_16842_start:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_RemoveThinker
-__if_16842_end:
-__if_16824_end:
-  jmp __if_16805_end
-__if_16805_else:
-__if_16856_start:
+  mov R2, [BP-1]
+  iadd R2, 4
+  mov R1, [R2]
+  mov [SP], R1
+  mov R1, 19
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
+__if_17032_end:
+__if_17014_end:
+  jmp __if_16995_end
+__if_16995_else:
+__if_17050_start:
   mov R1, [BP-1]
   iadd R1, 10
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_16856_else
+  jf R0, __if_17050_else
   mov R3, [BP-1]
   iadd R3, 4
   mov R2, [R3]
@@ -16320,10 +16554,10 @@ __if_16856_start:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_16875_start:
+__if_17069_start:
   mov R0, [BP-2]
   ieq R0, 2
-  jf R0, __if_16875_end
+  jf R0, __if_17069_end
   mov R1, [BP-1]
   iadd R1, 8
   mov R0, [R1]
@@ -16334,28 +16568,35 @@ __if_16875_start:
   mov R1, [BP-1]
   iadd R1, 10
   mov [R1], R0
-__if_16875_end:
-  jmp __if_16856_end
-__if_16856_else:
-__if_16889_start:
+  mov R2, [BP-1]
+  iadd R2, 4
+  mov R1, [R2]
+  mov [SP], R1
+  mov R1, 19
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
+__if_17069_end:
+  jmp __if_17050_end
+__if_17050_else:
+__if_17087_start:
   mov R1, [BP-1]
   iadd R1, 10
   mov R0, [R1]
   ieq R0, 2
-  jf R0, __if_16889_end
+  jf R0, __if_17087_end
   mov R2, [BP-1]
   iadd R2, 9
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_16898_start:
+__if_17096_start:
   mov R1, [BP-1]
   iadd R1, 9
   mov R0, [R1]
   bnot R0
-  jf R0, __if_16898_end
-__if_16903_start:
+  jf R0, __if_17096_end
+__if_17101_start:
   mov R2, [BP-1]
   iadd R2, 4
   mov R1, [R2]
@@ -16364,22 +16605,22 @@ __if_16903_start:
   iadd R2, 6
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_16903_else
+  jf R0, __if_17101_else
   mov R0, 0
   mov R1, [BP-1]
   iadd R1, 10
   mov [R1], R0
-  jmp __if_16903_end
-__if_16903_else:
+  jmp __if_17101_end
+__if_17101_else:
   mov R0, 1
   mov R1, [BP-1]
   iadd R1, 10
   mov [R1], R0
-__if_16903_end:
-__if_16898_end:
-__if_16889_end:
-__if_16856_end:
-__if_16805_end:
+__if_17101_end:
+__if_17096_end:
+__if_17087_end:
+__if_17050_end:
+__if_16995_end:
 __function_T_PlatRaise_return:
   mov SP, BP
   pop BP
@@ -16396,10 +16637,10 @@ __function_EV_DoPlat:
   mov [BP-2], R0
   mov R0, 0
   mov [BP-3], R0
-__while_16936_start:
-__while_16936_continue:
+__while_17134_start:
+__while_17134_continue:
   mov R0, 1
-  jf R0, __while_16936_end
+  jf R0, __while_17134_end
   mov R2, [BP+2]
   mov [SP], R2
   mov R2, [BP-2]
@@ -16408,25 +16649,25 @@ __while_16936_continue:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_16944_start:
+__if_17142_start:
   mov R0, [BP-2]
   ilt R0, 0
-  jf R0, __if_16944_end
-  jmp __while_16936_end
-__if_16944_end:
+  jf R0, __if_17142_end
+  jmp __while_17134_end
+__if_17142_end:
   mov R0, [global_sectors]
   mov R1, [BP-2]
-  imul R1, 14
+  imul R1, 16
   iadd R0, R1
   mov [BP-4], R0
-__if_16955_start:
+__if_17153_start:
   mov R1, [BP-4]
   iadd R1, 9
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_16955_end
-  jmp __while_16936_continue
-__if_16955_end:
+  jf R0, __if_17153_end
+  jmp __while_17134_continue
+__if_17153_end:
   mov R0, 1
   mov [BP-3], R0
   mov R2, 13
@@ -16474,20 +16715,20 @@ __if_16955_end:
   iadd R2, 6
   mov [R2], R1
   mov R0, R1
-__if_17006_start:
+__if_17204_start:
   mov R1, [BP-1]
   iadd R1, 6
   mov R0, [R1]
   mov R2, [BP-4]
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_17006_end
+  jf R0, __if_17204_end
   mov R1, [BP-4]
   mov R0, [R1]
   mov R1, [BP-1]
   iadd R1, 6
   mov [R1], R0
-__if_17006_end:
+__if_17204_end:
   mov R1, [BP-4]
   mov R0, [R1]
   mov R1, [BP-1]
@@ -16501,8 +16742,13 @@ __if_17006_end:
   mov R1, [BP-1]
   iadd R1, 10
   mov [R1], R0
-  jmp __while_16936_start
-__while_16936_end:
+  mov R1, [BP-4]
+  mov [SP], R1
+  mov R1, 18
+  mov [SP+1], R1
+  call __function_S_StartSoundSector
+  jmp __while_17134_start
+__while_17134_end:
   mov R0, [BP-3]
 __function_EV_DoPlat_return:
   iadd SP, 2
@@ -16531,28 +16777,28 @@ __function_P_CrossSpecialLine:
   imul R1, 17
   iadd R0, R1
   mov [BP-1], R0
-__if_17048_start:
+__if_17249_start:
   mov R1, [BP+4]
   iadd R1, 32
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_17048_end
-__if_17053_start:
+  jf R0, __if_17249_end
+__if_17254_start:
   mov R1, [BP-1]
   iadd R1, 5
   mov R0, [R1]
   ine R0, 88
-  jf R0, __if_17053_end
+  jf R0, __if_17254_end
   jmp __function_P_CrossSpecialLine_return
-__if_17053_end:
-__if_17048_end:
-__if_17059_start:
+__if_17254_end:
+__if_17249_end:
+__if_17260_start:
   mov R1, [BP-1]
   iadd R1, 5
   mov R0, [R1]
   ieq R0, 36
-  jf R0, __if_17059_else
+  jf R0, __if_17260_else
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, 0
@@ -16562,21 +16808,21 @@ __if_17059_start:
   mov R1, [BP-1]
   iadd R1, 5
   mov [R1], R0
-  jmp __if_17059_end
-__if_17059_else:
-__if_17072_start:
+  jmp __if_17260_end
+__if_17260_else:
+__if_17273_start:
   mov R1, [BP-1]
   iadd R1, 5
   mov R0, [R1]
   ieq R0, 88
-  jf R0, __if_17072_end
+  jf R0, __if_17273_end
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, 0
   mov [SP+1], R1
   call __function_EV_DoPlat
-__if_17072_end:
-__if_17059_end:
+__if_17273_end:
+__if_17260_end:
 __function_P_CrossSpecialLine_return:
   mov SP, BP
   pop BP
@@ -16592,70 +16838,70 @@ __function_P_UseSpecialLine:
   iadd R1, 5
   mov R0, [R1]
   mov [BP-1], R0
-__if_17089_start:
+__if_17290_start:
   mov R1, [BP+2]
   iadd R1, 32
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_17089_end
-__if_17094_start:
+  jf R0, __if_17290_end
+__if_17295_start:
   mov R1, [BP+3]
   iadd R1, 4
   mov R0, [R1]
   and R0, 32
   cib R0
-  jf R0, __if_17094_end
+  jf R0, __if_17295_end
   mov R0, 0
   jmp __function_P_UseSpecialLine_return
-__if_17094_end:
-__if_17101_start:
+__if_17295_end:
+__if_17302_start:
   mov R0, [BP-1]
   ine R0, 1
-  jf R0, __if_17101_end
+  jf R0, __if_17302_end
   mov R0, 0
   jmp __function_P_UseSpecialLine_return
-__if_17101_end:
-__if_17089_end:
-__if_17107_start:
+__if_17302_end:
+__if_17290_end:
+__if_17308_start:
   mov R0, [BP-1]
   ieq R0, 1
-  jt R0, __LogicalOr_ShortCircuit_17112
+  jt R0, __LogicalOr_ShortCircuit_17313
   mov R1, [BP-1]
   ieq R1, 26
   or R0, R1
-__LogicalOr_ShortCircuit_17112:
-  jt R0, __LogicalOr_ShortCircuit_17116
+__LogicalOr_ShortCircuit_17313:
+  jt R0, __LogicalOr_ShortCircuit_17317
   mov R1, [BP-1]
   ieq R1, 27
   or R0, R1
-__LogicalOr_ShortCircuit_17116:
-  jt R0, __LogicalOr_ShortCircuit_17120
+__LogicalOr_ShortCircuit_17317:
+  jt R0, __LogicalOr_ShortCircuit_17321
   mov R1, [BP-1]
   ieq R1, 28
   or R0, R1
-__LogicalOr_ShortCircuit_17120:
-  jt R0, __LogicalOr_ShortCircuit_17124
+__LogicalOr_ShortCircuit_17321:
+  jt R0, __LogicalOr_ShortCircuit_17325
   mov R1, [BP-1]
   ieq R1, 31
   or R0, R1
-__LogicalOr_ShortCircuit_17124:
-  jt R0, __LogicalOr_ShortCircuit_17128
+__LogicalOr_ShortCircuit_17325:
+  jt R0, __LogicalOr_ShortCircuit_17329
   mov R1, [BP-1]
   ieq R1, 32
   or R0, R1
-__LogicalOr_ShortCircuit_17128:
-  jt R0, __LogicalOr_ShortCircuit_17132
+__LogicalOr_ShortCircuit_17329:
+  jt R0, __LogicalOr_ShortCircuit_17333
   mov R1, [BP-1]
   ieq R1, 33
   or R0, R1
-__LogicalOr_ShortCircuit_17132:
-  jt R0, __LogicalOr_ShortCircuit_17136
+__LogicalOr_ShortCircuit_17333:
+  jt R0, __LogicalOr_ShortCircuit_17337
   mov R1, [BP-1]
   ieq R1, 34
   or R0, R1
-__LogicalOr_ShortCircuit_17136:
-  jf R0, __if_17107_end
+__LogicalOr_ShortCircuit_17337:
+  jf R0, __if_17308_end
   mov R1, [BP+3]
   mov [SP], R1
   mov R1, [BP+2]
@@ -16663,11 +16909,16 @@ __LogicalOr_ShortCircuit_17136:
   call __function_EV_VerticalDoor
   mov R0, 1
   jmp __function_P_UseSpecialLine_return
-__if_17107_end:
-__if_17145_start:
+__if_17308_end:
+__if_17346_start:
   mov R0, [BP-1]
   ieq R0, 11
-  jf R0, __if_17145_end
+  jf R0, __if_17346_end
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, 23
+  mov [SP+1], R1
+  call __function_S_StartSound
   call __function_G_ExitLevel
   mov R0, 0
   mov R1, [BP+3]
@@ -16675,7 +16926,7 @@ __if_17145_start:
   mov [R1], R0
   mov R0, 1
   jmp __function_P_UseSpecialLine_return
-__if_17145_end:
+__if_17346_end:
   mov R0, 0
 __function_P_UseSpecialLine_return:
   iadd SP, 2
@@ -16694,7 +16945,7 @@ __function_P_PlayerInSpecialSector:
   mov R1, [R2]
   mov R0, [R1]
   mov [BP-1], R0
-__if_17167_start:
+__if_17371_start:
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 6
@@ -16702,29 +16953,29 @@ __if_17167_start:
   mov R2, [BP-1]
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_17167_end
+  jf R0, __if_17371_end
   jmp __function_P_PlayerInSpecialSector_return
-__if_17167_end:
+__if_17371_end:
   mov R1, [BP-1]
   iadd R1, 5
   mov R0, [R1]
   mov [BP-2], R0
-__if_17179_start:
+__if_17383_start:
   mov R0, [BP-2]
   ieq R0, 5
-  jf R0, __if_17179_else
-__if_17184_start:
+  jf R0, __if_17383_else
+__if_17388_start:
   mov R0, [BP+2]
   iadd R0, 10
   iadd R0, 3
   mov R0, [R0]
   bnot R0
-  jf R0, __if_17184_end
-__if_17190_start:
+  jf R0, __if_17388_end
+__if_17394_start:
   mov R0, [global_leveltime]
   and R0, 31
   bnot R0
-  jf R0, __if_17190_end
+  jf R0, __if_17394_end
   mov R2, [BP+2]
   mov R1, [R2]
   mov [SP], R1
@@ -16735,26 +16986,26 @@ __if_17190_start:
   mov R1, 10
   mov [SP+3], R1
   call __function_P_DamageMobj
-__if_17190_end:
-__if_17184_end:
-  jmp __if_17179_end
-__if_17179_else:
-__if_17202_start:
+__if_17394_end:
+__if_17388_end:
+  jmp __if_17383_end
+__if_17383_else:
+__if_17406_start:
   mov R0, [BP-2]
   ieq R0, 7
-  jf R0, __if_17202_else
-__if_17207_start:
+  jf R0, __if_17406_else
+__if_17411_start:
   mov R0, [BP+2]
   iadd R0, 10
   iadd R0, 3
   mov R0, [R0]
   bnot R0
-  jf R0, __if_17207_end
-__if_17213_start:
+  jf R0, __if_17411_end
+__if_17417_start:
   mov R0, [global_leveltime]
   and R0, 31
   bnot R0
-  jf R0, __if_17213_end
+  jf R0, __if_17417_end
   mov R2, [BP+2]
   mov R1, [R2]
   mov [SP], R1
@@ -16765,38 +17016,38 @@ __if_17213_start:
   mov R1, 5
   mov [SP+3], R1
   call __function_P_DamageMobj
-__if_17213_end:
-__if_17207_end:
-  jmp __if_17202_end
-__if_17202_else:
-__if_17225_start:
+__if_17417_end:
+__if_17411_end:
+  jmp __if_17406_end
+__if_17406_else:
+__if_17429_start:
   mov R0, [BP-2]
   ieq R0, 16
-  jt R0, __LogicalOr_ShortCircuit_17230
+  jt R0, __LogicalOr_ShortCircuit_17434
   mov R1, [BP-2]
   ieq R1, 4
   or R0, R1
-__LogicalOr_ShortCircuit_17230:
-  jf R0, __if_17225_else
-__if_17234_start:
+__LogicalOr_ShortCircuit_17434:
+  jf R0, __if_17429_else
+__if_17438_start:
   mov R1, [BP+2]
   iadd R1, 10
   iadd R1, 3
   mov R1, [R1]
   bnot R1
-  jt R1, __LogicalOr_ShortCircuit_17240
+  jt R1, __LogicalOr_ShortCircuit_17444
   call __function_P_Random
   mov R2, R0
   ilt R2, 5
   or R1, R2
-__LogicalOr_ShortCircuit_17240:
+__LogicalOr_ShortCircuit_17444:
   mov R0, R1
-  jf R0, __if_17234_end
-__if_17245_start:
+  jf R0, __if_17438_end
+__if_17449_start:
   mov R0, [global_leveltime]
   and R0, 31
   bnot R0
-  jf R0, __if_17245_end
+  jf R0, __if_17449_end
   mov R2, [BP+2]
   mov R1, [R2]
   mov [SP], R1
@@ -16807,14 +17058,14 @@ __if_17245_start:
   mov R1, 20
   mov [SP+3], R1
   call __function_P_DamageMobj
-__if_17245_end:
-__if_17234_end:
-  jmp __if_17225_end
-__if_17225_else:
-__if_17257_start:
+__if_17449_end:
+__if_17438_end:
+  jmp __if_17429_end
+__if_17429_else:
+__if_17461_start:
   mov R0, [BP-2]
   ieq R0, 9
-  jf R0, __if_17257_end
+  jf R0, __if_17461_end
   mov R2, [BP+2]
   iadd R2, 43
   mov R0, [R2]
@@ -16825,10 +17076,10 @@ __if_17257_start:
   mov R1, [BP-1]
   iadd R1, 5
   mov [R1], R0
-__if_17257_end:
-__if_17225_end:
-__if_17202_end:
-__if_17179_end:
+__if_17461_end:
+__if_17429_end:
+__if_17406_end:
+__if_17383_end:
 __function_P_PlayerInSpecialSector_return:
   mov SP, BP
   pop BP
@@ -16840,14 +17091,14 @@ __function_PIT_CheckLine:
   push R1
   push R2
   isub SP, 2
-__if_17327_start:
+__if_17531_start:
   mov R0, [1698218]
   mov R1, [BP+2]
   iadd R1, 9
   iadd R1, 2
   mov R1, [R1]
   ile R0, R1
-  jt R0, __LogicalOr_ShortCircuit_17339
+  jt R0, __LogicalOr_ShortCircuit_17543
   mov R1, [1698217]
   mov R2, [BP+2]
   iadd R2, 9
@@ -16855,8 +17106,8 @@ __if_17327_start:
   mov R2, [R2]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_17339:
-  jt R0, __LogicalOr_ShortCircuit_17348
+__LogicalOr_ShortCircuit_17543:
+  jt R0, __LogicalOr_ShortCircuit_17552
   mov R1, [global_tmbbox]
   mov R2, [BP+2]
   iadd R2, 9
@@ -16864,20 +17115,20 @@ __LogicalOr_ShortCircuit_17339:
   mov R2, [R2]
   ile R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_17348:
-  jt R0, __LogicalOr_ShortCircuit_17357
+__LogicalOr_ShortCircuit_17552:
+  jt R0, __LogicalOr_ShortCircuit_17561
   mov R1, [1698216]
   mov R2, [BP+2]
   iadd R2, 9
   mov R2, [R2]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_17357:
-  jf R0, __if_17327_end
+__LogicalOr_ShortCircuit_17561:
+  jf R0, __if_17531_end
   mov R0, 1
   jmp __function_PIT_CheckLine_return
-__if_17327_end:
-__if_17365_start:
+__if_17531_end:
+__if_17569_start:
   mov R2, global_tmbbox
   mov [SP], R2
   mov R2, [BP+2]
@@ -16886,95 +17137,95 @@ __if_17365_start:
   mov R1, R0
   ine R1, -1
   mov R0, R1
-  jf R0, __if_17365_end
+  jf R0, __if_17569_end
   mov R0, 1
   jmp __function_PIT_CheckLine_return
-__if_17365_end:
-__if_17374_start:
+__if_17569_end:
+__if_17578_start:
   mov R1, [BP+2]
   iadd R1, 16
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_17374_end
+  jf R0, __if_17578_end
   mov R0, 0
   jmp __function_PIT_CheckLine_return
-__if_17374_end:
-__if_17380_start:
+__if_17578_end:
+__if_17584_start:
   mov R1, [global_tmthing]
   iadd R1, 23
   mov R0, [R1]
   and R0, 65536
   bnot R0
-  jf R0, __if_17380_end
-__if_17388_start:
+  jf R0, __if_17584_end
+__if_17592_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
   and R0, 1
   cib R0
-  jf R0, __if_17388_end
+  jf R0, __if_17592_end
   mov R0, 0
   jmp __function_PIT_CheckLine_return
-__if_17388_end:
-__if_17395_start:
+__if_17592_end:
+__if_17599_start:
   mov R1, [global_tmthing]
   iadd R1, 32
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_17399
+  jf R0, __LogicalAnd_ShortCircuit_17603
   mov R2, [BP+2]
   iadd R2, 4
   mov R1, [R2]
   and R1, 2
   cib R1
   and R0, R1
-__LogicalAnd_ShortCircuit_17399:
-  jf R0, __if_17395_end
+__LogicalAnd_ShortCircuit_17603:
+  jf R0, __if_17599_end
   mov R0, 0
   jmp __function_PIT_CheckLine_return
-__if_17395_end:
-__if_17380_end:
+__if_17599_end:
+__if_17584_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_LineOpening
-__if_17409_start:
+__if_17613_start:
   mov R0, [global_opentop]
   mov R1, [global_tmceilingz]
   ilt R0, R1
-  jf R0, __if_17409_end
+  jf R0, __if_17613_end
   mov R0, [global_opentop]
   mov [global_tmceilingz], R0
   mov R0, [BP+2]
   mov [global_ceilingline], R0
-__if_17409_end:
-__if_17420_start:
+__if_17613_end:
+__if_17624_start:
   mov R0, [global_openbottom]
   mov R1, [global_tmfloorz]
   igt R0, R1
-  jf R0, __if_17420_end
+  jf R0, __if_17624_end
   mov R0, [global_openbottom]
   mov [global_tmfloorz], R0
-__if_17420_end:
-__if_17427_start:
+__if_17624_end:
+__if_17631_start:
   mov R0, [global_lowfloor]
   mov R1, [global_tmdropoff]
   ilt R0, R1
-  jf R0, __if_17427_end
+  jf R0, __if_17631_end
   mov R0, [global_lowfloor]
   mov [global_tmdropoff], R0
-__if_17427_end:
-__if_17434_start:
+__if_17631_end:
+__if_17638_start:
   mov R1, [BP+2]
   iadd R1, 5
   mov R0, [R1]
   cib R0
-  jf R0, __if_17434_end
-__if_17438_start:
+  jf R0, __if_17638_end
+__if_17642_start:
   mov R0, [global_numspechit]
   ilt R0, 8
-  jf R0, __if_17438_end
+  jf R0, __if_17642_end
   mov R0, [BP+2]
   mov R1, global_spechit
   mov R2, [global_numspechit]
@@ -16984,8 +17235,8 @@ __if_17438_start:
   mov R1, R0
   iadd R1, 1
   mov [global_numspechit], R1
-__if_17438_end:
-__if_17434_end:
+__if_17642_end:
+__if_17638_end:
   mov R0, 1
 __function_PIT_CheckLine_return:
   iadd SP, 2
@@ -17004,16 +17255,16 @@ __function_PIT_CheckThing:
   push R3
   push R4
   isub SP, 4
-__if_17460_start:
+__if_17664_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 7
   bnot R0
-  jf R0, __if_17460_end
+  jf R0, __if_17664_end
   mov R0, 1
   jmp __function_PIT_CheckThing_return
-__if_17460_end:
+__if_17664_end:
   mov R1, [BP+2]
   iadd R1, 17
   mov R0, [R1]
@@ -17022,7 +17273,7 @@ __if_17460_end:
   mov R1, [R2]
   iadd R0, R1
   mov [BP-1], R0
-__if_17481_start:
+__if_17685_start:
   mov R3, [BP+2]
   iadd R3, 4
   mov R2, [R3]
@@ -17033,7 +17284,7 @@ __if_17481_start:
   mov R1, R0
   mov R2, [BP-1]
   ige R1, R2
-  jt R1, __LogicalOr_ShortCircuit_17494
+  jt R1, __LogicalOr_ShortCircuit_17698
   mov R4, [BP+2]
   iadd R4, 5
   mov R3, [R4]
@@ -17045,28 +17296,28 @@ __if_17481_start:
   mov R3, [BP-1]
   ige R2, R3
   or R1, R2
-__LogicalOr_ShortCircuit_17494:
+__LogicalOr_ShortCircuit_17698:
   mov R0, R1
-  jf R0, __if_17481_end
+  jf R0, __if_17685_end
   mov R0, 1
   jmp __function_PIT_CheckThing_return
-__if_17481_end:
-__if_17499_start:
+__if_17685_end:
+__if_17703_start:
   mov R0, [BP+2]
   mov R1, [global_tmthing]
   ieq R0, R1
-  jf R0, __if_17499_end
+  jf R0, __if_17703_end
   mov R0, 1
   jmp __function_PIT_CheckThing_return
-__if_17499_end:
-__if_17505_start:
+__if_17703_end:
+__if_17709_start:
   mov R1, [global_tmthing]
   iadd R1, 23
   mov R0, [R1]
   and R0, 65536
   cib R0
-  jf R0, __if_17505_end
-__if_17511_start:
+  jf R0, __if_17709_end
+__if_17715_start:
   mov R1, [global_tmthing]
   iadd R1, 6
   mov R0, [R1]
@@ -17078,11 +17329,11 @@ __if_17511_start:
   mov R2, [R3]
   iadd R1, R2
   igt R0, R1
-  jf R0, __if_17511_end
+  jf R0, __if_17715_end
   mov R0, 1
   jmp __function_PIT_CheckThing_return
-__if_17511_end:
-__if_17522_start:
+__if_17715_end:
+__if_17726_start:
   mov R1, [global_tmthing]
   iadd R1, 6
   mov R0, [R1]
@@ -17094,16 +17345,16 @@ __if_17522_start:
   iadd R2, 6
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_17522_end
+  jf R0, __if_17726_end
   mov R0, 1
   jmp __function_PIT_CheckThing_return
-__if_17522_end:
-__if_17533_start:
+__if_17726_end:
+__if_17737_start:
   mov R1, [global_tmthing]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_17536
+  jf R0, __LogicalAnd_ShortCircuit_17740
   mov R3, [global_tmthing]
   iadd R3, 29
   mov R2, [R3]
@@ -17114,42 +17365,42 @@ __if_17533_start:
   mov R2, [R3]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_17536:
-  jf R0, __if_17533_end
-__if_17544_start:
+__LogicalAnd_ShortCircuit_17740:
+  jf R0, __if_17737_end
+__if_17748_start:
   mov R0, [BP+2]
   mov R2, [global_tmthing]
   iadd R2, 29
   mov R1, [R2]
   ieq R0, R1
-  jf R0, __if_17544_end
+  jf R0, __if_17748_end
   mov R0, 1
   jmp __function_PIT_CheckThing_return
-__if_17544_end:
-__if_17551_start:
+__if_17748_end:
+__if_17755_start:
   mov R1, [BP+2]
   iadd R1, 22
   mov R0, [R1]
   ine R0, 0
-  jf R0, __if_17551_end
+  jf R0, __if_17755_end
   mov R0, 0
   jmp __function_PIT_CheckThing_return
-__if_17551_end:
-__if_17533_end:
-__if_17558_start:
+__if_17755_end:
+__if_17737_end:
+__if_17762_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_17558_end
+  jf R0, __if_17762_end
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 2
   ieq R0, 0
   jmp __function_PIT_CheckThing_return
-__if_17558_end:
+__if_17762_end:
   call __function_P_Random
   mov R1, R0
   imod R1, 8
@@ -17178,35 +17429,35 @@ __if_17558_end:
   call __function_P_DamageMobj
   mov R0, 0
   jmp __function_PIT_CheckThing_return
-__if_17505_end:
-__if_17597_start:
+__if_17709_end:
+__if_17801_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 1
   cib R0
-  jf R0, __if_17597_end
+  jf R0, __if_17801_end
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 2
   ine R0, 0
   mov [BP-2], R0
-__if_17612_start:
+__if_17816_start:
   mov R0, [global_tmflags]
   and R0, 2048
   cib R0
-  jf R0, __if_17612_end
+  jf R0, __if_17816_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [global_tmthing]
   mov [SP+1], R1
   call __function_P_TouchSpecialThing
-__if_17612_end:
+__if_17816_end:
   mov R0, [BP-2]
   bnot R0
   jmp __function_PIT_CheckThing_return
-__if_17597_end:
+__if_17801_end:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
@@ -17290,14 +17541,14 @@ __function_P_CheckPosition:
   mov [global_validcount], R1
   mov R0, 0
   mov [global_numspechit], R0
-__if_17719_start:
+__if_17923_start:
   mov R0, [global_tmflags]
   and R0, 4096
   cib R0
-  jf R0, __if_17719_end
+  jf R0, __if_17923_end
   mov R0, 1
   jmp __function_P_CheckPosition_return
-__if_17719_end:
+__if_17923_end:
   mov R0, [1698217]
   mov R1, [global_bmaporgx]
   isub R0, R1
@@ -17356,19 +17607,19 @@ __if_17719_end:
   mov [BP-4], R0
   mov R0, [BP-1]
   mov [BP-5], R0
-__for_17917_start:
+__for_18121_start:
   mov R0, [BP-5]
   mov R1, [BP-2]
   ile R0, R1
-  jf R0, __for_17917_end
+  jf R0, __for_18121_end
   mov R0, [BP-3]
   mov [BP-6], R0
-__for_17926_start:
+__for_18130_start:
   mov R0, [BP-6]
   mov R1, [BP-4]
   ile R0, R1
-  jf R0, __for_17926_end
-__if_17935_start:
+  jf R0, __for_18130_end
+__if_18139_start:
   mov R2, [BP-5]
   mov [SP], R2
   mov R2, [BP-6]
@@ -17379,24 +17630,24 @@ __if_17935_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_17935_end
+  jf R0, __if_18139_end
   mov R0, 0
   jmp __function_P_CheckPosition_return
-__if_17935_end:
-__for_17926_continue:
+__if_18139_end:
+__for_18130_continue:
   mov R0, [BP-6]
   mov R1, R0
   iadd R1, 1
   mov [BP-6], R1
-  jmp __for_17926_start
-__for_17926_end:
-__for_17917_continue:
+  jmp __for_18130_start
+__for_18130_end:
+__for_18121_continue:
   mov R0, [BP-5]
   mov R1, R0
   iadd R1, 1
   mov [BP-5], R1
-  jmp __for_17917_start
-__for_17917_end:
+  jmp __for_18121_start
+__for_18121_end:
   mov R0, [1698217]
   mov R1, [global_bmaporgx]
   isub R0, R1
@@ -17447,19 +17698,19 @@ __for_17917_end:
   mov [BP-4], R0
   mov R0, [BP-1]
   mov [BP-5], R0
-__for_18096_start:
+__for_18300_start:
   mov R0, [BP-5]
   mov R1, [BP-2]
   ile R0, R1
-  jf R0, __for_18096_end
+  jf R0, __for_18300_end
   mov R0, [BP-3]
   mov [BP-6], R0
-__for_18105_start:
+__for_18309_start:
   mov R0, [BP-6]
   mov R1, [BP-4]
   ile R0, R1
-  jf R0, __for_18105_end
-__if_18114_start:
+  jf R0, __for_18309_end
+__if_18318_start:
   mov R2, [BP-5]
   mov [SP], R2
   mov R2, [BP-6]
@@ -17470,24 +17721,24 @@ __if_18114_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_18114_end
+  jf R0, __if_18318_end
   mov R0, 0
   jmp __function_P_CheckPosition_return
-__if_18114_end:
-__for_18105_continue:
+__if_18318_end:
+__for_18309_continue:
   mov R0, [BP-6]
   mov R1, R0
   iadd R1, 1
   mov [BP-6], R1
-  jmp __for_18105_start
-__for_18105_end:
-__for_18096_continue:
+  jmp __for_18309_start
+__for_18309_end:
+__for_18300_continue:
   mov R0, [BP-5]
   mov R1, R0
   iadd R1, 1
   mov [BP-5], R1
-  jmp __for_18096_start
-__for_18096_end:
+  jmp __for_18300_start
+__for_18300_end:
   mov R0, 1
 __function_P_CheckPosition_return:
   iadd SP, 3
@@ -17505,10 +17756,10 @@ __function_P_SectorHeightClip:
   iadd R1, 8
   mov R0, [R1]
   mov [BP-1], R0
-__for_18131_start:
+__for_18335_start:
   mov R0, [BP-1]
   ine R0, -1
-  jf R0, __for_18131_end
+  jf R0, __for_18335_end
   mov R1, [BP-1]
   iadd R1, 6
   mov R0, [R1]
@@ -17536,18 +17787,18 @@ __for_18131_start:
   mov R1, [BP-1]
   iadd R1, 16
   mov [R1], R0
-__if_18165_start:
+__if_18369_start:
   mov R0, [BP-2]
-  jf R0, __if_18165_else
+  jf R0, __if_18369_else
   mov R1, [BP-1]
   iadd R1, 15
   mov R0, [R1]
   mov R1, [BP-1]
   iadd R1, 6
   mov [R1], R0
-  jmp __if_18165_end
-__if_18165_else:
-__if_18172_start:
+  jmp __if_18369_end
+__if_18369_else:
+__if_18376_start:
   mov R1, [BP-1]
   iadd R1, 6
   mov R0, [R1]
@@ -17559,7 +17810,7 @@ __if_18172_start:
   iadd R2, 16
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_18172_end
+  jf R0, __if_18376_end
   mov R1, [BP-1]
   iadd R1, 16
   mov R0, [R1]
@@ -17570,15 +17821,15 @@ __if_18172_start:
   mov R1, [BP-1]
   iadd R1, 6
   mov [R1], R0
-__if_18172_end:
-__if_18165_end:
-__for_18131_continue:
+__if_18376_end:
+__if_18369_end:
+__for_18335_continue:
   mov R1, [BP-1]
   iadd R1, 7
   mov R0, [R1]
   mov [BP-1], R0
-  jmp __for_18131_start
-__for_18131_end:
+  jmp __for_18335_start
+__for_18335_end:
 __function_P_SectorHeightClip_return:
   mov SP, BP
   pop BP
@@ -17594,7 +17845,7 @@ __function_P_TryMove:
   isub SP, 3
   mov R0, 0
   mov [global_floatok], R0
-__if_18206_start:
+__if_18410_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R2, [BP+3]
@@ -17605,18 +17856,18 @@ __if_18206_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_18206_end
+  jf R0, __if_18410_end
   mov R0, 0
   jmp __function_P_TryMove_return
-__if_18206_end:
-__if_18214_start:
+__if_18410_end:
+__if_18418_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4096
   bnot R0
-  jf R0, __if_18214_end
-__if_18222_start:
+  jf R0, __if_18418_end
+__if_18426_start:
   mov R0, [global_tmceilingz]
   mov R1, [global_tmfloorz]
   isub R0, R1
@@ -17624,19 +17875,19 @@ __if_18222_start:
   iadd R2, 18
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_18222_end
+  jf R0, __if_18426_end
   mov R0, 0
   jmp __function_P_TryMove_return
-__if_18222_end:
+__if_18426_end:
   mov R0, 1
   mov [global_floatok], R0
-__if_18234_start:
+__if_18438_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 32768
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_18241
+  jf R0, __LogicalAnd_ShortCircuit_18445
   mov R1, [global_tmceilingz]
   mov R3, [BP+2]
   iadd R3, 6
@@ -17647,18 +17898,18 @@ __if_18234_start:
   mov R2, [R3]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_18241:
-  jf R0, __if_18234_end
+__LogicalAnd_ShortCircuit_18445:
+  jf R0, __if_18438_end
   mov R0, 0
   jmp __function_P_TryMove_return
-__if_18234_end:
-__if_18251_start:
+__if_18438_end:
+__if_18455_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 32768
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_18258
+  jf R0, __LogicalAnd_ShortCircuit_18462
   mov R1, [global_tmfloorz]
   mov R3, [BP+2]
   iadd R3, 6
@@ -17666,29 +17917,29 @@ __if_18251_start:
   isub R1, R2
   igt R1, 1572864
   and R0, R1
-__LogicalAnd_ShortCircuit_18258:
-  jf R0, __if_18251_end
+__LogicalAnd_ShortCircuit_18462:
+  jf R0, __if_18455_end
   mov R0, 0
   jmp __function_P_TryMove_return
-__if_18251_end:
-__if_18269_start:
+__if_18455_end:
+__if_18473_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 17408
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_18279
+  jf R0, __LogicalAnd_ShortCircuit_18483
   mov R1, [global_tmfloorz]
   mov R2, [global_tmdropoff]
   isub R1, R2
   igt R1, 1572864
   and R0, R1
-__LogicalAnd_ShortCircuit_18279:
-  jf R0, __if_18269_end
+__LogicalAnd_ShortCircuit_18483:
+  jf R0, __if_18473_end
   mov R0, 0
   jmp __function_P_TryMove_return
-__if_18269_end:
-__if_18214_end:
+__if_18473_end:
+__if_18418_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_UnsetThingPosition
@@ -17719,18 +17970,18 @@ __if_18214_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_SetThingPosition
-__if_18317_start:
+__if_18521_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 36864
   bnot R0
-  jf R0, __if_18317_end
-__while_18328_start:
-__while_18328_continue:
+  jf R0, __if_18521_end
+__while_18532_start:
+__while_18532_continue:
   mov R0, [global_numspechit]
   igt R0, 0
-  jf R0, __while_18328_end
+  jf R0, __while_18532_end
   mov R0, [global_numspechit]
   mov R1, R0
   isub R1, 1
@@ -17764,17 +18015,17 @@ __while_18328_continue:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_18354_start:
+__if_18558_start:
   mov R0, [BP-3]
   mov R1, [BP-4]
   ine R0, R1
-  jf R0, __if_18354_end
-__if_18359_start:
+  jf R0, __if_18558_end
+__if_18563_start:
   mov R1, [BP-5]
   iadd R1, 5
   mov R0, [R1]
   cib R0
-  jf R0, __if_18359_end
+  jf R0, __if_18563_end
   mov R1, [BP-5]
   mov R2, [global_lines]
   isub R1, R2
@@ -17785,11 +18036,11 @@ __if_18359_start:
   mov R1, [BP+2]
   mov [SP+2], R1
   call __function_P_CrossSpecialLine
-__if_18359_end:
-__if_18354_end:
-  jmp __while_18328_start
-__while_18328_end:
-__if_18317_end:
+__if_18563_end:
+__if_18558_end:
+  jmp __while_18532_start
+__while_18532_end:
+__if_18521_end:
   mov R0, 1
 __function_P_TryMove_return:
   iadd SP, 3
@@ -17836,26 +18087,26 @@ __function_P_HitSlideLine:
   push BP
   mov BP, SP
   isub SP, 10
-__if_18435_start:
+__if_18639_start:
   mov R1, [BP+2]
   iadd R1, 13
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_18435_end
+  jf R0, __if_18639_end
   mov R0, 0
   mov [global_tmymove], R0
   jmp __function_P_HitSlideLine_return
-__if_18435_end:
-__if_18445_start:
+__if_18639_end:
+__if_18649_start:
   mov R1, [BP+2]
   iadd R1, 13
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_18445_end
+  jf R0, __if_18649_end
   mov R0, 0
   mov [global_tmxmove], R0
   jmp __function_P_HitSlideLine_return
-__if_18445_end:
+__if_18649_end:
   mov R3, [global_slidemo]
   iadd R3, 4
   mov R2, [R3]
@@ -17886,14 +18137,14 @@ __if_18445_end:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_18472_start:
+__if_18676_start:
   mov R0, [BP-1]
   ieq R0, 1
-  jf R0, __if_18472_end
+  jf R0, __if_18676_end
   mov R0, [BP-2]
   iadd R0, 0x80000000
   mov [BP-2], R0
-__if_18472_end:
+__if_18676_end:
   mov R2, 0
   mov [SP], R2
   mov R2, 0
@@ -17910,15 +18161,15 @@ __if_18472_end:
   mov R1, [BP-2]
   isub R0, R1
   mov [BP-4], R0
-__if_18491_start:
+__if_18695_start:
   mov R0, [BP-4]
   xor R0, 0x80000000
   igt R0, 0
-  jf R0, __if_18491_end
+  jf R0, __if_18695_end
   mov R0, [BP-4]
   iadd R0, 0x80000000
   mov [BP-4], R0
-__if_18491_end:
+__if_18695_end:
   mov R0, [BP-2]
   shl R0, -19
   mov [BP-2], R0
@@ -17982,14 +18233,14 @@ __function_PTR_SlideTraverse:
   iadd R1, 2
   mov R0, [R1]
   mov [BP-1], R0
-__if_18551_start:
+__if_18755_start:
   mov R1, [BP-1]
   iadd R1, 4
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_18551_end
-__if_18559_start:
+  jf R0, __if_18755_end
+__if_18763_start:
   mov R2, [global_slidemo]
   iadd R2, 4
   mov R1, [R2]
@@ -18002,25 +18253,25 @@ __if_18559_start:
   mov [SP+2], R1
   call __function_P_PointOnLineSide
   cib R0
-  jf R0, __if_18559_end
+  jf R0, __if_18763_end
   mov R0, 1
   jmp __function_PTR_SlideTraverse_return
-__if_18559_end:
-  jmp __label_18598_isblocking
-__if_18551_end:
+__if_18763_end:
+  jmp __label_18802_isblocking
+__if_18755_end:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_LineOpening
-__if_18571_start:
+__if_18775_start:
   mov R0, [global_openrange]
   mov R2, [global_slidemo]
   iadd R2, 18
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_18571_end
-  jmp __label_18598_isblocking
-__if_18571_end:
-__if_18577_start:
+  jf R0, __if_18775_end
+  jmp __label_18802_isblocking
+__if_18775_end:
+__if_18781_start:
   mov R0, [global_opentop]
   mov R2, [global_slidemo]
   iadd R2, 6
@@ -18030,28 +18281,28 @@ __if_18577_start:
   iadd R2, 18
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __if_18577_end
-  jmp __label_18598_isblocking
-__if_18577_end:
-__if_18586_start:
+  jf R0, __if_18781_end
+  jmp __label_18802_isblocking
+__if_18781_end:
+__if_18790_start:
   mov R0, [global_openbottom]
   mov R2, [global_slidemo]
   iadd R2, 6
   mov R1, [R2]
   isub R0, R1
   igt R0, 1572864
-  jf R0, __if_18586_end
-  jmp __label_18598_isblocking
-__if_18586_end:
+  jf R0, __if_18790_end
+  jmp __label_18802_isblocking
+__if_18790_end:
   mov R0, 1
   jmp __function_PTR_SlideTraverse_return
-__label_18598_isblocking:
-__if_18599_start:
+__label_18802_isblocking:
+__if_18803_start:
   mov R1, [BP+2]
   mov R0, [R1]
   mov R1, [global_bestslidefrac]
   ilt R0, R1
-  jf R0, __if_18599_end
+  jf R0, __if_18803_end
   mov R0, [global_bestslidefrac]
   mov [global_secondslidefrac], R0
   mov R0, [global_bestslideline]
@@ -18061,7 +18312,7 @@ __if_18599_start:
   mov [global_bestslidefrac], R0
   mov R0, [BP-1]
   mov [global_bestslideline], R0
-__if_18599_end:
+__if_18803_end:
   mov R0, 0
 __function_PTR_SlideTraverse_return:
   iadd SP, 3
@@ -18079,23 +18330,23 @@ __function_P_SlideMove:
   mov [global_slidemo], R0
   mov R0, 0
   mov [BP-7], R0
-__label_18642_retry:
+__label_18846_retry:
   mov R0, [BP-7]
   mov R1, R0
   iadd R1, 1
   mov [BP-7], R1
-__if_18645_start:
+__if_18849_start:
   mov R0, [BP-7]
   ieq R0, 3
-  jf R0, __if_18645_end
-  jmp __label_18774_stairstep
-__if_18645_end:
-__if_18650_start:
+  jf R0, __if_18849_end
+  jmp __label_18978_stairstep
+__if_18849_end:
+__if_18854_start:
   mov R1, [BP+2]
   iadd R1, 19
   mov R0, [R1]
   igt R0, 0
-  jf R0, __if_18650_else
+  jf R0, __if_18854_else
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -18112,8 +18363,8 @@ __if_18650_start:
   mov R1, [R2]
   isub R0, R1
   mov [BP-3], R0
-  jmp __if_18650_end
-__if_18650_else:
+  jmp __if_18854_end
+__if_18854_else:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -18130,13 +18381,13 @@ __if_18650_else:
   mov R1, [R2]
   iadd R0, R1
   mov [BP-3], R0
-__if_18650_end:
-__if_18685_start:
+__if_18854_end:
+__if_18889_start:
   mov R1, [BP+2]
   iadd R1, 20
   mov R0, [R1]
   igt R0, 0
-  jf R0, __if_18685_else
+  jf R0, __if_18889_else
   mov R1, [BP+2]
   iadd R1, 5
   mov R0, [R1]
@@ -18153,8 +18404,8 @@ __if_18685_start:
   mov R1, [R2]
   isub R0, R1
   mov [BP-4], R0
-  jmp __if_18685_end
-__if_18685_else:
+  jmp __if_18889_end
+__if_18889_else:
   mov R1, [BP+2]
   iadd R1, 5
   mov R0, [R1]
@@ -18171,7 +18422,7 @@ __if_18685_else:
   mov R1, [R2]
   iadd R0, R1
   mov [BP-4], R0
-__if_18685_end:
+__if_18889_end:
   mov R0, 65537
   mov [global_bestslidefrac], R0
   mov R1, [BP-1]
@@ -18237,12 +18488,12 @@ __if_18685_end:
   mov R1, __function_PTR_SlideTraverse
   mov [SP+5], R1
   call __function_P_PathTraverse
-__if_18767_start:
+__if_18971_start:
   mov R0, [global_bestslidefrac]
   ieq R0, 65537
-  jf R0, __if_18767_end
-__label_18774_stairstep:
-__if_18775_start:
+  jf R0, __if_18971_end
+__label_18978_stairstep:
+__if_18979_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R3, [BP+2]
@@ -18261,7 +18512,7 @@ __if_18775_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_18775_end
+  jf R0, __if_18979_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R2, [BP+2]
@@ -18277,16 +18528,16 @@ __if_18775_start:
   mov R1, [R2]
   mov [SP+2], R1
   call __function_P_TryMove
-__if_18775_end:
+__if_18979_end:
   jmp __function_P_SlideMove_return
-__if_18767_end:
+__if_18971_end:
   mov R0, [global_bestslidefrac]
   isub R0, 2048
   mov [global_bestslidefrac], R0
-__if_18799_start:
+__if_19003_start:
   mov R0, [global_bestslidefrac]
   igt R0, 0
-  jf R0, __if_18799_end
+  jf R0, __if_19003_end
   mov R3, [BP+2]
   iadd R3, 19
   mov R2, [R3]
@@ -18307,7 +18558,7 @@ __if_18799_start:
   mov R1, R0
   mov [BP-6], R1
   mov R0, R1
-__if_18816_start:
+__if_19020_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R3, [BP+2]
@@ -18326,28 +18577,28 @@ __if_18816_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_18816_end
-  jmp __label_18774_stairstep
-__if_18816_end:
-__if_18799_end:
+  jf R0, __if_19020_end
+  jmp __label_18978_stairstep
+__if_19020_end:
+__if_19003_end:
   mov R0, [global_bestslidefrac]
   iadd R0, 2048
   isgn R0
   iadd R0, 65536
   mov [global_bestslidefrac], R0
-__if_18837_start:
+__if_19041_start:
   mov R0, [global_bestslidefrac]
   igt R0, 65536
-  jf R0, __if_18837_end
+  jf R0, __if_19041_end
   mov R0, 65536
   mov [global_bestslidefrac], R0
-__if_18837_end:
-__if_18844_start:
+__if_19041_end:
+__if_19048_start:
   mov R0, [global_bestslidefrac]
   ile R0, 0
-  jf R0, __if_18844_end
+  jf R0, __if_19048_end
   jmp __function_P_SlideMove_return
-__if_18844_end:
+__if_19048_end:
   mov R3, [BP+2]
   iadd R3, 19
   mov R2, [R3]
@@ -18379,7 +18630,7 @@ __if_18844_end:
   mov R1, [BP+2]
   iadd R1, 20
   mov [R1], R0
-__if_18871_start:
+__if_19075_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R3, [BP+2]
@@ -18398,9 +18649,9 @@ __if_18871_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_18871_end
-  jmp __label_18642_retry
-__if_18871_end:
+  jf R0, __if_19075_end
+  jmp __label_18846_retry
+__if_19075_end:
 __function_P_SlideMove_return:
   mov SP, BP
   pop BP
@@ -18414,32 +18665,32 @@ __function_PTR_UseTraverse:
   push R2
   push R3
   isub SP, 3
-__if_18891_start:
+__if_19095_start:
   mov R2, [BP+2]
   iadd R2, 2
   mov R1, [R2]
   iadd R1, 5
   mov R0, [R1]
   bnot R0
-  jf R0, __if_18891_end
+  jf R0, __if_19095_end
   mov R2, [BP+2]
   iadd R2, 2
   mov R1, [R2]
   mov [SP], R1
   call __function_P_LineOpening
-__if_18900_start:
+__if_19104_start:
   mov R0, [global_openrange]
   ile R0, 0
-  jf R0, __if_18900_end
+  jf R0, __if_19104_end
   mov R0, 0
   jmp __function_PTR_UseTraverse_return
-__if_18900_end:
+__if_19104_end:
   mov R0, 1
   jmp __function_PTR_UseTraverse_return
-__if_18891_end:
+__if_19095_end:
   mov R0, 0
   mov [BP-1], R0
-__if_18911_start:
+__if_19115_start:
   mov R3, [global_usething]
   iadd R3, 4
   mov R2, [R3]
@@ -18456,10 +18707,10 @@ __if_18911_start:
   mov R1, R0
   ieq R1, 1
   mov R0, R1
-  jf R0, __if_18911_end
+  jf R0, __if_19115_end
   mov R0, 1
   mov [BP-1], R0
-__if_18911_end:
+__if_19115_end:
   mov R1, [global_usething]
   mov [SP], R1
   mov R2, [BP+2]
@@ -18545,36 +18796,36 @@ __function_PTR_AimTraverse:
   push R3
   push R4
   isub SP, 2
-__if_19034_start:
+__if_19238_start:
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
-  jf R0, __if_19034_end
+  jf R0, __if_19238_end
   mov R1, [BP+2]
   iadd R1, 2
   mov R0, [R1]
   mov [BP-1], R0
-__if_19042_start:
+__if_19246_start:
   mov R1, [BP-1]
   iadd R1, 4
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_19042_end
+  jf R0, __if_19246_end
   mov R0, 0
   jmp __function_PTR_AimTraverse_return
-__if_19042_end:
+__if_19246_end:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_LineOpening
-__if_19053_start:
+__if_19257_start:
   mov R0, [global_openbottom]
   mov R1, [global_opentop]
   ige R0, R1
-  jf R0, __if_19053_end
+  jf R0, __if_19257_end
   mov R0, 0
   jmp __function_PTR_AimTraverse_return
-__if_19053_end:
+__if_19257_end:
   mov R2, [global_attackrange]
   mov [SP], R2
   mov R3, [BP+2]
@@ -18584,7 +18835,7 @@ __if_19053_end:
   mov R1, R0
   mov [BP-6], R1
   mov R0, R1
-__if_19065_start:
+__if_19269_start:
   mov R2, [BP-1]
   iadd R2, 15
   mov R1, [R2]
@@ -18594,7 +18845,7 @@ __if_19065_start:
   mov R2, [R3]
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_19065_end
+  jf R0, __if_19269_end
   mov R2, [global_openbottom]
   mov R3, [global_shootz]
   isub R2, R3
@@ -18605,16 +18856,16 @@ __if_19065_start:
   mov R1, R0
   mov [BP-3], R1
   mov R0, R1
-__if_19081_start:
+__if_19285_start:
   mov R0, [BP-3]
   mov R1, [global_s_bottomslope]
   igt R0, R1
-  jf R0, __if_19081_end
+  jf R0, __if_19285_end
   mov R0, [BP-3]
   mov [global_s_bottomslope], R0
-__if_19081_end:
-__if_19065_end:
-__if_19088_start:
+__if_19285_end:
+__if_19269_end:
+__if_19292_start:
   mov R2, [BP-1]
   iadd R2, 15
   mov R1, [R2]
@@ -18626,7 +18877,7 @@ __if_19088_start:
   iadd R2, 1
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_19088_end
+  jf R0, __if_19292_end
   mov R2, [global_opentop]
   mov R3, [global_shootz]
   isub R2, R3
@@ -18637,48 +18888,48 @@ __if_19088_start:
   mov R1, R0
   mov [BP-3], R1
   mov R0, R1
-__if_19104_start:
+__if_19308_start:
   mov R0, [BP-3]
   mov R1, [global_s_topslope]
   ilt R0, R1
-  jf R0, __if_19104_end
+  jf R0, __if_19308_end
   mov R0, [BP-3]
   mov [global_s_topslope], R0
-__if_19104_end:
-__if_19088_end:
-__if_19111_start:
+__if_19308_end:
+__if_19292_end:
+__if_19315_start:
   mov R0, [global_s_topslope]
   mov R1, [global_s_bottomslope]
   ile R0, R1
-  jf R0, __if_19111_end
+  jf R0, __if_19315_end
   mov R0, 0
   jmp __function_PTR_AimTraverse_return
-__if_19111_end:
+__if_19315_end:
   mov R0, 1
   jmp __function_PTR_AimTraverse_return
-__if_19034_end:
+__if_19238_end:
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   mov [BP-2], R0
-__if_19123_start:
+__if_19327_start:
   mov R0, [BP-2]
   mov R1, [global_shootthing]
   ieq R0, R1
-  jf R0, __if_19123_end
+  jf R0, __if_19327_end
   mov R0, 1
   jmp __function_PTR_AimTraverse_return
-__if_19123_end:
-__if_19129_start:
+__if_19327_end:
+__if_19333_start:
   mov R1, [BP-2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_19129_end
+  jf R0, __if_19333_end
   mov R0, 1
   jmp __function_PTR_AimTraverse_return
-__if_19129_end:
+__if_19333_end:
   mov R2, [global_attackrange]
   mov [SP], R2
   mov R3, [BP+2]
@@ -18704,14 +18955,14 @@ __if_19129_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_19155_start:
+__if_19359_start:
   mov R0, [BP-4]
   mov R1, [global_s_bottomslope]
   ilt R0, R1
-  jf R0, __if_19155_end
+  jf R0, __if_19359_end
   mov R0, 1
   jmp __function_PTR_AimTraverse_return
-__if_19155_end:
+__if_19359_end:
   mov R3, [BP-2]
   iadd R3, 6
   mov R2, [R3]
@@ -18724,30 +18975,30 @@ __if_19155_end:
   mov R1, R0
   mov [BP-5], R1
   mov R0, R1
-__if_19169_start:
+__if_19373_start:
   mov R0, [BP-5]
   mov R1, [global_s_topslope]
   igt R0, R1
-  jf R0, __if_19169_end
+  jf R0, __if_19373_end
   mov R0, 1
   jmp __function_PTR_AimTraverse_return
-__if_19169_end:
-__if_19175_start:
+__if_19373_end:
+__if_19379_start:
   mov R0, [BP-4]
   mov R1, [global_s_topslope]
   igt R0, R1
-  jf R0, __if_19175_end
+  jf R0, __if_19379_end
   mov R0, [global_s_topslope]
   mov [BP-4], R0
-__if_19175_end:
-__if_19182_start:
+__if_19379_end:
+__if_19386_start:
   mov R0, [BP-5]
   mov R1, [global_s_bottomslope]
   ilt R0, R1
-  jf R0, __if_19182_end
+  jf R0, __if_19386_end
   mov R0, [global_s_bottomslope]
   mov [BP-5], R0
-__if_19182_end:
+__if_19386_end:
   mov R0, [BP-4]
   mov R1, [BP-5]
   iadd R0, R1
@@ -18775,24 +19026,24 @@ __function_PTR_ShootTraverse:
   push R3
   push R4
   isub SP, 4
-__if_19224_start:
+__if_19428_start:
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
-  jf R0, __if_19224_end
+  jf R0, __if_19428_end
   mov R1, [BP+2]
   iadd R1, 2
   mov R0, [R1]
   mov [BP-5], R0
-__if_19232_start:
+__if_19436_start:
   mov R1, [BP-5]
   iadd R1, 4
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_19232_end
-  jmp __label_19292_hitline
-__if_19232_end:
+  jf R0, __if_19436_end
+  jmp __label_19496_hitline
+__if_19436_end:
   mov R1, [BP-5]
   mov [SP], R1
   call __function_P_LineOpening
@@ -18805,7 +19056,7 @@ __if_19232_end:
   mov R1, R0
   mov [BP-8], R1
   mov R0, R1
-__if_19248_start:
+__if_19452_start:
   mov R2, [BP-5]
   iadd R2, 15
   mov R1, [R2]
@@ -18815,7 +19066,7 @@ __if_19248_start:
   mov R2, [R3]
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_19248_end
+  jf R0, __if_19452_end
   mov R2, [global_openbottom]
   mov R3, [global_shootz]
   isub R2, R3
@@ -18826,15 +19077,15 @@ __if_19248_start:
   mov R1, R0
   mov [BP-7], R1
   mov R0, R1
-__if_19264_start:
+__if_19468_start:
   mov R0, [BP-7]
   mov R1, [global_aimslope]
   igt R0, R1
-  jf R0, __if_19264_end
-  jmp __label_19292_hitline
-__if_19264_end:
-__if_19248_end:
-__if_19269_start:
+  jf R0, __if_19468_end
+  jmp __label_19496_hitline
+__if_19468_end:
+__if_19452_end:
+__if_19473_start:
   mov R2, [BP-5]
   iadd R2, 15
   mov R1, [R2]
@@ -18846,7 +19097,7 @@ __if_19269_start:
   iadd R2, 1
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_19269_end
+  jf R0, __if_19473_end
   mov R2, [global_opentop]
   mov R3, [global_shootz]
   isub R2, R3
@@ -18857,17 +19108,17 @@ __if_19269_start:
   mov R1, R0
   mov [BP-7], R1
   mov R0, R1
-__if_19285_start:
+__if_19489_start:
   mov R0, [BP-7]
   mov R1, [global_aimslope]
   ilt R0, R1
-  jf R0, __if_19285_end
-  jmp __label_19292_hitline
-__if_19285_end:
-__if_19269_end:
+  jf R0, __if_19489_end
+  jmp __label_19496_hitline
+__if_19489_end:
+__if_19473_end:
   mov R0, 1
   jmp __function_PTR_ShootTraverse_return
-__label_19292_hitline:
+__label_19496_hitline:
   mov R2, [BP+2]
   mov R1, [R2]
   mov R3, 262144
@@ -18916,15 +19167,15 @@ __label_19292_hitline:
   iadd R1, R2
   mov [BP-3], R1
   mov R0, R1
-__if_19330_start:
+__if_19534_start:
   mov R2, [BP-5]
   iadd R2, 15
   mov R1, [R2]
   iadd R1, 3
   mov R0, [R1]
   ieq R0, 53
-  jf R0, __if_19330_end
-__if_19337_start:
+  jf R0, __if_19534_end
+__if_19541_start:
   mov R0, [BP-3]
   mov R3, [BP-5]
   iadd R3, 15
@@ -18932,16 +19183,16 @@ __if_19337_start:
   iadd R2, 1
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_19337_end
+  jf R0, __if_19541_end
   mov R0, 0
   jmp __function_PTR_ShootTraverse_return
-__if_19337_end:
-__if_19345_start:
+__if_19541_end:
+__if_19549_start:
   mov R1, [BP-5]
   iadd R1, 16
   mov R0, [R1]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_19348
+  jf R0, __LogicalAnd_ShortCircuit_19552
   mov R3, [BP-5]
   iadd R3, 16
   mov R2, [R3]
@@ -18949,12 +19200,12 @@ __if_19345_start:
   mov R1, [R2]
   ieq R1, 53
   and R0, R1
-__LogicalAnd_ShortCircuit_19348:
-  jf R0, __if_19345_end
+__LogicalAnd_ShortCircuit_19552:
+  jf R0, __if_19549_end
   mov R0, 0
   jmp __function_PTR_ShootTraverse_return
-__if_19345_end:
-__if_19330_end:
+__if_19549_end:
+__if_19534_end:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, [BP-2]
@@ -18964,29 +19215,29 @@ __if_19330_end:
   call __function_P_SpawnPuff
   mov R0, 0
   jmp __function_PTR_ShootTraverse_return
-__if_19224_end:
+__if_19428_end:
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   mov [BP-6], R0
-__if_19366_start:
+__if_19570_start:
   mov R0, [BP-6]
   mov R1, [global_shootthing]
   ieq R0, R1
-  jf R0, __if_19366_end
+  jf R0, __if_19570_end
   mov R0, 1
   jmp __function_PTR_ShootTraverse_return
-__if_19366_end:
-__if_19372_start:
+__if_19570_end:
+__if_19576_start:
   mov R1, [BP-6]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_19372_end
+  jf R0, __if_19576_end
   mov R0, 1
   jmp __function_PTR_ShootTraverse_return
-__if_19372_end:
+__if_19576_end:
   mov R2, [global_attackrange]
   mov [SP], R2
   mov R3, [BP+2]
@@ -19012,14 +19263,14 @@ __if_19372_end:
   mov R1, R0
   mov [BP-9], R1
   mov R0, R1
-__if_19398_start:
+__if_19602_start:
   mov R0, [BP-9]
   mov R1, [global_aimslope]
   ilt R0, R1
-  jf R0, __if_19398_end
+  jf R0, __if_19602_end
   mov R0, 1
   jmp __function_PTR_ShootTraverse_return
-__if_19398_end:
+__if_19602_end:
   mov R3, [BP-6]
   iadd R3, 6
   mov R2, [R3]
@@ -19032,14 +19283,14 @@ __if_19398_end:
   mov R1, R0
   mov [BP-10], R1
   mov R0, R1
-__if_19412_start:
+__if_19616_start:
   mov R0, [BP-10]
   mov R1, [global_aimslope]
   igt R0, R1
-  jf R0, __if_19412_end
+  jf R0, __if_19616_end
   mov R0, 1
   jmp __function_PTR_ShootTraverse_return
-__if_19412_end:
+__if_19616_end:
   mov R2, [BP+2]
   mov R1, [R2]
   mov R3, 655360
@@ -19088,13 +19339,13 @@ __if_19412_end:
   iadd R1, R2
   mov [BP-3], R1
   mov R0, R1
-__if_19455_start:
+__if_19659_start:
   mov R1, [BP-6]
   iadd R1, 23
   mov R0, [R1]
   and R0, 524288
   cib R0
-  jf R0, __if_19455_else
+  jf R0, __if_19659_else
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, [BP-2]
@@ -19102,8 +19353,8 @@ __if_19455_start:
   mov R1, [BP-3]
   mov [SP+2], R1
   call __function_P_SpawnPuff
-  jmp __if_19455_end
-__if_19455_else:
+  jmp __if_19659_end
+__if_19659_else:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, [BP-2]
@@ -19113,11 +19364,11 @@ __if_19455_else:
   mov R1, [global_la_damage]
   mov [SP+3], R1
   call __function_P_SpawnBlood
-__if_19455_end:
-__if_19469_start:
+__if_19659_end:
+__if_19673_start:
   mov R0, [global_la_damage]
   cib R0
-  jf R0, __if_19469_end
+  jf R0, __if_19673_end
   mov R1, [BP-6]
   mov [SP], R1
   mov R1, [global_shootthing]
@@ -19127,7 +19378,7 @@ __if_19469_start:
   mov R1, [global_la_damage]
   mov [SP+3], R1
   call __function_P_DamageMobj
-__if_19469_end:
+__if_19673_end:
   mov R0, 0
 __function_PTR_ShootTraverse_return:
   iadd SP, 4
@@ -19218,13 +19469,13 @@ __function_P_AimLineAttack:
   mov R1, __function_PTR_AimTraverse
   mov [SP+5], R1
   call __function_P_PathTraverse
-__if_19586_start:
+__if_19790_start:
   mov R0, [global_linetarget]
   ine R0, -1
-  jf R0, __if_19586_end
+  jf R0, __if_19790_end
   mov R0, [global_aimslope]
   jmp __function_P_AimLineAttack_return
-__if_19586_end:
+__if_19790_end:
   mov R0, 0
 __function_P_AimLineAttack_return:
   iadd SP, 6
@@ -19322,16 +19573,16 @@ __function_PIT_RadiusAttack:
   push R3
   push R4
   isub SP, 4
-__if_19707_start:
+__if_19911_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_19707_end
+  jf R0, __if_19911_end
   mov R0, 1
   jmp __function_PIT_RadiusAttack_return
-__if_19707_end:
+__if_19911_end:
   mov R3, [BP+2]
   iadd R3, 4
   mov R2, [R3]
@@ -19356,18 +19607,18 @@ __if_19707_end:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_19732_start:
+__if_19936_start:
   mov R0, [BP-1]
   mov R1, [BP-2]
   igt R0, R1
-  jf R0, __if_19732_else
+  jf R0, __if_19936_else
   mov R0, [BP-1]
   mov [BP-3], R0
-  jmp __if_19732_end
-__if_19732_else:
+  jmp __if_19936_end
+__if_19936_else:
   mov R0, [BP-2]
   mov [BP-3], R0
-__if_19732_end:
+__if_19936_end:
   mov R0, [BP-3]
   mov R2, [BP+2]
   iadd R2, 17
@@ -19384,28 +19635,28 @@ __if_19732_end:
   shl R1, 16
   or R0, R1
   mov [BP-3], R0
-__if_19772_start:
+__if_19976_start:
   mov R0, [BP-3]
   ilt R0, 0
-  jf R0, __if_19772_end
+  jf R0, __if_19976_end
   mov R0, 0
   mov [BP-3], R0
-__if_19772_end:
-__if_19779_start:
+__if_19976_end:
+__if_19983_start:
   mov R0, [BP-3]
   mov R1, [global_bombdamage]
   ige R0, R1
-  jf R0, __if_19779_end
+  jf R0, __if_19983_end
   mov R0, 1
   jmp __function_PIT_RadiusAttack_return
-__if_19779_end:
-__if_19785_start:
+__if_19983_end:
+__if_19989_start:
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [global_bombspot]
   mov [SP+1], R1
   call __function_P_CheckSight
-  jf R0, __if_19785_end
+  jf R0, __if_19989_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [global_bombspot]
@@ -19417,7 +19668,7 @@ __if_19785_start:
   isub R1, R2
   mov [SP+3], R1
   call __function_P_DamageMobj
-__if_19785_end:
+__if_19989_end:
   mov R0, 1
 __function_PIT_RadiusAttack_return:
   iadd SP, 4
@@ -19525,18 +19776,18 @@ __function_P_RadiusAttack:
   mov [global_bombdamage], R0
   mov R0, [BP-5]
   mov [BP-2], R0
-__for_19997_start:
+__for_20201_start:
   mov R0, [BP-2]
   mov R1, [BP-6]
   ile R0, R1
-  jf R0, __for_19997_end
+  jf R0, __for_20201_end
   mov R0, [BP-3]
   mov [BP-1], R0
-__for_20006_start:
+__for_20210_start:
   mov R0, [BP-1]
   mov R1, [BP-4]
   ile R0, R1
-  jf R0, __for_20006_end
+  jf R0, __for_20210_end
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, [BP-2]
@@ -19544,20 +19795,20 @@ __for_20006_start:
   mov R1, __function_PIT_RadiusAttack
   mov [SP+2], R1
   call __function_P_BlockThingsIterator
-__for_20006_continue:
+__for_20210_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_20006_start
-__for_20006_end:
-__for_19997_continue:
+  jmp __for_20210_start
+__for_20210_end:
+__for_20201_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_19997_start
-__for_19997_end:
+  jmp __for_20201_start
+__for_20201_end:
 __function_P_RadiusAttack_return:
   mov SP, BP
   pop BP
@@ -19593,14 +19844,14 @@ __function_P_GiveAmmo:
   isub SP, 1
   push R1
   push R2
-__if_20082_start:
+__if_20286_start:
   mov R0, [BP+3]
   ieq R0, 5
-  jf R0, __if_20082_end
+  jf R0, __if_20286_end
   mov R0, 0
   jmp __function_P_GiveAmmo_return
-__if_20082_end:
-__if_20088_start:
+__if_20286_end:
+__if_20292_start:
   mov R0, [BP+2]
   iadd R0, 27
   mov R1, [BP+3]
@@ -19612,14 +19863,14 @@ __if_20088_start:
   iadd R1, R2
   mov R1, [R1]
   ieq R0, R1
-  jf R0, __if_20088_end
+  jf R0, __if_20292_end
   mov R0, 0
   jmp __function_P_GiveAmmo_return
-__if_20088_end:
-__if_20100_start:
+__if_20292_end:
+__if_20304_start:
   mov R0, [BP+4]
   cib R0
-  jf R0, __if_20100_else
+  jf R0, __if_20304_else
   mov R0, [BP+4]
   mov R1, global_clipammo
   mov R2, [BP+3]
@@ -19627,15 +19878,15 @@ __if_20100_start:
   mov R1, [R1]
   imul R0, R1
   mov [BP+4], R0
-  jmp __if_20100_end
-__if_20100_else:
+  jmp __if_20304_end
+__if_20304_else:
   mov R0, global_clipammo
   mov R1, [BP+3]
   iadd R0, R1
   mov R0, [R0]
   idiv R0, 2
   mov [BP+4], R0
-__if_20100_end:
+__if_20304_end:
   mov R0, [BP+2]
   iadd R0, 27
   mov R1, [BP+3]
@@ -19654,7 +19905,7 @@ __if_20100_end:
   mov R2, [BP+3]
   iadd R1, R2
   mov [R1], R0
-__if_20126_start:
+__if_20330_start:
   mov R0, [BP+2]
   iadd R0, 27
   mov R1, [BP+3]
@@ -19666,7 +19917,7 @@ __if_20126_start:
   iadd R1, R2
   mov R1, [R1]
   igt R0, R1
-  jf R0, __if_20126_end
+  jf R0, __if_20330_end
   mov R0, [BP+2]
   iadd R0, 31
   mov R1, [BP+3]
@@ -19677,77 +19928,77 @@ __if_20126_start:
   mov R2, [BP+3]
   iadd R1, R2
   mov [R1], R0
-__if_20126_end:
-__if_20145_start:
+__if_20330_end:
+__if_20349_start:
   mov R0, [BP-1]
   cib R0
-  jf R0, __if_20145_end
+  jf R0, __if_20349_end
   mov R0, 1
   jmp __function_P_GiveAmmo_return
-__if_20145_end:
-__if_20149_start:
+__if_20349_end:
+__if_20353_start:
   mov R0, [BP+3]
   ieq R0, 0
-  jf R0, __if_20149_else
-__if_20154_start:
+  jf R0, __if_20353_else
+__if_20358_start:
   mov R1, [BP+2]
   iadd R1, 17
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_20154_end
-__if_20160_start:
+  jf R0, __if_20358_end
+__if_20364_start:
   mov R0, [BP+2]
   iadd R0, 19
   iadd R0, 3
   mov R0, [R0]
   cib R0
-  jf R0, __if_20160_else
+  jf R0, __if_20364_else
   mov R0, 3
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-  jmp __if_20160_end
-__if_20160_else:
+  jmp __if_20364_end
+__if_20364_else:
   mov R0, 1
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-__if_20160_end:
-__if_20154_end:
-  jmp __if_20149_end
-__if_20149_else:
-__if_20173_start:
+__if_20364_end:
+__if_20358_end:
+  jmp __if_20353_end
+__if_20353_else:
+__if_20377_start:
   mov R0, [BP+3]
   ieq R0, 1
-  jf R0, __if_20173_end
-__if_20178_start:
+  jf R0, __if_20377_end
+__if_20382_start:
   mov R1, [BP+2]
   iadd R1, 17
   mov R0, [R1]
   ieq R0, 0
-  jt R0, __LogicalOr_ShortCircuit_20185
+  jt R0, __LogicalOr_ShortCircuit_20389
   mov R2, [BP+2]
   iadd R2, 17
   mov R1, [R2]
   ieq R1, 1
   or R0, R1
-__LogicalOr_ShortCircuit_20185:
-  jf R0, __if_20178_end
-__if_20189_start:
+__LogicalOr_ShortCircuit_20389:
+  jf R0, __if_20382_end
+__if_20393_start:
   mov R0, [BP+2]
   iadd R0, 19
   iadd R0, 2
   mov R0, [R0]
   cib R0
-  jf R0, __if_20189_end
+  jf R0, __if_20393_end
   mov R0, 2
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-__if_20189_end:
-__if_20178_end:
-__if_20173_end:
-__if_20149_end:
+__if_20393_end:
+__if_20382_end:
+__if_20377_end:
+__if_20353_end:
   mov R0, 1
 __function_P_GiveAmmo_return:
   pop R2
@@ -19763,61 +20014,61 @@ __function_P_GiveWeapon:
   push R1
   push R2
   isub SP, 3
-__if_20210_start:
+__if_20414_start:
   mov R0, [BP+3]
   ieq R0, 0
-  jt R0, __LogicalOr_ShortCircuit_20215
+  jt R0, __LogicalOr_ShortCircuit_20419
   mov R1, [BP+3]
   ieq R1, 7
   or R0, R1
-__LogicalOr_ShortCircuit_20215:
-  jf R0, __if_20210_else
+__LogicalOr_ShortCircuit_20419:
+  jf R0, __if_20414_else
   mov R0, 5
   mov [BP-3], R0
-  jmp __if_20210_end
-__if_20210_else:
-__if_20221_start:
+  jmp __if_20414_end
+__if_20414_else:
+__if_20425_start:
   mov R0, [BP+3]
   ieq R0, 2
-  jf R0, __if_20221_else
+  jf R0, __if_20425_else
   mov R0, 1
   mov [BP-3], R0
-  jmp __if_20221_end
-__if_20221_else:
-__if_20228_start:
+  jmp __if_20425_end
+__if_20425_else:
+__if_20432_start:
   mov R0, [BP+3]
   ieq R0, 4
-  jf R0, __if_20228_else
+  jf R0, __if_20432_else
   mov R0, 3
   mov [BP-3], R0
-  jmp __if_20228_end
-__if_20228_else:
-__if_20235_start:
+  jmp __if_20432_end
+__if_20432_else:
+__if_20439_start:
   mov R0, [BP+3]
   ieq R0, 5
-  jt R0, __LogicalOr_ShortCircuit_20240
+  jt R0, __LogicalOr_ShortCircuit_20444
   mov R1, [BP+3]
   ieq R1, 6
   or R0, R1
-__LogicalOr_ShortCircuit_20240:
-  jf R0, __if_20235_else
+__LogicalOr_ShortCircuit_20444:
+  jf R0, __if_20439_else
   mov R0, 2
   mov [BP-3], R0
-  jmp __if_20235_end
-__if_20235_else:
+  jmp __if_20439_end
+__if_20439_else:
   mov R0, 0
   mov [BP-3], R0
-__if_20235_end:
-__if_20228_end:
-__if_20221_end:
-__if_20210_end:
-__if_20249_start:
+__if_20439_end:
+__if_20432_end:
+__if_20425_end:
+__if_20414_end:
+__if_20453_start:
   mov R0, [BP-3]
   ine R0, 5
-  jf R0, __if_20249_else
-__if_20254_start:
+  jf R0, __if_20453_else
+__if_20458_start:
   mov R0, [BP+4]
-  jf R0, __if_20254_else
+  jf R0, __if_20458_else
   mov R2, [BP+2]
   mov [SP], R2
   mov R2, [BP-3]
@@ -19828,8 +20079,8 @@ __if_20254_start:
   mov R1, R0
   mov [BP-1], R1
   mov R0, R1
-  jmp __if_20254_end
-__if_20254_else:
+  jmp __if_20458_end
+__if_20458_else:
   mov R2, [BP+2]
   mov [SP], R2
   mov R2, [BP-3]
@@ -19840,24 +20091,24 @@ __if_20254_else:
   mov R1, R0
   mov [BP-1], R1
   mov R0, R1
-__if_20254_end:
-  jmp __if_20249_end
-__if_20249_else:
+__if_20458_end:
+  jmp __if_20453_end
+__if_20453_else:
   mov R0, 0
   mov [BP-1], R0
-__if_20249_end:
-__if_20271_start:
+__if_20453_end:
+__if_20475_start:
   mov R0, [BP+2]
   iadd R0, 19
   mov R1, [BP+3]
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_20271_else
+  jf R0, __if_20475_else
   mov R0, 0
   mov [BP-2], R0
-  jmp __if_20271_end
-__if_20271_else:
+  jmp __if_20475_end
+__if_20475_else:
   mov R0, 1
   mov [BP-2], R0
   mov R0, 1
@@ -19870,12 +20121,12 @@ __if_20271_else:
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-__if_20271_end:
+__if_20475_end:
   mov R0, [BP-2]
-  jt R0, __LogicalOr_ShortCircuit_20295
+  jt R0, __LogicalOr_ShortCircuit_20499
   mov R1, [BP-1]
   or R0, R1
-__LogicalOr_ShortCircuit_20295:
+__LogicalOr_ShortCircuit_20499:
 __function_P_GiveWeapon_return:
   iadd SP, 3
   pop R2
@@ -19889,15 +20140,15 @@ __function_P_GiveBody:
   mov BP, SP
   push R1
   push R2
-__if_20300_start:
+__if_20504_start:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
   ige R0, 100
-  jf R0, __if_20300_end
+  jf R0, __if_20504_end
   mov R0, 0
   jmp __function_P_GiveBody_return
-__if_20300_end:
+__if_20504_end:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
@@ -19906,17 +20157,17 @@ __if_20300_end:
   mov R1, [BP+2]
   iadd R1, 7
   mov [R1], R0
-__if_20311_start:
+__if_20515_start:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
   igt R0, 100
-  jf R0, __if_20311_end
+  jf R0, __if_20515_end
   mov R0, 100
   mov R1, [BP+2]
   iadd R1, 7
   mov [R1], R0
-__if_20311_end:
+__if_20515_end:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
@@ -19940,16 +20191,16 @@ __function_P_GiveArmor:
   mov R0, [BP+3]
   imul R0, 100
   mov [BP-1], R0
-__if_20336_start:
+__if_20540_start:
   mov R1, [BP+2]
   iadd R1, 8
   mov R0, [R1]
   mov R1, [BP-1]
   ige R0, R1
-  jf R0, __if_20336_end
+  jf R0, __if_20540_end
   mov R0, 0
   jmp __function_P_GiveArmor_return
-__if_20336_end:
+__if_20540_end:
   mov R0, [BP+3]
   mov R1, [BP+2]
   iadd R1, 9
@@ -19968,7 +20219,9 @@ __function_P_GiveArmor_return:
 __function_P_TouchSpecialThing:
   push BP
   mov BP, SP
-  isub SP, 6
+  isub SP, 7
+  mov R0, 32
+  mov [BP-4], R0
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
@@ -19977,41 +20230,41 @@ __function_P_TouchSpecialThing:
   mov R1, [R2]
   isub R0, R1
   mov [BP-2], R0
-__if_20369_start:
+__if_20576_start:
   mov R0, [BP-2]
   mov R2, [BP+3]
   iadd R2, 18
   mov R1, [R2]
   igt R0, R1
-  jt R0, __LogicalOr_ShortCircuit_20375
+  jt R0, __LogicalOr_ShortCircuit_20582
   mov R1, [BP-2]
   ilt R1, -524288
   or R0, R1
-__LogicalOr_ShortCircuit_20375:
-  jf R0, __if_20369_end
+__LogicalOr_ShortCircuit_20582:
+  jf R0, __if_20576_end
   jmp __function_P_TouchSpecialThing_return
-__if_20369_end:
+__if_20576_end:
   mov R1, [BP+3]
   iadd R1, 32
   mov R0, [R1]
   mov [BP-1], R0
-__if_20387_start:
+__if_20594_start:
   mov R1, [BP+3]
   iadd R1, 24
   mov R0, [R1]
   ile R0, 0
-  jf R0, __if_20387_end
+  jf R0, __if_20594_end
   jmp __function_P_TouchSpecialThing_return
-__if_20387_end:
+__if_20594_end:
   mov R1, [BP+2]
   iadd R1, 12
   mov R0, [R1]
   mov [BP-3], R0
-__if_20397_start:
+__if_20604_start:
   mov R0, [BP-3]
   ieq R0, 55
-  jf R0, __if_20397_else
-__if_20402_start:
+  jf R0, __if_20604_else
+__if_20609_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 1
@@ -20020,16 +20273,16 @@ __if_20402_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20402_end
+  jf R0, __if_20609_end
   jmp __function_P_TouchSpecialThing_return
-__if_20402_end:
-  jmp __if_20397_end
-__if_20397_else:
-__if_20408_start:
+__if_20609_end:
+  jmp __if_20604_end
+__if_20604_else:
+__if_20615_start:
   mov R0, [BP-3]
   ieq R0, 56
-  jf R0, __if_20408_else
-__if_20413_start:
+  jf R0, __if_20615_else
+__if_20620_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 2
@@ -20038,32 +20291,32 @@ __if_20413_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20413_end
+  jf R0, __if_20620_end
   jmp __function_P_TouchSpecialThing_return
-__if_20413_end:
-  jmp __if_20408_end
-__if_20408_else:
-__if_20419_start:
+__if_20620_end:
+  jmp __if_20615_end
+__if_20615_else:
+__if_20626_start:
   mov R0, [BP-3]
   ieq R0, 60
-  jf R0, __if_20419_else
+  jf R0, __if_20626_else
   mov R2, [BP-1]
   iadd R2, 7
   mov R0, [R2]
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_20427_start:
+__if_20634_start:
   mov R1, [BP-1]
   iadd R1, 7
   mov R0, [R1]
   igt R0, 200
-  jf R0, __if_20427_end
+  jf R0, __if_20634_end
   mov R0, 200
   mov R1, [BP-1]
   iadd R1, 7
   mov [R1], R0
-__if_20427_end:
+__if_20634_end:
   mov R1, [BP-1]
   iadd R1, 7
   mov R0, [R1]
@@ -20071,47 +20324,47 @@ __if_20427_end:
   mov R1, [R2]
   iadd R1, 24
   mov [R1], R0
-  jmp __if_20419_end
-__if_20419_else:
-__if_20442_start:
+  jmp __if_20626_end
+__if_20626_else:
+__if_20649_start:
   mov R0, [BP-3]
   ieq R0, 61
-  jf R0, __if_20442_else
+  jf R0, __if_20649_else
   mov R2, [BP-1]
   iadd R2, 8
   mov R0, [R2]
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_20450_start:
+__if_20657_start:
   mov R1, [BP-1]
   iadd R1, 8
   mov R0, [R1]
   igt R0, 200
-  jf R0, __if_20450_end
+  jf R0, __if_20657_end
   mov R0, 200
   mov R1, [BP-1]
   iadd R1, 8
   mov [R1], R0
-__if_20450_end:
-__if_20459_start:
+__if_20657_end:
+__if_20666_start:
   mov R1, [BP-1]
   iadd R1, 9
   mov R0, [R1]
   bnot R0
-  jf R0, __if_20459_end
+  jf R0, __if_20666_end
   mov R0, 1
   mov R1, [BP-1]
   iadd R1, 9
   mov [R1], R0
-__if_20459_end:
-  jmp __if_20442_end
-__if_20442_else:
-__if_20467_start:
+__if_20666_end:
+  jmp __if_20649_end
+__if_20649_else:
+__if_20674_start:
   mov R0, [BP-3]
   ieq R0, 68
-  jf R0, __if_20467_else
-__if_20472_start:
+  jf R0, __if_20674_else
+__if_20679_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 10
@@ -20120,16 +20373,16 @@ __if_20472_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20472_end
+  jf R0, __if_20679_end
   jmp __function_P_TouchSpecialThing_return
-__if_20472_end:
-  jmp __if_20467_end
-__if_20467_else:
-__if_20478_start:
+__if_20679_end:
+  jmp __if_20674_end
+__if_20674_else:
+__if_20685_start:
   mov R0, [BP-3]
   ieq R0, 69
-  jf R0, __if_20478_else
-__if_20483_start:
+  jf R0, __if_20685_else
+__if_20690_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 25
@@ -20138,23 +20391,23 @@ __if_20483_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20483_end
+  jf R0, __if_20690_end
   jmp __function_P_TouchSpecialThing_return
-__if_20483_end:
-  jmp __if_20478_end
-__if_20478_else:
-__if_20489_start:
+__if_20690_end:
+  jmp __if_20685_end
+__if_20685_else:
+__if_20696_start:
   mov R0, [BP-3]
   ieq R0, 78
-  jf R0, __if_20489_else
-__if_20494_start:
+  jf R0, __if_20696_else
+__if_20701_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 131072
   cib R0
-  jf R0, __if_20494_else
-__if_20500_start:
+  jf R0, __if_20701_else
+__if_20707_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 0
@@ -20165,12 +20418,12 @@ __if_20500_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20500_end
+  jf R0, __if_20707_end
   jmp __function_P_TouchSpecialThing_return
-__if_20500_end:
-  jmp __if_20494_end
-__if_20494_else:
-__if_20508_start:
+__if_20707_end:
+  jmp __if_20701_end
+__if_20701_else:
+__if_20715_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 0
@@ -20181,17 +20434,17 @@ __if_20508_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20508_end
+  jf R0, __if_20715_end
   jmp __function_P_TouchSpecialThing_return
-__if_20508_end:
-__if_20494_end:
-  jmp __if_20489_end
-__if_20489_else:
-__if_20515_start:
+__if_20715_end:
+__if_20701_end:
+  jmp __if_20696_end
+__if_20696_else:
+__if_20722_start:
   mov R0, [BP-3]
   ieq R0, 79
-  jf R0, __if_20515_else
-__if_20520_start:
+  jf R0, __if_20722_else
+__if_20727_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 0
@@ -20202,16 +20455,16 @@ __if_20520_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20520_end
+  jf R0, __if_20727_end
   jmp __function_P_TouchSpecialThing_return
-__if_20520_end:
-  jmp __if_20515_end
-__if_20515_else:
-__if_20527_start:
+__if_20727_end:
+  jmp __if_20722_end
+__if_20722_else:
+__if_20734_start:
   mov R0, [BP-3]
   ieq R0, 84
-  jf R0, __if_20527_else
-__if_20532_start:
+  jf R0, __if_20734_else
+__if_20739_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 1
@@ -20222,16 +20475,16 @@ __if_20532_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20532_end
+  jf R0, __if_20739_end
   jmp __function_P_TouchSpecialThing_return
-__if_20532_end:
-  jmp __if_20527_end
-__if_20527_else:
-__if_20539_start:
+__if_20739_end:
+  jmp __if_20734_end
+__if_20734_else:
+__if_20746_start:
   mov R0, [BP-3]
   ieq R0, 85
-  jf R0, __if_20539_else
-__if_20544_start:
+  jf R0, __if_20746_else
+__if_20751_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 1
@@ -20242,16 +20495,16 @@ __if_20544_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20544_end
+  jf R0, __if_20751_end
   jmp __function_P_TouchSpecialThing_return
-__if_20544_end:
-  jmp __if_20539_end
-__if_20539_else:
-__if_20551_start:
+__if_20751_end:
+  jmp __if_20746_end
+__if_20746_else:
+__if_20758_start:
   mov R0, [BP-3]
   ieq R0, 80
-  jf R0, __if_20551_else
-__if_20556_start:
+  jf R0, __if_20758_else
+__if_20763_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 3
@@ -20262,16 +20515,16 @@ __if_20556_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20556_end
+  jf R0, __if_20763_end
   jmp __function_P_TouchSpecialThing_return
-__if_20556_end:
-  jmp __if_20551_end
-__if_20551_else:
-__if_20563_start:
+__if_20763_end:
+  jmp __if_20758_end
+__if_20758_else:
+__if_20770_start:
   mov R0, [BP-3]
   ieq R0, 81
-  jf R0, __if_20563_else
-__if_20568_start:
+  jf R0, __if_20770_else
+__if_20775_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 3
@@ -20282,16 +20535,16 @@ __if_20568_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20568_end
+  jf R0, __if_20775_end
   jmp __function_P_TouchSpecialThing_return
-__if_20568_end:
-  jmp __if_20563_end
-__if_20563_else:
-__if_20575_start:
+__if_20775_end:
+  jmp __if_20770_end
+__if_20770_else:
+__if_20782_start:
   mov R0, [BP-3]
   ieq R0, 92
-  jf R0, __if_20575_else
-__if_20580_start:
+  jf R0, __if_20782_else
+__if_20787_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 2
@@ -20306,16 +20559,18 @@ __if_20580_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20580_end
+  jf R0, __if_20787_end
   jmp __function_P_TouchSpecialThing_return
-__if_20580_end:
-  jmp __if_20575_end
-__if_20575_else:
-__if_20593_start:
+__if_20787_end:
+  mov R0, 33
+  mov [BP-4], R0
+  jmp __if_20782_end
+__if_20782_else:
+__if_20803_start:
   mov R0, [BP-3]
   ieq R0, 88
-  jf R0, __if_20593_else
-__if_20598_start:
+  jf R0, __if_20803_else
+__if_20808_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 3
@@ -20330,40 +20585,42 @@ __if_20598_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_20598_end
+  jf R0, __if_20808_end
   jmp __function_P_TouchSpecialThing_return
-__if_20598_end:
-  jmp __if_20593_end
-__if_20593_else:
+__if_20808_end:
+  mov R0, 33
+  mov [BP-4], R0
+  jmp __if_20803_end
+__if_20803_else:
   jmp __function_P_TouchSpecialThing_return
-__if_20593_end:
-__if_20575_end:
-__if_20563_end:
-__if_20551_end:
-__if_20539_end:
-__if_20527_end:
-__if_20515_end:
-__if_20489_end:
-__if_20478_end:
-__if_20467_end:
-__if_20442_end:
-__if_20419_end:
-__if_20408_end:
-__if_20397_end:
-__if_20612_start:
+__if_20803_end:
+__if_20782_end:
+__if_20770_end:
+__if_20758_end:
+__if_20746_end:
+__if_20734_end:
+__if_20722_end:
+__if_20696_end:
+__if_20685_end:
+__if_20674_end:
+__if_20649_end:
+__if_20626_end:
+__if_20615_end:
+__if_20604_end:
+__if_20825_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 8388608
   cib R0
-  jf R0, __if_20612_end
+  jf R0, __if_20825_end
   mov R2, [BP-1]
   iadd R2, 42
   mov R0, [R2]
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_20612_end:
+__if_20825_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_RemoveMobj
@@ -20374,6 +20631,11 @@ __if_20612_end:
   mov R1, [BP-1]
   iadd R1, 38
   mov [R1], R0
+  mov R1, -1
+  mov [SP], R1
+  mov R1, [BP-4]
+  mov [SP+1], R1
+  call __function_S_StartSound
 __function_P_TouchSpecialThing_return:
   mov SP, BP
   pop BP
@@ -20418,24 +20680,24 @@ __function_P_KillMobj:
   mov R1, [BP+3]
   iadd R1, 18
   mov [R1], R0
-__if_20681_start:
+__if_20897_start:
   mov R0, [BP+2]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_20683
+  jf R0, __LogicalAnd_ShortCircuit_20899
   mov R2, [BP+2]
   iadd R2, 32
   mov R1, [R2]
   ine R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_20683:
-  jf R0, __if_20681_else
-__if_20687_start:
+__LogicalAnd_ShortCircuit_20899:
+  jf R0, __if_20897_else
+__if_20903_start:
   mov R1, [BP+3]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4194304
   cib R0
-  jf R0, __if_20687_end
+  jf R0, __if_20903_end
   mov R3, [BP+2]
   iadd R3, 32
   mov R2, [R3]
@@ -20444,28 +20706,28 @@ __if_20687_start:
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_20687_end:
-  jmp __if_20681_end
-__if_20681_else:
-__if_20698_start:
+__if_20903_end:
+  jmp __if_20897_end
+__if_20897_else:
+__if_20914_start:
   mov R1, [BP+3]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4194304
   cib R0
-  jf R0, __if_20698_end
+  jf R0, __if_20914_end
   mov R0, [1608469]
   mov R1, R0
   iadd R1, 1
   mov [1608469], R1
-__if_20698_end:
-__if_20681_end:
-__if_20706_start:
+__if_20914_end:
+__if_20897_end:
+__if_20922_start:
   mov R1, [BP+3]
   iadd R1, 32
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_20706_end
+  jf R0, __if_20922_end
   mov R1, [BP+3]
   iadd R1, 32
   mov R0, [R1]
@@ -20484,8 +20746,8 @@ __if_20706_start:
   mov R1, [BP-3]
   mov [SP], R1
   call __function_P_DropWeapon
-__if_20706_end:
-__if_20726_start:
+__if_20922_end:
+__if_20942_start:
   mov R1, [BP+3]
   iadd R1, 24
   mov R0, [R1]
@@ -20499,7 +20761,7 @@ __if_20726_start:
   mov R1, [R1]
   isgn R1
   ilt R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_20743
+  jf R0, __LogicalAnd_ShortCircuit_20959
   mov R1, __embedded_gen_mobjinfo
   mov R3, [BP+3]
   iadd R3, 22
@@ -20510,8 +20772,8 @@ __if_20726_start:
   mov R1, [R1]
   cib R1
   and R0, R1
-__LogicalAnd_ShortCircuit_20743:
-  jf R0, __if_20726_else
+__LogicalAnd_ShortCircuit_20959:
+  jf R0, __if_20942_else
   mov R1, [BP+3]
   mov [SP], R1
   mov R1, __embedded_gen_mobjinfo
@@ -20524,8 +20786,8 @@ __LogicalAnd_ShortCircuit_20743:
   mov R1, [R1]
   mov [SP+1], R1
   call __function_P_SetMobjState
-  jmp __if_20726_end
-__if_20726_else:
+  jmp __if_20942_end
+__if_20942_else:
   mov R1, [BP+3]
   mov [SP], R1
   mov R1, __embedded_gen_mobjinfo
@@ -20538,7 +20800,7 @@ __if_20726_else:
   mov R1, [R1]
   mov [SP+1], R1
   call __function_P_SetMobjState
-__if_20726_end:
+__if_20942_end:
   mov R2, [BP+3]
   iadd R2, 26
   mov R1, [R2]
@@ -20550,40 +20812,40 @@ __if_20726_end:
   iadd R2, 26
   mov [R2], R1
   mov R0, R1
-__if_20767_start:
+__if_20983_start:
   mov R1, [BP+3]
   iadd R1, 26
   mov R0, [R1]
   ilt R0, 1
-  jf R0, __if_20767_end
+  jf R0, __if_20983_end
   mov R0, 1
   mov R1, [BP+3]
   iadd R1, 26
   mov [R1], R0
-__if_20767_end:
-__if_20776_start:
+__if_20983_end:
+__if_20992_start:
   mov R1, [BP+3]
   iadd R1, 22
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_20776_else
+  jf R0, __if_20992_else
   mov R0, 63
   mov [BP-1], R0
-  jmp __if_20776_end
-__if_20776_else:
-__if_20784_start:
+  jmp __if_20992_end
+__if_20992_else:
+__if_21000_start:
   mov R1, [BP+3]
   iadd R1, 22
   mov R0, [R1]
   ieq R0, 2
-  jf R0, __if_20784_else
+  jf R0, __if_21000_else
   mov R0, 77
   mov [BP-1], R0
-  jmp __if_20784_end
-__if_20784_else:
+  jmp __if_21000_end
+__if_21000_else:
   jmp __function_P_KillMobj_return
-__if_20784_end:
-__if_20776_end:
+__if_21000_end:
+__if_20992_end:
   mov R3, [BP+3]
   iadd R3, 4
   mov R2, [R3]
@@ -20616,30 +20878,30 @@ __function_P_DamageMobj:
   push BP
   mov BP, SP
   isub SP, 8
-__if_20819_start:
+__if_21035_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_20819_end
+  jf R0, __if_21035_end
   jmp __function_P_DamageMobj_return
-__if_20819_end:
-__if_20827_start:
+__if_21035_end:
+__if_21043_start:
   mov R1, [BP+2]
   iadd R1, 24
   mov R0, [R1]
   ile R0, 0
-  jf R0, __if_20827_end
+  jf R0, __if_21043_end
   jmp __function_P_DamageMobj_return
-__if_20827_end:
-__if_20833_start:
+__if_21043_end:
+__if_21049_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 16777216
   cib R0
-  jf R0, __if_20833_end
+  jf R0, __if_21049_end
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 19
@@ -20652,35 +20914,35 @@ __if_20833_start:
   mov R1, [BP+2]
   iadd R1, 21
   mov [R1], R0
-__if_20833_end:
+__if_21049_end:
   mov R1, [BP+2]
   iadd R1, 32
   mov R0, [R1]
   mov [BP-3], R0
-__if_20856_start:
+__if_21072_start:
   mov R0, [BP+3]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_20858
+  jf R0, __LogicalAnd_ShortCircuit_21074
   mov R2, [BP+2]
   iadd R2, 23
   mov R1, [R2]
   and R1, 4096
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_20858:
-  jf R0, __LogicalAnd_ShortCircuit_20880
+__LogicalAnd_ShortCircuit_21074:
+  jf R0, __LogicalAnd_ShortCircuit_21096
   mov R1, [BP+4]
   ine R1, -1
   bnot R1
-  jt R1, __LogicalOr_ShortCircuit_20868
+  jt R1, __LogicalOr_ShortCircuit_21084
   mov R3, [BP+4]
   iadd R3, 32
   mov R2, [R3]
   ine R2, -1
   bnot R2
   or R1, R2
-__LogicalOr_ShortCircuit_20868:
-  jt R1, __LogicalOr_ShortCircuit_20877
+__LogicalOr_ShortCircuit_21084:
+  jt R1, __LogicalOr_ShortCircuit_21093
   mov R4, [BP+4]
   iadd R4, 32
   mov R3, [R4]
@@ -20688,10 +20950,10 @@ __LogicalOr_ShortCircuit_20868:
   mov R2, [R3]
   ine R2, 7
   or R1, R2
-__LogicalOr_ShortCircuit_20877:
+__LogicalOr_ShortCircuit_21093:
   and R0, R1
-__LogicalAnd_ShortCircuit_20880:
-  jf R0, __if_20856_end
+__LogicalAnd_ShortCircuit_21096:
+  jf R0, __if_21072_end
   mov R3, [BP+3]
   iadd R3, 4
   mov R2, [R3]
@@ -20725,18 +20987,18 @@ __LogicalAnd_ShortCircuit_20880:
   mov R1, [R1]
   idiv R0, R1
   mov [BP-4], R0
-__if_20910_start:
+__if_21126_start:
   mov R1, [BP+5]
   ilt R1, 40
-  jf R1, __LogicalAnd_ShortCircuit_20915
+  jf R1, __LogicalAnd_ShortCircuit_21131
   mov R2, [BP+5]
   mov R4, [BP+2]
   iadd R4, 24
   mov R3, [R4]
   igt R2, R3
   and R1, R2
-__LogicalAnd_ShortCircuit_20915:
-  jf R1, __LogicalAnd_ShortCircuit_20921
+__LogicalAnd_ShortCircuit_21131:
+  jf R1, __LogicalAnd_ShortCircuit_21137
   mov R3, [BP+2]
   iadd R3, 6
   mov R2, [R3]
@@ -20746,23 +21008,23 @@ __LogicalAnd_ShortCircuit_20915:
   isub R2, R3
   igt R2, 4194304
   and R1, R2
-__LogicalAnd_ShortCircuit_20921:
-  jf R1, __LogicalAnd_ShortCircuit_20933
+__LogicalAnd_ShortCircuit_21137:
+  jf R1, __LogicalAnd_ShortCircuit_21149
   call __function_P_Random
   mov R2, R0
   and R2, 1
   cib R2
   and R1, R2
-__LogicalAnd_ShortCircuit_20933:
+__LogicalAnd_ShortCircuit_21149:
   mov R0, R1
-  jf R0, __if_20910_end
+  jf R0, __if_21126_end
   mov R0, [BP-1]
   iadd R0, 0x80000000
   mov [BP-1], R0
   mov R0, [BP-4]
   imul R0, 4
   mov [BP-4], R0
-__if_20910_end:
+__if_21126_end:
   mov R0, [BP-1]
   shl R0, -19
   mov [BP-1], R0
@@ -20800,52 +21062,52 @@ __if_20910_end:
   iadd R2, 20
   mov [R2], R1
   mov R0, R1
-__if_20856_end:
-__if_20962_start:
+__if_21072_end:
+__if_21178_start:
   mov R0, [BP-3]
   ine R0, -1
-  jf R0, __if_20962_end
-__if_20965_start:
+  jf R0, __if_21178_end
+__if_21181_start:
   mov R0, [BP+5]
   ilt R0, 1000
-  jf R0, __LogicalAnd_ShortCircuit_20973
+  jf R0, __LogicalAnd_ShortCircuit_21189
   mov R1, [BP-3]
   iadd R1, 10
   mov R1, [R1]
   cib R1
   and R0, R1
-__LogicalAnd_ShortCircuit_20973:
-  jf R0, __if_20965_end
+__LogicalAnd_ShortCircuit_21189:
+  jf R0, __if_21181_end
   jmp __function_P_DamageMobj_return
-__if_20965_end:
-__if_20975_start:
+__if_21181_end:
+__if_21191_start:
   mov R1, [BP-3]
   iadd R1, 9
   mov R0, [R1]
   cib R0
-  jf R0, __if_20975_end
-__if_20979_start:
+  jf R0, __if_21191_end
+__if_21195_start:
   mov R1, [BP-3]
   iadd R1, 9
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_20979_else
+  jf R0, __if_21195_else
   mov R0, [BP+5]
   idiv R0, 3
   mov [BP-2], R0
-  jmp __if_20979_end
-__if_20979_else:
+  jmp __if_21195_end
+__if_21195_else:
   mov R0, [BP+5]
   idiv R0, 2
   mov [BP-2], R0
-__if_20979_end:
-__if_20994_start:
+__if_21195_end:
+__if_21210_start:
   mov R1, [BP-3]
   iadd R1, 8
   mov R0, [R1]
   mov R1, [BP-2]
   ile R0, R1
-  jf R0, __if_20994_end
+  jf R0, __if_21210_end
   mov R1, [BP-3]
   iadd R1, 8
   mov R0, [R1]
@@ -20854,7 +21116,7 @@ __if_20994_start:
   mov R1, [BP-3]
   iadd R1, 9
   mov [R1], R0
-__if_20994_end:
+__if_21210_end:
   mov R1, [BP-3]
   iadd R1, 8
   mov R0, [R1]
@@ -20867,7 +21129,7 @@ __if_20994_end:
   mov R1, [BP-2]
   isub R0, R1
   mov [BP+5], R0
-__if_20975_end:
+__if_21191_end:
   mov R1, [BP-3]
   iadd R1, 7
   mov R0, [R1]
@@ -20876,17 +21138,17 @@ __if_20975_end:
   mov R1, [BP-3]
   iadd R1, 7
   mov [R1], R0
-__if_21019_start:
+__if_21235_start:
   mov R1, [BP-3]
   iadd R1, 7
   mov R0, [R1]
   ilt R0, 0
-  jf R0, __if_21019_end
+  jf R0, __if_21235_end
   mov R0, 0
   mov R1, [BP-3]
   iadd R1, 7
   mov [R1], R0
-__if_21019_end:
+__if_21235_end:
   mov R0, [BP+4]
   mov R1, [BP-3]
   iadd R1, 39
@@ -20899,18 +21161,18 @@ __if_21019_end:
   mov R1, [BP-3]
   iadd R1, 37
   mov [R1], R0
-__if_21036_start:
+__if_21252_start:
   mov R1, [BP-3]
   iadd R1, 37
   mov R0, [R1]
   igt R0, 100
-  jf R0, __if_21036_end
+  jf R0, __if_21252_end
   mov R0, 100
   mov R1, [BP-3]
   iadd R1, 37
   mov [R1], R0
-__if_21036_end:
-__if_20962_end:
+__if_21252_end:
+__if_21178_end:
   mov R1, [BP+2]
   iadd R1, 24
   mov R0, [R1]
@@ -20919,20 +21181,20 @@ __if_20962_end:
   mov R1, [BP+2]
   iadd R1, 24
   mov [R1], R0
-__if_21049_start:
+__if_21265_start:
   mov R1, [BP+2]
   iadd R1, 24
   mov R0, [R1]
   ile R0, 0
-  jf R0, __if_21049_end
+  jf R0, __if_21265_end
   mov R1, [BP+4]
   mov [SP], R1
   mov R1, [BP+2]
   mov [SP+1], R1
   call __function_P_KillMobj
   jmp __function_P_DamageMobj_return
-__if_21049_end:
-__if_21059_start:
+__if_21265_end:
+__if_21275_start:
   call __function_P_Random
   mov R1, R0
   mov R2, __embedded_gen_mobjinfo
@@ -20944,16 +21206,16 @@ __if_21059_start:
   iadd R2, 8
   mov R2, [R2]
   ilt R1, R2
-  jf R1, __LogicalAnd_ShortCircuit_21074
+  jf R1, __LogicalAnd_ShortCircuit_21290
   mov R3, [BP+2]
   iadd R3, 23
   mov R2, [R3]
   and R2, 16777216
   bnot R2
   and R1, R2
-__LogicalAnd_ShortCircuit_21074:
+__LogicalAnd_ShortCircuit_21290:
   mov R0, R1
-  jf R0, __if_21059_end
+  jf R0, __if_21275_end
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
@@ -20973,28 +21235,28 @@ __LogicalAnd_ShortCircuit_21074:
   mov R1, [R1]
   mov [SP+1], R1
   call __function_P_SetMobjState
-__if_21059_end:
+__if_21275_end:
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 30
   mov [R1], R0
-__if_21092_start:
+__if_21308_start:
   mov R1, [BP+2]
   iadd R1, 31
   mov R0, [R1]
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_21096
+  jf R0, __LogicalAnd_ShortCircuit_21312
   mov R1, [BP+4]
   ine R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_21096:
-  jf R0, __LogicalAnd_ShortCircuit_21099
+__LogicalAnd_ShortCircuit_21312:
+  jf R0, __LogicalAnd_ShortCircuit_21315
   mov R1, [BP+4]
   mov R2, [BP+2]
   ine R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_21099:
-  jf R0, __if_21092_end
+__LogicalAnd_ShortCircuit_21315:
+  jf R0, __if_21308_end
   mov R0, [BP+4]
   mov R1, [BP+2]
   iadd R1, 29
@@ -21003,7 +21265,7 @@ __LogicalAnd_ShortCircuit_21099:
   mov R1, [BP+2]
   iadd R1, 31
   mov [R1], R0
-__if_21111_start:
+__if_21327_start:
   mov R1, [BP+2]
   iadd R1, 25
   mov R0, [R1]
@@ -21016,7 +21278,7 @@ __if_21111_start:
   iadd R1, 1
   mov R1, [R1]
   ieq R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_21127
+  jf R0, __LogicalAnd_ShortCircuit_21343
   mov R1, __embedded_gen_mobjinfo
   mov R3, [BP+2]
   iadd R3, 22
@@ -21027,8 +21289,8 @@ __if_21111_start:
   mov R1, [R1]
   ine R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_21127:
-  jf R0, __if_21111_end
+__LogicalAnd_ShortCircuit_21343:
+  jf R0, __if_21327_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, __embedded_gen_mobjinfo
@@ -21041,8 +21303,8 @@ __LogicalAnd_ShortCircuit_21127:
   mov R1, [R1]
   mov [SP+1], R1
   call __function_P_SetMobjState
-__if_21111_end:
-__if_21092_end:
+__if_21327_end:
+__if_21308_end:
 __function_P_DamageMobj_return:
   mov SP, BP
   pop BP
@@ -21055,11 +21317,11 @@ __function_P_SetMobjState:
   push R1
   push R2
   isub SP, 1
-__do_21143_start:
-__if_21145_start:
+__do_21359_start:
+__if_21361_start:
   mov R0, [BP+3]
   ieq R0, 0
-  jf R0, __if_21145_end
+  jf R0, __if_21361_end
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 25
@@ -21069,7 +21331,7 @@ __if_21145_start:
   call __function_P_RemoveMobj
   mov R0, 0
   jmp __function_P_SetMobjState_return
-__if_21145_end:
+__if_21361_end:
   mov R0, [BP+3]
   mov R1, [BP+2]
   iadd R1, 25
@@ -21107,13 +21369,13 @@ __if_21145_end:
   iadd R0, 3
   mov R0, [R0]
   mov [BP-1], R0
-__if_21193_start:
+__if_21409_start:
   mov R0, global_mobj_actions
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   ine R0, -1
-  jf R0, __if_21193_end
+  jf R0, __if_21409_end
   mov R0, global_mobj_actions
   mov R1, [BP-1]
   iadd R0, R1
@@ -21123,7 +21385,7 @@ __if_21193_start:
   mov [SP], R1
   mov R2, [BP-2]
   call R2
-__if_21193_end:
+__if_21409_end:
   mov R0, __embedded_gen_states
   mov R1, [BP+3]
   imul R1, 7
@@ -21131,13 +21393,13 @@ __if_21193_end:
   iadd R0, 4
   mov R0, [R0]
   mov [BP+3], R0
-__do_21143_continue:
+__do_21359_continue:
   mov R1, [BP+2]
   iadd R1, 26
   mov R0, [R1]
   bnot R0
-  jt R0, __do_21143_start
-__do_21143_end:
+  jt R0, __do_21359_start
+__do_21359_end:
   mov R0, 1
 __function_P_SetMobjState_return:
   iadd SP, 1
@@ -21186,17 +21448,17 @@ __function_P_ExplodeMissile:
   iadd R2, 26
   mov [R2], R1
   mov R0, R1
-__if_21247_start:
+__if_21463_start:
   mov R1, [BP+2]
   iadd R1, 26
   mov R0, [R1]
   ilt R0, 1
-  jf R0, __if_21247_end
+  jf R0, __if_21463_end
   mov R0, 1
   mov R1, [BP+2]
   iadd R1, 26
   mov [R1], R0
-__if_21247_end:
+__if_21463_end:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
@@ -21204,6 +21466,30 @@ __if_21247_end:
   mov R1, [BP+2]
   iadd R1, 23
   mov [R1], R0
+__if_21477_start:
+  mov R0, __embedded_gen_mobjinfo
+  mov R2, [BP+2]
+  iadd R2, 22
+  mov R1, [R2]
+  imul R1, 23
+  iadd R0, R1
+  iadd R0, 14
+  mov R0, [R0]
+  cib R0
+  jf R0, __if_21477_end
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, __embedded_gen_mobjinfo
+  mov R3, [BP+2]
+  iadd R3, 22
+  mov R2, [R3]
+  imul R2, 23
+  iadd R1, R2
+  iadd R1, 14
+  mov R1, [R1]
+  mov [SP+1], R1
+  call __function_S_StartSound
+__if_21477_end:
 __function_P_ExplodeMissile_return:
   mov SP, BP
   pop BP
@@ -21213,73 +21499,73 @@ __function_P_XYMovement:
   push BP
   mov BP, SP
   isub SP, 9
-__if_21273_start:
+__if_21504_start:
   mov R1, [BP+2]
   iadd R1, 19
   mov R0, [R1]
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_21277
+  jf R0, __LogicalAnd_ShortCircuit_21508
   mov R2, [BP+2]
   iadd R2, 20
   mov R1, [R2]
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_21277:
-  jf R0, __if_21273_end
+__LogicalAnd_ShortCircuit_21508:
+  jf R0, __if_21504_end
   jmp __function_P_XYMovement_return
-__if_21273_end:
+__if_21504_end:
   mov R1, [BP+2]
   iadd R1, 32
   mov R0, [R1]
   mov [BP-5], R0
-__if_21287_start:
+__if_21518_start:
   mov R1, [BP+2]
   iadd R1, 19
   mov R0, [R1]
   igt R0, 1966080
-  jf R0, __if_21287_else
+  jf R0, __if_21518_else
   mov R0, 1966080
   mov R1, [BP+2]
   iadd R1, 19
   mov [R1], R0
-  jmp __if_21287_end
-__if_21287_else:
-__if_21302_start:
+  jmp __if_21518_end
+__if_21518_else:
+__if_21533_start:
   mov R1, [BP+2]
   iadd R1, 19
   mov R0, [R1]
   ilt R0, -1966080
-  jf R0, __if_21302_end
+  jf R0, __if_21533_end
   mov R0, -1966080
   mov R1, [BP+2]
   iadd R1, 19
   mov [R1], R0
-__if_21302_end:
-__if_21287_end:
-__if_21319_start:
+__if_21533_end:
+__if_21518_end:
+__if_21550_start:
   mov R1, [BP+2]
   iadd R1, 20
   mov R0, [R1]
   igt R0, 1966080
-  jf R0, __if_21319_else
+  jf R0, __if_21550_else
   mov R0, 1966080
   mov R1, [BP+2]
   iadd R1, 20
   mov [R1], R0
-  jmp __if_21319_end
-__if_21319_else:
-__if_21334_start:
+  jmp __if_21550_end
+__if_21550_else:
+__if_21565_start:
   mov R1, [BP+2]
   iadd R1, 20
   mov R0, [R1]
   ilt R0, -1966080
-  jf R0, __if_21334_end
+  jf R0, __if_21565_end
   mov R0, -1966080
   mov R1, [BP+2]
   iadd R1, 20
   mov [R1], R0
-__if_21334_end:
-__if_21319_end:
+__if_21565_end:
+__if_21550_end:
   mov R1, [BP+2]
   iadd R1, 19
   mov R0, [R1]
@@ -21288,26 +21574,26 @@ __if_21319_end:
   iadd R1, 20
   mov R0, [R1]
   mov [BP-4], R0
-__do_21359_start:
-__if_21361_start:
+__do_21590_start:
+__if_21592_start:
   mov R0, [BP-3]
   igt R0, 983040
-  jt R0, __LogicalOr_ShortCircuit_21371
+  jt R0, __LogicalOr_ShortCircuit_21602
   mov R1, [BP-4]
   igt R1, 983040
   or R0, R1
-__LogicalOr_ShortCircuit_21371:
-  jt R0, __LogicalOr_ShortCircuit_21380
+__LogicalOr_ShortCircuit_21602:
+  jt R0, __LogicalOr_ShortCircuit_21611
   mov R1, [BP-3]
   ilt R1, -983040
   or R0, R1
-__LogicalOr_ShortCircuit_21380:
-  jt R0, __LogicalOr_ShortCircuit_21390
+__LogicalOr_ShortCircuit_21611:
+  jt R0, __LogicalOr_ShortCircuit_21621
   mov R1, [BP-4]
   ilt R1, -983040
   or R0, R1
-__LogicalOr_ShortCircuit_21390:
-  jf R0, __if_21361_else
+__LogicalOr_ShortCircuit_21621:
+  jf R0, __if_21592_else
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -21348,8 +21634,8 @@ __LogicalOr_ShortCircuit_21390:
   shl R1, 31
   or R0, R1
   mov [BP-4], R0
-  jmp __if_21361_end
-__if_21361_else:
+  jmp __if_21592_end
+__if_21592_else:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -21366,8 +21652,8 @@ __if_21361_else:
   mov [BP-3], R0
   mov R0, 0
   mov [BP-4], R0
-__if_21361_end:
-__if_21521_start:
+__if_21592_end:
+__if_21752_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R2, [BP-1]
@@ -21378,36 +21664,36 @@ __if_21521_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_21521_end
-__if_21528_start:
+  jf R0, __if_21752_end
+__if_21759_start:
   mov R1, [BP+2]
   iadd R1, 32
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_21528_else
+  jf R0, __if_21759_else
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_SlideMove
-  jmp __if_21528_end
-__if_21528_else:
-__if_21533_start:
+  jmp __if_21759_end
+__if_21759_else:
+__if_21764_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 65536
   cib R0
-  jf R0, __if_21533_else
-__if_21539_start:
+  jf R0, __if_21764_else
+__if_21770_start:
   mov R0, [global_ceilingline]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_21541
+  jf R0, __LogicalAnd_ShortCircuit_21772
   mov R2, [global_ceilingline]
   iadd R2, 16
   mov R1, [R2]
   ine R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_21541:
-  jf R0, __LogicalAnd_ShortCircuit_21547
+__LogicalAnd_ShortCircuit_21772:
+  jf R0, __LogicalAnd_ShortCircuit_21778
   mov R3, [global_ceilingline]
   iadd R3, 16
   mov R2, [R3]
@@ -21415,19 +21701,19 @@ __LogicalAnd_ShortCircuit_21541:
   mov R1, [R2]
   ieq R1, 53
   and R0, R1
-__LogicalAnd_ShortCircuit_21547:
-  jf R0, __if_21539_end
+__LogicalAnd_ShortCircuit_21778:
+  jf R0, __if_21770_end
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_RemoveMobj
   jmp __function_P_XYMovement_return
-__if_21539_end:
+__if_21770_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_ExplodeMissile
   jmp __function_P_XYMovement_return
-  jmp __if_21533_end
-__if_21533_else:
+  jmp __if_21764_end
+__if_21764_else:
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 19
@@ -21436,29 +21722,29 @@ __if_21533_else:
   mov R1, [BP+2]
   iadd R1, 20
   mov [R1], R0
-__if_21533_end:
-__if_21528_end:
-__if_21521_end:
-__do_21359_continue:
+__if_21764_end:
+__if_21759_end:
+__if_21752_end:
+__do_21590_continue:
   mov R0, [BP-3]
   cib R0
-  jt R0, __LogicalOr_ShortCircuit_21567
+  jt R0, __LogicalOr_ShortCircuit_21798
   mov R1, [BP-4]
   cib R1
   or R0, R1
-__LogicalOr_ShortCircuit_21567:
-  jt R0, __do_21359_start
-__do_21359_end:
-__if_21569_start:
+__LogicalOr_ShortCircuit_21798:
+  jt R0, __do_21590_start
+__do_21590_end:
+__if_21800_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 16842752
   cib R0
-  jf R0, __if_21569_end
+  jf R0, __if_21800_end
   jmp __function_P_XYMovement_return
-__if_21569_end:
-__if_21578_start:
+__if_21800_end:
+__if_21809_start:
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
@@ -21466,44 +21752,44 @@ __if_21578_start:
   iadd R2, 15
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_21578_end
+  jf R0, __if_21809_end
   jmp __function_P_XYMovement_return
-__if_21578_end:
-__if_21585_start:
+__if_21809_end:
+__if_21816_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 1048576
   cib R0
-  jf R0, __if_21585_end
-__if_21591_start:
+  jf R0, __if_21816_end
+__if_21822_start:
   mov R1, [BP+2]
   iadd R1, 19
   mov R0, [R1]
   igt R0, 16384
-  jt R0, __LogicalOr_ShortCircuit_21600
+  jt R0, __LogicalOr_ShortCircuit_21831
   mov R2, [BP+2]
   iadd R2, 19
   mov R1, [R2]
   ilt R1, -16384
   or R0, R1
-__LogicalOr_ShortCircuit_21600:
-  jt R0, __LogicalOr_ShortCircuit_21608
+__LogicalOr_ShortCircuit_21831:
+  jt R0, __LogicalOr_ShortCircuit_21839
   mov R2, [BP+2]
   iadd R2, 20
   mov R1, [R2]
   igt R1, 16384
   or R0, R1
-__LogicalOr_ShortCircuit_21608:
-  jt R0, __LogicalOr_ShortCircuit_21615
+__LogicalOr_ShortCircuit_21839:
+  jt R0, __LogicalOr_ShortCircuit_21846
   mov R2, [BP+2]
   iadd R2, 20
   mov R1, [R2]
   ilt R1, -16384
   or R0, R1
-__LogicalOr_ShortCircuit_21615:
-  jf R0, __if_21591_end
-__if_21622_start:
+__LogicalOr_ShortCircuit_21846:
+  jf R0, __if_21822_end
+__if_21853_start:
   mov R1, [BP+2]
   iadd R1, 15
   mov R0, [R1]
@@ -21513,83 +21799,83 @@ __if_21622_start:
   mov R2, [R3]
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_21622_end
+  jf R0, __if_21853_end
   jmp __function_P_XYMovement_return
-__if_21622_end:
-__if_21591_end:
-__if_21585_end:
-__if_21631_start:
+__if_21853_end:
+__if_21822_end:
+__if_21816_end:
+__if_21862_start:
   mov R1, [BP+2]
   iadd R1, 19
   mov R0, [R1]
   igt R0, -4096
-  jf R0, __LogicalAnd_ShortCircuit_21639
+  jf R0, __LogicalAnd_ShortCircuit_21870
   mov R2, [BP+2]
   iadd R2, 19
   mov R1, [R2]
   ilt R1, 4096
   and R0, R1
-__LogicalAnd_ShortCircuit_21639:
-  jf R0, __LogicalAnd_ShortCircuit_21644
+__LogicalAnd_ShortCircuit_21870:
+  jf R0, __LogicalAnd_ShortCircuit_21875
   mov R2, [BP+2]
   iadd R2, 20
   mov R1, [R2]
   igt R1, -4096
   and R0, R1
-__LogicalAnd_ShortCircuit_21644:
-  jf R0, __LogicalAnd_ShortCircuit_21650
+__LogicalAnd_ShortCircuit_21875:
+  jf R0, __LogicalAnd_ShortCircuit_21881
   mov R2, [BP+2]
   iadd R2, 20
   mov R1, [R2]
   ilt R1, 4096
   and R0, R1
-__LogicalAnd_ShortCircuit_21650:
-  jf R0, __LogicalAnd_ShortCircuit_21667
+__LogicalAnd_ShortCircuit_21881:
+  jf R0, __LogicalAnd_ShortCircuit_21898
   mov R1, [BP-5]
   ine R1, -1
   bnot R1
-  jt R1, __LogicalOr_ShortCircuit_21656
+  jt R1, __LogicalOr_ShortCircuit_21887
   mov R3, [BP-5]
   iadd R3, 52
   mov R2, [R3]
   ieq R2, 0
-  jf R2, __LogicalAnd_ShortCircuit_21664
+  jf R2, __LogicalAnd_ShortCircuit_21895
   mov R4, [BP-5]
   iadd R4, 53
   mov R3, [R4]
   ieq R3, 0
   and R2, R3
-__LogicalAnd_ShortCircuit_21664:
+__LogicalAnd_ShortCircuit_21895:
   or R1, R2
-__LogicalOr_ShortCircuit_21656:
+__LogicalOr_ShortCircuit_21887:
   and R0, R1
-__LogicalAnd_ShortCircuit_21667:
-  jf R0, __if_21631_else
-__if_21669_start:
+__LogicalAnd_ShortCircuit_21898:
+  jf R0, __if_21862_else
+__if_21900_start:
   mov R0, [BP-5]
   ine R0, -1
-  jf R0, __if_21669_end
+  jf R0, __if_21900_end
   mov R1, [BP+2]
   iadd R1, 25
   mov R0, [R1]
   isub R0, 150
   mov [BP-6], R0
-__if_21678_start:
+__if_21909_start:
   mov R0, [BP-6]
   ige R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_21683
+  jf R0, __LogicalAnd_ShortCircuit_21914
   mov R1, [BP-6]
   ilt R1, 4
   and R0, R1
-__LogicalAnd_ShortCircuit_21683:
-  jf R0, __if_21678_end
+__LogicalAnd_ShortCircuit_21914:
+  jf R0, __if_21909_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, 149
   mov [SP+1], R1
   call __function_P_SetMobjState
-__if_21678_end:
-__if_21669_end:
+__if_21909_end:
+__if_21900_end:
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 19
@@ -21598,8 +21884,8 @@ __if_21669_end:
   mov R1, [BP+2]
   iadd R1, 20
   mov [R1], R0
-  jmp __if_21631_end
-__if_21631_else:
+  jmp __if_21862_end
+__if_21862_else:
   mov R3, [BP+2]
   iadd R3, 19
   mov R2, [R3]
@@ -21624,7 +21910,7 @@ __if_21631_else:
   iadd R2, 20
   mov [R2], R1
   mov R0, R1
-__if_21631_end:
+__if_21862_end:
 __function_P_XYMovement_return:
   mov SP, BP
   pop BP
@@ -21633,15 +21919,15 @@ __function_P_XYMovement_return:
 __function_P_ZMovement:
   push BP
   mov BP, SP
-  isub SP, 2
+  isub SP, 3
   mov R1, [BP+2]
   iadd R1, 32
   mov R0, [R1]
   mov [BP-1], R0
-__if_21719_start:
+__if_21950_start:
   mov R0, [BP-1]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_21721
+  jf R0, __LogicalAnd_ShortCircuit_21952
   mov R2, [BP+2]
   iadd R2, 6
   mov R1, [R2]
@@ -21650,8 +21936,8 @@ __if_21719_start:
   mov R2, [R3]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_21721:
-  jf R0, __if_21719_end
+__LogicalAnd_ShortCircuit_21952:
+  jf R0, __if_21950_end
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
@@ -21684,7 +21970,7 @@ __LogicalAnd_ShortCircuit_21721:
   mov R1, [BP-1]
   iadd R1, 4
   mov [R1], R0
-__if_21719_end:
+__if_21950_end:
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
@@ -21695,7 +21981,7 @@ __if_21719_end:
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-__if_21778_start:
+__if_22009_start:
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
@@ -21703,24 +21989,24 @@ __if_21778_start:
   iadd R2, 15
   mov R1, [R2]
   ile R0, R1
-  jf R0, __if_21778_else
-__if_21785_start:
+  jf R0, __if_22009_else
+__if_22016_start:
   mov R1, [BP+2]
   iadd R1, 21
   mov R0, [R1]
   ilt R0, 0
-  jf R0, __if_21785_end
-__if_21791_start:
+  jf R0, __if_22016_end
+__if_22022_start:
   mov R0, [BP-1]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_21793
+  jf R0, __LogicalAnd_ShortCircuit_22024
   mov R2, [BP+2]
   iadd R2, 21
   mov R1, [R2]
   ilt R1, -524288
   and R0, R1
-__LogicalAnd_ShortCircuit_21793:
-  jf R0, __if_21791_end
+__LogicalAnd_ShortCircuit_22024:
+  jf R0, __if_22022_end
   mov R1, [BP+2]
   iadd R1, 21
   mov R0, [R1]
@@ -21735,59 +22021,64 @@ __LogicalAnd_ShortCircuit_21793:
   mov R1, [BP-1]
   iadd R1, 4
   mov [R1], R0
-__if_21791_end:
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, 34
+  mov [SP+1], R1
+  call __function_S_StartSound
+__if_22022_end:
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 21
   mov [R1], R0
-__if_21785_end:
+__if_22016_end:
   mov R1, [BP+2]
   iadd R1, 15
   mov R0, [R1]
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-__if_21838_start:
+__if_22072_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 65536
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_21844
+  jf R0, __LogicalAnd_ShortCircuit_22078
   mov R2, [BP+2]
   iadd R2, 23
   mov R1, [R2]
   and R1, 4096
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_21844:
-  jf R0, __if_21838_end
+__LogicalAnd_ShortCircuit_22078:
+  jf R0, __if_22072_end
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_ExplodeMissile
   jmp __function_P_ZMovement_return
-__if_21838_end:
-  jmp __if_21778_end
-__if_21778_else:
-__if_21855_start:
+__if_22072_end:
+  jmp __if_22009_end
+__if_22009_else:
+__if_22089_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 512
   bnot R0
-  jf R0, __if_21855_end
-__if_21863_start:
+  jf R0, __if_22089_end
+__if_22097_start:
   mov R1, [BP+2]
   iadd R1, 21
   mov R0, [R1]
   ieq R0, 0
-  jf R0, __if_21863_else
+  jf R0, __if_22097_else
   mov R0, -131072
   mov R1, [BP+2]
   iadd R1, 21
   mov [R1], R0
-  jmp __if_21863_end
-__if_21863_else:
+  jmp __if_22097_end
+__if_22097_else:
   mov R1, [BP+2]
   iadd R1, 21
   mov R0, [R1]
@@ -21795,10 +22086,10 @@ __if_21863_else:
   mov R1, [BP+2]
   iadd R1, 21
   mov [R1], R0
-__if_21863_end:
-__if_21855_end:
-__if_21778_end:
-__if_21879_start:
+__if_22097_end:
+__if_22089_end:
+__if_22009_end:
+__if_22113_start:
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
@@ -21810,18 +22101,18 @@ __if_21879_start:
   iadd R2, 16
   mov R1, [R2]
   igt R0, R1
-  jf R0, __if_21879_end
-__if_21889_start:
+  jf R0, __if_22113_end
+__if_22123_start:
   mov R1, [BP+2]
   iadd R1, 21
   mov R0, [R1]
   igt R0, 0
-  jf R0, __if_21889_end
+  jf R0, __if_22123_end
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 21
   mov [R1], R0
-__if_21889_end:
+__if_22123_end:
   mov R1, [BP+2]
   iadd R1, 16
   mov R0, [R1]
@@ -21832,27 +22123,27 @@ __if_21889_end:
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-__if_21906_start:
+__if_22140_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 65536
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_21912
+  jf R0, __LogicalAnd_ShortCircuit_22146
   mov R2, [BP+2]
   iadd R2, 23
   mov R1, [R2]
   and R1, 4096
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_21912:
-  jf R0, __if_21906_end
+__LogicalAnd_ShortCircuit_22146:
+  jf R0, __if_22140_end
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_ExplodeMissile
   jmp __function_P_ZMovement_return
-__if_21906_end:
-__if_21879_end:
+__if_22140_end:
+__if_22113_end:
 __function_P_ZMovement_return:
   mov SP, BP
   pop BP
@@ -21864,31 +22155,31 @@ __function_P_MobjThinker:
   isub SP, 3
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_21929_start:
+__if_22163_start:
   mov R1, [BP-1]
   iadd R1, 19
   mov R0, [R1]
   cib R0
-  jt R0, __LogicalOr_ShortCircuit_21932
+  jt R0, __LogicalOr_ShortCircuit_22166
   mov R2, [BP-1]
   iadd R2, 20
   mov R1, [R2]
   cib R1
   or R0, R1
-__LogicalOr_ShortCircuit_21932:
-  jf R0, __if_21929_end
+__LogicalOr_ShortCircuit_22166:
+  jf R0, __if_22163_end
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_XYMovement
-__if_21938_start:
+__if_22172_start:
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
-  jf R0, __if_21938_end
+  jf R0, __if_22172_end
   jmp __function_P_MobjThinker_return
-__if_21938_end:
-__if_21929_end:
-__if_21943_start:
+__if_22172_end:
+__if_22163_end:
+__if_22177_start:
   mov R1, [BP-1]
   iadd R1, 6
   mov R0, [R1]
@@ -21896,44 +22187,44 @@ __if_21943_start:
   iadd R2, 15
   mov R1, [R2]
   ine R0, R1
-  jt R0, __LogicalOr_ShortCircuit_21950
+  jt R0, __LogicalOr_ShortCircuit_22184
   mov R2, [BP-1]
   iadd R2, 21
   mov R1, [R2]
   cib R1
   or R0, R1
-__LogicalOr_ShortCircuit_21950:
-  jf R0, __if_21943_end
+__LogicalOr_ShortCircuit_22184:
+  jf R0, __if_22177_end
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_ZMovement
-__if_21956_start:
+__if_22190_start:
   mov R1, [BP-1]
   iadd R1, 3
   mov R0, [R1]
-  jf R0, __if_21956_end
+  jf R0, __if_22190_end
   jmp __function_P_MobjThinker_return
-__if_21956_end:
-__if_21943_end:
-__if_21961_start:
+__if_22190_end:
+__if_22177_end:
+__if_22195_start:
   mov R1, [BP-1]
   iadd R1, 26
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_21961_end
+  jf R0, __if_22195_end
   mov R2, [BP-1]
   iadd R2, 26
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_21971_start:
+__if_22205_start:
   mov R1, [BP-1]
   iadd R1, 26
   mov R0, [R1]
   bnot R0
-  jf R0, __if_21971_end
-__if_21975_start:
+  jf R0, __if_22205_end
+__if_22209_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, __embedded_gen_states
@@ -21949,11 +22240,11 @@ __if_21975_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_21975_end
+  jf R0, __if_22209_end
   jmp __function_P_MobjThinker_return
-__if_21975_end:
-__if_21971_end:
-__if_21961_end:
+__if_22209_end:
+__if_22205_end:
+__if_22195_end:
 __function_P_MobjThinker_return:
   mov SP, BP
   pop BP
@@ -22125,22 +22416,22 @@ __function_P_SpawnMobj:
   mov R1, [BP-1]
   iadd R1, 16
   mov [R1], R0
-__if_22140_start:
+__if_22374_start:
   mov R0, [BP+4]
   ieq R0, 0x80000000
-  jf R0, __if_22140_else
+  jf R0, __if_22374_else
   mov R1, [BP-1]
   iadd R1, 15
   mov R0, [R1]
   mov R1, [BP-1]
   iadd R1, 6
   mov [R1], R0
-  jmp __if_22140_end
-__if_22140_else:
-__if_22149_start:
+  jmp __if_22374_end
+__if_22374_else:
+__if_22383_start:
   mov R0, [BP+4]
   ieq R0, 2147483647
-  jf R0, __if_22149_else
+  jf R0, __if_22383_else
   mov R1, [BP-1]
   iadd R1, 16
   mov R0, [R1]
@@ -22151,14 +22442,14 @@ __if_22149_start:
   mov R1, [BP-1]
   iadd R1, 6
   mov [R1], R0
-  jmp __if_22149_end
-__if_22149_else:
+  jmp __if_22383_end
+__if_22383_else:
   mov R0, [BP+4]
   mov R1, [BP-1]
   iadd R1, 6
   mov [R1], R0
-__if_22149_end:
-__if_22140_end:
+__if_22383_end:
+__if_22374_end:
   mov R0, __function_P_MobjThinker
   mov R1, [BP-1]
   iadd R1, 2
@@ -22232,27 +22523,27 @@ __function_P_SpawnPuff:
   iadd R2, 26
   mov [R2], R1
   mov R0, R1
-__if_22216_start:
+__if_22450_start:
   mov R1, [BP-1]
   iadd R1, 26
   mov R0, [R1]
   ilt R0, 1
-  jf R0, __if_22216_end
+  jf R0, __if_22450_end
   mov R0, 1
   mov R1, [BP-1]
   iadd R1, 26
   mov [R1], R0
-__if_22216_end:
-__if_22225_start:
+__if_22450_end:
+__if_22459_start:
   mov R0, [global_attackrange]
   ieq R0, 4194304
-  jf R0, __if_22225_end
+  jf R0, __if_22459_end
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, 95
   mov [SP+1], R1
   call __function_P_SetMobjState
-__if_22225_end:
+__if_22459_end:
 __function_P_SpawnPuff_return:
   mov SP, BP
   pop BP
@@ -22299,44 +22590,44 @@ __function_P_SpawnBlood:
   iadd R2, 26
   mov [R2], R1
   mov R0, R1
-__if_22269_start:
+__if_22503_start:
   mov R1, [BP-1]
   iadd R1, 26
   mov R0, [R1]
   ilt R0, 1
-  jf R0, __if_22269_end
+  jf R0, __if_22503_end
   mov R0, 1
   mov R1, [BP-1]
   iadd R1, 26
   mov [R1], R0
-__if_22269_end:
-__if_22278_start:
+__if_22503_end:
+__if_22512_start:
   mov R0, [BP+5]
   ile R0, 12
-  jf R0, __LogicalAnd_ShortCircuit_22283
+  jf R0, __LogicalAnd_ShortCircuit_22517
   mov R1, [BP+5]
   ige R1, 9
   and R0, R1
-__LogicalAnd_ShortCircuit_22283:
-  jf R0, __if_22278_else
+__LogicalAnd_ShortCircuit_22517:
+  jf R0, __if_22512_else
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, 91
   mov [SP+1], R1
   call __function_P_SetMobjState
-  jmp __if_22278_end
-__if_22278_else:
-__if_22289_start:
+  jmp __if_22512_end
+__if_22512_else:
+__if_22523_start:
   mov R0, [BP+5]
   ilt R0, 9
-  jf R0, __if_22289_end
+  jf R0, __if_22523_end
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, 92
   mov [SP+1], R1
   call __function_P_SetMobjState
-__if_22289_end:
-__if_22278_end:
+__if_22523_end:
+__if_22512_end:
 __function_P_SpawnBlood_return:
   mov SP, BP
   pop BP
@@ -22357,17 +22648,17 @@ __function_P_CheckMissileSpawn:
   iadd R2, 26
   mov [R2], R1
   mov R0, R1
-__if_22304_start:
+__if_22538_start:
   mov R1, [BP+2]
   iadd R1, 26
   mov R0, [R1]
   ilt R0, 1
-  jf R0, __if_22304_end
+  jf R0, __if_22538_end
   mov R0, 1
   mov R1, [BP+2]
   iadd R1, 26
   mov [R1], R0
-__if_22304_end:
+__if_22538_end:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -22422,7 +22713,7 @@ __if_22304_end:
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-__if_22394_start:
+__if_22628_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R3, [BP+2]
@@ -22437,11 +22728,11 @@ __if_22394_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_22394_end
+  jf R0, __if_22628_end
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_ExplodeMissile
-__if_22394_end:
+__if_22628_end:
 __function_P_CheckMissileSpawn_return:
   mov SP, BP
   pop BP
@@ -22475,6 +22766,26 @@ __function_P_SpawnMissile:
   mov R1, R0
   mov [BP-1], R1
   mov R0, R1
+__if_22666_start:
+  mov R0, __embedded_gen_mobjinfo
+  mov R1, [BP+4]
+  imul R1, 23
+  iadd R0, R1
+  iadd R0, 4
+  mov R0, [R0]
+  cib R0
+  jf R0, __if_22666_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, __embedded_gen_mobjinfo
+  mov R2, [BP+4]
+  imul R2, 23
+  iadd R1, R2
+  iadd R1, 4
+  mov R1, [R1]
+  mov [SP+1], R1
+  call __function_S_StartSound
+__if_22666_end:
   mov R0, [BP+2]
   mov R1, [BP-1]
   iadd R1, 29
@@ -22563,13 +22874,13 @@ __function_P_SpawnMissile:
   mov R1, [BP-4]
   idiv R0, R1
   mov [BP-3], R0
-__if_22497_start:
+__if_22744_start:
   mov R0, [BP-3]
   ilt R0, 1
-  jf R0, __if_22497_end
+  jf R0, __if_22744_end
   mov R0, 1
   mov [BP-3], R0
-__if_22497_end:
+__if_22744_end:
   mov R1, [BP+3]
   iadd R1, 6
   mov R0, [R1]
@@ -22602,10 +22913,10 @@ __function_P_SpawnMapThings:
   isub SP, 11
   mov R0, 0
   mov [BP-1], R0
-__for_22534_start:
+__for_22781_start:
   mov R0, [BP-1]
   ilt R0, 138
-  jf R0, __for_22534_end
+  jf R0, __for_22781_end
   mov R0, __embedded_gen_things
   mov R1, [BP-1]
   imul R1, 5
@@ -22620,46 +22931,46 @@ __for_22534_start:
   iadd R0, 4
   mov R0, [R0]
   mov [BP-5], R0
-__if_22558_start:
+__if_22805_start:
   mov R0, [BP-4]
   ige R0, 1
-  jf R0, __LogicalAnd_ShortCircuit_22563
+  jf R0, __LogicalAnd_ShortCircuit_22810
   mov R1, [BP-4]
   ile R1, 4
   and R0, R1
-__LogicalAnd_ShortCircuit_22563:
-  jf R0, __if_22558_end
-  jmp __for_22534_continue
-__if_22558_end:
-__if_22567_start:
+__LogicalAnd_ShortCircuit_22810:
+  jf R0, __if_22805_end
+  jmp __for_22781_continue
+__if_22805_end:
+__if_22814_start:
   mov R0, [BP-4]
   ieq R0, 11
-  jf R0, __if_22567_end
-  jmp __for_22534_continue
-__if_22567_end:
-__if_22572_start:
+  jf R0, __if_22814_end
+  jmp __for_22781_continue
+__if_22814_end:
+__if_22819_start:
   mov R0, [BP-5]
   and R0, 16
   cib R0
-  jf R0, __if_22572_end
-  jmp __for_22534_continue
-__if_22572_end:
-__if_22577_start:
+  jf R0, __if_22819_end
+  jmp __for_22781_continue
+__if_22819_end:
+__if_22824_start:
   mov R0, [BP-5]
   and R0, 2
   bnot R0
-  jf R0, __if_22577_end
-  jmp __for_22534_continue
-__if_22577_end:
+  jf R0, __if_22824_end
+  jmp __for_22781_continue
+__if_22824_end:
   mov R0, -1
   mov [BP-3], R0
   mov R0, 0
   mov [BP-2], R0
-__for_22588_start:
+__for_22835_start:
   mov R0, [BP-2]
   ilt R0, 137
-  jf R0, __for_22588_end
-__if_22597_start:
+  jf R0, __for_22835_end
+__if_22844_start:
   mov R0, __embedded_gen_mobjinfo
   mov R1, [BP-2]
   imul R1, 23
@@ -22667,27 +22978,27 @@ __if_22597_start:
   mov R0, [R0]
   mov R1, [BP-4]
   ieq R0, R1
-  jf R0, __if_22597_end
+  jf R0, __if_22844_end
   mov R0, [BP-2]
   mov [BP-3], R0
-  jmp __for_22588_end
-__if_22597_end:
-__for_22588_continue:
+  jmp __for_22835_end
+__if_22844_end:
+__for_22835_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_22588_start
-__for_22588_end:
-__if_22610_start:
+  jmp __for_22835_start
+__for_22835_end:
+__if_22857_start:
   mov R0, [BP-3]
   ilt R0, 0
-  jf R0, __if_22610_end
-  jmp __for_22534_continue
-__if_22610_end:
+  jf R0, __if_22857_end
+  jmp __for_22781_continue
+__if_22857_end:
   mov R0, 0x80000000
   mov [BP-7], R0
-__if_22618_start:
+__if_22865_start:
   mov R0, __embedded_gen_mobjinfo
   mov R1, [BP-3]
   imul R1, 23
@@ -22696,10 +23007,10 @@ __if_22618_start:
   mov R0, [R0]
   and R0, 256
   cib R0
-  jf R0, __if_22618_end
+  jf R0, __if_22865_end
   mov R0, 2147483647
   mov [BP-7], R0
-__if_22618_end:
+__if_22865_end:
   mov R2, __embedded_gen_things
   mov R3, [BP-1]
   imul R3, 5
@@ -22723,12 +23034,12 @@ __if_22618_end:
   mov R1, R0
   mov [BP-6], R1
   mov R0, R1
-__if_22648_start:
+__if_22895_start:
   mov R1, [BP-6]
   iadd R1, 26
   mov R0, [R1]
   igt R0, 0
-  jf R0, __if_22648_end
+  jf R0, __if_22895_end
   call __function_P_Random
   mov R1, R0
   mov R3, [BP-6]
@@ -22740,7 +23051,7 @@ __if_22648_start:
   iadd R2, 26
   mov [R2], R1
   mov R0, R1
-__if_22648_end:
+__if_22895_end:
   mov R0, __embedded_gen_things
   mov R1, [BP-1]
   imul R1, 5
@@ -22752,11 +23063,11 @@ __if_22648_end:
   mov R1, [BP-6]
   iadd R1, 11
   mov [R1], R0
-__if_22676_start:
+__if_22923_start:
   mov R0, [BP-5]
   and R0, 8
   cib R0
-  jf R0, __if_22676_end
+  jf R0, __if_22923_end
   mov R1, [BP-6]
   iadd R1, 23
   mov R0, [R1]
@@ -22764,14 +23075,14 @@ __if_22676_start:
   mov R1, [BP-6]
   iadd R1, 23
   mov [R1], R0
-__if_22676_end:
-__for_22534_continue:
+__if_22923_end:
+__for_22781_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_22534_start
-__for_22534_end:
+  jmp __for_22781_start
+__for_22781_end:
 __function_P_SpawnMapThings_return:
   mov SP, BP
   pop BP
@@ -22797,32 +23108,32 @@ __function_P_SpawnPlayer:
   mov [1608446], R0
   mov R0, 0
   mov [BP-1], R0
-__for_22720_start:
+__for_22967_start:
   mov R0, [BP-1]
   ilt R0, 8
-  jf R0, __for_22720_end
+  jf R0, __for_22967_end
   mov R0, 0
   mov R1, 1608447
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_22720_continue:
+__for_22967_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_22720_start
-__for_22720_end:
+  jmp __for_22967_start
+__for_22967_end:
   mov R0, 1
   mov [1608447], R0
   mov R0, 1
   mov [1608448], R0
   mov R0, 0
   mov [BP-1], R0
-__for_22747_start:
+__for_22994_start:
   mov R0, [BP-1]
   ilt R0, 4
-  jf R0, __for_22747_end
+  jf R0, __for_22994_end
   mov R0, 0
   mov R1, 1608455
   mov R2, [BP-1]
@@ -22836,33 +23147,33 @@ __for_22747_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_22747_continue:
+__for_22994_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_22747_start
-__for_22747_end:
+  jmp __for_22994_start
+__for_22994_end:
   mov R0, 50
   mov [1608455], R0
   mov R0, 0
   mov [BP-1], R0
-__for_22777_start:
+__for_23024_start:
   mov R0, [BP-1]
   ilt R0, 6
-  jf R0, __for_22777_end
+  jf R0, __for_23024_end
   mov R0, 0
   mov R1, 1608438
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_22777_continue:
+__for_23024_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_22777_start
-__for_22777_end:
+  jmp __for_23024_start
+__for_23024_end:
   mov R0, 1
   mov [1608463], R0
   mov R0, 1
@@ -22885,10 +23196,10 @@ __for_22777_end:
   mov [1608471], R0
   mov R0, 0
   mov [BP-1], R0
-__for_22832_start:
+__for_23079_start:
   mov R0, [BP-1]
   ilt R0, 2
-  jf R0, __for_22832_end
+  jf R0, __for_23079_end
   mov R0, 0
   mov R1, 1608472
   mov R2, [BP-1]
@@ -22916,13 +23227,13 @@ __for_22832_start:
   iadd R1, R2
   iadd R1, 3
   mov [R1], R0
-__for_22832_continue:
+__for_23079_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_22832_start
-__for_22832_end:
+  jmp __for_23079_start
+__for_23079_end:
   mov R0, 0
   mov [1608480], R0
   mov R0, 0
@@ -22987,13 +23298,13 @@ __function_P_RecursiveSound:
   push BP
   mov BP, SP
   isub SP, 6
-__if_23023_start:
+__if_23270_start:
   mov R1, [BP+2]
   iadd R1, 7
   mov R0, [R1]
   mov R1, [global_validcount]
   ieq R0, R1
-  jf R0, __LogicalAnd_ShortCircuit_23030
+  jf R0, __LogicalAnd_ShortCircuit_23277
   mov R2, [BP+2]
   iadd R2, 13
   mov R1, [R2]
@@ -23001,10 +23312,10 @@ __if_23023_start:
   iadd R2, 1
   ile R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_23030:
-  jf R0, __if_23023_end
+__LogicalAnd_ShortCircuit_23277:
+  jf R0, __if_23270_end
   jmp __function_P_RecursiveSound_return
-__if_23023_end:
+__if_23270_end:
   mov R0, [global_validcount]
   mov R1, [BP+2]
   iadd R1, 7
@@ -23024,37 +23335,37 @@ __if_23023_end:
   mov [BP-4], R0
   mov R0, 0
   mov [BP-1], R0
-__for_23056_start:
+__for_23303_start:
   mov R0, [BP-1]
   mov R2, [BP+2]
   iadd R2, 10
   mov R1, [R2]
   ilt R0, R1
-  jf R0, __for_23056_end
+  jf R0, __for_23303_end
   mov R0, [BP-4]
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   mov [BP-2], R0
-__if_23072_start:
+__if_23319_start:
   mov R1, [BP-2]
   iadd R1, 4
   mov R0, [R1]
   and R0, 4
   bnot R0
-  jf R0, __if_23072_end
-  jmp __for_23056_continue
-__if_23072_end:
+  jf R0, __if_23319_end
+  jmp __for_23303_continue
+__if_23319_end:
   mov R1, [BP-2]
   mov [SP], R1
   call __function_P_LineOpening
-__if_23082_start:
+__if_23329_start:
   mov R0, [global_openrange]
   ile R0, 0
-  jf R0, __if_23082_end
-  jmp __for_23056_continue
-__if_23082_end:
-__if_23087_start:
+  jf R0, __if_23329_end
+  jmp __for_23303_continue
+__if_23329_end:
+__if_23334_start:
   mov R1, [global_sides]
   mov R2, [BP-2]
   iadd R2, 7
@@ -23065,7 +23376,7 @@ __if_23087_start:
   mov R0, [R1]
   mov R1, [BP+2]
   ieq R0, R1
-  jf R0, __if_23087_else
+  jf R0, __if_23334_else
   mov R1, [global_sides]
   mov R2, [BP-2]
   iadd R2, 7
@@ -23076,8 +23387,8 @@ __if_23087_start:
   iadd R1, 5
   mov R0, [R1]
   mov [BP-3], R0
-  jmp __if_23087_end
-__if_23087_else:
+  jmp __if_23334_end
+__if_23334_else:
   mov R1, [global_sides]
   mov R2, [BP-2]
   iadd R2, 7
@@ -23087,39 +23398,39 @@ __if_23087_else:
   iadd R1, 5
   mov R0, [R1]
   mov [BP-3], R0
-__if_23087_end:
-__if_23115_start:
+__if_23334_end:
+__if_23362_start:
   mov R1, [BP-2]
   iadd R1, 4
   mov R0, [R1]
   and R0, 64
   cib R0
-  jf R0, __if_23115_else
-__if_23121_start:
+  jf R0, __if_23362_else
+__if_23368_start:
   mov R0, [BP+3]
   bnot R0
-  jf R0, __if_23121_end
+  jf R0, __if_23368_end
   mov R1, [BP-3]
   mov [SP], R1
   mov R1, 1
   mov [SP+1], R1
   call __function_P_RecursiveSound
-__if_23121_end:
-  jmp __if_23115_end
-__if_23115_else:
+__if_23368_end:
+  jmp __if_23362_end
+__if_23362_else:
   mov R1, [BP-3]
   mov [SP], R1
   mov R1, [BP+3]
   mov [SP+1], R1
   call __function_P_RecursiveSound
-__if_23115_end:
-__for_23056_continue:
+__if_23362_end:
+__for_23303_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_23056_start
-__for_23056_end:
+  jmp __for_23303_start
+__for_23303_end:
 __function_P_RecursiveSound_return:
   mov SP, BP
   pop BP
@@ -23157,16 +23468,16 @@ __function_P_CheckMeleeRange:
   push R3
   push R4
   isub SP, 2
-__if_23149_start:
+__if_23396_start:
   mov R1, [BP+2]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_23149_end
+  jf R0, __if_23396_end
   mov R0, 0
   jmp __function_P_CheckMeleeRange_return
-__if_23149_end:
+__if_23396_end:
   mov R1, [BP+2]
   iadd R1, 29
   mov R0, [R1]
@@ -23191,7 +23502,7 @@ __if_23149_end:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_23172_start:
+__if_23419_start:
   mov R0, [BP-2]
   mov R1, __embedded_gen_mobjinfo
   mov R3, [BP-1]
@@ -23203,11 +23514,11 @@ __if_23172_start:
   mov R1, [R1]
   iadd R1, 2883584
   ige R0, R1
-  jf R0, __if_23172_end
+  jf R0, __if_23419_end
   mov R0, 0
   jmp __function_P_CheckMeleeRange_return
-__if_23172_end:
-__if_23192_start:
+__if_23419_end:
+__if_23439_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R3, [BP+2]
@@ -23218,10 +23529,10 @@ __if_23192_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_23192_end
+  jf R0, __if_23439_end
   mov R0, 0
   jmp __function_P_CheckMeleeRange_return
-__if_23192_end:
+__if_23439_end:
   mov R0, 1
 __function_P_CheckMeleeRange_return:
   iadd SP, 2
@@ -23243,7 +23554,7 @@ __function_P_CheckMissileRange:
   push R4
   push R5
   isub SP, 2
-__if_23206_start:
+__if_23453_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R3, [BP+2]
@@ -23254,17 +23565,17 @@ __if_23206_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_23206_end
+  jf R0, __if_23453_end
   mov R0, 0
   jmp __function_P_CheckMissileRange_return
-__if_23206_end:
-__if_23214_start:
+__if_23453_end:
+__if_23461_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 64
   cib R0
-  jf R0, __if_23214_end
+  jf R0, __if_23461_end
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
@@ -23274,16 +23585,16 @@ __if_23214_start:
   mov [R1], R0
   mov R0, 1
   jmp __function_P_CheckMissileRange_return
-__if_23214_end:
-__if_23227_start:
+__if_23461_end:
+__if_23474_start:
   mov R1, [BP+2]
   iadd R1, 30
   mov R0, [R1]
   cib R0
-  jf R0, __if_23227_end
+  jf R0, __if_23474_end
   mov R0, 0
   jmp __function_P_CheckMissileRange_return
-__if_23227_end:
+__if_23474_end:
   mov R3, [BP+2]
   iadd R3, 4
   mov R2, [R3]
@@ -23309,7 +23620,7 @@ __if_23227_end:
   isub R1, 4194304
   mov [BP-1], R1
   mov R0, R1
-__if_23251_start:
+__if_23498_start:
   mov R0, __embedded_gen_mobjinfo
   mov R2, [BP+2]
   iadd R2, 22
@@ -23319,11 +23630,11 @@ __if_23251_start:
   iadd R0, 10
   mov R0, [R0]
   bnot R0
-  jf R0, __if_23251_end
+  jf R0, __if_23498_end
   mov R0, [BP-1]
   isub R0, 8388608
   mov [BP-1], R0
-__if_23251_end:
+__if_23498_end:
   mov R0, [BP-1]
   shl R0, -16
   mov R1, [BP-1]
@@ -23332,23 +23643,23 @@ __if_23251_end:
   shl R1, 16
   or R0, R1
   mov [BP-1], R0
-__if_23288_start:
+__if_23535_start:
   mov R0, [BP-1]
   igt R0, 200
-  jf R0, __if_23288_end
+  jf R0, __if_23535_end
   mov R0, 200
   mov [BP-1], R0
-__if_23288_end:
-__if_23295_start:
+__if_23535_end:
+__if_23542_start:
   call __function_P_Random
   mov R1, R0
   mov R2, [BP-1]
   ilt R1, R2
   mov R0, R1
-  jf R0, __if_23295_end
+  jf R0, __if_23542_end
   mov R0, 0
   jmp __function_P_CheckMissileRange_return
-__if_23295_end:
+__if_23542_end:
   mov R0, 1
 __function_P_CheckMissileRange_return:
   iadd SP, 2
@@ -23370,15 +23681,15 @@ __function_P_Move:
   push R3
   push R4
   isub SP, 3
-__if_23317_start:
+__if_23564_start:
   mov R1, [BP+2]
   iadd R1, 27
   mov R0, [R1]
   ieq R0, 8
-  jf R0, __if_23317_end
+  jf R0, __if_23564_end
   mov R0, 0
   jmp __function_P_Move_return
-__if_23317_end:
+__if_23564_end:
   mov R0, __embedded_gen_mobjinfo
   mov R2, [BP+2]
   iadd R2, 22
@@ -23424,28 +23735,28 @@ __if_23317_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_23360_start:
+__if_23607_start:
   mov R0, [BP-4]
   bnot R0
-  jf R0, __if_23360_else
-__if_23364_start:
+  jf R0, __if_23607_else
+__if_23611_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 16384
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_23370
+  jf R0, __LogicalAnd_ShortCircuit_23617
   mov R1, [global_floatok]
   and R0, R1
-__LogicalAnd_ShortCircuit_23370:
-  jf R0, __if_23364_end
-__if_23373_start:
+__LogicalAnd_ShortCircuit_23617:
+  jf R0, __if_23611_end
+__if_23620_start:
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
   mov R1, [global_tmfloorz]
   ilt R0, R1
-  jf R0, __if_23373_else
+  jf R0, __if_23620_else
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
@@ -23453,8 +23764,8 @@ __if_23373_start:
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-  jmp __if_23373_end
-__if_23373_else:
+  jmp __if_23620_end
+__if_23620_else:
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
@@ -23462,7 +23773,7 @@ __if_23373_else:
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-__if_23373_end:
+__if_23620_end:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
@@ -23472,25 +23783,25 @@ __if_23373_end:
   mov [R1], R0
   mov R0, 1
   jmp __function_P_Move_return
-__if_23364_end:
-__if_23398_start:
+__if_23611_end:
+__if_23645_start:
   mov R0, [global_numspechit]
   bnot R0
-  jf R0, __if_23398_end
+  jf R0, __if_23645_end
   mov R0, 0
   jmp __function_P_Move_return
-__if_23398_end:
+__if_23645_end:
   mov R0, 8
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
   mov R0, 0
   mov [BP-5], R0
-__while_23410_start:
-__while_23410_continue:
+__while_23657_start:
+__while_23657_continue:
   mov R0, [global_numspechit]
   igt R0, 0
-  jf R0, __while_23410_end
+  jf R0, __while_23657_end
   mov R0, [global_numspechit]
   mov R1, R0
   isub R1, 1
@@ -23500,7 +23811,7 @@ __while_23410_continue:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-3], R0
-__if_23422_start:
+__if_23669_start:
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [BP-3]
@@ -23508,16 +23819,16 @@ __if_23422_start:
   mov R1, 0
   mov [SP+2], R1
   call __function_P_UseSpecialLine
-  jf R0, __if_23422_end
+  jf R0, __if_23669_end
   mov R0, 1
   mov [BP-5], R0
-__if_23422_end:
-  jmp __while_23410_start
-__while_23410_end:
+__if_23669_end:
+  jmp __while_23657_start
+__while_23657_end:
   mov R0, [BP-5]
   jmp __function_P_Move_return
-  jmp __if_23360_end
-__if_23360_else:
+  jmp __if_23607_end
+__if_23607_else:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
@@ -23525,21 +23836,21 @@ __if_23360_else:
   mov R1, [BP+2]
   iadd R1, 23
   mov [R1], R0
-__if_23360_end:
-__if_23437_start:
+__if_23607_end:
+__if_23684_start:
   mov R1, [BP+2]
   iadd R1, 23
   mov R0, [R1]
   and R0, 16384
   bnot R0
-  jf R0, __if_23437_end
+  jf R0, __if_23684_end
   mov R1, [BP+2]
   iadd R1, 15
   mov R0, [R1]
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-__if_23437_end:
+__if_23684_end:
   mov R0, 1
 __function_P_Move_return:
   iadd SP, 3
@@ -23557,17 +23868,17 @@ __function_P_TryWalk:
   push R1
   push R2
   isub SP, 1
-__if_23453_start:
+__if_23700_start:
   mov R2, [BP+2]
   mov [SP], R2
   call __function_P_Move
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_23453_end
+  jf R0, __if_23700_end
   mov R0, 0
   jmp __function_P_TryWalk_return
-__if_23453_end:
+__if_23700_end:
   call __function_P_Random
   mov R1, R0
   and R1, 15
@@ -23588,15 +23899,15 @@ __function_P_NewChaseDir:
   push BP
   mov BP, SP
   isub SP, 9
-__if_23483_start:
+__if_23730_start:
   mov R1, [BP+2]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_23483_end
+  jf R0, __if_23730_end
   jmp __function_P_NewChaseDir_return
-__if_23483_end:
+__if_23730_end:
   mov R1, [BP+2]
   iadd R1, 27
   mov R0, [R1]
@@ -23626,73 +23937,73 @@ __if_23483_end:
   mov R1, [R2]
   isub R0, R1
   mov [BP-2], R0
-__if_23513_start:
+__if_23760_start:
   mov R0, [BP-1]
   igt R0, 655360
-  jf R0, __if_23513_else
+  jf R0, __if_23760_else
   mov R0, 0
   mov [BP-3], R0
-  jmp __if_23513_end
-__if_23513_else:
-__if_23522_start:
+  jmp __if_23760_end
+__if_23760_else:
+__if_23769_start:
   mov R0, [BP-1]
   ilt R0, -655360
-  jf R0, __if_23522_else
+  jf R0, __if_23769_else
   mov R0, 4
   mov [BP-3], R0
-  jmp __if_23522_end
-__if_23522_else:
+  jmp __if_23769_end
+__if_23769_else:
   mov R0, 8
   mov [BP-3], R0
-__if_23522_end:
-__if_23513_end:
-__if_23535_start:
+__if_23769_end:
+__if_23760_end:
+__if_23782_start:
   mov R0, [BP-2]
   ilt R0, -655360
-  jf R0, __if_23535_else
+  jf R0, __if_23782_else
   mov R0, 6
   mov [BP-4], R0
-  jmp __if_23535_end
-__if_23535_else:
-__if_23545_start:
+  jmp __if_23782_end
+__if_23782_else:
+__if_23792_start:
   mov R0, [BP-2]
   igt R0, 655360
-  jf R0, __if_23545_else
+  jf R0, __if_23792_else
   mov R0, 2
   mov [BP-4], R0
-  jmp __if_23545_end
-__if_23545_else:
+  jmp __if_23792_end
+__if_23792_else:
   mov R0, 8
   mov [BP-4], R0
-__if_23545_end:
-__if_23535_end:
-__if_23557_start:
+__if_23792_end:
+__if_23782_end:
+__if_23804_start:
   mov R0, [BP-3]
   ine R0, 8
-  jf R0, __LogicalAnd_ShortCircuit_23562
+  jf R0, __LogicalAnd_ShortCircuit_23809
   mov R1, [BP-4]
   ine R1, 8
   and R0, R1
-__LogicalAnd_ShortCircuit_23562:
-  jf R0, __if_23557_end
+__LogicalAnd_ShortCircuit_23809:
+  jf R0, __if_23804_end
   mov R0, 0
   mov [BP-8], R0
-__if_23569_start:
+__if_23816_start:
   mov R0, [BP-2]
   ilt R0, 0
-  jf R0, __if_23569_end
+  jf R0, __if_23816_end
   mov R0, [BP-8]
   iadd R0, 2
   mov [BP-8], R0
-__if_23569_end:
-__if_23576_start:
+__if_23816_end:
+__if_23823_start:
   mov R0, [BP-1]
   igt R0, 0
-  jf R0, __if_23576_end
+  jf R0, __if_23823_end
   mov R0, [BP-8]
   iadd R0, 1
   mov [BP-8], R0
-__if_23576_end:
+__if_23823_end:
   mov R0, global_diags
   mov R1, [BP-8]
   iadd R0, R1
@@ -23700,29 +24011,29 @@ __if_23576_end:
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
-__if_23589_start:
+__if_23836_start:
   mov R2, [BP+2]
   iadd R2, 27
   mov R1, [R2]
   mov R2, [BP-7]
   ine R1, R2
-  jf R1, __LogicalAnd_ShortCircuit_23596
+  jf R1, __LogicalAnd_ShortCircuit_23843
   mov R3, [BP+2]
   mov [SP], R3
   call __function_P_TryWalk
   mov R2, R0
   and R1, R2
-__LogicalAnd_ShortCircuit_23596:
+__LogicalAnd_ShortCircuit_23843:
   mov R0, R1
-  jf R0, __if_23589_end
+  jf R0, __if_23836_end
   jmp __function_P_NewChaseDir_return
-__if_23589_end:
-__if_23557_end:
-__if_23598_start:
+__if_23836_end:
+__if_23804_end:
+__if_23845_start:
   call __function_P_Random
   mov R1, R0
   igt R1, 200
-  jt R1, __LogicalOr_ShortCircuit_23604
+  jt R1, __LogicalOr_ShortCircuit_23851
   mov R3, [BP-2]
   mov [SP], R3
   call __function_abs
@@ -23733,166 +24044,166 @@ __if_23598_start:
   mov R3, R0
   igt R2, R3
   or R1, R2
-__LogicalOr_ShortCircuit_23604:
+__LogicalOr_ShortCircuit_23851:
   mov R0, R1
-  jf R0, __if_23598_end
+  jf R0, __if_23845_end
   mov R0, [BP-3]
   mov [BP-5], R0
   mov R0, [BP-4]
   mov [BP-3], R0
   mov R0, [BP-5]
   mov [BP-4], R0
-__if_23598_end:
-__if_23618_start:
+__if_23845_end:
+__if_23865_start:
   mov R0, [BP-3]
   mov R1, [BP-7]
   ieq R0, R1
-  jf R0, __if_23618_end
+  jf R0, __if_23865_end
   mov R0, 8
   mov [BP-3], R0
-__if_23618_end:
-__if_23625_start:
+__if_23865_end:
+__if_23872_start:
   mov R0, [BP-4]
   mov R1, [BP-7]
   ieq R0, R1
-  jf R0, __if_23625_end
+  jf R0, __if_23872_end
   mov R0, 8
   mov [BP-4], R0
-__if_23625_end:
-__if_23632_start:
+__if_23872_end:
+__if_23879_start:
   mov R0, [BP-3]
   ine R0, 8
-  jf R0, __if_23632_end
+  jf R0, __if_23879_end
   mov R0, [BP-3]
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
-__if_23641_start:
+__if_23888_start:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_TryWalk
-  jf R0, __if_23641_end
+  jf R0, __if_23888_end
   jmp __function_P_NewChaseDir_return
-__if_23641_end:
-__if_23632_end:
-__if_23645_start:
+__if_23888_end:
+__if_23879_end:
+__if_23892_start:
   mov R0, [BP-4]
   ine R0, 8
-  jf R0, __if_23645_end
+  jf R0, __if_23892_end
   mov R0, [BP-4]
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
-__if_23654_start:
+__if_23901_start:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_TryWalk
-  jf R0, __if_23654_end
+  jf R0, __if_23901_end
   jmp __function_P_NewChaseDir_return
-__if_23654_end:
-__if_23645_end:
-__if_23658_start:
+__if_23901_end:
+__if_23892_end:
+__if_23905_start:
   mov R0, [BP-6]
   ine R0, 8
-  jf R0, __if_23658_end
+  jf R0, __if_23905_end
   mov R0, [BP-6]
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
-__if_23667_start:
+__if_23914_start:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_TryWalk
-  jf R0, __if_23667_end
+  jf R0, __if_23914_end
   jmp __function_P_NewChaseDir_return
-__if_23667_end:
-__if_23658_end:
-__if_23671_start:
+__if_23914_end:
+__if_23905_end:
+__if_23918_start:
   call __function_P_Random
   mov R1, R0
   and R1, 1
   mov R0, R1
   cib R0
-  jf R0, __if_23671_else
+  jf R0, __if_23918_else
   mov R0, 0
   mov [BP-5], R0
-__for_23676_start:
+__for_23923_start:
   mov R0, [BP-5]
   ile R0, 7
-  jf R0, __for_23676_end
-__if_23686_start:
+  jf R0, __for_23923_end
+__if_23933_start:
   mov R0, [BP-5]
   mov R1, [BP-7]
   ine R0, R1
-  jf R0, __if_23686_end
+  jf R0, __if_23933_end
   mov R0, [BP-5]
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
-__if_23695_start:
+__if_23942_start:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_TryWalk
-  jf R0, __if_23695_end
+  jf R0, __if_23942_end
   jmp __function_P_NewChaseDir_return
-__if_23695_end:
-__if_23686_end:
-__for_23676_continue:
+__if_23942_end:
+__if_23933_end:
+__for_23923_continue:
   mov R0, [BP-5]
   mov R1, R0
   iadd R1, 1
   mov [BP-5], R1
-  jmp __for_23676_start
-__for_23676_end:
-  jmp __if_23671_end
-__if_23671_else:
+  jmp __for_23923_start
+__for_23923_end:
+  jmp __if_23918_end
+__if_23918_else:
   mov R0, 7
   mov [BP-5], R0
-__for_23700_start:
+__for_23947_start:
   mov R0, [BP-5]
   ine R0, -1
-  jf R0, __for_23700_end
-__if_23712_start:
+  jf R0, __for_23947_end
+__if_23959_start:
   mov R0, [BP-5]
   mov R1, [BP-7]
   ine R0, R1
-  jf R0, __if_23712_end
+  jf R0, __if_23959_end
   mov R0, [BP-5]
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
-__if_23721_start:
+__if_23968_start:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_TryWalk
-  jf R0, __if_23721_end
+  jf R0, __if_23968_end
   jmp __function_P_NewChaseDir_return
-__if_23721_end:
-__if_23712_end:
-__for_23700_continue:
+__if_23968_end:
+__if_23959_end:
+__for_23947_continue:
   mov R0, [BP-5]
   mov R1, R0
   isub R1, 1
   mov [BP-5], R1
-  jmp __for_23700_start
-__for_23700_end:
-__if_23671_end:
-__if_23725_start:
+  jmp __for_23947_start
+__for_23947_end:
+__if_23918_end:
+__if_23972_start:
   mov R0, [BP-7]
   ine R0, 8
-  jf R0, __if_23725_end
+  jf R0, __if_23972_end
   mov R0, [BP-7]
   mov R1, [BP+2]
   iadd R1, 27
   mov [R1], R0
-__if_23734_start:
+__if_23981_start:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_TryWalk
-  jf R0, __if_23734_end
+  jf R0, __if_23981_end
   jmp __function_P_NewChaseDir_return
-__if_23734_end:
-__if_23725_end:
+__if_23981_end:
+__if_23972_end:
   mov R0, 8
   mov R1, [BP+2]
   iadd R1, 27
@@ -23911,14 +24222,14 @@ __function_P_LookForPlayers:
   push R3
   push R4
   isub SP, 4
-__if_23749_start:
+__if_23996_start:
   mov R0, [1608435]
   ile R0, 0
-  jf R0, __if_23749_end
+  jf R0, __if_23996_end
   mov R0, 0
   jmp __function_P_LookForPlayers_return
-__if_23749_end:
-__if_23756_start:
+__if_23996_end:
+__if_24003_start:
   mov R2, [BP+2]
   mov [SP], R2
   mov R2, [global_player1]
@@ -23927,14 +24238,14 @@ __if_23756_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_23756_end
+  jf R0, __if_24003_end
   mov R0, 0
   jmp __function_P_LookForPlayers_return
-__if_23756_end:
-__if_23764_start:
+__if_24003_end:
+__if_24011_start:
   mov R0, [BP+3]
   bnot R0
-  jf R0, __if_23764_end
+  jf R0, __if_24011_end
   mov R3, [BP+2]
   iadd R3, 4
   mov R2, [R3]
@@ -23959,17 +24270,17 @@ __if_23764_start:
   isub R1, R2
   mov [BP-1], R1
   mov R0, R1
-__if_23784_start:
+__if_24031_start:
   mov R0, [BP-1]
   xor R0, 0x80000000
   igt R0, -1073741824
-  jf R0, __LogicalAnd_ShortCircuit_23797
+  jf R0, __LogicalAnd_ShortCircuit_24044
   mov R1, [BP-1]
   xor R1, 0x80000000
   ilt R1, 1073741824
   and R0, R1
-__LogicalAnd_ShortCircuit_23797:
-  jf R0, __if_23784_end
+__LogicalAnd_ShortCircuit_24044:
+  jf R0, __if_24031_end
   mov R3, [global_player1]
   iadd R3, 4
   mov R2, [R3]
@@ -23990,15 +24301,15 @@ __LogicalAnd_ShortCircuit_23797:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_23826_start:
+__if_24073_start:
   mov R0, [BP-2]
   igt R0, 4194304
-  jf R0, __if_23826_end
+  jf R0, __if_24073_end
   mov R0, 0
   jmp __function_P_LookForPlayers_return
-__if_23826_end:
-__if_23784_end:
-__if_23764_end:
+__if_24073_end:
+__if_24031_end:
+__if_24011_end:
   mov R0, [global_player1]
   mov R1, [BP+2]
   iadd R1, 29
@@ -24020,15 +24331,15 @@ __function_A_FaceTarget:
   isub SP, 5
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_23848_start:
+__if_24095_start:
   mov R1, [BP-1]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_23848_end
+  jf R0, __if_24095_end
   jmp __function_A_FaceTarget_return
-__if_23848_end:
+__if_24095_end:
   mov R1, [BP-1]
   iadd R1, 23
   mov R0, [R1]
@@ -24070,7 +24381,7 @@ __function_A_FaceTarget_return:
 __function_A_Look:
   push BP
   mov BP, SP
-  isub SP, 4
+  isub SP, 6
   mov R0, [BP+2]
   mov [BP-1], R0
   mov R0, 0
@@ -24084,30 +24395,30 @@ __function_A_Look:
   iadd R1, 12
   mov R0, [R1]
   mov [BP-2], R0
-__if_23891_start:
+__if_24142_start:
   mov R0, [BP-2]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_23893
+  jf R0, __LogicalAnd_ShortCircuit_24144
   mov R2, [BP-2]
   iadd R2, 23
   mov R1, [R2]
   and R1, 4
   cib R1
   and R0, R1
-__LogicalAnd_ShortCircuit_23893:
-  jf R0, __if_23891_end
+__LogicalAnd_ShortCircuit_24144:
+  jf R0, __if_24142_end
   mov R0, [BP-2]
   mov R1, [BP-1]
   iadd R1, 29
   mov [R1], R0
-__if_23904_start:
+__if_24155_start:
   mov R1, [BP-1]
   iadd R1, 23
   mov R0, [R1]
   and R0, 32
   cib R0
-  jf R0, __if_23904_else
-__if_23910_start:
+  jf R0, __if_24155_else
+__if_24161_start:
   mov R1, [BP-1]
   mov [SP], R1
   mov R2, [BP-1]
@@ -24115,15 +24426,15 @@ __if_23910_start:
   mov R1, [R2]
   mov [SP+1], R1
   call __function_P_CheckSight
-  jf R0, __if_23910_end
-  jmp __label_23923_seeyou
-__if_23910_end:
-  jmp __if_23904_end
-__if_23904_else:
-  jmp __label_23923_seeyou
-__if_23904_end:
-__if_23891_end:
-__if_23917_start:
+  jf R0, __if_24161_end
+  jmp __label_24174_seeyou
+__if_24161_end:
+  jmp __if_24155_end
+__if_24155_else:
+  jmp __label_24174_seeyou
+__if_24155_end:
+__if_24142_end:
+__if_24168_start:
   mov R2, [BP-1]
   mov [SP], R2
   mov R2, 0
@@ -24132,10 +24443,70 @@ __if_23917_start:
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_23917_end
+  jf R0, __if_24168_end
   jmp __function_A_Look_return
-__if_23917_end:
-__label_23923_seeyou:
+__if_24168_end:
+__label_24174_seeyou:
+  mov R0, __embedded_gen_mobjinfo
+  mov R2, [BP-1]
+  iadd R2, 22
+  mov R1, [R2]
+  imul R1, 23
+  iadd R0, R1
+  iadd R0, 4
+  mov R0, [R0]
+  mov [BP-3], R0
+__if_24183_start:
+  mov R0, [BP-3]
+  cib R0
+  jf R0, __if_24183_end
+  mov R0, [BP-3]
+  mov [BP-4], R0
+__if_24189_start:
+  mov R0, [BP-3]
+  ieq R0, 36
+  jt R0, __LogicalOr_ShortCircuit_24194
+  mov R1, [BP-3]
+  ieq R1, 37
+  or R0, R1
+__LogicalOr_ShortCircuit_24194:
+  jt R0, __LogicalOr_ShortCircuit_24198
+  mov R1, [BP-3]
+  ieq R1, 38
+  or R0, R1
+__LogicalOr_ShortCircuit_24198:
+  jf R0, __if_24189_else
+  call __function_P_Random
+  mov R1, R0
+  imod R1, 3
+  iadd R1, 36
+  mov [BP-4], R1
+  mov R0, R1
+  jmp __if_24189_end
+__if_24189_else:
+__if_24208_start:
+  mov R0, [BP-3]
+  ieq R0, 39
+  jt R0, __LogicalOr_ShortCircuit_24213
+  mov R1, [BP-3]
+  ieq R1, 40
+  or R0, R1
+__LogicalOr_ShortCircuit_24213:
+  jf R0, __if_24208_end
+  call __function_P_Random
+  mov R1, R0
+  imod R1, 2
+  iadd R1, 39
+  mov [BP-4], R1
+  mov R0, R1
+__if_24208_end:
+__if_24189_end:
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, [BP-4]
+  mov [SP+1], R1
+  call __function_S_StartSound
+__if_24183_end:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, __embedded_gen_mobjinfo
@@ -24159,32 +24530,32 @@ __function_A_Chase:
   isub SP, 4
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_23940_start:
+__if_24242_start:
   mov R1, [BP-1]
   iadd R1, 30
   mov R0, [R1]
   cib R0
-  jf R0, __if_23940_end
+  jf R0, __if_24242_end
   mov R2, [BP-1]
   iadd R2, 30
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_23940_end:
-__if_23946_start:
+__if_24242_end:
+__if_24248_start:
   mov R1, [BP-1]
   iadd R1, 31
   mov R0, [R1]
   cib R0
-  jf R0, __if_23946_end
-__if_23950_start:
+  jf R0, __if_24248_end
+__if_24252_start:
   mov R1, [BP-1]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jt R0, __LogicalOr_ShortCircuit_23954
+  jt R0, __LogicalOr_ShortCircuit_24256
   mov R3, [BP-1]
   iadd R3, 29
   mov R2, [R3]
@@ -24192,28 +24563,28 @@ __if_23950_start:
   mov R1, [R2]
   ile R1, 0
   or R0, R1
-__LogicalOr_ShortCircuit_23954:
-  jf R0, __if_23950_else
+__LogicalOr_ShortCircuit_24256:
+  jf R0, __if_24252_else
   mov R0, 0
   mov R1, [BP-1]
   iadd R1, 31
   mov [R1], R0
-  jmp __if_23950_end
-__if_23950_else:
+  jmp __if_24252_end
+__if_24252_else:
   mov R2, [BP-1]
   iadd R2, 31
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_23950_end:
-__if_23946_end:
-__if_23967_start:
+__if_24252_end:
+__if_24248_end:
+__if_24269_start:
   mov R1, [BP-1]
   iadd R1, 27
   mov R0, [R1]
   ilt R0, 8
-  jf R0, __if_23967_end
+  jf R0, __if_24269_end
   mov R1, [BP-1]
   iadd R1, 11
   mov R0, [R1]
@@ -24230,10 +24601,10 @@ __if_23967_start:
   shl R1, 29
   isub R0, R1
   mov [BP-2], R0
-__if_23990_start:
+__if_24292_start:
   mov R0, [BP-2]
   igt R0, 0
-  jf R0, __if_23990_else
+  jf R0, __if_24292_else
   mov R1, [BP-1]
   iadd R1, 11
   mov R0, [R1]
@@ -24241,12 +24612,12 @@ __if_23990_start:
   mov R1, [BP-1]
   iadd R1, 11
   mov [R1], R0
-  jmp __if_23990_end
-__if_23990_else:
-__if_24000_start:
+  jmp __if_24292_end
+__if_24292_else:
+__if_24302_start:
   mov R0, [BP-2]
   ilt R0, 0
-  jf R0, __if_24000_end
+  jf R0, __if_24302_end
   mov R1, [BP-1]
   iadd R1, 11
   mov R0, [R1]
@@ -24254,16 +24625,16 @@ __if_24000_start:
   mov R1, [BP-1]
   iadd R1, 11
   mov [R1], R0
-__if_24000_end:
-__if_23990_end:
-__if_23967_end:
-__if_24010_start:
+__if_24302_end:
+__if_24292_end:
+__if_24269_end:
+__if_24312_start:
   mov R1, [BP-1]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jt R0, __LogicalOr_ShortCircuit_24014
+  jt R0, __LogicalOr_ShortCircuit_24316
   mov R3, [BP-1]
   iadd R3, 29
   mov R2, [R3]
@@ -24272,17 +24643,17 @@ __if_24010_start:
   and R1, 4
   bnot R1
   or R0, R1
-__LogicalOr_ShortCircuit_24014:
-  jf R0, __if_24010_end
-__if_24023_start:
+__LogicalOr_ShortCircuit_24316:
+  jf R0, __if_24312_end
+__if_24325_start:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, 1
   mov [SP+1], R1
   call __function_P_LookForPlayers
-  jf R0, __if_24023_end
+  jf R0, __if_24325_end
   jmp __function_A_Chase_return
-__if_24023_end:
+__if_24325_end:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, __embedded_gen_mobjinfo
@@ -24296,14 +24667,14 @@ __if_24023_end:
   mov [SP+1], R1
   call __function_P_SetMobjState
   jmp __function_A_Chase_return
-__if_24010_end:
-__if_24037_start:
+__if_24312_end:
+__if_24339_start:
   mov R1, [BP-1]
   iadd R1, 23
   mov R0, [R1]
   and R0, 128
   cib R0
-  jf R0, __if_24037_end
+  jf R0, __if_24339_end
   mov R1, [BP-1]
   iadd R1, 23
   mov R0, [R1]
@@ -24315,8 +24686,8 @@ __if_24037_start:
   mov [SP], R1
   call __function_P_NewChaseDir
   jmp __function_A_Chase_return
-__if_24037_end:
-__if_24051_start:
+__if_24339_end:
+__if_24353_start:
   mov R1, __embedded_gen_mobjinfo
   mov R3, [BP-1]
   iadd R3, 22
@@ -24326,15 +24697,15 @@ __if_24051_start:
   iadd R1, 10
   mov R1, [R1]
   cib R1
-  jf R1, __LogicalAnd_ShortCircuit_24058
+  jf R1, __LogicalAnd_ShortCircuit_24360
   mov R3, [BP-1]
   mov [SP], R3
   call __function_P_CheckMeleeRange
   mov R2, R0
   and R1, R2
-__LogicalAnd_ShortCircuit_24058:
+__LogicalAnd_ShortCircuit_24360:
   mov R0, R1
-  jf R0, __if_24051_end
+  jf R0, __if_24353_end
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, __embedded_gen_mobjinfo
@@ -24348,8 +24719,8 @@ __LogicalAnd_ShortCircuit_24058:
   mov [SP+1], R1
   call __function_P_SetMobjState
   jmp __function_A_Chase_return
-__if_24051_end:
-__if_24071_start:
+__if_24353_end:
+__if_24373_start:
   mov R0, __embedded_gen_mobjinfo
   mov R2, [BP-1]
   iadd R2, 22
@@ -24359,25 +24730,25 @@ __if_24071_start:
   iadd R0, 11
   mov R0, [R0]
   cib R0
-  jf R0, __if_24071_end
-__if_24079_start:
+  jf R0, __if_24373_end
+__if_24381_start:
   mov R1, [BP-1]
   iadd R1, 28
   mov R0, [R1]
   cib R0
-  jf R0, __if_24079_end
-  jmp __label_24101_nomissile
-__if_24079_end:
-__if_24083_start:
+  jf R0, __if_24381_end
+  jmp __label_24403_nomissile
+__if_24381_end:
+__if_24385_start:
   mov R2, [BP-1]
   mov [SP], R2
   call __function_P_CheckMissileRange
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_24083_end
-  jmp __label_24101_nomissile
-__if_24083_end:
+  jf R0, __if_24385_end
+  jmp __label_24403_nomissile
+__if_24385_end:
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, __embedded_gen_mobjinfo
@@ -24398,33 +24769,64 @@ __if_24083_end:
   iadd R1, 23
   mov [R1], R0
   jmp __function_A_Chase_return
-__if_24071_end:
-__label_24101_nomissile:
+__if_24373_end:
+__label_24403_nomissile:
   mov R2, [BP-1]
   iadd R2, 28
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_24105_start:
+__if_24407_start:
   mov R2, [BP-1]
   iadd R2, 28
   mov R1, [R2]
   ilt R1, 0
-  jt R1, __LogicalOr_ShortCircuit_24113
+  jt R1, __LogicalOr_ShortCircuit_24415
   mov R3, [BP-1]
   mov [SP], R3
   call __function_P_Move
   mov R2, R0
   bnot R2
   or R1, R2
-__LogicalOr_ShortCircuit_24113:
+__LogicalOr_ShortCircuit_24415:
   mov R0, R1
-  jf R0, __if_24105_end
+  jf R0, __if_24407_end
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_NewChaseDir
-__if_24105_end:
+__if_24407_end:
+__if_24418_start:
+  mov R1, __embedded_gen_mobjinfo
+  mov R3, [BP-1]
+  iadd R3, 22
+  mov R2, [R3]
+  imul R2, 23
+  iadd R1, R2
+  iadd R1, 20
+  mov R1, [R1]
+  cib R1
+  jf R1, __LogicalAnd_ShortCircuit_24425
+  call __function_P_Random
+  mov R2, R0
+  ilt R2, 3
+  and R1, R2
+__LogicalAnd_ShortCircuit_24425:
+  mov R0, R1
+  jf R0, __if_24418_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, __embedded_gen_mobjinfo
+  mov R3, [BP-1]
+  iadd R3, 22
+  mov R2, [R3]
+  imul R2, 23
+  iadd R1, R2
+  iadd R1, 20
+  mov R1, [R1]
+  mov [SP+1], R1
+  call __function_S_StartSound
+__if_24418_end:
 __function_A_Chase_return:
   mov SP, BP
   pop BP
@@ -24436,15 +24838,15 @@ __function_A_PosAttack:
   isub SP, 9
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_24128_start:
+__if_24449_start:
   mov R1, [BP-1]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_24128_end
+  jf R0, __if_24449_end
   jmp __function_A_PosAttack_return
-__if_24128_end:
+__if_24449_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_A_FaceTarget
@@ -24462,6 +24864,11 @@ __if_24128_end:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, 1
+  mov [SP+1], R1
+  call __function_S_StartSound
   mov R1, [BP-2]
   call __function_P_Random
   mov R2, R0
@@ -24501,15 +24908,20 @@ __function_A_SPosAttack:
   isub SP, 11
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_24196_start:
+__if_24520_start:
   mov R1, [BP-1]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_24196_end
+  jf R0, __if_24520_end
   jmp __function_A_SPosAttack_return
-__if_24196_end:
+__if_24520_end:
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, 2
+  mov [SP+1], R1
+  call __function_S_StartSound
   mov R1, [BP+2]
   mov [SP], R1
   call __function_A_FaceTarget
@@ -24529,10 +24941,10 @@ __if_24196_end:
   mov R0, R1
   mov R0, 0
   mov [BP-2], R0
-__for_24218_start:
+__for_24545_start:
   mov R0, [BP-2]
   ilt R0, 3
-  jf R0, __for_24218_end
+  jf R0, __for_24545_end
   mov R1, [BP-4]
   call __function_P_Random
   mov R2, R0
@@ -24561,13 +24973,13 @@ __for_24218_start:
   mov R1, [BP-5]
   mov [SP+4], R1
   call __function_P_LineAttack
-__for_24218_continue:
+__for_24545_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_24218_start
-__for_24218_end:
+  jmp __for_24545_start
+__for_24545_end:
 __function_A_SPosAttack_return:
   mov SP, BP
   pop BP
@@ -24579,23 +24991,28 @@ __function_A_TroopAttack:
   isub SP, 6
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_24269_start:
+__if_24596_start:
   mov R1, [BP-1]
   iadd R1, 29
   mov R0, [R1]
   ine R0, -1
   bnot R0
-  jf R0, __if_24269_end
+  jf R0, __if_24596_end
   jmp __function_A_TroopAttack_return
-__if_24269_end:
+__if_24596_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_A_FaceTarget
-__if_24276_start:
+__if_24603_start:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_CheckMeleeRange
-  jf R0, __if_24276_end
+  jf R0, __if_24603_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, 55
+  mov [SP+1], R1
+  call __function_S_StartSound
   call __function_P_Random
   mov R1, R0
   imod R1, 8
@@ -24615,7 +25032,7 @@ __if_24276_start:
   mov [SP+3], R1
   call __function_P_DamageMobj
   jmp __function_A_TroopAttack_return
-__if_24276_end:
+__if_24603_end:
   mov R1, [BP-1]
   mov [SP], R1
   mov R2, [BP-1]
@@ -24633,6 +25050,70 @@ __function_A_TroopAttack_return:
 __function_A_Scream:
   push BP
   mov BP, SP
+  isub SP, 5
+  mov R0, [BP+2]
+  mov [BP-1], R0
+  mov R0, __embedded_gen_mobjinfo
+  mov R2, [BP-1]
+  iadd R2, 22
+  mov R1, [R2]
+  imul R1, 23
+  iadd R0, R1
+  iadd R0, 14
+  mov R0, [R0]
+  mov [BP-2], R0
+__if_24648_start:
+  mov R0, [BP-2]
+  bnot R0
+  jf R0, __if_24648_end
+  jmp __function_A_Scream_return
+__if_24648_end:
+  mov R0, [BP-2]
+  mov [BP-3], R0
+__if_24655_start:
+  mov R0, [BP-2]
+  ieq R0, 59
+  jt R0, __LogicalOr_ShortCircuit_24660
+  mov R1, [BP-2]
+  ieq R1, 60
+  or R0, R1
+__LogicalOr_ShortCircuit_24660:
+  jt R0, __LogicalOr_ShortCircuit_24664
+  mov R1, [BP-2]
+  ieq R1, 61
+  or R0, R1
+__LogicalOr_ShortCircuit_24664:
+  jf R0, __if_24655_else
+  call __function_P_Random
+  mov R1, R0
+  imod R1, 3
+  iadd R1, 59
+  mov [BP-3], R1
+  mov R0, R1
+  jmp __if_24655_end
+__if_24655_else:
+__if_24674_start:
+  mov R0, [BP-2]
+  ieq R0, 62
+  jt R0, __LogicalOr_ShortCircuit_24679
+  mov R1, [BP-2]
+  ieq R1, 63
+  or R0, R1
+__LogicalOr_ShortCircuit_24679:
+  jf R0, __if_24674_end
+  call __function_P_Random
+  mov R1, R0
+  imod R1, 2
+  iadd R1, 62
+  mov [BP-3], R1
+  mov R0, R1
+__if_24674_end:
+__if_24655_end:
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, [BP-3]
+  mov [SP+1], R1
+  call __function_S_StartSound
 __function_A_Scream_return:
   mov SP, BP
   pop BP
@@ -24641,6 +25122,12 @@ __function_A_Scream_return:
 __function_A_XScream:
   push BP
   mov BP, SP
+  isub SP, 2
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, 31
+  mov [SP+1], R1
+  call __function_S_StartSound
 __function_A_XScream_return:
   mov SP, BP
   pop BP
@@ -24649,6 +25136,28 @@ __function_A_XScream_return:
 __function_A_Pain:
   push BP
   mov BP, SP
+  isub SP, 4
+  mov R0, [BP+2]
+  mov [BP-1], R0
+  mov R0, __embedded_gen_mobjinfo
+  mov R2, [BP-1]
+  iadd R2, 22
+  mov R1, [R2]
+  imul R1, 23
+  iadd R0, R1
+  iadd R0, 9
+  mov R0, [R0]
+  mov [BP-2], R0
+__if_24712_start:
+  mov R0, [BP-2]
+  cib R0
+  jf R0, __if_24712_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, [BP-2]
+  mov [SP+1], R1
+  call __function_S_StartSound
+__if_24712_end:
 __function_A_Pain_return:
   mov SP, BP
   pop BP
@@ -24702,16 +25211,16 @@ __function_P_SetPsprite:
   imul R1, 4
   iadd R0, R1
   mov [BP-1], R0
-__do_24404_start:
-__if_24406_start:
+__do_24813_start:
+__if_24815_start:
   mov R0, [BP+4]
   bnot R0
-  jf R0, __if_24406_end
+  jf R0, __if_24815_end
   mov R0, 0
   mov R1, [BP-1]
   mov [R1], R0
-  jmp __do_24404_end
-__if_24406_end:
+  jmp __do_24813_end
+__if_24815_end:
   mov R0, [BP+4]
   mov R1, [BP-1]
   mov [R1], R0
@@ -24724,7 +25233,7 @@ __if_24406_end:
   mov R1, [BP-1]
   iadd R1, 1
   mov [R1], R0
-__if_24427_start:
+__if_24836_start:
   mov R0, __embedded_gen_states
   mov R1, [BP+4]
   imul R1, 7
@@ -24732,7 +25241,7 @@ __if_24427_start:
   iadd R0, 5
   mov R0, [R0]
   cib R0
-  jf R0, __if_24427_end
+  jf R0, __if_24836_end
   mov R0, __embedded_gen_states
   mov R1, [BP+4]
   imul R1, 7
@@ -24753,7 +25262,7 @@ __if_24427_start:
   mov R1, [BP-1]
   iadd R1, 3
   mov [R1], R0
-__if_24427_end:
+__if_24836_end:
   mov R0, __embedded_gen_states
   mov R1, [BP+4]
   imul R1, 7
@@ -24761,13 +25270,13 @@ __if_24427_end:
   iadd R0, 3
   mov R0, [R0]
   mov [BP-2], R0
-__if_24461_start:
+__if_24870_start:
   mov R0, global_pspr_actions
   mov R1, [BP-2]
   iadd R0, R1
   mov R0, [R0]
   ine R0, -1
-  jf R0, __if_24461_end
+  jf R0, __if_24870_end
   mov R0, global_pspr_actions
   mov R1, [BP-2]
   iadd R0, R1
@@ -24779,14 +25288,14 @@ __if_24461_start:
   mov [SP+1], R1
   mov R2, [BP-3]
   call R2
-__if_24477_start:
+__if_24886_start:
   mov R1, [BP-1]
   mov R0, [R1]
   bnot R0
-  jf R0, __if_24477_end
-  jmp __do_24404_end
-__if_24477_end:
-__if_24461_end:
+  jf R0, __if_24886_end
+  jmp __do_24813_end
+__if_24886_end:
+__if_24870_end:
   mov R0, __embedded_gen_states
   mov R2, [BP-1]
   mov R1, [R2]
@@ -24795,13 +25304,13 @@ __if_24461_end:
   iadd R0, 4
   mov R0, [R0]
   mov [BP+4], R0
-__do_24404_continue:
+__do_24813_continue:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   bnot R0
-  jt R0, __do_24404_start
-__do_24404_end:
+  jt R0, __do_24813_start
+__do_24813_end:
 __function_P_SetPsprite_return:
   mov SP, BP
   pop BP
@@ -24811,19 +25320,19 @@ __function_P_BringUpWeapon:
   push BP
   mov BP, SP
   isub SP, 4
-__if_24497_start:
+__if_24906_start:
   mov R1, [BP+2]
   iadd R1, 18
   mov R0, [R1]
   ieq R0, 9
-  jf R0, __if_24497_end
+  jf R0, __if_24906_end
   mov R1, [BP+2]
   iadd R1, 17
   mov R0, [R1]
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-__if_24497_end:
+__if_24906_end:
   mov R0, global_weaponinfo
   mov R2, [BP+2]
   iadd R2, 18
@@ -24872,10 +25381,10 @@ __function_P_CheckAmmo:
   mov [BP-1], R0
   mov R0, 1
   mov [BP-2], R0
-__if_24550_start:
+__if_24959_start:
   mov R0, [BP-1]
   ieq R0, 5
-  jt R0, __LogicalOr_ShortCircuit_24558
+  jt R0, __LogicalOr_ShortCircuit_24967
   mov R1, [BP+2]
   iadd R1, 27
   mov R2, [BP-1]
@@ -24884,58 +25393,58 @@ __if_24550_start:
   mov R2, [BP-2]
   ige R1, R2
   or R0, R1
-__LogicalOr_ShortCircuit_24558:
-  jf R0, __if_24550_end
+__LogicalOr_ShortCircuit_24967:
+  jf R0, __if_24959_end
   mov R0, 1
   jmp __function_P_CheckAmmo_return
-__if_24550_end:
-__do_24563_start:
-__if_24565_start:
+__if_24959_end:
+__do_24972_start:
+__if_24974_start:
   mov R0, [BP+2]
   iadd R0, 19
   iadd R0, 2
   mov R0, [R0]
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_24570
+  jf R0, __LogicalAnd_ShortCircuit_24979
   mov R1, [BP+2]
   iadd R1, 27
   iadd R1, 1
   mov R1, [R1]
   cib R1
   and R0, R1
-__LogicalAnd_ShortCircuit_24570:
-  jf R0, __if_24565_else
+__LogicalAnd_ShortCircuit_24979:
+  jf R0, __if_24974_else
   mov R0, 2
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-  jmp __if_24565_end
-__if_24565_else:
-__if_24579_start:
+  jmp __if_24974_end
+__if_24974_else:
+__if_24988_start:
   mov R0, [BP+2]
   iadd R0, 27
   mov R0, [R0]
   cib R0
-  jf R0, __if_24579_else
+  jf R0, __if_24988_else
   mov R0, 1
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-  jmp __if_24579_end
-__if_24579_else:
+  jmp __if_24988_end
+__if_24988_else:
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-__if_24579_end:
-__if_24565_end:
-__do_24563_continue:
+__if_24988_end:
+__if_24974_end:
+__do_24972_continue:
   mov R1, [BP+2]
   iadd R1, 18
   mov R0, [R1]
   ieq R0, 9
-  jt R0, __do_24563_start
-__do_24563_end:
+  jt R0, __do_24972_start
+__do_24972_end:
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, 0
@@ -24964,16 +25473,16 @@ __function_P_FireWeapon:
   push BP
   mov BP, SP
   isub SP, 4
-__if_24611_start:
+__if_25020_start:
   mov R2, [BP+2]
   mov [SP], R2
   call __function_P_CheckAmmo
   mov R1, R0
   bnot R1
   mov R0, R1
-  jf R0, __if_24611_end
+  jf R0, __if_25020_end
   jmp __function_P_FireWeapon_return
-__if_24611_end:
+__if_25020_end:
   mov R2, [BP+2]
   mov R1, [R2]
   mov [SP], R1
@@ -25039,41 +25548,41 @@ __function_A_WeaponReady:
   mov [BP-1], R0
   mov R0, [BP+3]
   mov [BP-2], R0
-__if_24663_start:
+__if_25072_start:
   mov R2, [BP-1]
   mov R1, [R2]
   iadd R1, 25
   mov R0, [R1]
   ieq R0, 154
-  jt R0, __LogicalOr_ShortCircuit_24672
+  jt R0, __LogicalOr_ShortCircuit_25081
   mov R3, [BP-1]
   mov R2, [R3]
   iadd R2, 25
   mov R1, [R2]
   ieq R1, 155
   or R0, R1
-__LogicalOr_ShortCircuit_24672:
-  jf R0, __if_24663_end
+__LogicalOr_ShortCircuit_25081:
+  jf R0, __if_25072_end
   mov R2, [BP-1]
   mov R1, [R2]
   mov [SP], R1
   mov R1, 149
   mov [SP+1], R1
   call __function_P_SetMobjState
-__if_24663_end:
-__if_24679_start:
+__if_25072_end:
+__if_25088_start:
   mov R1, [BP-1]
   iadd R1, 18
   mov R0, [R1]
   ine R0, 9
-  jt R0, __LogicalOr_ShortCircuit_24687
+  jt R0, __LogicalOr_ShortCircuit_25096
   mov R2, [BP-1]
   iadd R2, 7
   mov R1, [R2]
   bnot R1
   or R0, R1
-__LogicalOr_ShortCircuit_24687:
-  jf R0, __if_24679_end
+__LogicalOr_ShortCircuit_25096:
+  jf R0, __if_25088_end
   mov R0, global_weaponinfo
   mov R2, [BP-1]
   iadd R2, 17
@@ -25091,12 +25600,12 @@ __LogicalOr_ShortCircuit_24687:
   mov [SP+2], R1
   call __function_P_SetPsprite
   jmp __function_A_WeaponReady_return
-__if_24679_end:
-__if_24702_start:
+__if_25088_end:
+__if_25111_start:
   mov R1, [BP-1]
   iadd R1, 56
   mov R0, [R1]
-  jf R0, __if_24702_else
+  jf R0, __if_25111_else
   mov R0, 1
   mov R1, [BP-1]
   iadd R1, 35
@@ -25105,13 +25614,13 @@ __if_24702_start:
   mov [SP], R1
   call __function_P_FireWeapon
   jmp __function_A_WeaponReady_return
-  jmp __if_24702_end
-__if_24702_else:
+  jmp __if_25111_end
+__if_25111_else:
   mov R0, 0
   mov R1, [BP-1]
   iadd R1, 35
   mov [R1], R0
-__if_24702_end:
+__if_25111_end:
   mov R0, [global_leveltime]
   imul R0, 128
   and R0, 8191
@@ -25162,25 +25671,25 @@ __function_A_ReFire:
   isub SP, 2
   mov R0, [BP+2]
   mov [BP-1], R0
-__if_24764_start:
+__if_25173_start:
   mov R1, [BP-1]
   iadd R1, 56
   mov R0, [R1]
-  jf R0, __LogicalAnd_ShortCircuit_24767
+  jf R0, __LogicalAnd_ShortCircuit_25176
   mov R2, [BP-1]
   iadd R2, 18
   mov R1, [R2]
   ieq R1, 9
   and R0, R1
-__LogicalAnd_ShortCircuit_24767:
-  jf R0, __LogicalAnd_ShortCircuit_24774
+__LogicalAnd_ShortCircuit_25176:
+  jf R0, __LogicalAnd_ShortCircuit_25183
   mov R2, [BP-1]
   iadd R2, 7
   mov R1, [R2]
   cib R1
   and R0, R1
-__LogicalAnd_ShortCircuit_24774:
-  jf R0, __if_24764_else
+__LogicalAnd_ShortCircuit_25183:
+  jf R0, __if_25173_else
   mov R2, [BP-1]
   iadd R2, 36
   mov R0, [R2]
@@ -25190,8 +25699,8 @@ __LogicalAnd_ShortCircuit_24774:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_FireWeapon
-  jmp __if_24764_end
-__if_24764_else:
+  jmp __if_25173_end
+__if_25173_else:
   mov R0, 0
   mov R1, [BP-1]
   iadd R1, 36
@@ -25199,7 +25708,7 @@ __if_24764_else:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_P_CheckAmmo
-__if_24764_end:
+__if_25173_end:
 __function_A_ReFire_return:
   mov SP, BP
   pop BP
@@ -25220,32 +25729,32 @@ __function_A_Lower:
   mov R1, [BP-2]
   iadd R1, 3
   mov [R1], R0
-__if_24806_start:
+__if_25215_start:
   mov R1, [BP-2]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 8388608
-  jf R0, __if_24806_end
+  jf R0, __if_25215_end
   jmp __function_A_Lower_return
-__if_24806_end:
-__if_24815_start:
+__if_25215_end:
+__if_25224_start:
   mov R1, [BP-1]
   iadd R1, 1
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_24815_end
+  jf R0, __if_25224_end
   mov R0, 8388608
   mov R1, [BP-2]
   iadd R1, 3
   mov [R1], R0
   jmp __function_A_Lower_return
-__if_24815_end:
-__if_24829_start:
+__if_25224_end:
+__if_25238_start:
   mov R1, [BP-1]
   iadd R1, 7
   mov R0, [R1]
   bnot R0
-  jf R0, __if_24829_end
+  jf R0, __if_25238_end
   mov R1, [BP-1]
   mov [SP], R1
   mov R1, 0
@@ -25254,7 +25763,7 @@ __if_24829_start:
   mov [SP+2], R1
   call __function_P_SetPsprite
   jmp __function_A_Lower_return
-__if_24829_end:
+__if_25238_end:
   mov R1, [BP-1]
   iadd R1, 18
   mov R0, [R1]
@@ -25284,14 +25793,14 @@ __function_A_Raise:
   mov R1, [BP-2]
   iadd R1, 3
   mov [R1], R0
-__if_24866_start:
+__if_25275_start:
   mov R1, [BP-2]
   iadd R1, 3
   mov R0, [R1]
   igt R0, 2097152
-  jf R0, __if_24866_end
+  jf R0, __if_25275_end
   jmp __function_A_Raise_return
-__if_24866_end:
+__if_25275_end:
   mov R0, 2097152
   mov R1, [BP-2]
   iadd R1, 3
@@ -25361,17 +25870,17 @@ __function_A_Punch:
   shl R1, 1
   mov [BP-3], R1
   mov R0, R1
-__if_24937_start:
+__if_25346_start:
   mov R0, [BP-1]
   iadd R0, 10
   iadd R0, 1
   mov R0, [R0]
   cib R0
-  jf R0, __if_24937_end
+  jf R0, __if_25346_end
   mov R0, [BP-3]
   imul R0, 10
   mov [BP-3], R0
-__if_24937_end:
+__if_25346_end:
   mov R2, [BP-1]
   mov R1, [R2]
   iadd R1, 11
@@ -25410,10 +25919,16 @@ __if_24937_end:
   mov R1, [BP-3]
   mov [SP+4], R1
   call __function_P_LineAttack
-__if_24978_start:
+__if_25387_start:
   mov R0, [global_linetarget]
   ine R0, -1
-  jf R0, __if_24978_end
+  jf R0, __if_25387_end
+  mov R2, [BP-1]
+  mov R1, [R2]
+  mov [SP], R1
+  mov R1, 83
+  mov [SP+1], R1
+  call __function_S_StartSound
   mov R4, [BP-1]
   mov R3, [R4]
   iadd R3, 4
@@ -25439,7 +25954,7 @@ __if_24978_start:
   iadd R2, 11
   mov [R2], R1
   mov R0, R1
-__if_24978_end:
+__if_25387_end:
 __function_A_Punch_return:
   mov SP, BP
   pop BP
@@ -25463,11 +25978,11 @@ __function_P_BulletSlope:
   mov R1, R0
   mov [global_bulletslope], R1
   mov R0, R1
-__if_25017_start:
+__if_25430_start:
   mov R0, [global_linetarget]
   ine R0, -1
   bnot R0
-  jf R0, __if_25017_end
+  jf R0, __if_25430_end
   mov R0, [BP-1]
   iadd R0, 67108864
   mov [BP-1], R0
@@ -25481,11 +25996,11 @@ __if_25017_start:
   mov R1, R0
   mov [global_bulletslope], R1
   mov R0, R1
-__if_25036_start:
+__if_25449_start:
   mov R0, [global_linetarget]
   ine R0, -1
   bnot R0
-  jf R0, __if_25036_end
+  jf R0, __if_25449_end
   mov R0, [BP-1]
   isub R0, 134217728
   mov [BP-1], R0
@@ -25499,8 +26014,8 @@ __if_25036_start:
   mov R1, R0
   mov [global_bulletslope], R1
   mov R0, R1
-__if_25036_end:
-__if_25017_end:
+__if_25449_end:
+__if_25430_end:
 __function_P_BulletSlope_return:
   mov SP, BP
   pop BP
@@ -25521,10 +26036,10 @@ __function_P_GunShot:
   iadd R1, 11
   mov R0, [R1]
   mov [BP-1], R0
-__if_25076_start:
+__if_25489_start:
   mov R0, [BP+3]
   bnot R0
-  jf R0, __if_25076_end
+  jf R0, __if_25489_end
   mov R1, [BP-1]
   call __function_P_Random
   mov R2, R0
@@ -25535,7 +26050,7 @@ __if_25076_start:
   iadd R1, R2
   mov [BP-1], R1
   mov R0, R1
-__if_25076_end:
+__if_25489_end:
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [BP-1]
@@ -25625,6 +26140,12 @@ __function_A_FireShotgun:
   mov R2, [BP-1]
   mov R1, [R2]
   mov [SP], R1
+  mov R1, 2
+  mov [SP+1], R1
+  call __function_S_StartSound
+  mov R2, [BP-1]
+  mov R1, [R2]
+  mov [SP], R1
   mov R1, 155
   mov [SP+1], R1
   call __function_P_SetMobjState
@@ -25662,23 +26183,23 @@ __function_A_FireShotgun:
   call __function_P_BulletSlope
   mov R0, 0
   mov [BP-2], R0
-__for_25176_start:
+__for_25593_start:
   mov R0, [BP-2]
   ilt R0, 7
-  jf R0, __for_25176_end
+  jf R0, __for_25593_end
   mov R2, [BP-1]
   mov R1, [R2]
   mov [SP], R1
   mov R1, 0
   mov [SP+1], R1
   call __function_P_GunShot
-__for_25176_continue:
+__for_25593_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_25176_start
-__for_25176_end:
+  jmp __for_25593_start
+__for_25593_end:
 __function_A_FireShotgun_return:
   mov SP, BP
   pop BP
@@ -25726,10 +26247,10 @@ __function_P_SetupPsprites:
   isub SP, 2
   mov R0, 0
   mov [BP-1], R0
-__for_25220_start:
+__for_25637_start:
   mov R0, [BP-1]
   ilt R0, 2
-  jf R0, __for_25220_end
+  jf R0, __for_25637_end
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 44
@@ -25737,13 +26258,13 @@ __for_25220_start:
   imul R2, 4
   iadd R1, R2
   mov [R1], R0
-__for_25220_continue:
+__for_25637_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_25220_start
-__for_25220_end:
+  jmp __for_25637_start
+__for_25637_end:
   mov R1, [BP+2]
   iadd R1, 17
   mov R0, [R1]
@@ -25764,39 +26285,39 @@ __function_P_MovePsprites:
   isub SP, 5
   mov R0, 0
   mov [BP-1], R0
-__for_25249_start:
+__for_25666_start:
   mov R0, [BP-1]
   ilt R0, 2
-  jf R0, __for_25249_end
+  jf R0, __for_25666_end
   mov R0, [BP+2]
   iadd R0, 44
   mov R1, [BP-1]
   imul R1, 4
   iadd R0, R1
   mov [BP-2], R0
-__if_25266_start:
+__if_25683_start:
   mov R1, [BP-2]
   mov R0, [R1]
   cib R0
-  jf R0, __if_25266_end
-__if_25270_start:
+  jf R0, __if_25683_end
+__if_25687_start:
   mov R1, [BP-2]
   iadd R1, 1
   mov R0, [R1]
   ine R0, -1
-  jf R0, __if_25270_end
+  jf R0, __if_25687_end
   mov R2, [BP-2]
   iadd R2, 1
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_25280_start:
+__if_25697_start:
   mov R1, [BP-2]
   iadd R1, 1
   mov R0, [R1]
   bnot R0
-  jf R0, __if_25280_end
+  jf R0, __if_25697_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R1, [BP-1]
@@ -25810,16 +26331,16 @@ __if_25280_start:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_P_SetPsprite
-__if_25280_end:
-__if_25270_end:
-__if_25266_end:
-__for_25249_continue:
+__if_25697_end:
+__if_25687_end:
+__if_25683_end:
+__for_25666_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_25249_start
-__for_25249_end:
+  jmp __for_25666_start
+__for_25666_end:
   mov R1, [BP+2]
   iadd R1, 44
   iadd R1, 2
@@ -25849,10 +26370,10 @@ __function_P_InitActions:
   isub SP, 1
   mov R0, 0
   mov [BP-1], R0
-__for_25318_start:
+__for_25735_start:
   mov R0, [BP-1]
   ilt R0, 75
-  jf R0, __for_25318_end
+  jf R0, __for_25735_end
   mov R0, -1
   mov R1, global_mobj_actions
   mov R2, [BP-1]
@@ -25863,13 +26384,13 @@ __for_25318_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_25318_continue:
+__for_25735_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_25318_start
-__for_25318_end:
+  jmp __for_25735_start
+__for_25735_end:
   mov R0, __function_A_Look
   mov [1608516], R0
   mov R0, __function_A_Chase
@@ -26009,23 +26530,23 @@ __function_P_CalcHeight:
   mov R1, [BP+2]
   iadd R1, 5
   mov [R1], R0
-__if_25525_start:
+__if_25942_start:
   mov R1, [BP+2]
   iadd R1, 5
   mov R0, [R1]
   igt R0, 1048576
-  jf R0, __if_25525_end
+  jf R0, __if_25942_end
   mov R0, 1048576
   mov R1, [BP+2]
   iadd R1, 5
   mov [R1], R0
-__if_25525_end:
-__if_25534_start:
+__if_25942_end:
+__if_25951_start:
   mov R1, [BP+2]
   iadd R1, 6
   mov R0, [R1]
   bnot R0
-  jf R0, __if_25534_end
+  jf R0, __if_25951_end
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 6
@@ -26034,7 +26555,7 @@ __if_25534_start:
   mov R1, [BP+2]
   iadd R1, 2
   mov [R1], R0
-__if_25550_start:
+__if_25967_start:
   mov R1, [BP+2]
   iadd R1, 2
   mov R0, [R1]
@@ -26044,7 +26565,7 @@ __if_25550_start:
   mov R1, [R2]
   isub R1, 262144
   igt R0, R1
-  jf R0, __if_25550_end
+  jf R0, __if_25967_end
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 16
@@ -26053,9 +26574,9 @@ __if_25550_start:
   mov R1, [BP+2]
   iadd R1, 2
   mov [R1], R0
-__if_25550_end:
+__if_25967_end:
   jmp __function_P_CalcHeight_return
-__if_25534_end:
+__if_25951_end:
   mov R0, [global_leveltime]
   imul R0, 409
   and R0, 8191
@@ -26091,12 +26612,12 @@ __if_25534_end:
   mov R1, [BP+2]
   iadd R1, 3
   mov [R1], R0
-__if_25618_start:
+__if_26035_start:
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   igt R0, 2686976
-  jf R0, __if_25618_end
+  jf R0, __if_26035_end
   mov R0, 2686976
   mov R1, [BP+2]
   iadd R1, 3
@@ -26105,35 +26626,35 @@ __if_25618_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov [R1], R0
-__if_25618_end:
-__if_25638_start:
+__if_26035_end:
+__if_26055_start:
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 1343488
-  jf R0, __if_25638_end
+  jf R0, __if_26055_end
   mov R0, 1343488
   mov R1, [BP+2]
   iadd R1, 3
   mov [R1], R0
-__if_25658_start:
+__if_26075_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
   ile R0, 0
-  jf R0, __if_25658_end
+  jf R0, __if_26075_end
   mov R0, 1
   mov R1, [BP+2]
   iadd R1, 4
   mov [R1], R0
-__if_25658_end:
-__if_25638_end:
-__if_25667_start:
+__if_26075_end:
+__if_26055_end:
+__if_26084_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
   cib R0
-  jf R0, __if_25667_end
+  jf R0, __if_26084_end
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
@@ -26141,18 +26662,18 @@ __if_25667_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov [R1], R0
-__if_25677_start:
+__if_26094_start:
   mov R1, [BP+2]
   iadd R1, 4
   mov R0, [R1]
   bnot R0
-  jf R0, __if_25677_end
+  jf R0, __if_26094_end
   mov R0, 1
   mov R1, [BP+2]
   iadd R1, 4
   mov [R1], R0
-__if_25677_end:
-__if_25667_end:
+__if_26094_end:
+__if_26084_end:
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 6
@@ -26166,7 +26687,7 @@ __if_25667_end:
   mov R1, [BP+2]
   iadd R1, 2
   mov [R1], R0
-__if_25696_start:
+__if_26113_start:
   mov R1, [BP+2]
   iadd R1, 2
   mov R0, [R1]
@@ -26176,7 +26697,7 @@ __if_25696_start:
   mov R1, [R2]
   isub R1, 262144
   igt R0, R1
-  jf R0, __if_25696_end
+  jf R0, __if_26113_end
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 16
@@ -26185,7 +26706,7 @@ __if_25696_start:
   mov R1, [BP+2]
   iadd R1, 2
   mov [R1], R0
-__if_25696_end:
+__if_26113_end:
 __function_P_CalcHeight_return:
   mov SP, BP
   pop BP
@@ -26220,18 +26741,18 @@ __function_P_MovePlayer:
   mov R1, [BP+2]
   iadd R1, 6
   mov [R1], R0
-__if_25737_start:
+__if_26154_start:
   mov R1, [BP+2]
   iadd R1, 52
   mov R0, [R1]
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_25740
+  jf R0, __LogicalAnd_ShortCircuit_26157
   mov R2, [BP+2]
   iadd R2, 6
   mov R1, [R2]
   and R0, R1
-__LogicalAnd_ShortCircuit_25740:
-  jf R0, __if_25737_end
+__LogicalAnd_ShortCircuit_26157:
+  jf R0, __if_26154_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R3, [BP+2]
@@ -26245,19 +26766,19 @@ __LogicalAnd_ShortCircuit_25740:
   imul R1, 2048
   mov [SP+2], R1
   call __function_P_Thrust
-__if_25737_end:
-__if_25752_start:
+__if_26154_end:
+__if_26169_start:
   mov R1, [BP+2]
   iadd R1, 53
   mov R0, [R1]
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_25755
+  jf R0, __LogicalAnd_ShortCircuit_26172
   mov R2, [BP+2]
   iadd R2, 6
   mov R1, [R2]
   and R0, R1
-__LogicalAnd_ShortCircuit_25755:
-  jf R0, __if_25752_end
+__LogicalAnd_ShortCircuit_26172:
+  jf R0, __if_26169_end
   mov R1, [BP+2]
   mov [SP], R1
   mov R3, [BP+2]
@@ -26272,7 +26793,7 @@ __LogicalAnd_ShortCircuit_25755:
   imul R1, 2048
   mov [SP+2], R1
   call __function_P_Thrust
-__if_25752_end:
+__if_26169_end:
 __function_P_MovePlayer_return:
   mov SP, BP
   pop BP
@@ -26285,12 +26806,12 @@ __function_P_DeathThink:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_MovePsprites
-__if_25777_start:
+__if_26194_start:
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   igt R0, 393216
-  jf R0, __if_25777_end
+  jf R0, __if_26194_end
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
@@ -26298,18 +26819,18 @@ __if_25777_start:
   mov R1, [BP+2]
   iadd R1, 3
   mov [R1], R0
-__if_25777_end:
-__if_25788_start:
+__if_26194_end:
+__if_26205_start:
   mov R1, [BP+2]
   iadd R1, 3
   mov R0, [R1]
   ilt R0, 393216
-  jf R0, __if_25788_end
+  jf R0, __if_26205_end
   mov R0, 393216
   mov R1, [BP+2]
   iadd R1, 3
   mov [R1], R0
-__if_25788_end:
+__if_26205_end:
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 4
@@ -26329,12 +26850,12 @@ __if_25788_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_CalcHeight
-__if_25817_start:
+__if_26234_start:
   mov R1, [BP+2]
   iadd R1, 39
   mov R0, [R1]
   ine R0, -1
-  jf R0, __LogicalAnd_ShortCircuit_25820
+  jf R0, __LogicalAnd_ShortCircuit_26237
   mov R2, [BP+2]
   iadd R2, 39
   mov R1, [R2]
@@ -26342,8 +26863,8 @@ __if_25817_start:
   mov R2, [R3]
   ine R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_25820:
-  jf R0, __if_25817_else
+__LogicalAnd_ShortCircuit_26237:
+  jf R0, __if_26234_else
   mov R4, [BP+2]
   mov R3, [R4]
   iadd R3, 4
@@ -26377,41 +26898,41 @@ __LogicalAnd_ShortCircuit_25820:
   mov R1, [R2]
   isub R0, R1
   mov [BP-2], R0
-__if_25849_start:
+__if_26266_start:
   mov R0, [BP-2]
   xor R0, 0x80000000
   ilt R0, -2087831325
-  jt R0, __LogicalOr_ShortCircuit_25865
+  jt R0, __LogicalOr_ShortCircuit_26282
   mov R1, [BP-2]
   xor R1, 0x80000000
   igt R1, 2087831325
   or R0, R1
-__LogicalOr_ShortCircuit_25865:
-  jf R0, __if_25849_else
+__LogicalOr_ShortCircuit_26282:
+  jf R0, __if_26266_else
   mov R0, [BP-1]
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 11
   mov [R1], R0
-__if_25888_start:
+__if_26305_start:
   mov R1, [BP+2]
   iadd R1, 37
   mov R0, [R1]
   cib R0
-  jf R0, __if_25888_end
+  jf R0, __if_26305_end
   mov R2, [BP+2]
   iadd R2, 37
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_25888_end:
-  jmp __if_25849_end
-__if_25849_else:
-__if_25894_start:
+__if_26305_end:
+  jmp __if_26266_end
+__if_26266_else:
+__if_26311_start:
   mov R0, [BP-2]
   ige R0, 0
-  jf R0, __if_25894_else
+  jf R0, __if_26311_else
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 11
@@ -26421,8 +26942,8 @@ __if_25894_start:
   mov R1, [R2]
   iadd R1, 11
   mov [R1], R0
-  jmp __if_25894_end
-__if_25894_else:
+  jmp __if_26311_end
+__if_26311_else:
   mov R2, [BP+2]
   mov R1, [R2]
   iadd R1, 11
@@ -26432,34 +26953,34 @@ __if_25894_else:
   mov R1, [R2]
   iadd R1, 11
   mov [R1], R0
-__if_25894_end:
-__if_25849_end:
-  jmp __if_25817_end
-__if_25817_else:
-__if_25914_start:
+__if_26311_end:
+__if_26266_end:
+  jmp __if_26234_end
+__if_26234_else:
+__if_26331_start:
   mov R1, [BP+2]
   iadd R1, 37
   mov R0, [R1]
   cib R0
-  jf R0, __if_25914_end
+  jf R0, __if_26331_end
   mov R2, [BP+2]
   iadd R2, 37
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_25914_end:
-__if_25817_end:
-__if_25920_start:
+__if_26331_end:
+__if_26234_end:
+__if_26337_start:
   mov R1, [BP+2]
   iadd R1, 55
   mov R0, [R1]
-  jf R0, __if_25920_end
+  jf R0, __if_26337_end
   mov R0, 2
   mov R1, [BP+2]
   iadd R1, 1
   mov [R1], R0
-__if_25920_end:
+__if_26337_end:
 __function_P_DeathThink_return:
   mov SP, BP
   pop BP
@@ -26469,24 +26990,24 @@ __function_P_PlayerThink:
   push BP
   mov BP, SP
   isub SP, 2
-__if_25929_start:
+__if_26346_start:
   mov R1, [BP+2]
   iadd R1, 1
   mov R0, [R1]
   ieq R0, 1
-  jf R0, __if_25929_end
+  jf R0, __if_26346_end
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_DeathThink
   jmp __function_P_PlayerThink_return
-__if_25929_end:
+__if_26346_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_MovePlayer
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_CalcHeight
-__if_25942_start:
+__if_26359_start:
   mov R4, [BP+2]
   mov R3, [R4]
   iadd R3, 14
@@ -26495,54 +27016,54 @@ __if_25942_start:
   iadd R1, 5
   mov R0, [R1]
   cib R0
-  jf R0, __if_25942_end
+  jf R0, __if_26359_end
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_PlayerInSpecialSector
-__if_25942_end:
-__if_25950_start:
+__if_26359_end:
+__if_26367_start:
   mov R1, [BP+2]
   iadd R1, 57
   mov R0, [R1]
   ine R0, 9
-  jf R0, __if_25950_end
+  jf R0, __if_26367_end
   mov R1, [BP+2]
   iadd R1, 57
   mov R0, [R1]
   mov [BP-1], R0
-__if_25960_start:
+__if_26377_start:
   mov R0, [BP+2]
   iadd R0, 19
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_25965
+  jf R0, __LogicalAnd_ShortCircuit_26382
   mov R1, [BP-1]
   mov R3, [BP+2]
   iadd R3, 17
   mov R2, [R3]
   ine R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_25965:
-  jf R0, __if_25960_end
+__LogicalAnd_ShortCircuit_26382:
+  jf R0, __if_26377_end
   mov R0, [BP-1]
   mov R1, [BP+2]
   iadd R1, 18
   mov [R1], R0
-__if_25960_end:
-__if_25950_end:
-__if_25974_start:
+__if_26377_end:
+__if_26367_end:
+__if_26391_start:
   mov R1, [BP+2]
   iadd R1, 55
   mov R0, [R1]
-  jf R0, __if_25974_else
-__if_25978_start:
+  jf R0, __if_26391_else
+__if_26395_start:
   mov R1, [BP+2]
   iadd R1, 58
   mov R0, [R1]
   bnot R0
-  jf R0, __if_25978_end
+  jf R0, __if_26395_end
   mov R0, 1
   mov R1, [BP+2]
   iadd R1, 58
@@ -26550,24 +27071,24 @@ __if_25978_start:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_UseLines
-__if_25978_end:
-  jmp __if_25974_end
-__if_25974_else:
+__if_26395_end:
+  jmp __if_26391_end
+__if_26391_else:
   mov R0, 0
   mov R1, [BP+2]
   iadd R1, 58
   mov [R1], R0
-__if_25974_end:
+__if_26391_end:
   mov R1, [BP+2]
   mov [SP], R1
   call __function_P_MovePsprites
-__if_25995_start:
+__if_26412_start:
   mov R0, [BP+2]
   iadd R0, 10
   iadd R0, 1
   mov R0, [R0]
   cib R0
-  jf R0, __if_25995_end
+  jf R0, __if_26412_end
   mov R2, [BP+2]
   iadd R2, 10
   iadd R2, 1
@@ -26575,27 +27096,27 @@ __if_25995_start:
   mov R1, R0
   iadd R1, 1
   mov [R2], R1
-__if_25995_end:
-__if_26005_start:
+__if_26412_end:
+__if_26422_start:
   mov R0, [BP+2]
   iadd R0, 10
   mov R0, [R0]
   cib R0
-  jf R0, __if_26005_end
+  jf R0, __if_26422_end
   mov R2, [BP+2]
   iadd R2, 10
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_26005_end:
-__if_26015_start:
+__if_26422_end:
+__if_26432_start:
   mov R0, [BP+2]
   iadd R0, 10
   iadd R0, 5
   mov R0, [R0]
   cib R0
-  jf R0, __if_26015_end
+  jf R0, __if_26432_end
   mov R2, [BP+2]
   iadd R2, 10
   iadd R2, 5
@@ -26603,14 +27124,14 @@ __if_26015_start:
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_26015_end:
-__if_26025_start:
+__if_26432_end:
+__if_26442_start:
   mov R0, [BP+2]
   iadd R0, 10
   iadd R0, 3
   mov R0, [R0]
   cib R0
-  jf R0, __if_26025_end
+  jf R0, __if_26442_end
   mov R2, [BP+2]
   iadd R2, 10
   iadd R2, 3
@@ -26618,34 +27139,44 @@ __if_26025_start:
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_26025_end:
-__if_26035_start:
+__if_26442_end:
+__if_26452_start:
   mov R1, [BP+2]
   iadd R1, 37
   mov R0, [R1]
   cib R0
-  jf R0, __if_26035_end
+  jf R0, __if_26452_end
   mov R2, [BP+2]
   iadd R2, 37
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_26035_end:
-__if_26041_start:
+__if_26452_end:
+__if_26458_start:
   mov R1, [BP+2]
   iadd R1, 38
   mov R0, [R1]
   cib R0
-  jf R0, __if_26041_end
+  jf R0, __if_26458_end
   mov R2, [BP+2]
   iadd R2, 38
   mov R0, [R2]
   mov R1, R0
   isub R1, 1
   mov [R2], R1
-__if_26041_end:
+__if_26458_end:
 __function_P_PlayerThink_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_select_sound:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SelectedSound, R0
+__function_select_sound_return:
   mov SP, BP
   pop BP
   ret
@@ -26656,6 +27187,16 @@ __function_select_channel:
   mov R0, [BP+2]
   out SPU_SelectedChannel, R0
 __function_select_channel_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_set_sound_loop:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SoundPlayWithLoop, R0
+__function_set_sound_loop_return:
   mov SP, BP
   pop BP
   ret
@@ -26680,12 +27221,67 @@ __function_set_channel_speed_return:
   pop BP
   ret
 
+__function_set_channel_position:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_ChannelPosition, R0
+__function_set_channel_position_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_assign_channel_sound:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SelectedChannel, R0
+  mov R0, [BP+3]
+  out SPU_ChannelAssignedSound, R0
+__function_assign_channel_sound_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_get_channel_state:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SelectedChannel, R0
+  in R0, SPU_ChannelState
+__function_get_channel_state_return:
+  mov SP, BP
+  pop BP
+  ret
+
 __function_set_global_volume:
   push BP
   mov BP, SP
   mov R0, [BP+2]
   out SPU_GlobalVolume, R0
 __function_set_global_volume_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_play_channel:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SelectedChannel, R0
+  out SPU_Command, SPUCommand_PlaySelectedChannel
+__function_play_channel_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_stop_channel:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SelectedChannel, R0
+  out SPU_Command, SPUCommand_StopSelectedChannel
+__function_stop_channel_return:
   mov SP, BP
   pop BP
   ret
@@ -26699,91 +27295,33 @@ __function_stop_all_channels_return:
   pop BP
   ret
 
-__function_play_sound:
-  push BP
-  mov BP, SP
-  push R1
-  mov R0, 0
-__play_sound_begin_loop:
-  out SPU_SelectedChannel, R0
-  in R1, SPU_ChannelState
-  ieq R1, 0x40
-  jt R1, __play_sound_channel_found
-  iadd R0, 1
-  mov R1, R0
-  ige R1, 16
-  jf R1, __play_sound_begin_loop
-  mov R0, -1
-  jmp __play_sound_exit
-__play_sound_channel_found:
-  mov R1, [BP+2]
-  out SPU_ChannelAssignedSound, R1
-  out SPU_Command, SPUCommand_PlaySelectedChannel
-__play_sound_exit:
-  pop R1
-__function_play_sound_return:
-  mov SP, BP
-  pop BP
-  ret
-
 __function_S_Init:
   push BP
   mov BP, SP
-  isub SP, 1
+  isub SP, 2
   mov R1, 1.000000
   mov [SP], R1
   call __function_set_global_volume
   call __function_stop_all_channels
-__function_S_Init_return:
-  mov SP, BP
-  pop BP
-  ret
-
-__function_S_StartSound:
-  push BP
-  mov BP, SP
-  isub SP, 3
-__if_26146_start:
-  mov R0, [BP+3]
-  ile R0, 0
-  jt R0, __LogicalOr_ShortCircuit_26151
-  mov R1, [BP+3]
-  ige R1, 109
-  or R0, R1
-__LogicalOr_ShortCircuit_26151:
-  jf R0, __if_26146_end
-  jmp __function_S_StartSound_return
-__if_26146_end:
-  mov R0, __embedded_gen_sfx_sound
-  mov R1, [BP+3]
-  iadd R0, R1
-  mov R0, [R0]
+  mov R0, 0
   mov [BP-1], R0
-__if_26160_start:
+__for_26577_start:
   mov R0, [BP-1]
-  ilt R0, 0
-  jf R0, __if_26160_end
-  jmp __function_S_StartSound_return
-__if_26160_end:
-  mov R1, [BP-1]
-  mov [SP], R1
-  call __function_play_sound
-  mov [BP-2], R0
-__if_26169_start:
-  mov R0, [BP-2]
-  ige R0, 0
-  jf R0, __if_26169_end
-  mov R1, [BP-2]
-  mov [SP], R1
-  call __function_select_channel
-  mov R1, 1.000000
-  mov [SP], R1
-  call __function_set_channel_volume
-  mov R1, 1.000000
-  mov [SP], R1
-  call __function_set_channel_speed
-__if_26169_end:
-__function_S_StartSound_return:
+  ilt R0, 15
+  jf R0, __for_26577_end
+  mov R0, -1
+  mov R1, global_ch_prio
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__for_26577_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_26577_start
+__for_26577_end:
+__function_S_Init_return:
   mov SP, BP
   pop BP
   ret
@@ -26791,8 +27329,618 @@ __function_S_StartSound_return:
 __function_S_StopAllSounds:
   push BP
   mov BP, SP
+  isub SP, 1
   call __function_stop_all_channels
+  mov R0, 0
+  mov [BP-1], R0
+__for_26596_start:
+  mov R0, [BP-1]
+  ilt R0, 15
+  jf R0, __for_26596_end
+  mov R0, -1
+  mov R1, global_ch_prio
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__for_26596_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_26596_start
+__for_26596_end:
 __function_S_StopAllSounds_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_StartMusic:
+  push BP
+  mov BP, SP
+  isub SP, 2
+__if_26612_start:
+  mov R0, 0
+  jf R0, __if_26612_end
+  jmp __function_S_StartMusic_return
+__if_26612_end:
+  mov R1, 55
+  mov [SP], R1
+  call __function_select_sound
+  mov R1, 1
+  mov [SP], R1
+  call __function_set_sound_loop
+  mov R1, 15
+  mov [SP], R1
+  mov R1, 55
+  mov [SP+1], R1
+  call __function_assign_channel_sound
+  mov R1, 0
+  mov [SP], R1
+  call __function_set_channel_position
+  mov R1, 0.450000
+  mov [SP], R1
+  call __function_set_channel_volume
+  mov R1, 1.000000
+  mov [SP], R1
+  call __function_set_channel_speed
+  mov R1, 15
+  mov [SP], R1
+  call __function_play_channel
+__function_S_StartMusic_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_DistVol:
+  push BP
+  mov BP, SP
+  isub SP, 5
+  push R1
+  push R2
+  mov R0, [global_player1]
+  mov [BP-1], R0
+  mov R1, [BP-1]
+  iadd R1, 4
+  mov R0, [R1]
+  mov R1, [BP+2]
+  isub R0, R1
+  mov [BP-2], R0
+__if_26653_start:
+  mov R0, [BP-2]
+  ilt R0, 0
+  jf R0, __if_26653_end
+  mov R0, [BP-2]
+  isgn R0
+  mov [BP-2], R0
+__if_26653_end:
+  mov R1, [BP-1]
+  iadd R1, 5
+  mov R0, [R1]
+  mov R1, [BP+3]
+  isub R0, R1
+  mov [BP-3], R0
+__if_26667_start:
+  mov R0, [BP-3]
+  ilt R0, 0
+  jf R0, __if_26667_end
+  mov R0, [BP-3]
+  isgn R0
+  mov [BP-3], R0
+__if_26667_end:
+  mov R0, [BP-2]
+  mov [BP-4], R0
+__if_26678_start:
+  mov R0, [BP-3]
+  mov R1, [BP-4]
+  ilt R0, R1
+  jf R0, __if_26678_end
+  mov R0, [BP-3]
+  mov [BP-4], R0
+__if_26678_end:
+  mov R0, [BP-2]
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R1, [BP-4]
+  shl R1, -1
+  mov R2, [BP-4]
+  ilt R2, 0
+  isgn R2
+  shl R2, 31
+  or R1, R2
+  isub R0, R1
+  mov [BP-5], R0
+__if_26713_start:
+  mov R0, [BP-5]
+  igt R0, 78643200
+  jf R0, __if_26713_end
+  mov R0, -1.000000
+  jmp __function_S_DistVol_return
+__if_26713_end:
+__if_26723_start:
+  mov R0, [BP-5]
+  ilt R0, 10485760
+  jf R0, __if_26723_end
+  mov R0, 1.000000
+  jmp __function_S_DistVol_return
+__if_26723_end:
+  mov R0, [BP-5]
+  isgn R0
+  iadd R0, 78643200
+  shl R0, -16
+  mov R1, [BP-5]
+  isgn R1
+  iadd R1, 78643200
+  ilt R1, 0
+  isgn R1
+  shl R1, 16
+  or R0, R1
+  cif R0
+  fdiv R0, 1040.000000
+__function_S_DistVol_return:
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_Reconcile:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, 0
+  mov [BP-1], R0
+__for_26776_start:
+  mov R0, [BP-1]
+  ilt R0, 15
+  jf R0, __for_26776_end
+__if_26785_start:
+  mov R1, global_ch_prio
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  ige R1, 0
+  jf R1, __LogicalAnd_ShortCircuit_26793
+  mov R3, [BP-1]
+  mov [SP], R3
+  call __function_get_channel_state
+  mov R2, R0
+  ieq R2, 64
+  and R1, R2
+__LogicalAnd_ShortCircuit_26793:
+  mov R0, R1
+  jf R0, __if_26785_end
+  mov R0, -1
+  mov R1, global_ch_prio
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_26785_end:
+__for_26776_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_26776_start
+__for_26776_end:
+__function_S_Reconcile_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_StartSoundOrigin:
+  push BP
+  mov BP, SP
+  isub SP, 9
+__if_26822_start:
+  mov R0, [BP+6]
+  ile R0, 0
+  jt R0, __LogicalOr_ShortCircuit_26827
+  mov R1, [BP+6]
+  ige R1, 109
+  or R0, R1
+__LogicalOr_ShortCircuit_26827:
+  jf R0, __if_26822_end
+  jmp __function_S_StartSoundOrigin_return
+__if_26822_end:
+  mov R0, __embedded_gen_sfx_sound
+  mov R1, [BP+6]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-1], R0
+__if_26836_start:
+  mov R0, [BP-1]
+  ilt R0, 0
+  jf R0, __if_26836_end
+  jmp __function_S_StartSoundOrigin_return
+__if_26836_end:
+  mov R0, __embedded_gen_sfx_priority
+  mov R1, [BP+6]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+  mov R0, 1.000000
+  mov [BP-3], R0
+__if_26849_start:
+  mov R0, [BP+5]
+  cib R0
+  jf R0, __if_26849_end
+  mov R2, [BP+3]
+  mov [SP], R2
+  mov R2, [BP+4]
+  mov [SP+1], R2
+  call __function_S_DistVol
+  mov R1, R0
+  mov [BP-3], R1
+  mov R0, R1
+__if_26857_start:
+  mov R0, [BP-3]
+  flt R0, 0.000000
+  jf R0, __if_26857_end
+  jmp __function_S_StartSoundOrigin_return
+__if_26857_end:
+__if_26849_end:
+  mov R0, 128
+  mov [BP-4], R0
+__if_26865_start:
+  mov R0, [BP+6]
+  ine R0, 32
+  jf R0, __LogicalAnd_ShortCircuit_26870
+  mov R1, [BP+6]
+  ine R1, 87
+  and R0, R1
+__LogicalAnd_ShortCircuit_26870:
+  jf R0, __if_26865_end
+  mov R1, [BP-4]
+  call __function_M_Random
+  mov R2, R0
+  and R2, 31
+  isgn R2
+  iadd R2, 16
+  iadd R1, R2
+  mov [BP-4], R1
+  mov R0, R1
+__if_26865_end:
+__if_26881_start:
+  mov R0, [BP-4]
+  ilt R0, 0
+  jf R0, __if_26881_else
+  mov R0, 0
+  mov [BP-4], R0
+  jmp __if_26881_end
+__if_26881_else:
+__if_26888_start:
+  mov R0, [BP-4]
+  igt R0, 255
+  jf R0, __if_26888_end
+  mov R0, 255
+  mov [BP-4], R0
+__if_26888_end:
+__if_26881_end:
+  mov R0, [BP-4]
+  cif R0
+  fmul R0, 0.007812
+  mov [BP-5], R0
+  call __function_S_Reconcile
+__if_26902_start:
+  mov R0, [BP+2]
+  ine R0, -1
+  jf R0, __if_26902_end
+  mov R0, 0
+  mov [BP-6], R0
+__for_26906_start:
+  mov R0, [BP-6]
+  ilt R0, 15
+  jf R0, __for_26906_end
+__if_26915_start:
+  mov R0, global_ch_prio
+  mov R1, [BP-6]
+  iadd R0, R1
+  mov R0, [R0]
+  ige R0, 0
+  jf R0, __LogicalAnd_ShortCircuit_26924
+  mov R1, global_ch_id
+  mov R2, [BP-6]
+  iadd R1, R2
+  mov R1, [R1]
+  mov R2, [BP+2]
+  ieq R1, R2
+  and R0, R1
+__LogicalAnd_ShortCircuit_26924:
+  jf R0, __if_26915_end
+  mov R1, [BP-6]
+  mov [SP], R1
+  call __function_stop_channel
+  mov R0, -1
+  mov R1, global_ch_prio
+  mov R2, [BP-6]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __for_26906_end
+__if_26915_end:
+__for_26906_continue:
+  mov R0, [BP-6]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-6], R1
+  jmp __for_26906_start
+__for_26906_end:
+__if_26902_end:
+  mov R0, -1
+  mov [BP-7], R0
+  mov R0, 0
+  mov [BP-6], R0
+__for_26941_start:
+  mov R0, [BP-6]
+  ilt R0, 15
+  jf R0, __for_26941_end
+__if_26950_start:
+  mov R0, global_ch_prio
+  mov R1, [BP-6]
+  iadd R0, R1
+  mov R0, [R0]
+  ilt R0, 0
+  jf R0, __if_26950_end
+  mov R0, [BP-6]
+  mov [BP-7], R0
+  jmp __for_26941_end
+__if_26950_end:
+__for_26941_continue:
+  mov R0, [BP-6]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-6], R1
+  jmp __for_26941_start
+__for_26941_end:
+__if_26961_start:
+  mov R0, [BP-7]
+  ilt R0, 0
+  jf R0, __if_26961_end
+  mov R0, 0
+  mov [BP-6], R0
+__for_26966_start:
+  mov R0, [BP-6]
+  ilt R0, 15
+  jf R0, __for_26966_end
+__if_26975_start:
+  mov R0, global_ch_prio
+  mov R1, [BP-6]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, [BP-2]
+  ige R0, R1
+  jf R0, __if_26975_end
+  mov R0, [BP-6]
+  mov [BP-7], R0
+  jmp __for_26966_end
+__if_26975_end:
+__for_26966_continue:
+  mov R0, [BP-6]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-6], R1
+  jmp __for_26966_start
+__for_26966_end:
+__if_26986_start:
+  mov R0, [BP-7]
+  ilt R0, 0
+  jf R0, __if_26986_end
+  jmp __function_S_StartSoundOrigin_return
+__if_26986_end:
+  mov R1, [BP-7]
+  mov [SP], R1
+  call __function_stop_channel
+__if_26961_end:
+  mov R1, [BP-7]
+  mov [SP], R1
+  mov R1, [BP-1]
+  mov [SP+1], R1
+  call __function_assign_channel_sound
+  mov R1, 0
+  mov [SP], R1
+  call __function_set_channel_position
+  mov R1, [BP-3]
+  mov [SP], R1
+  call __function_set_channel_volume
+  mov R1, [BP-5]
+  mov [SP], R1
+  call __function_set_channel_speed
+  mov R1, [BP-7]
+  mov [SP], R1
+  call __function_play_channel
+  mov R0, [BP-2]
+  mov R1, global_ch_prio
+  mov R2, [BP-7]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, global_ch_att
+  mov R2, [BP-7]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+3]
+  mov R1, global_ch_x
+  mov R2, [BP-7]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, global_ch_y
+  mov R2, [BP-7]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+2]
+  mov R1, global_ch_id
+  mov R2, [BP-7]
+  iadd R1, R2
+  mov [R1], R0
+__function_S_StartSoundOrigin_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_StartSound:
+  push BP
+  mov BP, SP
+  isub SP, 7
+__if_27036_start:
+  mov R0, [BP+2]
+  ieq R0, -1
+  jf R0, __if_27036_end
+  mov R1, -1
+  mov [SP], R1
+  mov R1, 0
+  mov [SP+1], R1
+  mov R1, 0
+  mov [SP+2], R1
+  mov R1, 0
+  mov [SP+3], R1
+  mov R1, [BP+3]
+  mov [SP+4], R1
+  call __function_S_StartSoundOrigin
+  jmp __function_S_StartSound_return
+__if_27036_end:
+  mov R0, [BP+2]
+  mov [BP-1], R0
+  mov R0, 1
+  mov [BP-2], R0
+__if_27055_start:
+  mov R0, [BP+2]
+  mov R1, [global_player1]
+  ieq R0, R1
+  jf R0, __if_27055_end
+  mov R0, 0
+  mov [BP-2], R0
+__if_27055_end:
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R2, [BP-1]
+  iadd R2, 4
+  mov R1, [R2]
+  mov [SP+1], R1
+  mov R2, [BP-1]
+  iadd R2, 5
+  mov R1, [R2]
+  mov [SP+2], R1
+  mov R1, [BP-2]
+  mov [SP+3], R1
+  mov R1, [BP+3]
+  mov [SP+4], R1
+  call __function_S_StartSoundOrigin
+__function_S_StartSound_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_StartSoundSector:
+  push BP
+  mov BP, SP
+  isub SP, 6
+  mov R0, [BP+2]
+  mov [BP-1], R0
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R2, [BP-1]
+  iadd R2, 14
+  mov R1, [R2]
+  mov [SP+1], R1
+  mov R2, [BP-1]
+  iadd R2, 15
+  mov R1, [R2]
+  mov [SP+2], R1
+  mov R1, 1
+  mov [SP+3], R1
+  mov R1, [BP+3]
+  mov [SP+4], R1
+  call __function_S_StartSoundOrigin
+__function_S_StartSoundSector_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_UpdateSounds:
+  push BP
+  mov BP, SP
+  isub SP, 4
+  mov R0, 0
+  mov [BP-1], R0
+__for_27093_start:
+  mov R0, [BP-1]
+  ilt R0, 15
+  jf R0, __for_27093_end
+__if_27103_start:
+  mov R0, global_ch_prio
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  ilt R0, 0
+  jf R0, __if_27103_end
+  jmp __for_27093_continue
+__if_27103_end:
+__if_27110_start:
+  mov R2, [BP-1]
+  mov [SP], R2
+  call __function_get_channel_state
+  mov R1, R0
+  ieq R1, 64
+  mov R0, R1
+  jf R0, __if_27110_end
+  mov R0, -1
+  mov R1, global_ch_prio
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __for_27093_continue
+__if_27110_end:
+__if_27123_start:
+  mov R0, global_ch_att
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  cib R0
+  jf R0, __if_27123_end
+  mov R2, global_ch_x
+  mov R3, [BP-1]
+  iadd R2, R3
+  mov R2, [R2]
+  mov [SP], R2
+  mov R2, global_ch_y
+  mov R3, [BP-1]
+  iadd R2, R3
+  mov R2, [R2]
+  mov [SP+1], R2
+  call __function_S_DistVol
+  mov R1, R0
+  mov [BP-2], R1
+  mov R0, R1
+__if_27137_start:
+  mov R0, [BP-2]
+  flt R0, 0.000000
+  jf R0, __if_27137_else
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_stop_channel
+  mov R0, -1
+  mov R1, global_ch_prio
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_27137_end
+__if_27137_else:
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_select_channel
+  mov R1, [BP-2]
+  mov [SP], R1
+  call __function_set_channel_volume
+__if_27137_end:
+__if_27123_end:
+__for_27093_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_27093_start
+__for_27093_end:
+__function_S_UpdateSounds_return:
   mov SP, BP
   pop BP
   ret
@@ -26804,18 +27952,18 @@ __function_ST_calcPainOffset:
   push R1
   mov R0, [1608435]
   mov [BP-1], R0
-__if_26247_start:
+__if_27218_start:
   mov R0, [BP-1]
   igt R0, 100
-  jf R0, __if_26247_end
+  jf R0, __if_27218_end
   mov R0, 100
   mov [BP-1], R0
-__if_26247_end:
-__if_26254_start:
+__if_27218_end:
+__if_27225_start:
   mov R0, [BP-1]
   mov R1, [global_st_pain_oldhealth]
   ine R0, R1
-  jf R0, __if_26254_end
+  jf R0, __if_27225_end
   mov R0, [BP-1]
   isgn R0
   iadd R0, 100
@@ -26825,7 +27973,7 @@ __if_26254_start:
   mov [global_st_pain_lastcalc], R0
   mov R0, [BP-1]
   mov [global_st_pain_oldhealth], R0
-__if_26254_end:
+__if_27225_end:
   mov R0, [global_st_pain_lastcalc]
 __function_ST_calcPainOffset_return:
   pop R1
@@ -26837,39 +27985,39 @@ __function_ST_updateFaceWidget:
   push BP
   mov BP, SP
   isub SP, 8
-__if_26287_start:
+__if_27258_start:
   mov R0, [global_st_face_priority]
   ilt R0, 10
-  jf R0, __if_26287_end
-__if_26292_start:
+  jf R0, __if_27258_end
+__if_27263_start:
   mov R0, [1608435]
   bnot R0
-  jf R0, __if_26292_end
+  jf R0, __if_27263_end
   mov R0, 9
   mov [global_st_face_priority], R0
   mov R0, 41
   mov [global_st_faceindex], R0
   mov R0, 1
   mov [global_st_facecount], R0
-__if_26292_end:
-__if_26287_end:
-__if_26306_start:
+__if_27263_end:
+__if_27258_end:
+__if_27277_start:
   mov R0, [global_st_face_priority]
   ilt R0, 9
-  jf R0, __if_26306_end
-__if_26311_start:
+  jf R0, __if_27277_end
+__if_27282_start:
   mov R0, [1608466]
   cib R0
-  jf R0, __if_26311_end
+  jf R0, __if_27282_end
   mov R0, 0
   mov [BP-4], R0
   mov R0, 0
   mov [BP-1], R0
-__for_26318_start:
+__for_27289_start:
   mov R0, [BP-1]
   ilt R0, 8
-  jf R0, __for_26318_end
-__if_26328_start:
+  jf R0, __for_27289_end
+__if_27299_start:
   mov R0, global_st_oldweaponsowned
   mov R1, [BP-1]
   iadd R0, R1
@@ -26879,7 +28027,7 @@ __if_26328_start:
   iadd R1, R2
   mov R1, [R1]
   ine R0, R1
-  jf R0, __if_26328_end
+  jf R0, __if_27299_end
   mov R0, 1
   mov [BP-4], R0
   mov R0, 1608447
@@ -26890,17 +28038,17 @@ __if_26328_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__if_26328_end:
-__for_26318_continue:
+__if_27299_end:
+__for_27289_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_26318_start
-__for_26318_end:
-__if_26349_start:
+  jmp __for_27289_start
+__for_27289_end:
+__if_27320_start:
   mov R0, [BP-4]
-  jf R0, __if_26349_end
+  jf R0, __if_27320_end
   mov R0, 8
   mov [global_st_face_priority], R0
   mov R0, 60
@@ -26910,36 +28058,36 @@ __if_26349_start:
   iadd R1, 6
   mov [global_st_faceindex], R1
   mov R0, R1
-__if_26349_end:
-__if_26311_end:
-__if_26306_end:
-__if_26366_start:
+__if_27320_end:
+__if_27282_end:
+__if_27277_end:
+__if_27337_start:
   mov R0, [global_st_face_priority]
   ilt R0, 8
-  jf R0, __if_26366_end
-__if_26371_start:
+  jf R0, __if_27337_end
+__if_27342_start:
   mov R0, [1608465]
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_26374
+  jf R0, __LogicalAnd_ShortCircuit_27345
   mov R1, [1608467]
   ine R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_26374:
-  jf R0, __LogicalAnd_ShortCircuit_26379
+__LogicalAnd_ShortCircuit_27345:
+  jf R0, __LogicalAnd_ShortCircuit_27350
   mov R1, [1608467]
   mov R2, [global_player1]
   ine R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_26379:
-  jf R0, __if_26371_end
+__LogicalAnd_ShortCircuit_27350:
+  jf R0, __if_27342_end
   mov R0, 7
   mov [global_st_face_priority], R0
-__if_26387_start:
+__if_27358_start:
   mov R0, [1608435]
   mov R1, [global_st_oldhealth]
   isub R0, R1
   igt R0, 20
-  jf R0, __if_26387_else
+  jf R0, __if_27358_else
   mov R0, 30
   mov [global_st_facecount], R0
   call __function_ST_calcPainOffset
@@ -26947,8 +28095,8 @@ __if_26387_start:
   iadd R1, 5
   mov [global_st_faceindex], R1
   mov R0, R1
-  jmp __if_26387_end
-__if_26387_else:
+  jmp __if_27358_end
+__if_27358_else:
   mov R3, [global_player1]
   iadd R3, 4
   mov R2, [R3]
@@ -26969,7 +28117,7 @@ __if_26387_else:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_26422_start:
+__if_27393_start:
   mov R1, [global_player1]
   iadd R1, 11
   mov R0, [R1]
@@ -26977,7 +28125,7 @@ __if_26422_start:
   mov R1, [BP-2]
   xor R1, 0x80000000
   ilt R0, R1
-  jf R0, __if_26422_else
+  jf R0, __if_27393_else
   mov R0, [BP-2]
   mov R2, [global_player1]
   iadd R2, 11
@@ -26988,8 +28136,8 @@ __if_26422_start:
   xor R0, 0x80000000
   igt R0, 0
   mov [BP-1], R0
-  jmp __if_26422_end
-__if_26422_else:
+  jmp __if_27393_end
+__if_27393_else:
   mov R1, [global_player1]
   iadd R1, 11
   mov R0, [R1]
@@ -27001,54 +28149,54 @@ __if_26422_else:
   igt R0, 0
   bnot R0
   mov [BP-1], R0
-__if_26422_end:
+__if_27393_end:
   mov R0, 30
   mov [global_st_facecount], R0
   call __function_ST_calcPainOffset
   mov R1, R0
   mov [global_st_faceindex], R1
   mov R0, R1
-__if_26491_start:
+__if_27462_start:
   mov R0, [BP-3]
   xor R0, 0x80000000
   ilt R0, -1610612736
-  jf R0, __if_26491_else
+  jf R0, __if_27462_else
   mov R0, [global_st_faceindex]
   iadd R0, 7
   mov [global_st_faceindex], R0
-  jmp __if_26491_end
-__if_26491_else:
-__if_26507_start:
+  jmp __if_27462_end
+__if_27462_else:
+__if_27478_start:
   mov R0, [BP-1]
   cib R0
-  jf R0, __if_26507_else
+  jf R0, __if_27478_else
   mov R0, [global_st_faceindex]
   iadd R0, 3
   mov [global_st_faceindex], R0
-  jmp __if_26507_end
-__if_26507_else:
+  jmp __if_27478_end
+__if_27478_else:
   mov R0, [global_st_faceindex]
   iadd R0, 4
   mov [global_st_faceindex], R0
-__if_26507_end:
-__if_26491_end:
-__if_26387_end:
-__if_26371_end:
-__if_26366_end:
-__if_26517_start:
+__if_27478_end:
+__if_27462_end:
+__if_27358_end:
+__if_27342_end:
+__if_27337_end:
+__if_27488_start:
   mov R0, [global_st_face_priority]
   ilt R0, 7
-  jf R0, __if_26517_end
-__if_26522_start:
+  jf R0, __if_27488_end
+__if_27493_start:
   mov R0, [1608465]
   cib R0
-  jf R0, __if_26522_end
-__if_26526_start:
+  jf R0, __if_27493_end
+__if_27497_start:
   mov R0, [1608435]
   mov R1, [global_st_oldhealth]
   isub R0, R1
   igt R0, 20
-  jf R0, __if_26526_else
+  jf R0, __if_27497_else
   mov R0, 7
   mov [global_st_face_priority], R0
   mov R0, 30
@@ -27058,8 +28206,8 @@ __if_26526_start:
   iadd R1, 5
   mov [global_st_faceindex], R1
   mov R0, R1
-  jmp __if_26526_end
-__if_26526_else:
+  jmp __if_27497_end
+__if_27497_else:
   mov R0, 6
   mov [global_st_face_priority], R0
   mov R0, 30
@@ -27069,32 +28217,32 @@ __if_26526_else:
   iadd R1, 7
   mov [global_st_faceindex], R1
   mov R0, R1
-__if_26526_end:
-__if_26522_end:
-__if_26517_end:
-__if_26563_start:
+__if_27497_end:
+__if_27493_end:
+__if_27488_end:
+__if_27534_start:
   mov R0, [global_st_face_priority]
   ilt R0, 6
-  jf R0, __if_26563_end
-__if_26568_start:
+  jf R0, __if_27534_end
+__if_27539_start:
   mov R0, [1608463]
-  jf R0, __if_26568_else
-__if_26572_start:
+  jf R0, __if_27539_else
+__if_27543_start:
   mov R0, [global_st_lastattackdown]
   ieq R0, -1
-  jf R0, __if_26572_else
+  jf R0, __if_27543_else
   mov R0, 60
   mov [global_st_lastattackdown], R0
-  jmp __if_26572_end
-__if_26572_else:
+  jmp __if_27543_end
+__if_27543_else:
   mov R0, [global_st_lastattackdown]
   mov R1, R0
   isub R1, 1
   mov [global_st_lastattackdown], R1
-__if_26586_start:
+__if_27557_start:
   mov R0, [global_st_lastattackdown]
   bnot R0
-  jf R0, __if_26586_end
+  jf R0, __if_27557_end
   mov R0, 5
   mov [global_st_face_priority], R0
   call __function_ST_calcPainOffset
@@ -27106,34 +28254,34 @@ __if_26586_start:
   mov [global_st_facecount], R0
   mov R0, 1
   mov [global_st_lastattackdown], R0
-__if_26586_end:
-__if_26572_end:
-  jmp __if_26568_end
-__if_26568_else:
+__if_27557_end:
+__if_27543_end:
+  jmp __if_27539_end
+__if_27539_else:
   mov R0, -1
   mov [global_st_lastattackdown], R0
-__if_26568_end:
-__if_26563_end:
-__if_26608_start:
+__if_27539_end:
+__if_27534_end:
+__if_27579_start:
   mov R0, [global_st_face_priority]
   ilt R0, 5
-  jf R0, __if_26608_end
-__if_26613_start:
+  jf R0, __if_27579_end
+__if_27584_start:
   mov R0, [1608438]
   cib R0
-  jf R0, __if_26613_end
+  jf R0, __if_27584_end
   mov R0, 4
   mov [global_st_face_priority], R0
   mov R0, 40
   mov [global_st_faceindex], R0
   mov R0, 1
   mov [global_st_facecount], R0
-__if_26613_end:
-__if_26608_end:
-__if_26628_start:
+__if_27584_end:
+__if_27579_end:
+__if_27599_start:
   mov R0, [global_st_facecount]
   bnot R0
-  jf R0, __if_26628_end
+  jf R0, __if_27599_end
   call __function_ST_calcPainOffset
   mov R1, R0
   mov R2, [global_st_randomnumber]
@@ -27145,7 +28293,7 @@ __if_26628_start:
   mov [global_st_facecount], R0
   mov R0, 0
   mov [global_st_face_priority], R0
-__if_26628_end:
+__if_27599_end:
   mov R0, [global_st_facecount]
   mov R1, R0
   isub R1, 1
@@ -27190,10 +28338,10 @@ __function_ST_Init:
   mov [global_st_pain_oldhealth], R0
   mov R0, 0
   mov [BP-1], R0
-__for_26687_start:
+__for_27658_start:
   mov R0, [BP-1]
   ilt R0, 8
-  jf R0, __for_26687_end
+  jf R0, __for_27658_end
   mov R0, 1608447
   mov R1, [BP-1]
   iadd R0, R1
@@ -27202,13 +28350,13 @@ __for_26687_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_26687_continue:
+__for_27658_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_26687_start
-__for_26687_end:
+  jmp __for_27658_start
+__for_27658_end:
 __function_ST_Init_return:
   mov SP, BP
   pop BP
@@ -27333,17 +28481,17 @@ __function_ST_DrawNum:
   mov [BP-2], R0
   mov R0, 0
   mov [BP-3], R0
-__if_26822_start:
+__if_27793_start:
   mov R0, [BP+5]
   ilt R0, 0
-  jf R0, __if_26822_end
+  jf R0, __if_27793_end
   mov R0, 0
   mov [BP+5], R0
-__if_26822_end:
-__if_26829_start:
+__if_27793_end:
+__if_27800_start:
   mov R0, [BP+5]
   ieq R0, 0
-  jf R0, __if_26829_end
+  jf R0, __if_27800_end
   mov R1, [BP+2]
   iadd R1, 0
   mov [SP], R1
@@ -27355,18 +28503,18 @@ __if_26829_start:
   mov [SP+2], R1
   call __function_ST_DrawPatch
   jmp __function_ST_DrawNum_return
-__if_26829_end:
-__while_26843_start:
-__while_26843_continue:
+__if_27800_end:
+__while_27814_start:
+__while_27814_continue:
   mov R0, [BP+5]
   igt R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_26848
+  jf R0, __LogicalAnd_ShortCircuit_27819
   mov R1, [BP-3]
   mov R2, [BP+6]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_26848:
-  jf R0, __while_26843_end
+__LogicalAnd_ShortCircuit_27819:
+  jf R0, __while_27814_end
   mov R0, [BP+5]
   imod R0, 10
   mov [BP-4], R0
@@ -27390,8 +28538,8 @@ __LogicalAnd_ShortCircuit_26848:
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __while_26843_start
-__while_26843_end:
+  jmp __while_27814_start
+__while_27814_end:
 __function_ST_DrawNum_return:
   mov SP, BP
   pop BP
@@ -27403,28 +28551,28 @@ __function_ST_DrawArms:
   isub SP, 6
   mov R0, 0
   mov [BP-1], R0
-__for_26876_start:
+__for_27847_start:
   mov R0, [BP-1]
   ilt R0, 6
-  jf R0, __for_26876_end
+  jf R0, __for_27847_end
   mov R0, [BP-1]
   iadd R0, 2
   mov [BP-2], R0
-__if_26893_start:
+__if_27864_start:
   mov R0, 1608447
   mov R1, [BP-1]
   iadd R1, 1
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_26893_else
+  jf R0, __if_27864_else
   mov R0, 13
   mov [BP-3], R0
-  jmp __if_26893_end
-__if_26893_else:
+  jmp __if_27864_end
+__if_27864_else:
   mov R0, 23
   mov [BP-3], R0
-__if_26893_end:
+__if_27864_end:
   mov R1, [BP-3]
   mov R2, [BP-2]
   iadd R1, R2
@@ -27440,13 +28588,13 @@ __if_26893_end:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_ST_DrawPatch
-__for_26876_continue:
+__for_27847_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_26876_start
-__for_26876_end:
+  jmp __for_27847_start
+__for_27847_end:
 __function_ST_DrawArms_return:
   mov SP, BP
   pop BP
@@ -27479,10 +28627,10 @@ __function_ST_Drawer:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-1], R0
-__if_26935_start:
+__if_27906_start:
   mov R0, [BP-1]
   ine R0, 5
-  jf R0, __if_26935_end
+  jf R0, __if_27906_end
   mov R1, 2
   mov [SP], R1
   mov R1, 44
@@ -27497,7 +28645,7 @@ __if_26935_start:
   mov R1, 3
   mov [SP+4], R1
   call __function_ST_DrawNum
-__if_26935_end:
+__if_27906_end:
   mov R1, 2
   mov [SP], R1
   mov R1, 90
@@ -27537,10 +28685,10 @@ __if_26935_end:
   call __function_ST_DrawArms
   mov R0, 0
   mov [BP-2], R0
-__for_26973_start:
+__for_27944_start:
   mov R0, [BP-2]
   ilt R0, 4
-  jf R0, __for_26973_end
+  jf R0, __for_27944_end
   mov R1, 13
   mov [SP], R1
   mov R1, 288
@@ -27575,13 +28723,13 @@ __for_26973_start:
   mov R1, 3
   mov [SP+4], R1
   call __function_ST_DrawNum
-__for_26973_continue:
+__for_27944_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_26973_start
-__for_26973_end:
+  jmp __for_27944_start
+__for_27944_end:
   mov R1, [global_st_faceindex]
   iadd R1, 33
   mov [SP], R1
@@ -27611,49 +28759,49 @@ __function_ST_DrawFlash:
   mov R0, [global_viewheight]
   imul R0, 2
   mov [BP-3], R0
-__if_27030_start:
+__if_28001_start:
   mov R0, [1608439]
   cib R0
-  jf R0, __if_27030_end
+  jf R0, __if_28001_end
   mov R0, [1608439]
   shl R0, -6
   isgn R0
   iadd R0, 12
   mov [BP-5], R0
-__if_27047_start:
+__if_28018_start:
   mov R0, [BP-5]
   mov R1, [BP-1]
   igt R0, R1
-  jf R0, __if_27047_end
+  jf R0, __if_28018_end
   mov R0, [BP-5]
   mov [BP-1], R0
-__if_27047_end:
-__if_27030_end:
-__if_27054_start:
+__if_28018_end:
+__if_28001_end:
+__if_28025_start:
   mov R0, [BP-1]
   cib R0
-  jf R0, __if_27054_else
+  jf R0, __if_28025_else
   mov R0, [BP-1]
   iadd R0, 7
   shl R0, -3
   mov [BP-5], R0
-__if_27065_start:
+__if_28036_start:
   mov R0, [BP-5]
   igt R0, 8
-  jf R0, __if_27065_end
+  jf R0, __if_28036_end
   mov R0, 8
   mov [BP-5], R0
-__if_27065_end:
+__if_28036_end:
   mov R0, [BP-5]
   imul R0, 24
   mov [BP-4], R0
-__if_27077_start:
+__if_28048_start:
   mov R0, [BP-4]
   igt R0, 200
-  jf R0, __if_27077_end
+  jf R0, __if_28048_end
   mov R0, 200
   mov [BP-4], R0
-__if_27077_end:
+__if_28048_end:
   mov R1, [global_viewwindowx]
   mov [SP], R1
   mov R1, [global_viewwindowy]
@@ -27667,23 +28815,23 @@ __if_27077_end:
   or R1, 224
   mov [SP+4], R1
   call __function_GPU_FillScreen
-  jmp __if_27054_end
-__if_27054_else:
-__if_27095_start:
+  jmp __if_28025_end
+__if_28025_else:
+__if_28066_start:
   mov R0, [1608466]
   cib R0
-  jf R0, __if_27095_else
+  jf R0, __if_28066_else
   mov R0, [1608466]
   iadd R0, 7
   shl R0, -3
   mov [BP-5], R0
-__if_27108_start:
+__if_28079_start:
   mov R0, [BP-5]
   igt R0, 4
-  jf R0, __if_27108_end
+  jf R0, __if_28079_end
   mov R0, 4
   mov [BP-5], R0
-__if_27108_end:
+__if_28079_end:
   mov R0, [BP-5]
   imul R0, 20
   mov [BP-4], R0
@@ -27700,18 +28848,18 @@ __if_27108_end:
   or R1, 2150624
   mov [SP+4], R1
   call __function_GPU_FillScreen
-  jmp __if_27095_end
-__if_27095_else:
-__if_27131_start:
+  jmp __if_28066_end
+__if_28066_else:
+__if_28102_start:
   mov R0, [1608441]
   igt R0, 128
-  jt R0, __LogicalOr_ShortCircuit_27145
+  jt R0, __LogicalOr_ShortCircuit_28116
   mov R1, [1608441]
   and R1, 8
   cib R1
   or R0, R1
-__LogicalOr_ShortCircuit_27145:
-  jf R0, __if_27131_end
+__LogicalOr_ShortCircuit_28116:
+  jf R0, __if_28102_end
   mov R1, [global_viewwindowx]
   mov [SP], R1
   mov R1, [global_viewwindowy]
@@ -27723,9 +28871,9 @@ __LogicalOr_ShortCircuit_27145:
   mov R1, 805355520
   mov [SP+4], R1
   call __function_GPU_FillScreen
-__if_27131_end:
-__if_27095_end:
-__if_27054_end:
+__if_28102_end:
+__if_28066_end:
+__if_28025_end:
 __function_ST_DrawFlash_return:
   mov SP, BP
   pop BP
@@ -27772,11 +28920,11 @@ __function_G_LoadLevel:
   mov [global_gameexit], R0
   mov R0, 0
   mov [BP-1], R0
-__for_27183_start:
+__for_28154_start:
   mov R0, [BP-1]
   ilt R0, 138
-  jf R0, __for_27183_end
-__if_27193_start:
+  jf R0, __for_28154_end
+__if_28164_start:
   mov R0, __embedded_gen_things
   mov R1, [BP-1]
   imul R1, 5
@@ -27784,7 +28932,7 @@ __if_27193_start:
   iadd R0, 3
   mov R0, [R0]
   ieq R0, 1
-  jf R0, __if_27193_end
+  jf R0, __if_28164_end
   mov R1, __embedded_gen_things
   mov R2, [BP-1]
   imul R2, 5
@@ -27806,20 +28954,21 @@ __if_27193_start:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_P_SpawnPlayer
-  jmp __for_27183_end
-__if_27193_end:
-__for_27183_continue:
+  jmp __for_28154_end
+__if_28164_end:
+__for_28154_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_27183_start
-__for_27183_end:
+  jmp __for_28154_start
+__for_28154_end:
   call __function_P_SpawnMapThings
   mov R1, global_player1
   mov [SP], R1
   call __function_P_SetupPsprites
   call __function_ST_Init
+  call __function_S_StartMusic
 __function_G_LoadLevel_return:
   mov SP, BP
   pop BP
@@ -27852,10 +29001,10 @@ __function_main:
   mov [BP-5], R0
   mov R0, 0
   mov [BP-6], R0
-__while_27252_start:
-__while_27252_continue:
+__while_28224_start:
+__while_28224_continue:
   mov R0, 1
-  jf R0, __while_27252_end
+  jf R0, __while_28224_end
   mov R1, 0
   mov [SP], R1
   call __function_select_gamepad
@@ -27866,12 +29015,12 @@ __while_27252_continue:
   mov [BP-7], R0
   mov R1, [BP-7]
   bnot R1
-  jf R1, __LogicalAnd_ShortCircuit_27266
+  jf R1, __LogicalAnd_ShortCircuit_28238
   call __function_gamepad_button_y
   mov R2, R0
   igt R2, 0
   and R1, R2
-__LogicalAnd_ShortCircuit_27266:
+__LogicalAnd_ShortCircuit_28238:
   mov R0, R1
   mov [BP-8], R0
   mov R0, 0
@@ -27880,113 +29029,113 @@ __LogicalAnd_ShortCircuit_27266:
   mov [BP-10], R0
   mov R0, 0
   mov [BP-11], R0
-__if_27279_start:
+__if_28251_start:
   mov R0, [BP-7]
   bnot R0
-  jf R0, __if_27279_end
-__if_27283_start:
+  jf R0, __if_28251_end
+__if_28255_start:
   call __function_gamepad_up
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_27283_end
-__if_27288_start:
+  jf R0, __if_28255_end
+__if_28260_start:
   mov R0, [BP-8]
-  jf R0, __if_27288_else
+  jf R0, __if_28260_else
   mov R0, 50
   mov [BP-9], R0
-  jmp __if_27288_end
-__if_27288_else:
+  jmp __if_28260_end
+__if_28260_else:
   mov R0, 25
   mov [BP-9], R0
-__if_27288_end:
-__if_27283_end:
-__if_27296_start:
+__if_28260_end:
+__if_28255_end:
+__if_28268_start:
   call __function_gamepad_down
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_27296_end
-__if_27301_start:
+  jf R0, __if_28268_end
+__if_28273_start:
   mov R0, [BP-8]
-  jf R0, __if_27301_else
+  jf R0, __if_28273_else
   mov R0, -50
   mov [BP-9], R0
-  jmp __if_27301_end
-__if_27301_else:
+  jmp __if_28273_end
+__if_28273_else:
   mov R0, -25
   mov [BP-9], R0
-__if_27301_end:
-__if_27296_end:
-__if_27311_start:
+__if_28273_end:
+__if_28268_end:
+__if_28283_start:
   call __function_gamepad_button_r
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_27311_end
-__if_27316_start:
+  jf R0, __if_28283_end
+__if_28288_start:
   mov R0, [BP-8]
-  jf R0, __if_27316_else
+  jf R0, __if_28288_else
   mov R0, 40
   mov [BP-10], R0
-  jmp __if_27316_end
-__if_27316_else:
+  jmp __if_28288_end
+__if_28288_else:
   mov R0, 24
   mov [BP-10], R0
-__if_27316_end:
-__if_27311_end:
-__if_27324_start:
+__if_28288_end:
+__if_28283_end:
+__if_28296_start:
   call __function_gamepad_button_l
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_27324_end
-__if_27329_start:
+  jf R0, __if_28296_end
+__if_28301_start:
   mov R0, [BP-8]
-  jf R0, __if_27329_else
+  jf R0, __if_28301_else
   mov R0, -40
   mov [BP-10], R0
-  jmp __if_27329_end
-__if_27329_else:
+  jmp __if_28301_end
+__if_28301_else:
   mov R0, -24
   mov [BP-10], R0
-__if_27329_end:
-__if_27324_end:
-__if_27339_start:
+__if_28301_end:
+__if_28296_end:
+__if_28311_start:
   call __function_gamepad_left
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_27339_end
-__if_27344_start:
+  jf R0, __if_28311_end
+__if_28316_start:
   mov R0, [BP-8]
-  jf R0, __if_27344_else
+  jf R0, __if_28316_else
   mov R0, 1280
   mov [BP-11], R0
-  jmp __if_27344_end
-__if_27344_else:
+  jmp __if_28316_end
+__if_28316_else:
   mov R0, 640
   mov [BP-11], R0
-__if_27344_end:
-__if_27339_end:
-__if_27352_start:
+__if_28316_end:
+__if_28311_end:
+__if_28324_start:
   call __function_gamepad_right
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_27352_end
-__if_27357_start:
+  jf R0, __if_28324_end
+__if_28329_start:
   mov R0, [BP-8]
-  jf R0, __if_27357_else
+  jf R0, __if_28329_else
   mov R0, -1280
   mov [BP-11], R0
-  jmp __if_27357_end
-__if_27357_else:
+  jmp __if_28329_end
+__if_28329_else:
   mov R0, -640
   mov [BP-11], R0
-__if_27357_end:
-__if_27352_end:
-__if_27279_end:
+__if_28329_end:
+__if_28324_end:
+__if_28251_end:
   mov R0, [BP-9]
   mov [1608480], R0
   mov R0, [BP-10]
@@ -28005,25 +29154,25 @@ __if_27279_end:
   mov R0, R1
   mov R0, 9
   mov [1608485], R0
-__if_27395_start:
+__if_28367_start:
   mov R0, [BP-7]
-  jf R0, __if_27395_else
-__if_27398_start:
+  jf R0, __if_28367_else
+__if_28370_start:
   call __function_gamepad_button_y
   mov R1, R0
   ieq R1, 1
   mov R0, R1
-  jf R0, __if_27398_end
+  jf R0, __if_28370_end
   mov R0, [BP-1]
   bnot R0
   mov [BP-1], R0
-__if_27398_end:
-__if_27406_start:
+__if_28370_end:
+__if_28378_start:
   call __function_gamepad_button_x
   mov R1, R0
   ieq R1, 1
   mov R0, R1
-  jf R0, __if_27406_end
+  jf R0, __if_28378_end
   mov R0, [BP-2]
   bnot R0
   mov [BP-2], R0
@@ -28032,18 +29181,18 @@ __if_27406_start:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_27406_end:
-__if_27418_start:
+__if_28378_end:
+__if_28390_start:
   call __function_gamepad_up
   mov R1, R0
   ieq R1, 1
-  jf R1, __LogicalAnd_ShortCircuit_27423
+  jf R1, __LogicalAnd_ShortCircuit_28395
   mov R2, [BP-3]
   ilt R2, 2
   and R1, R2
-__LogicalAnd_ShortCircuit_27423:
+__LogicalAnd_ShortCircuit_28395:
   mov R0, R1
-  jf R0, __if_27418_end
+  jf R0, __if_28390_end
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
@@ -28053,18 +29202,18 @@ __LogicalAnd_ShortCircuit_27423:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_27418_end:
-__if_27432_start:
+__if_28390_end:
+__if_28404_start:
   call __function_gamepad_down
   mov R1, R0
   ieq R1, 1
-  jf R1, __LogicalAnd_ShortCircuit_27437
+  jf R1, __LogicalAnd_ShortCircuit_28409
   mov R2, [BP-3]
   igt R2, 0
   and R1, R2
-__LogicalAnd_ShortCircuit_27437:
+__LogicalAnd_ShortCircuit_28409:
   mov R0, R1
-  jf R0, __if_27432_end
+  jf R0, __if_28404_end
   mov R0, [BP-3]
   mov R1, R0
   isub R1, 1
@@ -28074,94 +29223,97 @@ __LogicalAnd_ShortCircuit_27437:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_27432_end:
-  jmp __if_27395_end
-__if_27395_else:
-__if_27446_start:
+__if_28404_end:
+  jmp __if_28367_end
+__if_28367_else:
+__if_28418_start:
   call __function_gamepad_button_x
   mov R1, R0
   ieq R1, 1
   mov R0, R1
-  jf R0, __if_27446_end
+  jf R0, __if_28418_end
   mov R0, [1608445]
   mov [BP-14], R0
-__if_27455_start:
+__if_28427_start:
   mov R0, [1608446]
   ine R0, 9
-  jf R0, __if_27455_end
+  jf R0, __if_28427_end
   mov R0, [1608446]
   mov [BP-14], R0
-__if_27455_end:
+__if_28427_end:
   mov R0, [BP-14]
   mov [BP-15], R0
   mov R0, 0
   mov [BP-16], R0
-__while_27470_start:
-__while_27470_continue:
+__while_28442_start:
+__while_28442_continue:
   mov R0, [BP-16]
   ilt R0, 8
-  jf R0, __while_27470_end
+  jf R0, __while_28442_end
   mov R0, [BP-15]
   iadd R0, 1
   mov [BP-15], R0
-__if_27480_start:
+__if_28452_start:
   mov R0, [BP-15]
   igt R0, 2
-  jf R0, __if_27480_end
+  jf R0, __if_28452_end
   mov R0, 0
   mov [BP-15], R0
-__if_27480_end:
-__if_27487_start:
+__if_28452_end:
+__if_28459_start:
   mov R0, 1608447
   mov R1, [BP-15]
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_27487_end
-  jmp __while_27470_end
-__if_27487_end:
+  jf R0, __if_28459_end
+  jmp __while_28442_end
+__if_28459_end:
   mov R0, [BP-16]
   mov R1, R0
   iadd R1, 1
   mov [BP-16], R1
-  jmp __while_27470_start
-__while_27470_end:
+  jmp __while_28442_start
+__while_28442_end:
   mov R0, [BP-15]
   mov [1608485], R0
-__if_27446_end:
-__if_27395_end:
-__if_27499_start:
+__if_28418_end:
+__if_28367_end:
+__if_28471_start:
   mov R0, [global_gameexit]
   bnot R0
-  jf R0, __if_27499_end
+  jf R0, __if_28471_end
   mov R1, global_player1
   mov [SP], R1
   call __function_P_PlayerThink
   call __function_P_RunThinkers
   call __function_ST_Ticker
+  mov R1, [global_player1]
+  mov [SP], R1
+  call __function_S_UpdateSounds
   mov R0, [global_leveltime]
   mov R1, R0
   iadd R1, 1
   mov [global_leveltime], R1
-__if_27499_end:
-__if_27510_start:
+__if_28471_end:
+__if_28485_start:
   mov R0, [1608429]
   ieq R0, 2
-  jf R0, __if_27510_end
+  jf R0, __if_28485_end
   call __function_G_LoadLevel
-__if_27510_end:
-__if_27516_start:
+__if_28485_end:
+__if_28491_start:
   mov R1, [global_gameexit]
-  jf R1, __LogicalAnd_ShortCircuit_27518
+  jf R1, __LogicalAnd_ShortCircuit_28493
   call __function_gamepad_button_a
   mov R2, R0
   ieq R2, 1
   and R1, R2
-__LogicalAnd_ShortCircuit_27518:
+__LogicalAnd_ShortCircuit_28493:
   mov R0, R1
-  jf R0, __if_27516_end
+  jf R0, __if_28491_end
   call __function_G_LoadLevel
-__if_27516_end:
+__if_28491_end:
   mov R1, [global_player1]
   iadd R1, 4
   mov R0, [R1]
@@ -28232,33 +29384,33 @@ __if_27516_end:
   mov R1, -1
   mov [SP], R1
   call __function_set_multiply_color
-__if_27597_start:
+__if_28572_start:
   mov R0, [1608429]
   ieq R0, 1
-  jf R0, __if_27597_end
+  jf R0, __if_28572_end
   mov R1, 220
   mov [SP], R1
   mov R1, 250
   mov [SP+1], R1
-  mov R1, __literal_string_27605
+  mov R1, __literal_string_28580
   mov [SP+2], R1
   call __function_print_at
-__if_27597_end:
-__if_27606_start:
+__if_28572_end:
+__if_28581_start:
   mov R0, [global_gameexit]
-  jf R0, __if_27606_end
+  jf R0, __if_28581_end
   mov R1, 250
   mov [SP], R1
   mov R1, 90
   mov [SP+1], R1
-  mov R1, __literal_string_27612
+  mov R1, __literal_string_28587
   mov [SP+2], R1
   call __function_print_at
   mov R1, 210
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_27616
+  mov R1, __literal_string_28591
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -28272,7 +29424,7 @@ __if_27606_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_27625
+  mov R1, __literal_string_28600
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -28286,7 +29438,7 @@ __if_27606_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_27634
+  mov R1, __literal_string_28609
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -28300,18 +29452,18 @@ __if_27606_start:
   mov [SP], R1
   mov R1, 170
   mov [SP+1], R1
-  mov R1, __literal_string_27643
+  mov R1, __literal_string_28618
   mov [SP+2], R1
   call __function_print_at
-__if_27606_end:
-__if_27644_start:
+__if_28581_end:
+__if_28619_start:
   mov R0, [BP-1]
-  jf R0, __if_27644_end
+  jf R0, __if_28619_end
   mov R1, 10
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_27650
+  mov R1, __literal_string_28625
   mov [SP+2], R1
   call __function_print_at
   mov R1, 25
@@ -28328,7 +29480,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_27662
+  mov R1, __literal_string_28637
   mov [SP+2], R1
   call __function_print_at
   mov R1, 105
@@ -28345,7 +29497,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_27674
+  mov R1, __literal_string_28649
   mov [SP+2], R1
   call __function_print_at
   mov R1, 185
@@ -28362,7 +29514,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_27686
+  mov R1, __literal_string_28661
   mov [SP+2], R1
   call __function_print_at
   mov R1, 285
@@ -28375,14 +29527,14 @@ __if_27644_start:
   mov R1, [R2]
   mov R2, [global_sectors]
   isub R1, R2
-  idiv R1, 14
+  idiv R1, 16
   mov [SP+2], R1
   call __function_ShowInt
   mov R1, 340
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_27699
+  mov R1, __literal_string_28674
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -28396,7 +29548,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_27707
+  mov R1, __literal_string_28682
   mov [SP+2], R1
   call __function_print_at
   call __function_Z_UsedWords
@@ -28414,7 +29566,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_27717
+  mov R1, __literal_string_28692
   mov [SP+2], R1
   call __function_print_at
   mov R1, 60
@@ -28428,7 +29580,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_27725
+  mov R1, __literal_string_28700
   mov [SP+2], R1
   call __function_print_at
   mov R1, 160
@@ -28442,7 +29594,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_27733
+  mov R1, __literal_string_28708
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -28456,7 +29608,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_27741
+  mov R1, __literal_string_28716
   mov [SP+2], R1
   call __function_print_at
   mov R1, 370
@@ -28470,7 +29622,7 @@ __if_27644_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_27749
+  mov R1, __literal_string_28724
   mov [SP+2], R1
   call __function_print_at
   mov R1, 475
@@ -28480,31 +29632,31 @@ __if_27644_start:
   mov R1, [global_perf_slow]
   mov [SP+2], R1
   call __function_ShowInt
-__if_27754_start:
+__if_28729_start:
   mov R0, [BP-2]
-  jf R0, __if_27754_else
+  jf R0, __if_28729_else
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_27759
+  mov R1, __literal_string_28734
   mov [SP+2], R1
   call __function_print_at
-  jmp __if_27754_end
-__if_27754_else:
+  jmp __if_28729_end
+__if_28729_else:
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_27763
+  mov R1, __literal_string_28738
   mov [SP+2], R1
   call __function_print_at
-__if_27754_end:
+__if_28729_end:
   mov R1, 10
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_27767
+  mov R1, __literal_string_28742
   mov [SP+2], R1
   call __function_print_at
   mov R1, 50
@@ -28518,7 +29670,7 @@ __if_27754_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_27775
+  mov R1, __literal_string_28750
   mov [SP+2], R1
   call __function_print_at
   mov R1, 150
@@ -28532,7 +29684,7 @@ __if_27754_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_27783
+  mov R1, __literal_string_28758
   mov [SP+2], R1
   call __function_print_at
   mov R1, 265
@@ -28546,7 +29698,7 @@ __if_27754_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_27791
+  mov R1, __literal_string_28766
   mov [SP+2], R1
   call __function_print_at
   mov R1, 385
@@ -28560,7 +29712,7 @@ __if_27754_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_27799
+  mov R1, __literal_string_28774
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -28570,7 +29722,7 @@ __if_27754_end:
   mov R1, [BP-3]
   mov [SP+2], R1
   call __function_ShowInt
-__if_27644_end:
+__if_28619_end:
   mov R0, [BP-4]
   mov R1, R0
   iadd R1, 1
@@ -28584,8 +29736,8 @@ __if_27644_end:
   mov [BP-6], R0
   mov R0, [BP-13]
   mov [BP-5], R0
-  jmp __while_27252_start
-__while_27252_end:
+  jmp __while_28224_start
+__while_28224_end:
 __function_main_return:
   mov SP, BP
   pop BP
@@ -28643,51 +29795,51 @@ __embedded_gen_sfx_sound:
   datafile "data\\sfx_sound.bin"
 __embedded_gen_sfx_priority:
   datafile "data\\sfx_priority.bin"
-__literal_string_27605:
+__literal_string_28580:
   string "YOU DIED - PRESS B"
-__literal_string_27612:
+__literal_string_28587:
   string "LEVEL COMPLETE"
-__literal_string_27616:
+__literal_string_28591:
   string "KILLS"
-__literal_string_27625:
+__literal_string_28600:
   string "ITEMS"
-__literal_string_27634:
+__literal_string_28609:
   string "SECRETS"
-__literal_string_27643:
+__literal_string_28618:
   string "PRESS A TO RESTART"
-__literal_string_27650:
+__literal_string_28625:
   string "X"
-__literal_string_27662:
+__literal_string_28637:
   string "Y"
-__literal_string_27674:
+__literal_string_28649:
   string "Z"
-__literal_string_27686:
+__literal_string_28661:
   string "SEC"
-__literal_string_27699:
+__literal_string_28674:
   string "FRAME"
-__literal_string_27707:
+__literal_string_28682:
   string "ZONE"
-__literal_string_27717:
+__literal_string_28692:
   string "SEGS"
-__literal_string_27725:
+__literal_string_28700:
   string "COLS"
-__literal_string_27733:
+__literal_string_28708:
   string "DRAWS"
-__literal_string_27741:
+__literal_string_28716:
   string "VS"
-__literal_string_27749:
+__literal_string_28724:
   string "SLOW"
-__literal_string_27759:
+__literal_string_28734:
   string "LO"
-__literal_string_27763:
+__literal_string_28738:
   string "HI"
-__literal_string_27767:
+__literal_string_28742:
   string "PLN"
-__literal_string_27775:
+__literal_string_28750:
   string "FIL"
-__literal_string_27783:
+__literal_string_28758:
   string "SPR"
-__literal_string_27791:
+__literal_string_28766:
   string "MSK"
-__literal_string_27799:
+__literal_string_28774:
   string "SIZE"

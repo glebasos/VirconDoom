@@ -43,6 +43,8 @@ struct sector_t
     void* lines;             // line_t** array of them
     void* soundtarget;       // mobj_t* that made noise here (P_NoiseAlert, M6)
     int soundtraversed;      // 0 = untraversed, 1,2 = sndlines crossed
+    fixed_t soundorg_x;      // sector sound origin = bbox center (M8 sounds)
+    fixed_t soundorg_y;
 };
 
 struct side_t

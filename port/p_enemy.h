@@ -384,6 +384,8 @@ void A_Look( void* p )
 {
     mobj_t* actor = (mobj_t*)p;
     mobj_t* targ;
+    int ss;
+    int sound;
 
     actor->threshold = 0;        // any shot will wake up
     targ = (mobj_t*)actor->subsector->sector->soundtarget;
@@ -405,7 +407,17 @@ void A_Look( void* p )
         return;
 
   seeyou:
-    // (see sound: audio is M8)
+    // play see sound (posit1-3 / bgsit1-2 randomize; no bosses in E1M1)
+    ss = gen_mobjinfo[ actor->type ][MI_SEESOUND];
+    if( ss )
+    {
+        sound = ss;
+        if( ss == SFX_POSIT1 || ss == SFX_POSIT2 || ss == SFX_POSIT3 )
+            sound = SFX_POSIT1 + P_Random() % 3;
+        else if( ss == SFX_BGSIT1 || ss == SFX_BGSIT2 )
+            sound = SFX_BGSIT1 + P_Random() % 2;
+        S_StartSound( actor, sound );
+    }
     P_SetMobjState( actor, gen_mobjinfo[ actor->type ][MI_SEESTATE] );
 }
 
@@ -486,7 +498,9 @@ void A_Chase( void* p )
     if( actor->movecount < 0 || !P_Move( actor ) )
         P_NewChaseDir( actor );
 
-    // (active sound: audio is M8)
+    // make active sound
+    if( gen_mobjinfo[ actor->type ][MI_ACTIVESOUND] && P_Random() < 3 )
+        S_StartSound( actor, gen_mobjinfo[ actor->type ][MI_ACTIVESOUND] );
 }
 
 void A_PosAttack( void* p )
@@ -503,6 +517,7 @@ void A_PosAttack( void* p )
     angle = actor->angle;
     slope = P_AimLineAttack( actor, angle, MISSILERANGE );
 
+    S_StartSound( actor, SFX_PISTOL );
     angle += ( P_Random() - P_Random() ) << 20;
     damage = ( ( P_Random() % 5 ) + 1 ) * 3;
     P_LineAttack( actor, angle, MISSILERANGE, slope, damage );
@@ -520,6 +535,7 @@ void A_SPosAttack( void* p )
     if( !actor->target )
         return;
 
+    S_StartSound( actor, SFX_SHOTGN );
     A_FaceTarget( p );
     bangle = actor->angle;
     slope = P_AimLineAttack( actor, bangle, MISSILERANGE );
@@ -543,6 +559,7 @@ void A_TroopAttack( void* p )
     A_FaceTarget( p );
     if( P_CheckMeleeRange( actor ) )
     {
+        S_StartSound( actor, SFX_CLAW );
         damage = ( P_Random() % 8 + 1 ) * 3;
         P_DamageMobj( actor->target, actor, actor, damage );
         return;
@@ -554,17 +571,34 @@ void A_TroopAttack( void* p )
 
 void A_Scream( void* p )
 {
-    // death sound: audio is M8
+    mobj_t* actor = (mobj_t*)p;
+    int ds = gen_mobjinfo[ actor->type ][MI_DEATHSOUND];
+    int sound;
+
+    if( !ds )
+        return;
+
+    sound = ds;
+    if( ds == SFX_PODTH1 || ds == SFX_PODTH2 || ds == SFX_PODTH3 )
+        sound = SFX_PODTH1 + P_Random() % 3;
+    else if( ds == SFX_BGDTH1 || ds == SFX_BGDTH2 )
+        sound = SFX_BGDTH1 + P_Random() % 2;
+
+    S_StartSound( actor, sound );      // no bosses in E1M1 -> always positional
 }
 
 void A_XScream( void* p )
 {
-    // gib sound: audio is M8
+    S_StartSound( (mobj_t*)p, SFX_SLOP );
 }
 
 void A_Pain( void* p )
 {
-    // pain sound: audio is M8
+    mobj_t* actor = (mobj_t*)p;
+    int ps = gen_mobjinfo[ actor->type ][MI_PAINSOUND];
+
+    if( ps )
+        S_StartSound( actor, ps );
 }
 
 void A_Fall( void* p )

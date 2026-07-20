@@ -178,7 +178,10 @@ void T_VerticalDoor( void* p )
         // waiting at top
         door->topcountdown--;
         if( door->topcountdown == 0 )
+        {
             door->direction = -1;                // time to go back down
+            S_StartSoundSector( door->sector, SFX_DORCLS );
+        }
     }
     else if( door->direction == -1 )
     {
@@ -229,7 +232,10 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
          || line->special == 27 || line->special == 28 )
         {
             if( door->direction == -1 )
+            {
                 door->direction = 1;             // go back up
+                S_StartSoundSector( sec, SFX_DOROPN );
+            }
             else
             {
                 if( !thing->player )
@@ -246,6 +252,7 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
     sec->specialdata = (void*)door;
     door->sector = sec;
     door->direction = 1;
+    S_StartSoundSector( sec, SFX_DOROPN );
     door->speed = VDOORSPEED;
     door->topwait = VDOORWAIT;
     door->topheight = P_FindLowestCeilingSurrounding( sec ) - 4 * FRACUNIT;
@@ -284,10 +291,14 @@ void T_MoveFloor( void* p )
     res = T_MovePlane( floor->sector, floor->speed, floor->floordestheight,
                        floor->crush, 0, floor->direction );
 
+    if( !( leveltime & 7 ) )
+        S_StartSoundSector( floor->sector, SFX_STNMOV );
+
     if( res == RES_PASTDEST )
     {
         floor->sector->specialdata = NULL;
         P_RemoveThinker( &floor->thinker );
+        S_StartSoundSector( floor->sector, SFX_PSTOP );
     }
 }
 
@@ -372,6 +383,7 @@ void T_PlatRaise( void* p )
             // downWaitUpStay finished: remove
             plat->sector->specialdata = NULL;
             P_RemoveThinker( &plat->thinker );
+            S_StartSoundSector( plat->sector, SFX_PSTOP );
         }
     }
     else if( plat->status == PLAT_DOWN )
@@ -383,6 +395,7 @@ void T_PlatRaise( void* p )
         {
             plat->count = plat->wait;
             plat->status = PLAT_WAITING;
+            S_StartSoundSector( plat->sector, SFX_PSTOP );
         }
     }
     else if( plat->status == PLAT_WAITING )
@@ -436,6 +449,7 @@ boolean EV_DoPlat( line_t* line, int amount )
         plat->high = sec->floorheight;
         plat->wait = 35 * PLATWAIT;
         plat->status = PLAT_DOWN;
+        S_StartSoundSector( sec, SFX_PSTART );
     }
     return rtn;
 }
@@ -496,7 +510,8 @@ boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
     }
     if( s == 11 )
     {
-        // exit switch
+        // exit switch (P_ChangeSwitchTexture plays swtchn upstream)
+        S_StartSound( thing, SFX_SWTCHN );
         G_ExitLevel();
         line->special = 0;
         return true;

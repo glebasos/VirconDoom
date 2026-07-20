@@ -245,6 +245,31 @@ void P_GroupLines()
             li->backsector->linecount++;
         }
     }
+
+    // sector sound origin = bounding-box center over the sector's lines
+    // (upstream P_GroupLines; used for door/plat/floor sound attenuation)
+    for( i = 0; i < numsectors; i++ )
+    {
+        fixed_t minx = MAXINT;
+        fixed_t maxx = MININT;
+        fixed_t miny = MAXINT;
+        fixed_t maxy = MININT;
+        line_t** ls = (line_t**)sectors[i].lines;
+        for( j = 0; j < sectors[i].linecount; j++ )
+        {
+            li = ls[j];
+            if( li->v1->x < minx ) minx = li->v1->x;
+            if( li->v1->x > maxx ) maxx = li->v1->x;
+            if( li->v1->y < miny ) miny = li->v1->y;
+            if( li->v1->y > maxy ) maxy = li->v1->y;
+            if( li->v2->x < minx ) minx = li->v2->x;
+            if( li->v2->x > maxx ) maxx = li->v2->x;
+            if( li->v2->y < miny ) miny = li->v2->y;
+            if( li->v2->y > maxy ) maxy = li->v2->y;
+        }
+        sectors[i].soundorg_x = ( minx + maxx ) / 2;
+        sectors[i].soundorg_y = ( miny + maxy ) / 2;
+    }
 }
 
 void P_SetupLevel()

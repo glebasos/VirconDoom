@@ -546,6 +546,125 @@ def bake_sounds(wad):
     return sfxnames, sound_of, priority, singular, wav_files
 
 
+def bake_music(wad, lump='D_E1M1', out='music_e1m1.wav', max_seconds=120):
+    """Parse a DMX MUS score and render it to a looping 44100 Hz mono WAV with a
+    from-scratch chiptune synth (square lead/bass + noise percussion). No
+    soundfont is available in this environment, so this is a retro-timbre cover,
+    not the authentic FM/wavetable track. Returns the WAV basename, or None if
+    the lump is absent / anything fails (music is optional -- sfx must not
+    depend on it)."""
+    try:
+        import numpy as np, wave
+        if lump not in wad.index:
+            return None
+        raw = wad.by_name(lump)
+        assert raw[:4] == b'MUS\x1a', raw[:4]
+        score_len = struct.unpack_from('<H', raw, 4)[0]
+        score_start = struct.unpack_from('<H', raw, 6)[0]
+        p = score_start
+        end = min(score_start + score_len, len(raw))
+
+        SR = 44100
+        TICKHZ = 140.0                       # MUS plays at 140 Hz
+        chan_vol = [100] * 16                # 0..127 per channel
+        time_ticks = 0
+        active = {}                          # (chan,note) -> (start_sample, vel)
+        events = []                          # (start_smp, end_smp, chan, note, vel)
+        max_samples = int(max_seconds * SR)
+
+        def smp():
+            return int(time_ticks / TICKHZ * SR)
+
+        while p < end:
+            b = raw[p]; p += 1
+            last = (b >> 7) & 1
+            etype = (b >> 4) & 7
+            chan = b & 0x0f
+            if etype == 0:                   # release note
+                note = raw[p] & 0x7f; p += 1
+                key = (chan, note)
+                if key in active:
+                    s0, vel = active.pop(key)
+                    events.append((s0, smp(), chan, note, vel))
+            elif etype == 1:                 # play note
+                x = raw[p]; p += 1
+                note = x & 0x7f
+                if x & 0x80:
+                    chan_vol[chan] = raw[p] & 0x7f; p += 1
+                key = (chan, note)
+                if key in active:            # retrigger: close previous
+                    s0, vel = active.pop(key)
+                    events.append((s0, smp(), chan, note, vel))
+                active[key] = (smp(), chan_vol[chan])
+            elif etype == 2:                 # pitch wheel
+                p += 1
+            elif etype == 3:                 # system event
+                p += 1
+            elif etype == 4:                 # controller
+                p += 2
+            elif etype == 6:                 # score end
+                break
+            # types 5 (end measure) and 7 carry no payload
+            if last:
+                delay = 0
+                while p < end:
+                    n = raw[p]; p += 1
+                    delay = delay * 128 + (n & 0x7f)
+                    if not (n & 0x80):
+                        break
+                time_ticks += delay
+                if smp() > max_samples:
+                    break
+
+        total = min(smp() + SR // 2, max_samples + SR)
+        for (chan, note), (s0, vel) in active.items():   # flush held notes
+            events.append((s0, total, chan, note, vel))
+        if not events or total <= 0:
+            return None
+
+        buf = np.zeros(total, dtype=np.float32)
+        for s0, s1, chan, note, vel in events:
+            s0 = max(0, s0); s1 = min(total, s1)
+            n = s1 - s0
+            if n < 8:
+                continue
+            t = np.arange(n, dtype=np.float32) / SR
+            gain = (vel / 127.0)
+            if chan == 15:                   # percussion -> decaying noise burst
+                nlen = min(n, int(0.12 * SR))
+                seg = np.zeros(n, dtype=np.float32)
+                env = np.exp(-np.arange(nlen, dtype=np.float32) / (0.03 * SR))
+                seg[:nlen] = (np.random.rand(nlen).astype(np.float32) * 2 - 1) * env
+                buf[s0:s1] += 0.35 * gain * seg
+                continue
+            freq = 440.0 * (2.0 ** ((note - 69) / 12.0))
+            wave_sq = np.sign(np.sin(2 * np.pi * freq * t)).astype(np.float32)
+            # AD(S)R: 6ms attack, 40ms release, to kill clicks
+            env = np.ones(n, dtype=np.float32)
+            a = min(n, int(0.006 * SR)); r = min(n, int(0.04 * SR))
+            if a > 0: env[:a] = np.linspace(0, 1, a, dtype=np.float32)
+            if r > 0: env[-r:] *= np.linspace(1, 0, r, dtype=np.float32)
+            amp = 0.22 * gain
+            if note < 48:                    # bass notes a touch louder
+                amp *= 1.25
+            buf[s0:s1] += amp * wave_sq * env
+
+        peak = float(np.max(np.abs(buf)))
+        if peak > 0:
+            buf = buf / peak * 0.85
+        pcm = (buf * 32767.0).astype('<i2')
+
+        sdir = os.path.join(ROOT, 'sounds')
+        os.makedirs(sdir, exist_ok=True)
+        wf = wave.open(os.path.join(sdir, out), 'wb')
+        wf.setnchannels(1); wf.setsampwidth(2); wf.setframerate(SR)
+        wf.writeframes(pcm.tobytes()); wf.close()
+        return out
+    except Exception as e:
+        sys.stderr.write('music bake skipped: %r\n' % e)
+        return None
+
+
 def write_game_xml_sounds(wav_files):
     """Rewrite the <sounds> element of game.xml to reference the baked .vsnd
     assets in sound_id order (sound_id == list position). Textures block is
@@ -897,6 +1016,12 @@ def main():
 
     # ---- sounds (M8): DMX sfx -> WAV assets + sfxenum->sound_id map
     sfxnames, sound_of, sfx_prio, sfx_sing, wav_files = bake_sounds(wad)
+    # ---- music (M8): render D_E1M1 MUS -> looping chiptune WAV (id after sfx)
+    music_name = bake_music(wad)
+    music_id = -1
+    if music_name:
+        music_id = len(wav_files)
+        wav_files.append(music_name)
     w('data/sfx_sound.bin', sound_of)
     w('data/sfx_priority.bin', sfx_prio)
     write_game_xml_sounds(wav_files)
@@ -907,6 +1032,15 @@ def main():
     lines.append('')
     lines.append('#define GEN_NUMSFX %d' % len(sfxnames))
     lines.append('#define GEN_NUMVSOUNDS %d' % len(wav_files))
+    lines.append('#define GEN_MUSIC_SOUND %d   // Vircon sound_id of looping music, -1 if none'
+                 % music_id)
+    lines.append('')
+    lines.append('// forward prototypes for the playsim (defined in s_sound.h, late in')
+    lines.append('// the TU). Kept here (not doomdefs.h) so the sound-free harness/walls')
+    lines.append('// ROMs -- which do not include this header -- never see an undefined fn.')
+    lines.append('// origin: mobj_t* (positional) or NULL (full volume); sec: sector_t*.')
+    lines.append('void S_StartSound( void* origin, int sfx_id );')
+    lines.append('void S_StartSoundSector( void* sec, int sfx_id );')
     lines.append('')
     lines.append('// sfxenum_t values (index into gen_sfx_sound / gen_sfx_priority)')
     for i, nm in enumerate(sfxnames):

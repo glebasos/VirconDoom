@@ -282,6 +282,7 @@ void A_Punch( void* pp, void* pspp )
     // turn to face target
     if( linetarget )
     {
+        S_StartSound( player->mo, SFX_PUNCH );
         player->mo->angle = R_PointToAngle2( player->mo->x, player->mo->y,
                                              linetarget->x, linetarget->y );
     }
@@ -344,6 +345,7 @@ void A_FireShotgun( void* pp, void* pspp )
     player_t* player = (player_t*)pp;
     int i;
 
+    S_StartSound( player->mo, SFX_SHOTGN );
     P_SetMobjState( player->mo, GEN_S_PLAY_ATK2 );
     player->ammo[ weaponinfo[ player->readyweapon ][WI_AMMO] ]--;
 

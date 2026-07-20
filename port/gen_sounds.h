@@ -3,7 +3,15 @@
 #define GEN_SOUNDS_H
 
 #define GEN_NUMSFX 109
-#define GEN_NUMVSOUNDS 55
+#define GEN_NUMVSOUNDS 56
+#define GEN_MUSIC_SOUND 55   // Vircon sound_id of looping music, -1 if none
+
+// forward prototypes for the playsim (defined in s_sound.h, late in
+// the TU). Kept here (not doomdefs.h) so the sound-free harness/walls
+// ROMs -- which do not include this header -- never see an undefined fn.
+// origin: mobj_t* (positional) or NULL (full volume); sec: sector_t*.
+void S_StartSound( void* origin, int sfx_id );
+void S_StartSoundSector( void* sec, int sfx_id );
 
 // sfxenum_t values (index into gen_sfx_sound / gen_sfx_priority)
 #define SFX_NONE 0

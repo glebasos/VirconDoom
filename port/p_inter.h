@@ -153,6 +153,7 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
     player_t* player;
     fixed_t delta;
     int spr;
+    int sound = SFX_ITEMUP;
 
     delta = special->z - toucher->z;
 
@@ -245,12 +246,14 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
         if( !P_GiveWeapon( player, wp_shotgun,
                            ( special->flags & MF_DROPPED ) != 0 ) )
             return;
+        sound = SFX_WPNUP;
     }
     else if( spr == GEN_SPR_MGUN )
     {
         if( !P_GiveWeapon( player, wp_chaingun,
                            ( special->flags & MF_DROPPED ) != 0 ) )
             return;
+        sound = SFX_WPNUP;
     }
     else
         return;                  // unknown gettable: ignore (upstream I_Errors)
@@ -259,6 +262,7 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
         player->itemcount++;
     P_RemoveMobj( special );
     player->bonuscount += BONUSADD;
+    S_StartSound( NULL, sound );          // pickups are non-positional (full vol)
 }
 
 void P_KillMobj( mobj_t* source, mobj_t* target )
