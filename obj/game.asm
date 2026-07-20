@@ -227,6 +227,30 @@
   %define global_st_oldweaponsowned 1706623
   %define global_st_pain_lastcalc 1706631
   %define global_st_pain_oldhealth 1706632
+  %define global_automapactive 1706633
+  %define global_am_scale_mtof 1706634
+  %define global_am_scale_ftom 1706635
+  %define global_am_m_x 1706636
+  %define global_am_m_y 1706637
+  %define global_am_m_w 1706638
+  %define global_am_m_h 1706639
+  %define global_am_min_x 1706640
+  %define global_am_min_y 1706641
+  %define global_am_max_x 1706642
+  %define global_am_max_y 1706643
+  %define global_am_max_w 1706644
+  %define global_am_max_h 1706645
+  %define global_am_min_scale_mtof 1706646
+  %define global_am_max_scale_mtof 1706647
+  %define global_am_ftom_zoommul 1706648
+  %define global_am_mtof_zoommul 1706649
+  %define global_am_oldloc_x 1706650
+  %define global_am_leveljuststarted 1706651
+  %define global_am_lastlevelinit 1706652
+  %define global_am_ar_ax 1706653
+  %define global_am_ar_ay 1706660
+  %define global_am_ar_bx 1706667
+  %define global_am_ar_by 1706674
 
 __global_scope_initialization:
   push BP
@@ -1355,6 +1379,46 @@ __global_scope_initialization:
   mov [global_st_pain_lastcalc], R0
   mov R0, -1
   mov [global_st_pain_oldhealth], R0
+  mov R0, 0
+  mov [global_automapactive], R0
+  mov R0, 13107
+  mov [global_am_scale_mtof], R0
+  mov R0, 0
+  mov [global_am_scale_ftom], R0
+  mov R0, 0
+  mov [global_am_m_x], R0
+  mov R0, 0
+  mov [global_am_m_y], R0
+  mov R0, 0
+  mov [global_am_m_w], R0
+  mov R0, 0
+  mov [global_am_m_h], R0
+  mov R0, 0
+  mov [global_am_min_x], R0
+  mov R0, 0
+  mov [global_am_min_y], R0
+  mov R0, 0
+  mov [global_am_max_x], R0
+  mov R0, 0
+  mov [global_am_max_y], R0
+  mov R0, 0
+  mov [global_am_max_w], R0
+  mov R0, 0
+  mov [global_am_max_h], R0
+  mov R0, 0
+  mov [global_am_min_scale_mtof], R0
+  mov R0, 0
+  mov [global_am_max_scale_mtof], R0
+  mov R0, 65536
+  mov [global_am_ftom_zoommul], R0
+  mov R0, 65536
+  mov [global_am_mtof_zoommul], R0
+  mov R0, 2147483647
+  mov [global_am_oldloc_x], R0
+  mov R0, 1
+  mov [global_am_leveljuststarted], R0
+  mov R0, 0
+  mov [global_am_lastlevelinit], R0
   mov SP, BP
   pop BP
   ret
@@ -1430,6 +1494,16 @@ __function_set_drawing_scale_return:
   pop BP
   ret
 
+__function_set_drawing_angle:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out GPU_DrawingAngle, R0
+__function_set_drawing_angle_return:
+  mov SP, BP
+  pop BP
+  ret
+
 __function_get_drawing_point:
   push BP
   mov BP, SP
@@ -1478,6 +1552,19 @@ __function_draw_region_zoomed_at:
   out GPU_DrawingPointY, R0
   out GPU_Command, GPUCommand_DrawRegionZoomed
 __function_draw_region_zoomed_at_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_draw_region_rotozoomed_at:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out GPU_DrawingPointX, R0
+  mov R0, [BP+3]
+  out GPU_DrawingPointY, R0
+  out GPU_Command, GPUCommand_DrawRegionRotozoomed
+__function_draw_region_rotozoomed_at_return:
   mov SP, BP
   pop BP
   ret
@@ -2336,6 +2423,32 @@ __function_abs:
   mov R0, [BP+2]
   iabs R0
 __function_abs_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_atan2:
+  push BP
+  mov BP, SP
+  push R1
+  mov R0, [BP+2]
+  mov R1, [BP+3]
+  atan2 R0, R1
+  pop R1
+__function_atan2_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_sqrt:
+  push BP
+  mov BP, SP
+  push R1
+  mov R0, [BP+2]
+  mov R1, 0.5
+  pow R0, R1
+  pop R1
+__function_sqrt_return:
   mov SP, BP
   pop BP
   ret
@@ -28896,6 +29009,1206 @@ __function_ST_DrawFlash_return:
   pop BP
   ret
 
+__function_AM_Init:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  mov R0, 1198372
+  mov [BP-1], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  idiv R1, 8
+  iadd R0, R1
+  mov [global_am_ar_ax], R0
+  mov R0, 0
+  mov [global_am_ar_ay], R0
+  mov R0, [BP-1]
+  mov [global_am_ar_bx], R0
+  mov R0, 0
+  mov [global_am_ar_by], R0
+  mov R0, [BP-1]
+  mov [1706654], R0
+  mov R0, 0
+  mov [1706661], R0
+  mov R0, [BP-1]
+  mov R1, [BP-1]
+  idiv R1, 2
+  isub R0, R1
+  mov [1706668], R0
+  mov R0, [BP-1]
+  idiv R0, 4
+  mov [1706675], R0
+  mov R0, [BP-1]
+  mov [1706655], R0
+  mov R0, 0
+  mov [1706662], R0
+  mov R0, [BP-1]
+  mov R1, [BP-1]
+  idiv R1, 2
+  isub R0, R1
+  mov [1706669], R0
+  mov R0, [BP-1]
+  isgn R0
+  idiv R0, 4
+  mov [1706676], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  idiv R1, 8
+  iadd R0, R1
+  mov [1706656], R0
+  mov R0, 0
+  mov [1706663], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  idiv R1, 8
+  isub R0, R1
+  mov [1706670], R0
+  mov R0, [BP-1]
+  idiv R0, 4
+  mov [1706677], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  idiv R1, 8
+  iadd R0, R1
+  mov [1706657], R0
+  mov R0, 0
+  mov [1706664], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  idiv R1, 8
+  isub R0, R1
+  mov [1706671], R0
+  mov R0, [BP-1]
+  isgn R0
+  idiv R0, 4
+  mov [1706678], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  imul R1, 3
+  idiv R1, 8
+  iadd R0, R1
+  mov [1706658], R0
+  mov R0, 0
+  mov [1706665], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  idiv R1, 8
+  iadd R0, R1
+  mov [1706672], R0
+  mov R0, [BP-1]
+  idiv R0, 4
+  mov [1706679], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  imul R1, 3
+  idiv R1, 8
+  iadd R0, R1
+  mov [1706659], R0
+  mov R0, 0
+  mov [1706666], R0
+  mov R0, [BP-1]
+  isgn R0
+  mov R1, [BP-1]
+  idiv R1, 8
+  iadd R0, R1
+  mov [1706673], R0
+  mov R0, [BP-1]
+  isgn R0
+  idiv R0, 4
+  mov [1706680], R0
+__function_AM_Init_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_MTOF:
+  push BP
+  mov BP, SP
+  push R1
+  push R2
+  push R3
+  isub SP, 2
+  mov R2, [BP+2]
+  mov [SP], R2
+  mov R2, [global_am_scale_mtof]
+  mov [SP+1], R2
+  call __function_FixedMul
+  mov R1, R0
+  shl R1, -16
+  mov R3, [BP+2]
+  mov [SP], R3
+  mov R3, [global_am_scale_mtof]
+  mov [SP+1], R3
+  call __function_FixedMul
+  mov R2, R0
+  ilt R2, 0
+  isgn R2
+  shl R2, 16
+  or R1, R2
+  mov R0, R1
+__function_AM_MTOF_return:
+  iadd SP, 2
+  pop R3
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_FTOM:
+  push BP
+  mov BP, SP
+  push R1
+  isub SP, 2
+  mov R1, [BP+2]
+  shl R1, 16
+  mov [SP], R1
+  mov R1, [global_am_scale_ftom]
+  mov [SP+1], R1
+  call __function_FixedMul
+__function_AM_FTOM_return:
+  iadd SP, 2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_CXMTOF:
+  push BP
+  mov BP, SP
+  push R1
+  push R2
+  isub SP, 1
+  mov R1, [BP+2]
+  mov R2, [global_am_m_x]
+  isub R1, R2
+  mov [SP], R1
+  call __function_AM_MTOF
+__function_AM_CXMTOF_return:
+  iadd SP, 1
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_CYMTOF:
+  push BP
+  mov BP, SP
+  push R1
+  push R2
+  push R3
+  isub SP, 1
+  mov R2, [BP+2]
+  mov R3, [global_am_m_y]
+  isub R2, R3
+  mov [SP], R2
+  call __function_AM_MTOF
+  mov R1, R0
+  isgn R1
+  iadd R1, 296
+  mov R0, R1
+__function_AM_CYMTOF_return:
+  iadd SP, 1
+  pop R3
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_findMinMaxBoundaries:
+  push BP
+  mov BP, SP
+  isub SP, 5
+  mov R0, 2147483647
+  mov [global_am_min_x], R0
+  mov R0, 2147483647
+  mov [global_am_min_y], R0
+  mov R0, -2147483647
+  mov [global_am_max_x], R0
+  mov R0, -2147483647
+  mov [global_am_max_y], R0
+  mov R0, 0
+  mov [BP-1], R0
+__for_28505_start:
+  mov R0, [BP-1]
+  mov R1, [global_numvertexes]
+  ilt R0, R1
+  jf R0, __for_28505_end
+__if_28515_start:
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  mov R0, [R1]
+  mov R1, [global_am_min_x]
+  ilt R0, R1
+  jf R0, __if_28515_else
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  mov R0, [R1]
+  mov [global_am_min_x], R0
+  jmp __if_28515_end
+__if_28515_else:
+__if_28528_start:
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  mov R0, [R1]
+  mov R1, [global_am_max_x]
+  igt R0, R1
+  jf R0, __if_28528_end
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  mov R0, [R1]
+  mov [global_am_max_x], R0
+__if_28528_end:
+__if_28515_end:
+__if_28541_start:
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  iadd R1, 1
+  mov R0, [R1]
+  mov R1, [global_am_min_y]
+  ilt R0, R1
+  jf R0, __if_28541_else
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  iadd R1, 1
+  mov R0, [R1]
+  mov [global_am_min_y], R0
+  jmp __if_28541_end
+__if_28541_else:
+__if_28554_start:
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  iadd R1, 1
+  mov R0, [R1]
+  mov R1, [global_am_max_y]
+  igt R0, R1
+  jf R0, __if_28554_end
+  mov R1, [global_vertexes]
+  mov R2, [BP-1]
+  imul R2, 2
+  iadd R1, R2
+  iadd R1, 1
+  mov R0, [R1]
+  mov [global_am_max_y], R0
+__if_28554_end:
+__if_28541_end:
+__for_28505_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_28505_start
+__for_28505_end:
+  mov R0, [global_am_max_x]
+  mov R1, [global_am_min_x]
+  isub R0, R1
+  mov [global_am_max_w], R0
+  mov R0, [global_am_max_y]
+  mov R1, [global_am_min_y]
+  isub R0, R1
+  mov [global_am_max_h], R0
+  mov R1, 41943040
+  mov [SP], R1
+  mov R1, [global_am_max_w]
+  mov [SP+1], R1
+  call __function_FixedDiv
+  mov [BP-2], R0
+  mov R1, 19398656
+  mov [SP], R1
+  mov R1, [global_am_max_h]
+  mov [SP+1], R1
+  call __function_FixedDiv
+  mov [BP-3], R0
+__if_28591_start:
+  mov R0, [BP-2]
+  mov R1, [BP-3]
+  ilt R0, R1
+  jf R0, __if_28591_else
+  mov R0, [BP-2]
+  mov [global_am_min_scale_mtof], R0
+  jmp __if_28591_end
+__if_28591_else:
+  mov R0, [BP-3]
+  mov [global_am_min_scale_mtof], R0
+__if_28591_end:
+  mov R2, 19398656
+  mov [SP], R2
+  mov R2, 2097152
+  mov [SP+1], R2
+  call __function_FixedDiv
+  mov R1, R0
+  mov [global_am_max_scale_mtof], R1
+  mov R0, R1
+__function_AM_findMinMaxBoundaries_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_LevelInit:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, 0
+  mov [global_am_leveljuststarted], R0
+  call __function_AM_findMinMaxBoundaries
+  mov R2, [global_am_min_scale_mtof]
+  mov [SP], R2
+  mov R2, 45875
+  mov [SP+1], R2
+  call __function_FixedDiv
+  mov R1, R0
+  mov [global_am_scale_mtof], R1
+  mov R0, R1
+__if_28623_start:
+  mov R0, [global_am_scale_mtof]
+  mov R1, [global_am_max_scale_mtof]
+  igt R0, R1
+  jf R0, __if_28623_end
+  mov R0, [global_am_min_scale_mtof]
+  mov [global_am_scale_mtof], R0
+__if_28623_end:
+  mov R2, 65536
+  mov [SP], R2
+  mov R2, [global_am_scale_mtof]
+  mov [SP+1], R2
+  call __function_FixedDiv
+  mov R1, R0
+  mov [global_am_scale_ftom], R1
+  mov R0, R1
+  mov R0, 1
+  mov [global_am_lastlevelinit], R0
+__function_AM_LevelInit_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_activateNewScale:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  mov R0, [global_am_m_x]
+  mov R1, [global_am_m_w]
+  idiv R1, 2
+  iadd R0, R1
+  mov [global_am_m_x], R0
+  mov R0, [global_am_m_y]
+  mov R1, [global_am_m_h]
+  idiv R1, 2
+  iadd R0, R1
+  mov [global_am_m_y], R0
+  mov R2, 640
+  mov [SP], R2
+  call __function_AM_FTOM
+  mov R1, R0
+  mov [global_am_m_w], R1
+  mov R0, R1
+  mov R2, 296
+  mov [SP], R2
+  call __function_AM_FTOM
+  mov R1, R0
+  mov [global_am_m_h], R1
+  mov R0, R1
+  mov R0, [global_am_m_x]
+  mov R1, [global_am_m_w]
+  idiv R1, 2
+  isub R0, R1
+  mov [global_am_m_x], R0
+  mov R0, [global_am_m_y]
+  mov R1, [global_am_m_h]
+  idiv R1, 2
+  isub R0, R1
+  mov [global_am_m_y], R0
+__function_AM_activateNewScale_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_minOutWindowScale:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, [global_am_min_scale_mtof]
+  mov [global_am_scale_mtof], R0
+  mov R2, 65536
+  mov [SP], R2
+  mov R2, [global_am_scale_mtof]
+  mov [SP+1], R2
+  call __function_FixedDiv
+  mov R1, R0
+  mov [global_am_scale_ftom], R1
+  mov R0, R1
+  call __function_AM_activateNewScale
+__function_AM_minOutWindowScale_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_maxOutWindowScale:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, [global_am_max_scale_mtof]
+  mov [global_am_scale_mtof], R0
+  mov R2, 65536
+  mov [SP], R2
+  mov R2, [global_am_scale_mtof]
+  mov [SP+1], R2
+  call __function_FixedDiv
+  mov R1, R0
+  mov [global_am_scale_ftom], R1
+  mov R0, R1
+  call __function_AM_activateNewScale
+__function_AM_maxOutWindowScale_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_changeWindowScale:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R2, [global_am_scale_mtof]
+  mov [SP], R2
+  mov R2, [global_am_mtof_zoommul]
+  mov [SP+1], R2
+  call __function_FixedMul
+  mov R1, R0
+  mov [global_am_scale_mtof], R1
+  mov R0, R1
+  mov R2, 65536
+  mov [SP], R2
+  mov R2, [global_am_scale_mtof]
+  mov [SP+1], R2
+  call __function_FixedDiv
+  mov R1, R0
+  mov [global_am_scale_ftom], R1
+  mov R0, R1
+__if_28698_start:
+  mov R0, [global_am_scale_mtof]
+  mov R1, [global_am_min_scale_mtof]
+  ilt R0, R1
+  jf R0, __if_28698_else
+  call __function_AM_minOutWindowScale
+  jmp __if_28698_end
+__if_28698_else:
+__if_28703_start:
+  mov R0, [global_am_scale_mtof]
+  mov R1, [global_am_max_scale_mtof]
+  igt R0, R1
+  jf R0, __if_28703_else
+  call __function_AM_maxOutWindowScale
+  jmp __if_28703_end
+__if_28703_else:
+  call __function_AM_activateNewScale
+__if_28703_end:
+__if_28698_end:
+__function_AM_changeWindowScale_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_doFollowPlayer:
+  push BP
+  mov BP, SP
+  isub SP, 3
+  mov R0, [global_player1]
+  mov [BP-1], R0
+__if_28714_start:
+  mov R0, [global_am_oldloc_x]
+  mov R2, [BP-1]
+  iadd R2, 4
+  mov R1, [R2]
+  ine R0, R1
+  jf R0, __if_28714_end
+  mov R4, [BP-1]
+  iadd R4, 4
+  mov R3, [R4]
+  mov [SP], R3
+  call __function_AM_MTOF
+  mov R2, R0
+  mov [BP-2], R2
+  mov R2, [BP-2]
+  mov [SP], R2
+  call __function_AM_FTOM
+  mov R1, R0
+  mov R2, [global_am_m_w]
+  idiv R2, 2
+  isub R1, R2
+  mov [global_am_m_x], R1
+  mov R0, R1
+  mov R4, [BP-1]
+  iadd R4, 5
+  mov R3, [R4]
+  mov [SP], R3
+  call __function_AM_MTOF
+  mov R2, R0
+  mov [BP-2], R2
+  mov R2, [BP-2]
+  mov [SP], R2
+  call __function_AM_FTOM
+  mov R1, R0
+  mov R2, [global_am_m_h]
+  idiv R2, 2
+  isub R1, R2
+  mov [global_am_m_y], R1
+  mov R0, R1
+  mov R1, [BP-1]
+  iadd R1, 4
+  mov R0, [R1]
+  mov [global_am_oldloc_x], R0
+__if_28714_end:
+__function_AM_doFollowPlayer_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_Start:
+  push BP
+  mov BP, SP
+  isub SP, 1
+__if_28745_start:
+  mov R0, [global_am_leveljuststarted]
+  cib R0
+  jt R0, __LogicalOr_ShortCircuit_28747
+  mov R1, [global_am_lastlevelinit]
+  ieq R1, 0
+  or R0, R1
+__LogicalOr_ShortCircuit_28747:
+  jf R0, __if_28745_end
+  call __function_AM_LevelInit
+__if_28745_end:
+  mov R0, 1
+  mov [global_automapactive], R0
+  mov R0, 2147483647
+  mov [global_am_oldloc_x], R0
+  mov R0, 65536
+  mov [global_am_ftom_zoommul], R0
+  mov R0, 65536
+  mov [global_am_mtof_zoommul], R0
+  mov R2, 640
+  mov [SP], R2
+  call __function_AM_FTOM
+  mov R1, R0
+  mov [global_am_m_w], R1
+  mov R0, R1
+  mov R2, 296
+  mov [SP], R2
+  call __function_AM_FTOM
+  mov R1, R0
+  mov [global_am_m_h], R1
+  mov R0, R1
+  mov R1, [global_player1]
+  iadd R1, 4
+  mov R0, [R1]
+  mov R1, [global_am_m_w]
+  idiv R1, 2
+  isub R0, R1
+  mov [global_am_m_x], R0
+  mov R1, [global_player1]
+  iadd R1, 5
+  mov R0, [R1]
+  mov R1, [global_am_m_h]
+  idiv R1, 2
+  isub R0, R1
+  mov [global_am_m_y], R0
+__function_AM_Start_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_NotifyLevel:
+  push BP
+  mov BP, SP
+  mov R0, 0
+  mov [global_am_lastlevelinit], R0
+  mov R0, 0
+  mov [global_automapactive], R0
+__function_AM_NotifyLevel_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_Ticker:
+  push BP
+  mov BP, SP
+__if_28799_start:
+  mov R0, [global_automapactive]
+  bnot R0
+  jf R0, __if_28799_end
+  jmp __function_AM_Ticker_return
+__if_28799_end:
+  call __function_AM_doFollowPlayer
+__if_28804_start:
+  mov R0, [BP+2]
+  igt R0, 0
+  jf R0, __if_28804_else
+  mov R0, 66846
+  mov [global_am_mtof_zoommul], R0
+  mov R0, 64251
+  mov [global_am_ftom_zoommul], R0
+  jmp __if_28804_end
+__if_28804_else:
+__if_28815_start:
+  mov R0, [BP+2]
+  ilt R0, 0
+  jf R0, __if_28815_else
+  mov R0, 64251
+  mov [global_am_mtof_zoommul], R0
+  mov R0, 66846
+  mov [global_am_ftom_zoommul], R0
+  jmp __if_28815_end
+__if_28815_else:
+  mov R0, 65536
+  mov [global_am_mtof_zoommul], R0
+  mov R0, 65536
+  mov [global_am_ftom_zoommul], R0
+__if_28815_end:
+__if_28804_end:
+__if_28833_start:
+  mov R0, [global_am_ftom_zoommul]
+  ine R0, 65536
+  jf R0, __if_28833_end
+  call __function_AM_changeWindowScale
+__if_28833_end:
+__function_AM_Ticker_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_DrawScreenLine:
+  push BP
+  mov BP, SP
+  isub SP, 6
+__if_28844_start:
+  mov R0, [BP+2]
+  ilt R0, 0
+  jf R0, __LogicalAnd_ShortCircuit_28849
+  mov R1, [BP+4]
+  ilt R1, 0
+  and R0, R1
+__LogicalAnd_ShortCircuit_28849:
+  jf R0, __if_28844_end
+  jmp __function_AM_DrawScreenLine_return
+__if_28844_end:
+__if_28853_start:
+  mov R0, [BP+2]
+  igt R0, 640
+  jf R0, __LogicalAnd_ShortCircuit_28858
+  mov R1, [BP+4]
+  igt R1, 640
+  and R0, R1
+__LogicalAnd_ShortCircuit_28858:
+  jf R0, __if_28853_end
+  jmp __function_AM_DrawScreenLine_return
+__if_28853_end:
+__if_28862_start:
+  mov R0, [BP+3]
+  ilt R0, 0
+  jf R0, __LogicalAnd_ShortCircuit_28867
+  mov R1, [BP+5]
+  ilt R1, 0
+  and R0, R1
+__LogicalAnd_ShortCircuit_28867:
+  jf R0, __if_28862_end
+  jmp __function_AM_DrawScreenLine_return
+__if_28862_end:
+__if_28871_start:
+  mov R0, [BP+3]
+  igt R0, 296
+  jf R0, __LogicalAnd_ShortCircuit_28876
+  mov R1, [BP+5]
+  igt R1, 296
+  and R0, R1
+__LogicalAnd_ShortCircuit_28876:
+  jf R0, __if_28871_end
+  jmp __function_AM_DrawScreenLine_return
+__if_28871_end:
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  isub R0, R1
+  cif R0
+  mov [BP-1], R0
+  mov R0, [BP+5]
+  mov R1, [BP+3]
+  isub R0, R1
+  cif R0
+  mov [BP-2], R0
+  mov R1, [BP-1]
+  mov R2, [BP-1]
+  fmul R1, R2
+  mov R2, [BP-2]
+  mov R3, [BP-2]
+  fmul R2, R3
+  fadd R1, R2
+  mov [SP], R1
+  call __function_sqrt
+  mov [BP-3], R0
+__if_28904_start:
+  mov R0, [BP-3]
+  flt R0, 1.000000
+  jf R0, __if_28904_end
+  mov R0, 1.000000
+  mov [BP-3], R0
+__if_28904_end:
+  mov R0, 0.000000
+  mov [BP-4], R0
+__if_28914_start:
+  mov R0, [BP-1]
+  fne R0, 0.000000
+  jt R0, __LogicalOr_ShortCircuit_28919
+  mov R1, [BP-2]
+  fne R1, 0.000000
+  or R0, R1
+__LogicalOr_ShortCircuit_28919:
+  jf R0, __if_28914_end
+  mov R2, [BP-2]
+  mov [SP], R2
+  mov R2, [BP-1]
+  mov [SP+1], R2
+  call __function_atan2
+  mov R1, R0
+  mov [BP-4], R1
+  mov R0, R1
+__if_28914_end:
+  mov R1, [BP+6]
+  mov [SP], R1
+  call __function_set_multiply_color
+  mov R1, [BP-4]
+  mov [SP], R1
+  call __function_set_drawing_angle
+  mov R1, [BP-3]
+  fmul R1, 0.125000
+  mov [SP], R1
+  mov R1, 0.250000
+  mov [SP+1], R1
+  call __function_set_drawing_scale
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, [BP+3]
+  mov [SP+1], R1
+  call __function_draw_region_rotozoomed_at
+__function_AM_DrawScreenLine_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_DrawMline:
+  push BP
+  mov BP, SP
+  isub SP, 9
+  mov R2, [BP+5]
+  mov [SP], R2
+  call __function_AM_CYMTOF
+  mov R1, R0
+  mov [BP-1], R1
+  mov R2, [BP+4]
+  mov [SP], R2
+  call __function_AM_CXMTOF
+  mov R1, R0
+  mov [BP-2], R1
+  mov R2, [BP+3]
+  mov [SP], R2
+  call __function_AM_CYMTOF
+  mov R1, R0
+  mov [BP-3], R1
+  mov R2, [BP+2]
+  mov [SP], R2
+  call __function_AM_CXMTOF
+  mov R1, R0
+  mov [BP-4], R1
+  mov R1, [BP-4]
+  mov [SP], R1
+  mov R1, [BP-3]
+  mov [SP+1], R1
+  mov R1, [BP-2]
+  mov [SP+2], R1
+  mov R1, [BP-1]
+  mov [SP+3], R1
+  mov R1, [BP+6]
+  mov [SP+4], R1
+  call __function_AM_DrawScreenLine
+__function_AM_DrawMline_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_drawWalls:
+  push BP
+  mov BP, SP
+  isub SP, 11
+  mov R0, 0
+  mov [BP-1], R0
+__for_28960_start:
+  mov R0, [BP-1]
+  mov R1, [global_numlines]
+  ilt R0, R1
+  jf R0, __for_28960_end
+  mov R0, [global_lines]
+  mov R1, [BP-1]
+  imul R1, 17
+  iadd R0, R1
+  mov [BP-2], R0
+__if_28976_start:
+  mov R1, [BP-2]
+  iadd R1, 4
+  mov R0, [R1]
+  and R0, 256
+  ieq R0, 0
+  jf R0, __if_28976_end
+  jmp __for_28960_continue
+__if_28976_end:
+__if_28985_start:
+  mov R1, [BP-2]
+  iadd R1, 4
+  mov R0, [R1]
+  and R0, 128
+  cib R0
+  jf R0, __if_28985_end
+  jmp __for_28960_continue
+__if_28985_end:
+  mov R2, [BP-2]
+  mov R1, [R2]
+  mov R0, [R1]
+  mov [BP-3], R0
+  mov R2, [BP-2]
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov [BP-4], R0
+  mov R2, [BP-2]
+  iadd R2, 1
+  mov R1, [R2]
+  mov R0, [R1]
+  mov [BP-5], R0
+  mov R2, [BP-2]
+  iadd R2, 1
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov [BP-6], R0
+__if_29011_start:
+  mov R1, [BP-2]
+  iadd R1, 16
+  mov R0, [R1]
+  ieq R0, -1
+  jf R0, __if_29011_else
+  mov R1, [BP-3]
+  mov [SP], R1
+  mov R1, [BP-4]
+  mov [SP+1], R1
+  mov R1, [BP-5]
+  mov [SP+2], R1
+  mov R1, [BP-6]
+  mov [SP+3], R1
+  mov R1, -16776961
+  mov [SP+4], R1
+  call __function_AM_DrawMline
+  jmp __if_29011_end
+__if_29011_else:
+__if_29023_start:
+  mov R1, [BP-2]
+  iadd R1, 5
+  mov R0, [R1]
+  ieq R0, 39
+  jf R0, __if_29023_else
+  mov R1, [BP-3]
+  mov [SP], R1
+  mov R1, [BP-4]
+  mov [SP+1], R1
+  mov R1, [BP-5]
+  mov [SP+2], R1
+  mov R1, [BP-6]
+  mov [SP+3], R1
+  mov R1, -16777061
+  mov [SP+4], R1
+  call __function_AM_DrawMline
+  jmp __if_29023_end
+__if_29023_else:
+__if_29035_start:
+  mov R2, [BP-2]
+  iadd R2, 16
+  mov R1, [R2]
+  mov R0, [R1]
+  mov R3, [BP-2]
+  iadd R3, 15
+  mov R2, [R3]
+  mov R1, [R2]
+  ine R0, R1
+  jf R0, __if_29035_else
+  mov R1, [BP-3]
+  mov [SP], R1
+  mov R1, [BP-4]
+  mov [SP+1], R1
+  mov R1, [BP-5]
+  mov [SP+2], R1
+  mov R1, [BP-6]
+  mov [SP+3], R1
+  mov R1, -11830337
+  mov [SP+4], R1
+  call __function_AM_DrawMline
+  jmp __if_29035_end
+__if_29035_else:
+__if_29050_start:
+  mov R2, [BP-2]
+  iadd R2, 16
+  mov R1, [R2]
+  iadd R1, 1
+  mov R0, [R1]
+  mov R3, [BP-2]
+  iadd R3, 15
+  mov R2, [R3]
+  iadd R2, 1
+  mov R1, [R2]
+  ine R0, R1
+  jf R0, __if_29050_end
+  mov R1, [BP-3]
+  mov [SP], R1
+  mov R1, [BP-4]
+  mov [SP+1], R1
+  mov R1, [BP-5]
+  mov [SP+2], R1
+  mov R1, [BP-6]
+  mov [SP+3], R1
+  mov R1, -16711681
+  mov [SP+4], R1
+  call __function_AM_DrawMline
+__if_29050_end:
+__if_29035_end:
+__if_29023_end:
+__if_29011_end:
+__for_28960_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_28960_start
+__for_28960_end:
+__function_AM_drawWalls_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_rotate:
+  push BP
+  mov BP, SP
+  isub SP, 4
+  mov R0, [BP+4]
+  shl R0, -19
+  mov [BP-1], R0
+  mov R2, [BP+2]
+  mov R2, [R2]
+  mov [SP], R2
+  mov R2, [global_finecosine]
+  mov R3, [BP-1]
+  iadd R2, R3
+  mov R2, [R2]
+  mov [SP+1], R2
+  call __function_FixedMul
+  mov R1, R0
+  mov R3, [BP+3]
+  mov R3, [R3]
+  mov [SP], R3
+  mov R3, __embedded_finesine
+  mov R4, [BP-1]
+  iadd R3, R4
+  mov R3, [R3]
+  mov [SP+1], R3
+  call __function_FixedMul
+  mov R2, R0
+  isub R1, R2
+  mov R0, R1
+  mov [BP-2], R0
+  mov R2, [BP+2]
+  mov R2, [R2]
+  mov [SP], R2
+  mov R2, __embedded_finesine
+  mov R3, [BP-1]
+  iadd R2, R3
+  mov R2, [R2]
+  mov [SP+1], R2
+  call __function_FixedMul
+  mov R1, R0
+  mov R3, [BP+3]
+  mov R3, [R3]
+  mov [SP], R3
+  mov R3, [global_finecosine]
+  mov R4, [BP-1]
+  iadd R3, R4
+  mov R3, [R3]
+  mov [SP+1], R3
+  call __function_FixedMul
+  mov R2, R0
+  iadd R1, R2
+  lea R2, [BP+3]
+  mov R2, [R2]
+  mov [R2], R1
+  mov R0, R1
+  mov R0, [BP-2]
+  lea R1, [BP+2]
+  mov R1, [R1]
+  mov [R1], R0
+__function_AM_rotate_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_drawPlayer:
+  push BP
+  mov BP, SP
+  isub SP, 12
+  mov R0, [global_player1]
+  mov [BP-1], R0
+  mov R1, [BP-1]
+  iadd R1, 11
+  mov R0, [R1]
+  mov [BP-2], R0
+  mov R0, 0
+  mov [BP-3], R0
+__for_29120_start:
+  mov R0, [BP-3]
+  ilt R0, 7
+  jf R0, __for_29120_end
+  mov R0, global_am_ar_ax
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-4], R0
+  mov R0, global_am_ar_ay
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-5], R0
+  mov R0, global_am_ar_bx
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-6], R0
+  mov R0, global_am_ar_by
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-7], R0
+  lea R1, [BP-4]
+  mov [SP], R1
+  lea R1, [BP-5]
+  mov [SP+1], R1
+  mov R1, [BP-2]
+  mov [SP+2], R1
+  call __function_AM_rotate
+  lea R1, [BP-6]
+  mov [SP], R1
+  lea R1, [BP-7]
+  mov [SP+1], R1
+  mov R1, [BP-2]
+  mov [SP+2], R1
+  call __function_AM_rotate
+  mov R1, [BP-4]
+  mov R3, [BP-1]
+  iadd R3, 4
+  mov R2, [R3]
+  iadd R1, R2
+  mov [SP], R1
+  mov R1, [BP-5]
+  mov R3, [BP-1]
+  iadd R3, 5
+  mov R2, [R3]
+  iadd R1, R2
+  mov [SP+1], R1
+  mov R1, [BP-6]
+  mov R3, [BP-1]
+  iadd R3, 4
+  mov R2, [R3]
+  iadd R1, R2
+  mov [SP+2], R1
+  mov R1, [BP-7]
+  mov R3, [BP-1]
+  iadd R3, 5
+  mov R2, [R3]
+  iadd R1, R2
+  mov [SP+3], R1
+  mov R1, -2364417
+  mov [SP+4], R1
+  call __function_AM_DrawMline
+__for_29120_continue:
+  mov R0, [BP-3]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-3], R1
+  jmp __for_29120_start
+__for_29120_end:
+__function_AM_drawPlayer_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_AM_Drawer:
+  push BP
+  mov BP, SP
+  isub SP, 6
+__if_29181_start:
+  mov R0, [global_automapactive]
+  bnot R0
+  jf R0, __if_29181_end
+  jmp __function_AM_Drawer_return
+__if_29181_end:
+  mov R1, 4
+  mov [SP], R1
+  call __function_select_texture
+  mov R1, 0
+  mov [SP], R1
+  call __function_select_region
+  mov R1, 0
+  mov [SP], R1
+  mov R1, 0
+  mov [SP+1], R1
+  mov R1, 7
+  mov [SP+2], R1
+  mov R1, 7
+  mov [SP+3], R1
+  mov R1, 0
+  mov [SP+4], R1
+  mov R1, 4
+  mov [SP+5], R1
+  call __function_define_region
+  call __function_AM_drawWalls
+  call __function_AM_drawPlayer
+  mov R1, 0.000000
+  mov [SP], R1
+  call __function_set_drawing_angle
+  mov R1, -1
+  mov [SP], R1
+  call __function_set_multiply_color
+  mov R0, -1
+  mov [global_gpu_cur_sheet], R0
+__function_AM_Drawer_return:
+  mov SP, BP
+  pop BP
+  ret
+
 __function_ShowInt:
   push BP
   mov BP, SP
@@ -28924,6 +30237,7 @@ __function_G_LoadLevel:
   mov BP, SP
   isub SP, 4
   call __function_S_StopAllSounds
+  call __function_AM_NotifyLevel
   mov R1, 50
   mov [SP], R1
   mov R1, 100
@@ -28937,11 +30251,11 @@ __function_G_LoadLevel:
   mov [global_gameexit], R0
   mov R0, 0
   mov [BP-1], R0
-__for_28168_start:
+__for_29237_start:
   mov R0, [BP-1]
   ilt R0, 138
-  jf R0, __for_28168_end
-__if_28178_start:
+  jf R0, __for_29237_end
+__if_29247_start:
   mov R0, __embedded_gen_things
   mov R1, [BP-1]
   imul R1, 5
@@ -28949,7 +30263,7 @@ __if_28178_start:
   iadd R0, 3
   mov R0, [R0]
   ieq R0, 1
-  jf R0, __if_28178_end
+  jf R0, __if_29247_end
   mov R1, __embedded_gen_things
   mov R2, [BP-1]
   imul R2, 5
@@ -28971,15 +30285,15 @@ __if_28178_start:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_P_SpawnPlayer
-  jmp __for_28168_end
-__if_28178_end:
-__for_28168_continue:
+  jmp __for_29237_end
+__if_29247_end:
+__for_29237_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_28168_start
-__for_28168_end:
+  jmp __for_29237_start
+__for_29237_end:
   call __function_P_SpawnMapThings
   mov R1, global_player1
   mov [SP], R1
@@ -28995,25 +30309,25 @@ __function_PressedInWindow:
   push BP
   mov BP, SP
   push R1
-__if_28214_start:
+__if_29283_start:
   mov R0, [BP+2]
   igt R0, 0
-  jf R0, __if_28214_end
+  jf R0, __if_29283_end
   mov R0, [BP+2]
   mov R1, [BP+3]
   ile R0, R1
   jmp __function_PressedInWindow_return
-__if_28214_end:
-__if_28222_start:
+__if_29283_end:
+__if_29291_start:
   mov R0, [BP+4]
   bnot R0
-  jf R0, __if_28222_end
+  jf R0, __if_29291_end
   mov R0, [BP+2]
   isgn R0
   mov R1, [BP+3]
   ile R0, R1
   jmp __function_PressedInWindow_return
-__if_28222_end:
+__if_29291_end:
   mov R0, 0
 __function_PressedInWindow_return:
   pop R1
@@ -29030,6 +30344,7 @@ __function_main:
   call __function_P_InitPickups
   call __function_P_InitActions
   call __function_S_Init
+  call __function_AM_Init
   mov R0, 0
   mov [BP-1], R0
   mov R0, 0
@@ -29062,10 +30377,10 @@ __function_main:
   mov [BP-12], R0
   call __function_get_frame_counter
   mov [BP-13], R0
-__while_28282_start:
-__while_28282_continue:
+__while_29352_start:
+__while_29352_continue:
   mov R0, 1
-  jf R0, __while_28282_end
+  jf R0, __while_29352_end
   call __function_get_frame_counter
   mov [BP-14], R0
   mov R0, [BP-14]
@@ -29074,13 +30389,13 @@ __while_28282_continue:
   mov [BP-15], R0
   mov R0, [BP-14]
   mov [BP-13], R0
-__if_28296_start:
+__if_29366_start:
   mov R0, [BP-15]
   ilt R0, 1
-  jf R0, __if_28296_end
+  jf R0, __if_29366_end
   mov R0, 1
   mov [BP-15], R0
-__if_28296_end:
+__if_29366_end:
   mov R1, 0
   mov [SP], R1
   call __function_select_gamepad
@@ -29181,151 +30496,205 @@ __if_28296_end:
   mov [BP-12], R0
   mov R0, [BP-16]
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_28416
+  jf R0, __LogicalAnd_ShortCircuit_29486
   mov R1, [BP-26]
   and R0, R1
-__LogicalAnd_ShortCircuit_28416:
+__LogicalAnd_ShortCircuit_29486:
   mov [BP-35], R0
   mov R0, 0
   mov [BP-36], R0
-  mov R0, 0
-  mov [BP-37], R0
-  mov R0, 0
-  mov [BP-38], R0
-__if_28427_start:
-  mov R0, [BP-16]
-  bnot R0
-  jf R0, __if_28427_end
-__if_28431_start:
-  mov R0, [BP-23]
-  jf R0, __if_28431_end
-__if_28434_start:
-  mov R0, [BP-35]
-  jf R0, __if_28434_else
-  mov R0, 50
-  mov [BP-36], R0
-  jmp __if_28434_end
-__if_28434_else:
-  mov R0, 25
-  mov [BP-36], R0
-__if_28434_end:
-__if_28431_end:
-__if_28442_start:
-  mov R0, [BP-24]
-  jf R0, __if_28442_end
-__if_28445_start:
-  mov R0, [BP-35]
-  jf R0, __if_28445_else
-  mov R0, -50
-  mov [BP-36], R0
-  jmp __if_28445_end
-__if_28445_else:
-  mov R0, -25
-  mov [BP-36], R0
-__if_28445_end:
-__if_28442_end:
-__if_28455_start:
+__if_29491_start:
+  mov R0, [global_automapactive]
+  jf R0, __LogicalAnd_ShortCircuit_29493
+  mov R1, [BP-16]
+  bnot R1
+  and R0, R1
+__LogicalAnd_ShortCircuit_29493:
+  jf R0, __if_29491_end
+__if_29497_start:
   call __function_gamepad_button_r
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28455_end
-__if_28460_start:
-  mov R0, [BP-35]
-  jf R0, __if_28460_else
-  mov R0, 40
-  mov [BP-37], R0
-  jmp __if_28460_end
-__if_28460_else:
-  mov R0, 24
-  mov [BP-37], R0
-__if_28460_end:
-__if_28455_end:
-__if_28468_start:
+  jf R0, __if_29497_else
+  mov R0, 1
+  mov [BP-36], R0
+  jmp __if_29497_end
+__if_29497_else:
+__if_29504_start:
   call __function_gamepad_button_l
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28468_end
-__if_28473_start:
+  jf R0, __if_29504_end
+  mov R0, -1
+  mov [BP-36], R0
+__if_29504_end:
+__if_29497_end:
+__if_29491_end:
+  mov R0, 0
+  mov [BP-37], R0
+  mov R0, 0
+  mov [BP-38], R0
+  mov R0, 0
+  mov [BP-39], R0
+__if_29521_start:
+  mov R0, [BP-16]
+  bnot R0
+  jf R0, __if_29521_end
+__if_29525_start:
+  mov R0, [BP-23]
+  jf R0, __if_29525_end
+__if_29528_start:
   mov R0, [BP-35]
-  jf R0, __if_28473_else
+  jf R0, __if_29528_else
+  mov R0, 50
+  mov [BP-37], R0
+  jmp __if_29528_end
+__if_29528_else:
+  mov R0, 25
+  mov [BP-37], R0
+__if_29528_end:
+__if_29525_end:
+__if_29536_start:
+  mov R0, [BP-24]
+  jf R0, __if_29536_end
+__if_29539_start:
+  mov R0, [BP-35]
+  jf R0, __if_29539_else
+  mov R0, -50
+  mov [BP-37], R0
+  jmp __if_29539_end
+__if_29539_else:
+  mov R0, -25
+  mov [BP-37], R0
+__if_29539_end:
+__if_29536_end:
+__if_29549_start:
+  mov R1, [global_automapactive]
+  bnot R1
+  jf R1, __LogicalAnd_ShortCircuit_29552
+  call __function_gamepad_button_r
+  mov R2, R0
+  igt R2, 0
+  and R1, R2
+__LogicalAnd_ShortCircuit_29552:
+  mov R0, R1
+  jf R0, __if_29549_end
+__if_29557_start:
+  mov R0, [BP-35]
+  jf R0, __if_29557_else
+  mov R0, 40
+  mov [BP-38], R0
+  jmp __if_29557_end
+__if_29557_else:
+  mov R0, 24
+  mov [BP-38], R0
+__if_29557_end:
+__if_29549_end:
+__if_29565_start:
+  mov R1, [global_automapactive]
+  bnot R1
+  jf R1, __LogicalAnd_ShortCircuit_29568
+  call __function_gamepad_button_l
+  mov R2, R0
+  igt R2, 0
+  and R1, R2
+__LogicalAnd_ShortCircuit_29568:
+  mov R0, R1
+  jf R0, __if_29565_end
+__if_29573_start:
+  mov R0, [BP-35]
+  jf R0, __if_29573_else
   mov R0, -40
-  mov [BP-37], R0
-  jmp __if_28473_end
-__if_28473_else:
+  mov [BP-38], R0
+  jmp __if_29573_end
+__if_29573_else:
   mov R0, -24
-  mov [BP-37], R0
-__if_28473_end:
-__if_28468_end:
-__if_28483_start:
+  mov [BP-38], R0
+__if_29573_end:
+__if_29565_end:
+__if_29583_start:
   call __function_gamepad_left
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28483_end
-__if_28488_start:
+  jf R0, __if_29583_end
+__if_29588_start:
   mov R0, [BP-35]
-  jf R0, __if_28488_else
+  jf R0, __if_29588_else
   mov R0, 1280
-  mov [BP-38], R0
-  jmp __if_28488_end
-__if_28488_else:
+  mov [BP-39], R0
+  jmp __if_29588_end
+__if_29588_else:
   mov R0, 640
-  mov [BP-38], R0
-__if_28488_end:
-__if_28483_end:
-__if_28496_start:
+  mov [BP-39], R0
+__if_29588_end:
+__if_29583_end:
+__if_29596_start:
   call __function_gamepad_right
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28496_end
-__if_28501_start:
+  jf R0, __if_29596_end
+__if_29601_start:
   mov R0, [BP-35]
-  jf R0, __if_28501_else
+  jf R0, __if_29601_else
   mov R0, -1280
-  mov [BP-38], R0
-  jmp __if_28501_end
-__if_28501_else:
+  mov [BP-39], R0
+  jmp __if_29601_end
+__if_29601_else:
   mov R0, -640
-  mov [BP-38], R0
-__if_28501_end:
-__if_28496_end:
-__if_28427_end:
-  mov R0, [BP-36]
-  mov [1616673], R0
+  mov [BP-39], R0
+__if_29601_end:
+__if_29596_end:
+__if_29521_end:
   mov R0, [BP-37]
-  mov [1616674], R0
+  mov [1616673], R0
   mov R0, [BP-38]
+  mov [1616674], R0
+  mov R0, [BP-39]
   mov [1616675], R0
   mov R0, [BP-28]
-  jt R0, __LogicalOr_ShortCircuit_28528
+  jt R0, __LogicalOr_ShortCircuit_29628
   mov R1, [BP-34]
   or R0, R1
-__LogicalOr_ShortCircuit_28528:
+__LogicalOr_ShortCircuit_29628:
   mov [1616676], R0
   mov R0, [BP-27]
-  jt R0, __LogicalOr_ShortCircuit_28534
+  jt R0, __LogicalOr_ShortCircuit_29634
   mov R1, [BP-33]
   or R0, R1
-__LogicalOr_ShortCircuit_28534:
+__LogicalOr_ShortCircuit_29634:
   mov [1616677], R0
   mov R0, 9
   mov [1616678], R0
-__if_28539_start:
+__if_29639_start:
   mov R0, [BP-16]
-  jf R0, __if_28539_else
-__if_28542_start:
+  jf R0, __if_29639_else
+__if_29642_start:
   mov R0, [BP-32]
-  jf R0, __if_28542_end
+  jf R0, __if_29642_end
   mov R0, [BP-1]
   bnot R0
   mov [BP-1], R0
-__if_28542_end:
-__if_28548_start:
+__if_29642_end:
+__if_29648_start:
+  mov R0, [BP-34]
+  jf R0, __if_29648_end
+__if_29651_start:
+  mov R0, [global_automapactive]
+  jf R0, __if_29651_else
+  mov R0, 0
+  mov [global_automapactive], R0
+  jmp __if_29651_end
+__if_29651_else:
+  call __function_AM_Start
+__if_29651_end:
+__if_29648_end:
+__if_29657_start:
   mov R0, [BP-31]
-  jf R0, __if_28548_end
+  jf R0, __if_29657_end
   mov R0, [BP-2]
   bnot R0
   mov [BP-2], R0
@@ -29334,15 +30703,15 @@ __if_28548_start:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_28548_end:
-__if_28558_start:
+__if_29657_end:
+__if_29667_start:
   mov R0, [BP-29]
-  jf R0, __LogicalAnd_ShortCircuit_28560
+  jf R0, __LogicalAnd_ShortCircuit_29669
   mov R1, [BP-3]
   ilt R1, 2
   and R0, R1
-__LogicalAnd_ShortCircuit_28560:
-  jf R0, __if_28558_end
+__LogicalAnd_ShortCircuit_29669:
+  jf R0, __if_29667_end
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
@@ -29352,15 +30721,15 @@ __LogicalAnd_ShortCircuit_28560:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_28558_end:
-__if_28570_start:
+__if_29667_end:
+__if_29679_start:
   mov R0, [BP-30]
-  jf R0, __LogicalAnd_ShortCircuit_28572
+  jf R0, __LogicalAnd_ShortCircuit_29681
   mov R1, [BP-3]
   igt R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_28572:
-  jf R0, __if_28570_end
+__LogicalAnd_ShortCircuit_29681:
+  jf R0, __if_29679_end
   mov R0, [BP-3]
   mov R1, R0
   isub R1, 1
@@ -29370,68 +30739,71 @@ __LogicalAnd_ShortCircuit_28572:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_28570_end:
-  jmp __if_28539_end
-__if_28539_else:
-__if_28582_start:
+__if_29679_end:
+  jmp __if_29639_end
+__if_29639_else:
+__if_29691_start:
   mov R0, [BP-31]
-  jf R0, __if_28582_end
+  jf R0, __if_29691_end
   mov R0, [1616638]
   mov [BP-41], R0
-__if_28589_start:
+__if_29698_start:
   mov R0, [1616639]
   ine R0, 9
-  jf R0, __if_28589_end
+  jf R0, __if_29698_end
   mov R0, [1616639]
   mov [BP-41], R0
-__if_28589_end:
+__if_29698_end:
   mov R0, [BP-41]
   mov [BP-42], R0
   mov R0, 0
   mov [BP-43], R0
-__while_28604_start:
-__while_28604_continue:
+__while_29713_start:
+__while_29713_continue:
   mov R0, [BP-43]
   ilt R0, 8
-  jf R0, __while_28604_end
+  jf R0, __while_29713_end
   mov R0, [BP-42]
   iadd R0, 1
   mov [BP-42], R0
-__if_28614_start:
+__if_29723_start:
   mov R0, [BP-42]
   igt R0, 2
-  jf R0, __if_28614_end
+  jf R0, __if_29723_end
   mov R0, 0
   mov [BP-42], R0
-__if_28614_end:
-__if_28621_start:
+__if_29723_end:
+__if_29730_start:
   mov R0, 1616640
   mov R1, [BP-42]
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_28621_end
-  jmp __while_28604_end
-__if_28621_end:
+  jf R0, __if_29730_end
+  jmp __while_29713_end
+__if_29730_end:
   mov R0, [BP-43]
   mov R1, R0
   iadd R1, 1
   mov [BP-43], R1
-  jmp __while_28604_start
-__while_28604_end:
+  jmp __while_29713_start
+__while_29713_end:
   mov R0, [BP-42]
   mov [1616678], R0
-__if_28582_end:
-__if_28539_end:
-__if_28633_start:
+__if_29691_end:
+__if_29639_end:
+__if_29742_start:
   mov R0, [global_gameexit]
   bnot R0
-  jf R0, __if_28633_end
+  jf R0, __if_29742_end
   mov R1, global_player1
   mov [SP], R1
   call __function_P_PlayerThink
   call __function_P_RunThinkers
   call __function_ST_Ticker
+  mov R1, [BP-36]
+  mov [SP], R1
+  call __function_AM_Ticker
   mov R1, [global_player1]
   mov [SP], R1
   call __function_S_UpdateSounds
@@ -29439,36 +30811,22 @@ __if_28633_start:
   mov R1, R0
   iadd R1, 1
   mov [global_leveltime], R1
-__if_28633_end:
-__if_28647_start:
+__if_29742_end:
+__if_29758_start:
   mov R0, [1616622]
   ieq R0, 2
-  jf R0, __if_28647_end
+  jf R0, __if_29758_end
   call __function_G_LoadLevel
-__if_28647_end:
-__if_28653_start:
+__if_29758_end:
+__if_29764_start:
   mov R0, [global_gameexit]
-  jf R0, __LogicalAnd_ShortCircuit_28655
+  jf R0, __LogicalAnd_ShortCircuit_29766
   mov R1, [BP-33]
   and R0, R1
-__LogicalAnd_ShortCircuit_28655:
-  jf R0, __if_28653_end
+__LogicalAnd_ShortCircuit_29766:
+  jf R0, __if_29764_end
   call __function_G_LoadLevel
-__if_28653_end:
-  mov R1, [global_player1]
-  iadd R1, 4
-  mov R0, [R1]
-  mov [global_viewx], R0
-  mov R1, [global_player1]
-  iadd R1, 5
-  mov R0, [R1]
-  mov [global_viewy], R0
-  mov R0, [1616623]
-  mov [global_viewz], R0
-  mov R1, [global_player1]
-  iadd R1, 11
-  mov R0, [R1]
-  mov [global_viewangle], R0
+__if_29764_end:
   mov R0, 0
   mov [global_perf_segs], R0
   mov R0, 0
@@ -29483,20 +30841,45 @@ __if_28653_end:
   mov [global_perf_masked], R0
   mov R0, 0
   mov [global_perf_drops], R0
+__if_29790_start:
+  mov R0, [global_automapactive]
+  bnot R0
+  jf R0, __if_29790_end
+  mov R1, [global_player1]
+  iadd R1, 4
+  mov R0, [R1]
+  mov [global_viewx], R0
+  mov R1, [global_player1]
+  iadd R1, 5
+  mov R0, [R1]
+  mov [global_viewy], R0
+  mov R0, [1616623]
+  mov [global_viewz], R0
+  mov R1, [global_player1]
+  iadd R1, 11
+  mov R0, [R1]
+  mov [global_viewangle], R0
   call __function_R_RenderView
+__if_29790_end:
   call __function_end_frame
   mov R1, -16777216
   mov [SP], R1
   call __function_clear_screen
+__if_29817_start:
+  mov R0, [global_automapactive]
+  jf R0, __if_29817_else
+  call __function_AM_Drawer
+  jmp __if_29817_end
+__if_29817_else:
   mov R0, [global_colpix]
   mov R1, [global_viewwidth]
   imul R0, R1
-  mov [BP-39], R0
+  mov [BP-41], R0
   mov R1, [global_viewwindowx]
   mov [SP], R1
   mov R1, [global_viewwindowy]
   mov [SP+1], R1
-  mov R1, [BP-39]
+  mov R1, [BP-41]
   mov [SP+2], R1
   mov R1, [global_centery]
   imul R1, 2
@@ -29511,7 +30894,7 @@ __if_28653_end:
   imul R2, 2
   iadd R1, R2
   mov [SP+1], R1
-  mov R1, [BP-39]
+  mov R1, [BP-41]
   mov [SP+2], R1
   mov R1, [global_viewheight]
   mov R2, [global_centery]
@@ -29522,38 +30905,39 @@ __if_28653_end:
   mov [SP+4], R1
   call __function_GPU_FillScreen
   call __function_GPU_Flush
+__if_29817_end:
   call __function_ST_DrawFlash
   call __function_ST_Drawer
   mov R1, -1
   mov [SP], R1
   call __function_set_multiply_color
-__if_28735_start:
+__if_29855_start:
   mov R0, [1616622]
   ieq R0, 1
-  jf R0, __if_28735_end
+  jf R0, __if_29855_end
   mov R1, 220
   mov [SP], R1
   mov R1, 250
   mov [SP+1], R1
-  mov R1, __literal_string_28743
+  mov R1, __literal_string_29863
   mov [SP+2], R1
   call __function_print_at
-__if_28735_end:
-__if_28744_start:
+__if_29855_end:
+__if_29864_start:
   mov R0, [global_gameexit]
-  jf R0, __if_28744_end
+  jf R0, __if_29864_end
   mov R1, 250
   mov [SP], R1
   mov R1, 90
   mov [SP+1], R1
-  mov R1, __literal_string_28750
+  mov R1, __literal_string_29870
   mov [SP+2], R1
   call __function_print_at
   mov R1, 210
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_28754
+  mov R1, __literal_string_29874
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -29567,7 +30951,7 @@ __if_28744_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_28763
+  mov R1, __literal_string_29883
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -29581,7 +30965,7 @@ __if_28744_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_28772
+  mov R1, __literal_string_29892
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -29595,18 +30979,18 @@ __if_28744_start:
   mov [SP], R1
   mov R1, 170
   mov [SP+1], R1
-  mov R1, __literal_string_28781
+  mov R1, __literal_string_29901
   mov [SP+2], R1
   call __function_print_at
-__if_28744_end:
-__if_28782_start:
+__if_29864_end:
+__if_29902_start:
   mov R0, [BP-1]
-  jf R0, __if_28782_end
+  jf R0, __if_29902_end
   mov R1, 10
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28788
+  mov R1, __literal_string_29908
   mov [SP+2], R1
   call __function_print_at
   mov R1, 25
@@ -29623,7 +31007,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28800
+  mov R1, __literal_string_29920
   mov [SP+2], R1
   call __function_print_at
   mov R1, 105
@@ -29640,7 +31024,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28812
+  mov R1, __literal_string_29932
   mov [SP+2], R1
   call __function_print_at
   mov R1, 185
@@ -29657,7 +31041,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28824
+  mov R1, __literal_string_29944
   mov [SP+2], R1
   call __function_print_at
   mov R1, 285
@@ -29677,7 +31061,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28837
+  mov R1, __literal_string_29957
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -29691,7 +31075,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28845
+  mov R1, __literal_string_29965
   mov [SP+2], R1
   call __function_print_at
   call __function_Z_UsedWords
@@ -29709,7 +31093,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28855
+  mov R1, __literal_string_29975
   mov [SP+2], R1
   call __function_print_at
   mov R1, 60
@@ -29723,7 +31107,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28863
+  mov R1, __literal_string_29983
   mov [SP+2], R1
   call __function_print_at
   mov R1, 160
@@ -29737,7 +31121,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28871
+  mov R1, __literal_string_29991
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -29751,7 +31135,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28879
+  mov R1, __literal_string_29999
   mov [SP+2], R1
   call __function_print_at
   mov R1, 370
@@ -29765,7 +31149,7 @@ __if_28782_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28887
+  mov R1, __literal_string_30007
   mov [SP+2], R1
   call __function_print_at
   mov R1, 475
@@ -29775,31 +31159,31 @@ __if_28782_start:
   mov R1, [global_perf_drops]
   mov [SP+2], R1
   call __function_ShowInt
-__if_28892_start:
+__if_30012_start:
   mov R0, [BP-2]
-  jf R0, __if_28892_else
+  jf R0, __if_30012_else
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28897
+  mov R1, __literal_string_30017
   mov [SP+2], R1
   call __function_print_at
-  jmp __if_28892_end
-__if_28892_else:
+  jmp __if_30012_end
+__if_30012_else:
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28901
+  mov R1, __literal_string_30021
   mov [SP+2], R1
   call __function_print_at
-__if_28892_end:
+__if_30012_end:
   mov R1, 10
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28905
+  mov R1, __literal_string_30025
   mov [SP+2], R1
   call __function_print_at
   mov R1, 50
@@ -29813,7 +31197,7 @@ __if_28892_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28913
+  mov R1, __literal_string_30033
   mov [SP+2], R1
   call __function_print_at
   mov R1, 150
@@ -29827,7 +31211,7 @@ __if_28892_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28921
+  mov R1, __literal_string_30041
   mov [SP+2], R1
   call __function_print_at
   mov R1, 265
@@ -29841,7 +31225,7 @@ __if_28892_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28929
+  mov R1, __literal_string_30049
   mov [SP+2], R1
   call __function_print_at
   mov R1, 385
@@ -29855,7 +31239,7 @@ __if_28892_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28937
+  mov R1, __literal_string_30057
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -29865,7 +31249,7 @@ __if_28892_end:
   mov R1, [BP-3]
   mov [SP+2], R1
   call __function_ShowInt
-__if_28782_end:
+__if_29902_end:
   mov R0, [BP-4]
   mov R1, R0
   iadd R1, 1
@@ -29879,8 +31263,8 @@ __if_28782_end:
   mov [BP-6], R0
   mov R0, [BP-40]
   mov [BP-5], R0
-  jmp __while_28282_start
-__while_28282_end:
+  jmp __while_29352_start
+__while_29352_end:
 __function_main_return:
   mov SP, BP
   pop BP
@@ -29938,51 +31322,51 @@ __embedded_gen_sfx_sound:
   datafile "data\\sfx_sound.bin"
 __embedded_gen_sfx_priority:
   datafile "data\\sfx_priority.bin"
-__literal_string_28743:
+__literal_string_29863:
   string "YOU DIED - PRESS B"
-__literal_string_28750:
+__literal_string_29870:
   string "LEVEL COMPLETE"
-__literal_string_28754:
+__literal_string_29874:
   string "KILLS"
-__literal_string_28763:
+__literal_string_29883:
   string "ITEMS"
-__literal_string_28772:
+__literal_string_29892:
   string "SECRETS"
-__literal_string_28781:
+__literal_string_29901:
   string "PRESS A TO RESTART"
-__literal_string_28788:
+__literal_string_29908:
   string "X"
-__literal_string_28800:
+__literal_string_29920:
   string "Y"
-__literal_string_28812:
+__literal_string_29932:
   string "Z"
-__literal_string_28824:
+__literal_string_29944:
   string "SEC"
-__literal_string_28837:
+__literal_string_29957:
   string "FRAME"
-__literal_string_28845:
+__literal_string_29965:
   string "ZONE"
-__literal_string_28855:
+__literal_string_29975:
   string "SEGS"
-__literal_string_28863:
+__literal_string_29983:
   string "COLS"
-__literal_string_28871:
+__literal_string_29991:
   string "DRAWS"
-__literal_string_28879:
+__literal_string_29999:
   string "VS"
-__literal_string_28887:
+__literal_string_30007:
   string "DROP"
-__literal_string_28897:
+__literal_string_30017:
   string "LO"
-__literal_string_28901:
+__literal_string_30021:
   string "HI"
-__literal_string_28905:
+__literal_string_30025:
   string "PLN"
-__literal_string_28913:
+__literal_string_30033:
   string "FIL"
-__literal_string_28921:
+__literal_string_30041:
   string "SPR"
-__literal_string_28929:
+__literal_string_30049:
   string "MSK"
-__literal_string_28937:
+__literal_string_30057:
   string "SIZE"

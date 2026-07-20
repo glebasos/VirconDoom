@@ -120,6 +120,9 @@ Death: B respawns (level restarts). Exit switch: freezes sim, A restarts.
 - **FixedMul is bit-exact** (16-bit half decomposition). **FixedDiv is float-based**
   (documented deviation; fine so far through M5).
 - `&Function` (not bare name) for fn pointers; typedef `typedef void( int )* name;`.
+- **`ATAN2` faults on (0,0)** ("ARC TANGENT NOT DEFINED" halt). Guard any
+  `atan2(dy,dx)` where both can be 0 (e.g. a line whose endpoints round to the
+  same pixel) -> `if(dy!=0||dx!=0) a=atan2(..)` else 0. (Automap line-draw crash.)
 - No `-2147483648` literal: use 0x80000000. No ternary/switch/#if/unsigned/64-bit.
   Multi-line backslash macros WORK. `memset(ptr, wordvalue, WORDS)` = hardware SETS.
   §9.1 raw asm blocks work (GPU_Flush inner loop is one).
@@ -295,8 +298,26 @@ bottom); shows SIZE.
 ### NEXT (deferred M7 pieces, roughly independent)
 
 1. **Menus** = text rows + gamepad nav (M_* patches bakeable same as STBAR).
-2. **Automap** = line draws (Vircon GPU has no line primitive — 1px-column fills
-   or defer).
+2. **Automap — BUILT (session 8; compile + offline scale-gate green; needs
+   emulator verify).** `port/am_map.h` ports the am_map.c subset. KEY INSIGHT: the
+   GPU *does* have a rotated-region primitive (`draw_region_rotozoomed`), so each
+   map line = ONE draw of the 8x8 white texture — region hotspot at left-center
+   `define_region(0,0,7,7,0,4)`, `scaleX=len/8`, `scaleY=thick/8`, `angle=
+   atan2(dy,dx)`. Verified against emulator V32GPU.cpp: verts are relative to the
+   hotspot, then scale→rotate→translate-to-drawing-point, so the hotspot lands on
+   endpoint A and the region reaches exactly B in every quadrant (screen-Y-down ⇒
+   growing angle = clockwise, matches). NO Cohen-Sutherland clip: GL clips
+   off-screen, and any bleed below y296 is covered because ST_Drawer paints the
+   bar AFTER. Native screen space f_w=640/f_h=296 (play region), uniform scale
+   (undistorted top-down). Colors hardcoded ABGR from PLAYPAL (REDS/BROWNS/
+   YELLOWS/WHITE — no rebake). Explore-to-reveal: only ML_MAPPED lines (r_segs.h
+   already sets it). Follow-player north-up, L/R zoom (clamps min=whole-level ..
+   max), START+B toggles. Draws in the DRAW slot (game.c branches: skip
+   R_RenderView, both end_frame()s kept for the same no-flicker cadence). Offline
+   gate (scratchpad am_gate.py, replicates findMinMax+LevelInit over the WAD's
+   baked vertexes): player projects to EXACTLY (320,148), scale roundtrips 1.0,
+   level fits at min zoom. Omitted (future): grid, marks, things/cheat (IDDT),
+   pan, secret-line coloring.
 3. **HU pickup messages** = print_at top line w/ timeout (strings in upstream
    dstrings.h/d_englsh.h — bake or hand-copy the E1 subset).
 4. **Texture/flat animation + scroll (P_UpdateSpecials)**: baked texture-index

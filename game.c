@@ -44,6 +44,7 @@
 #include "port\\p_user.h"
 #include "port\\s_sound.h"
 #include "port\\st_bar.h"
+#include "port\\am_map.h"
 
 #define CEILCOLOR 0xFF202028
 #define FLOORCOLOR 0xFF20343C
@@ -62,6 +63,7 @@ void G_LoadLevel()
     int i;
 
     S_StopAllSounds();
+    AM_NotifyLevel();            // re-fit the automap bounds on the next open
     Z_FreeTags( PU_LEVEL, PU_PURGELEVEL );
     P_InitThinkers();
     P_SetupLevel();
@@ -114,6 +116,7 @@ void main()
     P_InitPickups();
     P_InitActions();
     S_Init();
+    AM_Init();
 
     bool showDebug = false;
     bool lowDetail = false;
@@ -185,6 +188,14 @@ void main()
 
         bool run = !startHeld && yHeld;
 
+        // while the automap is open, L/R zoom the map instead of strafing
+        int amZoom = 0;
+        if( automapactive && !startHeld )
+        {
+            if( gamepad_button_r() > 0 )      amZoom = 1;    // zoom in
+            else if( gamepad_button_l() > 0 ) amZoom = -1;   // zoom out
+        }
+
         int fm = 0;
         int sm = 0;
         int turn = 0;
@@ -192,8 +203,8 @@ void main()
         {
             if( upHeld )   { if( run ) fm = 0x32;  else fm = 0x19; }
             if( downHeld ) { if( run ) fm = -0x32; else fm = -0x19; }
-            if( gamepad_button_r() > 0 ) { if( run ) sm = 0x28;  else sm = 0x18; }
-            if( gamepad_button_l() > 0 ) { if( run ) sm = -0x28; else sm = -0x18; }
+            if( !automapactive && gamepad_button_r() > 0 ) { if( run ) sm = 0x28;  else sm = 0x18; }
+            if( !automapactive && gamepad_button_l() > 0 ) { if( run ) sm = -0x28; else sm = -0x18; }
             if( gamepad_left() > 0 )  { if( run ) turn = 1280;  else turn = 640; }
             if( gamepad_right() > 0 ) { if( run ) turn = -1280; else turn = -640; }
         }
@@ -209,6 +220,11 @@ void main()
         if( startHeld )
         {
             if( yEdge ) showDebug = !showDebug;
+            if( bEdge )              // START+B toggles the automap
+            {
+                if( automapactive ) automapactive = false;
+                else                AM_Start();
+            }
             if( xEdge )
             {
                 lowDetail = !lowDetail;
@@ -253,6 +269,7 @@ void main()
             P_PlayerThink( &player1 );
             P_RunThinkers();
             ST_Ticker();             // advance the face widget in the sim tick
+            AM_Ticker( amZoom );     // follow player + apply zoom (no-op if closed)
             S_UpdateSounds( player1.mo );   // re-attenuate as the listener moves
             leveltime++;
         }
@@ -263,12 +280,10 @@ void main()
         if( gameexit && aEdge )
             G_LoadLevel();
 
-        // ---- compute pass (records draw commands; GPU untouched)
-        viewx = player1.mo->x;
-        viewy = player1.mo->y;
-        viewz = player1.viewz;
-        viewangle = player1.mo->angle;
-
+        // ---- compute pass (records draw commands; GPU untouched). Skipped in
+        // automap mode: the map draws directly in the DRAW slot below, and this
+        // frame's (empty) end_frame just holds the previous automap image up --
+        // same no-flicker cadence as the 3D path, never a stale 3D frame.
         perf_segs = 0;
         perf_columns = 0;
         perf_draws = 0;
@@ -276,17 +291,31 @@ void main()
         perf_fills = 0;
         perf_masked = 0;
         perf_drops = 0;
-        R_RenderView();
+        if( !automapactive )
+        {
+            viewx = player1.mo->x;
+            viewy = player1.mo->y;
+            viewz = player1.viewz;
+            viewangle = player1.mo->angle;
+            R_RenderView();
+        }
         end_frame();
 
         // ---- draw pass. clear_screen paints the black borders for free; the
         // backstop ceiling/floor fill only the view rect (screen-space).
         clear_screen( color_black );
-        int vwpx = colpix * viewwidth;
-        GPU_FillScreen( viewwindowx, viewwindowy, vwpx, 2 * centery, CEILCOLOR );
-        GPU_FillScreen( viewwindowx, viewwindowy + 2 * centery,
-                        vwpx, 2 * ( viewheight - centery ), FLOORCOLOR );
-        GPU_Flush();
+        if( automapactive )
+        {
+            AM_Drawer();
+        }
+        else
+        {
+            int vwpx = colpix * viewwidth;
+            GPU_FillScreen( viewwindowx, viewwindowy, vwpx, 2 * centery, CEILCOLOR );
+            GPU_FillScreen( viewwindowx, viewwindowy + 2 * centery,
+                            vwpx, 2 * ( viewheight - centery ), FLOORCOLOR );
+            GPU_Flush();
+        }
 
         // ---- overlays: screen flashes over the view, then the status bar
         ST_DrawFlash();
