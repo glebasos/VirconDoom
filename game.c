@@ -280,10 +280,13 @@ void main()
         if( gameexit && aEdge )
             G_LoadLevel();
 
-        // ---- compute pass (records draw commands; GPU untouched). Skipped in
-        // automap mode: the map draws directly in the DRAW slot below, and this
-        // frame's (empty) end_frame just holds the previous automap image up --
-        // same no-flicker cadence as the 3D path, never a stale 3D frame.
+        // ---- compute pass (records draw commands; GPU untouched). Runs even in
+        // automap mode: R_RenderView's BSP walk is what sets ML_MAPPED on the
+        // linedefs it sees, so exploring with the map open reveals new walls LIVE
+        // (in map mode the recorded wall/plane/sprite commands are simply never
+        // flushed -- the next GPU_BeginFrame resets the buffers). GPU is untouched
+        // here, so this frame's end_frame just holds the previous image up -- same
+        // no-flicker cadence, never a stale 3D frame.
         perf_segs = 0;
         perf_columns = 0;
         perf_draws = 0;
@@ -291,14 +294,11 @@ void main()
         perf_fills = 0;
         perf_masked = 0;
         perf_drops = 0;
-        if( !automapactive )
-        {
-            viewx = player1.mo->x;
-            viewy = player1.mo->y;
-            viewz = player1.viewz;
-            viewangle = player1.mo->angle;
-            R_RenderView();
-        }
+        viewx = player1.mo->x;
+        viewy = player1.mo->y;
+        viewz = player1.viewz;
+        viewangle = player1.mo->angle;
+        R_RenderView();
         end_frame();
 
         // ---- draw pass. clear_screen paints the black borders for free; the

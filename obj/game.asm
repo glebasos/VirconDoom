@@ -30841,10 +30841,6 @@ __if_29764_end:
   mov [global_perf_masked], R0
   mov R0, 0
   mov [global_perf_drops], R0
-__if_29790_start:
-  mov R0, [global_automapactive]
-  bnot R0
-  jf R0, __if_29790_end
   mov R1, [global_player1]
   iadd R1, 4
   mov R0, [R1]
@@ -30860,17 +30856,16 @@ __if_29790_start:
   mov R0, [R1]
   mov [global_viewangle], R0
   call __function_R_RenderView
-__if_29790_end:
   call __function_end_frame
   mov R1, -16777216
   mov [SP], R1
   call __function_clear_screen
-__if_29817_start:
+__if_29813_start:
   mov R0, [global_automapactive]
-  jf R0, __if_29817_else
+  jf R0, __if_29813_else
   call __function_AM_Drawer
-  jmp __if_29817_end
-__if_29817_else:
+  jmp __if_29813_end
+__if_29813_else:
   mov R0, [global_colpix]
   mov R1, [global_viewwidth]
   imul R0, R1
@@ -30905,39 +30900,39 @@ __if_29817_else:
   mov [SP+4], R1
   call __function_GPU_FillScreen
   call __function_GPU_Flush
-__if_29817_end:
+__if_29813_end:
   call __function_ST_DrawFlash
   call __function_ST_Drawer
   mov R1, -1
   mov [SP], R1
   call __function_set_multiply_color
-__if_29855_start:
+__if_29851_start:
   mov R0, [1616622]
   ieq R0, 1
-  jf R0, __if_29855_end
+  jf R0, __if_29851_end
   mov R1, 220
   mov [SP], R1
   mov R1, 250
   mov [SP+1], R1
-  mov R1, __literal_string_29863
+  mov R1, __literal_string_29859
   mov [SP+2], R1
   call __function_print_at
-__if_29855_end:
-__if_29864_start:
+__if_29851_end:
+__if_29860_start:
   mov R0, [global_gameexit]
-  jf R0, __if_29864_end
+  jf R0, __if_29860_end
   mov R1, 250
   mov [SP], R1
   mov R1, 90
   mov [SP+1], R1
-  mov R1, __literal_string_29870
+  mov R1, __literal_string_29866
   mov [SP+2], R1
   call __function_print_at
   mov R1, 210
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_29874
+  mov R1, __literal_string_29870
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -30951,7 +30946,7 @@ __if_29864_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_29883
+  mov R1, __literal_string_29879
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -30965,7 +30960,7 @@ __if_29864_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_29892
+  mov R1, __literal_string_29888
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -30979,18 +30974,18 @@ __if_29864_start:
   mov [SP], R1
   mov R1, 170
   mov [SP+1], R1
-  mov R1, __literal_string_29901
+  mov R1, __literal_string_29897
   mov [SP+2], R1
   call __function_print_at
-__if_29864_end:
-__if_29902_start:
+__if_29860_end:
+__if_29898_start:
   mov R0, [BP-1]
-  jf R0, __if_29902_end
+  jf R0, __if_29898_end
   mov R1, 10
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_29908
+  mov R1, __literal_string_29904
   mov [SP+2], R1
   call __function_print_at
   mov R1, 25
@@ -31007,7 +31002,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_29920
+  mov R1, __literal_string_29916
   mov [SP+2], R1
   call __function_print_at
   mov R1, 105
@@ -31024,7 +31019,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_29932
+  mov R1, __literal_string_29928
   mov [SP+2], R1
   call __function_print_at
   mov R1, 185
@@ -31041,7 +31036,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_29944
+  mov R1, __literal_string_29940
   mov [SP+2], R1
   call __function_print_at
   mov R1, 285
@@ -31061,7 +31056,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_29957
+  mov R1, __literal_string_29953
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -31075,7 +31070,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_29965
+  mov R1, __literal_string_29961
   mov [SP+2], R1
   call __function_print_at
   call __function_Z_UsedWords
@@ -31093,7 +31088,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_29975
+  mov R1, __literal_string_29971
   mov [SP+2], R1
   call __function_print_at
   mov R1, 60
@@ -31107,7 +31102,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_29983
+  mov R1, __literal_string_29979
   mov [SP+2], R1
   call __function_print_at
   mov R1, 160
@@ -31121,7 +31116,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_29991
+  mov R1, __literal_string_29987
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -31135,7 +31130,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_29999
+  mov R1, __literal_string_29995
   mov [SP+2], R1
   call __function_print_at
   mov R1, 370
@@ -31149,7 +31144,7 @@ __if_29902_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_30007
+  mov R1, __literal_string_30003
   mov [SP+2], R1
   call __function_print_at
   mov R1, 475
@@ -31159,9 +31154,18 @@ __if_29902_start:
   mov R1, [global_perf_drops]
   mov [SP+2], R1
   call __function_ShowInt
-__if_30012_start:
+__if_30008_start:
   mov R0, [BP-2]
-  jf R0, __if_30012_else
+  jf R0, __if_30008_else
+  mov R1, 550
+  mov [SP], R1
+  mov R1, 24
+  mov [SP+1], R1
+  mov R1, __literal_string_30013
+  mov [SP+2], R1
+  call __function_print_at
+  jmp __if_30008_end
+__if_30008_else:
   mov R1, 550
   mov [SP], R1
   mov R1, 24
@@ -31169,21 +31173,12 @@ __if_30012_start:
   mov R1, __literal_string_30017
   mov [SP+2], R1
   call __function_print_at
-  jmp __if_30012_end
-__if_30012_else:
-  mov R1, 550
-  mov [SP], R1
-  mov R1, 24
-  mov [SP+1], R1
-  mov R1, __literal_string_30021
-  mov [SP+2], R1
-  call __function_print_at
-__if_30012_end:
+__if_30008_end:
   mov R1, 10
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_30025
+  mov R1, __literal_string_30021
   mov [SP+2], R1
   call __function_print_at
   mov R1, 50
@@ -31197,7 +31192,7 @@ __if_30012_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_30033
+  mov R1, __literal_string_30029
   mov [SP+2], R1
   call __function_print_at
   mov R1, 150
@@ -31211,7 +31206,7 @@ __if_30012_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_30041
+  mov R1, __literal_string_30037
   mov [SP+2], R1
   call __function_print_at
   mov R1, 265
@@ -31225,7 +31220,7 @@ __if_30012_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_30049
+  mov R1, __literal_string_30045
   mov [SP+2], R1
   call __function_print_at
   mov R1, 385
@@ -31239,7 +31234,7 @@ __if_30012_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_30057
+  mov R1, __literal_string_30053
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -31249,7 +31244,7 @@ __if_30012_end:
   mov R1, [BP-3]
   mov [SP+2], R1
   call __function_ShowInt
-__if_29902_end:
+__if_29898_end:
   mov R0, [BP-4]
   mov R1, R0
   iadd R1, 1
@@ -31322,51 +31317,51 @@ __embedded_gen_sfx_sound:
   datafile "data\\sfx_sound.bin"
 __embedded_gen_sfx_priority:
   datafile "data\\sfx_priority.bin"
-__literal_string_29863:
+__literal_string_29859:
   string "YOU DIED - PRESS B"
-__literal_string_29870:
+__literal_string_29866:
   string "LEVEL COMPLETE"
-__literal_string_29874:
+__literal_string_29870:
   string "KILLS"
-__literal_string_29883:
+__literal_string_29879:
   string "ITEMS"
-__literal_string_29892:
+__literal_string_29888:
   string "SECRETS"
-__literal_string_29901:
+__literal_string_29897:
   string "PRESS A TO RESTART"
-__literal_string_29908:
+__literal_string_29904:
   string "X"
-__literal_string_29920:
+__literal_string_29916:
   string "Y"
-__literal_string_29932:
+__literal_string_29928:
   string "Z"
-__literal_string_29944:
+__literal_string_29940:
   string "SEC"
-__literal_string_29957:
+__literal_string_29953:
   string "FRAME"
-__literal_string_29965:
+__literal_string_29961:
   string "ZONE"
-__literal_string_29975:
+__literal_string_29971:
   string "SEGS"
-__literal_string_29983:
+__literal_string_29979:
   string "COLS"
-__literal_string_29991:
+__literal_string_29987:
   string "DRAWS"
-__literal_string_29999:
+__literal_string_29995:
   string "VS"
-__literal_string_30007:
+__literal_string_30003:
   string "DROP"
-__literal_string_30017:
+__literal_string_30013:
   string "LO"
-__literal_string_30021:
+__literal_string_30017:
   string "HI"
-__literal_string_30025:
+__literal_string_30021:
   string "PLN"
-__literal_string_30033:
+__literal_string_30029:
   string "FIL"
-__literal_string_30041:
+__literal_string_30037:
   string "SPR"
-__literal_string_30049:
+__literal_string_30045:
   string "MSK"
-__literal_string_30057:
+__literal_string_30053:
   string "SIZE"
