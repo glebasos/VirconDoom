@@ -13,12 +13,12 @@ fight and die, weapons, pickups, a status bar, screen flashes, and sound + music
 | M4 playsim: movement, collision, doors, stairs | ✅ emulator-confirmed |
 | M5 sprites + solid-color floors/ceilings | ✅ emulator-confirmed |
 | M6 "it's a game": monster AI, weapons, pickups, specials | ✅ emulator-confirmed |
-| M7 UI: status bar, variable view size, screen flashes | ⚙️ built, partially verified |
+| M7 UI: status bar, variable view size, screen flashes, automap | ⚙️ built, partially verified |
 | M8 sound + music: full SFX engine + chiptune music | ✅ confirmed |
 
 **Not done (by design):** textured floors/ceilings (the Vircon32 GPU can't do
 perspective flat spans — deferred post-M9; floors are solid color, SNES-port style),
-menus, automap, HUD pickup messages, texture/flat animation, light-effect thinkers,
+menus, HUD pickup messages, texture/flat animation, light-effect thinkers,
 and level progression beyond E1M1. Music is a from-scratch **chiptune** render of
 "At Doom's Gate" (no soundfont/synth is available to render the authentic
 instruments); the SPU is mono-per-channel, so sounds attenuate with distance but
@@ -45,6 +45,18 @@ Movement and combat:
 | **START + Up / Down** | Grow / shrink the 3D view (smaller = faster; watch COLS/VS in the debug HUD) |
 | **START + X** (tap) | Toggle low / high detail (halves horizontal resolution) |
 | **START + Y** (tap) | Toggle the debug HUD |
+| **START + B** (tap) | Toggle the automap |
+
+Automap (while open) — an overhead line map that reveals as you explore:
+
+| Input | Action |
+|---|---|
+| **D-pad** | Move / turn (the map follows you, north-up) |
+| **L / R** | Zoom out / in (zoom fully out to fit the whole level) |
+| **START + B** | Close the map |
+
+Walls appear only once you've seen them (red = solid wall, brown = floor step,
+yellow = ceiling step); the white arrow is you.
 
 Game flow:
 

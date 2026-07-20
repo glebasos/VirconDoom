@@ -4,15 +4,15 @@ Porting id's DOOM to the Vircon32 fantasy console. **Read `PLAN.md` for the road
 `VIRCON32_C_DIALECT.md` for the dialect rules before writing any port code.** Methodology
 is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\VirconBox2D`).
 
-**CURRENT STATE (session 6, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
-(harness GREEN 231). M7 UI FIRST PASS BUILT. M8 SOUND + MUSIC BUILT — full SFX
-engine (all E1M1 sites, distance attenuation, priority channel stealing) + a
-from-scratch chiptune render of the E1M1 music; PHASE-1 pistol pipeline was
-USER-CONFIRMED audible + correct pitch, the rest awaits full emulator verify.**
-E1M1 is a playable game. **Next: run `bin/game.v32` and verify sound/music (does
-the music LOOP after ~96s? near-vs-far monster volume? firefight channel steal?
-balance?), then the deferred M7 pieces (menus / automap / HU messages / texture
-anim / light thinkers / level progression).** See the M7/M8 notes for what's left.
+**CURRENT STATE (session 8, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
+(harness GREEN 231). M8 SOUND + MUSIC user-confirmed. M7 UI: status bar +
+variable view size + screen flashes BUILT; AUTOMAP DONE + user-confirmed
+(session 8 — rotozoom-region lines, START+B, live-reveal, L/R zoom). Input
+responsiveness fixed (session 7).** E1M1 is a fully playable game.
+**Next candidates (deferred M7 pieces, roughly independent): light-effect
+thinkers (biggest atmosphere-per-effort win), texture/flat animation, HU pickup
+messages, menus, then level progression E1M2+ (the road to M9 ship).** See the
+M7 "NEXT" list for scope on each.
 
 Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
 region blitter, no per-scanline scissor) cannot do perspective flat spans; PLAN §3
@@ -298,8 +298,9 @@ bottom); shows SIZE.
 ### NEXT (deferred M7 pieces, roughly independent)
 
 1. **Menus** = text rows + gamepad nav (M_* patches bakeable same as STBAR).
-2. **Automap — BUILT (session 8; compile + offline scale-gate green; needs
-   emulator verify).** `port/am_map.h` ports the am_map.c subset. KEY INSIGHT: the
+2. **Automap — DONE + USER-CONFIRMED (session 8).** `port/am_map.h` ports the
+   am_map.c subset. Renders live (walls/colors/centering/zoom/live-reveal all
+   confirmed in the emulator). KEY INSIGHT: the
    GPU *does* have a rotated-region primitive (`draw_region_rotozoomed`), so each
    map line = ONE draw of the 8x8 white texture — region hotspot at left-center
    `define_region(0,0,7,7,0,4)`, `scaleX=len/8`, `scaleY=thick/8`, `angle=
