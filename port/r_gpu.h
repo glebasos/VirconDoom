@@ -7,7 +7,8 @@
 //  stretching each run to its exact pixel span (error <= 1 texel spread across
 //  the run -- invisible, and guarantees zero overdraw outside [yl,yh]).
 //
-//  View space is 320x168; everything is drawn 2x at (SCRX0,SCRY0).
+//  View space is viewwidth x viewheight, drawn at (viewwindowx,viewwindowy);
+//  columns are colpix wide, rows 2px (see r_main.h R_SetView).
 // -----------------------------------------------------------------------------
 #ifndef R_GPU_H
 #define R_GPU_H
@@ -88,8 +89,8 @@ void GPU_RecordFill( int x, int y, int wcols, int hrows, int color )
     int n = fillcmd_count;
     fillcmd_count = n + 1;
     fc_color[n] = color;
-    fc_dx[n] = SCRX0 + colpix * x;
-    fc_dy[n] = SCRY0 + 2 * y;
+    fc_dx[n] = viewwindowx + colpix * x;
+    fc_dy[n] = viewwindowy + 2 * y;
     fc_sx[n] = 0.125 * (float)( colpix * wcols );
     fc_sy[n] = 0.25 * (float)hrows;
 }
@@ -135,8 +136,8 @@ void GPU_RecordMaskedColumn( int sheet, int rx, int ty, int lh,
     wc_ry0[n] = ty + vi;
     wc_ry1[n] = ty + vi + count - 1;
     wc_scaley[n] = 2.0 * (float)rows / (float)count;
-    wc_dx[n] = SCRX0 + colpix * scrx;
-    wc_dy[n] = SCRY0 + 2 * yl;
+    wc_dx[n] = viewwindowx + colpix * scrx;
+    wc_dy[n] = viewwindowy + 2 * yl;
 }
 
 void GPU_Flush()
@@ -302,8 +303,8 @@ void GPU_DrawWallColumn( int scrx, int texnum, int texcol, int yl, int yh,
             wc_ry0[n] = ty + vw;
             wc_ry1[n] = ty + vw + count - 1;
             wc_scaley[n] = 2.0 * (float)pixels / (float)count;
-            wc_dx[n] = SCRX0 + colpix * scrx;
-            wc_dy[n] = SCRY0 + 2 * ya;
+            wc_dx[n] = viewwindowx + colpix * scrx;
+            wc_dy[n] = viewwindowy + 2 * ya;
         }
 
         ya = yb;
@@ -323,7 +324,26 @@ void GPU_FillRect( int x0, int y0, int wpix, int hpix, int color )
     define_region( 0, 0, 7, 7, 0, 0 );
     set_multiply_color( color );
     set_drawing_scale( 0.25 * (float)wpix, 0.25 * (float)hpix );  // 2*w/8
-    draw_region_zoomed_at( SCRX0 + 2 * x0, SCRY0 + 2 * y0 );
+    draw_region_zoomed_at( viewwindowx + 2 * x0, viewwindowy + 2 * y0 );
+    gpu_cur_sheet = -1;
+    set_multiply_color( color_white );
+}
+
+// solid-color fill in ABSOLUTE screen pixels (x,y top-left, w x h px). Used for
+// the view backstop (ceiling/floor), the black borders, and the alpha-blended
+// damage/bonus flashes (pass color with alpha < 0xFF -- the GPU default blend
+// mode is GL_SRC_ALPHA/GL_ONE_MINUS_SRC_ALPHA, so the white texel is composited
+// over the framebuffer at the multiply-color's alpha).
+void GPU_FillScreen( int x, int y, int wpix, int hpix, int color )
+{
+    if( wpix <= 0 || hpix <= 0 )
+        return;
+    select_texture( TEXID_WHITE );
+    select_region( 0 );
+    define_region( 0, 0, 7, 7, 0, 0 );
+    set_multiply_color( color );
+    set_drawing_scale( 0.125 * (float)wpix, 0.125 * (float)hpix );   // w/8 on 8px
+    draw_region_zoomed_at( x, y );
     gpu_cur_sheet = -1;
     set_multiply_color( color_white );
 }

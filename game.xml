@@ -10,6 +10,7 @@
         <texture path="obj/white.vtex" />
         <texture path="obj/spr0.vtex" />
         <texture path="obj/spr1.vtex" />
+        <texture path="obj/ui0.vtex" />
     </textures>
     <sounds />
 </rom-definition>

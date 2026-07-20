@@ -41,6 +41,7 @@
 #include "port\\p_enemy.h"
 #include "port\\p_pspr.h"
 #include "port\\p_user.h"
+#include "port\\st_bar.h"
 
 #define CEILCOLOR 0xFF202028
 #define FLOORCOLOR 0xFF20343C
@@ -77,19 +78,23 @@ void G_LoadLevel()
 
     P_SpawnMapThings();
     P_SetupPsprites( &player1 );
+    ST_Init();                   // reset face/arms state to the fresh player
 }
 
 void main()
 {
     InitTables();
-    R_InitTextureMapping();
     R_InitSprites();
     P_InitPickups();
     P_InitActions();
-    G_LoadLevel();               // P_SetupLevel marks the zone level watermark
 
     bool showDebug = false;
     bool lowDetail = false;
+    int viewSize = 2;            // 0 small / 1 med / 2 full (above the status bar)
+    R_SetView( viewSize, lowDetail );
+
+    G_LoadLevel();               // P_SetupLevel marks the zone level watermark
+
     int frame = 0;
     int lastFc = get_frame_counter();
     int vsyncs = 0;
@@ -104,12 +109,15 @@ void main()
         int fm = 0;
         int sm = 0;
         int turn = 0;
-        if( gamepad_up() > 0 )    { if( run ) fm = 0x32;  else fm = 0x19; }
-        if( gamepad_down() > 0 )  { if( run ) fm = -0x32; else fm = -0x19; }
-        if( gamepad_button_r() > 0 ) { if( run ) sm = 0x28;  else sm = 0x18; }
-        if( gamepad_button_l() > 0 ) { if( run ) sm = -0x28; else sm = -0x18; }
-        if( gamepad_left() > 0 )  { if( run ) turn = 1280;  else turn = 640; }
-        if( gamepad_right() > 0 ) { if( run ) turn = -1280; else turn = -640; }
+        if( !startHeld )         // START is a modifier: it suppresses movement
+        {
+            if( gamepad_up() > 0 )    { if( run ) fm = 0x32;  else fm = 0x19; }
+            if( gamepad_down() > 0 )  { if( run ) fm = -0x32; else fm = -0x19; }
+            if( gamepad_button_r() > 0 ) { if( run ) sm = 0x28;  else sm = 0x18; }
+            if( gamepad_button_l() > 0 ) { if( run ) sm = -0x28; else sm = -0x18; }
+            if( gamepad_left() > 0 )  { if( run ) turn = 1280;  else turn = 640; }
+            if( gamepad_right() > 0 ) { if( run ) turn = -1280; else turn = -640; }
+        }
 
         player1.cmd_forwardmove = fm;
         player1.cmd_sidemove = sm;
@@ -124,7 +132,19 @@ void main()
             if( gamepad_button_x() == 1 )
             {
                 lowDetail = !lowDetail;
-                R_SetDetail( lowDetail );
+                R_SetView( viewSize, lowDetail );
+            }
+            // START + up/down: grow/shrink the view (narrower = fewer columns =
+            // faster COMPUTE frame; watch COLS/VS in the debug HUD)
+            if( gamepad_up() == 1 && viewSize < 2 )
+            {
+                viewSize++;
+                R_SetView( viewSize, lowDetail );
+            }
+            if( gamepad_down() == 1 && viewSize > 0 )
+            {
+                viewSize--;
+                R_SetView( viewSize, lowDetail );
             }
         }
         else if( gamepad_button_x() == 1 )
@@ -152,6 +172,7 @@ void main()
         {
             P_PlayerThink( &player1 );
             P_RunThinkers();
+            ST_Ticker();             // advance the face widget in the sim tick
             leveltime++;
         }
 
@@ -176,75 +197,71 @@ void main()
         R_RenderView();
         end_frame();
 
-        // ---- draw pass (planes cover the view; keep cheap backstop fills)
+        // ---- draw pass. clear_screen paints the black borders for free; the
+        // backstop ceiling/floor fill only the view rect (screen-space).
         clear_screen( color_black );
-        GPU_FillRect( 0, 0, 320, centery, CEILCOLOR );
-        GPU_FillRect( 0, centery, 320, viewheight - centery, FLOORCOLOR );
+        int vwpx = colpix * viewwidth;
+        GPU_FillScreen( viewwindowx, viewwindowy, vwpx, 2 * centery, CEILCOLOR );
+        GPU_FillScreen( viewwindowx, viewwindowy + 2 * centery,
+                        vwpx, 2 * ( viewheight - centery ), FLOORCOLOR );
         GPU_Flush();
 
-        // ---- status line (always on, above the view)
-        set_multiply_color( color_white );
-        print_at( 10, 0, "HP" );
-        ShowInt( 40, 0, player1.health );
-        print_at( 90, 0, "ARM" );
-        ShowInt( 135, 0, player1.armorpoints );
-        print_at( 190, 0, "AMMO" );
-        int wammo = weaponinfo[ player1.readyweapon ][WI_AMMO];
-        if( wammo == am_noammo )
-            print_at( 245, 0, "-" );
-        else
-            ShowInt( 245, 0, player1.ammo[wammo] );
-        print_at( 300, 0, "KILLS" );
-        ShowInt( 365, 0, player1.killcount );
+        // ---- overlays: screen flashes over the view, then the status bar
+        ST_DrawFlash();
+        ST_Drawer();
 
+        set_multiply_color( color_white );
         if( player1.playerstate == PST_DEAD )
-            print_at( 240, 170, "YOU DIED - PRESS B" );
+            print_at( 220, 250, "YOU DIED - PRESS B" );
         if( gameexit )
         {
-            print_at( 210, 150, "LEVEL COMPLETE" );
-            print_at( 210, 180, "KILLS" );
-            ShowInt( 280, 180, player1.killcount );
-            print_at( 330, 180, "ITEMS" );
-            ShowInt( 400, 180, player1.itemcount );
-            print_at( 450, 180, "SECRETS" );
-            ShowInt( 540, 180, player1.secretcount );
-            print_at( 210, 210, "PRESS A TO RESTART" );
+            print_at( 250, 90, "LEVEL COMPLETE" );
+            print_at( 210, 130, "KILLS" );
+            ShowInt( 280, 130, player1.killcount );
+            print_at( 330, 130, "ITEMS" );
+            ShowInt( 400, 130, player1.itemcount );
+            print_at( 450, 130, "SECRETS" );
+            ShowInt( 540, 130, player1.secretcount );
+            print_at( 230, 170, "PRESS A TO RESTART" );
         }
 
+        // debug HUD: two rows at the top-left, clear of the status bar
         if( showDebug )
         {
-            print_at( 10, 340, "X" );
-            ShowInt( 25, 340, player1.mo->x >> FRACBITS );
-            print_at( 90, 340, "Y" );
-            ShowInt( 105, 340, player1.mo->y >> FRACBITS );
-            print_at( 170, 340, "Z" );
-            ShowInt( 185, 340, player1.mo->z >> FRACBITS );
-            print_at( 250, 340, "SEC" );
-            ShowInt( 285, 340, player1.mo->subsector->sector - sectors );
-            print_at( 340, 340, "FRAME" );
-            ShowInt( 400, 340, frame );
-            print_at( 470, 340, "ZONE" );
-            ShowInt( 520, 340, Z_UsedWords() >> 10 );
-            print_at( 10, 320, "SEGS" );
-            ShowInt( 60, 320, perf_segs );
-            print_at( 110, 320, "COLS" );
-            ShowInt( 160, 320, perf_columns );
-            print_at( 220, 320, "DRAWS" );
-            ShowInt( 280, 320, perf_draws );
-            print_at( 340, 320, "VS" );
-            ShowInt( 370, 320, vsyncs );
-            print_at( 420, 320, "SLOW" );
-            ShowInt( 475, 320, perf_slow );
-            if( lowDetail ) print_at( 550, 320, "LO" );
-            else            print_at( 550, 320, "HI" );
-            print_at( 10, 300, "PLN" );
-            ShowInt( 50, 300, perf_planes );
-            print_at( 110, 300, "FIL" );
-            ShowInt( 150, 300, perf_fills );
-            print_at( 220, 300, "SPR" );
-            ShowInt( 265, 300, perf_sprites );
-            print_at( 340, 300, "MSK" );
-            ShowInt( 385, 300, perf_masked );
+            print_at( 10, 4, "X" );
+            ShowInt( 25, 4, player1.mo->x >> FRACBITS );
+            print_at( 90, 4, "Y" );
+            ShowInt( 105, 4, player1.mo->y >> FRACBITS );
+            print_at( 170, 4, "Z" );
+            ShowInt( 185, 4, player1.mo->z >> FRACBITS );
+            print_at( 250, 4, "SEC" );
+            ShowInt( 285, 4, player1.mo->subsector->sector - sectors );
+            print_at( 340, 4, "FRAME" );
+            ShowInt( 400, 4, frame );
+            print_at( 470, 4, "ZONE" );
+            ShowInt( 520, 4, Z_UsedWords() >> 10 );
+            print_at( 10, 24, "SEGS" );
+            ShowInt( 60, 24, perf_segs );
+            print_at( 110, 24, "COLS" );
+            ShowInt( 160, 24, perf_columns );
+            print_at( 220, 24, "DRAWS" );
+            ShowInt( 280, 24, perf_draws );
+            print_at( 340, 24, "VS" );
+            ShowInt( 370, 24, vsyncs );
+            print_at( 420, 24, "SLOW" );
+            ShowInt( 475, 24, perf_slow );
+            if( lowDetail ) print_at( 550, 24, "LO" );
+            else            print_at( 550, 24, "HI" );
+            print_at( 10, 44, "PLN" );
+            ShowInt( 50, 44, perf_planes );
+            print_at( 110, 44, "FIL" );
+            ShowInt( 150, 44, perf_fills );
+            print_at( 220, 44, "SPR" );
+            ShowInt( 265, 44, perf_sprites );
+            print_at( 340, 44, "MSK" );
+            ShowInt( 385, 44, perf_masked );
+            print_at( 470, 44, "SIZE" );
+            ShowInt( 540, 44, viewSize );
         }
 
         frame++;

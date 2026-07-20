@@ -111,8 +111,8 @@ int* maskedtexturecol = NULL;      // current seg's masked column store
             wc_ry0[n_] = (TY) + vw_;                                          \
             wc_ry1[n_] = (TY) + vw_ + cnt_ - 1;                               \
             wc_scaley[n_] = 2.0 * (float)rows_ / (float)cnt_;                 \
-            wc_dx[n_] = SCRX0 + colpix * rw_x;                                \
-            wc_dy[n_] = SCRY0 + 2 * (ylv);                                    \
+            wc_dx[n_] = viewwindowx + colpix * rw_x;                                \
+            wc_dy[n_] = viewwindowy + 2 * (ylv);                                    \
         }                                                                     \
         else                                                                  \
             GPU_DrawWallColumn( rw_x, TEXN, texturecolumn, ylv, yhv,          \

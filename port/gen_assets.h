@@ -15,6 +15,7 @@
 #define GEN_SKYTEXTURE 59
 #define GEN_SKYFLATNUM 53
 #define TEXID_SPR0 5
+#define TEXID_UI 7
 #define GEN_NUMSPRSHEETS 2
 #define GEN_NUMSPRLUMPS 483
 #define GEN_NUMSPRITES 138
@@ -22,6 +23,16 @@
 #define GEN_NUMMOBJTYPES 137
 #define GEN_NUMSTATES 967
 #define GEN_NUMACTIONS 75
+#define GEN_NUMUI 75
+
+// status-bar UI element base indices (into gen_ui)
+#define UI_STBAR 0
+#define UI_STARMS 1
+#define UI_TNUM 2
+#define UI_TPRCNT 12
+#define UI_YNUM 13
+#define UI_GNUM 23
+#define UI_FACE 33
 
 // action fn indices (states[s][3]; 0 = no action)
 #define GEN_ACT_A_Light0 1
@@ -176,6 +187,8 @@ embedded int[GEN_NUMSPRITES][2] gen_sprdef = "data\\sprdef.bin";
 embedded int[GEN_NUMSPRFRAMES][17] gen_sprframe = "data\\sprframe.bin";
 embedded int[GEN_NUMMOBJTYPES][23] gen_mobjinfo = "data\\mobjinfo.bin";
 embedded int[GEN_NUMSTATES][7] gen_states = "data\\states.bin";
+// gen_ui: sheet(texid),x,y,w,h,leftoffset,topoffset per UI element
+embedded int[GEN_NUMUI][7] gen_ui = "data\\uiinfo.bin";
 
 // trig tables (fixed_t / BAM)
 embedded int[10240] finesine = "data\\finesine.bin";

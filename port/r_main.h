@@ -21,18 +21,27 @@
 // resolution never changes). R_SetDetail() switches at runtime.
 #define SCREENWIDTH 320
 #define SCREENHEIGHT 200
-#define viewheight 168
-#define centery 84
-#define centeryfrac 0x00540000     // 84<<16
 #define FIELDOFVIEW 2048
-#define SCRX0 0
+#define SCRX0 0                    // default view origin (walls/harness ROMs)
 #define SCRY0 12
 
+// View geometry is RUNTIME-VARIABLE (M7 R_SetView): the game shrinks the view
+// to make room for the status bar and can add black side borders for a column
+// (COMPUTE-frame) speedup. Defaults reproduce the pre-M7 320x168@2x view at
+// screen (0,12) EXACTLY, so ROMs that never call R_SetView (walls, harness)
+// render identically. R_InitTextureMapping reads only the horizontal vars
+// (viewwidth/centerxfrac), so changing the height vars is a free vertical crop.
 int viewwidth = 320;
 int centerx = 160;
 fixed_t centerxfrac = 0x00A00000;  // centerx<<16 (doubles as the projection)
 int colpix = 2;                    // screen pixels per view column
 float colpix_f = 2.0;
+
+int viewheight = 168;              // view rows (drawn 2x vertically)
+int centery = 84;                  // horizon row = viewheight/2
+fixed_t centeryfrac = 0x00540000;  // centery<<16
+int viewwindowx = SCRX0;           // screen-px top-left of the view (blit only)
+int viewwindowy = SCRY0;
 
 // view state
 fixed_t viewx = 0;
@@ -310,6 +319,46 @@ void R_SetDetail( bool low )
         colpix = 2;
         colpix_f = 2.0;
     }
+    R_InitTextureMapping();
+}
+
+// M7: set the full view geometry -- width/detail (rebuilds the horizontal
+// projection) AND height + screen centering (a free vertical crop; the psprite
+// clip via screenheightarray is re-clamped to viewheight in R_DrawVisSprite,
+// so no refill is needed here). The status bar owns the bottom 64 screen px, so
+// the play region is 640x296; smaller sizes center inside it with black
+// borders. size: 0 small, 1 medium, 2 full. Narrower sizes cut columns -> the
+// real COMPUTE-frame speedup (fewer segs/FixedMul per frame).
+void R_SetView( int size, bool low )
+{
+    int wpx;                       // view width in screen pixels
+    int hpx;                       // view height in screen pixels
+    if( size <= 0 )      { wpx = 384; hpx = 180; }
+    else if( size == 1 ) { wpx = 512; hpx = 236; }
+    else                 { wpx = 640; hpx = 296; }
+
+    if( low )
+    {
+        colpix = 4;
+        colpix_f = 4.0;
+    }
+    else
+    {
+        colpix = 2;
+        colpix_f = 2.0;
+    }
+
+    viewwidth = wpx / colpix;
+    centerx = viewwidth / 2;
+    centerxfrac = centerx << FRACBITS;
+
+    viewheight = hpx / 2;          // vertical is always drawn 2x
+    centery = viewheight / 2;
+    centeryfrac = centery << FRACBITS;
+
+    viewwindowx = ( 640 - wpx ) / 2;       // center horizontally
+    viewwindowy = ( 296 - hpx ) / 2;       // center within the play region
+
     R_InitTextureMapping();
 }
 

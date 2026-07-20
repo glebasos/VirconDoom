@@ -442,6 +442,12 @@ void R_DrawPSprite( pspdef_t* psp )
     vis->mobjflags = 0;
     vis->texturemid = ( BASEYCENTER << FRACBITS ) + FRACUNIT / 2
                     - ( psp->sy - topoffset );
+    // M7: R_DrawVisSprite anchors to the world centeryfrac, but the weapon is
+    // authored for the M6 168-row view (centery 84). When R_SetView shrinks the
+    // view (status bar / smaller sizes) re-pin it to the new view bottom so it
+    // rests just above the bar instead of floating up and clipping. Zero at the
+    // old geometry; grows as centery falls below 84.
+    vis->texturemid += ( 84 - centery ) * FRACUNIT;
     if( x1 < 0 ) vis->x1 = 0;
     else vis->x1 = x1;
     if( x2 >= viewwidth ) vis->x2 = viewwidth - 1;

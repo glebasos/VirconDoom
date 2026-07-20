@@ -585,6 +585,57 @@ def main():
     report.append('states: %d x 7 words, %d action fns' %
                   (len(states), len(actnames)))
 
+    # ---- UI (status bar) -> its own atlas sheet, texid after the sprite sheets.
+    # Every widget is a standard patch-format lump in the global directory
+    # (STBAR/STARMS panels, STTNUM/STYSNUM/STGNUM digit fonts, STF* faces).
+    # gen_ui rows mirror gen_sprinfo: sheet(texid),x,y,w,h,leftoffset,topoffset,
+    # so st_bar.h draws each with V_DrawPatch semantics (origin - offset).
+    ui_names = ['STBAR', 'STARMS']
+    ui_names += ['STTNUM%d' % d for d in range(10)]      # tall red digits
+    ui_names += ['STTPRCNT']                             # red percent sign
+    ui_names += ['STYSNUM%d' % d for d in range(10)]     # small yellow (arms owned)
+    ui_names += ['STGNUM%d' % d for d in range(10)]      # small gray (arms unowned)
+    for p in range(5):                                   # 5 pain levels x 8 faces
+        ui_names += ['STFST%d0' % p, 'STFST%d1' % p, 'STFST%d2' % p,
+                     'STFTR%d0' % p, 'STFTL%d0' % p, 'STFOUCH%d' % p,
+                     'STFEVL%d' % p, 'STFKILL%d' % p]
+    ui_names += ['STFGOD0', 'STFDEAD0']
+
+    ui_imgs = []
+    for nm in ui_names:
+        assert nm in wad.index, 'missing UI lump %s' % nm
+        patch = wad.by_name(nm)
+        wdt = s16(patch, 0); hgt = s16(patch, 2)
+        lo = s16(patch, 4); to = s16(patch, 6)
+        img = Image.new('RGBA', (wdt, hgt), (0, 0, 0, 0))
+        draw_patch(img, patch, palette)
+        ui_imgs.append((nm, img, wdt, hgt, lo, to))
+
+    uiatlas = Atlas()
+    ui_texid0 = spr_texid0 + len(spratlas.sheets)        # after all sprite sheets
+    uiorder = sorted(range(len(ui_imgs)), key=lambda i: -ui_imgs[i][3])
+    uiplaced = {}
+    for i in uiorder:
+        uiplaced[i] = uiatlas.add(ui_imgs[i][1])
+    assert len(uiatlas.sheets) == 1, 'UI atlas overflowed one sheet'
+    uiinfo = []
+    for i, (nm, img, wdt, hgt, lo, to) in enumerate(ui_imgs):
+        sh, x, y = uiplaced[i]
+        assert sh == 0
+        uiinfo += [ui_texid0 + sh, x, y, wdt, hgt, lo, to]
+    uiatlas.sheets[0].save(os.path.join(ROOT, 'textures', 'ui0.png'))
+    w('data/uiinfo.bin', uiinfo)
+    ui_base = {
+        'STBAR':  ui_names.index('STBAR'),
+        'STARMS': ui_names.index('STARMS'),
+        'TNUM':   ui_names.index('STTNUM0'),
+        'TPRCNT': ui_names.index('STTPRCNT'),
+        'YNUM':   ui_names.index('STYSNUM0'),
+        'GNUM':   ui_names.index('STGNUM0'),
+        'FACE':   ui_names.index('STFST00'),
+    }
+    report.append('ui: %d elements -> 1 sheet, texid %d' % (len(ui_imgs), ui_texid0))
+
 
     # ---- map
     counts, out = bake_map(wad, mapname, texname_to_idx, flatname_to_idx)
@@ -679,6 +730,7 @@ def main():
     lines.append('#define GEN_SKYTEXTURE %d' % sky_tex)
     lines.append('#define GEN_SKYFLATNUM %d' % sky_flat)
     lines.append('#define TEXID_SPR0 %d' % spr_texid0)
+    lines.append('#define TEXID_UI %d' % ui_texid0)
     lines.append('#define GEN_NUMSPRSHEETS %d' % len(spratlas.sheets))
     lines.append('#define GEN_NUMSPRLUMPS %d' % len(sprites))
     lines.append('#define GEN_NUMSPRITES %d' % len(sprnames))
@@ -686,6 +738,16 @@ def main():
     lines.append('#define GEN_NUMMOBJTYPES %d' % len(mobjinfo))
     lines.append('#define GEN_NUMSTATES %d' % len(states))
     lines.append('#define GEN_NUMACTIONS %d' % (len(actnames) + 1))
+    lines.append('#define GEN_NUMUI %d' % len(ui_imgs))
+    lines.append('')
+    lines.append('// status-bar UI element base indices (into gen_ui)')
+    lines.append('#define UI_STBAR %d' % ui_base['STBAR'])
+    lines.append('#define UI_STARMS %d' % ui_base['STARMS'])
+    lines.append('#define UI_TNUM %d' % ui_base['TNUM'])      # +digit 0..9
+    lines.append('#define UI_TPRCNT %d' % ui_base['TPRCNT'])
+    lines.append('#define UI_YNUM %d' % ui_base['YNUM'])      # +digit 0..9
+    lines.append('#define UI_GNUM %d' % ui_base['GNUM'])      # +digit 0..9
+    lines.append('#define UI_FACE %d' % ui_base['FACE'])      # +faceindex 0..41
     lines.append('')
     lines.append('// action fn indices (states[s][3]; 0 = no action)')
     for i, an in enumerate(actnames):
@@ -729,6 +791,8 @@ def main():
     lines.append('embedded int[GEN_NUMSPRFRAMES][17] gen_sprframe = "data\\\\sprframe.bin";')
     lines.append('embedded int[GEN_NUMMOBJTYPES][23] gen_mobjinfo = "data\\\\mobjinfo.bin";')
     lines.append('embedded int[GEN_NUMSTATES][7] gen_states = "data\\\\states.bin";')
+    lines.append('// gen_ui: sheet(texid),x,y,w,h,leftoffset,topoffset per UI element')
+    lines.append('embedded int[GEN_NUMUI][7] gen_ui = "data\\\\uiinfo.bin";')
     lines.append('')
     lines.append('// trig tables (fixed_t / BAM)')
     lines.append('embedded int[10240] finesine = "data\\\\finesine.bin";')
