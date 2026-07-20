@@ -4,10 +4,13 @@ Porting id's DOOM to the Vircon32 fantasy console. **Read `PLAN.md` for the road
 `VIRCON32_C_DIALECT.md` for the dialect rules before writing any port code.** Methodology
 is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\VirconBox2D`).
 
-**CURRENT STATE (end of session 4, 2026-07-19): M0–M6 ALL CLOSED and
-emulator-confirmed.** E1M1 is a playable game, USER-VERIFIED first run: imps
-killable, secrets found, level completable via the exit switch. Harness GREEN
-231. **Next milestone: M7 "It looks like DOOM" (UI)** — see bottom.
+**CURRENT STATE (session 5, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
+(harness GREEN 231). M7 UI FIRST PASS BUILT — status bar + variable view size +
+screen flashes; compile + PC-gates green, PARTIALLY emulator-verified.** E1M1 is
+a playable game (imps killable, secrets, exit switch, death/respawn). **Next: run
+`bin/game.v32`, finish emulator-verifying the M7 first pass, then the deferred M7
+pieces (menus / automap / HU messages / texture anim / light thinkers / level
+progression).** See the M7 section at the bottom for exactly what's done vs. left.
 
 ## Layout
 
@@ -26,8 +29,9 @@ killable, secrets found, level completable via the exit switch. Harness GREEN
 
 Single-TU include order (game.c): doomdefs, gen_assets, m_fixed, tables, m_random,
 m_bbox, z_zone, r_defs, p_setup, r_main, r_gpu, p_tick, r_plane, r_segs, r_things,
-r_bsp, p_maputl, **p_sight, p_spec, p_map, p_inter, p_mobj, p_enemy, p_pspr,
-p_user**. (r_things needs p_tick's mobj_t/pspdef_t/player1; r_bsp needs r_things.)
+r_bsp, p_maputl, p_sight, p_spec, p_map, p_inter, p_mobj, p_enemy, p_pspr,
+p_user, **st_bar** (LAST: uses player1, weaponinfo, R_PointToAngle2, gen_ui).
+(r_things needs p_tick's mobj_t/pspdef_t/player1; r_bsp needs r_things.)
 Circular calls (p_map -> p_inter -> p_mobj etc.) use forward FUNCTION PROTOTYPES
 at file tops -- confirmed working in this dialect (probe-compiled first).
 
@@ -116,8 +120,8 @@ sheet,x,y,w,BAKED h (vertical repeats to 256 for single-run tiling),LOGICAL h;
 gen_sprinfo[483][7] sheet(texid),x,y,w,h,leftoff,topoff; gen_sprdef[138][2]
 firstframe,numframes; gen_sprframe[261][17] rotate,lump[8],flip[8];
 gen_mobjinfo[137][6] doomednum,sprite,frame,radius,height,flags.
-GPU texids: sheet0-3 walls+flats, 4 white, 5-6 sprites (spr0/spr1; game.xml only —
-walls.xml stops at white). Harness vectors in gen_checkvals.h include 32
+GPU texids: sheet0-3 walls+flats, 4 white, 5-6 sprites (spr0/spr1), 7 UI (ui0;
+M7, game.xml only — walls.xml stops at white). Harness vectors in gen_checkvals.h include 32
 R_PointInSubsector cases (PC BSP walk over baked nodes; regression net for the
 signed-shift class).
 
@@ -194,44 +198,69 @@ design (bump allocator). Debug HUD shows ZONE (kwords used) — if long sessions
 exhaust 1.5 MWords, the free-list plan activates. Puff/blood are the churn
 kings (~28 words/shot; realistically fine, G_LoadLevel rewinds everything).
 
-## M7 — "It looks like DOOM" (NEXT: UI)
+## M7 — "It looks like DOOM" (UI): first pass BUILT session 5, DONE below
 
-Per PLAN.md. Suggested scope, roughly independent pieces:
+### DONE (session 5; compile + PC-gates green; needs full emulator verify)
 
-1. **Status bar (STBAR)**: wadtool bakes the STBAR patch + the red/gray digit
-   fonts (STTNUM*/STYSNUM*/STGNUM*) + face sprites (STF*) onto a UI atlas
-   sheet (new texid after spr1; game.xml gains one texture). Draw as plain GPU
-   regions each frame below the 336px view — screen rows 348..360 are free at
-   2x, or shrink the view? NO: keep view 320x168@2x (viewheight is a macro
-   baked into the projection; changing it touches R_InitTextureMapping,
-   centery, planes — expensive). Better: draw the bar as an overlay strip
-   scaled to fit y 348..360, or accept a slim 12px bar. Decide by look.
-   Numbers: health/armor %, ammo, arms panel, face (st_stuff.c face logic —
-   damagecount/attacker already exist for the ouch/turn faces).
-2. **Damage/bonus screen flashes**: damagecount/bonuscount already tick.
-   Approximation: full-screen alpha-blended red/gold GPU_FillRect over the
-   view AFTER GPU_Flush (draw frame, cheap). Alpha from count like the
-   palette-shift thresholds (st_stuff.c: >8*8 strongest red etc.).
-3. **Menus + automap + HU messages** (pick per session budget): menu = text
-   rows + gamepad nav (M_* patches bakeable same as STBAR); automap = line
-   draws (Vircon GPU has no line primitive — 1px-column fills or skip/defer);
-   pickup messages = print_at top line with a timeout (strings live in
-   upstream dstrings.h/d_englsh.h — bake or hand-copy the E1 subset).
-4. **Texture/flat animation + scroll (P_UpdateSpecials)**: anims are baked
-   texture-index ranges (animdefs in p_spec.c: NUKAGE1-3 flats etc.);
-   texturetranslation[] already exists and the renderer honors it; flats need
-   the same for gen_flatavg/flatinfo lookups (spans use flat AVERAGE colors —
-   animating the average still reads right). Line 48 scroll = sidedef
-   textureoffset += FRACUNIT per tic.
-5. **Light-effect thinkers** (T_LightFlash/T_StrobeFlash/T_Glow from
-   p_lights.c + P_SpawnSpecials): trivial ports, big atmosphere win — E1M1
-   sector specials 1/8/12 currently render static.
-6. **Level progression**: bake E1M2+ (wadtool --map already exists; needs
-   multi-map data/gen naming + per-map texture sets growing the atlas) and
-   intermission screen (kills/items/secrets tallies already counted). Could
-   defer to M8/M9 — decide with user.
+**Status bar (`port/st_bar.h`) + baked UI atlas.** wadtool bakes a 75-element UI
+sheet `textures/ui0.png` -> `TEXID_UI` (7; appended to game.xml as the 8th
+texture, AFTER spr1) with STBAR + STARMS panels, the STTNUM/STYSNUM/STGNUM digit
+fonts, STTPRCNT, and all 42 STF* faces. Bake asserts every lump is present +
+placed. `gen_ui[75][7]` = sheet,x,y,w,h,leftoff,topoff (mirrors gen_sprinfo);
+`UI_STBAR/UI_STARMS/UI_TNUM/UI_TPRCNT/UI_YNUM/UI_GNUM/UI_FACE` base indices in
+gen_assets.h. st_bar.h draws the bar 2x, full 640 width, bottom 64 screen px (y
+296..359): ST_DrawPatch (V_DrawPatch semantics — origin minus patch offset,
+DOOM 200-space -> screen), ST_DrawNum (right-aligned), big red ready-weapon ammo
++ health% + armor% (left/mid), the **per-type ammo/maxammo columns** (small
+yellow, x=288/314, right panel — easy to forget, DON'T), arms panel (yellow
+owned / gray unowned, weapons 2..7), and the FACE — a faithful
+ST_updateFaceWidget priority ladder (dead/evilgrin/ouch/turn/rampage/god/idle)
+with unsigned angle compares via ULT. `ST_Ticker()` runs once per sim tic (calls
+M_Random); `ST_Init()` in G_LoadLevel resets face + oldweaponsowned.
 
-Perf note: UI draws land in the DRAW frame which has headroom (~50 instr/draw
-budget analysis in r_gpu.h); status bar + flash adds tens of draws, no risk.
-The COMPUTE frame is the tight one — M7 adds little there (light thinkers are
-cheap; P_UpdateSpecials is a handful of sectors).
+**Variable view size (`R_SetView(size,low)` in r_main.h) — the perf lever.**
+`viewheight/centery/centeryfrac/viewwidth/centerx/centerxfrac/colpix/viewwindowx/
+viewwindowy` are now VARIABLES (were `#define`s). **Defaults reproduce the exact
+pre-M7 320x168@2x view at (0,12), so walls/harness render identically — only
+game.c calls R_SetView.** R_InitTextureMapping reads ONLY the horizontal vars, so
+shrinking height is a FREE vertical crop (the old "expensive, touches
+R_InitTextureMapping" caution was over-strict; verified). Narrower widths cut
+COLUMNS = the real COMPUTE-frame speedup; black side bars are free (clear_screen
+black + inset view). Sizes: 2 full 640x296px, 1 med 512x236, 0 small 384x180,
+centered in the 640x296 play region above the bar. `SCRX0/SCRY0` replaced by
+`viewwindowx/y` in r_gpu.h/r_segs.h; added `GPU_FillScreen` (absolute screen-px
+fill). PSPRITE FIX: R_DrawPSprite re-anchors to the view bottom via
+`texturemid += (84-centery)*FRACUNIT` (0 at M6 geometry) so the weapon rests on
+the bar instead of clipping when the view shrinks.
+
+**Screen flashes (`ST_DrawFlash`)** = alpha-blended GPU_FillScreen over the view
+(red damage / gold bonus / green radiation; alpha from the (cnt+7)>>3 bucket).
+CONFIRMED the GPU default blend mode is GL_SRC_ALPHA/ONE_MINUS_SRC_ALPHA
+(emulator VideoOutput.cpp) so multiply-color alpha < 0xFF composites correctly.
+
+**Controls added:** START+Up/Down = view size (watch COLS/VS in the debug HUD to
+see the tradeoff), START+X = detail hi/lo (now via R_SetView, not R_SetDetail),
+START HELD suppresses movement. Debug HUD moved to the top rows (bar owns the
+bottom); shows SIZE.
+
+### NEXT (deferred M7 pieces, roughly independent)
+
+1. **Menus** = text rows + gamepad nav (M_* patches bakeable same as STBAR).
+2. **Automap** = line draws (Vircon GPU has no line primitive — 1px-column fills
+   or defer).
+3. **HU pickup messages** = print_at top line w/ timeout (strings in upstream
+   dstrings.h/d_englsh.h — bake or hand-copy the E1 subset).
+4. **Texture/flat animation + scroll (P_UpdateSpecials)**: baked texture-index
+   ranges (animdefs p_spec.c: NUKAGE1-3 etc.); texturetranslation[] exists +
+   honored; flats need the same for gen_flatavg/flatinfo (spans use flat AVERAGE
+   color — animating the average still reads right). Line 48 scroll = sidedef
+   textureoffset += FRACUNIT/tic.
+5. **Light-effect thinkers** (T_LightFlash/StrobeFlash/Glow + P_SpawnSpecials):
+   trivial ports, big atmosphere win — E1M1 specials 1/8/12 render static now.
+6. **Level progression**: bake E1M2+ (wadtool --map exists; needs multi-map gen
+   naming + per-map texture sets growing the atlas) + intermission screen
+   (tallies already counted). Maybe M8/M9 — decide with user.
+
+Perf note: UI draws land in the DRAW frame (headroom, ~50 instr/draw); bar +
+flash add tens of draws, no risk. COMPUTE is the tight frame — the view-size
+control is the knob that helps it (fewer columns).
