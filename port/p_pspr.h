@@ -333,6 +333,8 @@ void A_FirePistol( void* pp, void* pspp )
     P_SetPsprite( player, ps_flash,
                   weaponinfo[ player->readyweapon ][WI_FLASH] );
 
+    S_StartSound( player->mo, SFX_PISTOL );
+
     P_BulletSlope( player->mo );
     P_GunShot( player->mo, !player->refire );
 }

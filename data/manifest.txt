@@ -5,4 +5,5 @@ states: 967 x 7 words, 74 action fns
 ui: 75 elements -> 1 sheet, texid 7
 E1M1: blockmap=3461, linedefs=475, nodes=236, reject=904, sectors=85, segs=732, sidedefs=648, ssectors=237, things=138, vertexes=467
 state reachability: 202 states validated against sprites
+sounds: 109 sfx names, 55 WAV assets baked (44100Hz/16-bit mono)
 gen_assets.h + gen_checkvals.h written

@@ -18,6 +18,7 @@
 
 #include "port\\doomdefs.h"
 #include "port\\gen_assets.h"
+#include "port\\gen_sounds.h"
 #include "port\\m_fixed.h"
 #include "port\\tables.h"
 #include "port\\m_random.h"
@@ -41,6 +42,7 @@
 #include "port\\p_enemy.h"
 #include "port\\p_pspr.h"
 #include "port\\p_user.h"
+#include "port\\s_sound.h"
 #include "port\\st_bar.h"
 
 #define CEILCOLOR 0xFF202028
@@ -59,6 +61,7 @@ void G_LoadLevel()
 {
     int i;
 
+    S_StopAllSounds();
     Z_FreeTags( PU_LEVEL, PU_PURGELEVEL );
     P_InitThinkers();
     P_SetupLevel();
@@ -87,6 +90,7 @@ void main()
     R_InitSprites();
     P_InitPickups();
     P_InitActions();
+    S_Init();
 
     bool showDebug = false;
     bool lowDetail = false;
