@@ -25,6 +25,8 @@ int perf_draws = 0;        // actual region draws (column runs)
 int perf_slow = 0;         // columns that fell off RECORD_COL to the full function
 int perf_fills = 0;        // plane span fills (M5)
 int perf_masked = 0;       // sprite + masked-mid columns (M5)
+int perf_drops = 0;        // columns DROPPED because the buffer was full
+                           // (these show the black backstop -> "dark far walls")
 
 // cached gen_texinfo row: columns of one seg share a texture, so the 5
 // indexed ROM reads happen once per texture change instead of per column
@@ -40,9 +42,12 @@ int gpu_ti_th = 0;
 // no GPU state (previous image stays presented), then GPU_Flush replays all
 // runs in a fast DRAW frame that always fits the instruction budget — so a
 // vsync can never present a half-rendered scene (the VS=2 flicker fix).
-// Overflow drops the farthest runs (recording is near-to-far).
+// Overflow drops the farthest runs (recording is near-to-far) -- a dropped run
+// shows the black/backstop instead of its texture, so DISTANT walls go dark in
+// dense scenes (big open rooms, long sightlines). Sized to the DRAW-frame vsync
+// budget (~50 instr/draw); perf_drops in the debug HUD flags when it's exceeded.
 // -----------------------------------------------------------------------------
-#define MAXWALLCMDS 3072
+#define MAXWALLCMDS 4096
 int wallcmd_count = 0;
 int[MAXWALLCMDS] wc_sheet;
 int[MAXWALLCMDS] wc_color;
@@ -104,7 +109,10 @@ void GPU_RecordMaskedColumn( int sheet, int rx, int ty, int lh,
     if( yh < yl )
         return;
     if( wallcmd_count >= MAXWALLCMDS )
+    {
+        perf_drops++;
         return;
+    }
 
     int rows = yh - yl + 1;
     float vtop = ( (float)yl - sprtopf ) * fis;
@@ -235,6 +243,14 @@ void GPU_DrawWallColumn( int scrx, int texnum, int texcol, int yl, int yh,
 
     perf_columns++;
     perf_slow++;
+
+    // buffer full: this column (and every run it would make) is dropped and the
+    // black backstop shows through -- count it so the HUD can flag the overflow.
+    if( wallcmd_count >= MAXWALLCMDS )
+    {
+        perf_drops++;
+        return;
+    }
 
     if( texnum != gpu_cache_texnum )
     {

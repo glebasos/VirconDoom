@@ -200,6 +200,7 @@ void main()
         perf_slow = 0;
         perf_fills = 0;
         perf_masked = 0;
+        perf_drops = 0;
         R_RenderView();
         end_frame();
 
@@ -254,8 +255,8 @@ void main()
             ShowInt( 280, 24, perf_draws );
             print_at( 340, 24, "VS" );
             ShowInt( 370, 24, vsyncs );
-            print_at( 420, 24, "SLOW" );
-            ShowInt( 475, 24, perf_slow );
+            print_at( 420, 24, "DROP" );
+            ShowInt( 475, 24, perf_drops );
             if( lowDetail ) print_at( 550, 24, "LO" );
             else            print_at( 550, 24, "HI" );
             print_at( 10, 44, "PLN" );
