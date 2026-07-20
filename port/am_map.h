@@ -35,6 +35,7 @@
 #define AMC_CDWALL   0xFF00FFFF   // YELLOWS 231 two-sided, ceiling height change
 #define AMC_TELE     0xFF00009B   // REDS+RANGE/2 184  teleporter line (special 39)
 #define AMC_TSWALL   0xFF838383   // GRAYS 96  two-sided, same heights (unused: cheat)
+#define AMC_MAP      0xFF6B6B6B   // GRAYS+3   computer-area-map (pw_allmap) reveal
 #define AMC_YOU      0xFFDBEBFF   // WHITE 209 player arrow
 
 #define AM_LINETHICK 2.0          // line thickness in screen px (region 8 * 0.25)
@@ -278,34 +279,37 @@ void AM_DrawMline( fixed_t x1, fixed_t y1, fixed_t x2, fixed_t y2, int color )
 void AM_drawWalls()
 {
     int i;
+    boolean allmap = player1.powers[pw_allmap] != 0;
+
     for( i = 0; i < numlines; i++ )
     {
         line_t* ln = &lines[i];
-        if( ( ln->flags & ML_MAPPED ) == 0 )
-            continue;                                  // not seen yet
-        if( ln->flags & ML_DONTDRAW )
-            continue;
-
         fixed_t x1 = ln->v1->x;   fixed_t y1 = ln->v1->y;
         fixed_t x2 = ln->v2->x;   fixed_t y2 = ln->v2->y;
 
-        if( ln->backsector == NULL )
+        if( ln->flags & ML_MAPPED )
         {
-            AM_DrawMline( x1, y1, x2, y2, AMC_WALL );
+            // explored: draw in the normal (colored) style
+            if( ln->flags & ML_DONTDRAW )
+                continue;
+
+            if( ln->backsector == NULL )
+                AM_DrawMline( x1, y1, x2, y2, AMC_WALL );
+            else if( ln->special == 39 )
+                AM_DrawMline( x1, y1, x2, y2, AMC_TELE );   // teleporter
+            else if( ln->backsector->floorheight != ln->frontsector->floorheight )
+                AM_DrawMline( x1, y1, x2, y2, AMC_FDWALL );
+            else if( ln->backsector->ceilingheight != ln->frontsector->ceilingheight )
+                AM_DrawMline( x1, y1, x2, y2, AMC_CDWALL );
+            // else two-sided, no height change: invisible unless cheating (omitted)
         }
-        else if( ln->special == 39 )
+        else if( allmap )
         {
-            AM_DrawMline( x1, y1, x2, y2, AMC_TELE );   // teleporter
+            // computer area map: reveal every drawable line in dim gray, so it
+            // reads as a distinct machine-drawn overlay vs the explored walls.
+            if( !( ln->flags & ML_DONTDRAW ) )
+                AM_DrawMline( x1, y1, x2, y2, AMC_MAP );
         }
-        else if( ln->backsector->floorheight != ln->frontsector->floorheight )
-        {
-            AM_DrawMline( x1, y1, x2, y2, AMC_FDWALL );
-        }
-        else if( ln->backsector->ceilingheight != ln->frontsector->ceilingheight )
-        {
-            AM_DrawMline( x1, y1, x2, y2, AMC_CDWALL );
-        }
-        // else two-sided, no height change: invisible unless cheating (omitted)
     }
 }
 

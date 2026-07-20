@@ -31,9 +31,10 @@ UI_KEYS + GEN_SPR_{BKEY,RKEY,YKEY} emitted. All gates green (keys already
 spawned+rendered, so no reachability change); harness/walls untouched.
 **REMAINING (optional polish, M9-ship close-out): switch-texture swap
 (BUTTONS — cosmetic), per-map music (single E1M1 chiptune on all levels now).
-None block completion. [session 11: new-monster attack AI now DONE — built +
-gates green, needs emulator confirm; see DEVIATIONS/MONSTER ATTACK AI below.]** Post-M9: floor/ceiling textures
-(deliberately deferred — see below).
+None block completion. [session 11: new-monster attack AI + the full E1 pickup
+roster (soulsphere/backpack/blur/radsuit/computer-map/light-visor) now DONE —
+built + gates green, needs emulator confirm; see DEVIATIONS + the two session-11
+notes below.]** Post-M9: floor/ceiling textures (deliberately deferred — see below).
 
 Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
 region blitter, no per-scanline scissor) cannot do perspective flat spans; PLAN §3
@@ -464,6 +465,31 @@ MT_BRUISERSHOT into the reachability gate (334 → 339 states validated — prov
 BAL7 placed). Non-emitting defines, so harness stays GREEN 231. Now all E1
 monsters chase AND attack; only combat, not traversal, so beatability was already
 unaffected — this closes the last gameplay gap.
+
+FULL E1 PICKUP ROSTER — DONE (session 11, built + gates green, NEEDS EMULATOR
+CONFIRM). Before this, only armor/bonus/health/ammo/weapons/keycards were handled;
+every other gettable fell through P_TouchSpecialThing's `else return` (item just
+sat on the floor). Added (p_inter.h): soulsphere (+100 hp, cap 200, GETPOW),
+backpack (first one doubles maxammo[] then gives 1 clip of each), and P_GivePower
++ the four E1 power-ups — blur/partial-invisibility (PINS), radiation suit (SUIT),
+computer area map (PMAP), light-amp visor (PVIS). Invulnerability/berserk are in
+P_GivePower but never placed in E1. POWER EFFECTS wired (not just granted):
+• radsuit — already honored by P_PlayerInSpecialSector (pw_ironfeet), just needed
+  granting. • computer map — AM_drawWalls now reveals every drawable (non-DONTDRAW)
+  line in dim gray AMC_MAP when powers[pw_allmap], distinct from the colored
+  explored lines. • light-amp visor — new global `r_fixedlight` (r_gpu.h, default 0)
+  forces full bright in BOTH GPU_SetLight (walls/sprites) and R_PlaneColor
+  (floors/ceilings); set in game.c's COMPUTE frame right before R_RenderView from
+  powers[pw_infrared] (faithful >4*32||&8 near-expiry flicker). MUST be set in the
+  compute frame, not the draw frame — GPU_SetLight latches into the recorded
+  command during the BSP walk. • blur — P_GivePower sets MF_SHADOW on the player;
+  A_FaceTarget (<<21) and P_SpawnMissile (<<20) scatter enemy aim at a fuzzy
+  target; countdown in P_PlayerThink clears MF_SHADOW on expiry. pw_allmap is a
+  permanent flag (no countdown). wadtool emits GEN_SPR_{SOUL,BPAK,PINS,SUIT,PMAP,
+  PVIS}; NO reachability seed needed — these are placed E1M3+ things already in
+  mt_used + validated (339 unchanged). Non-emitting to baked arrays + r_fixedlight
+  defaults 0 (only game.c sets it), so harness/walls stay GREEN 231.
+  (Spectre's own MF_SHADOW fuzz RENDERING is a separate pre-existing gap, not this.)
 
 VERIFICATION (session 9): user played all 9 maps via START+L/R warp + normal
 progression — maps load/render/play, specials feel right, weapons work. Not a

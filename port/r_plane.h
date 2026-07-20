@@ -194,6 +194,8 @@ int R_PlaneColor( int picnum, int lightlevel )
 {
     int c = gen_flatavg[picnum];
     int g = lightlevel;
+    if( r_fixedlight )           // light-amp visor: floors/ceilings full bright too
+        g = r_fixedlight;
     if( g < 32 ) g = 32;
     if( g > 255 ) g = 255;
     int r = ( ( c & 0xFF ) * g ) >> 8;

@@ -170,10 +170,17 @@ void P_PlayerThink( player_t* player )
         player->powers[pw_strength]++;       // counts up to diminish fade
     if( player->powers[pw_invulnerability] )
         player->powers[pw_invulnerability]--;
+    if( player->powers[pw_invisibility] )
+    {
+        player->powers[pw_invisibility]--;
+        if( !player->powers[pw_invisibility] )
+            player->mo->flags &= ~MF_SHADOW;   // blur wore off
+    }
     if( player->powers[pw_infrared] )
         player->powers[pw_infrared]--;
     if( player->powers[pw_ironfeet] )
         player->powers[pw_ironfeet]--;
+    // pw_allmap is a permanent flag (value 1) -- no countdown, faithful.
 
     if( player->damagecount )
         player->damagecount--;

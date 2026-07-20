@@ -70,9 +70,17 @@ float[MAXFILLCMDS] fc_sy;
 
 int gpu_light_color = 0xFFFFFFFF;  // current seg light as multiply color
 
+// Light-amplification visor (pw_infrared): when non-zero, forces every
+// recorded surface to this brightness regardless of sector light. Set once per
+// COMPUTE frame in game.c before R_RenderView (0 = normal). Default 0 keeps
+// walls/harness untouched (they never set it).
+int r_fixedlight = 0;
+
 void GPU_SetLight( int lightlevel )
 {
     int g = lightlevel;
+    if( r_fixedlight )
+        g = r_fixedlight;
     if( g < 32 ) g = 32;
     if( g > 255 ) g = 255;
     gpu_light_color = 0xFF000000 | ( g << 16 ) | ( g << 8 ) | g;

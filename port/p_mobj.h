@@ -396,7 +396,9 @@ mobj_t* P_SpawnMissile( mobj_t* source, mobj_t* dest, int type )
     th->target = source;         // where it came from
     an = R_PointToAngle2( source->x, source->y, dest->x, dest->y );
 
-    // (MF_SHADOW fuzzy-target scatter: no spectres/invisibility in E1M1)
+    // fuzzy player (blur sphere): scatter the missile's launch angle
+    if( dest->flags & MF_SHADOW )
+        an += ( P_Random() - P_Random() ) << 20;
 
     speed = gen_mobjinfo[type][MI_SPEED];
     th->angle = an;

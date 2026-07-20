@@ -4,10 +4,12 @@
 //
 //  Scope/deviations (documented):
 //   - fixed skill 3, single player, shareware: no trainer double-ammo, no
-//     netgame branches, no keycards (E1M1 has none), no messages/sounds yet
-//   - pickups limited to sprites that can appear in E1M1 incl. drops; an
-//     unknown special is ignored instead of I_Error
-//   - cheats absent; invulnerability power kept (unobtainable here)
+//     netgame branches, no pickup messages (no HUD message system)
+//   - the full E1 pickup roster is handled: armor/bonuses/health/ammo/weapons,
+//     keycards (session 10), and (session 11) soulsphere, backpack, and the
+//     power-ups that appear in E1 -- blur/radsuit/computer-map/light-visor.
+//     Invulnerability + berserk are wired in P_GivePower but never placed in E1.
+//     An unknown gettable sprite is ignored instead of I_Error.
 // -----------------------------------------------------------------------------
 #ifndef P_INTER_H
 #define P_INTER_H
@@ -21,6 +23,14 @@ void P_DropWeapon( player_t* player );
 
 #define BONUSADD 6
 #define BASETHRESHOLD 100
+
+// power-up durations (doomdef.h; upstream 35 Hz values kept as-is at 30 Hz,
+// consistent with the rest of the port -- ~14% longer wall-clock). E1 shareware
+// has no invulnerability/berserk pickups, so those durations go unused here.
+#define INVULNTICS ( 30 * 35 )
+#define INVISTICS  ( 60 * 35 )
+#define INFRATICS  ( 120 * 35 )
+#define IRONTICS   ( 60 * 35 )
 
 int[NUMAMMO] p_maxammo;          // {200, 50, 300, 50} -- set by P_InitPickups
 int[NUMAMMO] clipammo;           // {10, 4, 20, 1}
@@ -158,11 +168,51 @@ void P_GiveCard( player_t* player, int card )
     player->cards[card] = true;
 }
 
+// p_inter.c P_GivePower. Timed powers set their tic counter; pw_allmap and
+// pw_strength are one-shot flags. false = already held (pickup stays on floor).
+boolean P_GivePower( player_t* player, int power )
+{
+    if( power == pw_invulnerability )
+    {
+        player->powers[power] = INVULNTICS;
+        return true;
+    }
+    if( power == pw_invisibility )
+    {
+        player->powers[power] = INVISTICS;
+        player->mo->flags |= MF_SHADOW;
+        return true;
+    }
+    if( power == pw_infrared )
+    {
+        player->powers[power] = INFRATICS;
+        return true;
+    }
+    if( power == pw_ironfeet )
+    {
+        player->powers[power] = IRONTICS;
+        return true;
+    }
+    if( power == pw_strength )
+    {
+        P_GiveBody( player, 100 );
+        player->powers[power] = 1;
+        return true;
+    }
+
+    if( player->powers[power] )
+        return false;            // already got it (e.g. allmap)
+
+    player->powers[power] = 1;
+    return true;
+}
+
 void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
 {
     player_t* player;
     fixed_t delta;
     int spr;
+    int i;
     int sound = SFX_ITEMUP;
 
     delta = special->z - toucher->z;
@@ -202,6 +252,16 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
             player->armorpoints = 200;
         if( !player->armortype )
             player->armortype = 1;
+    }
+    else if( spr == GEN_SPR_SOUL )
+    {
+        // soulsphere: +100 health, can exceed 100% up to 200 (NOT P_GiveBody,
+        // which caps at MAXHEALTH). Always taken.
+        player->health += 100;
+        if( player->health > 200 )
+            player->health = 200;
+        player->mo->health = player->health;
+        sound = SFX_GETPOW;
     }
     else if( spr == GEN_SPR_STIM )
     {
@@ -250,6 +310,45 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
     {
         if( !P_GiveAmmo( player, am_misl, 5 ) )
             return;
+    }
+    else if( spr == GEN_SPR_BPAK )
+    {
+        // backpack: first one doubles every max-ammo capacity, then it (and
+        // every later backpack) hands out one clip of each ammo type.
+        if( !player->backpack )
+        {
+            for( i = 0; i < NUMAMMO; i++ )
+                player->maxammo[i] *= 2;
+            player->backpack = true;
+        }
+        for( i = 0; i < NUMAMMO; i++ )
+            P_GiveAmmo( player, i, 1 );
+    }
+    // ---- power-ups (E1 shareware: no invulnerability/berserk placed). Each
+    // returns without consuming the pickup if the power is already held.
+    else if( spr == GEN_SPR_PINS )        // blur sphere -> partial invisibility
+    {
+        if( !P_GivePower( player, pw_invisibility ) )
+            return;
+        sound = SFX_GETPOW;
+    }
+    else if( spr == GEN_SPR_SUIT )        // radiation suit -> ironfeet
+    {
+        if( !P_GivePower( player, pw_ironfeet ) )
+            return;
+        sound = SFX_GETPOW;
+    }
+    else if( spr == GEN_SPR_PMAP )        // computer area map -> allmap
+    {
+        if( !P_GivePower( player, pw_allmap ) )
+            return;
+        sound = SFX_GETPOW;
+    }
+    else if( spr == GEN_SPR_PVIS )        // light-amp visor -> infrared
+    {
+        if( !P_GivePower( player, pw_infrared ) )
+            return;
+        sound = SFX_GETPOW;
     }
     else if( spr == GEN_SPR_SHOT )
     {

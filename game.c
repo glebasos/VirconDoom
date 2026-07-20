@@ -388,6 +388,15 @@ void main()
         viewy = player1.mo->y;
         viewz = player1.viewz;
         viewangle = player1.mo->angle;
+        // light-amp visor: force everything full bright while active (flickers
+        // near expiry, faithful to upstream's fixedcolormap > 4*32 || &8 test).
+        // Set in the COMPUTE frame so GPU_SetLight/R_PlaneColor latch it while
+        // R_RenderView records this scene's draw commands.
+        if( player1.powers[pw_infrared] > 4 * 32
+         || ( player1.powers[pw_infrared] & 8 ) )
+            r_fixedlight = 255;
+        else
+            r_fixedlight = 0;
         R_RenderView();
         end_frame();
 

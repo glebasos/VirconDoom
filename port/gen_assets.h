@@ -184,6 +184,12 @@
 #define GEN_SPR_BKEY 62
 #define GEN_SPR_RKEY 63
 #define GEN_SPR_YKEY 64
+#define GEN_SPR_SOUL 70
+#define GEN_SPR_BPAK 86
+#define GEN_SPR_PINS 73
+#define GEN_SPR_SUIT 75
+#define GEN_SPR_PMAP 76
+#define GEN_SPR_PVIS 77
 
 #define GEN_NUMVERTEXES 467
 #define GEN_NUMSECTORS 85

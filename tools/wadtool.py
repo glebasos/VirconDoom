@@ -1102,7 +1102,10 @@ def main():
     lines.append('// sprite number constants used by P_TouchSpecialThing')
     for spn in ('ARM1', 'ARM2', 'BON1', 'BON2', 'STIM', 'MEDI', 'CLIP',
                 'AMMO', 'SHEL', 'SBOX', 'ROCK', 'BROK', 'SHOT', 'MGUN',
-                'BKEY', 'RKEY', 'YKEY'):
+                'BKEY', 'RKEY', 'YKEY',
+                # session 11: soulsphere, backpack, and the E1 power-ups
+                # (blur / radsuit / computer-map / light-amp visor)
+                'SOUL', 'BPAK', 'PINS', 'SUIT', 'PMAP', 'PVIS'):
         lines.append('#define GEN_SPR_%s %d' % (spn, sprnames.index(spn)))
     lines.append('')
     # GEN_NUM* stay the E1M1 (map-0) counts: the harness/walls ROMs read gen_*

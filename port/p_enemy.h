@@ -376,7 +376,11 @@ void A_FaceTarget( void* p )
 
     actor->angle = R_PointToAngle2( actor->x, actor->y,
                                     actor->target->x, actor->target->y );
-    // (MF_SHADOW jitter: no invisible targets in E1M1)
+
+    // fuzzy target (player holding the blur sphere): scatter the aim so
+    // hitscanners/melee attackers largely miss. `<<` on BAM angle_t is fine.
+    if( actor->target->flags & MF_SHADOW )
+        actor->angle += ( P_Random() - P_Random() ) << 21;
 }
 
 // stay in state until a player is sighted
