@@ -82,6 +82,7 @@ void G_LoadLevel()
     }
 
     P_SpawnMapThings();
+    P_SpawnSpecials();           // light-effect thinkers (flicker/strobe/glow)
     P_SetupPsprites( &player1 );
     ST_Init();                   // reset face/arms state to the fresh player
     S_StartMusic();              // (re)start the looping level music

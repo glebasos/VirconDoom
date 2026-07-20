@@ -8,11 +8,11 @@ is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\V
 (harness GREEN 231). M8 SOUND + MUSIC user-confirmed. M7 UI: status bar +
 variable view size + screen flashes BUILT; AUTOMAP DONE + user-confirmed
 (session 8 — rotozoom-region lines, START+B, live-reveal, L/R zoom). Input
-responsiveness fixed (session 7).** E1M1 is a fully playable game.
-**Next candidates (deferred M7 pieces, roughly independent): light-effect
-thinkers (biggest atmosphere-per-effort win), texture/flat animation, HU pickup
-messages, menus, then level progression E1M2+ (the road to M9 ship).** See the
-M7 "NEXT" list for scope on each.
+responsiveness fixed (session 7). LIGHT-EFFECT THINKERS DONE (session 8 —
+flicker/strobe/glow/fireflicker; E1M1's 4 light sectors animate).** E1M1 is a
+fully playable game. **Next candidates (deferred M7 pieces, roughly
+independent): texture/flat animation, HU pickup messages, menus, then level
+progression E1M2+ (the road to M9 ship).** See the M7 "NEXT" list for scope.
 
 Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
 region blitter, no per-scanline scissor) cannot do perspective flat spans; PLAN §3
@@ -326,8 +326,19 @@ bottom); shows SIZE.
    honored; flats need the same for gen_flatavg/flatinfo (spans use flat AVERAGE
    color — animating the average still reads right). Line 48 scroll = sidedef
    textureoffset += FRACUNIT/tic.
-5. **Light-effect thinkers** (T_LightFlash/StrobeFlash/Glow + P_SpawnSpecials):
-   trivial ports, big atmosphere win — E1M1 specials 1/8/12 render static now.
+5. **Light-effect thinkers — DONE + user-confirmed (session 8).**
+   `port/p_spec.h` adds T_LightFlash / T_StrobeFlash / T_Glow / T_FireFlicker +
+   P_SpawnSpecials (light subset: specials 1/2/3/4/8/12/13/17), plus
+   P_FindMinSurroundingLight. Faithful upstream 35Hz constants at 30Hz; uses
+   P_Random (gameplay RNG) as upstream does; case-4 keeps its special for the
+   20% damage; damage/secret specials (5/7/9/16) left intact for
+   P_PlayerInSpecialSector. Called from G_LoadLevel after P_SpawnMapThings. No
+   renderer change: the per-frame BSP walk reads frontsector->lightlevel live
+   (r_segs GPU_SetLight, r_bsp R_FindPlane, r_things sprite light) so mutating
+   the sector field animates walls+floors+sprites. E1M1 exercises it via 4
+   sectors (1 flicker / 2 glow / 1 sync-strobe; offline SECTORS histogram
+   confirmed). Renderer clamps light to [32,255] so strobes never hit full
+   black (consistent port policy, not a bug).
 6. **Level progression**: bake E1M2+ (wadtool --map exists; needs multi-map gen
    naming + per-map texture sets growing the atlas) + intermission screen
    (tallies already counted). Maybe M8/M9 — decide with user.

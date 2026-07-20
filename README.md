@@ -3,7 +3,8 @@
 id Software's **DOOM** (linuxdoom-1.10, shareware Episode 1 data) ported to the
 [Vircon32](https://www.vircon32.com/) fantasy console. Episode 1 Map 1 (E1M1) is a
 playable game: textured walls, sprites, full collision and playsim, monsters that
-fight and die, weapons, pickups, a status bar, screen flashes, and sound + music.
+fight and die, weapons, pickups, a status bar, screen flashes, an overhead automap,
+animated sector lighting, and sound + music.
 
 ## Status
 
@@ -13,12 +14,12 @@ fight and die, weapons, pickups, a status bar, screen flashes, and sound + music
 | M4 playsim: movement, collision, doors, stairs | ✅ emulator-confirmed |
 | M5 sprites + solid-color floors/ceilings | ✅ emulator-confirmed |
 | M6 "it's a game": monster AI, weapons, pickups, specials | ✅ emulator-confirmed |
-| M7 UI: status bar, variable view size, screen flashes, automap | ⚙️ built, partially verified |
+| M7 UI: status bar, view size, screen flashes, automap, light effects | ✅ confirmed |
 | M8 sound + music: full SFX engine + chiptune music | ✅ confirmed |
 
 **Not done (by design):** textured floors/ceilings (the Vircon32 GPU can't do
 perspective flat spans — deferred post-M9; floors are solid color, SNES-port style),
-menus, HUD pickup messages, texture/flat animation, light-effect thinkers,
+menus, HUD pickup messages, texture/flat animation,
 and level progression beyond E1M1. Music is a from-scratch **chiptune** render of
 "At Doom's Gate" (no soundfont/synth is available to render the authentic
 instruments); the SPU is mono-per-channel, so sounds attenuate with distance but

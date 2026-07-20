@@ -4,9 +4,11 @@
 //  moving floors (W1 36 turbo lower), plats (WR 88 down-wait-up), walk-over
 //  triggers, the S1 11 exit switch, and damaging/secret sector specials.
 //
+//  Also: sector light-effect thinkers (P_SpawnSpecials + T_LightFlash /
+//  T_StrobeFlash / T_Glow / T_FireFlicker) -- E1M1 uses specials 1/8/12.
+//
 //  DEVIATIONS: no crush/P_ChangeSector -- a closing door/plat will not push
-//  things out; no locked doors; no light-effect thinkers (sector light
-//  specials render static); no sounds yet. E1M1's line special roster is
+//  things out; no locked doors. E1M1's line special roster is
 //  exactly {1, 11, 36, 48(scroll: cosmetic, skipped), 88} -- others unported.
 // -----------------------------------------------------------------------------
 #ifndef P_SPEC_H
@@ -80,6 +82,21 @@ int P_FindSectorFromLineTag( line_t* line, int start )
         if( sectors[i].tag == line->tag )
             return i;
     return -1;
+}
+
+// lowest light level among neighbours (p_spec.c, used by every light thinker)
+int P_FindMinSurroundingLight( sector_t* sector, int max )
+{
+    int i;
+    int min = max;
+    line_t** secLines = (line_t**)sector->lines;
+    for( i = 0; i < sector->linecount; i++ )
+    {
+        sector_t* check = getNextSector( secLines[i], sector );
+        if( check && check->lightlevel < min )
+            min = check->lightlevel;
+    }
+    return min;
 }
 
 // ---- T_MovePlane (p_floor.c) -- result codes
@@ -519,8 +536,234 @@ boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
     return false;
 }
 
+// ---- light-effect thinkers (p_lights.c). Each mutates sector->lightlevel every
+// few tics; the renderer reads sector->lightlevel live (GPU_SetLight), so no
+// renderer change is needed. Faithful timing constants are the upstream 35Hz
+// values run at 30Hz (~14% slower, consistent with the rest of the port). These
+// use P_Random (the gameplay RNG) exactly as upstream does.
+#define GLOWSPEED    8
+#define STROBEBRIGHT 5
+#define FASTDARK     15
+#define SLOWDARK     35
+
+struct lightflash_t
+{
+    thinker_t thinker;
+    sector_t* sector;
+    int count;
+    int maxlight;
+    int minlight;
+    int maxtime;
+    int mintime;
+};
+
+struct strobe_t
+{
+    thinker_t thinker;
+    sector_t* sector;
+    int count;
+    int minlight;
+    int maxlight;
+    int darktime;
+    int brighttime;
+};
+
+struct glow_t
+{
+    thinker_t thinker;
+    sector_t* sector;
+    int minlight;
+    int maxlight;
+    int direction;
+};
+
+struct fireflicker_t
+{
+    thinker_t thinker;
+    sector_t* sector;
+    int count;
+    int maxlight;
+    int minlight;
+};
+
+// broken/flashing light
+void T_LightFlash( void* p )
+{
+    lightflash_t* flash = (lightflash_t*)p;
+    flash->count = flash->count - 1;
+    if( flash->count )
+        return;
+
+    if( flash->sector->lightlevel == flash->maxlight )
+    {
+        flash->sector->lightlevel = flash->minlight;
+        flash->count = ( P_Random() & flash->mintime ) + 1;
+    }
+    else
+    {
+        flash->sector->lightlevel = flash->maxlight;
+        flash->count = ( P_Random() & flash->maxtime ) + 1;
+    }
+}
+
+void P_SpawnLightFlash( sector_t* sector )
+{
+    lightflash_t* flash = Z_CallocLevel( sizeof( lightflash_t ) );
+    P_AddThinker( &flash->thinker );
+    flash->thinker.function = &T_LightFlash;
+    flash->sector = sector;
+    flash->maxlight = sector->lightlevel;
+    flash->minlight = P_FindMinSurroundingLight( sector, sector->lightlevel );
+    flash->maxtime = 64;
+    flash->mintime = 7;
+    flash->count = ( P_Random() & flash->maxtime ) + 1;
+    sector->special = 0;         // nothing special about it during gameplay
+}
+
+// strobe (periodic bright/dark)
+void T_StrobeFlash( void* p )
+{
+    strobe_t* flash = (strobe_t*)p;
+    flash->count = flash->count - 1;
+    if( flash->count )
+        return;
+
+    if( flash->sector->lightlevel == flash->minlight )
+    {
+        flash->sector->lightlevel = flash->maxlight;
+        flash->count = flash->brighttime;
+    }
+    else
+    {
+        flash->sector->lightlevel = flash->minlight;
+        flash->count = flash->darktime;
+    }
+}
+
+void P_SpawnStrobeFlash( sector_t* sector, int fastOrSlow, int inSync )
+{
+    strobe_t* flash = Z_CallocLevel( sizeof( strobe_t ) );
+    P_AddThinker( &flash->thinker );
+    flash->thinker.function = &T_StrobeFlash;
+    flash->sector = sector;
+    flash->darktime = fastOrSlow;
+    flash->brighttime = STROBEBRIGHT;
+    flash->maxlight = sector->lightlevel;
+    flash->minlight = P_FindMinSurroundingLight( sector, sector->lightlevel );
+    if( flash->minlight == flash->maxlight )
+        flash->minlight = 0;
+
+    sector->special = 0;
+    if( !inSync )
+        flash->count = ( P_Random() & 7 ) + 1;
+    else
+        flash->count = 1;
+}
+
+// glowing (smooth up/down pulse)
+void T_Glow( void* p )
+{
+    glow_t* g = (glow_t*)p;
+    if( g->direction == -1 )
+    {
+        g->sector->lightlevel -= GLOWSPEED;
+        if( g->sector->lightlevel <= g->minlight )
+        {
+            g->sector->lightlevel += GLOWSPEED;
+            g->direction = 1;
+        }
+    }
+    else if( g->direction == 1 )
+    {
+        g->sector->lightlevel += GLOWSPEED;
+        if( g->sector->lightlevel >= g->maxlight )
+        {
+            g->sector->lightlevel -= GLOWSPEED;
+            g->direction = -1;
+        }
+    }
+}
+
+void P_SpawnGlowingLight( sector_t* sector )
+{
+    glow_t* g = Z_CallocLevel( sizeof( glow_t ) );
+    P_AddThinker( &g->thinker );
+    g->thinker.function = &T_Glow;
+    g->sector = sector;
+    g->minlight = P_FindMinSurroundingLight( sector, sector->lightlevel );
+    g->maxlight = sector->lightlevel;
+    g->direction = -1;
+    sector->special = 0;
+}
+
+// fire flicker (random dimming toward a floor)
+void T_FireFlicker( void* p )
+{
+    fireflicker_t* flick = (fireflicker_t*)p;
+    int amount;
+    flick->count = flick->count - 1;
+    if( flick->count )
+        return;
+
+    amount = ( P_Random() & 3 ) * 16;
+    if( flick->sector->lightlevel - amount < flick->minlight )
+        flick->sector->lightlevel = flick->minlight;
+    else
+        flick->sector->lightlevel = flick->maxlight - amount;
+    flick->count = 4;
+}
+
+void P_SpawnFireFlicker( sector_t* sector )
+{
+    fireflicker_t* flick = Z_CallocLevel( sizeof( fireflicker_t ) );
+    P_AddThinker( &flick->thinker );
+    flick->thinker.function = &T_FireFlicker;
+    flick->sector = sector;
+    flick->maxlight = sector->lightlevel;
+    flick->minlight = P_FindMinSurroundingLight( sector, sector->lightlevel ) + 16;
+    flick->count = 4;
+    sector->special = 0;
+}
+
+// After the level is built, scan sectors and spawn light thinkers for their
+// specials (p_spec.c P_SpawnSpecials, light subset). Damaging/secret specials
+// (4/5/7/9/16) are LEFT INTACT so P_PlayerInSpecialSector still handles them;
+// case 4 spawns a strobe AND keeps its special for the 20% damage.
+void P_SpawnSpecials()
+{
+    int i;
+    for( i = 0; i < numsectors; i++ )
+    {
+        sector_t* sector = &sectors[i];
+        int sp = sector->special;
+        if( sp == 0 )
+            continue;
+
+        if( sp == 1 )
+            P_SpawnLightFlash( sector );                 // flickering
+        else if( sp == 2 )
+            P_SpawnStrobeFlash( sector, FASTDARK, 0 );   // strobe fast
+        else if( sp == 3 )
+            P_SpawnStrobeFlash( sector, SLOWDARK, 0 );   // strobe slow
+        else if( sp == 4 )
+        {
+            P_SpawnStrobeFlash( sector, FASTDARK, 0 );   // strobe + death slime
+            sector->special = 4;                         // keep for the damage
+        }
+        else if( sp == 8 )
+            P_SpawnGlowingLight( sector );               // glowing
+        else if( sp == 12 )
+            P_SpawnStrobeFlash( sector, SLOWDARK, 1 );   // sync strobe slow
+        else if( sp == 13 )
+            P_SpawnStrobeFlash( sector, FASTDARK, 1 );   // sync strobe fast
+        else if( sp == 17 )
+            P_SpawnFireFlicker( sector );                // fire flicker
+        // 5/7/9/16 (damage/secret): untouched, handled per-tic elsewhere
+    }
+}
+
 // ---- damaging / secret sector specials (P_PlayerInSpecialSector; E1M1
-// sector special roster: 1/8/12 lights (static for now), 7 nukage -5, 9 secret)
+// sector special roster: 1/8/12 lights (thinkers now), 7 nukage -5, 9 secret)
 void P_PlayerInSpecialSector( player_t* player )
 {
     sector_t* sector = player->mo->subsector->sector;
