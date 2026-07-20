@@ -1,10 +1,14 @@
 # VirconDoom
 
 id Software's **DOOM** (linuxdoom-1.10, shareware Episode 1 data) ported to the
-[Vircon32](https://www.vircon32.com/) fantasy console. Episode 1 Map 1 (E1M1) is a
-playable game: textured walls, sprites, full collision and playsim, monsters that
-fight and die, weapons, pickups, a status bar, screen flashes, an overhead automap,
-animated sector lighting, and sound + music.
+[Vircon32](https://www.vircon32.com/) fantasy console. The full shareware
+**Episode 1 (E1M1–E1M9)** is playable end-to-end: textured walls, sprites, full
+collision and playsim, monsters that fight and die, the E1 weapons
+(fist/chainsaw/pistol/shotgun/chaingun/rocket launcher), pickups, a status bar,
+screen flashes, an overhead automap, animated sector lighting, sound + music, the
+full line-special roster (doors/lifts/floors/stairs/teleporters/donut), an
+intermission tally between levels, and level progression including the secret exit
+(E1M3 → E1M9) and the E1M8 boss ending.
 
 ## Status
 
@@ -16,14 +20,17 @@ animated sector lighting, and sound + music.
 | M6 "it's a game": monster AI, weapons, pickups, specials | ✅ emulator-confirmed |
 | M7 UI: status bar, view size, screen flashes, automap, light effects | ✅ confirmed |
 | M8 sound + music: full SFX engine + chiptune music | ✅ confirmed |
+| M9 level progression: all 9 E1 maps, full special roster, intermission, all E1 weapons | ✅ confirmed |
 
-**Not done (by design):** textured floors/ceilings (the Vircon32 GPU can't do
-perspective flat spans — deferred post-M9; floors are solid color, SNES-port style),
-menus, HUD pickup messages, texture/flat animation,
-and level progression beyond E1M1. Music is a from-scratch **chiptune** render of
-"At Doom's Gate" (no soundfont/synth is available to render the authentic
-instruments); the SPU is mono-per-channel, so sounds attenuate with distance but
-do not pan left/right.
+**Not done (by design or deferred polish):** textured floors/ceilings (the
+Vircon32 GPU can't do perspective flat spans — floors are solid color, SNES-port
+style); attack AI for the monsters new to E1M2+ (Baron/Demon/Spectre spawn, chase,
+and are killable but don't attack yet); switch-texture swap (a flipped switch
+plays its sound but the wall texture doesn't change); menus; HUD pickup messages;
+per-map music (the one chiptune plays on every level). Music is a from-scratch
+**chiptune** render of "At Doom's Gate" (no soundfont/synth is available to render
+the authentic instruments); the SPU is mono-per-channel, so sounds attenuate with
+distance but do not pan left/right.
 
 ## Controls (gamepad)
 
@@ -37,7 +44,7 @@ Movement and combat:
 | **Y** (hold) | Run — faster move, turn, and strafe |
 | **A** | Fire |
 | **B** | Use — open doors, flip switches |
-| **X** (tap) | Cycle weapon (fist → pistol → shotgun) |
+| **X** (tap) | Cycle weapon through everything owned (fist / chainsaw / pistol / shotgun / chaingun / rocket launcher) |
 
 `START` is a **modifier** — hold it to suppress movement and access the toggles:
 

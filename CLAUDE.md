@@ -7,17 +7,20 @@ is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\V
 **CURRENT STATE (session 9, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
 (harness GREEN 231). M8 SOUND + MUSIC user-confirmed. M7 UI + automap + light
 thinkers done. Input responsiveness fixed (session 7). M9 LEVEL PROGRESSION
-BUILT (session 9): (a) all 9 E1 maps baked + concatenated with gamemap slicing;
-(b) intermission tally + exit→next-map incl. secret exit; (c) START+L/R dev
-map-warp — USER-CONFIRMED all 9 maps load/render/play; (d) the FULL episode-1
-line-special roster ported (doors/floors/plats/stairs/donut/teleport/lights +
-walk/switch/gun dispatch) + E1M8 boss exit (A_BossDeath + sector-11 ending).
-Builds clean; offline gates green (integrity + special-coverage); the specials
-are NOT yet emulator-verified per map.** E1M1 is a fully playable game and the
-whole episode is now wired end-to-end. **NEXT: per-map emulator verification of
-the specials (test order in the M9 section), then optional polish — new-monster
-attack AI (Baron/Demon/Spectre are passive), switch-texture swap (BUTTONS),
-per-map music. That's the M9-ship close-out.**
+DONE + USER-CONFIRMED (session 9): (a) all 9 E1 maps baked + concatenated with
+gamemap slicing; (b) intermission tally + exit→next-map incl. secret exit;
+(c) START+L/R dev map-warp; (d) the FULL episode-1 line-special roster ported
+(doors/floors/plats/stairs/donut/teleport/lights + walk/switch/gun dispatch) +
+E1M8 boss exit (A_BossDeath + sector-11 ending); (e) the E1-obtainable weapons
+beyond M6 (chaingun/chainsaw/rocket launcher) — a softlock bug (empty weaponinfo
+rows) found + fixed. USER PLAYED all 9 maps and the weapons: "feels like all
+works." Builds clean; offline gates green (integrity + special-coverage + state
+reachability 334).** The whole shareware episode is now playable end-to-end.
+**REMAINING (optional polish, M9-ship close-out): new-monster attack AI
+(Baron/Demon/Spectre spawn + chase + are killable but don't attack yet),
+switch-texture swap (BUTTONS — cosmetic), per-map music (single E1M1 chiptune on
+all levels now). None block completion.** Post-M9: floor/ceiling textures
+(deliberately deferred — see below).
 
 Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
 region blitter, no per-scanline scissor) cannot do perspective flat spans; PLAN §3
@@ -353,10 +356,12 @@ Perf note: UI draws land in the DRAW frame (headroom, ~50 instr/draw); bar +
 flash add tens of draws, no risk. COMPUTE is the tight frame — the view-size
 control is the knob that helps it (fewer columns).
 
-## M9 — Level progression (BACKBONE BUILT session 9; NOT yet emulator-run)
+## M9 — Level progression (DONE + USER-CONFIRMED, session 9)
 
-The progression MECHANISM is complete and builds clean; per-map *beatability* is
-a follow-up (the line-special roster, below). Three deliverables:
+The whole episode is wired and the user has played all 9 maps + the weapons
+("feels like all works"). Four deliverables (1–3 = the progression mechanism;
+4 = the full special roster that makes the maps beatable; the weapon-softlock
+fix is documented up in the input/weapons section):
 
 **1. Multi-map bake (wadtool).** KEY REALIZATION: the atlas never needed to
 "grow across maps" — `composite_textures`/`load_flats`/`load_sprites` already
@@ -394,8 +399,8 @@ COMPLETE, KILLS/ITEMS/SECRET %, TIME vs PAR, ENTERING E1M<next>); A advances via
 `G_NextMap()` — upstream G_DoCompleted E1 logic: secret→E1M9, E1M9→E1M4, else
 linear, wrap→E1M1.
 
-**4. Full E1 line-special roster (session 9 — builds clean, offline-gated, NOT
-yet emulator-verified per map).** M6 shipped only E1M1's {1,11,26–28,31–34,36,88}.
+**4. Full E1 line-special roster (session 9 — builds clean, offline-gated,
+USER-CONFIRMED in play).** M6 shipped only E1M1's {1,11,26–28,31–34,36,88}.
 The rest of episode 1 is now ported into `port/p_spec.h` (read straight from
 upstream p_spec.c/p_floor.c/p_plats.c/p_doors.c/p_switch.c/p_telept.c/p_lights.c):
 - **Doors** `EV_DoDoor` (open/normal/close/close30ThenOpen) + generalized
@@ -435,9 +440,17 @@ no crush/ceiling movers (E1 has none); Baron/Demon/Spectre chase + are killable
 but DON'T attack (A_BruisAttack/A_SargAttack unported — combat, not traversal, so
 beatability is unaffected). Music stays the single E1M1 chiptune on every level.
 
-**EMULATOR TEST ORDER (risk is front-loaded — shared code first):** (1) harness
-GREEN 231 + E1M1 full playthrough → exit → intermission → E1M2 (E1M1's specials
-now route through the rewritten EV_DoFloor/EV_DoPlat — this is the regression
-net). (2) **E1M2 is the acid test** — lifts 62 (×6), triggered doors, donut;
-verify before others. (3) E1M3 → secret exit → E1M9 → E1M4. (4) E1M4–E1M7.
-(5) **E1M8 last** (boss + teleport + sector-11, the most fragile chain).
+VERIFICATION (session 9): user played all 9 maps via START+L/R warp + normal
+progression — maps load/render/play, specials feel right, weapons work. Not a
+formal per-map completion checklist, but broad playtest confidence. If a specific
+special ever misbehaves, the per-map linedef-special histogram is the map to it:
+```
+E1M1 {1,11,36,48,88}  E1M2 {1,9,11,28,31,46,62,88,103}
+E1M3 {1,2,8,11,20,26,27,31,35,51,62,63,88,90,103}
+E1M4 {1,2,5,11,18,26,27,31,36,62,86,88,90}
+E1M5 {1,2,11,22,26,27,31,62,70,88,90,91,97,98,103}
+E1M6 {1,2,11,16,26,27,28,36,62,76,88,103}
+E1M7 {1,2,11,22,23,26,27,28,31,34,48,62,63,70,88,90,91,98,103}
+E1M8 {1,2,3,7,23,31,62,82,91,97}   E1M9 {1,2,11,20,31,32,33,34,36,62,88,90,97,103}
+```
+(48 = scrolling wall, cosmetic/unhandled by design; everything else is wired.)
