@@ -922,7 +922,8 @@ def main():
     # check would fail: shareware doom1.wad ships no sprites for
     # registered-game monsters whose states still exist in info.c.
     for extra in ('MT_PLAYER', 'MT_CLIP', 'MT_SHOTGUN', 'MT_TROOPSHOT',
-                  'MT_PUFF', 'MT_BLOOD'):
+                  'MT_PUFF', 'MT_BLOOD', 'MT_TFOG',    # MT_TFOG: teleport fog
+                  'MT_ROCKET'):                        # rocket-launcher missile
         mt_used.add(mtnames.index(extra))
     seeds = []
     for mt in mt_used:
@@ -934,7 +935,11 @@ def main():
                'S_PUNCH', 'S_PUNCHDOWN', 'S_PUNCHUP', 'S_PUNCH1',
                'S_PISTOL', 'S_PISTOLDOWN', 'S_PISTOLUP', 'S_PISTOL1',
                'S_PISTOLFLASH',
-               'S_SGUN', 'S_SGUNDOWN', 'S_SGUNUP', 'S_SGUN1', 'S_SGUNFLASH1'):
+               'S_SGUN', 'S_SGUNDOWN', 'S_SGUNUP', 'S_SGUN1', 'S_SGUNFLASH1',
+               'S_CHAIN', 'S_CHAINDOWN', 'S_CHAINUP', 'S_CHAIN1', 'S_CHAINFLASH1',
+               'S_SAW', 'S_SAWDOWN', 'S_SAWUP', 'S_SAW1',
+               'S_MISSILE', 'S_MISSILEDOWN', 'S_MISSILEUP', 'S_MISSILE1',
+               'S_MISSILEFLASH1'):
         seeds.append(snames.index(sn))
     reachable = set()
     work = [s for s in seeds if s]
@@ -997,6 +1002,35 @@ def main():
     report.append('map integrity: 9 maps, all load-time refs in-slice + '
                   'player start present')
 
+    # M9 line-special coverage gate: every linedef special present in any baked
+    # map must be handled by the port's dispatch (p_spec.h P_CrossSpecialLine /
+    # P_UseSpecialLine / P_ShootSpecialLine), else it's a silent no-op = possible
+    # dead end. This is the one offline check that maps to "forgot to wire special
+    # X" -- if a future WAD introduces an unhandled special, the bake fails loudly.
+    HANDLED_SPECIALS = {
+        0,                                              # none
+        48,                                             # scroll wall (cosmetic)
+        1, 2, 3, 4, 16, 26, 27, 28, 29, 31, 32, 33, 34, # doors
+        46, 50, 63, 75, 76, 86, 90, 103,                # doors (gun/switch/walk)
+        5, 18, 19, 23, 36, 38, 70, 82, 83, 91, 98, 119, 128, # floors
+        10, 20, 22, 62, 88, 95,                         # plats
+        7, 8,                                           # stairs
+        9,                                              # donut
+        39, 97, 125, 126,                               # teleport
+        12, 13, 35,                                     # lights
+        11, 51, 52, 124,                                # exits
+    }
+    unhandled = {}
+    for mi_, m in enumerate(maplist):
+        o = map_off[mi_][3]; nlin = map_num[mi_][3]     # linedefs slice
+        for i in range(nlin):
+            sp = allout['linedefs'][(o + i) * 7 + 3]
+            if sp not in HANDLED_SPECIALS:
+                unhandled.setdefault(sp, []).append(m)
+    assert not unhandled, ('unhandled linedef specials (wire in p_spec.h): %s'
+                           % {k: sorted(set(v)) for k, v in unhandled.items()})
+    report.append('special coverage: all E1 linedef specials handled by p_spec.h')
+
     # ---- gen_assets.h
     sky_tex = texname_to_idx.get('SKY1', 0)
     sky_flat = flatname_to_idx.get('F_SKY1', -1)
@@ -1045,13 +1079,20 @@ def main():
                'S_PUNCH', 'S_PUNCHDOWN', 'S_PUNCHUP', 'S_PUNCH1',
                'S_PISTOL', 'S_PISTOLDOWN', 'S_PISTOLUP', 'S_PISTOL1',
                'S_PISTOLFLASH',
-               'S_SGUN', 'S_SGUNDOWN', 'S_SGUNUP', 'S_SGUN1', 'S_SGUNFLASH1'):
+               'S_SGUN', 'S_SGUNDOWN', 'S_SGUNUP', 'S_SGUN1', 'S_SGUNFLASH1',
+               # E1-obtainable weapons (M9 fix: chaingun E1M8, chainsaw E1M2,
+               # rocket launcher E1M9). Plasma/BFG absent from shareware.
+               'S_CHAIN', 'S_CHAINDOWN', 'S_CHAINUP', 'S_CHAIN1', 'S_CHAINFLASH1',
+               'S_SAW', 'S_SAWDOWN', 'S_SAWUP', 'S_SAW1',
+               'S_MISSILE', 'S_MISSILEDOWN', 'S_MISSILEUP', 'S_MISSILE1',
+               'S_MISSILEFLASH1'):
         lines.append('#define GEN_%s %d' % (sn, snames.index(sn)))
     lines.append('')
     lines.append('// mobjtype constants used by ported code')
     for mn in ('MT_PLAYER', 'MT_POSSESSED', 'MT_SHOTGUY', 'MT_TROOP',
                'MT_TROOPSHOT', 'MT_PUFF', 'MT_BLOOD', 'MT_CLIP', 'MT_SHOTGUN',
-               'MT_BARREL'):
+               'MT_BARREL', 'MT_TFOG', 'MT_TELEPORTMAN', 'MT_BRUISER',
+               'MT_ROCKET'):
         lines.append('#define GEN_%s %d' % (mn, mtnames.index(mn)))
     lines.append('')
     lines.append('// sprite number constants used by P_TouchSpecialThing')

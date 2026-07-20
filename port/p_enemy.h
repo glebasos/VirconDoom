@@ -616,4 +616,38 @@ void A_Explode( void* p )
     P_RadiusAttack( thingy, thingy->target, 128 );
 }
 
+// A_BossDeath (p_enemy.c): on E1M8, when BOTH Bruisers (Barons) are dead, lower
+// the tag-666 floor to its lowest neighbour -- the only way out of E1M8 (its exit
+// is a sector-special-11 room reached past that floor via teleporters). This is
+// the sole boss-trigger needed for episode 1. Barons chase + take damage (M6 AI)
+// but don't attack yet (A_BruisAttack unported) -- still killable, so the level
+// completes. gamemap is 1-based.
+void A_BossDeath( void* p )
+{
+    mobj_t* mo = (mobj_t*)p;
+    thinker_t* th;
+    mobj_t* mo2;
+    line_t junk;
+
+    if( gamemap != 8 )
+        return;
+    if( mo->type != GEN_MT_BRUISER )
+        return;
+    if( player1.health <= 0 )
+        return;                      // no one alive -> don't end the level
+
+    // any other Bruiser still alive? then wait
+    for( th = thinkercap.next; th != &thinkercap; th = th->next )
+    {
+        if( th->function != &P_MobjThinker )
+            continue;
+        mo2 = (mobj_t*)th;
+        if( mo2 != mo && mo2->type == GEN_MT_BRUISER && mo2->health > 0 )
+            return;
+    }
+
+    junk.tag = 666;
+    EV_DoFloor( &junk, FLOOR_LOWERTOLOWEST );
+}
+
 #endif

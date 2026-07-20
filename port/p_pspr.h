@@ -27,11 +27,14 @@ int[NUMWEAPONS][6] weaponinfo = {
       GEN_S_PISTOL1, GEN_S_PISTOLFLASH },                    // pistol
     { am_shell, GEN_S_SGUNUP, GEN_S_SGUNDOWN, GEN_S_SGUN,
       GEN_S_SGUN1, GEN_S_SGUNFLASH1 },                       // shotgun
-    { am_clip, 0, 0, 0, 0, 0 },                              // chaingun (n/a)
-    { am_misl, 0, 0, 0, 0, 0 },                              // missile (n/a)
-    { am_cell, 0, 0, 0, 0, 0 },                              // plasma (n/a)
-    { am_cell, 0, 0, 0, 0, 0 },                              // bfg (n/a)
-    { am_noammo, 0, 0, 0, 0, 0 }                             // chainsaw (n/a)
+    { am_clip, GEN_S_CHAINUP, GEN_S_CHAINDOWN, GEN_S_CHAIN,
+      GEN_S_CHAIN1, GEN_S_CHAINFLASH1 },                     // chaingun (E1M8)
+    { am_misl, GEN_S_MISSILEUP, GEN_S_MISSILEDOWN, GEN_S_MISSILE,
+      GEN_S_MISSILE1, GEN_S_MISSILEFLASH1 },                 // rocket (E1M9)
+    { am_cell, 0, 0, 0, 0, 0 },                              // plasma (not in E1)
+    { am_cell, 0, 0, 0, 0, 0 },                              // bfg (not in E1)
+    { am_noammo, GEN_S_SAWUP, GEN_S_SAWDOWN, GEN_S_SAW,
+      GEN_S_SAW1, GEN_S_NULL }                               // chainsaw (E1M2)
 };
 #define WI_AMMO   0
 #define WI_UP     1
@@ -86,6 +89,12 @@ void P_BringUpWeapon( player_t* player )
 
     if( player->pendingweapon == wp_nochange )
         player->pendingweapon = player->readyweapon;
+
+    // safety net: an unimplemented weapon (upstate 0 = S_NULL) would leave the
+    // psprite stuck with no ready state -> no sprite, can't fire, can't switch.
+    // Fall back to the pistol so a pickup can never soft-lock the player.
+    if( weaponinfo[ player->pendingweapon ][WI_UP] == 0 )
+        player->pendingweapon = wp_pistol;
 
     newstate = weaponinfo[ player->pendingweapon ][WI_UP];
 
@@ -358,6 +367,69 @@ void A_FireShotgun( void* pp, void* pspp )
         P_GunShot( player->mo, false );
 }
 
+// chaingun (E1M8): one hitscan per shot, alternating muzzle-flash frame chosen
+// by the ready-frame offset (upstream flashstate + psp->state - S_CHAIN1)
+void A_FireCGun( void* pp, void* pspp )
+{
+    player_t* player = (player_t*)pp;
+    pspdef_t* psp = (pspdef_t*)pspp;
+
+    S_StartSound( player->mo, SFX_PISTOL );
+    if( !player->ammo[ weaponinfo[ player->readyweapon ][WI_AMMO] ] )
+        return;
+
+    P_SetMobjState( player->mo, GEN_S_PLAY_ATK2 );
+    player->ammo[ weaponinfo[ player->readyweapon ][WI_AMMO] ]--;
+
+    P_SetPsprite( player, ps_flash,
+                  weaponinfo[ player->readyweapon ][WI_FLASH]
+                  + psp->state - GEN_S_CHAIN1 );
+
+    P_BulletSlope( player->mo );
+    P_GunShot( player->mo, !player->refire );
+}
+
+// chainsaw (E1M2): melee sweep; pull toward the target and play the right sound
+void A_Saw( void* pp, void* pspp )
+{
+    player_t* player = (player_t*)pp;
+    angle_t angle;
+    int damage;
+    int slope;
+
+    damage = 2 * ( P_Random() % 10 + 1 );
+    angle = player->mo->angle;
+    angle += ( P_Random() - P_Random() ) << 18;
+
+    // MELEERANGE+1 so the puff doesn't skip the flash
+    slope = P_AimLineAttack( player->mo, angle, MELEERANGE + 1 );
+    P_LineAttack( player->mo, angle, MELEERANGE + 1, slope, damage );
+
+    if( !linetarget )
+    {
+        S_StartSound( player->mo, SFX_SAWFUL );
+        return;
+    }
+    S_StartSound( player->mo, SFX_SAWHIT );
+
+    // pull toward the target. Upstream nudges the view by <=ANG90/20 per tic via
+    // unsigned BAM-difference sign tests; those don't port cleanly to signed int
+    // (ANG180 == MININT makes the compares degenerate). Facing the target
+    // directly (like A_FaceTarget) is the gameplay-equivalent "saw grab" and
+    // avoids the wraparound hazard -- a small, deliberate deviation.
+    player->mo->angle = R_PointToAngle2( player->mo->x, player->mo->y,
+                                         linetarget->x, linetarget->y );
+    player->mo->flags |= MF_JUSTATTACKED;
+}
+
+// rocket launcher (E1M9): spawn an autoaimed MT_ROCKET missile
+void A_FireMissile( void* pp, void* pspp )
+{
+    player_t* player = (player_t*)pp;
+    player->ammo[ weaponinfo[ player->readyweapon ][WI_AMMO] ]--;
+    P_SpawnPlayerMissile( player->mo, GEN_MT_ROCKET );
+}
+
 void A_Light0( void* pp, void* pspp )
 {
     ( (player_t*)pp )->extralight = 0;
@@ -438,6 +510,7 @@ void P_InitActions()
     mobj_actions[GEN_ACT_A_Pain] = &A_Pain;
     mobj_actions[GEN_ACT_A_Fall] = &A_Fall;
     mobj_actions[GEN_ACT_A_Explode] = &A_Explode;
+    mobj_actions[GEN_ACT_A_BossDeath] = &A_BossDeath;   // E1M8 boss exit
 
     pspr_actions[GEN_ACT_A_WeaponReady] = &A_WeaponReady;
     pspr_actions[GEN_ACT_A_ReFire] = &A_ReFire;
@@ -447,6 +520,9 @@ void P_InitActions()
     pspr_actions[GEN_ACT_A_Punch] = &A_Punch;
     pspr_actions[GEN_ACT_A_FirePistol] = &A_FirePistol;
     pspr_actions[GEN_ACT_A_FireShotgun] = &A_FireShotgun;
+    pspr_actions[GEN_ACT_A_FireCGun] = &A_FireCGun;       // chaingun
+    pspr_actions[GEN_ACT_A_Saw] = &A_Saw;                 // chainsaw
+    pspr_actions[GEN_ACT_A_FireMissile] = &A_FireMissile; // rocket launcher
     pspr_actions[GEN_ACT_A_Light0] = &A_Light0;
     pspr_actions[GEN_ACT_A_Light1] = &A_Light1;
     pspr_actions[GEN_ACT_A_Light2] = &A_Light2;

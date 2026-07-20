@@ -13,7 +13,8 @@ E1M7: blockmap=4423, linedefs=958, nodes=466, reject=3613, sectors=170, segs=137
 E1M8: blockmap=9700, linedefs=333, nodes=176, reject=685, sectors=74, segs=586, sidedefs=511, ssectors=177, things=126, vertexes=328
 E1M9: blockmap=3390, linedefs=653, nodes=287, reject=2702, sectors=147, segs=978, sidedefs=902, ssectors=288, things=237, vertexes=581
 maps: 9 baked, concatenated (E1M1 at base 0)
-state reachability: 294 states validated against sprites
+state reachability: 334 states validated against sprites
 map integrity: 9 maps, all load-time refs in-slice + player start present
+special coverage: all E1 linedef specials handled by p_spec.h
 sounds: 109 sfx names, 56 WAV assets baked (44100Hz/16-bit mono)
 gen_assets.h + gen_checkvals.h written

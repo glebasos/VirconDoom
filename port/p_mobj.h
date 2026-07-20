@@ -416,6 +416,54 @@ mobj_t* P_SpawnMissile( mobj_t* source, mobj_t* dest, int type )
     return th;
 }
 
+// player-fired missile with autoaim (p_mobj.c P_SpawnPlayerMissile). Used by the
+// rocket launcher (A_FireMissile). Aims at the auto-target, else fires flat.
+mobj_t* P_SpawnPlayerMissile( mobj_t* source, int type )
+{
+    mobj_t* th;
+    angle_t an;
+    fixed_t x;
+    fixed_t y;
+    fixed_t z;
+    fixed_t slope;
+    int speed;
+
+    an = source->angle;
+    slope = P_AimLineAttack( source, an, 16 * 64 * FRACUNIT );
+    if( !linetarget )
+    {
+        an += 1 << 26;
+        slope = P_AimLineAttack( source, an, 16 * 64 * FRACUNIT );
+        if( !linetarget )
+        {
+            an -= 2 << 26;
+            slope = P_AimLineAttack( source, an, 16 * 64 * FRACUNIT );
+        }
+        if( !linetarget )
+        {
+            an = source->angle;
+            slope = 0;
+        }
+    }
+
+    x = source->x;
+    y = source->y;
+    z = source->z + 4 * 8 * FRACUNIT;
+
+    th = P_SpawnMobj( x, y, z, type );
+    if( gen_mobjinfo[type][MI_SEESOUND] )
+        S_StartSound( th, gen_mobjinfo[type][MI_SEESOUND] );
+    th->target = source;
+    th->angle = an;
+    speed = gen_mobjinfo[type][MI_SPEED];
+    an = an >> ANGLETOFINESHIFT;             // logical: fine index
+    th->momx = FixedMul( speed, finecosine[an] );
+    th->momy = FixedMul( speed, finesine[an] );
+    th->momz = FixedMul( speed, slope );
+    P_CheckMissileSpawn( th );
+    return th;
+}
+
 // spawn all map things except player/deathmatch starts (upstream
 // P_SpawnMapThing, skill fixed at 3 = bit 1 of the options word)
 void P_SpawnMapThings()

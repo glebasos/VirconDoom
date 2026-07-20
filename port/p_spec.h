@@ -1,15 +1,22 @@
 // -----------------------------------------------------------------------------
-//  p_spec.h -- p_spec.c + p_floor.c + p_plats.c + p_doors.c subset for E1M1:
-//  sector neighbor queries, the vertical plane mover, manual door thinkers,
-//  moving floors (W1 36 turbo lower), plats (WR 88 down-wait-up), walk-over
-//  triggers, the S1 11 exit switch, and damaging/secret sector specials.
+//  p_spec.h -- p_spec.c + p_floor.c + p_plats.c + p_doors.c + p_switch.c +
+//  p_telept.c + p_lights.c subset covering the FULL episode-1 line-special
+//  roster (M9): sector neighbor queries, the vertical plane mover, manual +
+//  triggered doors (EV_DoDoor: open/normal/close/close30), moving floors
+//  (EV_DoFloor: raise/lower/turbo/toLowest/toNearest + donutRaise), stairs
+//  (EV_BuildStairs build8), plats (EV_DoPlat: downWaitUpStay +
+//  raiseToNearestAndChange), donut (EV_DoDonut), teleport (EV_Teleport),
+//  lights (EV_LightTurnOn), and the walk/switch/gun dispatch
+//  (P_CrossSpecialLine / P_UseSpecialLine / P_ShootSpecialLine). Plus the
+//  exit switches (11/51/52/124), the E1M8 sector-11 ending, and sector
+//  light-effect thinkers (T_LightFlash/StrobeFlash/Glow/FireFlicker).
 //
-//  Also: sector light-effect thinkers (P_SpawnSpecials + T_LightFlash /
-//  T_StrobeFlash / T_Glow / T_FireFlicker) -- E1M1 uses specials 1/8/12.
-//
-//  DEVIATIONS: no crush/P_ChangeSector -- a closing door/plat will not push
-//  things out; no locked doors. E1M1's line special roster is
-//  exactly {1, 11, 36, 48(scroll: cosmetic, skipped), 88} -- others unported.
+//  DEVIATIONS: no crush/ceiling movers (no ceiling specials in E1) -- a closing
+//  door/plat won't push things out; no key checks (locked doors open freely);
+//  switch TEXTURES aren't swapped (BUTTONS unported -- cosmetic; swtchn still
+//  plays); teleport does no telefrag stomp (safe in SP). New monsters
+//  (Baron/Demon/Spectre) chase + are killable but don't attack yet
+//  (A_BruisAttack/A_SargAttack unported). NOT emulator-verified -- test per map.
 // -----------------------------------------------------------------------------
 #ifndef P_SPEC_H
 #define P_SPEC_H
@@ -17,9 +24,11 @@
 #include "p_tick.h"
 #include "z_zone.h"
 
-// implemented in p_inter.h / p_map.h (later in the TU)
+// implemented in p_inter.h / p_map.h / p_mobj.h (later in the TU)
 void P_DamageMobj( mobj_t* target, mobj_t* inflictor, mobj_t* source, int damage );
 void P_SectorHeightClip( sector_t* sector );
+mobj_t* P_SpawnMobj( fixed_t x, fixed_t y, fixed_t z, int type );   // teleport fog
+void P_MobjThinker( void* p );                                      // thinker id
 
 // ---- neighbor queries (p_spec.c)
 
@@ -72,6 +81,31 @@ fixed_t P_FindLowestCeilingSurrounding( sector_t* sec )
             height = other->ceilingheight;
     }
     return height;
+}
+
+// next floor height strictly above currentheight among neighbours, else
+// currentheight itself (p_spec.c P_FindNextHighestFloor)
+fixed_t P_FindNextHighestFloor( sector_t* sec, fixed_t currentheight )
+{
+    int i;
+    fixed_t min;
+    boolean found = false;
+    line_t** secLines = (line_t**)sec->lines;
+    for( i = 0; i < sec->linecount; i++ )
+    {
+        sector_t* other = getNextSector( secLines[i], sec );
+        if( !other )
+            continue;
+        if( other->floorheight > currentheight )
+        {
+            if( !found || other->floorheight < min )
+                min = other->floorheight;
+            found = true;
+        }
+    }
+    if( !found )
+        return currentheight;
+    return min;
 }
 
 int P_FindSectorFromLineTag( line_t* line, int start )
@@ -170,8 +204,11 @@ int T_MovePlane( sector_t* sector, fixed_t speed, fixed_t dest,
 #define VDOORSPEED ( FRACUNIT * 2 )
 #define VDOORWAIT  150
 
-#define DOOR_NORMAL 0            // open, wait, close (DR)
-#define DOOR_OPEN   1            // open and stay (D1)
+// upstream vldoor_e (E1 subset: no blaze / raiseIn5Mins)
+#define VD_NORMAL   0            // open, wait, close (DR / W1 raise)
+#define VD_CLOSE30  1            // close, wait 30s, reopen
+#define VD_CLOSE    2            // close and stay
+#define VD_OPEN     3            // open and stay (D1 / W1 open)
 
 struct vldoor_t
 {
@@ -192,12 +229,20 @@ void T_VerticalDoor( void* p )
 
     if( door->direction == 0 )
     {
-        // waiting at top
+        // waiting at top (normal) or at bottom (close30)
         door->topcountdown--;
         if( door->topcountdown == 0 )
         {
-            door->direction = -1;                // time to go back down
-            S_StartSoundSector( door->sector, SFX_DORCLS );
+            if( door->type == VD_NORMAL )
+            {
+                door->direction = -1;            // time to go back down
+                S_StartSoundSector( door->sector, SFX_DORCLS );
+            }
+            else if( door->type == VD_CLOSE30 )
+            {
+                door->direction = 1;             // reopen
+                S_StartSoundSector( door->sector, SFX_DOROPN );
+            }
         }
     }
     else if( door->direction == -1 )
@@ -207,8 +252,16 @@ void T_VerticalDoor( void* p )
                            door->sector->floorheight, false, 1, -1 );
         if( res == RES_PASTDEST )
         {
-            door->sector->specialdata = NULL;
-            P_RemoveThinker( &door->thinker );
+            if( door->type == VD_CLOSE30 )
+            {
+                door->direction = 0;             // wait, then reopen
+                door->topcountdown = 35 * 30;
+            }
+            else                                 // NORMAL / CLOSE: done
+            {
+                door->sector->specialdata = NULL;
+                P_RemoveThinker( &door->thinker );
+            }
         }
     }
     else if( door->direction == 1 )
@@ -218,12 +271,12 @@ void T_VerticalDoor( void* p )
                            door->topheight, false, 1, 1 );
         if( res == RES_PASTDEST )
         {
-            if( door->type == DOOR_NORMAL )
+            if( door->type == VD_NORMAL )
             {
                 door->direction = 0;             // wait at top
                 door->topcountdown = door->topwait;
             }
-            else
+            else                                 // OPEN / CLOSE30: done
             {
                 door->sector->specialdata = NULL;
                 P_RemoveThinker( &door->thinker );
@@ -277,17 +330,77 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
     if( line->special == 31 || line->special == 32
      || line->special == 33 || line->special == 34 )
     {
-        door->type = DOOR_OPEN;                  // open and stay
+        door->type = VD_OPEN;                    // open and stay
         line->special = 0;                       // one-shot
     }
     else
-        door->type = DOOR_NORMAL;
+        door->type = VD_NORMAL;
 }
 
-// ---- moving floors (p_floor.c subset: E1M1 needs turboLower via W1 36)
+// triggered doors (p_doors.c EV_DoDoor: walk/switch/gun). Tag-matched sectors,
+// not the back sector -- distinct from the manual EV_VerticalDoor above.
+boolean EV_DoDoor( line_t* line, int type )
+{
+    int secnum;
+    boolean rtn;
+    sector_t* sec;
+    vldoor_t* door;
+
+    secnum = -1;
+    rtn = false;
+    while( true )
+    {
+        secnum = P_FindSectorFromLineTag( line, secnum );
+        if( secnum < 0 )
+            break;
+        sec = &sectors[secnum];
+        if( sec->specialdata )
+            continue;
+
+        rtn = true;
+        door = Z_CallocLevel( sizeof( vldoor_t ) );
+        P_AddThinker( &door->thinker );
+        sec->specialdata = (void*)door;
+        door->thinker.function = &T_VerticalDoor;
+        door->sector = sec;
+        door->type = type;
+        door->topwait = VDOORWAIT;
+        door->speed = VDOORSPEED;
+
+        if( type == VD_CLOSE )
+        {
+            door->topheight = P_FindLowestCeilingSurrounding( sec ) - 4 * FRACUNIT;
+            door->direction = -1;
+            S_StartSoundSector( sec, SFX_DORCLS );
+        }
+        else if( type == VD_CLOSE30 )
+        {
+            door->topheight = sec->ceilingheight;
+            door->direction = -1;
+            S_StartSoundSector( sec, SFX_DORCLS );
+        }
+        else                                     // NORMAL / OPEN: go up
+        {
+            door->direction = 1;
+            door->topheight = P_FindLowestCeilingSurrounding( sec ) - 4 * FRACUNIT;
+            if( door->topheight != sec->ceilingheight )
+                S_StartSoundSector( sec, SFX_DOROPN );
+        }
+    }
+    return rtn;
+}
+
+// ---- moving floors (p_floor.c subset; E1 floor_e types). No crush type in E1.
 
 #define FLOORSPEED FRACUNIT
-#define FLOOR_TURBOLOWER 0
+
+// floor_e (E1 subset)
+#define FLOOR_LOWER          0   // lowerFloor: down to highest surrounding
+#define FLOOR_LOWERTOLOWEST  1   // lowerFloorToLowest
+#define FLOOR_TURBOLOWER     2   // turboLower: 8 above highest surr., 4x speed
+#define FLOOR_RAISE          3   // raiseFloor: up to lowest surrounding ceiling
+#define FLOOR_RAISETONEAREST 4   // raiseFloorToNearest
+#define FLOOR_DONUTRAISE     5   // donut outer ring: raise + change pic/special
 
 struct floormove_t
 {
@@ -298,6 +411,8 @@ struct floormove_t
     int direction;
     fixed_t floordestheight;
     fixed_t speed;
+    int texture;                 // donutRaise: new floorpic
+    int newspecial;              // donutRaise: new sector special
 };
 
 void T_MoveFloor( void* p )
@@ -314,6 +429,11 @@ void T_MoveFloor( void* p )
     if( res == RES_PASTDEST )
     {
         floor->sector->specialdata = NULL;
+        if( floor->direction == 1 && floor->type == FLOOR_DONUTRAISE )
+        {
+            floor->sector->special = floor->newspecial;
+            floor->sector->floorpic = floor->texture;
+        }
         P_RemoveThinker( &floor->thinker );
         S_StartSoundSector( floor->sector, SFX_PSTOP );
     }
@@ -345,26 +465,209 @@ boolean EV_DoFloor( line_t* line, int floortype )
         floor->thinker.function = &T_MoveFloor;
         floor->type = floortype;
         floor->crush = false;
-
-        // turboLower: to 8 above highest surrounding floor, 4x speed
-        floor->direction = -1;
         floor->sector = sec;
-        floor->speed = FLOORSPEED * 4;
-        floor->floordestheight = P_FindHighestFloorSurrounding( sec );
-        if( floor->floordestheight != sec->floorheight )
-            floor->floordestheight += 8 * FRACUNIT;
+
+        if( floortype == FLOOR_LOWER )
+        {
+            floor->direction = -1;
+            floor->speed = FLOORSPEED;
+            floor->floordestheight = P_FindHighestFloorSurrounding( sec );
+        }
+        else if( floortype == FLOOR_LOWERTOLOWEST )
+        {
+            floor->direction = -1;
+            floor->speed = FLOORSPEED;
+            floor->floordestheight = P_FindLowestFloorSurrounding( sec );
+        }
+        else if( floortype == FLOOR_TURBOLOWER )
+        {
+            floor->direction = -1;
+            floor->speed = FLOORSPEED * 4;
+            floor->floordestheight = P_FindHighestFloorSurrounding( sec );
+            if( floor->floordestheight != sec->floorheight )
+                floor->floordestheight += 8 * FRACUNIT;
+        }
+        else if( floortype == FLOOR_RAISE )
+        {
+            floor->direction = 1;
+            floor->speed = FLOORSPEED;
+            floor->floordestheight = P_FindLowestCeilingSurrounding( sec );
+            if( floor->floordestheight > sec->ceilingheight )
+                floor->floordestheight = sec->ceilingheight;
+        }
+        else if( floortype == FLOOR_RAISETONEAREST )
+        {
+            floor->direction = 1;
+            floor->speed = FLOORSPEED;
+            floor->floordestheight =
+                P_FindNextHighestFloor( sec, sec->floorheight );
+        }
     }
     return rtn;
 }
 
-// ---- plats (p_plats.c subset: E1M1 needs downWaitUpStay via WR 88)
+// build8 stairs (p_floor.c EV_BuildStairs; E1 uses S1 7 + W1 8, no turbo16).
+// Each step is another floormove thinker; walk the 2-sided chain sharing
+// floorpic, raising 8 more each hop.
+boolean EV_BuildStairs( line_t* line )
+{
+    int secnum;
+    int newsecnum;
+    int texture;
+    int i;
+    boolean rtn;
+    boolean ok;
+    fixed_t height;
+    fixed_t speed = FLOORSPEED / 4;
+    fixed_t stairsize = 8 * FRACUNIT;
+    sector_t* sec;
+    sector_t* tsec;
+    floormove_t* floor;
+
+    secnum = -1;
+    rtn = false;
+    while( true )
+    {
+        secnum = P_FindSectorFromLineTag( line, secnum );
+        if( secnum < 0 )
+            break;
+        sec = &sectors[secnum];
+        if( sec->specialdata )
+            continue;
+
+        rtn = true;
+        floor = Z_CallocLevel( sizeof( floormove_t ) );
+        P_AddThinker( &floor->thinker );
+        sec->specialdata = (void*)floor;
+        floor->thinker.function = &T_MoveFloor;
+        floor->direction = 1;
+        floor->sector = sec;
+        floor->speed = speed;
+        height = sec->floorheight + stairsize;
+        floor->floordestheight = height;
+        texture = sec->floorpic;
+
+        ok = true;
+        while( ok )
+        {
+            ok = false;
+            line_t** secLines = (line_t**)sec->lines;
+            for( i = 0; i < sec->linecount; i++ )
+            {
+                if( !( secLines[i]->flags & ML_TWOSIDED ) )
+                    continue;
+                // front side must be THIS sector; back side is the next step
+                if( secLines[i]->frontsector != sec )
+                    continue;
+                tsec = secLines[i]->backsector;
+                if( !tsec )
+                    continue;
+                newsecnum = tsec - sectors;
+                if( tsec->floorpic != texture )
+                    continue;
+                height += stairsize;
+                if( tsec->specialdata )
+                    continue;
+
+                sec = tsec;
+                secnum = newsecnum;
+                floor = Z_CallocLevel( sizeof( floormove_t ) );
+                P_AddThinker( &floor->thinker );
+                sec->specialdata = (void*)floor;
+                floor->thinker.function = &T_MoveFloor;
+                floor->direction = 1;
+                floor->sector = sec;
+                floor->speed = speed;
+                floor->floordestheight = height;
+                ok = true;
+                break;
+            }
+        }
+    }
+    return rtn;
+}
+
+// donut (p_spec.c EV_DoDonut): outer ring rises + adopts pool floor; hole sinks
+boolean EV_DoDonut( line_t* line )
+{
+    int secnum;
+    int i;
+    boolean rtn;
+    sector_t* s1;
+    sector_t* s2;
+    sector_t* s3;
+    floormove_t* floor;
+
+    secnum = -1;
+    rtn = false;
+    while( true )
+    {
+        secnum = P_FindSectorFromLineTag( line, secnum );
+        if( secnum < 0 )
+            break;
+        s1 = &sectors[secnum];
+        if( s1->specialdata )
+            continue;
+
+        line_t** s1Lines = (line_t**)s1->lines;
+        s2 = getNextSector( s1Lines[0], s1 );
+        if( !s2 )
+            continue;
+
+        line_t** s2Lines = (line_t**)s2->lines;
+        for( i = 0; i < s2->linecount; i++ )
+        {
+            if( !( s2Lines[i]->flags & ML_TWOSIDED ) )
+                continue;
+            if( s2Lines[i]->backsector == s1 )
+                continue;
+            s3 = s2Lines[i]->backsector;
+            if( !s3 )
+                continue;
+            rtn = true;
+
+            // rising outer ring
+            floor = Z_CallocLevel( sizeof( floormove_t ) );
+            P_AddThinker( &floor->thinker );
+            s2->specialdata = (void*)floor;
+            floor->thinker.function = &T_MoveFloor;
+            floor->type = FLOOR_DONUTRAISE;
+            floor->crush = false;
+            floor->direction = 1;
+            floor->sector = s2;
+            floor->speed = FLOORSPEED / 2;
+            floor->texture = s3->floorpic;
+            floor->newspecial = 0;
+            floor->floordestheight = s3->floorheight;
+
+            // lowering hole
+            floor = Z_CallocLevel( sizeof( floormove_t ) );
+            P_AddThinker( &floor->thinker );
+            s1->specialdata = (void*)floor;
+            floor->thinker.function = &T_MoveFloor;
+            floor->type = FLOOR_LOWER;
+            floor->crush = false;
+            floor->direction = -1;
+            floor->sector = s1;
+            floor->speed = FLOORSPEED / 2;
+            floor->floordestheight = s3->floorheight;
+            break;
+        }
+    }
+    return rtn;
+}
+
+// ---- plats (p_plats.c subset: downWaitUpStay + raiseToNearestAndChange)
 
 #define PLATSPEED FRACUNIT
 #define PLATWAIT  3
 
-#define PLAT_UP      0
+#define PLAT_UP      0           // status
 #define PLAT_DOWN    1
 #define PLAT_WAITING 2
+
+#define PLATT_DOWNWAITUPSTAY 0   // type
+#define PLATT_RAISETONEAREST 1   // raiseToNearestAndChange
 
 struct plat_t
 {
@@ -428,7 +731,7 @@ void T_PlatRaise( void* p )
     }
 }
 
-boolean EV_DoPlat( line_t* line, int amount )
+boolean EV_DoPlat( line_t* line, int type, int amount )
 {
     plat_t* plat;
     int secnum;
@@ -458,17 +761,137 @@ boolean EV_DoPlat( line_t* line, int amount )
         plat->crush = false;
         plat->tag = line->tag;
 
-        // downWaitUpStay
-        plat->speed = PLATSPEED * 4;
-        plat->low = P_FindLowestFloorSurrounding( sec );
-        if( plat->low > sec->floorheight )
-            plat->low = sec->floorheight;
-        plat->high = sec->floorheight;
-        plat->wait = 35 * PLATWAIT;
-        plat->status = PLAT_DOWN;
-        S_StartSoundSector( sec, SFX_PSTART );
+        if( type == PLATT_RAISETONEAREST )
+        {
+            // raise to next-higher floor, adopt front sector's floor texture,
+            // clear the sector special; up-pastdest removes the thinker
+            plat->speed = PLATSPEED / 2;
+            sec->floorpic = line->frontsector->floorpic;
+            plat->high = P_FindNextHighestFloor( sec, sec->floorheight );
+            plat->wait = 0;
+            plat->status = PLAT_UP;
+            sec->special = 0;
+            S_StartSoundSector( sec, SFX_STNMOV );
+        }
+        else
+        {
+            // downWaitUpStay: sink, wait, rise back and stay
+            plat->speed = PLATSPEED * 4;
+            plat->low = P_FindLowestFloorSurrounding( sec );
+            if( plat->low > sec->floorheight )
+                plat->low = sec->floorheight;
+            plat->high = sec->floorheight;
+            plat->wait = 35 * PLATWAIT;
+            plat->status = PLAT_DOWN;
+            S_StartSoundSector( sec, SFX_PSTART );
+        }
     }
     return rtn;
+}
+
+// ---- lights (p_lights.c EV_LightTurnOn): set tagged sectors to `bright`,
+// or to the brightest neighbour when bright==0
+void EV_LightTurnOn( line_t* line, int bright )
+{
+    int i;
+    int j;
+    for( i = 0; i < numsectors; i++ )
+    {
+        if( sectors[i].tag != line->tag )
+            continue;
+        int b = bright;
+        if( bright == 0 )
+        {
+            line_t** secLines = (line_t**)sectors[i].lines;
+            for( j = 0; j < sectors[i].linecount; j++ )
+            {
+                sector_t* t = getNextSector( secLines[j], &sectors[i] );
+                if( t && t->lightlevel > b )
+                    b = t->lightlevel;
+            }
+        }
+        sectors[i].lightlevel = b;
+    }
+}
+
+// ---- teleport (p_telept.c EV_Teleport + p_map.c P_TeleportMove). The
+// destination is an MT_TELEPORTMAN mobj (map thing type 14, MF_NOSECTOR so it
+// never renders and isn't in a thinglist) sitting in the tagged sector; we scan
+// the thinker list for it. DEVIATION: no telefrag stomp (PIT_StompThing) --
+// safe in single-player E1 where teleport pads are clear; just relink + fog.
+
+boolean P_TeleportMove( mobj_t* thing, fixed_t x, fixed_t y )
+{
+    subsector_t* newsubsec = R_PointInSubsector( x, y );
+    P_UnsetThingPosition( thing );
+    thing->floorz = newsubsec->sector->floorheight;
+    thing->ceilingz = newsubsec->sector->ceilingheight;
+    thing->x = x;
+    thing->y = y;
+    P_SetThingPosition( thing );
+    return true;
+}
+
+boolean EV_Teleport( line_t* line, int side, mobj_t* thing )
+{
+    int i;
+    int an;
+    mobj_t* m;
+    mobj_t* fog;
+    thinker_t* th;
+    fixed_t oldx;
+    fixed_t oldy;
+    fixed_t oldz;
+
+    if( thing->flags & MF_MISSILE )
+        return false;                // don't teleport missiles
+    if( side == 1 )
+        return false;                // back side: lets you walk out of the pad
+
+    for( i = 0; i < numsectors; i++ )
+    {
+        if( sectors[i].tag != line->tag )
+            continue;
+        for( th = thinkercap.next; th != &thinkercap; th = th->next )
+        {
+            if( th->function != &P_MobjThinker )
+                continue;
+            m = (mobj_t*)th;
+            if( m->type != GEN_MT_TELEPORTMAN )
+                continue;
+            if( m->subsector->sector - sectors != i )
+                continue;
+
+            oldx = thing->x;
+            oldy = thing->y;
+            oldz = thing->z;
+            if( !P_TeleportMove( thing, m->x, m->y ) )
+                return false;
+            thing->z = thing->floorz;
+            if( thing->player )
+            {
+                player_t* pl = (player_t*)thing->player;
+                pl->viewz = thing->z + pl->viewh;
+            }
+
+            // fog + sound at source and destination
+            fog = P_SpawnMobj( oldx, oldy, oldz, GEN_MT_TFOG );
+            S_StartSound( fog, SFX_TELEPT );
+            an = m->angle >> ANGLETOFINESHIFT;      // angle: logical shift
+            fog = P_SpawnMobj( m->x + 20 * finecosine[an],
+                               m->y + 20 * finesine[an], thing->z, GEN_MT_TFOG );
+            S_StartSound( fog, SFX_TELEPT );
+
+            if( thing->player )
+                thing->reactiontime = 18;           // freeze the player briefly
+            thing->angle = m->angle;
+            thing->momx = 0;
+            thing->momy = 0;
+            thing->momz = 0;
+            return true;
+        }
+    }
+    return false;
 }
 
 // ---- level exit (flags consumed by game.c, which runs the intermission and
@@ -487,82 +910,135 @@ void G_SecretExitLevel()
     gameexit = true;
 }
 
-// ---- walk-over triggers (P_CrossSpecialLine, E1M1 roster)
-
+// ---- walk-over triggers (p_spec.c P_CrossSpecialLine). E1 roster + the
+// trigger/retrigger twins that share the same EV_ call. W1/S1 clear the special
+// (one-shot); WR/W-retrigger keep it. No ceiling/blaze specials appear in E1.
+// A special is dispatched only when it matches; the switch prefix (line->special
+// == N) covers both trigger and retrigger cases in one arm, clearing only the
+// one-shot ones.
 void P_CrossSpecialLine( int linenum, int side, mobj_t* thing )
 {
     line_t* line = &lines[linenum];
+    int s = line->special;
 
     if( !thing->player )
     {
-        // monsters may only activate the WR plat (88) from this roster
-        if( line->special != 88 )
+        // projectiles never trigger; monsters only a small set (upstream:
+        // teleports + a couple of plats/doors -- E1 monsters use 97 teleport)
+        if( thing->flags & MF_MISSILE )
+            return;
+        if( !( s == 39 || s == 97 || s == 125 || s == 126
+            || s == 4 || s == 10 || s == 88 ) )
             return;
     }
 
-    if( line->special == 36 )
+    // ---- one-shot triggers (W1 / monster-trigger): clear after firing
+    if( s == 2 )       { EV_DoDoor( line, VD_OPEN );        line->special = 0; }
+    else if( s == 3 )  { EV_DoDoor( line, VD_CLOSE );       line->special = 0; }
+    else if( s == 4 )  { EV_DoDoor( line, VD_NORMAL );      line->special = 0; }
+    else if( s == 16 ) { EV_DoDoor( line, VD_CLOSE30 );     line->special = 0; }
+    else if( s == 5 )  { EV_DoFloor( line, FLOOR_RAISE );          line->special = 0; }
+    else if( s == 19 ) { EV_DoFloor( line, FLOOR_LOWER );          line->special = 0; }
+    else if( s == 36 ) { EV_DoFloor( line, FLOOR_TURBOLOWER );     line->special = 0; }
+    else if( s == 38 ) { EV_DoFloor( line, FLOOR_LOWERTOLOWEST );  line->special = 0; }
+    else if( s == 119 ){ EV_DoFloor( line, FLOOR_RAISETONEAREST ); line->special = 0; }
+    else if( s == 8 )  { EV_BuildStairs( line );            line->special = 0; }
+    else if( s == 10 ) { EV_DoPlat( line, PLATT_DOWNWAITUPSTAY, 0 ); line->special = 0; }
+    else if( s == 22 ) { EV_DoPlat( line, PLATT_RAISETONEAREST, 0 ); line->special = 0; }
+    else if( s == 35 ) { EV_LightTurnOn( line, 35 );        line->special = 0; }
+    else if( s == 12 ) { EV_LightTurnOn( line, 0 );         line->special = 0; }
+    else if( s == 13 ) { EV_LightTurnOn( line, 255 );       line->special = 0; }
+    else if( s == 39 ) { EV_Teleport( line, side, thing );  line->special = 0; }
+    else if( s == 52 ) { G_ExitLevel(); }
+    else if( s == 124 ){ G_SecretExitLevel(); }
+    // ---- retriggers (WR): keep the special
+    else if( s == 75 ) EV_DoDoor( line, VD_CLOSE );
+    else if( s == 76 ) EV_DoDoor( line, VD_CLOSE30 );
+    else if( s == 86 ) EV_DoDoor( line, VD_OPEN );
+    else if( s == 90 ) EV_DoDoor( line, VD_NORMAL );
+    else if( s == 82 ) EV_DoFloor( line, FLOOR_LOWERTOLOWEST );
+    else if( s == 83 ) EV_DoFloor( line, FLOOR_LOWER );
+    else if( s == 91 ) EV_DoFloor( line, FLOOR_RAISE );
+    else if( s == 98 ) EV_DoFloor( line, FLOOR_TURBOLOWER );
+    else if( s == 128 )EV_DoFloor( line, FLOOR_RAISETONEAREST );
+    else if( s == 88 ) EV_DoPlat( line, PLATT_DOWNWAITUPSTAY, 0 );
+    else if( s == 95 ) EV_DoPlat( line, PLATT_RAISETONEAREST, 0 );
+    else if( s == 97 ) EV_Teleport( line, side, thing );
+    else if( s == 125 || s == 126 )
     {
-        // W1: lower floor (turbo)
-        EV_DoFloor( line, FLOOR_TURBOLOWER );
-        line->special = 0;
-    }
-    else if( line->special == 88 )
-    {
-        // WR: plat down-wait-up-stay (retriggerable)
-        EV_DoPlat( line, 0 );
-    }
-    else if( line->special == 52 )
-    {
-        // W1: normal exit (walk-over)
-        G_ExitLevel();
-        line->special = 0;
-    }
-    else if( line->special == 124 )
-    {
-        // W1: secret exit (walk-over) -> E1M9
-        G_SecretExitLevel();
-        line->special = 0;
+        if( !thing->player ) EV_Teleport( line, side, thing );
     }
 }
 
-// use-line dispatch (P_UseSpecialLine subset: manual doors incl. the locked
-// variants treated as unlocked -- no key system yet -- and the exit switch)
+// use-line dispatch (p_switch.c P_UseSpecialLine). Manual doors (incl. locked
+// variants treated as unlocked -- no key system), switch-triggered specials, and
+// the exit switches. S1 clears the special (one-shot); SR keeps it. Switch
+// textures are not swapped (BUTTONS unported -- cosmetic), but swtchn plays.
 boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
 {
     int s = line->special;
 
     if( !thing->player )
     {
-        // monsters can only open ordinary repeatable doors
+        // monsters: never secret doors; only the manual raise/locked-open set
         if( line->flags & ML_SECRET )
             return false;
-        if( s != 1 )
+        if( !( s == 1 || s == 32 || s == 33 || s == 34 ) )
             return false;
     }
 
+    // MANUAL doors (open the back sector; handle their own one-shot clearing)
     if( s == 1 || s == 26 || s == 27 || s == 28
      || s == 31 || s == 32 || s == 33 || s == 34 )
     {
         EV_VerticalDoor( line, thing );
         return true;
     }
-    if( s == 11 )
+
+    // SWITCHES (S1 one-shot / SR retrigger). Exits handled explicitly.
+    if( s == 11 || s == 51 )
     {
-        // S1: exit switch, normal (P_ChangeSwitchTexture plays swtchn upstream)
         S_StartSound( thing, SFX_SWTCHN );
-        G_ExitLevel();
+        if( s == 11 ) G_ExitLevel();
+        else          G_SecretExitLevel();
         line->special = 0;
         return true;
     }
-    if( s == 51 )
-    {
-        // S1: exit switch, secret -> E1M9
-        S_StartSound( thing, SFX_SWTCHN );
-        G_SecretExitLevel();
+
+    boolean acted = false;
+    boolean oneshot = true;              // S1 by default; SR set below
+    if( s == 7 )       acted = EV_BuildStairs( line );
+    else if( s == 9 )  acted = EV_DoDonut( line );
+    else if( s == 18 ) acted = EV_DoFloor( line, FLOOR_RAISETONEAREST );
+    else if( s == 20 ) acted = EV_DoPlat( line, PLATT_RAISETONEAREST, 0 );
+    else if( s == 23 ) acted = EV_DoFloor( line, FLOOR_LOWERTOLOWEST );
+    else if( s == 29 ) acted = EV_DoDoor( line, VD_NORMAL );
+    else if( s == 50 ) acted = EV_DoDoor( line, VD_CLOSE );
+    else if( s == 103 )acted = EV_DoDoor( line, VD_OPEN );
+    else if( s == 62 ) { acted = EV_DoPlat( line, PLATT_DOWNWAITUPSTAY, 0 ); oneshot = false; }
+    else if( s == 63 ) { acted = EV_DoDoor( line, VD_NORMAL );  oneshot = false; }
+    else if( s == 70 ) { acted = EV_DoFloor( line, FLOOR_TURBOLOWER ); oneshot = false; }
+    else
+        return false;                    // not a use-line we handle
+
+    S_StartSound( thing, SFX_SWTCHN );
+    if( oneshot )
         line->special = 0;
-        return true;
+    return true;
+}
+
+// ---- shoot triggers (p_spec.c P_ShootSpecialLine). E1: only 46 (GR door open,
+// gun, repeatable). Called from the hitscan traverse when a shot strikes a line.
+void P_ShootSpecialLine( mobj_t* thing, line_t* line )
+{
+    int s = line->special;
+    if( !thing->player )
+    {
+        if( s != 46 )
+            return;
     }
-    return false;
+    if( s == 46 )                        // GR: open door (retriggerable)
+        EV_DoDoor( line, VD_OPEN );
 }
 
 // ---- light-effect thinkers (p_lights.c). Each mutates sector->lightlevel every
@@ -834,6 +1310,14 @@ void P_PlayerInSpecialSector( player_t* player )
         // secret sector
         player->secretcount++;
         sector->special = 0;
+    }
+    else if( sp == 11 )
+    {
+        // E1M8 ending: 20% damage, and exit once nearly dead (upstream case 11)
+        if( !( leveltime & 0x1F ) )
+            P_DamageMobj( player->mo, NULL, NULL, 20 );
+        if( player->health <= 10 )
+            G_ExitLevel();
     }
     // other specials: light effects, static in this port (M7)
 }

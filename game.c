@@ -330,7 +330,8 @@ void main()
         }
         else if( xEdge )
         {
-            // cycle owned weapons: fist -> pistol -> shotgun -> fist
+            // cycle owned weapons through all slots (fist..chainsaw), wrapping;
+            // unowned slots (e.g. plasma/bfg, never in E1) are skipped
             int cur = player1.readyweapon;
             if( player1.pendingweapon != wp_nochange )
                 cur = player1.pendingweapon;
@@ -339,7 +340,7 @@ void main()
             while( tries < NUMWEAPONS )
             {
                 next = next + 1;
-                if( next > wp_shotgun )
+                if( next >= NUMWEAPONS )
                     next = wp_fist;
                 if( player1.weaponowned[next] )
                     break;

@@ -624,7 +624,11 @@ boolean PTR_ShootTraverse( intercept_t* in )
     {
         li = in->line;
 
-        // (P_ShootSpecialLine: no gun-activated specials in E1M1 -- skipped)
+        // gun-activated line specials (E1: 46 GR door open). Upstream fires this
+        // as the shot's traverse reaches the special line, before the twosided
+        // pass-through test.
+        if( li->special )
+            P_ShootSpecialLine( shootthing, li );
 
         if( !( li->flags & ML_TWOSIDED ) )
             goto hitline;

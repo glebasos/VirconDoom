@@ -133,6 +133,20 @@
 #define GEN_S_SGUNUP 20
 #define GEN_S_SGUN1 21
 #define GEN_S_SGUNFLASH1 30
+#define GEN_S_CHAIN 49
+#define GEN_S_CHAINDOWN 50
+#define GEN_S_CHAINUP 51
+#define GEN_S_CHAIN1 52
+#define GEN_S_CHAINFLASH1 55
+#define GEN_S_SAW 67
+#define GEN_S_SAWDOWN 69
+#define GEN_S_SAWUP 70
+#define GEN_S_SAW1 71
+#define GEN_S_MISSILE 57
+#define GEN_S_MISSILEDOWN 58
+#define GEN_S_MISSILEUP 59
+#define GEN_S_MISSILE1 60
+#define GEN_S_MISSILEFLASH1 63
 
 // mobjtype constants used by ported code
 #define GEN_MT_PLAYER 0
@@ -145,6 +159,10 @@
 #define GEN_MT_CLIP 63
 #define GEN_MT_SHOTGUN 77
 #define GEN_MT_BARREL 30
+#define GEN_MT_TFOG 39
+#define GEN_MT_TELEPORTMAN 41
+#define GEN_MT_BRUISER 15
+#define GEN_MT_ROCKET 33
 
 // sprite number constants used by P_TouchSpecialThing
 #define GEN_SPR_ARM1 55

@@ -5,17 +5,19 @@ Porting id's DOOM to the Vircon32 fantasy console. **Read `PLAN.md` for the road
 is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\VirconBox2D`).
 
 **CURRENT STATE (session 9, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
-(harness GREEN 231). M8 SOUND + MUSIC user-confirmed. M7 UI: status bar +
-variable view size + screen flashes BUILT; AUTOMAP DONE + user-confirmed
-(session 8). Input responsiveness fixed (session 7). LIGHT-EFFECT THINKERS DONE
-(session 8). M9 LEVEL-PROGRESSION BACKBONE BUILT (session 9 — all 9 E1 maps
-baked + concatenated, gamemap slicing, intermission tally, exit→next-map incl.
-secret exit; builds clean, offline gates green, NOT yet emulator-run).** E1M1 is
-a fully playable game. **NEXT (the remaining road to M9 ship): the line-special
-roster for E1M2–E1M9 traversal (lifts 62, walk-doors 2/90/103/63, floor movers
-5/18/22/23/70/82/91/98, stairs 7/8, teleporters 97, donut 9) — see "M9 backbone"
-below. Without it, later maps render/spawn correctly but may not be beatable.
-E1M8's boss-gated exit (A_BossDeath + tag-666 floor) is deferred with it.**
+(harness GREEN 231). M8 SOUND + MUSIC user-confirmed. M7 UI + automap + light
+thinkers done. Input responsiveness fixed (session 7). M9 LEVEL PROGRESSION
+BUILT (session 9): (a) all 9 E1 maps baked + concatenated with gamemap slicing;
+(b) intermission tally + exit→next-map incl. secret exit; (c) START+L/R dev
+map-warp — USER-CONFIRMED all 9 maps load/render/play; (d) the FULL episode-1
+line-special roster ported (doors/floors/plats/stairs/donut/teleport/lights +
+walk/switch/gun dispatch) + E1M8 boss exit (A_BossDeath + sector-11 ending).
+Builds clean; offline gates green (integrity + special-coverage); the specials
+are NOT yet emulator-verified per map.** E1M1 is a fully playable game and the
+whole episode is now wired end-to-end. **NEXT: per-map emulator verification of
+the specials (test order in the M9 section), then optional polish — new-monster
+attack AI (Baron/Demon/Spectre are passive), switch-texture swap (BUTTONS),
+per-map music. That's the M9-ship close-out.**
 
 Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
 region blitter, no per-scanline scissor) cannot do perspective flat spans; PLAN §3
@@ -392,18 +394,50 @@ COMPLETE, KILLS/ITEMS/SECRET %, TIME vs PAR, ENTERING E1M<next>); A advances via
 `G_NextMap()` — upstream G_DoCompleted E1 logic: secret→E1M9, E1M9→E1M4, else
 linear, wrap→E1M1.
 
-**DEFERRED (the real remaining M9 work — needs emulator, map-by-map): the
-line-special roster for traversal.** M6 only ported E1M1's specials
-{1,11,26–28,31–34,36,88}. E1M2–E1M9 use ~30 types; unported ones are silent
-no-ops, so a map whose critical path needs one is a DEAD END. There is NO offline
-gate for beatability (it needs gameplay sim), and this project ships nothing
-unverified — so port the families (doors → lifts 62 → floors → stairs 7/8 →
-teleport 97 → donut 9) each flagged unverified-pending-emulator, verifying map by
-map. **E1M8's exit is boss-death-gated (A_BossDeath lowering tag-666 floor when
-both Barons die) AND its layout uses 8× teleporter — so it needs teleport + boss
-work together; deferred as one unit. Barons/Demons/Spectres already spawn + render
-+ chase + are killable (sprites present, A_Chase/A_Scream/A_Fall ported) but do
-NOT attack (A_BruisAttack/A_SargAttack unported no-ops) — a carried-over M6 roster
-gap, not introduced by M9.** Per-map linedef-special histogram is in the session-9
-report / memory. Music stays the single E1M1 chiptune on every level (per-map MUS
-render is optional polish).
+**4. Full E1 line-special roster (session 9 — builds clean, offline-gated, NOT
+yet emulator-verified per map).** M6 shipped only E1M1's {1,11,26–28,31–34,36,88}.
+The rest of episode 1 is now ported into `port/p_spec.h` (read straight from
+upstream p_spec.c/p_floor.c/p_plats.c/p_doors.c/p_switch.c/p_telept.c/p_lights.c):
+- **Doors** `EV_DoDoor` (open/normal/close/close30ThenOpen) + generalized
+  `T_VerticalDoor`; **floors** `EV_DoFloor` (raise / lower / turboLower /
+  lowerToLowest / raiseToNearest / donutRaise) via the now type-driven switch;
+  **stairs** `EV_BuildStairs` (build8); **plats** `EV_DoPlat`
+  (downWaitUpStay + raiseToNearestAndChange); **donut** `EV_DoDonut`;
+  **teleport** `EV_Teleport` + `P_TeleportMove` (destination = MF_NOSECTOR
+  MT_TELEPORTMAN found by scanning thinkers; MT_TFOG + telept sound; **no
+  telefrag stomp** — safe in SP); **lights** `EV_LightTurnOn`.
+- Dispatch rewritten as if/else chains (no `switch` in dialect):
+  `P_CrossSpecialLine` (walk, W1 clears/ WR keeps), `P_UseSpecialLine` (switch,
+  S1 clears / SR keeps; manual doors unchanged), `P_ShootSpecialLine` (gun 46,
+  wired into `PTR_ShootTraverse`). Exit switches 11/51 + walk exits 52/124.
+- **E1M8 boss exit:** `A_BossDeath` (p_enemy.h, registered) lowers the tag-666
+  floor when both Barons die; the real exit is **sector special 11** (20% damage
+  + exit near death), added to `P_PlayerInSpecialSector`, reached via teleport.
+- **wadtool coverage gate:** asserts every linedef special in every map is in the
+  handled set (∪ {48 scroll = cosmetic}), so a future unwired special fails the
+  bake loudly (this gate caught special 70 mis-listed during the port).
+
+**Weapons beyond the M6 arsenal (session 9 fix).** M6 filled `weaponinfo[]` only
+for fist/pistol/shotgun; the other rows were `{ammo,0,0,0,0,0}`, so picking up a
+chaingun (E1M8) / chainsaw (E1M2) / rocket launcher (E1M9) brought up a weapon
+whose up/ready states were 0 (S_NULL) -> no sprite, no `A_WeaponReady` -> HARD
+SOFTLOCK (can't fire or switch). Now: `weaponinfo` filled for those 3 (sprites
+CHGG/SAWG/MISG present in shareware; plasma/bfg absent, left 0); `A_FireCGun` /
+`A_Saw` / `A_FireMissile` ported + registered; `P_SpawnPlayerMissile` (autoaim,
+MT_ROCKET) added to p_mobj.h; game.c's X-cycle covers all owned slots. Safety net:
+`P_BringUpWeapon` falls back to pistol if a weapon's upstate is 0, so no pickup
+can ever soft-lock again. `A_Saw`'s turn-to-target is simplified to face directly
+(upstream's tiny nudge uses unsigned BAM compares that degenerate on signed int).
+
+DEVIATIONS (look-broken-but-arent): switch TEXTURES don't swap (BUTTONS unported
+— cosmetic; swtchn still plays, so a fired switch has no visual "pressed" cue);
+no crush/ceiling movers (E1 has none); Baron/Demon/Spectre chase + are killable
+but DON'T attack (A_BruisAttack/A_SargAttack unported — combat, not traversal, so
+beatability is unaffected). Music stays the single E1M1 chiptune on every level.
+
+**EMULATOR TEST ORDER (risk is front-loaded — shared code first):** (1) harness
+GREEN 231 + E1M1 full playthrough → exit → intermission → E1M2 (E1M1's specials
+now route through the rewritten EV_DoFloor/EV_DoPlat — this is the regression
+net). (2) **E1M2 is the acid test** — lifts 62 (×6), triggered doors, donut;
+verify before others. (3) E1M3 → secret exit → E1M9 → E1M4. (4) E1M4–E1M7.
+(5) **E1M8 last** (boss + teleport + sector-11, the most fragile chain).
