@@ -212,7 +212,7 @@ boolean P_CheckSightRaw( fixed_t x1, fixed_t y1, fixed_t zstart, int sn1,
     int bytenum = pnum >> 3;         // pnum >= 0: logical shift ok
     int bitnum = 1 << ( pnum & 7 );
 
-    if( gen_reject[bytenum] & bitnum )
+    if( gen_reject[gen_reject_base + bytenum] & bitnum )
         return false;                // can't possibly be connected
 
     validcount++;

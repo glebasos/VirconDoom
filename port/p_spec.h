@@ -471,10 +471,19 @@ boolean EV_DoPlat( line_t* line, int amount )
     return rtn;
 }
 
-// ---- level exit (G_ExitLevel: flag consumed by game.c)
+// ---- level exit (flags consumed by game.c, which runs the intermission and
+// then advances gamemap). A normal exit follows the linear order; a secret exit
+// routes to E1M9 (upstream G_DoCompleted, gameepisode 1).
 
 void G_ExitLevel()
 {
+    secretexit = false;
+    gameexit = true;
+}
+
+void G_SecretExitLevel()
+{
+    secretexit = true;
     gameexit = true;
 }
 
@@ -502,6 +511,18 @@ void P_CrossSpecialLine( int linenum, int side, mobj_t* thing )
         // WR: plat down-wait-up-stay (retriggerable)
         EV_DoPlat( line, 0 );
     }
+    else if( line->special == 52 )
+    {
+        // W1: normal exit (walk-over)
+        G_ExitLevel();
+        line->special = 0;
+    }
+    else if( line->special == 124 )
+    {
+        // W1: secret exit (walk-over) -> E1M9
+        G_SecretExitLevel();
+        line->special = 0;
+    }
 }
 
 // use-line dispatch (P_UseSpecialLine subset: manual doors incl. the locked
@@ -527,9 +548,17 @@ boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
     }
     if( s == 11 )
     {
-        // exit switch (P_ChangeSwitchTexture plays swtchn upstream)
+        // S1: exit switch, normal (P_ChangeSwitchTexture plays swtchn upstream)
         S_StartSound( thing, SFX_SWTCHN );
         G_ExitLevel();
+        line->special = 0;
+        return true;
+    }
+    if( s == 51 )
+    {
+        // S1: exit switch, secret -> E1M9
+        S_StartSound( thing, SFX_SWTCHN );
+        G_SecretExitLevel();
         line->special = 0;
         return true;
     }
@@ -732,12 +761,16 @@ void P_SpawnFireFlicker( sector_t* sector )
 void P_SpawnSpecials()
 {
     int i;
+    totalsecret = 0;             // M9: count secret sectors for the intermission
     for( i = 0; i < numsectors; i++ )
     {
         sector_t* sector = &sectors[i];
         int sp = sector->special;
         if( sp == 0 )
             continue;
+
+        if( sp == 9 )
+            totalsecret++;       // secret sector (still handled per-tic below)
 
         if( sp == 1 )
             P_SpawnLightFlash( sector );                 // flickering

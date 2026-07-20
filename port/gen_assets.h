@@ -173,6 +173,18 @@
 #define GEN_NUMBLOCKMAP 3461
 #define GEN_NUMREJECT 904
 
+#define GEN_TOTNUMVERTEXES 6893
+#define GEN_TOTNUMSECTORS 1385
+#define GEN_TOTNUMSIDEDEFS 9767
+#define GEN_TOTNUMLINEDEFS 7485
+#define GEN_TOTNUMSSECTORS 3423
+#define GEN_TOTNUMSEGS 10750
+#define GEN_TOTNUMNODES 3414
+#define GEN_TOTNUMTHINGS 2511
+#define GEN_TOTNUMBLOCKMAP 46883
+#define GEN_TOTNUMREJECT 29607
+#define GEN_NUMMAPS 9
+
 // texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat
 embedded int[GEN_NUMTEXTURES][6] gen_texinfo = "data\\texinfo.bin";
 embedded int[GEN_NUMFLATS][3] gen_flatinfo = "data\\flatinfo.bin";
@@ -195,16 +207,24 @@ embedded int[10240] finesine = "data\\finesine.bin";
 embedded int[4096] finetangent = "data\\finetangent.bin";
 embedded int[2049] tantoangle = "data\\tantoangle.bin";
 
-// map lumps, word-widened (layouts: see tools/wadtool.py header)
-embedded int[GEN_NUMVERTEXES][2] gen_vertexes = "data\\e1m1_vertexes.bin";
-embedded int[GEN_NUMSECTORS][7] gen_sectors = "data\\e1m1_sectors.bin";
-embedded int[GEN_NUMSIDEDEFS][6] gen_sidedefs = "data\\e1m1_sidedefs.bin";
-embedded int[GEN_NUMLINEDEFS][7] gen_linedefs = "data\\e1m1_linedefs.bin";
-embedded int[GEN_NUMSSECTORS][2] gen_ssectors = "data\\e1m1_ssectors.bin";
-embedded int[GEN_NUMSEGS][6] gen_segs = "data\\e1m1_segs.bin";
-embedded int[GEN_NUMNODES][14] gen_nodes = "data\\e1m1_nodes.bin";
-embedded int[GEN_NUMTHINGS][5] gen_things = "data\\e1m1_things.bin";
-embedded int[GEN_NUMBLOCKMAP] gen_blockmap = "data\\e1m1_blockmap.bin";
-embedded int[GEN_NUMREJECT] gen_reject = "data\\e1m1_reject.bin";
+// map lumps, word-widened (layouts: see tools/wadtool.py header).
+// ALL maps concatenated (E1M1 at base 0); slice via gen_map_off/num.
+embedded int[GEN_TOTNUMVERTEXES][2] gen_vertexes = "data\\all_vertexes.bin";
+embedded int[GEN_TOTNUMSECTORS][7] gen_sectors = "data\\all_sectors.bin";
+embedded int[GEN_TOTNUMSIDEDEFS][6] gen_sidedefs = "data\\all_sidedefs.bin";
+embedded int[GEN_TOTNUMLINEDEFS][7] gen_linedefs = "data\\all_linedefs.bin";
+embedded int[GEN_TOTNUMSSECTORS][2] gen_ssectors = "data\\all_ssectors.bin";
+embedded int[GEN_TOTNUMSEGS][6] gen_segs = "data\\all_segs.bin";
+embedded int[GEN_TOTNUMNODES][14] gen_nodes = "data\\all_nodes.bin";
+embedded int[GEN_TOTNUMTHINGS][5] gen_things = "data\\all_things.bin";
+embedded int[GEN_TOTNUMBLOCKMAP] gen_blockmap = "data\\all_blockmap.bin";
+embedded int[GEN_TOTNUMREJECT] gen_reject = "data\\all_reject.bin";
+
+// per-map directory: gen_map_off/num[map][MAPD_*] (see doomdefs.h).
+// off = base ROW index into gen_* (WORD index for blockmap/reject);
+// num = row count (word count for blockmap/reject). gen_par = seconds.
+embedded int[GEN_NUMMAPS][10] gen_map_off = "data\\map_off.bin";
+embedded int[GEN_NUMMAPS][10] gen_map_num = "data\\map_num.bin";
+embedded int[GEN_NUMMAPS] gen_par = "data\\par.bin";
 
 #endif

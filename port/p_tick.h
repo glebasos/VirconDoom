@@ -213,8 +213,16 @@ typedef void( void*, void* )* actionf2_t;
 actionf1_t[GEN_NUMACTIONS] mobj_actions;
 actionf2_t[GEN_NUMACTIONS] pspr_actions;
 
-// level-exit request (G_ExitLevel; game.c consumes)
+// level-exit request (G_ExitLevel / G_SecretExitLevel; game.c consumes both to
+// drive the intermission + level progression). secretexit routes to E1M9.
 boolean gameexit = false;
+boolean secretexit = false;
+
+// intermission tallies (map totals; per-player counts live on player_t). Reset
+// each level in P_SpawnMapThings (kills/items) and P_SpawnSpecials (secrets).
+int totalkills = 0;
+int totalitems = 0;
+int totalsecret = 0;
 
 // ---- thinker list
 thinker_t thinkercap;

@@ -4,15 +4,18 @@ Porting id's DOOM to the Vircon32 fantasy console. **Read `PLAN.md` for the road
 `VIRCON32_C_DIALECT.md` for the dialect rules before writing any port code.** Methodology
 is inherited from the completed VirconBox2D port (`E:\Claude\Projects\Vircon32\VirconBox2D`).
 
-**CURRENT STATE (session 8, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
+**CURRENT STATE (session 9, 2026-07-20): M0–M6 CLOSED + emulator-confirmed
 (harness GREEN 231). M8 SOUND + MUSIC user-confirmed. M7 UI: status bar +
 variable view size + screen flashes BUILT; AUTOMAP DONE + user-confirmed
-(session 8 — rotozoom-region lines, START+B, live-reveal, L/R zoom). Input
-responsiveness fixed (session 7). LIGHT-EFFECT THINKERS DONE (session 8 —
-flicker/strobe/glow/fireflicker; E1M1's 4 light sectors animate).** E1M1 is a
-fully playable game. **Next candidates (deferred M7 pieces, roughly
-independent): texture/flat animation, HU pickup messages, menus, then level
-progression E1M2+ (the road to M9 ship).** See the M7 "NEXT" list for scope.
+(session 8). Input responsiveness fixed (session 7). LIGHT-EFFECT THINKERS DONE
+(session 8). M9 LEVEL-PROGRESSION BACKBONE BUILT (session 9 — all 9 E1 maps
+baked + concatenated, gamemap slicing, intermission tally, exit→next-map incl.
+secret exit; builds clean, offline gates green, NOT yet emulator-run).** E1M1 is
+a fully playable game. **NEXT (the remaining road to M9 ship): the line-special
+roster for E1M2–E1M9 traversal (lifts 62, walk-doors 2/90/103/63, floor movers
+5/18/22/23/70/82/91/98, stairs 7/8, teleporters 97, donut 9) — see "M9 backbone"
+below. Without it, later maps render/spawn correctly but may not be beatable.
+E1M8's boss-gated exit (A_BossDeath + tag-666 floor) is deferred with it.**
 
 Floor/ceiling TEXTURES are deliberately NOT done: the GPU (axis-aligned scaled
 region blitter, no per-scanline scissor) cannot do perspective flat spans; PLAN §3
@@ -80,7 +83,10 @@ at file tops -- confirmed working in this dialect (probe-compiled first).
 Game controls (current): dpad up/down move, dpad left/right turn, L/R strafe,
 **A fire, B use, Y (hold) run, X cycle weapon** (fist->pistol->shotgun); START is a
 modifier (held = movement suppressed): **START+Up/Down view size, START+X detail
-HI/LO, START+Y debug HUD.** (Also in README.md.)
+HI/LO, START+Y debug HUD, START+B automap, START+L/R DEV MAP-WARP** (steps gamemap
+E1M1..E1M9 wrapping, reloads, brief "E1M<n>" banner; debug HUD shows MAP). The warp
+is a test aid to walk every baked map in one boot -- verifies multi-map load/render/
+player-start independent of beatability. (Also in README.md.)
 
 **Input model — DON'T regress this (session 7, user-confirmed).** The Vircon
 gamepad registers are NOT booleans: each is a signed AGE counter (emulator
@@ -339,10 +345,65 @@ bottom); shows SIZE.
    sectors (1 flicker / 2 glow / 1 sync-strobe; offline SECTORS histogram
    confirmed). Renderer clamps light to [32,255] so strobes never hit full
    black (consistent port policy, not a bug).
-6. **Level progression**: bake E1M2+ (wadtool --map exists; needs multi-map gen
-   naming + per-map texture sets growing the atlas) + intermission screen
-   (tallies already counted). Maybe M8/M9 — decide with user.
+6. **Level progression — BACKBONE DONE (session 9); see the M9 section below.**
 
 Perf note: UI draws land in the DRAW frame (headroom, ~50 instr/draw); bar +
 flash add tens of draws, no risk. COMPUTE is the tight frame — the view-size
 control is the knob that helps it (fewer columns).
+
+## M9 — Level progression (BACKBONE BUILT session 9; NOT yet emulator-run)
+
+The progression MECHANISM is complete and builds clean; per-map *beatability* is
+a follow-up (the line-special roster, below). Three deliverables:
+
+**1. Multi-map bake (wadtool).** KEY REALIZATION: the atlas never needed to
+"grow across maps" — `composite_textures`/`load_flats`/`load_sprites` already
+composite the ENTIRE WAD (TEXTURE1, F_START..F_END, S_START..S_END), so every
+texture/flat/sprite E1M2–E1M9 use was already baked for E1M1. The only new baked
+data is the extra maps' lumps. wadtool now bakes ALL 9 E1 maps and CONCATENATES
+each lump type into one `gen_*` array (`data/all_<key>.bin`), E1M1 FIRST (base 0),
+plus a directory `gen_map_off[9][10]` / `gen_map_num[9][10]` (`MAPD_*` index
+constants in doomdefs.h; off = base ROW, or WORD for blockmap/reject; num = count)
+and `gen_par[9]` (upstream `pars[1][1..9]`). Map lump indices stay LOCAL (0-based
+within each map); the base offset is applied ONLY where p_setup READS gen_*, so
+runtime pointer-linked structs stay 0-based per map. `GEN_NUM*` stay defined as
+E1M1's counts (harness/walls read gen_* at those bounds with gamemap defaulting
+to 1); `GEN_TOTNUM*` size the concatenated embedded arrays. The spawn-resolution
++ state-reachability gates now run over ALL maps' things (294 states validated;
+every E1 monster/decoration sprite present in shareware).
+
+**2. gamemap slicing (p_setup.h).** `int gamemap = 1;` STATICALLY INITIALIZED in
+doomdefs.h (so harness/walls, which never assign it, load E1M1 at base 0 — GREEN
+231 untouched). Each `P_Load*` reads `base/num = gen_map_off/num[gamemap-1][MAPD_*]`
+and indexes `gen_X[base+i]`; blockmap points at `&gen_blockmap[base]`. Consumers
+outside p_setup use published globals set in P_SetupLevel: `gen_things_base/num`
+(P_SpawnMapThings + game.c player-start scan) and `gen_reject_base` (P_CheckSightRaw).
+Offline gate (scratchpad-style, replicated inline): E1M1 base all-zero, offsets
+cumulative, and every map's linedef/seg/sidedef indices contained within its own
+slice — proves local-index + base-offset slicing for all 9 maps.
+
+**3. Intermission + exit wiring.** Totals `totalkills/totalitems/totalsecret`
+(p_tick.h) tallied at spawn (P_SpawnMapThings kills/items; P_SpawnSpecials secret
+sectors, special 9). Exit specials handled generically: **11** S1 exit / **51**
+S1 secret exit (switch, P_UseSpecialLine); **52** W1 exit / **124** W1 secret exit
+(walk, P_CrossSpecialLine); `G_ExitLevel`/`G_SecretExitLevel` set `gameexit` +
+`secretexit`. game.c freezes the sim on gameexit and draws a text tally (E1M<n>
+COMPLETE, KILLS/ITEMS/SECRET %, TIME vs PAR, ENTERING E1M<next>); A advances via
+`G_NextMap()` — upstream G_DoCompleted E1 logic: secret→E1M9, E1M9→E1M4, else
+linear, wrap→E1M1.
+
+**DEFERRED (the real remaining M9 work — needs emulator, map-by-map): the
+line-special roster for traversal.** M6 only ported E1M1's specials
+{1,11,26–28,31–34,36,88}. E1M2–E1M9 use ~30 types; unported ones are silent
+no-ops, so a map whose critical path needs one is a DEAD END. There is NO offline
+gate for beatability (it needs gameplay sim), and this project ships nothing
+unverified — so port the families (doors → lifts 62 → floors → stairs 7/8 →
+teleport 97 → donut 9) each flagged unverified-pending-emulator, verifying map by
+map. **E1M8's exit is boss-death-gated (A_BossDeath lowering tag-666 floor when
+both Barons die) AND its layout uses 8× teleporter — so it needs teleport + boss
+work together; deferred as one unit. Barons/Demons/Spectres already spawn + render
++ chase + are killable (sprites present, A_Chase/A_Scream/A_Fall ported) but do
+NOT attack (A_BruisAttack/A_SargAttack unported no-ops) — a carried-over M6 roster
+gap, not introduced by M9.** Per-map linedef-special histogram is in the session-9
+report / memory. Music stays the single E1M1 chiptune on every level (per-map MUS
+render is optional polish).

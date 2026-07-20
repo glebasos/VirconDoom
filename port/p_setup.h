@@ -9,32 +9,44 @@
 #include "r_defs.h"
 #include "z_zone.h"
 
+// M9: the current map's slice within the concatenated gen_* arrays. Set at the
+// top of P_SetupLevel from the gen_map_off/num directory; every P_Load* below
+// reads gen_X[ base + i ] so the runtime structs stay 0-based per map. These
+// bases are also read by consumers OUTSIDE p_setup (P_SpawnMapThings + the
+// game.c player-start scan use gen_things_base/num; P_CheckSightRaw uses
+// gen_reject_base). With gamemap == 1 every base is 0 -> E1M1 == pre-M9 behavior.
+int gen_things_base = 0;
+int gen_things_num = 0;
+int gen_reject_base = 0;
+
 void P_LoadVertexes()
 {
-    numvertexes = GEN_NUMVERTEXES;
+    int base = gen_map_off[gamemap - 1][MAPD_VERTEXES];
+    numvertexes = gen_map_num[gamemap - 1][MAPD_VERTEXES];
     vertexes = Z_Malloc( numvertexes * sizeof(vertex_t), PU_LEVEL, NULL );
     int i;
     for( i = 0; i < numvertexes; i++ )
     {
-        vertexes[i].x = gen_vertexes[i][0];
-        vertexes[i].y = gen_vertexes[i][1];
+        vertexes[i].x = gen_vertexes[base + i][0];
+        vertexes[i].y = gen_vertexes[base + i][1];
     }
 }
 
 void P_LoadSectors()
 {
-    numsectors = GEN_NUMSECTORS;
+    int base = gen_map_off[gamemap - 1][MAPD_SECTORS];
+    numsectors = gen_map_num[gamemap - 1][MAPD_SECTORS];
     sectors = Z_Malloc( numsectors * sizeof(sector_t), PU_LEVEL, NULL );
     int i;
     for( i = 0; i < numsectors; i++ )
     {
-        sectors[i].floorheight = gen_sectors[i][0];
-        sectors[i].ceilingheight = gen_sectors[i][1];
-        sectors[i].floorpic = gen_sectors[i][2];
-        sectors[i].ceilingpic = gen_sectors[i][3];
-        sectors[i].lightlevel = gen_sectors[i][4];
-        sectors[i].special = gen_sectors[i][5];
-        sectors[i].tag = gen_sectors[i][6];
+        sectors[i].floorheight = gen_sectors[base + i][0];
+        sectors[i].ceilingheight = gen_sectors[base + i][1];
+        sectors[i].floorpic = gen_sectors[base + i][2];
+        sectors[i].ceilingpic = gen_sectors[base + i][3];
+        sectors[i].lightlevel = gen_sectors[base + i][4];
+        sectors[i].special = gen_sectors[base + i][5];
+        sectors[i].tag = gen_sectors[base + i][6];
         sectors[i].validcount = 0;
         sectors[i].thinglist = NULL;
         sectors[i].specialdata = NULL;
@@ -47,35 +59,37 @@ void P_LoadSectors()
 
 void P_LoadSideDefs()
 {
-    numsides = GEN_NUMSIDEDEFS;
+    int base = gen_map_off[gamemap - 1][MAPD_SIDEDEFS];
+    numsides = gen_map_num[gamemap - 1][MAPD_SIDEDEFS];
     sides = Z_Malloc( numsides * sizeof(side_t), PU_LEVEL, NULL );
     int i;
     for( i = 0; i < numsides; i++ )
     {
-        sides[i].textureoffset = gen_sidedefs[i][0];
-        sides[i].rowoffset = gen_sidedefs[i][1];
-        sides[i].toptexture = gen_sidedefs[i][2];
-        sides[i].bottomtexture = gen_sidedefs[i][3];
-        sides[i].midtexture = gen_sidedefs[i][4];
-        sides[i].sector = &sectors[ gen_sidedefs[i][5] ];
+        sides[i].textureoffset = gen_sidedefs[base + i][0];
+        sides[i].rowoffset = gen_sidedefs[base + i][1];
+        sides[i].toptexture = gen_sidedefs[base + i][2];
+        sides[i].bottomtexture = gen_sidedefs[base + i][3];
+        sides[i].midtexture = gen_sidedefs[base + i][4];
+        sides[i].sector = &sectors[ gen_sidedefs[base + i][5] ];
     }
 }
 
 void P_LoadLineDefs()
 {
-    numlines = GEN_NUMLINEDEFS;
+    int base = gen_map_off[gamemap - 1][MAPD_LINEDEFS];
+    numlines = gen_map_num[gamemap - 1][MAPD_LINEDEFS];
     lines = Z_Malloc( numlines * sizeof(line_t), PU_LEVEL, NULL );
     int i;
     for( i = 0; i < numlines; i++ )
     {
         line_t* ld = &lines[i];
-        ld->v1 = &vertexes[ gen_linedefs[i][0] ];
-        ld->v2 = &vertexes[ gen_linedefs[i][1] ];
-        ld->flags = gen_linedefs[i][2];
-        ld->special = gen_linedefs[i][3];
-        ld->tag = gen_linedefs[i][4];
-        ld->sidenum[0] = gen_linedefs[i][5];
-        ld->sidenum[1] = gen_linedefs[i][6];
+        ld->v1 = &vertexes[ gen_linedefs[base + i][0] ];
+        ld->v2 = &vertexes[ gen_linedefs[base + i][1] ];
+        ld->flags = gen_linedefs[base + i][2];
+        ld->special = gen_linedefs[base + i][3];
+        ld->tag = gen_linedefs[base + i][4];
+        ld->sidenum[0] = gen_linedefs[base + i][5];
+        ld->sidenum[1] = gen_linedefs[base + i][6];
         ld->dx = ld->v2->x - ld->v1->x;
         ld->dy = ld->v2->y - ld->v1->y;
 
@@ -123,31 +137,33 @@ void P_LoadLineDefs()
 
 void P_LoadSubsectors()
 {
-    numsubsectors = GEN_NUMSSECTORS;
+    int base = gen_map_off[gamemap - 1][MAPD_SSECTORS];
+    numsubsectors = gen_map_num[gamemap - 1][MAPD_SSECTORS];
     subsectors = Z_Malloc( numsubsectors * sizeof(subsector_t), PU_LEVEL, NULL );
     int i;
     for( i = 0; i < numsubsectors; i++ )
     {
-        subsectors[i].numlines = gen_ssectors[i][0];
-        subsectors[i].firstline = gen_ssectors[i][1];
+        subsectors[i].numlines = gen_ssectors[base + i][0];
+        subsectors[i].firstline = gen_ssectors[base + i][1];
         subsectors[i].sector = NULL;      // set from segs below
     }
 }
 
 void P_LoadSegs()
 {
-    numsegs = GEN_NUMSEGS;
+    int base = gen_map_off[gamemap - 1][MAPD_SEGS];
+    numsegs = gen_map_num[gamemap - 1][MAPD_SEGS];
     segs = Z_Malloc( numsegs * sizeof(seg_t), PU_LEVEL, NULL );
     int i;
     for( i = 0; i < numsegs; i++ )
     {
         seg_t* li = &segs[i];
-        li->v1 = &vertexes[ gen_segs[i][0] ];
-        li->v2 = &vertexes[ gen_segs[i][1] ];
-        li->angle = gen_segs[i][2];
-        li->offset = gen_segs[i][3];
-        line_t* ldef = &lines[ gen_segs[i][4] ];
-        int side = gen_segs[i][5];
+        li->v1 = &vertexes[ gen_segs[base + i][0] ];
+        li->v2 = &vertexes[ gen_segs[base + i][1] ];
+        li->angle = gen_segs[base + i][2];
+        li->offset = gen_segs[base + i][3];
+        line_t* ldef = &lines[ gen_segs[base + i][4] ];
+        int side = gen_segs[base + i][5];
         li->linedef = ldef;
         li->sidedef = &sides[ ldef->sidenum[side] ];
         li->frontsector = sides[ ldef->sidenum[side] ].sector;
@@ -163,24 +179,25 @@ void P_LoadSegs()
 
 void P_LoadNodes()
 {
-    numnodes = GEN_NUMNODES;
+    int base = gen_map_off[gamemap - 1][MAPD_NODES];
+    numnodes = gen_map_num[gamemap - 1][MAPD_NODES];
     nodes = Z_Malloc( numnodes * sizeof(node_t), PU_LEVEL, NULL );
     int i;
     for( i = 0; i < numnodes; i++ )
     {
         node_t* no = &nodes[i];
-        no->x = gen_nodes[i][0];
-        no->y = gen_nodes[i][1];
-        no->dx = gen_nodes[i][2];
-        no->dy = gen_nodes[i][3];
+        no->x = gen_nodes[base + i][0];
+        no->y = gen_nodes[base + i][1];
+        no->dx = gen_nodes[base + i][2];
+        no->dy = gen_nodes[base + i][3];
         int j;
         for( j = 0; j < 4; j++ )
         {
-            no->bbox[0][j] = gen_nodes[i][4 + j];
-            no->bbox[1][j] = gen_nodes[i][8 + j];
+            no->bbox[0][j] = gen_nodes[base + i][4 + j];
+            no->bbox[1][j] = gen_nodes[base + i][8 + j];
         }
-        no->children[0] = gen_nodes[i][12];
-        no->children[1] = gen_nodes[i][13];
+        no->children[0] = gen_nodes[base + i][12];
+        no->children[1] = gen_nodes[base + i][13];
     }
 }
 
@@ -197,11 +214,15 @@ void** blocklinks = NULL;    // mobj_t* head per block
 
 void P_LoadBlockMap()
 {
-    blockmaplump = gen_blockmap;
-    bmaporgx = gen_blockmap[0] << FRACBITS;
-    bmaporgy = gen_blockmap[1] << FRACBITS;
-    bmapwidth = gen_blockmap[2];
-    bmapheight = gen_blockmap[3];
+    // blockmap offset is a WORD index (KEYWIDTH 1) into the concatenated lump;
+    // the blocklist offsets inside stay lump-local, so pointing blockmaplump at
+    // the map's slice makes them valid with no other change.
+    int base = gen_map_off[gamemap - 1][MAPD_BLOCKMAP];
+    blockmaplump = &gen_blockmap[base];
+    bmaporgx = blockmaplump[0] << FRACBITS;
+    bmaporgy = blockmaplump[1] << FRACBITS;
+    bmapwidth = blockmaplump[2];
+    bmapheight = blockmaplump[3];
     blockmap = blockmaplump + 4;
     int count = bmapwidth * bmapheight;
     blocklinks = Z_CallocLevel( count );
@@ -274,6 +295,12 @@ void P_GroupLines()
 
 void P_SetupLevel()
 {
+    // publish the current map's things/reject slices for consumers outside
+    // p_setup (P_SpawnMapThings, game.c player scan, P_CheckSightRaw)
+    gen_things_base = gen_map_off[gamemap - 1][MAPD_THINGS];
+    gen_things_num  = gen_map_num[gamemap - 1][MAPD_THINGS];
+    gen_reject_base = gen_map_off[gamemap - 1][MAPD_REJECT];
+
     Z_MarkLevelStart();
     P_LoadVertexes();
     P_LoadSectors();

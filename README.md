@@ -47,6 +47,7 @@ Movement and combat:
 | **START + X** (tap) | Toggle low / high detail (halves horizontal resolution) |
 | **START + Y** (tap) | Toggle the debug HUD |
 | **START + B** (tap) | Toggle the automap |
+| **START + L / R** (tap) | Dev map-warp: step to the previous / next map (E1M1–E1M9, wraps), reloads with a brief "E1M*n*" banner (debug HUD shows MAP) |
 
 Automap (while open) — an overhead line map that reveals as you explore:
 

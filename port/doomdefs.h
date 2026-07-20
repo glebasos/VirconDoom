@@ -33,6 +33,23 @@ typedef bool boolean;
 #define SLOPEBITS 11
 #define DBITS 5
 
+// ---- level progression (M9). gamemap is 1-based (E1M<gamemap>) and STATICALLY
+// INITIALIZED to 1 here so the E1M1-only harness/walls ROMs -- which never assign
+// it -- always load map 1 (base 0 in the concatenated gen_* arrays). game.c
+// advances it on level exit. gen_map_off/gen_map_num (gen_assets.h) are indexed
+// [gamemap-1][MAPD_*] to slice each map out of the concatenated lumps.
+int gamemap = 1;
+#define MAPD_VERTEXES  0
+#define MAPD_SECTORS   1
+#define MAPD_SIDEDEFS  2
+#define MAPD_LINEDEFS  3
+#define MAPD_SSECTORS  4
+#define MAPD_SEGS      5
+#define MAPD_NODES     6
+#define MAPD_THINGS    7
+#define MAPD_BLOCKMAP  8
+#define MAPD_REJECT    9
+
 // gen_mobjinfo column indices (upstream mobjinfo_t field order, M6 bake)
 #define MI_DOOMEDNUM    0
 #define MI_SPAWNSTATE   1

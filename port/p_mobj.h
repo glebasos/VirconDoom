@@ -428,10 +428,15 @@ void P_SpawnMapThings()
     mobj_t* mo;
     fixed_t z;
 
-    for( i = 0; i < GEN_NUMTHINGS; i++ )
+    // M9: gen_things is the concatenation of every map; gen_things_base/num
+    // (set in P_SetupLevel) select the current map's slice. Kill/item totals
+    // for the intermission are tallied here (upstream P_SpawnMapThing).
+    totalkills = 0;
+    totalitems = 0;
+    for( i = 0; i < gen_things_num; i++ )
     {
-        ed = gen_things[i][3];
-        opts = gen_things[i][4];
+        ed = gen_things[gen_things_base + i][3];
+        opts = gen_things[gen_things_base + i][4];
 
         if( ed >= 1 && ed <= 4 )
             continue;            // player starts
@@ -456,14 +461,19 @@ void P_SpawnMapThings()
         if( gen_mobjinfo[mt][MI_FLAGS] & MF_SPAWNCEILING )
             z = ONCEILINGZ;
 
-        mo = P_SpawnMobj( gen_things[i][0] << FRACBITS,
-                          gen_things[i][1] << FRACBITS, z, mt );
+        mo = P_SpawnMobj( gen_things[gen_things_base + i][0] << FRACBITS,
+                          gen_things[gen_things_base + i][1] << FRACBITS, z, mt );
+
+        if( mo->flags & MF_COUNTKILL )
+            totalkills++;
+        if( mo->flags & MF_COUNTITEM )
+            totalitems++;
 
         // desync idle animations (upstream P_SpawnMapThing)
         if( mo->tics > 0 )
             mo->tics = 1 + ( P_Random() % mo->tics );
 
-        mo->angle = ( gen_things[i][2] / 45 ) * ANG45;
+        mo->angle = ( gen_things[gen_things_base + i][2] / 45 ) * ANG45;
         if( opts & 8 )
             mo->flags |= MF_AMBUSH;
     }

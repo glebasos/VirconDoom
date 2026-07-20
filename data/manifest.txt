@@ -4,6 +4,16 @@ sprites: 483 lumps, 138 names, 261 frames, 137 mobjtypes -> 2 sheet(s)
 states: 967 x 7 words, 74 action fns
 ui: 75 elements -> 1 sheet, texid 7
 E1M1: blockmap=3461, linedefs=475, nodes=236, reject=904, sectors=85, segs=732, sidedefs=648, ssectors=237, things=138, vertexes=467
-state reachability: 202 states validated against sprites
+E1M2: blockmap=5935, linedefs=1033, nodes=447, reject=5000, sectors=200, segs=1463, sidedefs=1323, ssectors=448, things=262, vertexes=942
+E1M3: blockmap=4447, linedefs=1026, nodes=460, reject=3917, sectors=177, segs=1445, sidedefs=1326, ssectors=461, things=380, vertexes=946
+E1M4: blockmap=3609, linedefs=830, nodes=354, reject=2416, sectors=139, segs=1172, sidedefs=1054, ssectors=355, things=254, vertexes=780
+E1M5: blockmap=4016, linedefs=825, nodes=383, reject=2557, sectors=143, segs=1141, sidedefs=1053, ssectors=384, things=293, vertexes=746
+E1M6: blockmap=7902, linedefs=1352, nodes=605, reject=7813, sectors=250, segs=1862, sidedefs=1727, ssectors=606, things=463, vertexes=1207
+E1M7: blockmap=4423, linedefs=958, nodes=466, reject=3613, sectors=170, segs=1371, sidedefs=1223, ssectors=467, things=358, vertexes=896
+E1M8: blockmap=9700, linedefs=333, nodes=176, reject=685, sectors=74, segs=586, sidedefs=511, ssectors=177, things=126, vertexes=328
+E1M9: blockmap=3390, linedefs=653, nodes=287, reject=2702, sectors=147, segs=978, sidedefs=902, ssectors=288, things=237, vertexes=581
+maps: 9 baked, concatenated (E1M1 at base 0)
+state reachability: 294 states validated against sprites
+map integrity: 9 maps, all load-time refs in-slice + player start present
 sounds: 109 sfx names, 56 WAV assets baked (44100Hz/16-bit mono)
 gen_assets.h + gen_checkvals.h written

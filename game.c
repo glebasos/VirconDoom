@@ -56,8 +56,55 @@ void ShowInt( int x, int y, int value )
     print_at( x, y, s );
 }
 
-// (re)build the level and spawn everything; used at boot, after death,
-// and after the exit switch (level progression is M7 -- E1M1 restarts)
+// count*100/total, guarding total==0 as 100% (a level with no kills/items/secrets
+// is "100% cleared"). Matches how the intermission reads an empty category.
+int Pct( int count, int total )
+{
+    if( total <= 0 )
+        return 100;
+    return count * 100 / total;
+}
+
+// tics (30 Hz) -> "M:SS", right of the label at (x,y)
+void ShowTime( int x, int y, int tics )
+{
+    int secs = tics / 30;
+    int mins = secs / 60;
+    secs = secs - mins * 60;
+    int[20] s;
+    itoa( mins, s, 10 );
+    print_at( x, y, s );
+    print_at( x + 15, y, ":" );
+    if( secs < 10 )
+    {
+        print_at( x + 25, y, "0" );
+        ShowInt( x + 35, y, secs );
+    }
+    else
+        ShowInt( x + 25, y, secs );
+}
+
+// next map after a completed level (upstream G_DoCompleted, gameepisode 1):
+// a secret exit routes to E1M9; leaving the secret level (E1M9) returns to E1M4;
+// otherwise advance linearly. Wrapping past the last map restarts at E1M1
+// (E1M8's boss-gated exit is not wired this milestone -- see the report).
+int G_NextMap()
+{
+    int next;
+    if( secretexit )
+        next = 9;
+    else if( gamemap == 9 )
+        next = 4;
+    else
+        next = gamemap + 1;
+    if( next < 1 || next > GEN_NUMMAPS )
+        next = 1;
+    return next;
+}
+
+// (re)build the level and spawn everything; used at boot, after death, and
+// after the exit switch. P_SetupLevel loads whichever map `gamemap` names (the
+// caller sets gamemap = G_NextMap() before the post-intermission reload).
 void G_LoadLevel()
 {
     int i;
@@ -66,17 +113,20 @@ void G_LoadLevel()
     AM_NotifyLevel();            // re-fit the automap bounds on the next open
     Z_FreeTags( PU_LEVEL, PU_PURGELEVEL );
     P_InitThinkers();
-    P_SetupLevel();
+    P_SetupLevel();              // reads the gamemap slice of the concatenated lumps
     leveltime = 0;
     gameexit = false;
+    secretexit = false;
 
-    // spawn the player at map thing type 1
-    for( i = 0; i < GEN_NUMTHINGS; i++ )
+    // spawn the player at map thing type 1 -- gen_things_base/num (set in
+    // P_SetupLevel) select the CURRENT map's things, not E1M1's.
+    for( i = 0; i < gen_things_num; i++ )
     {
-        if( gen_things[i][3] == 1 )
+        if( gen_things[gen_things_base + i][3] == 1 )
         {
-            P_SpawnPlayer( gen_things[i][0], gen_things[i][1],
-                           gen_things[i][2] );
+            P_SpawnPlayer( gen_things[gen_things_base + i][0],
+                           gen_things[gen_things_base + i][1],
+                           gen_things[gen_things_base + i][2] );
             break;
         }
     }
@@ -144,7 +194,13 @@ void main()
     bool prevY = false;
     bool prevA = false;
     bool prevB = false;
+    bool prevL = false;          // START+L/R = dev map-warp (edge-detected)
+    bool prevR = false;
     int lastPollFc = get_frame_counter();
+
+    // DEV map-warp banner: frames remaining to show "E1M<n>" after a warp so you
+    // always know which map you landed on. Purely a test aid (START+L/R below).
+    int warpBanner = 0;
 
     while( true )
     {
@@ -163,6 +219,8 @@ void main()
         int yCount     = gamepad_button_y();
         int aCount     = gamepad_button_a();
         int bCount     = gamepad_button_b();
+        int lCount     = gamepad_button_l();
+        int rCount     = gamepad_button_r();
 
         bool upHeld   = upCount > 0;
         bool downHeld = downCount > 0;
@@ -170,6 +228,8 @@ void main()
         bool yHeld    = yCount > 0;
         bool aHeld    = aCount > 0;
         bool bHeld    = bCount > 0;
+        bool lHeld    = lCount > 0;
+        bool rHeld    = rCount > 0;
 
         // rising edges: a press anywhere in the elapsed window (incl. quick taps)
         bool upEdge   = PressedInWindow( upCount,   elapsed, prevUp );
@@ -178,6 +238,8 @@ void main()
         bool yEdge    = PressedInWindow( yCount,    elapsed, prevY );
         bool aEdge    = PressedInWindow( aCount,    elapsed, prevA );
         bool bEdge    = PressedInWindow( bCount,    elapsed, prevB );
+        bool lEdge    = PressedInWindow( lCount,    elapsed, prevL );
+        bool rEdge    = PressedInWindow( rCount,    elapsed, prevR );
 
         // store held-state unconditionally so no branch can desync the edges
         prevUp = upHeld;
@@ -186,6 +248,8 @@ void main()
         prevY = yHeld;
         prevA = aHeld;
         prevB = bHeld;
+        prevL = lHeld;
+        prevR = rHeld;
 
         bool run = !startHeld && yHeld;
 
@@ -243,6 +307,26 @@ void main()
                 viewSize--;
                 R_SetView( viewSize, lowDetail );
             }
+            // START + L/R: DEV map warp -- step gamemap and reload, wrapping
+            // E1M9<->E1M1. Lets you walk every map in one boot to verify the
+            // multi-map plumbing (load/render/player-start) without rebuilding.
+            // (START suppresses movement here, so L/R don't strafe or zoom.)
+            if( lEdge || rEdge )
+            {
+                if( rEdge )
+                {
+                    gamemap++;
+                    if( gamemap > GEN_NUMMAPS ) gamemap = 1;
+                }
+                else
+                {
+                    gamemap--;
+                    if( gamemap < 1 ) gamemap = GEN_NUMMAPS;
+                }
+                automapactive = false;       // avoid drawing a stale map overlay
+                G_LoadLevel();
+                warpBanner = 45;             // show "E1M<n>" for a moment
+            }
         }
         else if( xEdge )
         {
@@ -275,11 +359,15 @@ void main()
             leveltime++;
         }
 
-        // respawn / next level requests
+        // respawn / next level requests. On the intermission (gameexit), A
+        // advances to the next map per G_NextMap (secret exits route to E1M9).
         if( player1.playerstate == PST_REBORN )
             G_LoadLevel();
         if( gameexit && aEdge )
+        {
+            gamemap = G_NextMap();
             G_LoadLevel();
+        }
 
         // ---- compute pass (records draw commands; GPU untouched). Runs even in
         // automap mode: R_RenderView's BSP walk is what sets ML_MAPPED on the
@@ -325,16 +413,45 @@ void main()
         set_multiply_color( color_white );
         if( player1.playerstate == PST_DEAD )
             print_at( 220, 250, "YOU DIED - PRESS B" );
+
+        // DEV map-warp banner: brief "E1M<n>" after a START+L/R warp
+        if( warpBanner > 0 )
+        {
+            print_at( 270, 80, "E1M" );
+            ShowInt( 315, 80, gamemap );
+            warpBanner--;
+        }
         if( gameexit )
         {
-            print_at( 250, 90, "LEVEL COMPLETE" );
-            print_at( 210, 130, "KILLS" );
-            ShowInt( 280, 130, player1.killcount );
-            print_at( 330, 130, "ITEMS" );
-            ShowInt( 400, 130, player1.itemcount );
-            print_at( 450, 130, "SECRETS" );
-            ShowInt( 540, 130, player1.secretcount );
-            print_at( 230, 170, "PRESS A TO RESTART" );
+            // intermission tally: percentages vs the level totals, time vs par,
+            // and the next map. A dark translucent panel over the frozen view
+            // keeps the text readable (alpha composites like ST_DrawFlash).
+            int nextmap = G_NextMap();
+            GPU_FillScreen( 0, 0, 640, 296, 0xD0080810 );
+            set_multiply_color( color_white );
+
+            print_at( 285, 60, "E1M" );
+            ShowInt( 330, 60, gamemap );
+            print_at( 375, 60, "COMPLETE" );
+
+            print_at( 235, 120, "KILLS" );
+            ShowInt( 360, 120, Pct( player1.killcount, totalkills ) );
+            print_at( 405, 120, "%" );
+            print_at( 235, 145, "ITEMS" );
+            ShowInt( 360, 145, Pct( player1.itemcount, totalitems ) );
+            print_at( 405, 145, "%" );
+            print_at( 235, 170, "SECRET" );
+            ShowInt( 360, 170, Pct( player1.secretcount, totalsecret ) );
+            print_at( 405, 170, "%" );
+
+            print_at( 235, 205, "TIME" );
+            ShowTime( 320, 205, leveltime );
+            print_at( 400, 205, "PAR" );
+            ShowTime( 470, 205, gen_par[gamemap - 1] * 30 );
+
+            print_at( 235, 245, "ENTERING  E1M" );
+            ShowInt( 425, 245, nextmap );
+            print_at( 260, 275, "PRESS A" );
         }
 
         // debug HUD: two rows at the top-left, clear of the status bar
@@ -374,6 +491,8 @@ void main()
             ShowInt( 385, 44, perf_masked );
             print_at( 470, 44, "SIZE" );
             ShowInt( 540, 44, viewSize );
+            print_at( 575, 44, "MAP" );
+            ShowInt( 615, 44, gamemap );
         }
 
         frame++;

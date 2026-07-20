@@ -833,38 +833,87 @@ def main():
     report.append('ui: %d elements -> 1 sheet, texid %d' % (len(ui_imgs), ui_texid0))
 
 
-    # ---- map
-    counts, out = bake_map(wad, mapname, texname_to_idx, flatname_to_idx)
-    ml = mapname.lower()
-    for key, words in out.items():
-        w('data/%s_%s.bin' % (ml, key), words)
-    report.append('%s: %s' % (mapname, ', '.join('%s=%d' % kv for kv in sorted(counts.items()))))
+    # ---- maps (M9 level progression): bake EVERY E1 map present in the WAD and
+    # CONCATENATE each lump type into one big gen_* array, plus a per-map directory
+    # (gen_map_off / gen_map_num) giving each map's slice. The texture/flat/sprite
+    # atlases are already whole-WAD (composite_textures/load_flats/load_sprites
+    # cover the entire directory), so nothing about the atlas changes -- the only
+    # new baked data is the extra maps' lumps. Map lump indices stay LOCAL (0-based
+    # within each map); the base offset is applied only where p_setup READS gen_*,
+    # so the runtime pointer-linked structs remain 0-based per map. E1M1 is baked
+    # FIRST (base 0) so the E1M1-only harness/walls ROMs -- which read gen_* at
+    # fixed low indices with GEN_NUM* = E1M1 counts and gamemap defaulting to 1 --
+    # are completely undisturbed.
+    KEYORDER = ['vertexes', 'sectors', 'sidedefs', 'linedefs', 'ssectors',
+                'segs', 'nodes', 'things', 'blockmap', 'reject']
+    KEYWIDTH = {'vertexes': 2, 'sectors': 7, 'sidedefs': 6, 'linedefs': 7,
+                'ssectors': 2, 'segs': 6, 'nodes': 14, 'things': 5,
+                'blockmap': 1, 'reject': 1}
+    # vanilla par times, g_game.c pars[1][1..9] (seconds); index by map order
+    PARS_E1 = [30, 75, 120, 90, 165, 180, 180, 30, 165]
+
+    maplist = [m for m in ('E1M%d' % k for k in range(1, 10)) if m in wad.index]
+    assert maplist and maplist[0] == 'E1M1', 'E1M1 must be present and first'
+    allout = {k: [] for k in KEYORDER}
+    map_off = []
+    map_num = []
+    map_things = []                            # (name, things_words, count) per map
+    counts = out = None                        # E1M1 reference (legacy GEN_NUM*/gates)
+    for m in maplist:
+        c, o = bake_map(wad, m, texname_to_idx, flatname_to_idx)
+        offrow = []
+        numrow = []
+        for k in KEYORDER:
+            wd = KEYWIDTH[k]
+            offrow.append(len(allout[k]) // wd)   # base in ROWS (WORDS for bmap/reject)
+            numrow.append(c[k])                   # rows (words for bmap/reject)
+            allout[k] += o[k]
+        map_off.append(offrow)
+        map_num.append(numrow)
+        map_things.append((m, o['things'], c['things']))
+        if counts is None:
+            counts, out = c, o                    # E1M1
+        report.append('%s: %s' % (m, ', '.join('%s=%d' % kv
+                                                for kv in sorted(c.items()))))
+    for k in KEYORDER:
+        w('data/all_%s.bin' % k, allout[k])
+    w('data/map_off.bin', [v for row in map_off for v in row])
+    w('data/map_num.bin', [v for row in map_num for v in row])
+    w('data/par.bin', [PARS_E1[i] if i < len(PARS_E1) else 0
+                       for i in range(len(maplist))])
+    nummaps = len(maplist)
+    report.append('maps: %d baked, concatenated (E1M1 at base 0)' % nummaps)
 
     # mobjinfo field indices (upstream mobjinfo_t order; see parse_info)
     MI_SPAWN, MI_SEE, MI_PAIN, MI_MELEE, MI_MISSILE = 1, 3, 7, 10, 11
     MI_DEATH, MI_XDEATH, MI_RAISE = 12, 13, 22
 
     # every spawnable map thing must resolve: doomednum -> mobjinfo -> spawn
-    # sprite frame with a valid lump (PC-side gate for P_SpawnMapThings)
+    # sprite frame with a valid lump (PC-side gate for P_SpawnMapThings). M9:
+    # run this over EVERY baked map, not just E1M1 -- the later maps introduce
+    # things absent from E1M1 (demons/spectres/barons + more decorations), and
+    # this catches a missing sprite/mobjinfo at BAKE time rather than in-game.
     ed_to_mt = {}
     for mt, row in enumerate(mobjinfo):
         if row[0] != -1:
             ed_to_mt.setdefault(row[0], mt)
     mt_used = set()
-    for i in range(counts['things']):
-        ttype = out['things'][i*5 + 3]
-        opts = out['things'][i*5 + 4]
-        if ttype in (1, 2, 3, 4, 11) or (opts & 16):
-            continue
-        assert ttype in ed_to_mt, 'no mobjinfo for doomednum %d' % ttype
-        mt = ed_to_mt[ttype]
-        mt_used.add(mt)
-        spawnstate = mobjinfo[mt][MI_SPAWN]
-        spr, frameword = states[spawnstate][0], states[spawnstate][1]
-        first, nframes = sprdef[spr]
-        fr = frameword & 0x7FFF
-        assert fr < nframes, (ttype, spr, fr, nframes)
-        assert sprframe[first + fr][1] != -1, (ttype, spr, fr)
+    for (mname, things, nth) in map_things:
+        for i in range(nth):
+            ttype = things[i*5 + 3]
+            opts = things[i*5 + 4]
+            if ttype in (1, 2, 3, 4, 11) or (opts & 16):
+                continue
+            assert ttype in ed_to_mt, \
+                'map %s: no mobjinfo for doomednum %d' % (mname, ttype)
+            mt = ed_to_mt[ttype]
+            mt_used.add(mt)
+            spawnstate = mobjinfo[mt][MI_SPAWN]
+            spr, frameword = states[spawnstate][0], states[spawnstate][1]
+            first, nframes = sprdef[spr]
+            fr = frameword & 0x7FFF
+            assert fr < nframes, (mname, ttype, spr, fr, nframes)
+            assert sprframe[first + fr][1] != -1, (mname, ttype, spr, fr)
 
     # M6 gate: every state REACHABLE in this ROM must have a placed sprite
     # frame. Reachable = closure over nextstate from all state entry points of
@@ -906,6 +955,47 @@ def main():
         assert sprframe[first + fr][1] != -1, (snames[s], sprnames[spr], fr)
     report.append('state reachability: %d states validated against sprites'
                   % len(reachable))
+
+    # M9 map-integrity gate: every cross-reference p_setup dereferences at LOAD
+    # time must land inside the SAME map's slice (indices are local; the runtime
+    # arrays are 0-based per map). This is the only correctness evidence before
+    # the emulator, so it covers all five load-time refs -- an out-of-slice index
+    # is an instant crash/corruption on load. Also asserts a player start exists.
+    NF_SUBSECTOR = 0x8000
+    def row(key, gi):                          # global row gi of a concatenated lump
+        w_ = KEYWIDTH[key]
+        return allout[key][gi * w_:gi * w_ + w_]
+    for mi_, m in enumerate(maplist):
+        o = map_off[mi_]
+        vn = map_num[mi_][0]; sn = map_num[mi_][1]; gn = map_num[mi_][2]
+        ln = map_num[mi_][3]; scn = map_num[mi_][4]; en = map_num[mi_][5]
+        nn = map_num[mi_][6]
+        for i in range(ln):                    # linedef -> vertex, sidedef
+            r = row('linedefs', o[3] + i)
+            assert 0 <= r[0] < vn and 0 <= r[1] < vn, (m, 'linedef vtx', i)
+            assert r[5] == -1 or 0 <= r[5] < gn, (m, 'linedef side0', i, r[5])
+            assert r[6] == -1 or 0 <= r[6] < gn, (m, 'linedef side1', i, r[6])
+        for i in range(en):                    # seg -> vertex, linedef
+            r = row('segs', o[5] + i)
+            assert 0 <= r[0] < vn and 0 <= r[1] < vn, (m, 'seg vtx', i)
+            assert 0 <= r[4] < ln, (m, 'seg linedef', i, r[4])
+        for i in range(gn):                    # sidedef -> sector
+            assert 0 <= row('sidedefs', o[2] + i)[5] < sn, (m, 'sidedef sector', i)
+        for i in range(scn):                   # subsector -> firstseg (deref'd at once)
+            r = row('ssectors', o[4] + i)
+            assert 0 <= r[1] < en and r[0] >= 0, (m, 'ssector firstline', i, r[1])
+        for i in range(nn):                    # node -> child (node or subsector)
+            r = row('nodes', o[6] + i)
+            for c in (r[12], r[13]):
+                if c & NF_SUBSECTOR:
+                    assert (c & 0x7FFF) < scn, (m, 'node child ssec', i, c)
+                else:
+                    assert 0 <= c < nn, (m, 'node child node', i, c)
+        things, nth = map_things[mi_][1], map_things[mi_][2]
+        assert any(things[i * 5 + 3] == 1 for i in range(nth)), \
+            '%s: no player-1 start (type 1)' % m
+    report.append('map integrity: 9 maps, all load-time refs in-slice + '
+                  'player start present')
 
     # ---- gen_assets.h
     sky_tex = texname_to_idx.get('SKY1', 0)
@@ -969,9 +1059,16 @@ def main():
                 'AMMO', 'SHEL', 'SBOX', 'ROCK', 'BROK', 'SHOT', 'MGUN'):
         lines.append('#define GEN_SPR_%s %d' % (spn, sprnames.index(spn)))
     lines.append('')
-    for key in ('vertexes', 'sectors', 'sidedefs', 'linedefs',
-                'ssectors', 'segs', 'nodes', 'things', 'blockmap', 'reject'):
+    # GEN_NUM* stay the E1M1 (map-0) counts: the harness/walls ROMs read gen_*
+    # at these fixed bounds with gamemap defaulting to 1, and E1M1 sits at base 0.
+    # GEN_TOTNUM* size the concatenated embedded arrays (all maps).
+    tot = {k: len(allout[k]) // KEYWIDTH[k] for k in KEYORDER}
+    for key in KEYORDER:
         lines.append('#define GEN_NUM%s %d' % (key.upper(), counts[key]))
+    lines.append('')
+    for key in KEYORDER:
+        lines.append('#define GEN_TOTNUM%s %d' % (key.upper(), tot[key]))
+    lines.append('#define GEN_NUMMAPS %d' % nummaps)
     lines.append('')
     lines.append('// texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat')
     lines.append('embedded int[GEN_NUMTEXTURES][6] gen_texinfo = "data\\\\texinfo.bin";')
@@ -995,21 +1092,30 @@ def main():
     lines.append('embedded int[4096] finetangent = "data\\\\finetangent.bin";')
     lines.append('embedded int[2049] tantoangle = "data\\\\tantoangle.bin";')
     lines.append('')
-    lines.append('// map lumps, word-widened (layouts: see tools/wadtool.py header)')
+    lines.append('// map lumps, word-widened (layouts: see tools/wadtool.py header).')
+    lines.append('// ALL maps concatenated (E1M1 at base 0); slice via gen_map_off/num.')
     decl = {
-        'vertexes': 'int[GEN_NUMVERTEXES][2]',
-        'sectors': 'int[GEN_NUMSECTORS][7]',
-        'sidedefs': 'int[GEN_NUMSIDEDEFS][6]',
-        'linedefs': 'int[GEN_NUMLINEDEFS][7]',
-        'ssectors': 'int[GEN_NUMSSECTORS][2]',
-        'segs': 'int[GEN_NUMSEGS][6]',
-        'nodes': 'int[GEN_NUMNODES][14]',
-        'things': 'int[GEN_NUMTHINGS][5]',
-        'blockmap': 'int[GEN_NUMBLOCKMAP]',
-        'reject': 'int[GEN_NUMREJECT]',
+        'vertexes': 'int[GEN_TOTNUMVERTEXES][2]',
+        'sectors': 'int[GEN_TOTNUMSECTORS][7]',
+        'sidedefs': 'int[GEN_TOTNUMSIDEDEFS][6]',
+        'linedefs': 'int[GEN_TOTNUMLINEDEFS][7]',
+        'ssectors': 'int[GEN_TOTNUMSSECTORS][2]',
+        'segs': 'int[GEN_TOTNUMSEGS][6]',
+        'nodes': 'int[GEN_TOTNUMNODES][14]',
+        'things': 'int[GEN_TOTNUMTHINGS][5]',
+        'blockmap': 'int[GEN_TOTNUMBLOCKMAP]',
+        'reject': 'int[GEN_TOTNUMREJECT]',
     }
-    for key, ty in decl.items():
-        lines.append('embedded %s gen_%s = "data\\\\%s_%s.bin";' % (ty, key, ml, key))
+    for key in KEYORDER:
+        lines.append('embedded %s gen_%s = "data\\\\all_%s.bin";'
+                     % (decl[key], key, key))
+    lines.append('')
+    lines.append('// per-map directory: gen_map_off/num[map][MAPD_*] (see doomdefs.h).')
+    lines.append('// off = base ROW index into gen_* (WORD index for blockmap/reject);')
+    lines.append('// num = row count (word count for blockmap/reject). gen_par = seconds.')
+    lines.append('embedded int[GEN_NUMMAPS][10] gen_map_off = "data\\\\map_off.bin";')
+    lines.append('embedded int[GEN_NUMMAPS][10] gen_map_num = "data\\\\map_num.bin";')
+    lines.append('embedded int[GEN_NUMMAPS] gen_par = "data\\\\par.bin";')
     lines.append('')
     lines.append('#endif')
     open(os.path.join(ROOT, 'port', 'gen_assets.h'), 'w').write('\n'.join(lines) + '\n')
