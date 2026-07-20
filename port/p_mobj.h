@@ -552,6 +552,8 @@ void P_SpawnPlayer( int tx, int ty, int tangle )
     player1.ammo[am_clip] = 50;
     for( i = 0; i < NUMPOWERS; i++ )
         player1.powers[i] = 0;
+    for( i = 0; i < NUMCARDS; i++ )
+        player1.cards[i] = false;    // pistol-start each map: keys don't carry
     player1.attackdown = true;   // don't fire/use on the entering keypress
     player1.use_latch = true;
     player1.refire = 0;

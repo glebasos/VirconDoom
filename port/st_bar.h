@@ -12,7 +12,8 @@
 //  V_DrawPatch semantics (origin minus the patch's left/top offset).
 //
 //  DEVIATIONS: single player only (no frags panel, no colored faceback, no
-//  keys/cheats). Face god branch kept (powers exist). Berserk/radiation flash
+//  cheats). Keys ARE drawn (the 3 key boxes, keycards + skull slots). Face god
+//  branch kept (powers exist). Berserk/radiation flash
 //  branches kept faithfully though those powers are unused in the M6 arsenal.
 // -----------------------------------------------------------------------------
 #ifndef ST_BAR_H
@@ -67,6 +68,12 @@ int[6] st_arms_y = { 172, 172, 172, 181, 181, 181 };
 // per-type ammo rows, indexed by ammo type (0 clip/BULL, 1 shell/SHEL,
 // 2 cell/CELL, 3 misl/RCKT) -- matches the STBAR label order top to bottom
 int[4] st_ammo_y = { 173, 179, 191, 185 };
+
+// key-box y positions (st_stuff.c ST_KEY0Y/1Y/2Y); all share x=239. Box 0 =
+// blue, 1 = yellow, 2 = red; each shows the keycard (STKEYS0..2) or, if held,
+// the skull key (STKEYS3..5). E1 only ever fills the keycard slots.
+#define ST_KEYX  239
+int[3] st_key_y = { 171, 181, 191 };
 
 // ---- face widget state (upstream statics)
 int st_faceindex = 0;
@@ -331,6 +338,20 @@ void ST_DrawArms()
     }
 }
 
+// key boxes: for each of the 3 colors, prefer the skull key if held, else the
+// keycard, else draw nothing (st_stuff.c ST_updateWidgets keyboxes logic).
+void ST_DrawKeys()
+{
+    int i;
+    for( i = 0; i < 3; i++ )
+    {
+        if( player1.cards[i + 3] )
+            ST_DrawPatch( UI_KEYS + i + 3, ST_KEYX, st_key_y[i] );
+        else if( player1.cards[i] )
+            ST_DrawPatch( UI_KEYS + i, ST_KEYX, st_key_y[i] );
+    }
+}
+
 void ST_Drawer()
 {
     set_multiply_color( color_white );
@@ -359,6 +380,9 @@ void ST_Drawer()
         ST_DrawNum( UI_YNUM, ST_AMMOX2,    st_ammo_y[t], player1.ammo[t],    3 );
         ST_DrawNum( UI_YNUM, ST_MAXAMMOX2, st_ammo_y[t], player1.maxammo[t], 3 );
     }
+
+    // keys (right panel)
+    ST_DrawKeys();
 
     // the face
     ST_DrawPatch( UI_FACE + st_faceindex, ST_FX, ST_FY );

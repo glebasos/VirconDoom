@@ -796,6 +796,7 @@ def main():
                      'STFTR%d0' % p, 'STFTL%d0' % p, 'STFOUCH%d' % p,
                      'STFEVL%d' % p, 'STFKILL%d' % p]
     ui_names += ['STFGOD0', 'STFDEAD0']
+    ui_names += ['STKEYS%d' % k for k in range(6)]       # keycards 0-2, skulls 3-5
 
     ui_imgs = []
     for nm in ui_names:
@@ -829,6 +830,7 @@ def main():
         'YNUM':   ui_names.index('STYSNUM0'),
         'GNUM':   ui_names.index('STGNUM0'),
         'FACE':   ui_names.index('STFST00'),
+        'KEYS':   ui_names.index('STKEYS0'),
     }
     report.append('ui: %d elements -> 1 sheet, texid %d' % (len(ui_imgs), ui_texid0))
 
@@ -1068,6 +1070,7 @@ def main():
     lines.append('#define UI_YNUM %d' % ui_base['YNUM'])      # +digit 0..9
     lines.append('#define UI_GNUM %d' % ui_base['GNUM'])      # +digit 0..9
     lines.append('#define UI_FACE %d' % ui_base['FACE'])      # +faceindex 0..41
+    lines.append('#define UI_KEYS %d' % ui_base['KEYS'])      # +card 0..5
     lines.append('')
     lines.append('// action fn indices (states[s][3]; 0 = no action)')
     for i, an in enumerate(actnames):
@@ -1097,7 +1100,8 @@ def main():
     lines.append('')
     lines.append('// sprite number constants used by P_TouchSpecialThing')
     for spn in ('ARM1', 'ARM2', 'BON1', 'BON2', 'STIM', 'MEDI', 'CLIP',
-                'AMMO', 'SHEL', 'SBOX', 'ROCK', 'BROK', 'SHOT', 'MGUN'):
+                'AMMO', 'SHEL', 'SBOX', 'ROCK', 'BROK', 'SHOT', 'MGUN',
+                'BKEY', 'RKEY', 'YKEY'):
         lines.append('#define GEN_SPR_%s %d' % (spn, sprnames.index(spn)))
     lines.append('')
     # GEN_NUM* stay the E1M1 (map-0) counts: the harness/walls ROMs read gen_*

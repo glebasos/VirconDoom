@@ -23,7 +23,7 @@
 #define GEN_NUMMOBJTYPES 137
 #define GEN_NUMSTATES 967
 #define GEN_NUMACTIONS 75
-#define GEN_NUMUI 75
+#define GEN_NUMUI 81
 
 // status-bar UI element base indices (into gen_ui)
 #define UI_STBAR 0
@@ -33,6 +33,7 @@
 #define UI_YNUM 13
 #define UI_GNUM 23
 #define UI_FACE 33
+#define UI_KEYS 75
 
 // action fn indices (states[s][3]; 0 = no action)
 #define GEN_ACT_A_Light0 1
@@ -179,6 +180,9 @@
 #define GEN_SPR_BROK 81
 #define GEN_SPR_SHOT 92
 #define GEN_SPR_MGUN 88
+#define GEN_SPR_BKEY 62
+#define GEN_SPR_RKEY 63
+#define GEN_SPR_YKEY 64
 
 #define GEN_NUMVERTEXES 467
 #define GEN_NUMSECTORS 85

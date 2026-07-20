@@ -16,6 +16,19 @@ beyond M6 (chaingun/chainsaw/rocket launcher) — a softlock bug (empty weaponin
 rows) found + fixed. USER PLAYED all 9 maps and the weapons: "feels like all
 works." Builds clean; offline gates green (integrity + special-coverage + state
 reachability 334).** The whole shareware episode is now playable end-to-end.
+**KEYS + KEYED DOORS DONE (session 10, USER-CONFIRMED in emulator):**
+full keycard system so E1M2+ are truly beatable (E1M2's red door was opening
+for free before). player_t gains `boolean[NUMCARDS] cards` (6 slots; E1 uses
+only the 3 keycards — no skull keys in shareware, verified). Reset to false in
+P_SpawnPlayer (the port pistol-starts each map, so keys never carry to the next
+level). Pickups: P_GiveCard + BKEY/RKEY/YKEY sprite branches in
+P_TouchSpecialThing (always taken, not MF_COUNTITEM). Locks: EV_VerticalDoor
+checks player->cards FIRST (before the reversal path) for 26/32 blue, 27/34
+yellow, 28/33 red — denied plays SFX_OOF (no message system). Status bar: the 3
+key boxes drawn (ST_DrawKeys, STKEYS0..5 baked into the UI atlas, x=239,
+y=172/181/191). wadtool: STKEYS0-5 added to the UI atlas (now 81 elements),
+UI_KEYS + GEN_SPR_{BKEY,RKEY,YKEY} emitted. All gates green (keys already
+spawned+rendered, so no reachability change); harness/walls untouched.
 **REMAINING (optional polish, M9-ship close-out): new-monster attack AI
 (Baron/Demon/Spectre spawn + chase + are killable but don't attack yet),
 switch-texture swap (BUTTONS — cosmetic), per-map music (single E1M1 chiptune on
@@ -170,7 +183,8 @@ VS floor 2 (30 fps), heavy scenes 3-4, X toggles 160-column LO detail (~halves c
 - `r_bsp.h` — solidsegs clip + BSP walk; R_Subsector: FindPlane x2 + R_AddSprites;
   R_RenderView: clears -> walk -> R_DrawPlanes -> R_DrawMasked (all recording).
 - playsim (`p_*`) — thinkers (removal=flag, zone LEAKS by design), full collision
-  (P_TryMove/P_SlideMove/blockmap/PathTraverse), doors (DR 1/26-28, D1 31-34, no keys,
+  (P_TryMove/P_SlideMove/blockmap/PathTraverse), doors (DR 1/26-28, D1 31-34;
+  keyed 26-28/32-34 key-gated since session 10),
   no crush), gravity/step-up/bobbing, P_SpawnMobj from gen_mobjinfo,
   P_SpawnMapThings (skill 3 = options bit 1; skips types 1-4/11/MTF_ONLYNET;
   MF_SPAWNCEILING -> ONCEILINGZ). Movement constants are upstream 35Hz values at

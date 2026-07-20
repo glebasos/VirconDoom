@@ -127,6 +127,16 @@ struct mobj_t
 #define pw_infrared        5
 #define NUMPOWERS          6
 
+// keycards / skull keys (doomdef.h card_e). E1 uses only the three keycards;
+// the skull slots exist for faithful door-lock checks (always false in E1).
+#define it_bluecard        0
+#define it_yellowcard      1
+#define it_redcard         2
+#define it_blueskull       3
+#define it_yellowskull     4
+#define it_redskull        5
+#define NUMCARDS           6
+
 #define PST_LIVE   0
 #define PST_DEAD   1
 #define PST_REBORN 2
@@ -163,6 +173,7 @@ struct player_t
     int armorpoints;
     int armortype;               // 0 none, 1 green, 2 blue
     int[NUMPOWERS] powers;
+    boolean[NUMCARDS] cards;      // keycards / skull keys held (locked doors)
     boolean backpack;
 
     int readyweapon;

@@ -11,8 +11,10 @@
 //  exit switches (11/51/52/124), the E1M8 sector-11 ending, and sector
 //  light-effect thinkers (T_LightFlash/StrobeFlash/Glow/FireFlicker).
 //
+//  Locked doors (26/27/28/32/33/34) ARE key-gated (EV_VerticalDoor checks
+//  player->cards; denied = oof, no message system).
 //  DEVIATIONS: no crush/ceiling movers (no ceiling specials in E1) -- a closing
-//  door/plat won't push things out; no key checks (locked doors open freely);
+//  door/plat won't push things out;
 //  switch TEXTURES aren't swapped (BUTTONS unported -- cosmetic; swtchn still
 //  plays); teleport does no telefrag stomp (safe in SP). New monsters
 //  (Baron/Demon/Spectre) chase + are killable but don't attack yet
@@ -289,6 +291,42 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
 {
     sector_t* sec;
     vldoor_t* door;
+    player_t* player;
+    int sp = line->special;
+
+    // ---- key locks (p_doors.c). Checked FIRST, before the reversal path, so a
+    // keyless player can't even reverse a moving locked door. No message system;
+    // the denied "oof" is the only feedback. 26/32 blue, 27/34 yellow, 28/33 red.
+    if( sp == 26 || sp == 32 )               // blue lock
+    {
+        player = (player_t*)thing->player;
+        if( !player ) return;
+        if( !player->cards[it_bluecard] && !player->cards[it_blueskull] )
+        {
+            S_StartSound( NULL, SFX_OOF );
+            return;
+        }
+    }
+    else if( sp == 27 || sp == 34 )          // yellow lock
+    {
+        player = (player_t*)thing->player;
+        if( !player ) return;
+        if( !player->cards[it_yellowcard] && !player->cards[it_yellowskull] )
+        {
+            S_StartSound( NULL, SFX_OOF );
+            return;
+        }
+    }
+    else if( sp == 28 || sp == 33 )          // red lock
+    {
+        player = (player_t*)thing->player;
+        if( !player ) return;
+        if( !player->cards[it_redcard] && !player->cards[it_redskull] )
+        {
+            S_StartSound( NULL, SFX_OOF );
+            return;
+        }
+    }
 
     if( line->sidenum[1] == -1 )
         return;                  // manual doors open the BACK sector
@@ -970,8 +1008,8 @@ void P_CrossSpecialLine( int linenum, int side, mobj_t* thing )
     }
 }
 
-// use-line dispatch (p_switch.c P_UseSpecialLine). Manual doors (incl. locked
-// variants treated as unlocked -- no key system), switch-triggered specials, and
+// use-line dispatch (p_switch.c P_UseSpecialLine). Manual doors (incl. key-
+// locked variants, gated in EV_VerticalDoor), switch-triggered specials, and
 // the exit switches. S1 clears the special (one-shot); SR keeps it. Switch
 // textures are not swapped (BUTTONS unported -- cosmetic), but swtchn plays.
 boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )

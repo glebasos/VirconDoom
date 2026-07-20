@@ -148,6 +148,16 @@ boolean P_GiveArmor( player_t* player, int armortype )
     return true;
 }
 
+// p_inter.c P_GiveCard: keys are always taken (no "already have" reject in SP;
+// the pickup is still removed even if the card is a duplicate).
+void P_GiveCard( player_t* player, int card )
+{
+    if( player->cards[card] )
+        return;
+    player->bonuscount = BONUSADD;   // gold flash
+    player->cards[card] = true;
+}
+
 void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
 {
     player_t* player;
@@ -255,6 +265,14 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
             return;
         sound = SFX_WPNUP;
     }
+    // keycards (E1 has no skull keys). Always taken; not MF_COUNTITEM, so the
+    // COUNTITEM tail below leaves itemcount alone.
+    else if( spr == GEN_SPR_BKEY )
+        P_GiveCard( player, it_bluecard );
+    else if( spr == GEN_SPR_RKEY )
+        P_GiveCard( player, it_redcard );
+    else if( spr == GEN_SPR_YKEY )
+        P_GiveCard( player, it_yellowcard );
     else
         return;                  // unknown gettable: ignore (upstream I_Errors)
 
