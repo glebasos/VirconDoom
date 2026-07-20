@@ -28991,10 +28991,40 @@ __function_G_LoadLevel_return:
   pop BP
   ret
 
+__function_PressedInWindow:
+  push BP
+  mov BP, SP
+  push R1
+__if_28214_start:
+  mov R0, [BP+2]
+  igt R0, 0
+  jf R0, __if_28214_end
+  mov R0, [BP+2]
+  mov R1, [BP+3]
+  ile R0, R1
+  jmp __function_PressedInWindow_return
+__if_28214_end:
+__if_28222_start:
+  mov R0, [BP+4]
+  bnot R0
+  jf R0, __if_28222_end
+  mov R0, [BP+2]
+  isgn R0
+  mov R1, [BP+3]
+  ile R0, R1
+  jmp __function_PressedInWindow_return
+__if_28222_end:
+  mov R0, 0
+__function_PressedInWindow_return:
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
 __function_main:
   push BP
   mov BP, SP
-  isub SP, 22
+  isub SP, 49
   call __function_InitTables
   call __function_R_InitSprites
   call __function_P_InitPickups
@@ -29018,27 +29048,9 @@ __function_main:
   mov [BP-5], R0
   mov R0, 0
   mov [BP-6], R0
-__while_28238_start:
-__while_28238_continue:
-  mov R0, 1
-  jf R0, __while_28238_end
-  mov R1, 0
-  mov [SP], R1
-  call __function_select_gamepad
-  call __function_gamepad_button_start
-  mov R1, R0
-  igt R1, 0
-  mov R0, R1
+  mov R0, 0
   mov [BP-7], R0
-  mov R1, [BP-7]
-  bnot R1
-  jf R1, __LogicalAnd_ShortCircuit_28252
-  call __function_gamepad_button_y
-  mov R2, R0
-  igt R2, 0
-  and R1, R2
-__LogicalAnd_ShortCircuit_28252:
-  mov R0, R1
+  mov R0, 0
   mov [BP-8], R0
   mov R0, 0
   mov [BP-9], R0
@@ -29046,150 +29058,274 @@ __LogicalAnd_ShortCircuit_28252:
   mov [BP-10], R0
   mov R0, 0
   mov [BP-11], R0
-__if_28265_start:
-  mov R0, [BP-7]
-  bnot R0
-  jf R0, __if_28265_end
-__if_28269_start:
+  mov R0, 0
+  mov [BP-12], R0
+  call __function_get_frame_counter
+  mov [BP-13], R0
+__while_28282_start:
+__while_28282_continue:
+  mov R0, 1
+  jf R0, __while_28282_end
+  call __function_get_frame_counter
+  mov [BP-14], R0
+  mov R0, [BP-14]
+  mov R1, [BP-13]
+  isub R0, R1
+  mov [BP-15], R0
+  mov R0, [BP-14]
+  mov [BP-13], R0
+__if_28296_start:
+  mov R0, [BP-15]
+  ilt R0, 1
+  jf R0, __if_28296_end
+  mov R0, 1
+  mov [BP-15], R0
+__if_28296_end:
+  mov R1, 0
+  mov [SP], R1
+  call __function_select_gamepad
+  call __function_gamepad_button_start
+  mov R1, R0
+  igt R1, 0
+  mov R0, R1
+  mov [BP-16], R0
   call __function_gamepad_up
-  mov R1, R0
-  igt R1, 0
-  mov R0, R1
-  jf R0, __if_28269_end
-__if_28274_start:
-  mov R0, [BP-8]
-  jf R0, __if_28274_else
-  mov R0, 50
-  mov [BP-9], R0
-  jmp __if_28274_end
-__if_28274_else:
-  mov R0, 25
-  mov [BP-9], R0
-__if_28274_end:
-__if_28269_end:
-__if_28282_start:
+  mov [BP-17], R0
   call __function_gamepad_down
-  mov R1, R0
-  igt R1, 0
-  mov R0, R1
-  jf R0, __if_28282_end
-__if_28287_start:
-  mov R0, [BP-8]
-  jf R0, __if_28287_else
+  mov [BP-18], R0
+  call __function_gamepad_button_x
+  mov [BP-19], R0
+  call __function_gamepad_button_y
+  mov [BP-20], R0
+  call __function_gamepad_button_a
+  mov [BP-21], R0
+  call __function_gamepad_button_b
+  mov [BP-22], R0
+  mov R0, [BP-17]
+  igt R0, 0
+  mov [BP-23], R0
+  mov R0, [BP-18]
+  igt R0, 0
+  mov [BP-24], R0
+  mov R0, [BP-19]
+  igt R0, 0
+  mov [BP-25], R0
+  mov R0, [BP-20]
+  igt R0, 0
+  mov [BP-26], R0
+  mov R0, [BP-21]
+  igt R0, 0
+  mov [BP-27], R0
+  mov R0, [BP-22]
+  igt R0, 0
+  mov [BP-28], R0
+  mov R1, [BP-17]
+  mov [SP], R1
+  mov R1, [BP-15]
+  mov [SP+1], R1
+  mov R1, [BP-7]
+  mov [SP+2], R1
+  call __function_PressedInWindow
+  mov [BP-29], R0
+  mov R1, [BP-18]
+  mov [SP], R1
+  mov R1, [BP-15]
+  mov [SP+1], R1
+  mov R1, [BP-8]
+  mov [SP+2], R1
+  call __function_PressedInWindow
+  mov [BP-30], R0
+  mov R1, [BP-19]
+  mov [SP], R1
+  mov R1, [BP-15]
+  mov [SP+1], R1
+  mov R1, [BP-9]
+  mov [SP+2], R1
+  call __function_PressedInWindow
+  mov [BP-31], R0
+  mov R1, [BP-20]
+  mov [SP], R1
+  mov R1, [BP-15]
+  mov [SP+1], R1
+  mov R1, [BP-10]
+  mov [SP+2], R1
+  call __function_PressedInWindow
+  mov [BP-32], R0
+  mov R1, [BP-21]
+  mov [SP], R1
+  mov R1, [BP-15]
+  mov [SP+1], R1
+  mov R1, [BP-11]
+  mov [SP+2], R1
+  call __function_PressedInWindow
+  mov [BP-33], R0
+  mov R1, [BP-22]
+  mov [SP], R1
+  mov R1, [BP-15]
+  mov [SP+1], R1
+  mov R1, [BP-12]
+  mov [SP+2], R1
+  call __function_PressedInWindow
+  mov [BP-34], R0
+  mov R0, [BP-23]
+  mov [BP-7], R0
+  mov R0, [BP-24]
+  mov [BP-8], R0
+  mov R0, [BP-25]
+  mov [BP-9], R0
+  mov R0, [BP-26]
+  mov [BP-10], R0
+  mov R0, [BP-27]
+  mov [BP-11], R0
+  mov R0, [BP-28]
+  mov [BP-12], R0
+  mov R0, [BP-16]
+  bnot R0
+  jf R0, __LogicalAnd_ShortCircuit_28416
+  mov R1, [BP-26]
+  and R0, R1
+__LogicalAnd_ShortCircuit_28416:
+  mov [BP-35], R0
+  mov R0, 0
+  mov [BP-36], R0
+  mov R0, 0
+  mov [BP-37], R0
+  mov R0, 0
+  mov [BP-38], R0
+__if_28427_start:
+  mov R0, [BP-16]
+  bnot R0
+  jf R0, __if_28427_end
+__if_28431_start:
+  mov R0, [BP-23]
+  jf R0, __if_28431_end
+__if_28434_start:
+  mov R0, [BP-35]
+  jf R0, __if_28434_else
+  mov R0, 50
+  mov [BP-36], R0
+  jmp __if_28434_end
+__if_28434_else:
+  mov R0, 25
+  mov [BP-36], R0
+__if_28434_end:
+__if_28431_end:
+__if_28442_start:
+  mov R0, [BP-24]
+  jf R0, __if_28442_end
+__if_28445_start:
+  mov R0, [BP-35]
+  jf R0, __if_28445_else
   mov R0, -50
-  mov [BP-9], R0
-  jmp __if_28287_end
-__if_28287_else:
+  mov [BP-36], R0
+  jmp __if_28445_end
+__if_28445_else:
   mov R0, -25
-  mov [BP-9], R0
-__if_28287_end:
-__if_28282_end:
-__if_28297_start:
+  mov [BP-36], R0
+__if_28445_end:
+__if_28442_end:
+__if_28455_start:
   call __function_gamepad_button_r
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28297_end
-__if_28302_start:
-  mov R0, [BP-8]
-  jf R0, __if_28302_else
+  jf R0, __if_28455_end
+__if_28460_start:
+  mov R0, [BP-35]
+  jf R0, __if_28460_else
   mov R0, 40
-  mov [BP-10], R0
-  jmp __if_28302_end
-__if_28302_else:
+  mov [BP-37], R0
+  jmp __if_28460_end
+__if_28460_else:
   mov R0, 24
-  mov [BP-10], R0
-__if_28302_end:
-__if_28297_end:
-__if_28310_start:
+  mov [BP-37], R0
+__if_28460_end:
+__if_28455_end:
+__if_28468_start:
   call __function_gamepad_button_l
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28310_end
-__if_28315_start:
-  mov R0, [BP-8]
-  jf R0, __if_28315_else
+  jf R0, __if_28468_end
+__if_28473_start:
+  mov R0, [BP-35]
+  jf R0, __if_28473_else
   mov R0, -40
-  mov [BP-10], R0
-  jmp __if_28315_end
-__if_28315_else:
+  mov [BP-37], R0
+  jmp __if_28473_end
+__if_28473_else:
   mov R0, -24
-  mov [BP-10], R0
-__if_28315_end:
-__if_28310_end:
-__if_28325_start:
+  mov [BP-37], R0
+__if_28473_end:
+__if_28468_end:
+__if_28483_start:
   call __function_gamepad_left
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28325_end
-__if_28330_start:
-  mov R0, [BP-8]
-  jf R0, __if_28330_else
+  jf R0, __if_28483_end
+__if_28488_start:
+  mov R0, [BP-35]
+  jf R0, __if_28488_else
   mov R0, 1280
-  mov [BP-11], R0
-  jmp __if_28330_end
-__if_28330_else:
+  mov [BP-38], R0
+  jmp __if_28488_end
+__if_28488_else:
   mov R0, 640
-  mov [BP-11], R0
-__if_28330_end:
-__if_28325_end:
-__if_28338_start:
+  mov [BP-38], R0
+__if_28488_end:
+__if_28483_end:
+__if_28496_start:
   call __function_gamepad_right
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_28338_end
-__if_28343_start:
-  mov R0, [BP-8]
-  jf R0, __if_28343_else
+  jf R0, __if_28496_end
+__if_28501_start:
+  mov R0, [BP-35]
+  jf R0, __if_28501_else
   mov R0, -1280
-  mov [BP-11], R0
-  jmp __if_28343_end
-__if_28343_else:
+  mov [BP-38], R0
+  jmp __if_28501_end
+__if_28501_else:
   mov R0, -640
-  mov [BP-11], R0
-__if_28343_end:
-__if_28338_end:
-__if_28265_end:
-  mov R0, [BP-9]
+  mov [BP-38], R0
+__if_28501_end:
+__if_28496_end:
+__if_28427_end:
+  mov R0, [BP-36]
   mov [1616673], R0
-  mov R0, [BP-10]
+  mov R0, [BP-37]
   mov [1616674], R0
-  mov R0, [BP-11]
+  mov R0, [BP-38]
   mov [1616675], R0
-  call __function_gamepad_button_b
-  mov R1, R0
-  igt R1, 0
-  mov [1616676], R1
-  mov R0, R1
-  call __function_gamepad_button_a
-  mov R1, R0
-  igt R1, 0
-  mov [1616677], R1
-  mov R0, R1
+  mov R0, [BP-28]
+  jt R0, __LogicalOr_ShortCircuit_28528
+  mov R1, [BP-34]
+  or R0, R1
+__LogicalOr_ShortCircuit_28528:
+  mov [1616676], R0
+  mov R0, [BP-27]
+  jt R0, __LogicalOr_ShortCircuit_28534
+  mov R1, [BP-33]
+  or R0, R1
+__LogicalOr_ShortCircuit_28534:
+  mov [1616677], R0
   mov R0, 9
   mov [1616678], R0
-__if_28381_start:
-  mov R0, [BP-7]
-  jf R0, __if_28381_else
-__if_28384_start:
-  call __function_gamepad_button_y
-  mov R1, R0
-  ieq R1, 1
-  mov R0, R1
-  jf R0, __if_28384_end
+__if_28539_start:
+  mov R0, [BP-16]
+  jf R0, __if_28539_else
+__if_28542_start:
+  mov R0, [BP-32]
+  jf R0, __if_28542_end
   mov R0, [BP-1]
   bnot R0
   mov [BP-1], R0
-__if_28384_end:
-__if_28392_start:
-  call __function_gamepad_button_x
-  mov R1, R0
-  ieq R1, 1
-  mov R0, R1
-  jf R0, __if_28392_end
+__if_28542_end:
+__if_28548_start:
+  mov R0, [BP-31]
+  jf R0, __if_28548_end
   mov R0, [BP-2]
   bnot R0
   mov [BP-2], R0
@@ -29198,18 +29334,15 @@ __if_28392_start:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_28392_end:
-__if_28404_start:
-  call __function_gamepad_up
-  mov R1, R0
-  ieq R1, 1
-  jf R1, __LogicalAnd_ShortCircuit_28409
-  mov R2, [BP-3]
-  ilt R2, 2
-  and R1, R2
-__LogicalAnd_ShortCircuit_28409:
-  mov R0, R1
-  jf R0, __if_28404_end
+__if_28548_end:
+__if_28558_start:
+  mov R0, [BP-29]
+  jf R0, __LogicalAnd_ShortCircuit_28560
+  mov R1, [BP-3]
+  ilt R1, 2
+  and R0, R1
+__LogicalAnd_ShortCircuit_28560:
+  jf R0, __if_28558_end
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
@@ -29219,18 +29352,15 @@ __LogicalAnd_ShortCircuit_28409:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_28404_end:
-__if_28418_start:
-  call __function_gamepad_down
-  mov R1, R0
-  ieq R1, 1
-  jf R1, __LogicalAnd_ShortCircuit_28423
-  mov R2, [BP-3]
-  igt R2, 0
-  and R1, R2
-__LogicalAnd_ShortCircuit_28423:
-  mov R0, R1
-  jf R0, __if_28418_end
+__if_28558_end:
+__if_28570_start:
+  mov R0, [BP-30]
+  jf R0, __LogicalAnd_ShortCircuit_28572
+  mov R1, [BP-3]
+  igt R1, 0
+  and R0, R1
+__LogicalAnd_ShortCircuit_28572:
+  jf R0, __if_28570_end
   mov R0, [BP-3]
   mov R1, R0
   isub R1, 1
@@ -29240,66 +29370,63 @@ __LogicalAnd_ShortCircuit_28423:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_28418_end:
-  jmp __if_28381_end
-__if_28381_else:
-__if_28432_start:
-  call __function_gamepad_button_x
-  mov R1, R0
-  ieq R1, 1
-  mov R0, R1
-  jf R0, __if_28432_end
+__if_28570_end:
+  jmp __if_28539_end
+__if_28539_else:
+__if_28582_start:
+  mov R0, [BP-31]
+  jf R0, __if_28582_end
   mov R0, [1616638]
-  mov [BP-14], R0
-__if_28441_start:
+  mov [BP-41], R0
+__if_28589_start:
   mov R0, [1616639]
   ine R0, 9
-  jf R0, __if_28441_end
+  jf R0, __if_28589_end
   mov R0, [1616639]
-  mov [BP-14], R0
-__if_28441_end:
-  mov R0, [BP-14]
-  mov [BP-15], R0
+  mov [BP-41], R0
+__if_28589_end:
+  mov R0, [BP-41]
+  mov [BP-42], R0
   mov R0, 0
-  mov [BP-16], R0
-__while_28456_start:
-__while_28456_continue:
-  mov R0, [BP-16]
+  mov [BP-43], R0
+__while_28604_start:
+__while_28604_continue:
+  mov R0, [BP-43]
   ilt R0, 8
-  jf R0, __while_28456_end
-  mov R0, [BP-15]
+  jf R0, __while_28604_end
+  mov R0, [BP-42]
   iadd R0, 1
-  mov [BP-15], R0
-__if_28466_start:
-  mov R0, [BP-15]
+  mov [BP-42], R0
+__if_28614_start:
+  mov R0, [BP-42]
   igt R0, 2
-  jf R0, __if_28466_end
+  jf R0, __if_28614_end
   mov R0, 0
-  mov [BP-15], R0
-__if_28466_end:
-__if_28473_start:
+  mov [BP-42], R0
+__if_28614_end:
+__if_28621_start:
   mov R0, 1616640
-  mov R1, [BP-15]
+  mov R1, [BP-42]
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_28473_end
-  jmp __while_28456_end
-__if_28473_end:
-  mov R0, [BP-16]
+  jf R0, __if_28621_end
+  jmp __while_28604_end
+__if_28621_end:
+  mov R0, [BP-43]
   mov R1, R0
   iadd R1, 1
-  mov [BP-16], R1
-  jmp __while_28456_start
-__while_28456_end:
-  mov R0, [BP-15]
+  mov [BP-43], R1
+  jmp __while_28604_start
+__while_28604_end:
+  mov R0, [BP-42]
   mov [1616678], R0
-__if_28432_end:
-__if_28381_end:
-__if_28485_start:
+__if_28582_end:
+__if_28539_end:
+__if_28633_start:
   mov R0, [global_gameexit]
   bnot R0
-  jf R0, __if_28485_end
+  jf R0, __if_28633_end
   mov R1, global_player1
   mov [SP], R1
   call __function_P_PlayerThink
@@ -29312,25 +29439,22 @@ __if_28485_start:
   mov R1, R0
   iadd R1, 1
   mov [global_leveltime], R1
-__if_28485_end:
-__if_28499_start:
+__if_28633_end:
+__if_28647_start:
   mov R0, [1616622]
   ieq R0, 2
-  jf R0, __if_28499_end
+  jf R0, __if_28647_end
   call __function_G_LoadLevel
-__if_28499_end:
-__if_28505_start:
-  mov R1, [global_gameexit]
-  jf R1, __LogicalAnd_ShortCircuit_28507
-  call __function_gamepad_button_a
-  mov R2, R0
-  ieq R2, 1
-  and R1, R2
-__LogicalAnd_ShortCircuit_28507:
-  mov R0, R1
-  jf R0, __if_28505_end
+__if_28647_end:
+__if_28653_start:
+  mov R0, [global_gameexit]
+  jf R0, __LogicalAnd_ShortCircuit_28655
+  mov R1, [BP-33]
+  and R0, R1
+__LogicalAnd_ShortCircuit_28655:
+  jf R0, __if_28653_end
   call __function_G_LoadLevel
-__if_28505_end:
+__if_28653_end:
   mov R1, [global_player1]
   iadd R1, 4
   mov R0, [R1]
@@ -29367,12 +29491,12 @@ __if_28505_end:
   mov R0, [global_colpix]
   mov R1, [global_viewwidth]
   imul R0, R1
-  mov [BP-12], R0
+  mov [BP-39], R0
   mov R1, [global_viewwindowx]
   mov [SP], R1
   mov R1, [global_viewwindowy]
   mov [SP+1], R1
-  mov R1, [BP-12]
+  mov R1, [BP-39]
   mov [SP+2], R1
   mov R1, [global_centery]
   imul R1, 2
@@ -29387,7 +29511,7 @@ __if_28505_end:
   imul R2, 2
   iadd R1, R2
   mov [SP+1], R1
-  mov R1, [BP-12]
+  mov R1, [BP-39]
   mov [SP+2], R1
   mov R1, [global_viewheight]
   mov R2, [global_centery]
@@ -29403,33 +29527,33 @@ __if_28505_end:
   mov R1, -1
   mov [SP], R1
   call __function_set_multiply_color
-__if_28589_start:
+__if_28735_start:
   mov R0, [1616622]
   ieq R0, 1
-  jf R0, __if_28589_end
+  jf R0, __if_28735_end
   mov R1, 220
   mov [SP], R1
   mov R1, 250
   mov [SP+1], R1
-  mov R1, __literal_string_28597
+  mov R1, __literal_string_28743
   mov [SP+2], R1
   call __function_print_at
-__if_28589_end:
-__if_28598_start:
+__if_28735_end:
+__if_28744_start:
   mov R0, [global_gameexit]
-  jf R0, __if_28598_end
+  jf R0, __if_28744_end
   mov R1, 250
   mov [SP], R1
   mov R1, 90
   mov [SP+1], R1
-  mov R1, __literal_string_28604
+  mov R1, __literal_string_28750
   mov [SP+2], R1
   call __function_print_at
   mov R1, 210
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_28608
+  mov R1, __literal_string_28754
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -29443,7 +29567,7 @@ __if_28598_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_28617
+  mov R1, __literal_string_28763
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -29457,7 +29581,7 @@ __if_28598_start:
   mov [SP], R1
   mov R1, 130
   mov [SP+1], R1
-  mov R1, __literal_string_28626
+  mov R1, __literal_string_28772
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -29471,18 +29595,18 @@ __if_28598_start:
   mov [SP], R1
   mov R1, 170
   mov [SP+1], R1
-  mov R1, __literal_string_28635
+  mov R1, __literal_string_28781
   mov [SP+2], R1
   call __function_print_at
-__if_28598_end:
-__if_28636_start:
+__if_28744_end:
+__if_28782_start:
   mov R0, [BP-1]
-  jf R0, __if_28636_end
+  jf R0, __if_28782_end
   mov R1, 10
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28642
+  mov R1, __literal_string_28788
   mov [SP+2], R1
   call __function_print_at
   mov R1, 25
@@ -29499,7 +29623,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28654
+  mov R1, __literal_string_28800
   mov [SP+2], R1
   call __function_print_at
   mov R1, 105
@@ -29516,7 +29640,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28666
+  mov R1, __literal_string_28812
   mov [SP+2], R1
   call __function_print_at
   mov R1, 185
@@ -29533,7 +29657,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28678
+  mov R1, __literal_string_28824
   mov [SP+2], R1
   call __function_print_at
   mov R1, 285
@@ -29553,7 +29677,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28691
+  mov R1, __literal_string_28837
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -29567,25 +29691,25 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_28699
+  mov R1, __literal_string_28845
   mov [SP+2], R1
   call __function_print_at
   call __function_Z_UsedWords
   mov R1, R0
   shl R1, -10
-  mov [BP-17], R1
+  mov [BP-44], R1
   mov R1, 520
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, [BP-17]
+  mov R1, [BP-44]
   mov [SP+2], R1
   call __function_ShowInt
   mov R1, 10
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28709
+  mov R1, __literal_string_28855
   mov [SP+2], R1
   call __function_print_at
   mov R1, 60
@@ -29599,7 +29723,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28717
+  mov R1, __literal_string_28863
   mov [SP+2], R1
   call __function_print_at
   mov R1, 160
@@ -29613,7 +29737,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28725
+  mov R1, __literal_string_28871
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -29627,7 +29751,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28733
+  mov R1, __literal_string_28879
   mov [SP+2], R1
   call __function_print_at
   mov R1, 370
@@ -29641,7 +29765,7 @@ __if_28636_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28741
+  mov R1, __literal_string_28887
   mov [SP+2], R1
   call __function_print_at
   mov R1, 475
@@ -29651,31 +29775,31 @@ __if_28636_start:
   mov R1, [global_perf_drops]
   mov [SP+2], R1
   call __function_ShowInt
-__if_28746_start:
+__if_28892_start:
   mov R0, [BP-2]
-  jf R0, __if_28746_else
+  jf R0, __if_28892_else
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28751
+  mov R1, __literal_string_28897
   mov [SP+2], R1
   call __function_print_at
-  jmp __if_28746_end
-__if_28746_else:
+  jmp __if_28892_end
+__if_28892_else:
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_28755
+  mov R1, __literal_string_28901
   mov [SP+2], R1
   call __function_print_at
-__if_28746_end:
+__if_28892_end:
   mov R1, 10
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28759
+  mov R1, __literal_string_28905
   mov [SP+2], R1
   call __function_print_at
   mov R1, 50
@@ -29689,7 +29813,7 @@ __if_28746_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28767
+  mov R1, __literal_string_28913
   mov [SP+2], R1
   call __function_print_at
   mov R1, 150
@@ -29703,7 +29827,7 @@ __if_28746_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28775
+  mov R1, __literal_string_28921
   mov [SP+2], R1
   call __function_print_at
   mov R1, 265
@@ -29717,7 +29841,7 @@ __if_28746_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28783
+  mov R1, __literal_string_28929
   mov [SP+2], R1
   call __function_print_at
   mov R1, 385
@@ -29731,7 +29855,7 @@ __if_28746_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_28791
+  mov R1, __literal_string_28937
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -29741,22 +29865,22 @@ __if_28746_end:
   mov R1, [BP-3]
   mov [SP+2], R1
   call __function_ShowInt
-__if_28636_end:
+__if_28782_end:
   mov R0, [BP-4]
   mov R1, R0
   iadd R1, 1
   mov [BP-4], R1
   call __function_end_frame
   call __function_get_frame_counter
-  mov [BP-13], R0
-  mov R0, [BP-13]
+  mov [BP-40], R0
+  mov R0, [BP-40]
   mov R1, [BP-5]
   isub R0, R1
   mov [BP-6], R0
-  mov R0, [BP-13]
+  mov R0, [BP-40]
   mov [BP-5], R0
-  jmp __while_28238_start
-__while_28238_end:
+  jmp __while_28282_start
+__while_28282_end:
 __function_main_return:
   mov SP, BP
   pop BP
@@ -29814,51 +29938,51 @@ __embedded_gen_sfx_sound:
   datafile "data\\sfx_sound.bin"
 __embedded_gen_sfx_priority:
   datafile "data\\sfx_priority.bin"
-__literal_string_28597:
+__literal_string_28743:
   string "YOU DIED - PRESS B"
-__literal_string_28604:
+__literal_string_28750:
   string "LEVEL COMPLETE"
-__literal_string_28608:
+__literal_string_28754:
   string "KILLS"
-__literal_string_28617:
+__literal_string_28763:
   string "ITEMS"
-__literal_string_28626:
+__literal_string_28772:
   string "SECRETS"
-__literal_string_28635:
+__literal_string_28781:
   string "PRESS A TO RESTART"
-__literal_string_28642:
+__literal_string_28788:
   string "X"
-__literal_string_28654:
+__literal_string_28800:
   string "Y"
-__literal_string_28666:
+__literal_string_28812:
   string "Z"
-__literal_string_28678:
+__literal_string_28824:
   string "SEC"
-__literal_string_28691:
+__literal_string_28837:
   string "FRAME"
-__literal_string_28699:
+__literal_string_28845:
   string "ZONE"
-__literal_string_28709:
+__literal_string_28855:
   string "SEGS"
-__literal_string_28717:
+__literal_string_28863:
   string "COLS"
-__literal_string_28725:
+__literal_string_28871:
   string "DRAWS"
-__literal_string_28733:
+__literal_string_28879:
   string "VS"
-__literal_string_28741:
+__literal_string_28887:
   string "DROP"
-__literal_string_28751:
+__literal_string_28897:
   string "LO"
-__literal_string_28755:
+__literal_string_28901:
   string "HI"
-__literal_string_28759:
+__literal_string_28905:
   string "PLN"
-__literal_string_28767:
+__literal_string_28913:
   string "FIL"
-__literal_string_28775:
+__literal_string_28921:
   string "SPR"
-__literal_string_28783:
+__literal_string_28929:
   string "MSK"
-__literal_string_28791:
+__literal_string_28937:
   string "SIZE"

@@ -81,6 +81,23 @@ Game controls (current): dpad up/down move, dpad left/right turn, L/R strafe,
 **A fire, B use, Y (hold) run, X cycle weapon** (fist->pistol->shotgun); START is a
 modifier (held = movement suppressed): **START+Up/Down view size, START+X detail
 HI/LO, START+Y debug HUD.** (Also in README.md.)
+
+**Input model — DON'T regress this (session 7, user-confirmed).** The Vircon
+gamepad registers are NOT booleans: each is a signed AGE counter (emulator
+`V32GamepadController.cpp`) — press sets `+1`, release sets `-1`, aged one step
+per vsync (`+N` = held N frames ago, `-N` = released N frames ago). The game loop
+polls ONCE per iteration, which spans 2-4 vsyncs under load, so the naive
+just-pressed test `gamepad_button_x() == 1` almost never sees `1` and drops most
+presses. Edge detection uses `PressedInWindow(count, elapsed, prevHeld)` in
+game.c: `edge = (count>0 && count<=elapsed) || (count<0 && !prevHeld &&
+-count<=elapsed)`, where `elapsed` = `get_frame_counter()` delta measured AT poll
+time. This catches presses AND quick taps that were pressed+released between two
+polls (the `!prevHeld` guard stops an ordinary hold-release reading as a tap).
+Fire/use are `held || edge` so a tap yields one attack/use tic. **Never edge-detect
+a gamepad button with `== 1`; always go through the count-window helper.** Residual
+(not hit in practice): a tap = one sim tic, and `A_WeaponReady` only reads attack on
+weapon-ready tics — if deliberate taps ever drop, LATCH cmd_attack until a ready tic
+consumes it (~2 tics). Don't add speculatively.
 Status line (always on, y=0): HP/ARM/AMMO/KILLS. Debug HUD:
 SEGS/COLS/DRAWS/VS/SLOW/HI-LO + PLN/FIL/SPR/MSK + X/Y/Z/SEC/FRAME/ZONE(kwords).
 Death: B respawns (level restarts). Exit switch: freezes sim, A restarts.

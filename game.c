@@ -85,6 +85,28 @@ void G_LoadLevel()
     S_StartMusic();              // (re)start the looping level music
 }
 
+// Did a button PRESS occur within the last <elapsed> vsyncs? Robust even to a
+// quick tap that was pressed AND released between two polls. The hardware gamepad
+// register (V32GamepadController) is a signed age: +N = held, pressed N frames
+// ago; -N = released, released N frames ago; aged one step per vsync. So:
+//  - held now (count > 0) and pressed no more than <elapsed> frames ago  -> press
+//    landed inside the window (a fresh press, or a release+repress; a continuous
+//    hold from before reads count > elapsed and is correctly NOT an edge).
+//  - released now (count < 0) but released within the window, AND we were already
+//    released at the previous poll -> a full press+release (tap) happened in the
+//    window. The prevHeld guard is essential: without it the ordinary release of
+//    an ongoing hold would falsely register as a new press.
+// This is what fixes quick taps slipping between polls when the loop spans several
+// vsyncs (VS 3-4). See also the boolean fallback logic that preceded it.
+bool PressedInWindow( int count, int elapsed, bool prevHeld )
+{
+    if( count > 0 )
+        return count <= elapsed;
+    if( !prevHeld )
+        return (-count) <= elapsed;
+    return false;
+}
+
 void main()
 {
     InitTables();
@@ -104,20 +126,72 @@ void main()
     int lastFc = get_frame_counter();
     int vsyncs = 0;
 
+    // Previous-frame HELD state, and the frame counter at the last poll, for edge
+    // detection. The hardware gamepad registers are signed AGE counters (see
+    // PressedInWindow): +N held / -N released, aged one step per vsync. This loop
+    // polls once per ITERATION, which routinely spans several vsyncs under load, so
+    // a press (or a whole quick tap) can happen entirely between two polls. We
+    // measure how many vsyncs elapsed since the last poll and ask PressedInWindow
+    // whether a press landed in that window -- robust to any elapsed count AND to
+    // taps that were pressed and released before we ever looked.
+    bool prevUp = false;
+    bool prevDown = false;
+    bool prevX = false;
+    bool prevY = false;
+    bool prevA = false;
+    bool prevB = false;
+    int lastPollFc = get_frame_counter();
+
     while( true )
     {
         // ---- input -> flattened ticcmd (g_game.c constants)
+        // vsyncs elapsed since the previous poll = the input window to scan
+        int pollFc = get_frame_counter();
+        int elapsed = pollFc - lastPollFc;
+        lastPollFc = pollFc;
+        if( elapsed < 1 ) elapsed = 1;
+
         select_gamepad( 0 );
         bool startHeld = gamepad_button_start() > 0;
-        bool run = !startHeld && gamepad_button_y() > 0;
+        int upCount    = gamepad_up();
+        int downCount  = gamepad_down();
+        int xCount     = gamepad_button_x();
+        int yCount     = gamepad_button_y();
+        int aCount     = gamepad_button_a();
+        int bCount     = gamepad_button_b();
+
+        bool upHeld   = upCount > 0;
+        bool downHeld = downCount > 0;
+        bool xHeld    = xCount > 0;
+        bool yHeld    = yCount > 0;
+        bool aHeld    = aCount > 0;
+        bool bHeld    = bCount > 0;
+
+        // rising edges: a press anywhere in the elapsed window (incl. quick taps)
+        bool upEdge   = PressedInWindow( upCount,   elapsed, prevUp );
+        bool downEdge = PressedInWindow( downCount, elapsed, prevDown );
+        bool xEdge    = PressedInWindow( xCount,    elapsed, prevX );
+        bool yEdge    = PressedInWindow( yCount,    elapsed, prevY );
+        bool aEdge    = PressedInWindow( aCount,    elapsed, prevA );
+        bool bEdge    = PressedInWindow( bCount,    elapsed, prevB );
+
+        // store held-state unconditionally so no branch can desync the edges
+        prevUp = upHeld;
+        prevDown = downHeld;
+        prevX = xHeld;
+        prevY = yHeld;
+        prevA = aHeld;
+        prevB = bHeld;
+
+        bool run = !startHeld && yHeld;
 
         int fm = 0;
         int sm = 0;
         int turn = 0;
         if( !startHeld )         // START is a modifier: it suppresses movement
         {
-            if( gamepad_up() > 0 )    { if( run ) fm = 0x32;  else fm = 0x19; }
-            if( gamepad_down() > 0 )  { if( run ) fm = -0x32; else fm = -0x19; }
+            if( upHeld )   { if( run ) fm = 0x32;  else fm = 0x19; }
+            if( downHeld ) { if( run ) fm = -0x32; else fm = -0x19; }
             if( gamepad_button_r() > 0 ) { if( run ) sm = 0x28;  else sm = 0x18; }
             if( gamepad_button_l() > 0 ) { if( run ) sm = -0x28; else sm = -0x18; }
             if( gamepad_left() > 0 )  { if( run ) turn = 1280;  else turn = 640; }
@@ -127,32 +201,33 @@ void main()
         player1.cmd_forwardmove = fm;
         player1.cmd_sidemove = sm;
         player1.cmd_angleturn = turn;
-        player1.cmd_use = gamepad_button_b() > 0;
-        player1.cmd_attack = gamepad_button_a() > 0;
+        // use / fire register on a hold OR a quick tap that came and went between polls
+        player1.cmd_use = bHeld || bEdge;
+        player1.cmd_attack = aHeld || aEdge;
         player1.cmd_newweapon = wp_nochange;
 
         if( startHeld )
         {
-            if( gamepad_button_y() == 1 ) showDebug = !showDebug;
-            if( gamepad_button_x() == 1 )
+            if( yEdge ) showDebug = !showDebug;
+            if( xEdge )
             {
                 lowDetail = !lowDetail;
                 R_SetView( viewSize, lowDetail );
             }
             // START + up/down: grow/shrink the view (narrower = fewer columns =
             // faster COMPUTE frame; watch COLS/VS in the debug HUD)
-            if( gamepad_up() == 1 && viewSize < 2 )
+            if( upEdge && viewSize < 2 )
             {
                 viewSize++;
                 R_SetView( viewSize, lowDetail );
             }
-            if( gamepad_down() == 1 && viewSize > 0 )
+            if( downEdge && viewSize > 0 )
             {
                 viewSize--;
                 R_SetView( viewSize, lowDetail );
             }
         }
-        else if( gamepad_button_x() == 1 )
+        else if( xEdge )
         {
             // cycle owned weapons: fist -> pistol -> shotgun -> fist
             int cur = player1.readyweapon;
@@ -185,7 +260,7 @@ void main()
         // respawn / next level requests
         if( player1.playerstate == PST_REBORN )
             G_LoadLevel();
-        if( gameexit && gamepad_button_a() == 1 )
+        if( gameexit && aEdge )
             G_LoadLevel();
 
         // ---- compute pass (records draw commands; GPU untouched)
