@@ -493,8 +493,26 @@ MT_ROCKET) added to p_mobj.h; game.c's X-cycle covers all owned slots. Safety ne
 can ever soft-lock again. `A_Saw`'s turn-to-target is simplified to face directly
 (upstream's tiny nudge uses unsigned BAM compares that degenerate on signed int).
 
-DEVIATIONS (look-broken-but-arent): switch TEXTURES don't swap (BUTTONS unported
-— cosmetic; swtchn still plays, so a fired switch has no visual "pressed" cue);
+SWITCH TEXTURES — DONE (session 13, built + offline coverage-gate green, NEEDS
+EMULATOR CONFIRM). Every SW1*/SW2* pair is baked (wadtool builds gen_switchlist
+from the alphSwitchList: 19 pairs in shareware = all ep-1 SW textures present).
+port/p_spec.h gains P_ChangeSwitchTexture (swaps sides[].{top,mid,bottom}texture
+to i^1 — renderer reads the side texture field live so it animates instantly) +
+P_StartButton/P_UpdateButtons (SR switches revert after BUTTONTIME=35; ticked in
+game.c after P_RunThinkers; buttonlist reset in P_SpawnSpecials via P_InitButtons).
+The click now plays from the swap (S_StartSoundSector at frontsector), so
+P_UseSpecialLine's two unconditional S_StartSound(SFX_SWTCHN) calls were removed;
+side effect (more faithful): a failed one-shot no longer clears its special or
+clicks. Exit switches route through P_ChangeSwitchTexture(line,0) too (SW1EXIT→
+SW2EXIT swaps; faithful linuxdoom quirk keeps swtchn not swtchx since special is
+cleared before the ==11 test). wadtool coverage gate: EXIT switches (11/51) MUST
+carry a switch texture (hard assert); other switch specials (62/63/70 lifts/doors
+etc.) are REPORTED covered-vs-plain because level designers legitimately put those
+on lift/door edges with no SW texture (SUPPORT2 etc. — press "use", edge moves, no
+swap; correct DOOM). Per-map coverage printed. Harness/walls GREEN 231 by
+construction (gen_switchlist unused there; game.c-only P_UpdateButtons).
+
+DEVIATIONS (look-broken-but-arent):
 no crush/ceiling movers (E1 has none). Music stays the single E1M1 chiptune on
 every level.
 

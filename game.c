@@ -359,6 +359,7 @@ void main()
         {
             P_PlayerThink( &player1 );
             P_RunThinkers();
+            P_UpdateButtons();       // revert SR switch textures after BUTTONTIME
             ST_Ticker();             // advance the face widget in the sim tick
             AM_Ticker( amZoom );     // follow player + apply zoom (no-op if closed)
             S_UpdateSounds( player1.mo );   // re-attenuate as the listener moves

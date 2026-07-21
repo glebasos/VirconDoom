@@ -13,10 +13,11 @@
 //
 //  Locked doors (26/27/28/32/33/34) ARE key-gated (EV_VerticalDoor checks
 //  player->cards; denied = oof + a "You need a <color> key" HUD message).
+//  Switch TEXTURES swap now (P_ChangeSwitchTexture + SR buttons via
+//  P_UpdateButtons; SW1*/SW2* pairs baked in gen_switchlist).
 //  DEVIATIONS: no crush/ceiling movers (no ceiling specials in E1) -- a closing
 //  door/plat won't push things out;
-//  switch TEXTURES aren't swapped (BUTTONS unported -- cosmetic; swtchn still
-//  plays); teleport does no telefrag stomp (safe in SP). New monsters
+//  teleport does no telefrag stomp (safe in SP). New monsters
 //  (Baron/Demon/Spectre) now chase AND attack (A_BruisAttack/A_SargAttack,
 //  session 11). NOT emulator-verified -- test per map.
 // -----------------------------------------------------------------------------
@@ -1017,10 +1018,139 @@ void P_CrossSpecialLine( int linenum, int side, mobj_t* thing )
     }
 }
 
+// ---- switch / button textures (p_switch.c). The atlas bakes every SW1*/SW2*
+// pair (gen_switchlist holds texture-index pairs; i and i^1 are the two states).
+// Swapping sides[].{top,mid,bottom}texture animates LIVE -- the renderer reads
+// the side texture field each frame (r_segs.h). One-shot (S1) switches stay
+// flipped; retriggerable (SR) buttons flip back after BUTTONTIME, ticked by
+// P_UpdateButtons in the sim tic. The switch click (swtchn/swtchx) is played
+// HERE, from the swap, so P_UseSpecialLine no longer plays it separately.
+#define BUTTONTIME 35        // ~1s at 30Hz (upstream TICRATE literal)
+#define MAXBUTTONS 16
+#define SWH_TOP    0
+#define SWH_MIDDLE 1
+#define SWH_BOTTOM 2
+
+struct button_t
+{
+    line_t*   line;
+    int       where;
+    int       btexture;      // texture index to restore when the timer expires
+    int       btimer;
+    sector_t* soundsec;      // where the revert click plays
+};
+
+button_t[MAXBUTTONS] buttonlist;
+
+void P_InitButtons()
+{
+    int i;
+    for( i = 0; i < MAXBUTTONS; i++ )
+    {
+        buttonlist[i].line = NULL;
+        buttonlist[i].btimer = 0;
+    }
+}
+
+// queue a button to revert its texture after `time` tics (SR switches only)
+void P_StartButton( line_t* line, int w, int texture, int time )
+{
+    int i;
+    for( i = 0; i < MAXBUTTONS; i++ )    // already pressed? don't re-arm
+        if( buttonlist[i].btimer && buttonlist[i].line == line )
+            return;
+    for( i = 0; i < MAXBUTTONS; i++ )
+        if( !buttonlist[i].btimer )
+        {
+            buttonlist[i].line = line;
+            buttonlist[i].where = w;
+            buttonlist[i].btexture = texture;
+            buttonlist[i].btimer = time;
+            buttonlist[i].soundsec = line->frontsector;
+            return;
+        }
+    // no free slot: drop it (upstream I_Errors; the port stays alive)
+}
+
+// flip the switch texture on line's front side to its opposite. useAgain=1 keeps
+// the special (SR button, arms a revert timer); 0 clears it (S1 one-shot).
+void P_ChangeSwitchTexture( line_t* line, int useAgain )
+{
+    int     texTop, texMid, texBot, i, sound;
+    side_t* sd;
+
+    if( !useAgain )
+        line->special = 0;
+
+    sd = &sides[ line->sidenum[0] ];
+    texTop = sd->toptexture;
+    texMid = sd->midtexture;
+    texBot = sd->bottomtexture;
+
+    // NB faithful upstream quirk: special was already cleared above for useAgain
+    // 0, so exit switches (11) fall through to swtchn, never swtchx.
+    sound = SFX_SWTCHN;
+    if( line->special == 11 )
+        sound = SFX_SWTCHX;
+
+    for( i = 0; i < GEN_NUMSWITCHES * 2; i++ )
+    {
+        if( gen_switchlist[i] == texTop )
+        {
+            S_StartSoundSector( line->frontsector, sound );
+            sd->toptexture = gen_switchlist[i ^ 1];
+            if( useAgain )
+                P_StartButton( line, SWH_TOP, gen_switchlist[i], BUTTONTIME );
+            return;
+        }
+        else if( gen_switchlist[i] == texMid )
+        {
+            S_StartSoundSector( line->frontsector, sound );
+            sd->midtexture = gen_switchlist[i ^ 1];
+            if( useAgain )
+                P_StartButton( line, SWH_MIDDLE, gen_switchlist[i], BUTTONTIME );
+            return;
+        }
+        else if( gen_switchlist[i] == texBot )
+        {
+            S_StartSoundSector( line->frontsector, sound );
+            sd->bottomtexture = gen_switchlist[i ^ 1];
+            if( useAgain )
+                P_StartButton( line, SWH_BOTTOM, gen_switchlist[i], BUTTONTIME );
+            return;
+        }
+    }
+}
+
+// tick the SR buttons; restore the original texture when a timer runs out
+void P_UpdateButtons()
+{
+    int     i;
+    side_t* sd;
+    for( i = 0; i < MAXBUTTONS; i++ )
+    {
+        if( !buttonlist[i].btimer )
+            continue;
+        buttonlist[i].btimer = buttonlist[i].btimer - 1;
+        if( buttonlist[i].btimer )
+            continue;
+        sd = &sides[ buttonlist[i].line->sidenum[0] ];
+        if( buttonlist[i].where == SWH_TOP )
+            sd->toptexture = buttonlist[i].btexture;
+        else if( buttonlist[i].where == SWH_MIDDLE )
+            sd->midtexture = buttonlist[i].btexture;
+        else
+            sd->bottomtexture = buttonlist[i].btexture;
+        S_StartSoundSector( buttonlist[i].soundsec, SFX_SWTCHN );
+        buttonlist[i].line = NULL;
+        buttonlist[i].btimer = 0;
+    }
+}
+
 // use-line dispatch (p_switch.c P_UseSpecialLine). Manual doors (incl. key-
 // locked variants, gated in EV_VerticalDoor), switch-triggered specials, and
-// the exit switches. S1 clears the special (one-shot); SR keeps it. Switch
-// textures are not swapped (BUTTONS unported -- cosmetic), but swtchn plays.
+// the exit switches. S1 clears the special (one-shot); SR keeps it.
+// P_ChangeSwitchTexture swaps the switch texture AND plays the click.
 boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
 {
     int s = line->special;
@@ -1042,13 +1172,14 @@ boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
         return true;
     }
 
-    // SWITCHES (S1 one-shot / SR retrigger). Exits handled explicitly.
+    // SWITCHES (S1 one-shot / SR retrigger). Exits handled explicitly. The
+    // switch texture swap + click come from P_ChangeSwitchTexture (useAgain 0
+    // clears the special AND swaps; the exit fires after).
     if( s == 11 || s == 51 )
     {
-        S_StartSound( thing, SFX_SWTCHN );
+        P_ChangeSwitchTexture( line, 0 );
         if( s == 11 ) G_ExitLevel();
         else          G_SecretExitLevel();
-        line->special = 0;
         return true;
     }
 
@@ -1068,9 +1199,13 @@ boolean P_UseSpecialLine( mobj_t* thing, line_t* line, int side )
     else
         return false;                    // not a use-line we handle
 
-    S_StartSound( thing, SFX_SWTCHN );
-    if( oneshot )
-        line->special = 0;
+    // Only swap/click/clear when the special actually fired (faithful upstream:
+    // a failed one-shot keeps its special so it can be retried).
+    if( acted )
+    {
+        if( oneshot ) P_ChangeSwitchTexture( line, 0 );
+        else          P_ChangeSwitchTexture( line, 1 );
+    }
     return true;
 }
 
@@ -1284,6 +1419,7 @@ void P_SpawnFireFlicker( sector_t* sector )
 void P_SpawnSpecials()
 {
     int i;
+    P_InitButtons();             // clear button timers (hold freed line_t* ptrs)
     totalsecret = 0;             // M9: count secret sectors for the intermission
     for( i = 0; i < numsectors; i++ )
     {

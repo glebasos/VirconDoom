@@ -219,6 +219,12 @@
 #define GEN_TOTNUMREJECT 29607
 #define GEN_NUMMAPS 9
 
+// switch textures: gen_switchlist holds SW1/SW2 texture-index
+// pairs (index i and i^1 are the two states); see p_spec.h.
+#define GEN_NUMSWITCHES 19
+#define GEN_SWITCHWORDS 38
+embedded int[GEN_SWITCHWORDS] gen_switchlist = "data\\switchlist.bin";
+
 // texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat
 embedded int[GEN_NUMTEXTURES][6] gen_texinfo = "data\\texinfo.bin";
 embedded int[GEN_NUMFLATS][3] gen_flatinfo = "data\\flatinfo.bin";

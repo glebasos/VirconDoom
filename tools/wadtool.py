@@ -587,6 +587,39 @@ def main():
     texname_to_idx = {nm: i for i, (nm, _) in enumerate(textures)}
     flatname_to_idx = {nm: i for i, (nm, _, _) in enumerate(flats)}
 
+    # ---- switch textures (p_switch.c alphSwitchList). Each SW1x/SW2x pair maps
+    # to a two-element run in gen_switchlist so index i and i^1 are the two
+    # states. We keep EVERY pair whose BOTH textures are present in the baked
+    # atlas (whole-WAD); for the shareware IWAD that is exactly the episode-1
+    # set, but this generalizes to any WAD without an episode filter.
+    ALPH_SWITCHES = [
+        ('SW1BRCOM','SW2BRCOM'), ('SW1BRN1','SW2BRN1'), ('SW1BRN2','SW2BRN2'),
+        ('SW1BRNGN','SW2BRNGN'), ('SW1BROWN','SW2BROWN'), ('SW1COMM','SW2COMM'),
+        ('SW1COMP','SW2COMP'), ('SW1DIRT','SW2DIRT'), ('SW1EXIT','SW2EXIT'),
+        ('SW1GRAY','SW2GRAY'), ('SW1GRAY1','SW2GRAY1'), ('SW1METAL','SW2METAL'),
+        ('SW1PIPE','SW2PIPE'), ('SW1SLAD','SW2SLAD'), ('SW1STARG','SW2STARG'),
+        ('SW1STON1','SW2STON1'), ('SW1STON2','SW2STON2'), ('SW1STONE','SW2STONE'),
+        ('SW1STRTN','SW2STRTN'),
+        ('SW1BLUE','SW2BLUE'), ('SW1CMT','SW2CMT'), ('SW1GARG','SW2GARG'),
+        ('SW1GSTON','SW2GSTON'), ('SW1HOT','SW2HOT'), ('SW1LION','SW2LION'),
+        ('SW1SATYR','SW2SATYR'), ('SW1SKIN','SW2SKIN'), ('SW1VINE','SW2VINE'),
+        ('SW1WOOD','SW2WOOD'),
+        ('SW1PANEL','SW2PANEL'), ('SW1ROCK','SW2ROCK'), ('SW1MET2','SW2MET2'),
+        ('SW1WDMET','SW2WDMET'), ('SW1BRIK','SW2BRIK'), ('SW1MOD1','SW2MOD1'),
+        ('SW1ZIM','SW2ZIM'), ('SW1STON6','SW2STON6'), ('SW1TEK','SW2TEK'),
+        ('SW1MARB','SW2MARB'), ('SW1SKULL','SW2SKULL'),
+    ]
+    switch_words = []
+    switch_idx_set = set()
+    for n1, n2 in ALPH_SWITCHES:
+        if n1 in texname_to_idx and n2 in texname_to_idx:
+            i1 = texname_to_idx[n1]; i2 = texname_to_idx[n2]
+            switch_words += [i1, i2]
+            switch_idx_set.add(i1); switch_idx_set.add(i2)
+    num_switches = len(switch_words) // 2
+    assert num_switches > 0, 'no switch texture pairs found in WAD'
+    w('data/switchlist.bin', switch_words)
+
     # Bake vertical repeats of wall textures up to ~256px so typical column
     # spans fit ONE atlas run (kills the multi-run splits that made stair and
     # tall-wall scenes explode in draw commands; 128 was not enough — walls
@@ -763,8 +796,42 @@ def main():
     map_num = []
     map_things = []                            # (name, things_words, count) per map
     counts = out = None                        # E1M1 reference (legacy GEN_NUM*/gates)
+    # Switch-texture coverage gate. Two classes of use-activated linedef:
+    #   - EXIT switches (11/51): ALWAYS a real wall switch -> HARD-ASSERT its
+    #     front side carries a gen_switchlist texture (a genuine "nothing swaps"
+    #     bug would show here first).
+    #   - other switch specials (lifts/doors/floors): level designers use these
+    #     BOTH as wall switches AND as "use against the lift/door edge" triggers,
+    #     where the front side legitimately has NO switch texture (that edge just
+    #     moves, no visual swap -- faithful DOOM). So those are only REPORTED
+    #     (covered vs plain), never asserted.
+    EXIT_SWITCHES  = {11, 51}
+    OTHER_SWITCHES = {7, 9, 18, 20, 23, 29, 50, 62, 63, 70, 103}
+    def _front_tex(LD, SD, li):
+        sd0 = LD[7*li + 5]
+        if sd0 == -1:
+            return None
+        return (SD[6*sd0 + 2], SD[6*sd0 + 3], SD[6*sd0 + 4])   # top,bot,mid
     for m in maplist:
         c, o = bake_map(wad, m, texname_to_idx, flatname_to_idx)
+        LD = o['linedefs']; SD = o['sidedefs']
+        covered = plain = 0
+        for li in range(c['linedefs']):
+            sp = LD[7*li + 3]
+            if sp in EXIT_SWITCHES:
+                tex = _front_tex(LD, SD, li)
+                assert tex is not None, (m, 'exit switch has no front side', li)
+                assert any(t in switch_idx_set for t in tex), (
+                    m, 'EXIT switch', li, 'special', sp,
+                    'front textures', tex, 'has no switch texture')
+                covered += 1
+            elif sp in OTHER_SWITCHES:
+                tex = _front_tex(LD, SD, li)
+                if tex and any(t in switch_idx_set for t in tex):
+                    covered += 1
+                else:
+                    plain += 1
+        report.append('%s: switch-lines covered=%d plain-use=%d' % (m, covered, plain))
         offrow = []
         numrow = []
         for k in KEYORDER:
@@ -1026,6 +1093,12 @@ def main():
     for key in KEYORDER:
         lines.append('#define GEN_TOTNUM%s %d' % (key.upper(), tot[key]))
     lines.append('#define GEN_NUMMAPS %d' % nummaps)
+    lines.append('')
+    lines.append('// switch textures: gen_switchlist holds SW1/SW2 texture-index')
+    lines.append('// pairs (index i and i^1 are the two states); see p_spec.h.')
+    lines.append('#define GEN_NUMSWITCHES %d' % num_switches)
+    lines.append('#define GEN_SWITCHWORDS %d' % (num_switches * 2))
+    lines.append('embedded int[GEN_SWITCHWORDS] gen_switchlist = "data\\\\switchlist.bin";')
     lines.append('')
     lines.append('// texinfo: sheet,x,y,w,h,logicalh per texture; flatinfo: sheet,x,y per flat')
     lines.append('embedded int[GEN_NUMTEXTURES][6] gen_texinfo = "data\\\\texinfo.bin";')
