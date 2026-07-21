@@ -351,7 +351,7 @@ void main()
 
         // ---- advance the live synth music, frame-rate-compensated (once per
         // iteration; runs even on the intermission so the track keeps playing).
-        // No-op in the baked-WAV backend. See s_sound.h / synthprobe.c.
+        // See port/s_sound.h and MUSIC.md.
         S_MusicUpdate();
 
         // ---- one game tic (30 Hz); freeze the sim on the exit screen

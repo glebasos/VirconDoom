@@ -50,11 +50,11 @@
 //   CONFIGURATION CONSTANTS
 // =============================================================================
 
-// VENDORED into VirconDoom/port/. Divergence from upstream VirconSynthesizer:
-// the synth's voices map to SPU channels [SYNTH_CHANNEL_BASE .. +SYNTH_VOICES),
-// so a host that also uses the SPU for sfx can hand the synth a channel window.
-// Both are #ifndef-guarded -- a consumer #defines them before #include; the
-// upstream defaults (base 0, 16 voices) keep upstream behavior byte-identical.
+// SYNTH_VOICES / SYNTH_CHANNEL_BASE define the synth's SPU-channel window: its
+// voices map to channels [SYNTH_CHANNEL_BASE .. +SYNTH_VOICES). A host that also
+// uses the SPU for sound effects can hand the synth a sub-range and keep the
+// rest for sfx. Both are #ifndef-guarded so a consumer may #define them before
+// #include "synth.h"; the defaults (base 0, 16 voices) own the whole SPU.
 #ifndef SYNTH_VOICES
 #define SYNTH_VOICES        16        // synth voice count (<= 16 SPU channels)
 #endif

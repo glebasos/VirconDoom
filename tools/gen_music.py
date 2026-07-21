@@ -25,11 +25,6 @@ FRAMES_PER_ROW = 3
 PAD_ROWS = 24            # a low note longer than this (~1.2s) is a sustained pad,
                          # not a bass hit -> soft triangle (a loud square drones/buzzes)
 
-# synth.h sequencer cell sentinels
-SEQ_REST = -2
-SEQ_OFF  = -1
-SEQ_HOLD = 0
-
 # GM percussion note -> drum bucket
 def drum_bucket(note):
     if note in (35, 36):                 return 'kick'
@@ -81,69 +76,12 @@ def parse_mus(raw):
     return events, t
 
 
-def mono_track(events, chan, nrows):
-    """Monophonic reduction of one melodic channel to `nrows` cells. Highest
-    pitch wins on a shared onset row; sustained notes -> HOLD; gaps -> REST."""
-    onset = [0] * nrows        # highest note whose onset lands on this row (0=none)
-    cover = [0] * nrows        # highest note sustaining across this row (0=none)
-    for s0, s1, c, note, vel in events:
-        if c != chan:
-            continue
-        r0 = int(round(s0 / ROW_TICKS))
-        r1 = int(round(s1 / ROW_TICKS))
-        if r1 <= r0:
-            r1 = r0 + 1
-        if 0 <= r0 < nrows and note > onset[r0]:
-            onset[r0] = note
-        for r in range(max(0, r0), min(nrows, r1)):
-            if note > cover[r]:
-                cover[r] = note
-    cells = []
-    prev = 0
-    for r in range(nrows):
-        if onset[r]:                       # a fresh attack (even if same pitch)
-            cells.append(onset[r]); prev = onset[r]
-        elif cover[r]:                     # still ringing
-            cells.append(SEQ_HOLD); prev = cover[r]
-        else:                              # silence
-            if prev != 0:
-                cells.append(SEQ_OFF); prev = 0
-            else:
-                cells.append(SEQ_REST)
-    return cells
-
-
-def drum_track(events, bucket, hit_note, nrows):
-    """One drum bucket -> cells that fire `hit_note` on any onset in the bucket."""
-    hit = [False] * nrows
-    for s0, s1, c, note, vel in events:
-        if c != 15 or drum_bucket(note) != bucket:
-            continue
-        r = int(round(s0 / ROW_TICKS))
-        if 0 <= r < nrows:
-            hit[r] = True
-    return [hit_note if hit[r] else SEQ_REST for r in range(nrows)]
-
-
-def emit_array(name, cells, nrows):
-    out = ['int[ %s ] %s =' % (nrows, name), '{']
-    line = '    '
-    for i, v in enumerate(cells):
-        tok = '%d,' % v
-        if len(line) + len(tok) > 96:
-            out.append(line); line = '    '
-        line += tok + ' '
-    out.append(line.rstrip())
-    out.append('};')
-    return '\n'.join(out)
-
-
 # =============================================================================
-#  EVENT export -- mirrors bake_music (wadtool.py) faithfully: every note is one
-#  event played with full polyphony (no mono reduction, no chords dropped). An
-#  event player calls synth_play_timed(inst,note,vel,dur) per event. Three
-#  instruments match the baked timbres: 0=square lead, 1=square bass, 2=noise
-#  perc. This is the "recreate the WAV with the synth lib" path.
+#  EVENT export -- every note is one event played with full polyphony (no mono
+#  reduction, no chords dropped). The runtime event player (port/mus_player.h)
+#  calls synth_play_timed(inst,note,vel,dur) per event. Instrument roles: 0 lead
+#  (square), 1 bass (louder square), 2 kick, 3 snare/hat noise, 4 sustained-low
+#  pad. See MUSIC.md.
 # =============================================================================
 def w_bin(path, words):
     """write a list of ints as little-endian int32 (matches wadtool.w / embedded)."""
@@ -257,79 +195,9 @@ def emit_events(wad, maps=range(1, 10)):
 
 
 def main():
-    if '--events' in sys.argv:
-        emit_events(Wad(WAD_PATH))
-        return
-    lump = sys.argv[1] if len(sys.argv) > 1 else 'D_E1M1'
-    wad = Wad(WAD_PATH)
-    events, total = parse_mus(wad.by_name(lump))
-    nrows = int(math.ceil(total / ROW_TICKS))
-
-    # ---- track definitions: (varname, kind, arg, preset, velocity, mono, gate)
-    #   kind 'mono'  -> arg = MUS channel;  kind 'drum' -> arg = (bucket, note)
-    #   gate = 0 on melodic tracks: honor the generated note durations (each row
-    #   is a NOTE attack, HOLD sustain, or OFF release), instead of force-cutting.
-    #   Each poly track releases its previous voice on every new onset, so only a
-    #   low-amplitude decaying tail overlaps -- stolen first, inaudibly.
-    tracks = [
-        ('bass',  'mono', 2,               'PRESET_BASS_SQUARE', 1.0, 0, 0),
-        ('lead0', 'mono', 0,               'PRESET_LEAD_SAW',    0.7, 0, 0),
-        ('lead1', 'mono', 1,               'PRESET_LEAD_SQUARE', 0.6, 0, 0),
-        ('kick',  'drum', ('kick', 36),    'PRESET_KICK',        1.0, 0, 0),
-        ('snare', 'drum', ('snare', 60),   'PRESET_SNARE',       0.8, 0, 0),
-        ('hat',   'drum', ('hat', 72),     'PRESET_HAT_CLOSED',  0.5, 0, 0),
-    ]
-
-    key = lump.lower().replace('d_', 'mus_')          # D_E1M1 -> mus_e1m1
-    L = []
-    L.append('// GENERATED by tools/gen_music.py from %s -- do not edit' % lump)
-    L.append('#ifndef GEN_MUSIC_H')
-    L.append('#define GEN_MUSIC_H')
-    L.append('')
-    L.append('#include "synth.h"')
-    L.append('')
-    L.append('#define %s_ROWS %d' % (key.upper(), nrows))
-    L.append('')
-
-    for name, kind, arg, preset, vel, mono, gate in tracks:
-        if kind == 'mono':
-            cells = mono_track(events, arg, nrows)
-        else:
-            cells = drum_track(events, arg[0], arg[1], nrows)
-        L.append(emit_array('%s_%s' % (key, name), cells, '%s_ROWS' % key.upper()))
-        L.append('')
-
-    L.append('Song %s;' % key)
-    L.append('')
-    L.append('// Fill the Song struct. Call AFTER synth_load_presets().')
-    L.append('void S_InitSongs()')
-    L.append('{')
-    L.append('    %s.num_tracks     = %d;' % (key, len(tracks)))
-    L.append('    %s.length         = %s_ROWS;' % (key, key.upper()))
-    L.append('    %s.frames_per_row = %d;' % (key, FRAMES_PER_ROW))
-    L.append('    %s.loop           = 1;' % key)
-    L.append('    %s.transpose      = 0;' % key)
-    L.append('    %s.swing          = 0;' % key)
-    for i, (name, kind, arg, preset, vel, mono, gate) in enumerate(tracks):
-        L.append('    %s.tracks[ %d ].inst     = synth_preset( %s );' % (key, i, preset))
-        L.append('    %s.tracks[ %d ].rows     = %s_%s;' % (key, i, key, name))
-        L.append('    %s.tracks[ %d ].velocity = %s;' % (key, i, vel))
-        L.append('    %s.tracks[ %d ].mono     = %d;' % (key, i, mono))
-        L.append('    %s.tracks[ %d ].gate     = %d;' % (key, i, gate))
-    L.append('}')
-    L.append('')
-    L.append('// Which Song plays on a given map (only E1M1 generated for now).')
-    L.append('Song* S_SelectSong( int gamemap )')
-    L.append('{')
-    L.append('    return &%s;' % key)
-    L.append('}')
-    L.append('')
-    L.append('#endif')
-
-    outp = os.path.join(ROOT, 'port', 'gen_music.h')
-    open(outp, 'w').write('\n'.join(L) + '\n')
-    print('wrote %s: %s, %d rows, %d tracks, %d events, %.1fs' %
-          (outp, lump, nrows, len(tracks), len(events), total / 140.0))
+    # Only the event-player backend is generated (port/gen_musicev.h + per-map
+    # data bins). The '--events' flag is kept for symmetry with older docs.
+    emit_events(Wad(WAD_PATH))
 
 
 if __name__ == '__main__':
