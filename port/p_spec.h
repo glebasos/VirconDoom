@@ -1354,9 +1354,10 @@ void P_PlayerInSpecialSector( player_t* player )
     }
     else if( sp == 9 )
     {
-        // secret sector
+        // secret sector (fires once: special cleared below)
         player->secretcount++;
         sector->special = 0;
+        secretmsgtics = MESSAGE_TICS;        // "A secret is revealed!" popup
     }
     else if( sp == 11 )
     {

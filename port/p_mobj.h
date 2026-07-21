@@ -563,6 +563,7 @@ void P_SpawnPlayer( int tx, int ty, int tangle )
     player1.bonuscount = 0;
     player1.message = NULL;
     player1.messagetics = 0;
+    secretmsgtics = 0;           // clear the secret popup on (re)spawn / level load
     player1.attacker = NULL;
     player1.extralight = 0;
     player1.killcount = 0;

@@ -433,6 +433,14 @@ void main()
         if( player1.messagetics > 0 && !gameexit )
             HU_DrawText( 4, 2, player1.message );
 
+        // "A secret is revealed!" — centered in the play area (ZDoom-style; the
+        // HU_FONT is red, close enough to the original gold).
+        if( secretmsgtics > 0 && !gameexit )
+        {
+            int* sm = "A SECRET IS REVEALED!";
+            HU_DrawText( ( 640 - HU_TextWidth( sm ) ) / 2, 130, sm );
+        }
+
         if( player1.playerstate == PST_DEAD )
             print_at( 220, 250, "YOU DIED - PRESS B" );
 

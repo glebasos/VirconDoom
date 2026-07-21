@@ -216,10 +216,11 @@ struct player_t
 player_t player1;                // single player (referenced by the renderer
                                  // for psprites, so it lives here, not p_mobj)
 
-// HUD message timeout (upstream HU_MSGTIMEOUT = 4*TICRATE; 35Hz literal kept at
-// 30Hz like the power durations). Lives here (not p_inter.h) because p_spec.h --
-// included EARLIER -- also posts messages (locked-door denials).
-#define MESSAGE_TICS ( 4 * 35 )
+// HUD message timeout for BOTH the top pickup/door line and the centered secret
+// popup. Upstream HU_MSGTIMEOUT is 4*TICRATE (~4.7s at 30Hz); the user asked for
+// snappier popups, so it's halved to 2*35 = 70 tics (~2.3s). Lives here (not
+// p_inter.h) because p_spec.h -- included EARLIER -- also posts messages.
+#define MESSAGE_TICS ( 2 * 35 )
 
 void P_SetMessage( player_t* pl, int* msg )
 {
@@ -247,6 +248,11 @@ boolean secretexit = false;
 int totalkills = 0;
 int totalitems = 0;
 int totalsecret = 0;
+
+// "A secret is revealed!" center-screen popup (ZDoom-style enhancement, NOT
+// vanilla). Set to MESSAGE_TICS when a secret sector is first entered
+// (P_PlayerInSpecialSector), counted down in P_PlayerThink, drawn by game.c.
+int secretmsgtics = 0;
 
 // ---- thinker list
 thinker_t thinkercap;

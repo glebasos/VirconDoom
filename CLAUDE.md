@@ -349,7 +349,8 @@ bottom); shows SIZE.
    player_t gains `int* message` (int[] string) + `int messagetics`.
    P_TouchSpecialThing sets a local `msg` in every pickup branch (E1 GOT* subset
    of d_englsh.h #defined at the top of p_inter.h) and the common tail stamps
-   message + `messagetics = MESSAGE_TICS` (4*35, 35Hz literal kept at 30Hz like
+   message + `messagetics = MESSAGE_TICS` (2*35 = 70 tics ≈ 2.3s at 30Hz — halved
+   from vanilla's 4*TICRATE per user request for snappier popups; 35Hz literal like
    the power durations). P_PlayerThink counts messagetics down next to bonuscount;
    P_SpawnPlayer resets both (message = NULL — string-literal→`int*` field + NULL
    for null both verified to compile; plain `0` is NOT a valid pointer init).
@@ -375,7 +376,16 @@ bottom); shows SIZE.
    native red (caller sets multiply white). game.c draws it at (4,2) when
    messagetics>0 && !gameexit. Offline gate: scratchpad sim re-renders sample
    messages from uiinfo.bin+ui0.png with the identical advance logic (kerning +
-   baseline confirmed). CHAINSAW + ROCKET-LAUNCHER pickups WIRED (session 12b):
+   baseline confirmed).
+   "A SECRET IS REVEALED!" popup (session 12c, ZDoom-style enhancement, NOT
+   vanilla): global `int secretmsgtics` set to MESSAGE_TICS when a secret sector
+   (special 9) is first entered (P_PlayerInSpecialSector; fires once — special
+   cleared), counted down in P_PlayerThink, reset in P_SpawnPlayer. game.c draws
+   it CENTERED in the play area (x=(640-HU_TextWidth(s))/2, y=130) via new
+   st_bar.h HU_TextWidth (same advance rules as HU_DrawText). Red HU_FONT (user
+   OK'd reusing it; original gold not reproducible — atlas glyphs are red and
+   multiply-color can only darken, not add green).
+   CHAINSAW + ROCKET-LAUNCHER pickups WIRED (session 12b):
    they previously had no branch in P_TouchSpecialThing (placed 5×/9× across E1 but
    UNPICKABLE — a real bug). Added GEN_SPR_CSAW/LAUN branches → P_GiveWeapon(
    wp_chainsaw/wp_missile) + GOTCHAINSAW/GOTLAUNCHER announce (weaponinfo already

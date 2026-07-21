@@ -26,7 +26,7 @@ intermission tally between levels, and level progression including the secret ex
 Vircon32 GPU can't do perspective flat spans — floors are solid color, SNES-port
 style); attack AI for the monsters new to E1M2+ (Baron/Demon/Spectre spawn, chase,
 and are killable but don't attack yet); switch-texture swap (a flipped switch
-plays its sound but the wall texture doesn't change); menus; HUD pickup messages;
+plays its sound but the wall texture doesn't change); menus;
 per-map music (the one chiptune plays on every level). Music is a from-scratch
 **chiptune** render of "At Doom's Gate" (no soundfont/synth is available to render
 the authentic instruments); the SPU is mono-per-channel, so sounds attenuate with
@@ -74,8 +74,23 @@ Game flow:
 | **You died** | Press **B** (use) to respawn — the level restarts |
 | **Exit switch used** | The sim freezes; press **A** to restart the level |
 
-The status line (health / armor / ammo / kills) is always shown at the top; the DOOM
-status bar occupies the bottom 64 px.
+The DOOM status bar occupies the bottom 64 px.
+
+## HUD messages
+
+Short text popups in DOOM's small **HU_FONT** (a square-styled recolor, drawn red):
+
+- **Pickups** — top-left, for notable items only: keys, weapons, power-ups
+  (soulsphere / blur / radiation suit / computer map / light-amp visor), MegaArmor,
+  and the backpack. Common items (green armor, health/armor bonuses, stimpacks,
+  medikits, ammo) are picked up silently to keep the HUD quiet.
+- **Locked doors** — "You need a blue / red / yellow key to open this door" when you
+  try a keyed door without the matching card (plus the "oof").
+- **"A secret is revealed!"** — centered on screen the first time you enter a secret
+  area. (A ZDoom-style touch — vanilla DOOM counts secrets silently.)
+
+Each popup shows for about 2.3 seconds. The secret popup is not in vanilla DOOM; the
+original's gold color isn't reproducible from the red font atlas, so it reuses red.
 
 ## Build & run
 

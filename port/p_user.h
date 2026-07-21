@@ -188,6 +188,8 @@ void P_PlayerThink( player_t* player )
         player->bonuscount--;
     if( player->messagetics )
         player->messagetics--;
+    if( secretmsgtics )
+        secretmsgtics--;
 }
 
 #endif

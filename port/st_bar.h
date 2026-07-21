@@ -322,6 +322,27 @@ void HU_DrawChar( int uiidx, int sx, int sy )
     draw_region_zoomed_at( sx, sy );
 }
 
+// pixel width of a line drawn by HU_DrawText (same advance rules) -- for centering.
+int HU_TextWidth( int* str )
+{
+    int i = 0;
+    int c;
+    int w = 0;
+
+    while( str[i] != 0 )
+    {
+        c = str[i];
+        i++;
+        if( c >= 'a' && c <= 'z' )
+            c -= 32;
+        if( c < HU_FONTSTART || c > HU_FONTEND )
+            w += HU_SPACEW;
+        else
+            w += HU_SCALE * gen_ui[ UI_HUFONT + ( c - HU_FONTSTART ) ][3];
+    }
+    return w;
+}
+
 // (x,y) = top-left screen pixel of the text line.
 void HU_DrawText( int x, int y, int* str )
 {
