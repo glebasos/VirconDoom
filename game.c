@@ -349,6 +349,11 @@ void main()
             player1.cmd_newweapon = next;
         }
 
+        // ---- advance the live synth music, frame-rate-compensated (once per
+        // iteration; runs even on the intermission so the track keeps playing).
+        // No-op in the baked-WAV backend. See s_sound.h / synthprobe.c.
+        S_MusicUpdate();
+
         // ---- one game tic (30 Hz); freeze the sim on the exit screen
         if( !gameexit )
         {

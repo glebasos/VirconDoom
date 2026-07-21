@@ -219,48 +219,117 @@
   %define global_soundtarget 1706491
   %define global_weaponinfo 1706492
   %define global_bulletslope 1706540
-  %define global_ch_prio 1706541
-  %define global_ch_att 1706556
-  %define global_ch_x 1706571
-  %define global_ch_y 1706586
-  %define global_ch_id 1706601
-  %define global_st_arms_x 1706616
-  %define global_st_arms_y 1706622
-  %define global_st_ammo_y 1706628
-  %define global_st_key_y 1706632
-  %define global_st_faceindex 1706635
-  %define global_st_facecount 1706636
-  %define global_st_face_priority 1706637
-  %define global_st_oldhealth 1706638
-  %define global_st_lastattackdown 1706639
-  %define global_st_randomnumber 1706640
-  %define global_st_oldweaponsowned 1706641
-  %define global_st_pain_lastcalc 1706649
-  %define global_st_pain_oldhealth 1706650
-  %define global_automapactive 1706651
-  %define global_am_scale_mtof 1706652
-  %define global_am_scale_ftom 1706653
-  %define global_am_m_x 1706654
-  %define global_am_m_y 1706655
-  %define global_am_m_w 1706656
-  %define global_am_m_h 1706657
-  %define global_am_min_x 1706658
-  %define global_am_min_y 1706659
-  %define global_am_max_x 1706660
-  %define global_am_max_y 1706661
-  %define global_am_max_w 1706662
-  %define global_am_max_h 1706663
-  %define global_am_min_scale_mtof 1706664
-  %define global_am_max_scale_mtof 1706665
-  %define global_am_ftom_zoommul 1706666
-  %define global_am_mtof_zoommul 1706667
-  %define global_am_oldloc_x 1706668
-  %define global_am_leveljuststarted 1706669
-  %define global_am_lastlevelinit 1706670
-  %define global_am_ar_ax 1706671
-  %define global_am_ar_ay 1706678
-  %define global_am_ar_bx 1706685
-  %define global_am_ar_by 1706692
+  %define global_synth_wave_base 1706541
+  %define global_synth_channel_base 1706542
+  %define global_synth_master 1706543
+  %define global_synth_transpose 1706544
+  %define global_synth_cur_row_frames 1706545
+  %define global_synth_rng 1706546
+  %define global_synth_note_speed 1706547
+  %define global_synth_note_freq 1706675
+  %define global_synth_v_active 1706803
+  %define global_synth_v_note 1706813
+  %define global_synth_v_basenote 1706823
+  %define global_synth_v_phase 1706833
+  %define global_synth_v_level 1706843
+  %define global_synth_v_frames 1706853
+  %define global_synth_v_age 1706863
+  %define global_synth_v_relstart 1706873
+  %define global_synth_v_curspeed 1706883
+  %define global_synth_v_tgtspeed 1706893
+  %define global_synth_v_glideframes 1706903
+  %define global_synth_v_vibphase 1706913
+  %define global_synth_v_tremphase 1706923
+  %define global_synth_v_lfophase 1706933
+  %define global_synth_v_shval 1706943
+  %define global_synth_v_shseed 1706953
+  %define global_synth_v_menvstage 1706963
+  %define global_synth_v_menvframes 1706973
+  %define global_synth_v_arpstep 1706983
+  %define global_synth_v_arptimer 1706993
+  %define global_synth_v_morphpos 1707003
+  %define global_synth_v_bend 1707013
+  %define global_synth_v_vel 1707023
+  %define global_synth_v_freq 1707033
+  %define global_synth_v_amp 1707043
+  %define global_synth_v_timer 1707053
+  %define global_synth_v_inst 1707063
+  %define global_synth_ev_active 1707073
+  %define global_synth_ev_timer 1707137
+  %define global_synth_ev_note 1707201
+  %define global_synth_ev_vel 1707265
+  %define global_synth_ev_dur 1707329
+  %define global_synth_ev_inst 1707393
+  %define global_synth_echo_taps 1707457
+  %define global_synth_echo_delay 1707458
+  %define global_synth_echo_feedback 1707459
+  %define global_synth_preset_bank 1707460
+  %define global_synth_preset_name 1709060
+  %define global_synth_arp_maj 1709700
+  %define global_synth_arp_min 1709703
+  %define global_synth_chord_iv 1709706
+  %define global_synth_seq_song 1709746
+  %define global_synth_seq_row 1709747
+  %define global_synth_seq_timer 1709748
+  %define global_synth_seq_playing 1709749
+  %define global_synth_seq_voice 1709750
+  %define global_mus_e1m1_srow 1709758
+  %define global_mus_e1m1_dur 1712090
+  %define global_mus_e1m1_inst 1714422
+  %define global_mus_e1m1_note 1716754
+  %define global_mus_e1m1_vel 1719086
+  %define global_mi_lead 1721418
+  %define global_mi_bass 1721458
+  %define global_mi_kick 1721498
+  %define global_mi_snhat 1721538
+  %define global_mi_inst 1721578
+  %define global_mp_cur 1721582
+  %define global_mp_row 1721583
+  %define global_mp_timer 1721584
+  %define global_mp_playing 1721585
+  %define global_ch_prio 1721586
+  %define global_ch_att 1721592
+  %define global_ch_x 1721598
+  %define global_ch_y 1721604
+  %define global_ch_id 1721610
+  %define global_s_music_lastfc 1721616
+  %define global_st_arms_x 1721617
+  %define global_st_arms_y 1721623
+  %define global_st_ammo_y 1721629
+  %define global_st_key_y 1721633
+  %define global_st_faceindex 1721636
+  %define global_st_facecount 1721637
+  %define global_st_face_priority 1721638
+  %define global_st_oldhealth 1721639
+  %define global_st_lastattackdown 1721640
+  %define global_st_randomnumber 1721641
+  %define global_st_oldweaponsowned 1721642
+  %define global_st_pain_lastcalc 1721650
+  %define global_st_pain_oldhealth 1721651
+  %define global_automapactive 1721652
+  %define global_am_scale_mtof 1721653
+  %define global_am_scale_ftom 1721654
+  %define global_am_m_x 1721655
+  %define global_am_m_y 1721656
+  %define global_am_m_w 1721657
+  %define global_am_m_h 1721658
+  %define global_am_min_x 1721659
+  %define global_am_min_y 1721660
+  %define global_am_max_x 1721661
+  %define global_am_max_y 1721662
+  %define global_am_max_w 1721663
+  %define global_am_max_h 1721664
+  %define global_am_min_scale_mtof 1721665
+  %define global_am_max_scale_mtof 1721666
+  %define global_am_ftom_zoommul 1721667
+  %define global_am_mtof_zoommul 1721668
+  %define global_am_oldloc_x 1721669
+  %define global_am_leveljuststarted 1721670
+  %define global_am_lastlevelinit 1721671
+  %define global_am_ar_ax 1721672
+  %define global_am_ar_ay 1721679
+  %define global_am_ar_bx 1721686
+  %define global_am_ar_by 1721693
 
 __global_scope_initialization:
   push BP
@@ -1359,44 +1428,23616 @@ __global_scope_initialization:
   mov [1706539], R0
   mov R0, 0
   mov [global_bulletslope], R0
+  mov DR, global_synth_preset_name
+  mov SR, __literal_string_32672
+  mov CR, 8
+  movs
+  mov DR, 1709076
+  mov SR, __literal_string_32673
+  mov CR, 9
+  movs
+  mov DR, 1709092
+  mov SR, __literal_string_32674
+  mov CR, 9
+  movs
+  mov DR, 1709108
+  mov SR, __literal_string_32675
+  mov CR, 10
+  movs
+  mov DR, 1709124
+  mov SR, __literal_string_32676
+  mov CR, 10
+  movs
+  mov DR, 1709140
+  mov SR, __literal_string_32677
+  mov CR, 9
+  movs
+  mov DR, 1709156
+  mov SR, __literal_string_32678
+  mov CR, 9
+  movs
+  mov DR, 1709172
+  mov SR, __literal_string_32679
+  mov CR, 8
+  movs
+  mov DR, 1709188
+  mov SR, __literal_string_32680
+  mov CR, 9
+  movs
+  mov DR, 1709204
+  mov SR, __literal_string_32681
+  mov CR, 11
+  movs
+  mov DR, 1709220
+  mov SR, __literal_string_32682
+  mov CR, 9
+  movs
+  mov DR, 1709236
+  mov SR, __literal_string_32683
+  mov CR, 10
+  movs
+  mov DR, 1709252
+  mov SR, __literal_string_32684
+  mov CR, 8
+  movs
+  mov DR, 1709268
+  mov SR, __literal_string_32685
+  mov CR, 5
+  movs
+  mov DR, 1709284
+  mov SR, __literal_string_32686
+  mov CR, 8
+  movs
+  mov DR, 1709300
+  mov SR, __literal_string_32687
+  mov CR, 8
+  movs
+  mov DR, 1709316
+  mov SR, __literal_string_32688
+  mov CR, 7
+  movs
+  mov DR, 1709332
+  mov SR, __literal_string_32689
+  mov CR, 9
+  movs
+  mov DR, 1709348
+  mov SR, __literal_string_32690
+  mov CR, 8
+  movs
+  mov DR, 1709364
+  mov SR, __literal_string_32691
+  mov CR, 6
+  movs
+  mov DR, 1709380
+  mov SR, __literal_string_32692
+  mov CR, 11
+  movs
+  mov DR, 1709396
+  mov SR, __literal_string_32693
+  mov CR, 6
+  movs
+  mov DR, 1709412
+  mov SR, __literal_string_32694
+  mov CR, 5
+  movs
+  mov DR, 1709428
+  mov SR, __literal_string_32695
+  mov CR, 6
+  movs
+  mov DR, 1709444
+  mov SR, __literal_string_32696
+  mov CR, 4
+  movs
+  mov DR, 1709460
+  mov SR, __literal_string_32697
+  mov CR, 6
+  movs
+  mov DR, 1709476
+  mov SR, __literal_string_32698
+  mov CR, 6
+  movs
+  mov DR, 1709492
+  mov SR, __literal_string_32699
+  mov CR, 5
+  movs
+  mov DR, 1709508
+  mov SR, __literal_string_32700
+  mov CR, 5
+  movs
+  mov DR, 1709524
+  mov SR, __literal_string_32701
+  mov CR, 6
+  movs
+  mov DR, 1709540
+  mov SR, __literal_string_32702
+  mov CR, 7
+  movs
+  mov DR, 1709556
+  mov SR, __literal_string_32703
+  mov CR, 7
+  movs
+  mov DR, 1709572
+  mov SR, __literal_string_32704
+  mov CR, 4
+  movs
+  mov DR, 1709588
+  mov SR, __literal_string_32705
+  mov CR, 5
+  movs
+  mov DR, 1709604
+  mov SR, __literal_string_32706
+  mov CR, 8
+  movs
+  mov DR, 1709620
+  mov SR, __literal_string_32707
+  mov CR, 8
+  movs
+  mov DR, 1709636
+  mov SR, __literal_string_32708
+  mov CR, 8
+  movs
+  mov DR, 1709652
+  mov SR, __literal_string_32709
+  mov CR, 7
+  movs
+  mov DR, 1709668
+  mov SR, __literal_string_32710
+  mov CR, 11
+  movs
+  mov DR, 1709684
+  mov SR, __literal_string_32711
+  mov CR, 9
+  movs
+  mov R0, 0
+  mov [global_synth_arp_maj], R0
+  mov R0, 4
+  mov [1709701], R0
+  mov R0, 7
+  mov [1709702], R0
+  mov R0, 0
+  mov [global_synth_arp_min], R0
+  mov R0, 3
+  mov [1709704], R0
+  mov R0, 7
+  mov [1709705], R0
+  mov R0, 0
+  mov [global_synth_chord_iv], R0
+  mov R0, 4
+  mov [1709707], R0
+  mov R0, 7
+  mov [1709708], R0
+  mov R0, -1
+  mov [1709709], R0
+  mov R0, 0
+  mov [1709710], R0
+  mov R0, 3
+  mov [1709711], R0
+  mov R0, 7
+  mov [1709712], R0
+  mov R0, -1
+  mov [1709713], R0
+  mov R0, 0
+  mov [1709714], R0
+  mov R0, 3
+  mov [1709715], R0
+  mov R0, 6
+  mov [1709716], R0
+  mov R0, -1
+  mov [1709717], R0
+  mov R0, 0
+  mov [1709718], R0
+  mov R0, 4
+  mov [1709719], R0
+  mov R0, 8
+  mov [1709720], R0
+  mov R0, -1
+  mov [1709721], R0
+  mov R0, 0
+  mov [1709722], R0
+  mov R0, 4
+  mov [1709723], R0
+  mov R0, 7
+  mov [1709724], R0
+  mov R0, 11
+  mov [1709725], R0
+  mov R0, 0
+  mov [1709726], R0
+  mov R0, 3
+  mov [1709727], R0
+  mov R0, 7
+  mov [1709728], R0
+  mov R0, 10
+  mov [1709729], R0
+  mov R0, 0
+  mov [1709730], R0
+  mov R0, 4
+  mov [1709731], R0
+  mov R0, 7
+  mov [1709732], R0
+  mov R0, 10
+  mov [1709733], R0
+  mov R0, 0
+  mov [1709734], R0
+  mov R0, 5
+  mov [1709735], R0
+  mov R0, 7
+  mov [1709736], R0
+  mov R0, -1
+  mov [1709737], R0
+  mov R0, 0
+  mov [1709738], R0
+  mov R0, 2
+  mov [1709739], R0
+  mov R0, 7
+  mov [1709740], R0
+  mov R0, -1
+  mov [1709741], R0
+  mov R0, 0
+  mov [1709742], R0
+  mov R0, 7
+  mov [1709743], R0
+  mov R0, 12
+  mov [1709744], R0
+  mov R0, -1
+  mov [1709745], R0
+  mov R0, 0
+  mov [global_mus_e1m1_srow], R0
+  mov R0, 0
+  mov [1709759], R0
+  mov R0, 0
+  mov [1709760], R0
+  mov R0, 0
+  mov [1709761], R0
+  mov R0, 0
+  mov [1709762], R0
+  mov R0, 3
+  mov [1709763], R0
+  mov R0, 5
+  mov [1709764], R0
+  mov R0, 8
+  mov [1709765], R0
+  mov R0, 11
+  mov [1709766], R0
+  mov R0, 14
+  mov [1709767], R0
+  mov R0, 16
+  mov [1709768], R0
+  mov R0, 19
+  mov [1709769], R0
+  mov R0, 22
+  mov [1709770], R0
+  mov R0, 25
+  mov [1709771], R0
+  mov R0, 27
+  mov [1709772], R0
+  mov R0, 30
+  mov [1709773], R0
+  mov R0, 33
+  mov [1709774], R0
+  mov R0, 35
+  mov [1709775], R0
+  mov R0, 38
+  mov [1709776], R0
+  mov R0, 41
+  mov [1709777], R0
+  mov R0, 44
+  mov [1709778], R0
+  mov R0, 44
+  mov [1709779], R0
+  mov R0, 44
+  mov [1709780], R0
+  mov R0, 44
+  mov [1709781], R0
+  mov R0, 44
+  mov [1709782], R0
+  mov R0, 46
+  mov [1709783], R0
+  mov R0, 49
+  mov [1709784], R0
+  mov R0, 52
+  mov [1709785], R0
+  mov R0, 55
+  mov [1709786], R0
+  mov R0, 57
+  mov [1709787], R0
+  mov R0, 60
+  mov [1709788], R0
+  mov R0, 63
+  mov [1709789], R0
+  mov R0, 65
+  mov [1709790], R0
+  mov R0, 68
+  mov [1709791], R0
+  mov R0, 71
+  mov [1709792], R0
+  mov R0, 74
+  mov [1709793], R0
+  mov R0, 87
+  mov [1709794], R0
+  mov R0, 87
+  mov [1709795], R0
+  mov R0, 87
+  mov [1709796], R0
+  mov R0, 87
+  mov [1709797], R0
+  mov R0, 87
+  mov [1709798], R0
+  mov R0, 90
+  mov [1709799], R0
+  mov R0, 93
+  mov [1709800], R0
+  mov R0, 95
+  mov [1709801], R0
+  mov R0, 98
+  mov [1709802], R0
+  mov R0, 101
+  mov [1709803], R0
+  mov R0, 104
+  mov [1709804], R0
+  mov R0, 106
+  mov [1709805], R0
+  mov R0, 109
+  mov [1709806], R0
+  mov R0, 112
+  mov [1709807], R0
+  mov R0, 115
+  mov [1709808], R0
+  mov R0, 117
+  mov [1709809], R0
+  mov R0, 120
+  mov [1709810], R0
+  mov R0, 123
+  mov [1709811], R0
+  mov R0, 125
+  mov [1709812], R0
+  mov R0, 128
+  mov [1709813], R0
+  mov R0, 131
+  mov [1709814], R0
+  mov R0, 131
+  mov [1709815], R0
+  mov R0, 131
+  mov [1709816], R0
+  mov R0, 131
+  mov [1709817], R0
+  mov R0, 131
+  mov [1709818], R0
+  mov R0, 134
+  mov [1709819], R0
+  mov R0, 136
+  mov [1709820], R0
+  mov R0, 139
+  mov [1709821], R0
+  mov R0, 142
+  mov [1709822], R0
+  mov R0, 145
+  mov [1709823], R0
+  mov R0, 147
+  mov [1709824], R0
+  mov R0, 150
+  mov [1709825], R0
+  mov R0, 153
+  mov [1709826], R0
+  mov R0, 155
+  mov [1709827], R0
+  mov R0, 158
+  mov [1709828], R0
+  mov R0, 161
+  mov [1709829], R0
+  mov R0, 174
+  mov [1709830], R0
+  mov R0, 174
+  mov [1709831], R0
+  mov R0, 174
+  mov [1709832], R0
+  mov R0, 174
+  mov [1709833], R0
+  mov R0, 174
+  mov [1709834], R0
+  mov R0, 174
+  mov [1709835], R0
+  mov R0, 174
+  mov [1709836], R0
+  mov R0, 175
+  mov [1709837], R0
+  mov R0, 177
+  mov [1709838], R0
+  mov R0, 177
+  mov [1709839], R0
+  mov R0, 179
+  mov [1709840], R0
+  mov R0, 179
+  mov [1709841], R0
+  mov R0, 180
+  mov [1709842], R0
+  mov R0, 180
+  mov [1709843], R0
+  mov R0, 183
+  mov [1709844], R0
+  mov R0, 183
+  mov [1709845], R0
+  mov R0, 185
+  mov [1709846], R0
+  mov R0, 185
+  mov [1709847], R0
+  mov R0, 188
+  mov [1709848], R0
+  mov R0, 188
+  mov [1709849], R0
+  mov R0, 191
+  mov [1709850], R0
+  mov R0, 191
+  mov [1709851], R0
+  mov R0, 194
+  mov [1709852], R0
+  mov R0, 194
+  mov [1709853], R0
+  mov R0, 196
+  mov [1709854], R0
+  mov R0, 196
+  mov [1709855], R0
+  mov R0, 199
+  mov [1709856], R0
+  mov R0, 199
+  mov [1709857], R0
+  mov R0, 202
+  mov [1709858], R0
+  mov R0, 202
+  mov [1709859], R0
+  mov R0, 204
+  mov [1709860], R0
+  mov R0, 205
+  mov [1709861], R0
+  mov R0, 207
+  mov [1709862], R0
+  mov R0, 207
+  mov [1709863], R0
+  mov R0, 210
+  mov [1709864], R0
+  mov R0, 210
+  mov [1709865], R0
+  mov R0, 213
+  mov [1709866], R0
+  mov R0, 213
+  mov [1709867], R0
+  mov R0, 215
+  mov [1709868], R0
+  mov R0, 215
+  mov [1709869], R0
+  mov R0, 218
+  mov [1709870], R0
+  mov R0, 218
+  mov [1709871], R0
+  mov R0, 218
+  mov [1709872], R0
+  mov R0, 218
+  mov [1709873], R0
+  mov R0, 218
+  mov [1709874], R0
+  mov R0, 218
+  mov [1709875], R0
+  mov R0, 218
+  mov [1709876], R0
+  mov R0, 218
+  mov [1709877], R0
+  mov R0, 221
+  mov [1709878], R0
+  mov R0, 221
+  mov [1709879], R0
+  mov R0, 222
+  mov [1709880], R0
+  mov R0, 222
+  mov [1709881], R0
+  mov R0, 224
+  mov [1709882], R0
+  mov R0, 224
+  mov [1709883], R0
+  mov R0, 226
+  mov [1709884], R0
+  mov R0, 226
+  mov [1709885], R0
+  mov R0, 229
+  mov [1709886], R0
+  mov R0, 229
+  mov [1709887], R0
+  mov R0, 232
+  mov [1709888], R0
+  mov R0, 232
+  mov [1709889], R0
+  mov R0, 234
+  mov [1709890], R0
+  mov R0, 235
+  mov [1709891], R0
+  mov R0, 237
+  mov [1709892], R0
+  mov R0, 237
+  mov [1709893], R0
+  mov R0, 240
+  mov [1709894], R0
+  mov R0, 240
+  mov [1709895], R0
+  mov R0, 243
+  mov [1709896], R0
+  mov R0, 243
+  mov [1709897], R0
+  mov R0, 245
+  mov [1709898], R0
+  mov R0, 245
+  mov [1709899], R0
+  mov R0, 248
+  mov [1709900], R0
+  mov R0, 248
+  mov [1709901], R0
+  mov R0, 262
+  mov [1709902], R0
+  mov R0, 262
+  mov [1709903], R0
+  mov R0, 262
+  mov [1709904], R0
+  mov R0, 262
+  mov [1709905], R0
+  mov R0, 262
+  mov [1709906], R0
+  mov R0, 262
+  mov [1709907], R0
+  mov R0, 262
+  mov [1709908], R0
+  mov R0, 262
+  mov [1709909], R0
+  mov R0, 264
+  mov [1709910], R0
+  mov R0, 265
+  mov [1709911], R0
+  mov R0, 266
+  mov [1709912], R0
+  mov R0, 266
+  mov [1709913], R0
+  mov R0, 267
+  mov [1709914], R0
+  mov R0, 267
+  mov [1709915], R0
+  mov R0, 270
+  mov [1709916], R0
+  mov R0, 270
+  mov [1709917], R0
+  mov R0, 273
+  mov [1709918], R0
+  mov R0, 273
+  mov [1709919], R0
+  mov R0, 275
+  mov [1709920], R0
+  mov R0, 275
+  mov [1709921], R0
+  mov R0, 278
+  mov [1709922], R0
+  mov R0, 278
+  mov [1709923], R0
+  mov R0, 281
+  mov [1709924], R0
+  mov R0, 281
+  mov [1709925], R0
+  mov R0, 284
+  mov [1709926], R0
+  mov R0, 284
+  mov [1709927], R0
+  mov R0, 286
+  mov [1709928], R0
+  mov R0, 286
+  mov [1709929], R0
+  mov R0, 289
+  mov [1709930], R0
+  mov R0, 289
+  mov [1709931], R0
+  mov R0, 292
+  mov [1709932], R0
+  mov R0, 292
+  mov [1709933], R0
+  mov R0, 294
+  mov [1709934], R0
+  mov R0, 295
+  mov [1709935], R0
+  mov R0, 297
+  mov [1709936], R0
+  mov R0, 297
+  mov [1709937], R0
+  mov R0, 300
+  mov [1709938], R0
+  mov R0, 300
+  mov [1709939], R0
+  mov R0, 303
+  mov [1709940], R0
+  mov R0, 303
+  mov [1709941], R0
+  mov R0, 305
+  mov [1709942], R0
+  mov R0, 305
+  mov [1709943], R0
+  mov R0, 305
+  mov [1709944], R0
+  mov R0, 305
+  mov [1709945], R0
+  mov R0, 305
+  mov [1709946], R0
+  mov R0, 305
+  mov [1709947], R0
+  mov R0, 305
+  mov [1709948], R0
+  mov R0, 305
+  mov [1709949], R0
+  mov R0, 308
+  mov [1709950], R0
+  mov R0, 308
+  mov [1709951], R0
+  mov R0, 309
+  mov [1709952], R0
+  mov R0, 309
+  mov [1709953], R0
+  mov R0, 311
+  mov [1709954], R0
+  mov R0, 311
+  mov [1709955], R0
+  mov R0, 314
+  mov [1709956], R0
+  mov R0, 314
+  mov [1709957], R0
+  mov R0, 316
+  mov [1709958], R0
+  mov R0, 316
+  mov [1709959], R0
+  mov R0, 319
+  mov [1709960], R0
+  mov R0, 319
+  mov [1709961], R0
+  mov R0, 322
+  mov [1709962], R0
+  mov R0, 322
+  mov [1709963], R0
+  mov R0, 324
+  mov [1709964], R0
+  mov R0, 325
+  mov [1709965], R0
+  mov R0, 327
+  mov [1709966], R0
+  mov R0, 327
+  mov [1709967], R0
+  mov R0, 327
+  mov [1709968], R0
+  mov R0, 327
+  mov [1709969], R0
+  mov R0, 327
+  mov [1709970], R0
+  mov R0, 329
+  mov [1709971], R0
+  mov R0, 329
+  mov [1709972], R0
+  mov R0, 330
+  mov [1709973], R0
+  mov R0, 330
+  mov [1709974], R0
+  mov R0, 330
+  mov [1709975], R0
+  mov R0, 330
+  mov [1709976], R0
+  mov R0, 330
+  mov [1709977], R0
+  mov R0, 331
+  mov [1709978], R0
+  mov R0, 331
+  mov [1709979], R0
+  mov R0, 333
+  mov [1709980], R0
+  mov R0, 333
+  mov [1709981], R0
+  mov R0, 333
+  mov [1709982], R0
+  mov R0, 333
+  mov [1709983], R0
+  mov R0, 333
+  mov [1709984], R0
+  mov R0, 334
+  mov [1709985], R0
+  mov R0, 334
+  mov [1709986], R0
+  mov R0, 335
+  mov [1709987], R0
+  mov R0, 335
+  mov [1709988], R0
+  mov R0, 335
+  mov [1709989], R0
+  mov R0, 335
+  mov [1709990], R0
+  mov R0, 335
+  mov [1709991], R0
+  mov R0, 337
+  mov [1709992], R0
+  mov R0, 337
+  mov [1709993], R0
+  mov R0, 338
+  mov [1709994], R0
+  mov R0, 338
+  mov [1709995], R0
+  mov R0, 338
+  mov [1709996], R0
+  mov R0, 338
+  mov [1709997], R0
+  mov R0, 338
+  mov [1709998], R0
+  mov R0, 339
+  mov [1709999], R0
+  mov R0, 340
+  mov [1710000], R0
+  mov R0, 341
+  mov [1710001], R0
+  mov R0, 341
+  mov [1710002], R0
+  mov R0, 341
+  mov [1710003], R0
+  mov R0, 341
+  mov [1710004], R0
+  mov R0, 341
+  mov [1710005], R0
+  mov R0, 342
+  mov [1710006], R0
+  mov R0, 342
+  mov [1710007], R0
+  mov R0, 344
+  mov [1710008], R0
+  mov R0, 344
+  mov [1710009], R0
+  mov R0, 344
+  mov [1710010], R0
+  mov R0, 344
+  mov [1710011], R0
+  mov R0, 344
+  mov [1710012], R0
+  mov R0, 345
+  mov [1710013], R0
+  mov R0, 345
+  mov [1710014], R0
+  mov R0, 346
+  mov [1710015], R0
+  mov R0, 346
+  mov [1710016], R0
+  mov R0, 346
+  mov [1710017], R0
+  mov R0, 346
+  mov [1710018], R0
+  mov R0, 346
+  mov [1710019], R0
+  mov R0, 348
+  mov [1710020], R0
+  mov R0, 348
+  mov [1710021], R0
+  mov R0, 349
+  mov [1710022], R0
+  mov R0, 349
+  mov [1710023], R0
+  mov R0, 349
+  mov [1710024], R0
+  mov R0, 349
+  mov [1710025], R0
+  mov R0, 349
+  mov [1710026], R0
+  mov R0, 352
+  mov [1710027], R0
+  mov R0, 352
+  mov [1710028], R0
+  mov R0, 354
+  mov [1710029], R0
+  mov R0, 354
+  mov [1710030], R0
+  mov R0, 354
+  mov [1710031], R0
+  mov R0, 355
+  mov [1710032], R0
+  mov R0, 355
+  mov [1710033], R0
+  mov R0, 357
+  mov [1710034], R0
+  mov R0, 357
+  mov [1710035], R0
+  mov R0, 360
+  mov [1710036], R0
+  mov R0, 360
+  mov [1710037], R0
+  mov R0, 360
+  mov [1710038], R0
+  mov R0, 360
+  mov [1710039], R0
+  mov R0, 360
+  mov [1710040], R0
+  mov R0, 363
+  mov [1710041], R0
+  mov R0, 363
+  mov [1710042], R0
+  mov R0, 363
+  mov [1710043], R0
+  mov R0, 365
+  mov [1710044], R0
+  mov R0, 365
+  mov [1710045], R0
+  mov R0, 365
+  mov [1710046], R0
+  mov R0, 365
+  mov [1710047], R0
+  mov R0, 366
+  mov [1710048], R0
+  mov R0, 368
+  mov [1710049], R0
+  mov R0, 368
+  mov [1710050], R0
+  mov R0, 371
+  mov [1710051], R0
+  mov R0, 371
+  mov [1710052], R0
+  mov R0, 371
+  mov [1710053], R0
+  mov R0, 371
+  mov [1710054], R0
+  mov R0, 371
+  mov [1710055], R0
+  mov R0, 374
+  mov [1710056], R0
+  mov R0, 374
+  mov [1710057], R0
+  mov R0, 376
+  mov [1710058], R0
+  mov R0, 376
+  mov [1710059], R0
+  mov R0, 376
+  mov [1710060], R0
+  mov R0, 376
+  mov [1710061], R0
+  mov R0, 377
+  mov [1710062], R0
+  mov R0, 379
+  mov [1710063], R0
+  mov R0, 379
+  mov [1710064], R0
+  mov R0, 382
+  mov [1710065], R0
+  mov R0, 382
+  mov [1710066], R0
+  mov R0, 382
+  mov [1710067], R0
+  mov R0, 382
+  mov [1710068], R0
+  mov R0, 382
+  mov [1710069], R0
+  mov R0, 384
+  mov [1710070], R0
+  mov R0, 384
+  mov [1710071], R0
+  mov R0, 385
+  mov [1710072], R0
+  mov R0, 387
+  mov [1710073], R0
+  mov R0, 387
+  mov [1710074], R0
+  mov R0, 387
+  mov [1710075], R0
+  mov R0, 387
+  mov [1710076], R0
+  mov R0, 387
+  mov [1710077], R0
+  mov R0, 390
+  mov [1710078], R0
+  mov R0, 390
+  mov [1710079], R0
+  mov R0, 393
+  mov [1710080], R0
+  mov R0, 393
+  mov [1710081], R0
+  mov R0, 393
+  mov [1710082], R0
+  mov R0, 393
+  mov [1710083], R0
+  mov R0, 393
+  mov [1710084], R0
+  mov R0, 395
+  mov [1710085], R0
+  mov R0, 395
+  mov [1710086], R0
+  mov R0, 398
+  mov [1710087], R0
+  mov R0, 398
+  mov [1710088], R0
+  mov R0, 398
+  mov [1710089], R0
+  mov R0, 398
+  mov [1710090], R0
+  mov R0, 398
+  mov [1710091], R0
+  mov R0, 401
+  mov [1710092], R0
+  mov R0, 401
+  mov [1710093], R0
+  mov R0, 404
+  mov [1710094], R0
+  mov R0, 404
+  mov [1710095], R0
+  mov R0, 404
+  mov [1710096], R0
+  mov R0, 404
+  mov [1710097], R0
+  mov R0, 404
+  mov [1710098], R0
+  mov R0, 406
+  mov [1710099], R0
+  mov R0, 406
+  mov [1710100], R0
+  mov R0, 406
+  mov [1710101], R0
+  mov R0, 409
+  mov [1710102], R0
+  mov R0, 409
+  mov [1710103], R0
+  mov R0, 409
+  mov [1710104], R0
+  mov R0, 409
+  mov [1710105], R0
+  mov R0, 409
+  mov [1710106], R0
+  mov R0, 412
+  mov [1710107], R0
+  mov R0, 412
+  mov [1710108], R0
+  mov R0, 414
+  mov [1710109], R0
+  mov R0, 414
+  mov [1710110], R0
+  mov R0, 414
+  mov [1710111], R0
+  mov R0, 414
+  mov [1710112], R0
+  mov R0, 415
+  mov [1710113], R0
+  mov R0, 417
+  mov [1710114], R0
+  mov R0, 417
+  mov [1710115], R0
+  mov R0, 420
+  mov [1710116], R0
+  mov R0, 420
+  mov [1710117], R0
+  mov R0, 420
+  mov [1710118], R0
+  mov R0, 420
+  mov [1710119], R0
+  mov R0, 420
+  mov [1710120], R0
+  mov R0, 423
+  mov [1710121], R0
+  mov R0, 423
+  mov [1710122], R0
+  mov R0, 425
+  mov [1710123], R0
+  mov R0, 425
+  mov [1710124], R0
+  mov R0, 425
+  mov [1710125], R0
+  mov R0, 428
+  mov [1710126], R0
+  mov R0, 431
+  mov [1710127], R0
+  mov R0, 431
+  mov [1710128], R0
+  mov R0, 431
+  mov [1710129], R0
+  mov R0, 436
+  mov [1710130], R0
+  mov R0, 436
+  mov [1710131], R0
+  mov R0, 436
+  mov [1710132], R0
+  mov R0, 436
+  mov [1710133], R0
+  mov R0, 436
+  mov [1710134], R0
+  mov R0, 439
+  mov [1710135], R0
+  mov R0, 439
+  mov [1710136], R0
+  mov R0, 442
+  mov [1710137], R0
+  mov R0, 442
+  mov [1710138], R0
+  mov R0, 442
+  mov [1710139], R0
+  mov R0, 442
+  mov [1710140], R0
+  mov R0, 442
+  mov [1710141], R0
+  mov R0, 444
+  mov [1710142], R0
+  mov R0, 445
+  mov [1710143], R0
+  mov R0, 447
+  mov [1710144], R0
+  mov R0, 447
+  mov [1710145], R0
+  mov R0, 447
+  mov [1710146], R0
+  mov R0, 447
+  mov [1710147], R0
+  mov R0, 447
+  mov [1710148], R0
+  mov R0, 450
+  mov [1710149], R0
+  mov R0, 450
+  mov [1710150], R0
+  mov R0, 450
+  mov [1710151], R0
+  mov R0, 453
+  mov [1710152], R0
+  mov R0, 453
+  mov [1710153], R0
+  mov R0, 453
+  mov [1710154], R0
+  mov R0, 453
+  mov [1710155], R0
+  mov R0, 453
+  mov [1710156], R0
+  mov R0, 455
+  mov [1710157], R0
+  mov R0, 455
+  mov [1710158], R0
+  mov R0, 458
+  mov [1710159], R0
+  mov R0, 458
+  mov [1710160], R0
+  mov R0, 458
+  mov [1710161], R0
+  mov R0, 458
+  mov [1710162], R0
+  mov R0, 458
+  mov [1710163], R0
+  mov R0, 461
+  mov [1710164], R0
+  mov R0, 461
+  mov [1710165], R0
+  mov R0, 464
+  mov [1710166], R0
+  mov R0, 464
+  mov [1710167], R0
+  mov R0, 464
+  mov [1710168], R0
+  mov R0, 464
+  mov [1710169], R0
+  mov R0, 464
+  mov [1710170], R0
+  mov R0, 466
+  mov [1710171], R0
+  mov R0, 466
+  mov [1710172], R0
+  mov R0, 469
+  mov [1710173], R0
+  mov R0, 469
+  mov [1710174], R0
+  mov R0, 469
+  mov [1710175], R0
+  mov R0, 469
+  mov [1710176], R0
+  mov R0, 469
+  mov [1710177], R0
+  mov R0, 472
+  mov [1710178], R0
+  mov R0, 472
+  mov [1710179], R0
+  mov R0, 474
+  mov [1710180], R0
+  mov R0, 474
+  mov [1710181], R0
+  mov R0, 474
+  mov [1710182], R0
+  mov R0, 475
+  mov [1710183], R0
+  mov R0, 475
+  mov [1710184], R0
+  mov R0, 477
+  mov [1710185], R0
+  mov R0, 477
+  mov [1710186], R0
+  mov R0, 480
+  mov [1710187], R0
+  mov R0, 480
+  mov [1710188], R0
+  mov R0, 480
+  mov [1710189], R0
+  mov R0, 480
+  mov [1710190], R0
+  mov R0, 480
+  mov [1710191], R0
+  mov R0, 483
+  mov [1710192], R0
+  mov R0, 483
+  mov [1710193], R0
+  mov R0, 485
+  mov [1710194], R0
+  mov R0, 485
+  mov [1710195], R0
+  mov R0, 485
+  mov [1710196], R0
+  mov R0, 485
+  mov [1710197], R0
+  mov R0, 485
+  mov [1710198], R0
+  mov R0, 488
+  mov [1710199], R0
+  mov R0, 488
+  mov [1710200], R0
+  mov R0, 491
+  mov [1710201], R0
+  mov R0, 491
+  mov [1710202], R0
+  mov R0, 491
+  mov [1710203], R0
+  mov R0, 491
+  mov [1710204], R0
+  mov R0, 491
+  mov [1710205], R0
+  mov R0, 494
+  mov [1710206], R0
+  mov R0, 494
+  mov [1710207], R0
+  mov R0, 494
+  mov [1710208], R0
+  mov R0, 496
+  mov [1710209], R0
+  mov R0, 496
+  mov [1710210], R0
+  mov R0, 496
+  mov [1710211], R0
+  mov R0, 496
+  mov [1710212], R0
+  mov R0, 496
+  mov [1710213], R0
+  mov R0, 499
+  mov [1710214], R0
+  mov R0, 499
+  mov [1710215], R0
+  mov R0, 502
+  mov [1710216], R0
+  mov R0, 502
+  mov [1710217], R0
+  mov R0, 502
+  mov [1710218], R0
+  mov R0, 502
+  mov [1710219], R0
+  mov R0, 502
+  mov [1710220], R0
+  mov R0, 502
+  mov [1710221], R0
+  mov R0, 503
+  mov [1710222], R0
+  mov R0, 503
+  mov [1710223], R0
+  mov R0, 504
+  mov [1710224], R0
+  mov R0, 504
+  mov [1710225], R0
+  mov R0, 505
+  mov [1710226], R0
+  mov R0, 506
+  mov [1710227], R0
+  mov R0, 506
+  mov [1710228], R0
+  mov R0, 507
+  mov [1710229], R0
+  mov R0, 507
+  mov [1710230], R0
+  mov R0, 507
+  mov [1710231], R0
+  mov R0, 507
+  mov [1710232], R0
+  mov R0, 507
+  mov [1710233], R0
+  mov R0, 508
+  mov [1710234], R0
+  mov R0, 509
+  mov [1710235], R0
+  mov R0, 509
+  mov [1710236], R0
+  mov R0, 510
+  mov [1710237], R0
+  mov R0, 510
+  mov [1710238], R0
+  mov R0, 510
+  mov [1710239], R0
+  mov R0, 511
+  mov [1710240], R0
+  mov R0, 511
+  mov [1710241], R0
+  mov R0, 513
+  mov [1710242], R0
+  mov R0, 513
+  mov [1710243], R0
+  mov R0, 513
+  mov [1710244], R0
+  mov R0, 513
+  mov [1710245], R0
+  mov R0, 513
+  mov [1710246], R0
+  mov R0, 513
+  mov [1710247], R0
+  mov R0, 514
+  mov [1710248], R0
+  mov R0, 514
+  mov [1710249], R0
+  mov R0, 515
+  mov [1710250], R0
+  mov R0, 515
+  mov [1710251], R0
+  mov R0, 515
+  mov [1710252], R0
+  mov R0, 517
+  mov [1710253], R0
+  mov R0, 517
+  mov [1710254], R0
+  mov R0, 518
+  mov [1710255], R0
+  mov R0, 518
+  mov [1710256], R0
+  mov R0, 518
+  mov [1710257], R0
+  mov R0, 518
+  mov [1710258], R0
+  mov R0, 519
+  mov [1710259], R0
+  mov R0, 519
+  mov [1710260], R0
+  mov R0, 519
+  mov [1710261], R0
+  mov R0, 520
+  mov [1710262], R0
+  mov R0, 521
+  mov [1710263], R0
+  mov R0, 521
+  mov [1710264], R0
+  mov R0, 521
+  mov [1710265], R0
+  mov R0, 521
+  mov [1710266], R0
+  mov R0, 521
+  mov [1710267], R0
+  mov R0, 522
+  mov [1710268], R0
+  mov R0, 522
+  mov [1710269], R0
+  mov R0, 524
+  mov [1710270], R0
+  mov R0, 524
+  mov [1710271], R0
+  mov R0, 524
+  mov [1710272], R0
+  mov R0, 524
+  mov [1710273], R0
+  mov R0, 524
+  mov [1710274], R0
+  mov R0, 526
+  mov [1710275], R0
+  mov R0, 526
+  mov [1710276], R0
+  mov R0, 529
+  mov [1710277], R0
+  mov R0, 529
+  mov [1710278], R0
+  mov R0, 529
+  mov [1710279], R0
+  mov R0, 529
+  mov [1710280], R0
+  mov R0, 529
+  mov [1710281], R0
+  mov R0, 532
+  mov [1710282], R0
+  mov R0, 532
+  mov [1710283], R0
+  mov R0, 534
+  mov [1710284], R0
+  mov R0, 534
+  mov [1710285], R0
+  mov R0, 534
+  mov [1710286], R0
+  mov R0, 534
+  mov [1710287], R0
+  mov R0, 535
+  mov [1710288], R0
+  mov R0, 537
+  mov [1710289], R0
+  mov R0, 537
+  mov [1710290], R0
+  mov R0, 537
+  mov [1710291], R0
+  mov R0, 540
+  mov [1710292], R0
+  mov R0, 540
+  mov [1710293], R0
+  mov R0, 540
+  mov [1710294], R0
+  mov R0, 540
+  mov [1710295], R0
+  mov R0, 540
+  mov [1710296], R0
+  mov R0, 543
+  mov [1710297], R0
+  mov R0, 543
+  mov [1710298], R0
+  mov R0, 545
+  mov [1710299], R0
+  mov R0, 545
+  mov [1710300], R0
+  mov R0, 545
+  mov [1710301], R0
+  mov R0, 545
+  mov [1710302], R0
+  mov R0, 545
+  mov [1710303], R0
+  mov R0, 548
+  mov [1710304], R0
+  mov R0, 548
+  mov [1710305], R0
+  mov R0, 551
+  mov [1710306], R0
+  mov R0, 551
+  mov [1710307], R0
+  mov R0, 551
+  mov [1710308], R0
+  mov R0, 551
+  mov [1710309], R0
+  mov R0, 551
+  mov [1710310], R0
+  mov R0, 554
+  mov [1710311], R0
+  mov R0, 554
+  mov [1710312], R0
+  mov R0, 556
+  mov [1710313], R0
+  mov R0, 556
+  mov [1710314], R0
+  mov R0, 556
+  mov [1710315], R0
+  mov R0, 556
+  mov [1710316], R0
+  mov R0, 556
+  mov [1710317], R0
+  mov R0, 559
+  mov [1710318], R0
+  mov R0, 559
+  mov [1710319], R0
+  mov R0, 559
+  mov [1710320], R0
+  mov R0, 562
+  mov [1710321], R0
+  mov R0, 562
+  mov [1710322], R0
+  mov R0, 562
+  mov [1710323], R0
+  mov R0, 562
+  mov [1710324], R0
+  mov R0, 562
+  mov [1710325], R0
+  mov R0, 564
+  mov [1710326], R0
+  mov R0, 565
+  mov [1710327], R0
+  mov R0, 567
+  mov [1710328], R0
+  mov R0, 567
+  mov [1710329], R0
+  mov R0, 567
+  mov [1710330], R0
+  mov R0, 567
+  mov [1710331], R0
+  mov R0, 567
+  mov [1710332], R0
+  mov R0, 570
+  mov [1710333], R0
+  mov R0, 570
+  mov [1710334], R0
+  mov R0, 573
+  mov [1710335], R0
+  mov R0, 573
+  mov [1710336], R0
+  mov R0, 573
+  mov [1710337], R0
+  mov R0, 573
+  mov [1710338], R0
+  mov R0, 573
+  mov [1710339], R0
+  mov R0, 575
+  mov [1710340], R0
+  mov R0, 575
+  mov [1710341], R0
+  mov R0, 578
+  mov [1710342], R0
+  mov R0, 578
+  mov [1710343], R0
+  mov R0, 578
+  mov [1710344], R0
+  mov R0, 578
+  mov [1710345], R0
+  mov R0, 578
+  mov [1710346], R0
+  mov R0, 581
+  mov [1710347], R0
+  mov R0, 581
+  mov [1710348], R0
+  mov R0, 581
+  mov [1710349], R0
+  mov R0, 584
+  mov [1710350], R0
+  mov R0, 584
+  mov [1710351], R0
+  mov R0, 584
+  mov [1710352], R0
+  mov R0, 584
+  mov [1710353], R0
+  mov R0, 584
+  mov [1710354], R0
+  mov R0, 586
+  mov [1710355], R0
+  mov R0, 586
+  mov [1710356], R0
+  mov R0, 589
+  mov [1710357], R0
+  mov R0, 589
+  mov [1710358], R0
+  mov R0, 589
+  mov [1710359], R0
+  mov R0, 589
+  mov [1710360], R0
+  mov R0, 589
+  mov [1710361], R0
+  mov R0, 592
+  mov [1710362], R0
+  mov R0, 592
+  mov [1710363], R0
+  mov R0, 594
+  mov [1710364], R0
+  mov R0, 594
+  mov [1710365], R0
+  mov R0, 594
+  mov [1710366], R0
+  mov R0, 594
+  mov [1710367], R0
+  mov R0, 595
+  mov [1710368], R0
+  mov R0, 597
+  mov [1710369], R0
+  mov R0, 597
+  mov [1710370], R0
+  mov R0, 600
+  mov [1710371], R0
+  mov R0, 600
+  mov [1710372], R0
+  mov R0, 600
+  mov [1710373], R0
+  mov R0, 603
+  mov [1710374], R0
+  mov R0, 605
+  mov [1710375], R0
+  mov R0, 605
+  mov [1710376], R0
+  mov R0, 605
+  mov [1710377], R0
+  mov R0, 611
+  mov [1710378], R0
+  mov R0, 611
+  mov [1710379], R0
+  mov R0, 611
+  mov [1710380], R0
+  mov R0, 611
+  mov [1710381], R0
+  mov R0, 611
+  mov [1710382], R0
+  mov R0, 614
+  mov [1710383], R0
+  mov R0, 614
+  mov [1710384], R0
+  mov R0, 616
+  mov [1710385], R0
+  mov R0, 616
+  mov [1710386], R0
+  mov R0, 616
+  mov [1710387], R0
+  mov R0, 616
+  mov [1710388], R0
+  mov R0, 616
+  mov [1710389], R0
+  mov R0, 619
+  mov [1710390], R0
+  mov R0, 619
+  mov [1710391], R0
+  mov R0, 622
+  mov [1710392], R0
+  mov R0, 622
+  mov [1710393], R0
+  mov R0, 622
+  mov [1710394], R0
+  mov R0, 622
+  mov [1710395], R0
+  mov R0, 622
+  mov [1710396], R0
+  mov R0, 624
+  mov [1710397], R0
+  mov R0, 624
+  mov [1710398], R0
+  mov R0, 625
+  mov [1710399], R0
+  mov R0, 627
+  mov [1710400], R0
+  mov R0, 627
+  mov [1710401], R0
+  mov R0, 627
+  mov [1710402], R0
+  mov R0, 627
+  mov [1710403], R0
+  mov R0, 627
+  mov [1710404], R0
+  mov R0, 630
+  mov [1710405], R0
+  mov R0, 630
+  mov [1710406], R0
+  mov R0, 633
+  mov [1710407], R0
+  mov R0, 633
+  mov [1710408], R0
+  mov R0, 633
+  mov [1710409], R0
+  mov R0, 633
+  mov [1710410], R0
+  mov R0, 633
+  mov [1710411], R0
+  mov R0, 635
+  mov [1710412], R0
+  mov R0, 635
+  mov [1710413], R0
+  mov R0, 638
+  mov [1710414], R0
+  mov R0, 638
+  mov [1710415], R0
+  mov R0, 638
+  mov [1710416], R0
+  mov R0, 638
+  mov [1710417], R0
+  mov R0, 638
+  mov [1710418], R0
+  mov R0, 641
+  mov [1710419], R0
+  mov R0, 641
+  mov [1710420], R0
+  mov R0, 644
+  mov [1710421], R0
+  mov R0, 644
+  mov [1710422], R0
+  mov R0, 644
+  mov [1710423], R0
+  mov R0, 644
+  mov [1710424], R0
+  mov R0, 644
+  mov [1710425], R0
+  mov R0, 646
+  mov [1710426], R0
+  mov R0, 646
+  mov [1710427], R0
+  mov R0, 649
+  mov [1710428], R0
+  mov R0, 649
+  mov [1710429], R0
+  mov R0, 649
+  mov [1710430], R0
+  mov R0, 649
+  mov [1710431], R0
+  mov R0, 649
+  mov [1710432], R0
+  mov R0, 652
+  mov [1710433], R0
+  mov R0, 652
+  mov [1710434], R0
+  mov R0, 654
+  mov [1710435], R0
+  mov R0, 654
+  mov [1710436], R0
+  mov R0, 654
+  mov [1710437], R0
+  mov R0, 654
+  mov [1710438], R0
+  mov R0, 655
+  mov [1710439], R0
+  mov R0, 657
+  mov [1710440], R0
+  mov R0, 657
+  mov [1710441], R0
+  mov R0, 660
+  mov [1710442], R0
+  mov R0, 660
+  mov [1710443], R0
+  mov R0, 660
+  mov [1710444], R0
+  mov R0, 660
+  mov [1710445], R0
+  mov R0, 660
+  mov [1710446], R0
+  mov R0, 663
+  mov [1710447], R0
+  mov R0, 663
+  mov [1710448], R0
+  mov R0, 665
+  mov [1710449], R0
+  mov R0, 665
+  mov [1710450], R0
+  mov R0, 665
+  mov [1710451], R0
+  mov R0, 665
+  mov [1710452], R0
+  mov R0, 665
+  mov [1710453], R0
+  mov R0, 668
+  mov [1710454], R0
+  mov R0, 668
+  mov [1710455], R0
+  mov R0, 668
+  mov [1710456], R0
+  mov R0, 671
+  mov [1710457], R0
+  mov R0, 671
+  mov [1710458], R0
+  mov R0, 671
+  mov [1710459], R0
+  mov R0, 671
+  mov [1710460], R0
+  mov R0, 671
+  mov [1710461], R0
+  mov R0, 674
+  mov [1710462], R0
+  mov R0, 674
+  mov [1710463], R0
+  mov R0, 676
+  mov [1710464], R0
+  mov R0, 676
+  mov [1710465], R0
+  mov R0, 676
+  mov [1710466], R0
+  mov R0, 676
+  mov [1710467], R0
+  mov R0, 677
+  mov [1710468], R0
+  mov R0, 678
+  mov [1710469], R0
+  mov R0, 678
+  mov [1710470], R0
+  mov R0, 678
+  mov [1710471], R0
+  mov R0, 679
+  mov [1710472], R0
+  mov R0, 679
+  mov [1710473], R0
+  mov R0, 679
+  mov [1710474], R0
+  mov R0, 680
+  mov [1710475], R0
+  mov R0, 680
+  mov [1710476], R0
+  mov R0, 682
+  mov [1710477], R0
+  mov R0, 682
+  mov [1710478], R0
+  mov R0, 682
+  mov [1710479], R0
+  mov R0, 682
+  mov [1710480], R0
+  mov R0, 683
+  mov [1710481], R0
+  mov R0, 683
+  mov [1710482], R0
+  mov R0, 684
+  mov [1710483], R0
+  mov R0, 685
+  mov [1710484], R0
+  mov R0, 685
+  mov [1710485], R0
+  mov R0, 686
+  mov [1710486], R0
+  mov R0, 686
+  mov [1710487], R0
+  mov R0, 686
+  mov [1710488], R0
+  mov R0, 687
+  mov [1710489], R0
+  mov R0, 687
+  mov [1710490], R0
+  mov R0, 687
+  mov [1710491], R0
+  mov R0, 687
+  mov [1710492], R0
+  mov R0, 689
+  mov [1710493], R0
+  mov R0, 689
+  mov [1710494], R0
+  mov R0, 689
+  mov [1710495], R0
+  mov R0, 690
+  mov [1710496], R0
+  mov R0, 690
+  mov [1710497], R0
+  mov R0, 690
+  mov [1710498], R0
+  mov R0, 691
+  mov [1710499], R0
+  mov R0, 691
+  mov [1710500], R0
+  mov R0, 691
+  mov [1710501], R0
+  mov R0, 693
+  mov [1710502], R0
+  mov R0, 693
+  mov [1710503], R0
+  mov R0, 693
+  mov [1710504], R0
+  mov R0, 693
+  mov [1710505], R0
+  mov R0, 694
+  mov [1710506], R0
+  mov R0, 694
+  mov [1710507], R0
+  mov R0, 694
+  mov [1710508], R0
+  mov R0, 695
+  mov [1710509], R0
+  mov R0, 695
+  mov [1710510], R0
+  mov R0, 696
+  mov [1710511], R0
+  mov R0, 697
+  mov [1710512], R0
+  mov R0, 697
+  mov [1710513], R0
+  mov R0, 698
+  mov [1710514], R0
+  mov R0, 698
+  mov [1710515], R0
+  mov R0, 698
+  mov [1710516], R0
+  mov R0, 698
+  mov [1710517], R0
+  mov R0, 698
+  mov [1710518], R0
+  mov R0, 701
+  mov [1710519], R0
+  mov R0, 701
+  mov [1710520], R0
+  mov R0, 704
+  mov [1710521], R0
+  mov R0, 704
+  mov [1710522], R0
+  mov R0, 704
+  mov [1710523], R0
+  mov R0, 704
+  mov [1710524], R0
+  mov R0, 704
+  mov [1710525], R0
+  mov R0, 706
+  mov [1710526], R0
+  mov R0, 706
+  mov [1710527], R0
+  mov R0, 709
+  mov [1710528], R0
+  mov R0, 709
+  mov [1710529], R0
+  mov R0, 709
+  mov [1710530], R0
+  mov R0, 709
+  mov [1710531], R0
+  mov R0, 709
+  mov [1710532], R0
+  mov R0, 712
+  mov [1710533], R0
+  mov R0, 712
+  mov [1710534], R0
+  mov R0, 712
+  mov [1710535], R0
+  mov R0, 714
+  mov [1710536], R0
+  mov R0, 714
+  mov [1710537], R0
+  mov R0, 714
+  mov [1710538], R0
+  mov R0, 715
+  mov [1710539], R0
+  mov R0, 715
+  mov [1710540], R0
+  mov R0, 717
+  mov [1710541], R0
+  mov R0, 717
+  mov [1710542], R0
+  mov R0, 720
+  mov [1710543], R0
+  mov R0, 720
+  mov [1710544], R0
+  mov R0, 720
+  mov [1710545], R0
+  mov R0, 720
+  mov [1710546], R0
+  mov R0, 720
+  mov [1710547], R0
+  mov R0, 723
+  mov [1710548], R0
+  mov R0, 723
+  mov [1710549], R0
+  mov R0, 725
+  mov [1710550], R0
+  mov R0, 725
+  mov [1710551], R0
+  mov R0, 725
+  mov [1710552], R0
+  mov R0, 725
+  mov [1710553], R0
+  mov R0, 726
+  mov [1710554], R0
+  mov R0, 728
+  mov [1710555], R0
+  mov R0, 728
+  mov [1710556], R0
+  mov R0, 731
+  mov [1710557], R0
+  mov R0, 731
+  mov [1710558], R0
+  mov R0, 731
+  mov [1710559], R0
+  mov R0, 731
+  mov [1710560], R0
+  mov R0, 731
+  mov [1710561], R0
+  mov R0, 734
+  mov [1710562], R0
+  mov R0, 734
+  mov [1710563], R0
+  mov R0, 734
+  mov [1710564], R0
+  mov R0, 736
+  mov [1710565], R0
+  mov R0, 736
+  mov [1710566], R0
+  mov R0, 736
+  mov [1710567], R0
+  mov R0, 736
+  mov [1710568], R0
+  mov R0, 737
+  mov [1710569], R0
+  mov R0, 739
+  mov [1710570], R0
+  mov R0, 739
+  mov [1710571], R0
+  mov R0, 742
+  mov [1710572], R0
+  mov R0, 742
+  mov [1710573], R0
+  mov R0, 742
+  mov [1710574], R0
+  mov R0, 742
+  mov [1710575], R0
+  mov R0, 742
+  mov [1710576], R0
+  mov R0, 744
+  mov [1710577], R0
+  mov R0, 745
+  mov [1710578], R0
+  mov R0, 747
+  mov [1710579], R0
+  mov R0, 747
+  mov [1710580], R0
+  mov R0, 747
+  mov [1710581], R0
+  mov R0, 747
+  mov [1710582], R0
+  mov R0, 747
+  mov [1710583], R0
+  mov R0, 750
+  mov [1710584], R0
+  mov R0, 750
+  mov [1710585], R0
+  mov R0, 753
+  mov [1710586], R0
+  mov R0, 753
+  mov [1710587], R0
+  mov R0, 753
+  mov [1710588], R0
+  mov R0, 753
+  mov [1710589], R0
+  mov R0, 753
+  mov [1710590], R0
+  mov R0, 755
+  mov [1710591], R0
+  mov R0, 755
+  mov [1710592], R0
+  mov R0, 755
+  mov [1710593], R0
+  mov R0, 758
+  mov [1710594], R0
+  mov R0, 758
+  mov [1710595], R0
+  mov R0, 758
+  mov [1710596], R0
+  mov R0, 758
+  mov [1710597], R0
+  mov R0, 759
+  mov [1710598], R0
+  mov R0, 761
+  mov [1710599], R0
+  mov R0, 761
+  mov [1710600], R0
+  mov R0, 764
+  mov [1710601], R0
+  mov R0, 764
+  mov [1710602], R0
+  mov R0, 764
+  mov [1710603], R0
+  mov R0, 764
+  mov [1710604], R0
+  mov R0, 764
+  mov [1710605], R0
+  mov R0, 766
+  mov [1710606], R0
+  mov R0, 766
+  mov [1710607], R0
+  mov R0, 769
+  mov [1710608], R0
+  mov R0, 769
+  mov [1710609], R0
+  mov R0, 769
+  mov [1710610], R0
+  mov R0, 769
+  mov [1710611], R0
+  mov R0, 769
+  mov [1710612], R0
+  mov R0, 772
+  mov [1710613], R0
+  mov R0, 772
+  mov [1710614], R0
+  mov R0, 774
+  mov [1710615], R0
+  mov R0, 774
+  mov [1710616], R0
+  mov R0, 774
+  mov [1710617], R0
+  mov R0, 777
+  mov [1710618], R0
+  mov R0, 780
+  mov [1710619], R0
+  mov R0, 780
+  mov [1710620], R0
+  mov R0, 780
+  mov [1710621], R0
+  mov R0, 785
+  mov [1710622], R0
+  mov R0, 785
+  mov [1710623], R0
+  mov R0, 785
+  mov [1710624], R0
+  mov R0, 785
+  mov [1710625], R0
+  mov R0, 785
+  mov [1710626], R0
+  mov R0, 788
+  mov [1710627], R0
+  mov R0, 788
+  mov [1710628], R0
+  mov R0, 791
+  mov [1710629], R0
+  mov R0, 791
+  mov [1710630], R0
+  mov R0, 791
+  mov [1710631], R0
+  mov R0, 791
+  mov [1710632], R0
+  mov R0, 791
+  mov [1710633], R0
+  mov R0, 794
+  mov [1710634], R0
+  mov R0, 794
+  mov [1710635], R0
+  mov R0, 796
+  mov [1710636], R0
+  mov R0, 796
+  mov [1710637], R0
+  mov R0, 796
+  mov [1710638], R0
+  mov R0, 796
+  mov [1710639], R0
+  mov R0, 796
+  mov [1710640], R0
+  mov R0, 799
+  mov [1710641], R0
+  mov R0, 799
+  mov [1710642], R0
+  mov R0, 799
+  mov [1710643], R0
+  mov R0, 802
+  mov [1710644], R0
+  mov R0, 802
+  mov [1710645], R0
+  mov R0, 802
+  mov [1710646], R0
+  mov R0, 802
+  mov [1710647], R0
+  mov R0, 802
+  mov [1710648], R0
+  mov R0, 804
+  mov [1710649], R0
+  mov R0, 805
+  mov [1710650], R0
+  mov R0, 807
+  mov [1710651], R0
+  mov R0, 807
+  mov [1710652], R0
+  mov R0, 807
+  mov [1710653], R0
+  mov R0, 807
+  mov [1710654], R0
+  mov R0, 807
+  mov [1710655], R0
+  mov R0, 810
+  mov [1710656], R0
+  mov R0, 810
+  mov [1710657], R0
+  mov R0, 813
+  mov [1710658], R0
+  mov R0, 813
+  mov [1710659], R0
+  mov R0, 813
+  mov [1710660], R0
+  mov R0, 813
+  mov [1710661], R0
+  mov R0, 813
+  mov [1710662], R0
+  mov R0, 815
+  mov [1710663], R0
+  mov R0, 815
+  mov [1710664], R0
+  mov R0, 818
+  mov [1710665], R0
+  mov R0, 818
+  mov [1710666], R0
+  mov R0, 818
+  mov [1710667], R0
+  mov R0, 818
+  mov [1710668], R0
+  mov R0, 818
+  mov [1710669], R0
+  mov R0, 821
+  mov [1710670], R0
+  mov R0, 821
+  mov [1710671], R0
+  mov R0, 824
+  mov [1710672], R0
+  mov R0, 824
+  mov [1710673], R0
+  mov R0, 824
+  mov [1710674], R0
+  mov R0, 824
+  mov [1710675], R0
+  mov R0, 824
+  mov [1710676], R0
+  mov R0, 826
+  mov [1710677], R0
+  mov R0, 826
+  mov [1710678], R0
+  mov R0, 829
+  mov [1710679], R0
+  mov R0, 829
+  mov [1710680], R0
+  mov R0, 829
+  mov [1710681], R0
+  mov R0, 829
+  mov [1710682], R0
+  mov R0, 829
+  mov [1710683], R0
+  mov R0, 832
+  mov [1710684], R0
+  mov R0, 832
+  mov [1710685], R0
+  mov R0, 834
+  mov [1710686], R0
+  mov R0, 834
+  mov [1710687], R0
+  mov R0, 834
+  mov [1710688], R0
+  mov R0, 834
+  mov [1710689], R0
+  mov R0, 835
+  mov [1710690], R0
+  mov R0, 837
+  mov [1710691], R0
+  mov R0, 837
+  mov [1710692], R0
+  mov R0, 840
+  mov [1710693], R0
+  mov R0, 840
+  mov [1710694], R0
+  mov R0, 840
+  mov [1710695], R0
+  mov R0, 840
+  mov [1710696], R0
+  mov R0, 840
+  mov [1710697], R0
+  mov R0, 843
+  mov [1710698], R0
+  mov R0, 843
+  mov [1710699], R0
+  mov R0, 843
+  mov [1710700], R0
+  mov R0, 845
+  mov [1710701], R0
+  mov R0, 845
+  mov [1710702], R0
+  mov R0, 845
+  mov [1710703], R0
+  mov R0, 845
+  mov [1710704], R0
+  mov R0, 846
+  mov [1710705], R0
+  mov R0, 848
+  mov [1710706], R0
+  mov R0, 848
+  mov [1710707], R0
+  mov R0, 851
+  mov [1710708], R0
+  mov R0, 851
+  mov [1710709], R0
+  mov R0, 851
+  mov [1710710], R0
+  mov R0, 851
+  mov [1710711], R0
+  mov R0, 851
+  mov [1710712], R0
+  mov R0, 853
+  mov [1710713], R0
+  mov R0, 854
+  mov [1710714], R0
+  mov R0, 854
+  mov [1710715], R0
+  mov R0, 856
+  mov [1710716], R0
+  mov R0, 856
+  mov [1710717], R0
+  mov R0, 856
+  mov [1710718], R0
+  mov R0, 856
+  mov [1710719], R0
+  mov R0, 856
+  mov [1710720], R0
+  mov R0, 859
+  mov [1710721], R0
+  mov R0, 859
+  mov [1710722], R0
+  mov R0, 859
+  mov [1710723], R0
+  mov R0, 862
+  mov [1710724], R0
+  mov R0, 862
+  mov [1710725], R0
+  mov R0, 862
+  mov [1710726], R0
+  mov R0, 863
+  mov [1710727], R0
+  mov R0, 863
+  mov [1710728], R0
+  mov R0, 864
+  mov [1710729], R0
+  mov R0, 867
+  mov [1710730], R0
+  mov R0, 867
+  mov [1710731], R0
+  mov R0, 867
+  mov [1710732], R0
+  mov R0, 870
+  mov [1710733], R0
+  mov R0, 873
+  mov [1710734], R0
+  mov R0, 873
+  mov [1710735], R0
+  mov R0, 873
+  mov [1710736], R0
+  mov R0, 873
+  mov [1710737], R0
+  mov R0, 873
+  mov [1710738], R0
+  mov R0, 875
+  mov [1710739], R0
+  mov R0, 875
+  mov [1710740], R0
+  mov R0, 878
+  mov [1710741], R0
+  mov R0, 878
+  mov [1710742], R0
+  mov R0, 878
+  mov [1710743], R0
+  mov R0, 878
+  mov [1710744], R0
+  mov R0, 878
+  mov [1710745], R0
+  mov R0, 881
+  mov [1710746], R0
+  mov R0, 881
+  mov [1710747], R0
+  mov R0, 883
+  mov [1710748], R0
+  mov R0, 884
+  mov [1710749], R0
+  mov R0, 884
+  mov [1710750], R0
+  mov R0, 884
+  mov [1710751], R0
+  mov R0, 884
+  mov [1710752], R0
+  mov R0, 886
+  mov [1710753], R0
+  mov R0, 886
+  mov [1710754], R0
+  mov R0, 886
+  mov [1710755], R0
+  mov R0, 889
+  mov [1710756], R0
+  mov R0, 889
+  mov [1710757], R0
+  mov R0, 889
+  mov [1710758], R0
+  mov R0, 889
+  mov [1710759], R0
+  mov R0, 889
+  mov [1710760], R0
+  mov R0, 892
+  mov [1710761], R0
+  mov R0, 892
+  mov [1710762], R0
+  mov R0, 894
+  mov [1710763], R0
+  mov R0, 894
+  mov [1710764], R0
+  mov R0, 894
+  mov [1710765], R0
+  mov R0, 894
+  mov [1710766], R0
+  mov R0, 895
+  mov [1710767], R0
+  mov R0, 897
+  mov [1710768], R0
+  mov R0, 897
+  mov [1710769], R0
+  mov R0, 900
+  mov [1710770], R0
+  mov R0, 900
+  mov [1710771], R0
+  mov R0, 900
+  mov [1710772], R0
+  mov R0, 900
+  mov [1710773], R0
+  mov R0, 900
+  mov [1710774], R0
+  mov R0, 903
+  mov [1710775], R0
+  mov R0, 903
+  mov [1710776], R0
+  mov R0, 905
+  mov [1710777], R0
+  mov R0, 905
+  mov [1710778], R0
+  mov R0, 905
+  mov [1710779], R0
+  mov R0, 905
+  mov [1710780], R0
+  mov R0, 905
+  mov [1710781], R0
+  mov R0, 908
+  mov [1710782], R0
+  mov R0, 908
+  mov [1710783], R0
+  mov R0, 908
+  mov [1710784], R0
+  mov R0, 911
+  mov [1710785], R0
+  mov R0, 911
+  mov [1710786], R0
+  mov R0, 911
+  mov [1710787], R0
+  mov R0, 911
+  mov [1710788], R0
+  mov R0, 911
+  mov [1710789], R0
+  mov R0, 914
+  mov [1710790], R0
+  mov R0, 914
+  mov [1710791], R0
+  mov R0, 916
+  mov [1710792], R0
+  mov R0, 916
+  mov [1710793], R0
+  mov R0, 916
+  mov [1710794], R0
+  mov R0, 916
+  mov [1710795], R0
+  mov R0, 916
+  mov [1710796], R0
+  mov R0, 919
+  mov [1710797], R0
+  mov R0, 919
+  mov [1710798], R0
+  mov R0, 922
+  mov [1710799], R0
+  mov R0, 922
+  mov [1710800], R0
+  mov R0, 922
+  mov [1710801], R0
+  mov R0, 922
+  mov [1710802], R0
+  mov R0, 922
+  mov [1710803], R0
+  mov R0, 924
+  mov [1710804], R0
+  mov R0, 925
+  mov [1710805], R0
+  mov R0, 927
+  mov [1710806], R0
+  mov R0, 927
+  mov [1710807], R0
+  mov R0, 927
+  mov [1710808], R0
+  mov R0, 927
+  mov [1710809], R0
+  mov R0, 927
+  mov [1710810], R0
+  mov R0, 930
+  mov [1710811], R0
+  mov R0, 930
+  mov [1710812], R0
+  mov R0, 930
+  mov [1710813], R0
+  mov R0, 932
+  mov [1710814], R0
+  mov R0, 933
+  mov [1710815], R0
+  mov R0, 933
+  mov [1710816], R0
+  mov R0, 933
+  mov [1710817], R0
+  mov R0, 933
+  mov [1710818], R0
+  mov R0, 935
+  mov [1710819], R0
+  mov R0, 935
+  mov [1710820], R0
+  mov R0, 938
+  mov [1710821], R0
+  mov R0, 938
+  mov [1710822], R0
+  mov R0, 938
+  mov [1710823], R0
+  mov R0, 938
+  mov [1710824], R0
+  mov R0, 938
+  mov [1710825], R0
+  mov R0, 941
+  mov [1710826], R0
+  mov R0, 941
+  mov [1710827], R0
+  mov R0, 944
+  mov [1710828], R0
+  mov R0, 944
+  mov [1710829], R0
+  mov R0, 944
+  mov [1710830], R0
+  mov R0, 944
+  mov [1710831], R0
+  mov R0, 944
+  mov [1710832], R0
+  mov R0, 946
+  mov [1710833], R0
+  mov R0, 946
+  mov [1710834], R0
+  mov R0, 949
+  mov [1710835], R0
+  mov R0, 949
+  mov [1710836], R0
+  mov R0, 949
+  mov [1710837], R0
+  mov R0, 952
+  mov [1710838], R0
+  mov R0, 954
+  mov [1710839], R0
+  mov R0, 954
+  mov [1710840], R0
+  mov R0, 954
+  mov [1710841], R0
+  mov R0, 960
+  mov [1710842], R0
+  mov R0, 960
+  mov [1710843], R0
+  mov R0, 960
+  mov [1710844], R0
+  mov R0, 960
+  mov [1710845], R0
+  mov R0, 960
+  mov [1710846], R0
+  mov R0, 963
+  mov [1710847], R0
+  mov R0, 963
+  mov [1710848], R0
+  mov R0, 965
+  mov [1710849], R0
+  mov R0, 965
+  mov [1710850], R0
+  mov R0, 965
+  mov [1710851], R0
+  mov R0, 965
+  mov [1710852], R0
+  mov R0, 965
+  mov [1710853], R0
+  mov R0, 968
+  mov [1710854], R0
+  mov R0, 968
+  mov [1710855], R0
+  mov R0, 971
+  mov [1710856], R0
+  mov R0, 971
+  mov [1710857], R0
+  mov R0, 971
+  mov [1710858], R0
+  mov R0, 971
+  mov [1710859], R0
+  mov R0, 971
+  mov [1710860], R0
+  mov R0, 974
+  mov [1710861], R0
+  mov R0, 974
+  mov [1710862], R0
+  mov R0, 974
+  mov [1710863], R0
+  mov R0, 976
+  mov [1710864], R0
+  mov R0, 976
+  mov [1710865], R0
+  mov R0, 976
+  mov [1710866], R0
+  mov R0, 976
+  mov [1710867], R0
+  mov R0, 976
+  mov [1710868], R0
+  mov R0, 979
+  mov [1710869], R0
+  mov R0, 979
+  mov [1710870], R0
+  mov R0, 982
+  mov [1710871], R0
+  mov R0, 982
+  mov [1710872], R0
+  mov R0, 982
+  mov [1710873], R0
+  mov R0, 982
+  mov [1710874], R0
+  mov R0, 982
+  mov [1710875], R0
+  mov R0, 984
+  mov [1710876], R0
+  mov R0, 985
+  mov [1710877], R0
+  mov R0, 987
+  mov [1710878], R0
+  mov R0, 987
+  mov [1710879], R0
+  mov R0, 987
+  mov [1710880], R0
+  mov R0, 987
+  mov [1710881], R0
+  mov R0, 987
+  mov [1710882], R0
+  mov R0, 990
+  mov [1710883], R0
+  mov R0, 990
+  mov [1710884], R0
+  mov R0, 993
+  mov [1710885], R0
+  mov R0, 993
+  mov [1710886], R0
+  mov R0, 993
+  mov [1710887], R0
+  mov R0, 993
+  mov [1710888], R0
+  mov R0, 993
+  mov [1710889], R0
+  mov R0, 995
+  mov [1710890], R0
+  mov R0, 995
+  mov [1710891], R0
+  mov R0, 998
+  mov [1710892], R0
+  mov R0, 998
+  mov [1710893], R0
+  mov R0, 998
+  mov [1710894], R0
+  mov R0, 998
+  mov [1710895], R0
+  mov R0, 998
+  mov [1710896], R0
+  mov R0, 1001
+  mov [1710897], R0
+  mov R0, 1001
+  mov [1710898], R0
+  mov R0, 1004
+  mov [1710899], R0
+  mov R0, 1004
+  mov [1710900], R0
+  mov R0, 1004
+  mov [1710901], R0
+  mov R0, 1004
+  mov [1710902], R0
+  mov R0, 1004
+  mov [1710903], R0
+  mov R0, 1006
+  mov [1710904], R0
+  mov R0, 1006
+  mov [1710905], R0
+  mov R0, 1009
+  mov [1710906], R0
+  mov R0, 1009
+  mov [1710907], R0
+  mov R0, 1009
+  mov [1710908], R0
+  mov R0, 1009
+  mov [1710909], R0
+  mov R0, 1009
+  mov [1710910], R0
+  mov R0, 1012
+  mov [1710911], R0
+  mov R0, 1012
+  mov [1710912], R0
+  mov R0, 1014
+  mov [1710913], R0
+  mov R0, 1014
+  mov [1710914], R0
+  mov R0, 1014
+  mov [1710915], R0
+  mov R0, 1015
+  mov [1710916], R0
+  mov R0, 1015
+  mov [1710917], R0
+  mov R0, 1017
+  mov [1710918], R0
+  mov R0, 1017
+  mov [1710919], R0
+  mov R0, 1017
+  mov [1710920], R0
+  mov R0, 1020
+  mov [1710921], R0
+  mov R0, 1020
+  mov [1710922], R0
+  mov R0, 1020
+  mov [1710923], R0
+  mov R0, 1020
+  mov [1710924], R0
+  mov R0, 1020
+  mov [1710925], R0
+  mov R0, 1023
+  mov [1710926], R0
+  mov R0, 1023
+  mov [1710927], R0
+  mov R0, 1025
+  mov [1710928], R0
+  mov R0, 1025
+  mov [1710929], R0
+  mov R0, 1025
+  mov [1710930], R0
+  mov R0, 1025
+  mov [1710931], R0
+  mov R0, 1025
+  mov [1710932], R0
+  mov R0, 1025
+  mov [1710933], R0
+  mov R0, 1025
+  mov [1710934], R0
+  mov R0, 1027
+  mov [1710935], R0
+  mov R0, 1027
+  mov [1710936], R0
+  mov R0, 1028
+  mov [1710937], R0
+  mov R0, 1028
+  mov [1710938], R0
+  mov R0, 1029
+  mov [1710939], R0
+  mov R0, 1030
+  mov [1710940], R0
+  mov R0, 1031
+  mov [1710941], R0
+  mov R0, 1031
+  mov [1710942], R0
+  mov R0, 1032
+  mov [1710943], R0
+  mov R0, 1032
+  mov [1710944], R0
+  mov R0, 1034
+  mov [1710945], R0
+  mov R0, 1034
+  mov [1710946], R0
+  mov R0, 1035
+  mov [1710947], R0
+  mov R0, 1035
+  mov [1710948], R0
+  mov R0, 1036
+  mov [1710949], R0
+  mov R0, 1036
+  mov [1710950], R0
+  mov R0, 1038
+  mov [1710951], R0
+  mov R0, 1038
+  mov [1710952], R0
+  mov R0, 1039
+  mov [1710953], R0
+  mov R0, 1039
+  mov [1710954], R0
+  mov R0, 1040
+  mov [1710955], R0
+  mov R0, 1040
+  mov [1710956], R0
+  mov R0, 1042
+  mov [1710957], R0
+  mov R0, 1042
+  mov [1710958], R0
+  mov R0, 1043
+  mov [1710959], R0
+  mov R0, 1043
+  mov [1710960], R0
+  mov R0, 1044
+  mov [1710961], R0
+  mov R0, 1045
+  mov [1710962], R0
+  mov R0, 1046
+  mov [1710963], R0
+  mov R0, 1046
+  mov [1710964], R0
+  mov R0, 1047
+  mov [1710965], R0
+  mov R0, 1047
+  mov [1710966], R0
+  mov R0, 1047
+  mov [1710967], R0
+  mov R0, 1047
+  mov [1710968], R0
+  mov R0, 1047
+  mov [1710969], R0
+  mov R0, 1047
+  mov [1710970], R0
+  mov R0, 1047
+  mov [1710971], R0
+  mov R0, 1047
+  mov [1710972], R0
+  mov R0, 1050
+  mov [1710973], R0
+  mov R0, 1050
+  mov [1710974], R0
+  mov R0, 1051
+  mov [1710975], R0
+  mov R0, 1051
+  mov [1710976], R0
+  mov R0, 1053
+  mov [1710977], R0
+  mov R0, 1053
+  mov [1710978], R0
+  mov R0, 1055
+  mov [1710979], R0
+  mov R0, 1055
+  mov [1710980], R0
+  mov R0, 1058
+  mov [1710981], R0
+  mov R0, 1058
+  mov [1710982], R0
+  mov R0, 1061
+  mov [1710983], R0
+  mov R0, 1061
+  mov [1710984], R0
+  mov R0, 1064
+  mov [1710985], R0
+  mov R0, 1064
+  mov [1710986], R0
+  mov R0, 1066
+  mov [1710987], R0
+  mov R0, 1066
+  mov [1710988], R0
+  mov R0, 1069
+  mov [1710989], R0
+  mov R0, 1069
+  mov [1710990], R0
+  mov R0, 1072
+  mov [1710991], R0
+  mov R0, 1072
+  mov [1710992], R0
+  mov R0, 1074
+  mov [1710993], R0
+  mov R0, 1075
+  mov [1710994], R0
+  mov R0, 1077
+  mov [1710995], R0
+  mov R0, 1077
+  mov [1710996], R0
+  mov R0, 1080
+  mov [1710997], R0
+  mov R0, 1080
+  mov [1710998], R0
+  mov R0, 1083
+  mov [1710999], R0
+  mov R0, 1083
+  mov [1711000], R0
+  mov R0, 1085
+  mov [1711001], R0
+  mov R0, 1085
+  mov [1711002], R0
+  mov R0, 1088
+  mov [1711003], R0
+  mov R0, 1088
+  mov [1711004], R0
+  mov R0, 1091
+  mov [1711005], R0
+  mov R0, 1091
+  mov [1711006], R0
+  mov R0, 1091
+  mov [1711007], R0
+  mov R0, 1091
+  mov [1711008], R0
+  mov R0, 1091
+  mov [1711009], R0
+  mov R0, 1091
+  mov [1711010], R0
+  mov R0, 1091
+  mov [1711011], R0
+  mov R0, 1091
+  mov [1711012], R0
+  mov R0, 1094
+  mov [1711013], R0
+  mov R0, 1094
+  mov [1711014], R0
+  mov R0, 1095
+  mov [1711015], R0
+  mov R0, 1095
+  mov [1711016], R0
+  mov R0, 1096
+  mov [1711017], R0
+  mov R0, 1096
+  mov [1711018], R0
+  mov R0, 1099
+  mov [1711019], R0
+  mov R0, 1099
+  mov [1711020], R0
+  mov R0, 1102
+  mov [1711021], R0
+  mov R0, 1102
+  mov [1711022], R0
+  mov R0, 1104
+  mov [1711023], R0
+  mov R0, 1105
+  mov [1711024], R0
+  mov R0, 1107
+  mov [1711025], R0
+  mov R0, 1107
+  mov [1711026], R0
+  mov R0, 1110
+  mov [1711027], R0
+  mov R0, 1110
+  mov [1711028], R0
+  mov R0, 1113
+  mov [1711029], R0
+  mov R0, 1113
+  mov [1711030], R0
+  mov R0, 1115
+  mov [1711031], R0
+  mov R0, 1115
+  mov [1711032], R0
+  mov R0, 1118
+  mov [1711033], R0
+  mov R0, 1118
+  mov [1711034], R0
+  mov R0, 1121
+  mov [1711035], R0
+  mov R0, 1121
+  mov [1711036], R0
+  mov R0, 1134
+  mov [1711037], R0
+  mov R0, 1134
+  mov [1711038], R0
+  mov R0, 1134
+  mov [1711039], R0
+  mov R0, 1134
+  mov [1711040], R0
+  mov R0, 1134
+  mov [1711041], R0
+  mov R0, 1134
+  mov [1711042], R0
+  mov R0, 1134
+  mov [1711043], R0
+  mov R0, 1135
+  mov [1711044], R0
+  mov R0, 1137
+  mov [1711045], R0
+  mov R0, 1137
+  mov [1711046], R0
+  mov R0, 1139
+  mov [1711047], R0
+  mov R0, 1139
+  mov [1711048], R0
+  mov R0, 1140
+  mov [1711049], R0
+  mov R0, 1140
+  mov [1711050], R0
+  mov R0, 1143
+  mov [1711051], R0
+  mov R0, 1143
+  mov [1711052], R0
+  mov R0, 1145
+  mov [1711053], R0
+  mov R0, 1145
+  mov [1711054], R0
+  mov R0, 1148
+  mov [1711055], R0
+  mov R0, 1148
+  mov [1711056], R0
+  mov R0, 1151
+  mov [1711057], R0
+  mov R0, 1151
+  mov [1711058], R0
+  mov R0, 1154
+  mov [1711059], R0
+  mov R0, 1154
+  mov [1711060], R0
+  mov R0, 1156
+  mov [1711061], R0
+  mov R0, 1156
+  mov [1711062], R0
+  mov R0, 1159
+  mov [1711063], R0
+  mov R0, 1159
+  mov [1711064], R0
+  mov R0, 1162
+  mov [1711065], R0
+  mov R0, 1162
+  mov [1711066], R0
+  mov R0, 1164
+  mov [1711067], R0
+  mov R0, 1165
+  mov [1711068], R0
+  mov R0, 1167
+  mov [1711069], R0
+  mov R0, 1167
+  mov [1711070], R0
+  mov R0, 1170
+  mov [1711071], R0
+  mov R0, 1170
+  mov [1711072], R0
+  mov R0, 1173
+  mov [1711073], R0
+  mov R0, 1173
+  mov [1711074], R0
+  mov R0, 1175
+  mov [1711075], R0
+  mov R0, 1175
+  mov [1711076], R0
+  mov R0, 1178
+  mov [1711077], R0
+  mov R0, 1178
+  mov [1711078], R0
+  mov R0, 1178
+  mov [1711079], R0
+  mov R0, 1178
+  mov [1711080], R0
+  mov R0, 1178
+  mov [1711081], R0
+  mov R0, 1178
+  mov [1711082], R0
+  mov R0, 1178
+  mov [1711083], R0
+  mov R0, 1178
+  mov [1711084], R0
+  mov R0, 1181
+  mov [1711085], R0
+  mov R0, 1181
+  mov [1711086], R0
+  mov R0, 1182
+  mov [1711087], R0
+  mov R0, 1182
+  mov [1711088], R0
+  mov R0, 1184
+  mov [1711089], R0
+  mov R0, 1184
+  mov [1711090], R0
+  mov R0, 1186
+  mov [1711091], R0
+  mov R0, 1186
+  mov [1711092], R0
+  mov R0, 1189
+  mov [1711093], R0
+  mov R0, 1189
+  mov [1711094], R0
+  mov R0, 1192
+  mov [1711095], R0
+  mov R0, 1192
+  mov [1711096], R0
+  mov R0, 1194
+  mov [1711097], R0
+  mov R0, 1195
+  mov [1711098], R0
+  mov R0, 1197
+  mov [1711099], R0
+  mov R0, 1197
+  mov [1711100], R0
+  mov R0, 1200
+  mov [1711101], R0
+  mov R0, 1200
+  mov [1711102], R0
+  mov R0, 1200
+  mov [1711103], R0
+  mov R0, 1200
+  mov [1711104], R0
+  mov R0, 1201
+  mov [1711105], R0
+  mov R0, 1201
+  mov [1711106], R0
+  mov R0, 1203
+  mov [1711107], R0
+  mov R0, 1203
+  mov [1711108], R0
+  mov R0, 1203
+  mov [1711109], R0
+  mov R0, 1204
+  mov [1711110], R0
+  mov R0, 1204
+  mov [1711111], R0
+  mov R0, 1205
+  mov [1711112], R0
+  mov R0, 1205
+  mov [1711113], R0
+  mov R0, 1205
+  mov [1711114], R0
+  mov R0, 1205
+  mov [1711115], R0
+  mov R0, 1207
+  mov [1711116], R0
+  mov R0, 1207
+  mov [1711117], R0
+  mov R0, 1208
+  mov [1711118], R0
+  mov R0, 1208
+  mov [1711119], R0
+  mov R0, 1208
+  mov [1711120], R0
+  mov R0, 1209
+  mov [1711121], R0
+  mov R0, 1210
+  mov [1711122], R0
+  mov R0, 1211
+  mov [1711123], R0
+  mov R0, 1211
+  mov [1711124], R0
+  mov R0, 1211
+  mov [1711125], R0
+  mov R0, 1211
+  mov [1711126], R0
+  mov R0, 1211
+  mov [1711127], R0
+  mov R0, 1212
+  mov [1711128], R0
+  mov R0, 1212
+  mov [1711129], R0
+  mov R0, 1214
+  mov [1711130], R0
+  mov R0, 1214
+  mov [1711131], R0
+  mov R0, 1214
+  mov [1711132], R0
+  mov R0, 1214
+  mov [1711133], R0
+  mov R0, 1214
+  mov [1711134], R0
+  mov R0, 1215
+  mov [1711135], R0
+  mov R0, 1215
+  mov [1711136], R0
+  mov R0, 1216
+  mov [1711137], R0
+  mov R0, 1216
+  mov [1711138], R0
+  mov R0, 1216
+  mov [1711139], R0
+  mov R0, 1216
+  mov [1711140], R0
+  mov R0, 1216
+  mov [1711141], R0
+  mov R0, 1218
+  mov [1711142], R0
+  mov R0, 1218
+  mov [1711143], R0
+  mov R0, 1219
+  mov [1711144], R0
+  mov R0, 1219
+  mov [1711145], R0
+  mov R0, 1219
+  mov [1711146], R0
+  mov R0, 1219
+  mov [1711147], R0
+  mov R0, 1219
+  mov [1711148], R0
+  mov R0, 1220
+  mov [1711149], R0
+  mov R0, 1220
+  mov [1711150], R0
+  mov R0, 1222
+  mov [1711151], R0
+  mov R0, 1222
+  mov [1711152], R0
+  mov R0, 1222
+  mov [1711153], R0
+  mov R0, 1222
+  mov [1711154], R0
+  mov R0, 1222
+  mov [1711155], R0
+  mov R0, 1224
+  mov [1711156], R0
+  mov R0, 1225
+  mov [1711157], R0
+  mov R0, 1227
+  mov [1711158], R0
+  mov R0, 1227
+  mov [1711159], R0
+  mov R0, 1227
+  mov [1711160], R0
+  mov R0, 1227
+  mov [1711161], R0
+  mov R0, 1227
+  mov [1711162], R0
+  mov R0, 1230
+  mov [1711163], R0
+  mov R0, 1230
+  mov [1711164], R0
+  mov R0, 1233
+  mov [1711165], R0
+  mov R0, 1233
+  mov [1711166], R0
+  mov R0, 1233
+  mov [1711167], R0
+  mov R0, 1233
+  mov [1711168], R0
+  mov R0, 1233
+  mov [1711169], R0
+  mov R0, 1235
+  mov [1711170], R0
+  mov R0, 1235
+  mov [1711171], R0
+  mov R0, 1235
+  mov [1711172], R0
+  mov R0, 1238
+  mov [1711173], R0
+  mov R0, 1238
+  mov [1711174], R0
+  mov R0, 1238
+  mov [1711175], R0
+  mov R0, 1238
+  mov [1711176], R0
+  mov R0, 1239
+  mov [1711177], R0
+  mov R0, 1241
+  mov [1711178], R0
+  mov R0, 1241
+  mov [1711179], R0
+  mov R0, 1244
+  mov [1711180], R0
+  mov R0, 1244
+  mov [1711181], R0
+  mov R0, 1244
+  mov [1711182], R0
+  mov R0, 1244
+  mov [1711183], R0
+  mov R0, 1244
+  mov [1711184], R0
+  mov R0, 1246
+  mov [1711185], R0
+  mov R0, 1246
+  mov [1711186], R0
+  mov R0, 1249
+  mov [1711187], R0
+  mov R0, 1249
+  mov [1711188], R0
+  mov R0, 1249
+  mov [1711189], R0
+  mov R0, 1249
+  mov [1711190], R0
+  mov R0, 1249
+  mov [1711191], R0
+  mov R0, 1252
+  mov [1711192], R0
+  mov R0, 1252
+  mov [1711193], R0
+  mov R0, 1254
+  mov [1711194], R0
+  mov R0, 1254
+  mov [1711195], R0
+  mov R0, 1254
+  mov [1711196], R0
+  mov R0, 1255
+  mov [1711197], R0
+  mov R0, 1255
+  mov [1711198], R0
+  mov R0, 1257
+  mov [1711199], R0
+  mov R0, 1257
+  mov [1711200], R0
+  mov R0, 1257
+  mov [1711201], R0
+  mov R0, 1260
+  mov [1711202], R0
+  mov R0, 1260
+  mov [1711203], R0
+  mov R0, 1260
+  mov [1711204], R0
+  mov R0, 1260
+  mov [1711205], R0
+  mov R0, 1260
+  mov [1711206], R0
+  mov R0, 1263
+  mov [1711207], R0
+  mov R0, 1263
+  mov [1711208], R0
+  mov R0, 1265
+  mov [1711209], R0
+  mov R0, 1265
+  mov [1711210], R0
+  mov R0, 1265
+  mov [1711211], R0
+  mov R0, 1265
+  mov [1711212], R0
+  mov R0, 1266
+  mov [1711213], R0
+  mov R0, 1268
+  mov [1711214], R0
+  mov R0, 1268
+  mov [1711215], R0
+  mov R0, 1271
+  mov [1711216], R0
+  mov R0, 1271
+  mov [1711217], R0
+  mov R0, 1271
+  mov [1711218], R0
+  mov R0, 1271
+  mov [1711219], R0
+  mov R0, 1271
+  mov [1711220], R0
+  mov R0, 1274
+  mov [1711221], R0
+  mov R0, 1274
+  mov [1711222], R0
+  mov R0, 1276
+  mov [1711223], R0
+  mov R0, 1276
+  mov [1711224], R0
+  mov R0, 1276
+  mov [1711225], R0
+  mov R0, 1276
+  mov [1711226], R0
+  mov R0, 1277
+  mov [1711227], R0
+  mov R0, 1279
+  mov [1711228], R0
+  mov R0, 1279
+  mov [1711229], R0
+  mov R0, 1279
+  mov [1711230], R0
+  mov R0, 1282
+  mov [1711231], R0
+  mov R0, 1282
+  mov [1711232], R0
+  mov R0, 1282
+  mov [1711233], R0
+  mov R0, 1282
+  mov [1711234], R0
+  mov R0, 1282
+  mov [1711235], R0
+  mov R0, 1284
+  mov [1711236], R0
+  mov R0, 1285
+  mov [1711237], R0
+  mov R0, 1287
+  mov [1711238], R0
+  mov R0, 1287
+  mov [1711239], R0
+  mov R0, 1287
+  mov [1711240], R0
+  mov R0, 1287
+  mov [1711241], R0
+  mov R0, 1287
+  mov [1711242], R0
+  mov R0, 1290
+  mov [1711243], R0
+  mov R0, 1290
+  mov [1711244], R0
+  mov R0, 1293
+  mov [1711245], R0
+  mov R0, 1293
+  mov [1711246], R0
+  mov R0, 1293
+  mov [1711247], R0
+  mov R0, 1293
+  mov [1711248], R0
+  mov R0, 1293
+  mov [1711249], R0
+  mov R0, 1295
+  mov [1711250], R0
+  mov R0, 1295
+  mov [1711251], R0
+  mov R0, 1298
+  mov [1711252], R0
+  mov R0, 1298
+  mov [1711253], R0
+  mov R0, 1298
+  mov [1711254], R0
+  mov R0, 1301
+  mov [1711255], R0
+  mov R0, 1304
+  mov [1711256], R0
+  mov R0, 1304
+  mov [1711257], R0
+  mov R0, 1304
+  mov [1711258], R0
+  mov R0, 1309
+  mov [1711259], R0
+  mov R0, 1309
+  mov [1711260], R0
+  mov R0, 1309
+  mov [1711261], R0
+  mov R0, 1309
+  mov [1711262], R0
+  mov R0, 1309
+  mov [1711263], R0
+  mov R0, 1312
+  mov [1711264], R0
+  mov R0, 1312
+  mov [1711265], R0
+  mov R0, 1314
+  mov [1711266], R0
+  mov R0, 1314
+  mov [1711267], R0
+  mov R0, 1314
+  mov [1711268], R0
+  mov R0, 1314
+  mov [1711269], R0
+  mov R0, 1315
+  mov [1711270], R0
+  mov R0, 1317
+  mov [1711271], R0
+  mov R0, 1317
+  mov [1711272], R0
+  mov R0, 1320
+  mov [1711273], R0
+  mov R0, 1320
+  mov [1711274], R0
+  mov R0, 1320
+  mov [1711275], R0
+  mov R0, 1320
+  mov [1711276], R0
+  mov R0, 1320
+  mov [1711277], R0
+  mov R0, 1323
+  mov [1711278], R0
+  mov R0, 1323
+  mov [1711279], R0
+  mov R0, 1323
+  mov [1711280], R0
+  mov R0, 1325
+  mov [1711281], R0
+  mov R0, 1325
+  mov [1711282], R0
+  mov R0, 1325
+  mov [1711283], R0
+  mov R0, 1325
+  mov [1711284], R0
+  mov R0, 1325
+  mov [1711285], R0
+  mov R0, 1328
+  mov [1711286], R0
+  mov R0, 1328
+  mov [1711287], R0
+  mov R0, 1331
+  mov [1711288], R0
+  mov R0, 1331
+  mov [1711289], R0
+  mov R0, 1331
+  mov [1711290], R0
+  mov R0, 1331
+  mov [1711291], R0
+  mov R0, 1331
+  mov [1711292], R0
+  mov R0, 1334
+  mov [1711293], R0
+  mov R0, 1334
+  mov [1711294], R0
+  mov R0, 1336
+  mov [1711295], R0
+  mov R0, 1336
+  mov [1711296], R0
+  mov R0, 1336
+  mov [1711297], R0
+  mov R0, 1336
+  mov [1711298], R0
+  mov R0, 1336
+  mov [1711299], R0
+  mov R0, 1339
+  mov [1711300], R0
+  mov R0, 1339
+  mov [1711301], R0
+  mov R0, 1342
+  mov [1711302], R0
+  mov R0, 1342
+  mov [1711303], R0
+  mov R0, 1342
+  mov [1711304], R0
+  mov R0, 1342
+  mov [1711305], R0
+  mov R0, 1342
+  mov [1711306], R0
+  mov R0, 1344
+  mov [1711307], R0
+  mov R0, 1345
+  mov [1711308], R0
+  mov R0, 1347
+  mov [1711309], R0
+  mov R0, 1347
+  mov [1711310], R0
+  mov R0, 1347
+  mov [1711311], R0
+  mov R0, 1347
+  mov [1711312], R0
+  mov R0, 1347
+  mov [1711313], R0
+  mov R0, 1350
+  mov [1711314], R0
+  mov R0, 1350
+  mov [1711315], R0
+  mov R0, 1353
+  mov [1711316], R0
+  mov R0, 1353
+  mov [1711317], R0
+  mov R0, 1353
+  mov [1711318], R0
+  mov R0, 1353
+  mov [1711319], R0
+  mov R0, 1353
+  mov [1711320], R0
+  mov R0, 1355
+  mov [1711321], R0
+  mov R0, 1355
+  mov [1711322], R0
+  mov R0, 1358
+  mov [1711323], R0
+  mov R0, 1358
+  mov [1711324], R0
+  mov R0, 1358
+  mov [1711325], R0
+  mov R0, 1358
+  mov [1711326], R0
+  mov R0, 1358
+  mov [1711327], R0
+  mov R0, 1361
+  mov [1711328], R0
+  mov R0, 1361
+  mov [1711329], R0
+  mov R0, 1364
+  mov [1711330], R0
+  mov R0, 1364
+  mov [1711331], R0
+  mov R0, 1364
+  mov [1711332], R0
+  mov R0, 1364
+  mov [1711333], R0
+  mov R0, 1364
+  mov [1711334], R0
+  mov R0, 1366
+  mov [1711335], R0
+  mov R0, 1366
+  mov [1711336], R0
+  mov R0, 1366
+  mov [1711337], R0
+  mov R0, 1369
+  mov [1711338], R0
+  mov R0, 1369
+  mov [1711339], R0
+  mov R0, 1369
+  mov [1711340], R0
+  mov R0, 1369
+  mov [1711341], R0
+  mov R0, 1369
+  mov [1711342], R0
+  mov R0, 1372
+  mov [1711343], R0
+  mov R0, 1372
+  mov [1711344], R0
+  mov R0, 1374
+  mov [1711345], R0
+  mov R0, 1374
+  mov [1711346], R0
+  mov R0, 1374
+  mov [1711347], R0
+  mov R0, 1375
+  mov [1711348], R0
+  mov R0, 1375
+  mov [1711349], R0
+  mov R0, 1375
+  mov [1711350], R0
+  mov R0, 1376
+  mov [1711351], R0
+  mov R0, 1376
+  mov [1711352], R0
+  mov R0, 1377
+  mov [1711353], R0
+  mov R0, 1377
+  mov [1711354], R0
+  mov R0, 1377
+  mov [1711355], R0
+  mov R0, 1379
+  mov [1711356], R0
+  mov R0, 1379
+  mov [1711357], R0
+  mov R0, 1380
+  mov [1711358], R0
+  mov R0, 1380
+  mov [1711359], R0
+  mov R0, 1380
+  mov [1711360], R0
+  mov R0, 1380
+  mov [1711361], R0
+  mov R0, 1380
+  mov [1711362], R0
+  mov R0, 1380
+  mov [1711363], R0
+  mov R0, 1381
+  mov [1711364], R0
+  mov R0, 1381
+  mov [1711365], R0
+  mov R0, 1383
+  mov [1711366], R0
+  mov R0, 1383
+  mov [1711367], R0
+  mov R0, 1383
+  mov [1711368], R0
+  mov R0, 1384
+  mov [1711369], R0
+  mov R0, 1384
+  mov [1711370], R0
+  mov R0, 1385
+  mov [1711371], R0
+  mov R0, 1385
+  mov [1711372], R0
+  mov R0, 1385
+  mov [1711373], R0
+  mov R0, 1385
+  mov [1711374], R0
+  mov R0, 1386
+  mov [1711375], R0
+  mov R0, 1386
+  mov [1711376], R0
+  mov R0, 1387
+  mov [1711377], R0
+  mov R0, 1387
+  mov [1711378], R0
+  mov R0, 1388
+  mov [1711379], R0
+  mov R0, 1388
+  mov [1711380], R0
+  mov R0, 1388
+  mov [1711381], R0
+  mov R0, 1389
+  mov [1711382], R0
+  mov R0, 1390
+  mov [1711383], R0
+  mov R0, 1391
+  mov [1711384], R0
+  mov R0, 1391
+  mov [1711385], R0
+  mov R0, 1391
+  mov [1711386], R0
+  mov R0, 1391
+  mov [1711387], R0
+  mov R0, 1391
+  mov [1711388], R0
+  mov R0, 1391
+  mov [1711389], R0
+  mov R0, 1392
+  mov [1711390], R0
+  mov R0, 1392
+  mov [1711391], R0
+  mov R0, 1394
+  mov [1711392], R0
+  mov R0, 1394
+  mov [1711393], R0
+  mov R0, 1394
+  mov [1711394], R0
+  mov R0, 1395
+  mov [1711395], R0
+  mov R0, 1395
+  mov [1711396], R0
+  mov R0, 1396
+  mov [1711397], R0
+  mov R0, 1396
+  mov [1711398], R0
+  mov R0, 1396
+  mov [1711399], R0
+  mov R0, 1396
+  mov [1711400], R0
+  mov R0, 1396
+  mov [1711401], R0
+  mov R0, 1399
+  mov [1711402], R0
+  mov R0, 1399
+  mov [1711403], R0
+  mov R0, 1402
+  mov [1711404], R0
+  mov R0, 1402
+  mov [1711405], R0
+  mov R0, 1402
+  mov [1711406], R0
+  mov R0, 1402
+  mov [1711407], R0
+  mov R0, 1402
+  mov [1711408], R0
+  mov R0, 1404
+  mov [1711409], R0
+  mov R0, 1405
+  mov [1711410], R0
+  mov R0, 1407
+  mov [1711411], R0
+  mov R0, 1407
+  mov [1711412], R0
+  mov R0, 1407
+  mov [1711413], R0
+  mov R0, 1407
+  mov [1711414], R0
+  mov R0, 1407
+  mov [1711415], R0
+  mov R0, 1410
+  mov [1711416], R0
+  mov R0, 1410
+  mov [1711417], R0
+  mov R0, 1410
+  mov [1711418], R0
+  mov R0, 1413
+  mov [1711419], R0
+  mov R0, 1413
+  mov [1711420], R0
+  mov R0, 1413
+  mov [1711421], R0
+  mov R0, 1413
+  mov [1711422], R0
+  mov R0, 1413
+  mov [1711423], R0
+  mov R0, 1415
+  mov [1711424], R0
+  mov R0, 1415
+  mov [1711425], R0
+  mov R0, 1418
+  mov [1711426], R0
+  mov R0, 1418
+  mov [1711427], R0
+  mov R0, 1418
+  mov [1711428], R0
+  mov R0, 1418
+  mov [1711429], R0
+  mov R0, 1418
+  mov [1711430], R0
+  mov R0, 1421
+  mov [1711431], R0
+  mov R0, 1421
+  mov [1711432], R0
+  mov R0, 1424
+  mov [1711433], R0
+  mov R0, 1424
+  mov [1711434], R0
+  mov R0, 1424
+  mov [1711435], R0
+  mov R0, 1424
+  mov [1711436], R0
+  mov R0, 1424
+  mov [1711437], R0
+  mov R0, 1426
+  mov [1711438], R0
+  mov R0, 1426
+  mov [1711439], R0
+  mov R0, 1429
+  mov [1711440], R0
+  mov R0, 1429
+  mov [1711441], R0
+  mov R0, 1429
+  mov [1711442], R0
+  mov R0, 1429
+  mov [1711443], R0
+  mov R0, 1429
+  mov [1711444], R0
+  mov R0, 1432
+  mov [1711445], R0
+  mov R0, 1432
+  mov [1711446], R0
+  mov R0, 1432
+  mov [1711447], R0
+  mov R0, 1434
+  mov [1711448], R0
+  mov R0, 1434
+  mov [1711449], R0
+  mov R0, 1434
+  mov [1711450], R0
+  mov R0, 1434
+  mov [1711451], R0
+  mov R0, 1435
+  mov [1711452], R0
+  mov R0, 1437
+  mov [1711453], R0
+  mov R0, 1437
+  mov [1711454], R0
+  mov R0, 1440
+  mov [1711455], R0
+  mov R0, 1440
+  mov [1711456], R0
+  mov R0, 1440
+  mov [1711457], R0
+  mov R0, 1440
+  mov [1711458], R0
+  mov R0, 1440
+  mov [1711459], R0
+  mov R0, 1443
+  mov [1711460], R0
+  mov R0, 1443
+  mov [1711461], R0
+  mov R0, 1445
+  mov [1711462], R0
+  mov R0, 1445
+  mov [1711463], R0
+  mov R0, 1445
+  mov [1711464], R0
+  mov R0, 1445
+  mov [1711465], R0
+  mov R0, 1445
+  mov [1711466], R0
+  mov R0, 1448
+  mov [1711467], R0
+  mov R0, 1448
+  mov [1711468], R0
+  mov R0, 1451
+  mov [1711469], R0
+  mov R0, 1451
+  mov [1711470], R0
+  mov R0, 1451
+  mov [1711471], R0
+  mov R0, 1451
+  mov [1711472], R0
+  mov R0, 1451
+  mov [1711473], R0
+  mov R0, 1454
+  mov [1711474], R0
+  mov R0, 1454
+  mov [1711475], R0
+  mov R0, 1454
+  mov [1711476], R0
+  mov R0, 1456
+  mov [1711477], R0
+  mov R0, 1456
+  mov [1711478], R0
+  mov R0, 1456
+  mov [1711479], R0
+  mov R0, 1456
+  mov [1711480], R0
+  mov R0, 1456
+  mov [1711481], R0
+  mov R0, 1459
+  mov [1711482], R0
+  mov R0, 1459
+  mov [1711483], R0
+  mov R0, 1462
+  mov [1711484], R0
+  mov R0, 1462
+  mov [1711485], R0
+  mov R0, 1462
+  mov [1711486], R0
+  mov R0, 1462
+  mov [1711487], R0
+  mov R0, 1462
+  mov [1711488], R0
+  mov R0, 1464
+  mov [1711489], R0
+  mov R0, 1465
+  mov [1711490], R0
+  mov R0, 1467
+  mov [1711491], R0
+  mov R0, 1467
+  mov [1711492], R0
+  mov R0, 1467
+  mov [1711493], R0
+  mov R0, 1467
+  mov [1711494], R0
+  mov R0, 1467
+  mov [1711495], R0
+  mov R0, 1470
+  mov [1711496], R0
+  mov R0, 1470
+  mov [1711497], R0
+  mov R0, 1473
+  mov [1711498], R0
+  mov R0, 1473
+  mov [1711499], R0
+  mov R0, 1473
+  mov [1711500], R0
+  mov R0, 1475
+  mov [1711501], R0
+  mov R0, 1478
+  mov [1711502], R0
+  mov R0, 1478
+  mov [1711503], R0
+  mov R0, 1478
+  mov [1711504], R0
+  mov R0, 1484
+  mov [1711505], R0
+  mov R0, 1484
+  mov [1711506], R0
+  mov R0, 1484
+  mov [1711507], R0
+  mov R0, 1484
+  mov [1711508], R0
+  mov R0, 1484
+  mov [1711509], R0
+  mov R0, 1486
+  mov [1711510], R0
+  mov R0, 1486
+  mov [1711511], R0
+  mov R0, 1489
+  mov [1711512], R0
+  mov R0, 1489
+  mov [1711513], R0
+  mov R0, 1489
+  mov [1711514], R0
+  mov R0, 1489
+  mov [1711515], R0
+  mov R0, 1489
+  mov [1711516], R0
+  mov R0, 1492
+  mov [1711517], R0
+  mov R0, 1492
+  mov [1711518], R0
+  mov R0, 1494
+  mov [1711519], R0
+  mov R0, 1494
+  mov [1711520], R0
+  mov R0, 1494
+  mov [1711521], R0
+  mov R0, 1494
+  mov [1711522], R0
+  mov R0, 1495
+  mov [1711523], R0
+  mov R0, 1497
+  mov [1711524], R0
+  mov R0, 1497
+  mov [1711525], R0
+  mov R0, 1497
+  mov [1711526], R0
+  mov R0, 1500
+  mov [1711527], R0
+  mov R0, 1500
+  mov [1711528], R0
+  mov R0, 1500
+  mov [1711529], R0
+  mov R0, 1500
+  mov [1711530], R0
+  mov R0, 1500
+  mov [1711531], R0
+  mov R0, 1503
+  mov [1711532], R0
+  mov R0, 1503
+  mov [1711533], R0
+  mov R0, 1505
+  mov [1711534], R0
+  mov R0, 1505
+  mov [1711535], R0
+  mov R0, 1505
+  mov [1711536], R0
+  mov R0, 1505
+  mov [1711537], R0
+  mov R0, 1505
+  mov [1711538], R0
+  mov R0, 1508
+  mov [1711539], R0
+  mov R0, 1508
+  mov [1711540], R0
+  mov R0, 1511
+  mov [1711541], R0
+  mov R0, 1511
+  mov [1711542], R0
+  mov R0, 1511
+  mov [1711543], R0
+  mov R0, 1511
+  mov [1711544], R0
+  mov R0, 1511
+  mov [1711545], R0
+  mov R0, 1514
+  mov [1711546], R0
+  mov R0, 1514
+  mov [1711547], R0
+  mov R0, 1516
+  mov [1711548], R0
+  mov R0, 1516
+  mov [1711549], R0
+  mov R0, 1516
+  mov [1711550], R0
+  mov R0, 1516
+  mov [1711551], R0
+  mov R0, 1516
+  mov [1711552], R0
+  mov R0, 1519
+  mov [1711553], R0
+  mov R0, 1519
+  mov [1711554], R0
+  mov R0, 1522
+  mov [1711555], R0
+  mov R0, 1522
+  mov [1711556], R0
+  mov R0, 1522
+  mov [1711557], R0
+  mov R0, 1522
+  mov [1711558], R0
+  mov R0, 1522
+  mov [1711559], R0
+  mov R0, 1524
+  mov [1711560], R0
+  mov R0, 1525
+  mov [1711561], R0
+  mov R0, 1527
+  mov [1711562], R0
+  mov R0, 1527
+  mov [1711563], R0
+  mov R0, 1527
+  mov [1711564], R0
+  mov R0, 1527
+  mov [1711565], R0
+  mov R0, 1527
+  mov [1711566], R0
+  mov R0, 1530
+  mov [1711567], R0
+  mov R0, 1530
+  mov [1711568], R0
+  mov R0, 1533
+  mov [1711569], R0
+  mov R0, 1533
+  mov [1711570], R0
+  mov R0, 1533
+  mov [1711571], R0
+  mov R0, 1533
+  mov [1711572], R0
+  mov R0, 1533
+  mov [1711573], R0
+  mov R0, 1535
+  mov [1711574], R0
+  mov R0, 1535
+  mov [1711575], R0
+  mov R0, 1538
+  mov [1711576], R0
+  mov R0, 1538
+  mov [1711577], R0
+  mov R0, 1538
+  mov [1711578], R0
+  mov R0, 1538
+  mov [1711579], R0
+  mov R0, 1538
+  mov [1711580], R0
+  mov R0, 1541
+  mov [1711581], R0
+  mov R0, 1541
+  mov [1711582], R0
+  mov R0, 1541
+  mov [1711583], R0
+  mov R0, 1544
+  mov [1711584], R0
+  mov R0, 1544
+  mov [1711585], R0
+  mov R0, 1544
+  mov [1711586], R0
+  mov R0, 1544
+  mov [1711587], R0
+  mov R0, 1544
+  mov [1711588], R0
+  mov R0, 1546
+  mov [1711589], R0
+  mov R0, 1546
+  mov [1711590], R0
+  mov R0, 1549
+  mov [1711591], R0
+  mov R0, 1549
+  mov [1711592], R0
+  mov R0, 1549
+  mov [1711593], R0
+  mov R0, 1549
+  mov [1711594], R0
+  mov R0, 1549
+  mov [1711595], R0
+  mov R0, 1550
+  mov [1711596], R0
+  mov R0, 1550
+  mov [1711597], R0
+  mov R0, 1552
+  mov [1711598], R0
+  mov R0, 1552
+  mov [1711599], R0
+  mov R0, 1552
+  mov [1711600], R0
+  mov R0, 1553
+  mov [1711601], R0
+  mov R0, 1553
+  mov [1711602], R0
+  mov R0, 1554
+  mov [1711603], R0
+  mov R0, 1554
+  mov [1711604], R0
+  mov R0, 1554
+  mov [1711605], R0
+  mov R0, 1555
+  mov [1711606], R0
+  mov R0, 1556
+  mov [1711607], R0
+  mov R0, 1556
+  mov [1711608], R0
+  mov R0, 1557
+  mov [1711609], R0
+  mov R0, 1557
+  mov [1711610], R0
+  mov R0, 1557
+  mov [1711611], R0
+  mov R0, 1559
+  mov [1711612], R0
+  mov R0, 1559
+  mov [1711613], R0
+  mov R0, 1559
+  mov [1711614], R0
+  mov R0, 1560
+  mov [1711615], R0
+  mov R0, 1560
+  mov [1711616], R0
+  mov R0, 1560
+  mov [1711617], R0
+  mov R0, 1560
+  mov [1711618], R0
+  mov R0, 1561
+  mov [1711619], R0
+  mov R0, 1561
+  mov [1711620], R0
+  mov R0, 1561
+  mov [1711621], R0
+  mov R0, 1563
+  mov [1711622], R0
+  mov R0, 1563
+  mov [1711623], R0
+  mov R0, 1563
+  mov [1711624], R0
+  mov R0, 1564
+  mov [1711625], R0
+  mov R0, 1564
+  mov [1711626], R0
+  mov R0, 1565
+  mov [1711627], R0
+  mov R0, 1565
+  mov [1711628], R0
+  mov R0, 1565
+  mov [1711629], R0
+  mov R0, 1566
+  mov [1711630], R0
+  mov R0, 1567
+  mov [1711631], R0
+  mov R0, 1567
+  mov [1711632], R0
+  mov R0, 1568
+  mov [1711633], R0
+  mov R0, 1568
+  mov [1711634], R0
+  mov R0, 1568
+  mov [1711635], R0
+  mov R0, 1569
+  mov [1711636], R0
+  mov R0, 1569
+  mov [1711637], R0
+  mov R0, 1570
+  mov [1711638], R0
+  mov R0, 1571
+  mov [1711639], R0
+  mov R0, 1571
+  mov [1711640], R0
+  mov R0, 1571
+  mov [1711641], R0
+  mov R0, 1571
+  mov [1711642], R0
+  mov R0, 1571
+  mov [1711643], R0
+  mov R0, 1574
+  mov [1711644], R0
+  mov R0, 1574
+  mov [1711645], R0
+  mov R0, 1576
+  mov [1711646], R0
+  mov R0, 1576
+  mov [1711647], R0
+  mov R0, 1576
+  mov [1711648], R0
+  mov R0, 1576
+  mov [1711649], R0
+  mov R0, 1576
+  mov [1711650], R0
+  mov R0, 1579
+  mov [1711651], R0
+  mov R0, 1579
+  mov [1711652], R0
+  mov R0, 1582
+  mov [1711653], R0
+  mov R0, 1582
+  mov [1711654], R0
+  mov R0, 1582
+  mov [1711655], R0
+  mov R0, 1582
+  mov [1711656], R0
+  mov R0, 1582
+  mov [1711657], R0
+  mov R0, 1584
+  mov [1711658], R0
+  mov R0, 1584
+  mov [1711659], R0
+  mov R0, 1585
+  mov [1711660], R0
+  mov R0, 1587
+  mov [1711661], R0
+  mov R0, 1587
+  mov [1711662], R0
+  mov R0, 1587
+  mov [1711663], R0
+  mov R0, 1587
+  mov [1711664], R0
+  mov R0, 1588
+  mov [1711665], R0
+  mov R0, 1590
+  mov [1711666], R0
+  mov R0, 1590
+  mov [1711667], R0
+  mov R0, 1593
+  mov [1711668], R0
+  mov R0, 1593
+  mov [1711669], R0
+  mov R0, 1593
+  mov [1711670], R0
+  mov R0, 1593
+  mov [1711671], R0
+  mov R0, 1593
+  mov [1711672], R0
+  mov R0, 1595
+  mov [1711673], R0
+  mov R0, 1595
+  mov [1711674], R0
+  mov R0, 1598
+  mov [1711675], R0
+  mov R0, 1598
+  mov [1711676], R0
+  mov R0, 1598
+  mov [1711677], R0
+  mov R0, 1598
+  mov [1711678], R0
+  mov R0, 1599
+  mov [1711679], R0
+  mov R0, 1601
+  mov [1711680], R0
+  mov R0, 1601
+  mov [1711681], R0
+  mov R0, 1604
+  mov [1711682], R0
+  mov R0, 1604
+  mov [1711683], R0
+  mov R0, 1604
+  mov [1711684], R0
+  mov R0, 1604
+  mov [1711685], R0
+  mov R0, 1604
+  mov [1711686], R0
+  mov R0, 1606
+  mov [1711687], R0
+  mov R0, 1606
+  mov [1711688], R0
+  mov R0, 1606
+  mov [1711689], R0
+  mov R0, 1609
+  mov [1711690], R0
+  mov R0, 1609
+  mov [1711691], R0
+  mov R0, 1609
+  mov [1711692], R0
+  mov R0, 1609
+  mov [1711693], R0
+  mov R0, 1609
+  mov [1711694], R0
+  mov R0, 1612
+  mov [1711695], R0
+  mov R0, 1612
+  mov [1711696], R0
+  mov R0, 1614
+  mov [1711697], R0
+  mov R0, 1614
+  mov [1711698], R0
+  mov R0, 1614
+  mov [1711699], R0
+  mov R0, 1615
+  mov [1711700], R0
+  mov R0, 1615
+  mov [1711701], R0
+  mov R0, 1617
+  mov [1711702], R0
+  mov R0, 1617
+  mov [1711703], R0
+  mov R0, 1620
+  mov [1711704], R0
+  mov R0, 1620
+  mov [1711705], R0
+  mov R0, 1620
+  mov [1711706], R0
+  mov R0, 1620
+  mov [1711707], R0
+  mov R0, 1620
+  mov [1711708], R0
+  mov R0, 1623
+  mov [1711709], R0
+  mov R0, 1623
+  mov [1711710], R0
+  mov R0, 1625
+  mov [1711711], R0
+  mov R0, 1625
+  mov [1711712], R0
+  mov R0, 1625
+  mov [1711713], R0
+  mov R0, 1625
+  mov [1711714], R0
+  mov R0, 1626
+  mov [1711715], R0
+  mov R0, 1628
+  mov [1711716], R0
+  mov R0, 1628
+  mov [1711717], R0
+  mov R0, 1628
+  mov [1711718], R0
+  mov R0, 1631
+  mov [1711719], R0
+  mov R0, 1631
+  mov [1711720], R0
+  mov R0, 1631
+  mov [1711721], R0
+  mov R0, 1631
+  mov [1711722], R0
+  mov R0, 1631
+  mov [1711723], R0
+  mov R0, 1634
+  mov [1711724], R0
+  mov R0, 1634
+  mov [1711725], R0
+  mov R0, 1636
+  mov [1711726], R0
+  mov R0, 1636
+  mov [1711727], R0
+  mov R0, 1636
+  mov [1711728], R0
+  mov R0, 1636
+  mov [1711729], R0
+  mov R0, 1636
+  mov [1711730], R0
+  mov R0, 1639
+  mov [1711731], R0
+  mov R0, 1639
+  mov [1711732], R0
+  mov R0, 1642
+  mov [1711733], R0
+  mov R0, 1642
+  mov [1711734], R0
+  mov R0, 1642
+  mov [1711735], R0
+  mov R0, 1642
+  mov [1711736], R0
+  mov R0, 1642
+  mov [1711737], R0
+  mov R0, 1644
+  mov [1711738], R0
+  mov R0, 1645
+  mov [1711739], R0
+  mov R0, 1647
+  mov [1711740], R0
+  mov R0, 1647
+  mov [1711741], R0
+  mov R0, 1647
+  mov [1711742], R0
+  mov R0, 1650
+  mov [1711743], R0
+  mov R0, 1653
+  mov [1711744], R0
+  mov R0, 1653
+  mov [1711745], R0
+  mov R0, 1653
+  mov [1711746], R0
+  mov R0, 1658
+  mov [1711747], R0
+  mov R0, 1658
+  mov [1711748], R0
+  mov R0, 1658
+  mov [1711749], R0
+  mov R0, 1658
+  mov [1711750], R0
+  mov R0, 1658
+  mov [1711751], R0
+  mov R0, 1661
+  mov [1711752], R0
+  mov R0, 1661
+  mov [1711753], R0
+  mov R0, 1663
+  mov [1711754], R0
+  mov R0, 1664
+  mov [1711755], R0
+  mov R0, 1664
+  mov [1711756], R0
+  mov R0, 1664
+  mov [1711757], R0
+  mov R0, 1664
+  mov [1711758], R0
+  mov R0, 1666
+  mov [1711759], R0
+  mov R0, 1666
+  mov [1711760], R0
+  mov R0, 1669
+  mov [1711761], R0
+  mov R0, 1669
+  mov [1711762], R0
+  mov R0, 1669
+  mov [1711763], R0
+  mov R0, 1669
+  mov [1711764], R0
+  mov R0, 1669
+  mov [1711765], R0
+  mov R0, 1672
+  mov [1711766], R0
+  mov R0, 1672
+  mov [1711767], R0
+  mov R0, 1672
+  mov [1711768], R0
+  mov R0, 1674
+  mov [1711769], R0
+  mov R0, 1674
+  mov [1711770], R0
+  mov R0, 1674
+  mov [1711771], R0
+  mov R0, 1674
+  mov [1711772], R0
+  mov R0, 1675
+  mov [1711773], R0
+  mov R0, 1677
+  mov [1711774], R0
+  mov R0, 1677
+  mov [1711775], R0
+  mov R0, 1680
+  mov [1711776], R0
+  mov R0, 1680
+  mov [1711777], R0
+  mov R0, 1680
+  mov [1711778], R0
+  mov R0, 1680
+  mov [1711779], R0
+  mov R0, 1680
+  mov [1711780], R0
+  mov R0, 1683
+  mov [1711781], R0
+  mov R0, 1683
+  mov [1711782], R0
+  mov R0, 1685
+  mov [1711783], R0
+  mov R0, 1685
+  mov [1711784], R0
+  mov R0, 1685
+  mov [1711785], R0
+  mov R0, 1685
+  mov [1711786], R0
+  mov R0, 1686
+  mov [1711787], R0
+  mov R0, 1688
+  mov [1711788], R0
+  mov R0, 1688
+  mov [1711789], R0
+  mov R0, 1691
+  mov [1711790], R0
+  mov R0, 1691
+  mov [1711791], R0
+  mov R0, 1691
+  mov [1711792], R0
+  mov R0, 1691
+  mov [1711793], R0
+  mov R0, 1691
+  mov [1711794], R0
+  mov R0, 1694
+  mov [1711795], R0
+  mov R0, 1694
+  mov [1711796], R0
+  mov R0, 1696
+  mov [1711797], R0
+  mov R0, 1696
+  mov [1711798], R0
+  mov R0, 1696
+  mov [1711799], R0
+  mov R0, 1696
+  mov [1711800], R0
+  mov R0, 1697
+  mov [1711801], R0
+  mov R0, 1699
+  mov [1711802], R0
+  mov R0, 1699
+  mov [1711803], R0
+  mov R0, 1702
+  mov [1711804], R0
+  mov R0, 1702
+  mov [1711805], R0
+  mov R0, 1702
+  mov [1711806], R0
+  mov R0, 1702
+  mov [1711807], R0
+  mov R0, 1702
+  mov [1711808], R0
+  mov R0, 1704
+  mov [1711809], R0
+  mov R0, 1705
+  mov [1711810], R0
+  mov R0, 1707
+  mov [1711811], R0
+  mov R0, 1707
+  mov [1711812], R0
+  mov R0, 1707
+  mov [1711813], R0
+  mov R0, 1707
+  mov [1711814], R0
+  mov R0, 1707
+  mov [1711815], R0
+  mov R0, 1710
+  mov [1711816], R0
+  mov R0, 1710
+  mov [1711817], R0
+  mov R0, 1713
+  mov [1711818], R0
+  mov R0, 1713
+  mov [1711819], R0
+  mov R0, 1713
+  mov [1711820], R0
+  mov R0, 1713
+  mov [1711821], R0
+  mov R0, 1713
+  mov [1711822], R0
+  mov R0, 1715
+  mov [1711823], R0
+  mov R0, 1715
+  mov [1711824], R0
+  mov R0, 1715
+  mov [1711825], R0
+  mov R0, 1718
+  mov [1711826], R0
+  mov R0, 1718
+  mov [1711827], R0
+  mov R0, 1718
+  mov [1711828], R0
+  mov R0, 1718
+  mov [1711829], R0
+  mov R0, 1718
+  mov [1711830], R0
+  mov R0, 1721
+  mov [1711831], R0
+  mov R0, 1721
+  mov [1711832], R0
+  mov R0, 1724
+  mov [1711833], R0
+  mov R0, 1724
+  mov [1711834], R0
+  mov R0, 1724
+  mov [1711835], R0
+  mov R0, 1724
+  mov [1711836], R0
+  mov R0, 1724
+  mov [1711837], R0
+  mov R0, 1726
+  mov [1711838], R0
+  mov R0, 1726
+  mov [1711839], R0
+  mov R0, 1726
+  mov [1711840], R0
+  mov R0, 1729
+  mov [1711841], R0
+  mov R0, 1729
+  mov [1711842], R0
+  mov R0, 1729
+  mov [1711843], R0
+  mov R0, 1729
+  mov [1711844], R0
+  mov R0, 1729
+  mov [1711845], R0
+  mov R0, 1732
+  mov [1711846], R0
+  mov R0, 1732
+  mov [1711847], R0
+  mov R0, 1732
+  mov [1711848], R0
+  mov R0, 1734
+  mov [1711849], R0
+  mov R0, 1734
+  mov [1711850], R0
+  mov R0, 1735
+  mov [1711851], R0
+  mov R0, 1736
+  mov [1711852], R0
+  mov R0, 1736
+  mov [1711853], R0
+  mov R0, 1737
+  mov [1711854], R0
+  mov R0, 1740
+  mov [1711855], R0
+  mov R0, 1740
+  mov [1711856], R0
+  mov R0, 1740
+  mov [1711857], R0
+  mov R0, 1742
+  mov [1711858], R0
+  mov R0, 1745
+  mov [1711859], R0
+  mov R0, 1745
+  mov [1711860], R0
+  mov R0, 1745
+  mov [1711861], R0
+  mov R0, 1745
+  mov [1711862], R0
+  mov R0, 1745
+  mov [1711863], R0
+  mov R0, 1748
+  mov [1711864], R0
+  mov R0, 1748
+  mov [1711865], R0
+  mov R0, 1751
+  mov [1711866], R0
+  mov R0, 1751
+  mov [1711867], R0
+  mov R0, 1751
+  mov [1711868], R0
+  mov R0, 1751
+  mov [1711869], R0
+  mov R0, 1751
+  mov [1711870], R0
+  mov R0, 1754
+  mov [1711871], R0
+  mov R0, 1754
+  mov [1711872], R0
+  mov R0, 1756
+  mov [1711873], R0
+  mov R0, 1756
+  mov [1711874], R0
+  mov R0, 1756
+  mov [1711875], R0
+  mov R0, 1756
+  mov [1711876], R0
+  mov R0, 1756
+  mov [1711877], R0
+  mov R0, 1759
+  mov [1711878], R0
+  mov R0, 1759
+  mov [1711879], R0
+  mov R0, 1759
+  mov [1711880], R0
+  mov R0, 1762
+  mov [1711881], R0
+  mov R0, 1762
+  mov [1711882], R0
+  mov R0, 1762
+  mov [1711883], R0
+  mov R0, 1762
+  mov [1711884], R0
+  mov R0, 1762
+  mov [1711885], R0
+  mov R0, 1764
+  mov [1711886], R0
+  mov R0, 1765
+  mov [1711887], R0
+  mov R0, 1767
+  mov [1711888], R0
+  mov R0, 1767
+  mov [1711889], R0
+  mov R0, 1767
+  mov [1711890], R0
+  mov R0, 1767
+  mov [1711891], R0
+  mov R0, 1767
+  mov [1711892], R0
+  mov R0, 1770
+  mov [1711893], R0
+  mov R0, 1770
+  mov [1711894], R0
+  mov R0, 1773
+  mov [1711895], R0
+  mov R0, 1773
+  mov [1711896], R0
+  mov R0, 1773
+  mov [1711897], R0
+  mov R0, 1773
+  mov [1711898], R0
+  mov R0, 1773
+  mov [1711899], R0
+  mov R0, 1775
+  mov [1711900], R0
+  mov R0, 1775
+  mov [1711901], R0
+  mov R0, 1778
+  mov [1711902], R0
+  mov R0, 1778
+  mov [1711903], R0
+  mov R0, 1778
+  mov [1711904], R0
+  mov R0, 1778
+  mov [1711905], R0
+  mov R0, 1778
+  mov [1711906], R0
+  mov R0, 1781
+  mov [1711907], R0
+  mov R0, 1781
+  mov [1711908], R0
+  mov R0, 1781
+  mov [1711909], R0
+  mov R0, 1783
+  mov [1711910], R0
+  mov R0, 1784
+  mov [1711911], R0
+  mov R0, 1784
+  mov [1711912], R0
+  mov R0, 1784
+  mov [1711913], R0
+  mov R0, 1784
+  mov [1711914], R0
+  mov R0, 1786
+  mov [1711915], R0
+  mov R0, 1786
+  mov [1711916], R0
+  mov R0, 1789
+  mov [1711917], R0
+  mov R0, 1789
+  mov [1711918], R0
+  mov R0, 1789
+  mov [1711919], R0
+  mov R0, 1789
+  mov [1711920], R0
+  mov R0, 1789
+  mov [1711921], R0
+  mov R0, 1792
+  mov [1711922], R0
+  mov R0, 1792
+  mov [1711923], R0
+  mov R0, 1794
+  mov [1711924], R0
+  mov R0, 1794
+  mov [1711925], R0
+  mov R0, 1794
+  mov [1711926], R0
+  mov R0, 1794
+  mov [1711927], R0
+  mov R0, 1795
+  mov [1711928], R0
+  mov R0, 1797
+  mov [1711929], R0
+  mov R0, 1797
+  mov [1711930], R0
+  mov R0, 1800
+  mov [1711931], R0
+  mov R0, 1800
+  mov [1711932], R0
+  mov R0, 1800
+  mov [1711933], R0
+  mov R0, 1800
+  mov [1711934], R0
+  mov R0, 1800
+  mov [1711935], R0
+  mov R0, 1803
+  mov [1711936], R0
+  mov R0, 1803
+  mov [1711937], R0
+  mov R0, 1803
+  mov [1711938], R0
+  mov R0, 1805
+  mov [1711939], R0
+  mov R0, 1805
+  mov [1711940], R0
+  mov R0, 1805
+  mov [1711941], R0
+  mov R0, 1805
+  mov [1711942], R0
+  mov R0, 1805
+  mov [1711943], R0
+  mov R0, 1808
+  mov [1711944], R0
+  mov R0, 1808
+  mov [1711945], R0
+  mov R0, 1811
+  mov [1711946], R0
+  mov R0, 1811
+  mov [1711947], R0
+  mov R0, 1811
+  mov [1711948], R0
+  mov R0, 1811
+  mov [1711949], R0
+  mov R0, 1811
+  mov [1711950], R0
+  mov R0, 1814
+  mov [1711951], R0
+  mov R0, 1814
+  mov [1711952], R0
+  mov R0, 1816
+  mov [1711953], R0
+  mov R0, 1816
+  mov [1711954], R0
+  mov R0, 1816
+  mov [1711955], R0
+  mov R0, 1816
+  mov [1711956], R0
+  mov R0, 1816
+  mov [1711957], R0
+  mov R0, 1819
+  mov [1711958], R0
+  mov R0, 1819
+  mov [1711959], R0
+  mov R0, 1822
+  mov [1711960], R0
+  mov R0, 1822
+  mov [1711961], R0
+  mov R0, 1822
+  mov [1711962], R0
+  mov R0, 1824
+  mov [1711963], R0
+  mov R0, 1827
+  mov [1711964], R0
+  mov R0, 1827
+  mov [1711965], R0
+  mov R0, 1827
+  mov [1711966], R0
+  mov R0, 1833
+  mov [1711967], R0
+  mov R0, 1833
+  mov [1711968], R0
+  mov R0, 1833
+  mov [1711969], R0
+  mov R0, 1833
+  mov [1711970], R0
+  mov R0, 1833
+  mov [1711971], R0
+  mov R0, 1835
+  mov [1711972], R0
+  mov R0, 1835
+  mov [1711973], R0
+  mov R0, 1838
+  mov [1711974], R0
+  mov R0, 1838
+  mov [1711975], R0
+  mov R0, 1838
+  mov [1711976], R0
+  mov R0, 1838
+  mov [1711977], R0
+  mov R0, 1838
+  mov [1711978], R0
+  mov R0, 1841
+  mov [1711979], R0
+  mov R0, 1841
+  mov [1711980], R0
+  mov R0, 1844
+  mov [1711981], R0
+  mov R0, 1844
+  mov [1711982], R0
+  mov R0, 1844
+  mov [1711983], R0
+  mov R0, 1844
+  mov [1711984], R0
+  mov R0, 1844
+  mov [1711985], R0
+  mov R0, 1846
+  mov [1711986], R0
+  mov R0, 1846
+  mov [1711987], R0
+  mov R0, 1846
+  mov [1711988], R0
+  mov R0, 1849
+  mov [1711989], R0
+  mov R0, 1849
+  mov [1711990], R0
+  mov R0, 1849
+  mov [1711991], R0
+  mov R0, 1849
+  mov [1711992], R0
+  mov R0, 1849
+  mov [1711993], R0
+  mov R0, 1852
+  mov [1711994], R0
+  mov R0, 1852
+  mov [1711995], R0
+  mov R0, 1854
+  mov [1711996], R0
+  mov R0, 1854
+  mov [1711997], R0
+  mov R0, 1854
+  mov [1711998], R0
+  mov R0, 1854
+  mov [1711999], R0
+  mov R0, 1855
+  mov [1712000], R0
+  mov R0, 1857
+  mov [1712001], R0
+  mov R0, 1857
+  mov [1712002], R0
+  mov R0, 1860
+  mov [1712003], R0
+  mov R0, 1860
+  mov [1712004], R0
+  mov R0, 1860
+  mov [1712005], R0
+  mov R0, 1860
+  mov [1712006], R0
+  mov R0, 1860
+  mov [1712007], R0
+  mov R0, 1863
+  mov [1712008], R0
+  mov R0, 1863
+  mov [1712009], R0
+  mov R0, 1865
+  mov [1712010], R0
+  mov R0, 1865
+  mov [1712011], R0
+  mov R0, 1865
+  mov [1712012], R0
+  mov R0, 1865
+  mov [1712013], R0
+  mov R0, 1865
+  mov [1712014], R0
+  mov R0, 1868
+  mov [1712015], R0
+  mov R0, 1868
+  mov [1712016], R0
+  mov R0, 1871
+  mov [1712017], R0
+  mov R0, 1871
+  mov [1712018], R0
+  mov R0, 1871
+  mov [1712019], R0
+  mov R0, 1871
+  mov [1712020], R0
+  mov R0, 1871
+  mov [1712021], R0
+  mov R0, 1874
+  mov [1712022], R0
+  mov R0, 1874
+  mov [1712023], R0
+  mov R0, 1876
+  mov [1712024], R0
+  mov R0, 1876
+  mov [1712025], R0
+  mov R0, 1876
+  mov [1712026], R0
+  mov R0, 1876
+  mov [1712027], R0
+  mov R0, 1876
+  mov [1712028], R0
+  mov R0, 1879
+  mov [1712029], R0
+  mov R0, 1879
+  mov [1712030], R0
+  mov R0, 1882
+  mov [1712031], R0
+  mov R0, 1882
+  mov [1712032], R0
+  mov R0, 1882
+  mov [1712033], R0
+  mov R0, 1882
+  mov [1712034], R0
+  mov R0, 1882
+  mov [1712035], R0
+  mov R0, 1884
+  mov [1712036], R0
+  mov R0, 1885
+  mov [1712037], R0
+  mov R0, 1887
+  mov [1712038], R0
+  mov R0, 1887
+  mov [1712039], R0
+  mov R0, 1887
+  mov [1712040], R0
+  mov R0, 1887
+  mov [1712041], R0
+  mov R0, 1887
+  mov [1712042], R0
+  mov R0, 1890
+  mov [1712043], R0
+  mov R0, 1890
+  mov [1712044], R0
+  mov R0, 1890
+  mov [1712045], R0
+  mov R0, 1893
+  mov [1712046], R0
+  mov R0, 1893
+  mov [1712047], R0
+  mov R0, 1893
+  mov [1712048], R0
+  mov R0, 1893
+  mov [1712049], R0
+  mov R0, 1893
+  mov [1712050], R0
+  mov R0, 1895
+  mov [1712051], R0
+  mov R0, 1895
+  mov [1712052], R0
+  mov R0, 1898
+  mov [1712053], R0
+  mov R0, 1898
+  mov [1712054], R0
+  mov R0, 1898
+  mov [1712055], R0
+  mov R0, 1898
+  mov [1712056], R0
+  mov R0, 1898
+  mov [1712057], R0
+  mov R0, 1898
+  mov [1712058], R0
+  mov R0, 1898
+  mov [1712059], R0
+  mov R0, 1899
+  mov [1712060], R0
+  mov R0, 1900
+  mov [1712061], R0
+  mov R0, 1901
+  mov [1712062], R0
+  mov R0, 1901
+  mov [1712063], R0
+  mov R0, 1902
+  mov [1712064], R0
+  mov R0, 1902
+  mov [1712065], R0
+  mov R0, 1904
+  mov [1712066], R0
+  mov R0, 1904
+  mov [1712067], R0
+  mov R0, 1905
+  mov [1712068], R0
+  mov R0, 1905
+  mov [1712069], R0
+  mov R0, 1906
+  mov [1712070], R0
+  mov R0, 1906
+  mov [1712071], R0
+  mov R0, 1908
+  mov [1712072], R0
+  mov R0, 1908
+  mov [1712073], R0
+  mov R0, 1909
+  mov [1712074], R0
+  mov R0, 1909
+  mov [1712075], R0
+  mov R0, 1910
+  mov [1712076], R0
+  mov R0, 1910
+  mov [1712077], R0
+  mov R0, 1912
+  mov [1712078], R0
+  mov R0, 1912
+  mov [1712079], R0
+  mov R0, 1913
+  mov [1712080], R0
+  mov R0, 1913
+  mov [1712081], R0
+  mov R0, 1914
+  mov [1712082], R0
+  mov R0, 1915
+  mov [1712083], R0
+  mov R0, 1916
+  mov [1712084], R0
+  mov R0, 1916
+  mov [1712085], R0
+  mov R0, 1917
+  mov [1712086], R0
+  mov R0, 1917
+  mov [1712087], R0
+  mov R0, 1919
+  mov [1712088], R0
+  mov R0, 1919
+  mov [1712089], R0
+  mov R0, 3
+  mov [global_mus_e1m1_dur], R0
+  mov R0, 6
+  mov [1712091], R0
+  mov R0, 6
+  mov [1712092], R0
+  mov R0, 9
+  mov [1712093], R0
+  mov R0, 9
+  mov [1712094], R0
+  mov R0, 9
+  mov [1712095], R0
+  mov R0, 9
+  mov [1712096], R0
+  mov R0, 3
+  mov [1712097], R0
+  mov R0, 9
+  mov [1712098], R0
+  mov R0, 6
+  mov [1712099], R0
+  mov R0, 3
+  mov [1712100], R0
+  mov R0, 9
+  mov [1712101], R0
+  mov R0, 6
+  mov [1712102], R0
+  mov R0, 3
+  mov [1712103], R0
+  mov R0, 9
+  mov [1712104], R0
+  mov R0, 9
+  mov [1712105], R0
+  mov R0, 3
+  mov [1712106], R0
+  mov R0, 24
+  mov [1712107], R0
+  mov R0, 9
+  mov [1712108], R0
+  mov R0, 6
+  mov [1712109], R0
+  mov R0, 3
+  mov [1712110], R0
+  mov R0, 6
+  mov [1712111], R0
+  mov R0, 6
+  mov [1712112], R0
+  mov R0, 6
+  mov [1712113], R0
+  mov R0, 6
+  mov [1712114], R0
+  mov R0, 12
+  mov [1712115], R0
+  mov R0, 9
+  mov [1712116], R0
+  mov R0, 3
+  mov [1712117], R0
+  mov R0, 9
+  mov [1712118], R0
+  mov R0, 9
+  mov [1712119], R0
+  mov R0, 3
+  mov [1712120], R0
+  mov R0, 6
+  mov [1712121], R0
+  mov R0, 9
+  mov [1712122], R0
+  mov R0, 3
+  mov [1712123], R0
+  mov R0, 48
+  mov [1712124], R0
+  mov R0, 42
+  mov [1712125], R0
+  mov R0, 3
+  mov [1712126], R0
+  mov R0, 6
+  mov [1712127], R0
+  mov R0, 6
+  mov [1712128], R0
+  mov R0, 6
+  mov [1712129], R0
+  mov R0, 9
+  mov [1712130], R0
+  mov R0, 12
+  mov [1712131], R0
+  mov R0, 6
+  mov [1712132], R0
+  mov R0, 3
+  mov [1712133], R0
+  mov R0, 9
+  mov [1712134], R0
+  mov R0, 9
+  mov [1712135], R0
+  mov R0, 3
+  mov [1712136], R0
+  mov R0, 9
+  mov [1712137], R0
+  mov R0, 9
+  mov [1712138], R0
+  mov R0, 3
+  mov [1712139], R0
+  mov R0, 6
+  mov [1712140], R0
+  mov R0, 9
+  mov [1712141], R0
+  mov R0, 3
+  mov [1712142], R0
+  mov R0, 21
+  mov [1712143], R0
+  mov R0, 9
+  mov [1712144], R0
+  mov R0, 9
+  mov [1712145], R0
+  mov R0, 3
+  mov [1712146], R0
+  mov R0, 6
+  mov [1712147], R0
+  mov R0, 6
+  mov [1712148], R0
+  mov R0, 6
+  mov [1712149], R0
+  mov R0, 6
+  mov [1712150], R0
+  mov R0, 12
+  mov [1712151], R0
+  mov R0, 9
+  mov [1712152], R0
+  mov R0, 3
+  mov [1712153], R0
+  mov R0, 9
+  mov [1712154], R0
+  mov R0, 6
+  mov [1712155], R0
+  mov R0, 3
+  mov [1712156], R0
+  mov R0, 9
+  mov [1712157], R0
+  mov R0, 12
+  mov [1712158], R0
+  mov R0, 3
+  mov [1712159], R0
+  mov R0, 48
+  mov [1712160], R0
+  mov R0, 42
+  mov [1712161], R0
+  mov R0, 3
+  mov [1712162], R0
+  mov R0, 6
+  mov [1712163], R0
+  mov R0, 6
+  mov [1712164], R0
+  mov R0, 6
+  mov [1712165], R0
+  mov R0, 6
+  mov [1712166], R0
+  mov R0, 6
+  mov [1712167], R0
+  mov R0, 9
+  mov [1712168], R0
+  mov R0, 3
+  mov [1712169], R0
+  mov R0, 9
+  mov [1712170], R0
+  mov R0, 9
+  mov [1712171], R0
+  mov R0, 3
+  mov [1712172], R0
+  mov R0, 3
+  mov [1712173], R0
+  mov R0, 9
+  mov [1712174], R0
+  mov R0, 9
+  mov [1712175], R0
+  mov R0, 3
+  mov [1712176], R0
+  mov R0, 3
+  mov [1712177], R0
+  mov R0, 9
+  mov [1712178], R0
+  mov R0, 12
+  mov [1712179], R0
+  mov R0, 9
+  mov [1712180], R0
+  mov R0, 9
+  mov [1712181], R0
+  mov R0, 3
+  mov [1712182], R0
+  mov R0, 3
+  mov [1712183], R0
+  mov R0, 6
+  mov [1712184], R0
+  mov R0, 6
+  mov [1712185], R0
+  mov R0, 9
+  mov [1712186], R0
+  mov R0, 9
+  mov [1712187], R0
+  mov R0, 3
+  mov [1712188], R0
+  mov R0, 3
+  mov [1712189], R0
+  mov R0, 9
+  mov [1712190], R0
+  mov R0, 9
+  mov [1712191], R0
+  mov R0, 9
+  mov [1712192], R0
+  mov R0, 6
+  mov [1712193], R0
+  mov R0, 3
+  mov [1712194], R0
+  mov R0, 3
+  mov [1712195], R0
+  mov R0, 21
+  mov [1712196], R0
+  mov R0, 21
+  mov [1712197], R0
+  mov R0, 6
+  mov [1712198], R0
+  mov R0, 6
+  mov [1712199], R0
+  mov R0, 9
+  mov [1712200], R0
+  mov R0, 9
+  mov [1712201], R0
+  mov R0, 3
+  mov [1712202], R0
+  mov R0, 3
+  mov [1712203], R0
+  mov R0, 6
+  mov [1712204], R0
+  mov R0, 6
+  mov [1712205], R0
+  mov R0, 6
+  mov [1712206], R0
+  mov R0, 6
+  mov [1712207], R0
+  mov R0, 6
+  mov [1712208], R0
+  mov R0, 9
+  mov [1712209], R0
+  mov R0, 9
+  mov [1712210], R0
+  mov R0, 9
+  mov [1712211], R0
+  mov R0, 3
+  mov [1712212], R0
+  mov R0, 3
+  mov [1712213], R0
+  mov R0, 6
+  mov [1712214], R0
+  mov R0, 6
+  mov [1712215], R0
+  mov R0, 3
+  mov [1712216], R0
+  mov R0, 3
+  mov [1712217], R0
+  mov R0, 9
+  mov [1712218], R0
+  mov R0, 9
+  mov [1712219], R0
+  mov R0, 6
+  mov [1712220], R0
+  mov R0, 9
+  mov [1712221], R0
+  mov R0, 3
+  mov [1712222], R0
+  mov R0, 3
+  mov [1712223], R0
+  mov R0, 9
+  mov [1712224], R0
+  mov R0, 9
+  mov [1712225], R0
+  mov R0, 6
+  mov [1712226], R0
+  mov R0, 6
+  mov [1712227], R0
+  mov R0, 3
+  mov [1712228], R0
+  mov R0, 3
+  mov [1712229], R0
+  mov R0, 48
+  mov [1712230], R0
+  mov R0, 51
+  mov [1712231], R0
+  mov R0, 42
+  mov [1712232], R0
+  mov R0, 42
+  mov [1712233], R0
+  mov R0, 3
+  mov [1712234], R0
+  mov R0, 3
+  mov [1712235], R0
+  mov R0, 3
+  mov [1712236], R0
+  mov R0, 3
+  mov [1712237], R0
+  mov R0, 6
+  mov [1712238], R0
+  mov R0, 6
+  mov [1712239], R0
+  mov R0, 6
+  mov [1712240], R0
+  mov R0, 9
+  mov [1712241], R0
+  mov R0, 12
+  mov [1712242], R0
+  mov R0, 12
+  mov [1712243], R0
+  mov R0, 3
+  mov [1712244], R0
+  mov R0, 3
+  mov [1712245], R0
+  mov R0, 9
+  mov [1712246], R0
+  mov R0, 9
+  mov [1712247], R0
+  mov R0, 3
+  mov [1712248], R0
+  mov R0, 3
+  mov [1712249], R0
+  mov R0, 9
+  mov [1712250], R0
+  mov R0, 9
+  mov [1712251], R0
+  mov R0, 9
+  mov [1712252], R0
+  mov R0, 9
+  mov [1712253], R0
+  mov R0, 3
+  mov [1712254], R0
+  mov R0, 3
+  mov [1712255], R0
+  mov R0, 9
+  mov [1712256], R0
+  mov R0, 9
+  mov [1712257], R0
+  mov R0, 6
+  mov [1712258], R0
+  mov R0, 6
+  mov [1712259], R0
+  mov R0, 3
+  mov [1712260], R0
+  mov R0, 3
+  mov [1712261], R0
+  mov R0, 9
+  mov [1712262], R0
+  mov R0, 9
+  mov [1712263], R0
+  mov R0, 9
+  mov [1712264], R0
+  mov R0, 9
+  mov [1712265], R0
+  mov R0, 3
+  mov [1712266], R0
+  mov R0, 3
+  mov [1712267], R0
+  mov R0, 21
+  mov [1712268], R0
+  mov R0, 21
+  mov [1712269], R0
+  mov R0, 9
+  mov [1712270], R0
+  mov R0, 9
+  mov [1712271], R0
+  mov R0, 6
+  mov [1712272], R0
+  mov R0, 6
+  mov [1712273], R0
+  mov R0, 3
+  mov [1712274], R0
+  mov R0, 3
+  mov [1712275], R0
+  mov R0, 6
+  mov [1712276], R0
+  mov R0, 6
+  mov [1712277], R0
+  mov R0, 6
+  mov [1712278], R0
+  mov R0, 9
+  mov [1712279], R0
+  mov R0, 9
+  mov [1712280], R0
+  mov R0, 12
+  mov [1712281], R0
+  mov R0, 15
+  mov [1712282], R0
+  mov R0, 15
+  mov [1712283], R0
+  mov R0, 3
+  mov [1712284], R0
+  mov R0, 3
+  mov [1712285], R0
+  mov R0, 9
+  mov [1712286], R0
+  mov R0, 9
+  mov [1712287], R0
+  mov R0, 3
+  mov [1712288], R0
+  mov R0, 3
+  mov [1712289], R0
+  mov R0, 12
+  mov [1712290], R0
+  mov R0, 12
+  mov [1712291], R0
+  mov R0, 9
+  mov [1712292], R0
+  mov R0, 9
+  mov [1712293], R0
+  mov R0, 3
+  mov [1712294], R0
+  mov R0, 3
+  mov [1712295], R0
+  mov R0, 6
+  mov [1712296], R0
+  mov R0, 3
+  mov [1712297], R0
+  mov R0, 3
+  mov [1712298], R0
+  mov R0, 3
+  mov [1712299], R0
+  mov R0, 3
+  mov [1712300], R0
+  mov R0, 6
+  mov [1712301], R0
+  mov R0, 6
+  mov [1712302], R0
+  mov R0, 3
+  mov [1712303], R0
+  mov R0, 3
+  mov [1712304], R0
+  mov R0, 3
+  mov [1712305], R0
+  mov R0, 3
+  mov [1712306], R0
+  mov R0, 3
+  mov [1712307], R0
+  mov R0, 3
+  mov [1712308], R0
+  mov R0, 3
+  mov [1712309], R0
+  mov R0, 6
+  mov [1712310], R0
+  mov R0, 6
+  mov [1712311], R0
+  mov R0, 3
+  mov [1712312], R0
+  mov R0, 3
+  mov [1712313], R0
+  mov R0, 3
+  mov [1712314], R0
+  mov R0, 3
+  mov [1712315], R0
+  mov R0, 3
+  mov [1712316], R0
+  mov R0, 3
+  mov [1712317], R0
+  mov R0, 3
+  mov [1712318], R0
+  mov R0, 6
+  mov [1712319], R0
+  mov R0, 6
+  mov [1712320], R0
+  mov R0, 6
+  mov [1712321], R0
+  mov R0, 6
+  mov [1712322], R0
+  mov R0, 6
+  mov [1712323], R0
+  mov R0, 3
+  mov [1712324], R0
+  mov R0, 3
+  mov [1712325], R0
+  mov R0, 3
+  mov [1712326], R0
+  mov R0, 3
+  mov [1712327], R0
+  mov R0, 3
+  mov [1712328], R0
+  mov R0, 3
+  mov [1712329], R0
+  mov R0, 6
+  mov [1712330], R0
+  mov R0, 6
+  mov [1712331], R0
+  mov R0, 3
+  mov [1712332], R0
+  mov R0, 3
+  mov [1712333], R0
+  mov R0, 3
+  mov [1712334], R0
+  mov R0, 3
+  mov [1712335], R0
+  mov R0, 3
+  mov [1712336], R0
+  mov R0, 3
+  mov [1712337], R0
+  mov R0, 6
+  mov [1712338], R0
+  mov R0, 6
+  mov [1712339], R0
+  mov R0, 3
+  mov [1712340], R0
+  mov R0, 3
+  mov [1712341], R0
+  mov R0, 3
+  mov [1712342], R0
+  mov R0, 3
+  mov [1712343], R0
+  mov R0, 3
+  mov [1712344], R0
+  mov R0, 3
+  mov [1712345], R0
+  mov R0, 3
+  mov [1712346], R0
+  mov R0, 6
+  mov [1712347], R0
+  mov R0, 6
+  mov [1712348], R0
+  mov R0, 6
+  mov [1712349], R0
+  mov R0, 6
+  mov [1712350], R0
+  mov R0, 6
+  mov [1712351], R0
+  mov R0, 3
+  mov [1712352], R0
+  mov R0, 3
+  mov [1712353], R0
+  mov R0, 3
+  mov [1712354], R0
+  mov R0, 3
+  mov [1712355], R0
+  mov R0, 6
+  mov [1712356], R0
+  mov R0, 6
+  mov [1712357], R0
+  mov R0, 6
+  mov [1712358], R0
+  mov R0, 9
+  mov [1712359], R0
+  mov R0, 9
+  mov [1712360], R0
+  mov R0, 6
+  mov [1712361], R0
+  mov R0, 9
+  mov [1712362], R0
+  mov R0, 9
+  mov [1712363], R0
+  mov R0, 6
+  mov [1712364], R0
+  mov R0, 6
+  mov [1712365], R0
+  mov R0, 3
+  mov [1712366], R0
+  mov R0, 3
+  mov [1712367], R0
+  mov R0, 3
+  mov [1712368], R0
+  mov R0, 6
+  mov [1712369], R0
+  mov R0, 6
+  mov [1712370], R0
+  mov R0, 9
+  mov [1712371], R0
+  mov R0, 9
+  mov [1712372], R0
+  mov R0, 3
+  mov [1712373], R0
+  mov R0, 6
+  mov [1712374], R0
+  mov R0, 6
+  mov [1712375], R0
+  mov R0, 3
+  mov [1712376], R0
+  mov R0, 3
+  mov [1712377], R0
+  mov R0, 6
+  mov [1712378], R0
+  mov R0, 9
+  mov [1712379], R0
+  mov R0, 6
+  mov [1712380], R0
+  mov R0, 9
+  mov [1712381], R0
+  mov R0, 9
+  mov [1712382], R0
+  mov R0, 6
+  mov [1712383], R0
+  mov R0, 6
+  mov [1712384], R0
+  mov R0, 6
+  mov [1712385], R0
+  mov R0, 6
+  mov [1712386], R0
+  mov R0, 9
+  mov [1712387], R0
+  mov R0, 3
+  mov [1712388], R0
+  mov R0, 3
+  mov [1712389], R0
+  mov R0, 6
+  mov [1712390], R0
+  mov R0, 9
+  mov [1712391], R0
+  mov R0, 9
+  mov [1712392], R0
+  mov R0, 9
+  mov [1712393], R0
+  mov R0, 6
+  mov [1712394], R0
+  mov R0, 9
+  mov [1712395], R0
+  mov R0, 9
+  mov [1712396], R0
+  mov R0, 3
+  mov [1712397], R0
+  mov R0, 3
+  mov [1712398], R0
+  mov R0, 3
+  mov [1712399], R0
+  mov R0, 6
+  mov [1712400], R0
+  mov R0, 6
+  mov [1712401], R0
+  mov R0, 6
+  mov [1712402], R0
+  mov R0, 24
+  mov [1712403], R0
+  mov R0, 21
+  mov [1712404], R0
+  mov R0, 6
+  mov [1712405], R0
+  mov R0, 6
+  mov [1712406], R0
+  mov R0, 9
+  mov [1712407], R0
+  mov R0, 9
+  mov [1712408], R0
+  mov R0, 9
+  mov [1712409], R0
+  mov R0, 6
+  mov [1712410], R0
+  mov R0, 6
+  mov [1712411], R0
+  mov R0, 3
+  mov [1712412], R0
+  mov R0, 3
+  mov [1712413], R0
+  mov R0, 6
+  mov [1712414], R0
+  mov R0, 6
+  mov [1712415], R0
+  mov R0, 6
+  mov [1712416], R0
+  mov R0, 12
+  mov [1712417], R0
+  mov R0, 12
+  mov [1712418], R0
+  mov R0, 6
+  mov [1712419], R0
+  mov R0, 6
+  mov [1712420], R0
+  mov R0, 6
+  mov [1712421], R0
+  mov R0, 9
+  mov [1712422], R0
+  mov R0, 9
+  mov [1712423], R0
+  mov R0, 3
+  mov [1712424], R0
+  mov R0, 3
+  mov [1712425], R0
+  mov R0, 3
+  mov [1712426], R0
+  mov R0, 6
+  mov [1712427], R0
+  mov R0, 6
+  mov [1712428], R0
+  mov R0, 9
+  mov [1712429], R0
+  mov R0, 9
+  mov [1712430], R0
+  mov R0, 6
+  mov [1712431], R0
+  mov R0, 9
+  mov [1712432], R0
+  mov R0, 9
+  mov [1712433], R0
+  mov R0, 3
+  mov [1712434], R0
+  mov R0, 3
+  mov [1712435], R0
+  mov R0, 6
+  mov [1712436], R0
+  mov R0, 6
+  mov [1712437], R0
+  mov R0, 6
+  mov [1712438], R0
+  mov R0, 9
+  mov [1712439], R0
+  mov R0, 9
+  mov [1712440], R0
+  mov R0, 6
+  mov [1712441], R0
+  mov R0, 9
+  mov [1712442], R0
+  mov R0, 9
+  mov [1712443], R0
+  mov R0, 9
+  mov [1712444], R0
+  mov R0, 6
+  mov [1712445], R0
+  mov R0, 3
+  mov [1712446], R0
+  mov R0, 3
+  mov [1712447], R0
+  mov R0, 6
+  mov [1712448], R0
+  mov R0, 6
+  mov [1712449], R0
+  mov R0, 6
+  mov [1712450], R0
+  mov R0, 48
+  mov [1712451], R0
+  mov R0, 48
+  mov [1712452], R0
+  mov R0, 42
+  mov [1712453], R0
+  mov R0, 42
+  mov [1712454], R0
+  mov R0, 6
+  mov [1712455], R0
+  mov R0, 6
+  mov [1712456], R0
+  mov R0, 9
+  mov [1712457], R0
+  mov R0, 6
+  mov [1712458], R0
+  mov R0, 6
+  mov [1712459], R0
+  mov R0, 6
+  mov [1712460], R0
+  mov R0, 6
+  mov [1712461], R0
+  mov R0, 3
+  mov [1712462], R0
+  mov R0, 3
+  mov [1712463], R0
+  mov R0, 6
+  mov [1712464], R0
+  mov R0, 6
+  mov [1712465], R0
+  mov R0, 9
+  mov [1712466], R0
+  mov R0, 12
+  mov [1712467], R0
+  mov R0, 12
+  mov [1712468], R0
+  mov R0, 3
+  mov [1712469], R0
+  mov R0, 6
+  mov [1712470], R0
+  mov R0, 6
+  mov [1712471], R0
+  mov R0, 6
+  mov [1712472], R0
+  mov R0, 9
+  mov [1712473], R0
+  mov R0, 3
+  mov [1712474], R0
+  mov R0, 3
+  mov [1712475], R0
+  mov R0, 6
+  mov [1712476], R0
+  mov R0, 6
+  mov [1712477], R0
+  mov R0, 9
+  mov [1712478], R0
+  mov R0, 9
+  mov [1712479], R0
+  mov R0, 9
+  mov [1712480], R0
+  mov R0, 6
+  mov [1712481], R0
+  mov R0, 9
+  mov [1712482], R0
+  mov R0, 9
+  mov [1712483], R0
+  mov R0, 3
+  mov [1712484], R0
+  mov R0, 3
+  mov [1712485], R0
+  mov R0, 3
+  mov [1712486], R0
+  mov R0, 6
+  mov [1712487], R0
+  mov R0, 6
+  mov [1712488], R0
+  mov R0, 9
+  mov [1712489], R0
+  mov R0, 9
+  mov [1712490], R0
+  mov R0, 6
+  mov [1712491], R0
+  mov R0, 6
+  mov [1712492], R0
+  mov R0, 6
+  mov [1712493], R0
+  mov R0, 9
+  mov [1712494], R0
+  mov R0, 9
+  mov [1712495], R0
+  mov R0, 3
+  mov [1712496], R0
+  mov R0, 3
+  mov [1712497], R0
+  mov R0, 3
+  mov [1712498], R0
+  mov R0, 3
+  mov [1712499], R0
+  mov R0, 6
+  mov [1712500], R0
+  mov R0, 6
+  mov [1712501], R0
+  mov R0, 9
+  mov [1712502], R0
+  mov R0, 9
+  mov [1712503], R0
+  mov R0, 9
+  mov [1712504], R0
+  mov R0, 3
+  mov [1712505], R0
+  mov R0, 3
+  mov [1712506], R0
+  mov R0, 6
+  mov [1712507], R0
+  mov R0, 6
+  mov [1712508], R0
+  mov R0, 6
+  mov [1712509], R0
+  mov R0, 21
+  mov [1712510], R0
+  mov R0, 21
+  mov [1712511], R0
+  mov R0, 6
+  mov [1712512], R0
+  mov R0, 9
+  mov [1712513], R0
+  mov R0, 9
+  mov [1712514], R0
+  mov R0, 3
+  mov [1712515], R0
+  mov R0, 6
+  mov [1712516], R0
+  mov R0, 9
+  mov [1712517], R0
+  mov R0, 9
+  mov [1712518], R0
+  mov R0, 3
+  mov [1712519], R0
+  mov R0, 3
+  mov [1712520], R0
+  mov R0, 6
+  mov [1712521], R0
+  mov R0, 6
+  mov [1712522], R0
+  mov R0, 6
+  mov [1712523], R0
+  mov R0, 12
+  mov [1712524], R0
+  mov R0, 15
+  mov [1712525], R0
+  mov R0, 6
+  mov [1712526], R0
+  mov R0, 6
+  mov [1712527], R0
+  mov R0, 9
+  mov [1712528], R0
+  mov R0, 9
+  mov [1712529], R0
+  mov R0, 12
+  mov [1712530], R0
+  mov R0, 3
+  mov [1712531], R0
+  mov R0, 3
+  mov [1712532], R0
+  mov R0, 3
+  mov [1712533], R0
+  mov R0, 6
+  mov [1712534], R0
+  mov R0, 6
+  mov [1712535], R0
+  mov R0, 9
+  mov [1712536], R0
+  mov R0, 9
+  mov [1712537], R0
+  mov R0, 3
+  mov [1712538], R0
+  mov R0, 6
+  mov [1712539], R0
+  mov R0, 6
+  mov [1712540], R0
+  mov R0, 3
+  mov [1712541], R0
+  mov R0, 3
+  mov [1712542], R0
+  mov R0, 6
+  mov [1712543], R0
+  mov R0, 6
+  mov [1712544], R0
+  mov R0, 9
+  mov [1712545], R0
+  mov R0, 6
+  mov [1712546], R0
+  mov R0, 6
+  mov [1712547], R0
+  mov R0, 3
+  mov [1712548], R0
+  mov R0, 3
+  mov [1712549], R0
+  mov R0, 3
+  mov [1712550], R0
+  mov R0, 3
+  mov [1712551], R0
+  mov R0, 3
+  mov [1712552], R0
+  mov R0, 6
+  mov [1712553], R0
+  mov R0, 3
+  mov [1712554], R0
+  mov R0, 6
+  mov [1712555], R0
+  mov R0, 3
+  mov [1712556], R0
+  mov R0, 6
+  mov [1712557], R0
+  mov R0, 3
+  mov [1712558], R0
+  mov R0, 3
+  mov [1712559], R0
+  mov R0, 3
+  mov [1712560], R0
+  mov R0, 3
+  mov [1712561], R0
+  mov R0, 3
+  mov [1712562], R0
+  mov R0, 6
+  mov [1712563], R0
+  mov R0, 6
+  mov [1712564], R0
+  mov R0, 6
+  mov [1712565], R0
+  mov R0, 3
+  mov [1712566], R0
+  mov R0, 3
+  mov [1712567], R0
+  mov R0, 3
+  mov [1712568], R0
+  mov R0, 3
+  mov [1712569], R0
+  mov R0, 3
+  mov [1712570], R0
+  mov R0, 3
+  mov [1712571], R0
+  mov R0, 6
+  mov [1712572], R0
+  mov R0, 6
+  mov [1712573], R0
+  mov R0, 3
+  mov [1712574], R0
+  mov R0, 3
+  mov [1712575], R0
+  mov R0, 3
+  mov [1712576], R0
+  mov R0, 3
+  mov [1712577], R0
+  mov R0, 3
+  mov [1712578], R0
+  mov R0, 6
+  mov [1712579], R0
+  mov R0, 3
+  mov [1712580], R0
+  mov R0, 3
+  mov [1712581], R0
+  mov R0, 3
+  mov [1712582], R0
+  mov R0, 6
+  mov [1712583], R0
+  mov R0, 6
+  mov [1712584], R0
+  mov R0, 3
+  mov [1712585], R0
+  mov R0, 3
+  mov [1712586], R0
+  mov R0, 3
+  mov [1712587], R0
+  mov R0, 3
+  mov [1712588], R0
+  mov R0, 6
+  mov [1712589], R0
+  mov R0, 6
+  mov [1712590], R0
+  mov R0, 3
+  mov [1712591], R0
+  mov R0, 3
+  mov [1712592], R0
+  mov R0, 6
+  mov [1712593], R0
+  mov R0, 3
+  mov [1712594], R0
+  mov R0, 3
+  mov [1712595], R0
+  mov R0, 3
+  mov [1712596], R0
+  mov R0, 3
+  mov [1712597], R0
+  mov R0, 3
+  mov [1712598], R0
+  mov R0, 3
+  mov [1712599], R0
+  mov R0, 6
+  mov [1712600], R0
+  mov R0, 6
+  mov [1712601], R0
+  mov R0, 3
+  mov [1712602], R0
+  mov R0, 3
+  mov [1712603], R0
+  mov R0, 3
+  mov [1712604], R0
+  mov R0, 6
+  mov [1712605], R0
+  mov R0, 6
+  mov [1712606], R0
+  mov R0, 9
+  mov [1712607], R0
+  mov R0, 12
+  mov [1712608], R0
+  mov R0, 3
+  mov [1712609], R0
+  mov R0, 6
+  mov [1712610], R0
+  mov R0, 6
+  mov [1712611], R0
+  mov R0, 9
+  mov [1712612], R0
+  mov R0, 9
+  mov [1712613], R0
+  mov R0, 3
+  mov [1712614], R0
+  mov R0, 3
+  mov [1712615], R0
+  mov R0, 6
+  mov [1712616], R0
+  mov R0, 6
+  mov [1712617], R0
+  mov R0, 9
+  mov [1712618], R0
+  mov R0, 12
+  mov [1712619], R0
+  mov R0, 9
+  mov [1712620], R0
+  mov R0, 6
+  mov [1712621], R0
+  mov R0, 9
+  mov [1712622], R0
+  mov R0, 9
+  mov [1712623], R0
+  mov R0, 3
+  mov [1712624], R0
+  mov R0, 3
+  mov [1712625], R0
+  mov R0, 3
+  mov [1712626], R0
+  mov R0, 6
+  mov [1712627], R0
+  mov R0, 6
+  mov [1712628], R0
+  mov R0, 6
+  mov [1712629], R0
+  mov R0, 9
+  mov [1712630], R0
+  mov R0, 6
+  mov [1712631], R0
+  mov R0, 6
+  mov [1712632], R0
+  mov R0, 9
+  mov [1712633], R0
+  mov R0, 9
+  mov [1712634], R0
+  mov R0, 9
+  mov [1712635], R0
+  mov R0, 3
+  mov [1712636], R0
+  mov R0, 3
+  mov [1712637], R0
+  mov R0, 6
+  mov [1712638], R0
+  mov R0, 6
+  mov [1712639], R0
+  mov R0, 6
+  mov [1712640], R0
+  mov R0, 9
+  mov [1712641], R0
+  mov R0, 9
+  mov [1712642], R0
+  mov R0, 6
+  mov [1712643], R0
+  mov R0, 6
+  mov [1712644], R0
+  mov R0, 3
+  mov [1712645], R0
+  mov R0, 6
+  mov [1712646], R0
+  mov R0, 6
+  mov [1712647], R0
+  mov R0, 6
+  mov [1712648], R0
+  mov R0, 9
+  mov [1712649], R0
+  mov R0, 6
+  mov [1712650], R0
+  mov R0, 21
+  mov [1712651], R0
+  mov R0, 21
+  mov [1712652], R0
+  mov R0, 3
+  mov [1712653], R0
+  mov R0, 6
+  mov [1712654], R0
+  mov R0, 6
+  mov [1712655], R0
+  mov R0, 6
+  mov [1712656], R0
+  mov R0, 6
+  mov [1712657], R0
+  mov R0, 9
+  mov [1712658], R0
+  mov R0, 6
+  mov [1712659], R0
+  mov R0, 3
+  mov [1712660], R0
+  mov R0, 3
+  mov [1712661], R0
+  mov R0, 6
+  mov [1712662], R0
+  mov R0, 6
+  mov [1712663], R0
+  mov R0, 9
+  mov [1712664], R0
+  mov R0, 9
+  mov [1712665], R0
+  mov R0, 9
+  mov [1712666], R0
+  mov R0, 3
+  mov [1712667], R0
+  mov R0, 3
+  mov [1712668], R0
+  mov R0, 6
+  mov [1712669], R0
+  mov R0, 6
+  mov [1712670], R0
+  mov R0, 6
+  mov [1712671], R0
+  mov R0, 3
+  mov [1712672], R0
+  mov R0, 3
+  mov [1712673], R0
+  mov R0, 6
+  mov [1712674], R0
+  mov R0, 6
+  mov [1712675], R0
+  mov R0, 6
+  mov [1712676], R0
+  mov R0, 9
+  mov [1712677], R0
+  mov R0, 9
+  mov [1712678], R0
+  mov R0, 3
+  mov [1712679], R0
+  mov R0, 9
+  mov [1712680], R0
+  mov R0, 9
+  mov [1712681], R0
+  mov R0, 3
+  mov [1712682], R0
+  mov R0, 3
+  mov [1712683], R0
+  mov R0, 3
+  mov [1712684], R0
+  mov R0, 3
+  mov [1712685], R0
+  mov R0, 6
+  mov [1712686], R0
+  mov R0, 9
+  mov [1712687], R0
+  mov R0, 9
+  mov [1712688], R0
+  mov R0, 6
+  mov [1712689], R0
+  mov R0, 6
+  mov [1712690], R0
+  mov R0, 6
+  mov [1712691], R0
+  mov R0, 6
+  mov [1712692], R0
+  mov R0, 6
+  mov [1712693], R0
+  mov R0, 3
+  mov [1712694], R0
+  mov R0, 3
+  mov [1712695], R0
+  mov R0, 6
+  mov [1712696], R0
+  mov R0, 6
+  mov [1712697], R0
+  mov R0, 9
+  mov [1712698], R0
+  mov R0, 48
+  mov [1712699], R0
+  mov R0, 48
+  mov [1712700], R0
+  mov R0, 42
+  mov [1712701], R0
+  mov R0, 42
+  mov [1712702], R0
+  mov R0, 3
+  mov [1712703], R0
+  mov R0, 6
+  mov [1712704], R0
+  mov R0, 6
+  mov [1712705], R0
+  mov R0, 3
+  mov [1712706], R0
+  mov R0, 6
+  mov [1712707], R0
+  mov R0, 6
+  mov [1712708], R0
+  mov R0, 9
+  mov [1712709], R0
+  mov R0, 3
+  mov [1712710], R0
+  mov R0, 3
+  mov [1712711], R0
+  mov R0, 6
+  mov [1712712], R0
+  mov R0, 6
+  mov [1712713], R0
+  mov R0, 6
+  mov [1712714], R0
+  mov R0, 9
+  mov [1712715], R0
+  mov R0, 12
+  mov [1712716], R0
+  mov R0, 6
+  mov [1712717], R0
+  mov R0, 6
+  mov [1712718], R0
+  mov R0, 9
+  mov [1712719], R0
+  mov R0, 9
+  mov [1712720], R0
+  mov R0, 9
+  mov [1712721], R0
+  mov R0, 3
+  mov [1712722], R0
+  mov R0, 3
+  mov [1712723], R0
+  mov R0, 3
+  mov [1712724], R0
+  mov R0, 6
+  mov [1712725], R0
+  mov R0, 6
+  mov [1712726], R0
+  mov R0, 9
+  mov [1712727], R0
+  mov R0, 9
+  mov [1712728], R0
+  mov R0, 6
+  mov [1712729], R0
+  mov R0, 9
+  mov [1712730], R0
+  mov R0, 6
+  mov [1712731], R0
+  mov R0, 3
+  mov [1712732], R0
+  mov R0, 3
+  mov [1712733], R0
+  mov R0, 6
+  mov [1712734], R0
+  mov R0, 6
+  mov [1712735], R0
+  mov R0, 9
+  mov [1712736], R0
+  mov R0, 9
+  mov [1712737], R0
+  mov R0, 9
+  mov [1712738], R0
+  mov R0, 3
+  mov [1712739], R0
+  mov R0, 6
+  mov [1712740], R0
+  mov R0, 6
+  mov [1712741], R0
+  mov R0, 6
+  mov [1712742], R0
+  mov R0, 6
+  mov [1712743], R0
+  mov R0, 3
+  mov [1712744], R0
+  mov R0, 3
+  mov [1712745], R0
+  mov R0, 6
+  mov [1712746], R0
+  mov R0, 6
+  mov [1712747], R0
+  mov R0, 9
+  mov [1712748], R0
+  mov R0, 9
+  mov [1712749], R0
+  mov R0, 9
+  mov [1712750], R0
+  mov R0, 9
+  mov [1712751], R0
+  mov R0, 9
+  mov [1712752], R0
+  mov R0, 3
+  mov [1712753], R0
+  mov R0, 3
+  mov [1712754], R0
+  mov R0, 3
+  mov [1712755], R0
+  mov R0, 6
+  mov [1712756], R0
+  mov R0, 6
+  mov [1712757], R0
+  mov R0, 21
+  mov [1712758], R0
+  mov R0, 21
+  mov [1712759], R0
+  mov R0, 6
+  mov [1712760], R0
+  mov R0, 6
+  mov [1712761], R0
+  mov R0, 6
+  mov [1712762], R0
+  mov R0, 9
+  mov [1712763], R0
+  mov R0, 9
+  mov [1712764], R0
+  mov R0, 6
+  mov [1712765], R0
+  mov R0, 9
+  mov [1712766], R0
+  mov R0, 3
+  mov [1712767], R0
+  mov R0, 6
+  mov [1712768], R0
+  mov R0, 9
+  mov [1712769], R0
+  mov R0, 9
+  mov [1712770], R0
+  mov R0, 3
+  mov [1712771], R0
+  mov R0, 15
+  mov [1712772], R0
+  mov R0, 15
+  mov [1712773], R0
+  mov R0, 6
+  mov [1712774], R0
+  mov R0, 6
+  mov [1712775], R0
+  mov R0, 6
+  mov [1712776], R0
+  mov R0, 9
+  mov [1712777], R0
+  mov R0, 9
+  mov [1712778], R0
+  mov R0, 3
+  mov [1712779], R0
+  mov R0, 3
+  mov [1712780], R0
+  mov R0, 6
+  mov [1712781], R0
+  mov R0, 6
+  mov [1712782], R0
+  mov R0, 9
+  mov [1712783], R0
+  mov R0, 12
+  mov [1712784], R0
+  mov R0, 12
+  mov [1712785], R0
+  mov R0, 6
+  mov [1712786], R0
+  mov R0, 9
+  mov [1712787], R0
+  mov R0, 9
+  mov [1712788], R0
+  mov R0, 3
+  mov [1712789], R0
+  mov R0, 3
+  mov [1712790], R0
+  mov R0, 6
+  mov [1712791], R0
+  mov R0, 6
+  mov [1712792], R0
+  mov R0, 6
+  mov [1712793], R0
+  mov R0, 3
+  mov [1712794], R0
+  mov R0, 3
+  mov [1712795], R0
+  mov R0, 6
+  mov [1712796], R0
+  mov R0, 6
+  mov [1712797], R0
+  mov R0, 6
+  mov [1712798], R0
+  mov R0, 9
+  mov [1712799], R0
+  mov R0, 3
+  mov [1712800], R0
+  mov R0, 3
+  mov [1712801], R0
+  mov R0, 3
+  mov [1712802], R0
+  mov R0, 3
+  mov [1712803], R0
+  mov R0, 3
+  mov [1712804], R0
+  mov R0, 3
+  mov [1712805], R0
+  mov R0, 3
+  mov [1712806], R0
+  mov R0, 6
+  mov [1712807], R0
+  mov R0, 6
+  mov [1712808], R0
+  mov R0, 3
+  mov [1712809], R0
+  mov R0, 3
+  mov [1712810], R0
+  mov R0, 3
+  mov [1712811], R0
+  mov R0, 6
+  mov [1712812], R0
+  mov R0, 3
+  mov [1712813], R0
+  mov R0, 6
+  mov [1712814], R0
+  mov R0, 6
+  mov [1712815], R0
+  mov R0, 3
+  mov [1712816], R0
+  mov R0, 3
+  mov [1712817], R0
+  mov R0, 3
+  mov [1712818], R0
+  mov R0, 3
+  mov [1712819], R0
+  mov R0, 3
+  mov [1712820], R0
+  mov R0, 3
+  mov [1712821], R0
+  mov R0, 6
+  mov [1712822], R0
+  mov R0, 6
+  mov [1712823], R0
+  mov R0, 6
+  mov [1712824], R0
+  mov R0, 3
+  mov [1712825], R0
+  mov R0, 3
+  mov [1712826], R0
+  mov R0, 3
+  mov [1712827], R0
+  mov R0, 3
+  mov [1712828], R0
+  mov R0, 3
+  mov [1712829], R0
+  mov R0, 3
+  mov [1712830], R0
+  mov R0, 3
+  mov [1712831], R0
+  mov R0, 6
+  mov [1712832], R0
+  mov R0, 6
+  mov [1712833], R0
+  mov R0, 3
+  mov [1712834], R0
+  mov R0, 3
+  mov [1712835], R0
+  mov R0, 3
+  mov [1712836], R0
+  mov R0, 6
+  mov [1712837], R0
+  mov R0, 3
+  mov [1712838], R0
+  mov R0, 3
+  mov [1712839], R0
+  mov R0, 3
+  mov [1712840], R0
+  mov R0, 6
+  mov [1712841], R0
+  mov R0, 6
+  mov [1712842], R0
+  mov R0, 3
+  mov [1712843], R0
+  mov R0, 3
+  mov [1712844], R0
+  mov R0, 3
+  mov [1712845], R0
+  mov R0, 3
+  mov [1712846], R0
+  mov R0, 3
+  mov [1712847], R0
+  mov R0, 6
+  mov [1712848], R0
+  mov R0, 6
+  mov [1712849], R0
+  mov R0, 6
+  mov [1712850], R0
+  mov R0, 9
+  mov [1712851], R0
+  mov R0, 9
+  mov [1712852], R0
+  mov R0, 3
+  mov [1712853], R0
+  mov R0, 6
+  mov [1712854], R0
+  mov R0, 6
+  mov [1712855], R0
+  mov R0, 6
+  mov [1712856], R0
+  mov R0, 6
+  mov [1712857], R0
+  mov R0, 3
+  mov [1712858], R0
+  mov R0, 3
+  mov [1712859], R0
+  mov R0, 3
+  mov [1712860], R0
+  mov R0, 6
+  mov [1712861], R0
+  mov R0, 6
+  mov [1712862], R0
+  mov R0, 9
+  mov [1712863], R0
+  mov R0, 9
+  mov [1712864], R0
+  mov R0, 6
+  mov [1712865], R0
+  mov R0, 6
+  mov [1712866], R0
+  mov R0, 6
+  mov [1712867], R0
+  mov R0, 3
+  mov [1712868], R0
+  mov R0, 6
+  mov [1712869], R0
+  mov R0, 9
+  mov [1712870], R0
+  mov R0, 3
+  mov [1712871], R0
+  mov R0, 6
+  mov [1712872], R0
+  mov R0, 9
+  mov [1712873], R0
+  mov R0, 9
+  mov [1712874], R0
+  mov R0, 6
+  mov [1712875], R0
+  mov R0, 6
+  mov [1712876], R0
+  mov R0, 6
+  mov [1712877], R0
+  mov R0, 9
+  mov [1712878], R0
+  mov R0, 9
+  mov [1712879], R0
+  mov R0, 3
+  mov [1712880], R0
+  mov R0, 3
+  mov [1712881], R0
+  mov R0, 6
+  mov [1712882], R0
+  mov R0, 9
+  mov [1712883], R0
+  mov R0, 9
+  mov [1712884], R0
+  mov R0, 9
+  mov [1712885], R0
+  mov R0, 6
+  mov [1712886], R0
+  mov R0, 9
+  mov [1712887], R0
+  mov R0, 9
+  mov [1712888], R0
+  mov R0, 3
+  mov [1712889], R0
+  mov R0, 3
+  mov [1712890], R0
+  mov R0, 3
+  mov [1712891], R0
+  mov R0, 6
+  mov [1712892], R0
+  mov R0, 6
+  mov [1712893], R0
+  mov R0, 3
+  mov [1712894], R0
+  mov R0, 21
+  mov [1712895], R0
+  mov R0, 21
+  mov [1712896], R0
+  mov R0, 6
+  mov [1712897], R0
+  mov R0, 9
+  mov [1712898], R0
+  mov R0, 9
+  mov [1712899], R0
+  mov R0, 9
+  mov [1712900], R0
+  mov R0, 3
+  mov [1712901], R0
+  mov R0, 6
+  mov [1712902], R0
+  mov R0, 9
+  mov [1712903], R0
+  mov R0, 3
+  mov [1712904], R0
+  mov R0, 3
+  mov [1712905], R0
+  mov R0, 6
+  mov [1712906], R0
+  mov R0, 6
+  mov [1712907], R0
+  mov R0, 6
+  mov [1712908], R0
+  mov R0, 12
+  mov [1712909], R0
+  mov R0, 9
+  mov [1712910], R0
+  mov R0, 6
+  mov [1712911], R0
+  mov R0, 6
+  mov [1712912], R0
+  mov R0, 9
+  mov [1712913], R0
+  mov R0, 9
+  mov [1712914], R0
+  mov R0, 9
+  mov [1712915], R0
+  mov R0, 3
+  mov [1712916], R0
+  mov R0, 3
+  mov [1712917], R0
+  mov R0, 3
+  mov [1712918], R0
+  mov R0, 6
+  mov [1712919], R0
+  mov R0, 6
+  mov [1712920], R0
+  mov R0, 9
+  mov [1712921], R0
+  mov R0, 9
+  mov [1712922], R0
+  mov R0, 6
+  mov [1712923], R0
+  mov R0, 9
+  mov [1712924], R0
+  mov R0, 9
+  mov [1712925], R0
+  mov R0, 3
+  mov [1712926], R0
+  mov R0, 3
+  mov [1712927], R0
+  mov R0, 6
+  mov [1712928], R0
+  mov R0, 6
+  mov [1712929], R0
+  mov R0, 3
+  mov [1712930], R0
+  mov R0, 9
+  mov [1712931], R0
+  mov R0, 9
+  mov [1712932], R0
+  mov R0, 3
+  mov [1712933], R0
+  mov R0, 6
+  mov [1712934], R0
+  mov R0, 6
+  mov [1712935], R0
+  mov R0, 6
+  mov [1712936], R0
+  mov R0, 6
+  mov [1712937], R0
+  mov R0, 3
+  mov [1712938], R0
+  mov R0, 3
+  mov [1712939], R0
+  mov R0, 6
+  mov [1712940], R0
+  mov R0, 6
+  mov [1712941], R0
+  mov R0, 6
+  mov [1712942], R0
+  mov R0, 48
+  mov [1712943], R0
+  mov R0, 48
+  mov [1712944], R0
+  mov R0, 42
+  mov [1712945], R0
+  mov R0, 42
+  mov [1712946], R0
+  mov R0, 6
+  mov [1712947], R0
+  mov R0, 6
+  mov [1712948], R0
+  mov R0, 9
+  mov [1712949], R0
+  mov R0, 6
+  mov [1712950], R0
+  mov R0, 6
+  mov [1712951], R0
+  mov R0, 6
+  mov [1712952], R0
+  mov R0, 6
+  mov [1712953], R0
+  mov R0, 3
+  mov [1712954], R0
+  mov R0, 3
+  mov [1712955], R0
+  mov R0, 6
+  mov [1712956], R0
+  mov R0, 9
+  mov [1712957], R0
+  mov R0, 9
+  mov [1712958], R0
+  mov R0, 12
+  mov [1712959], R0
+  mov R0, 12
+  mov [1712960], R0
+  mov R0, 6
+  mov [1712961], R0
+  mov R0, 6
+  mov [1712962], R0
+  mov R0, 6
+  mov [1712963], R0
+  mov R0, 6
+  mov [1712964], R0
+  mov R0, 9
+  mov [1712965], R0
+  mov R0, 3
+  mov [1712966], R0
+  mov R0, 3
+  mov [1712967], R0
+  mov R0, 6
+  mov [1712968], R0
+  mov R0, 6
+  mov [1712969], R0
+  mov R0, 9
+  mov [1712970], R0
+  mov R0, 9
+  mov [1712971], R0
+  mov R0, 12
+  mov [1712972], R0
+  mov R0, 6
+  mov [1712973], R0
+  mov R0, 9
+  mov [1712974], R0
+  mov R0, 9
+  mov [1712975], R0
+  mov R0, 3
+  mov [1712976], R0
+  mov R0, 3
+  mov [1712977], R0
+  mov R0, 3
+  mov [1712978], R0
+  mov R0, 6
+  mov [1712979], R0
+  mov R0, 6
+  mov [1712980], R0
+  mov R0, 9
+  mov [1712981], R0
+  mov R0, 9
+  mov [1712982], R0
+  mov R0, 6
+  mov [1712983], R0
+  mov R0, 6
+  mov [1712984], R0
+  mov R0, 9
+  mov [1712985], R0
+  mov R0, 9
+  mov [1712986], R0
+  mov R0, 9
+  mov [1712987], R0
+  mov R0, 3
+  mov [1712988], R0
+  mov R0, 3
+  mov [1712989], R0
+  mov R0, 6
+  mov [1712990], R0
+  mov R0, 6
+  mov [1712991], R0
+  mov R0, 6
+  mov [1712992], R0
+  mov R0, 9
+  mov [1712993], R0
+  mov R0, 9
+  mov [1712994], R0
+  mov R0, 9
+  mov [1712995], R0
+  mov R0, 12
+  mov [1712996], R0
+  mov R0, 3
+  mov [1712997], R0
+  mov R0, 3
+  mov [1712998], R0
+  mov R0, 6
+  mov [1712999], R0
+  mov R0, 6
+  mov [1713000], R0
+  mov R0, 6
+  mov [1713001], R0
+  mov R0, 21
+  mov [1713002], R0
+  mov R0, 21
+  mov [1713003], R0
+  mov R0, 3
+  mov [1713004], R0
+  mov R0, 6
+  mov [1713005], R0
+  mov R0, 6
+  mov [1713006], R0
+  mov R0, 6
+  mov [1713007], R0
+  mov R0, 6
+  mov [1713008], R0
+  mov R0, 9
+  mov [1713009], R0
+  mov R0, 9
+  mov [1713010], R0
+  mov R0, 3
+  mov [1713011], R0
+  mov R0, 3
+  mov [1713012], R0
+  mov R0, 6
+  mov [1713013], R0
+  mov R0, 6
+  mov [1713014], R0
+  mov R0, 6
+  mov [1713015], R0
+  mov R0, 12
+  mov [1713016], R0
+  mov R0, 15
+  mov [1713017], R0
+  mov R0, 6
+  mov [1713018], R0
+  mov R0, 6
+  mov [1713019], R0
+  mov R0, 9
+  mov [1713020], R0
+  mov R0, 12
+  mov [1713021], R0
+  mov R0, 9
+  mov [1713022], R0
+  mov R0, 3
+  mov [1713023], R0
+  mov R0, 3
+  mov [1713024], R0
+  mov R0, 3
+  mov [1713025], R0
+  mov R0, 6
+  mov [1713026], R0
+  mov R0, 6
+  mov [1713027], R0
+  mov R0, 9
+  mov [1713028], R0
+  mov R0, 9
+  mov [1713029], R0
+  mov R0, 3
+  mov [1713030], R0
+  mov R0, 6
+  mov [1713031], R0
+  mov R0, 6
+  mov [1713032], R0
+  mov R0, 3
+  mov [1713033], R0
+  mov R0, 3
+  mov [1713034], R0
+  mov R0, 6
+  mov [1713035], R0
+  mov R0, 9
+  mov [1713036], R0
+  mov R0, 3
+  mov [1713037], R0
+  mov R0, 9
+  mov [1713038], R0
+  mov R0, 9
+  mov [1713039], R0
+  mov R0, 3
+  mov [1713040], R0
+  mov R0, 3
+  mov [1713041], R0
+  mov R0, 6
+  mov [1713042], R0
+  mov R0, 12
+  mov [1713043], R0
+  mov R0, 12
+  mov [1713044], R0
+  mov R0, 3
+  mov [1713045], R0
+  mov R0, 3
+  mov [1713046], R0
+  mov R0, 3
+  mov [1713047], R0
+  mov R0, 3
+  mov [1713048], R0
+  mov R0, 3
+  mov [1713049], R0
+  mov R0, 6
+  mov [1713050], R0
+  mov R0, 48
+  mov [1713051], R0
+  mov R0, 48
+  mov [1713052], R0
+  mov R0, 3
+  mov [1713053], R0
+  mov R0, 42
+  mov [1713054], R0
+  mov R0, 42
+  mov [1713055], R0
+  mov R0, 3
+  mov [1713056], R0
+  mov R0, 3
+  mov [1713057], R0
+  mov R0, 6
+  mov [1713058], R0
+  mov R0, 3
+  mov [1713059], R0
+  mov R0, 3
+  mov [1713060], R0
+  mov R0, 3
+  mov [1713061], R0
+  mov R0, 3
+  mov [1713062], R0
+  mov R0, 3
+  mov [1713063], R0
+  mov R0, 6
+  mov [1713064], R0
+  mov R0, 3
+  mov [1713065], R0
+  mov R0, 3
+  mov [1713066], R0
+  mov R0, 3
+  mov [1713067], R0
+  mov R0, 3
+  mov [1713068], R0
+  mov R0, 6
+  mov [1713069], R0
+  mov R0, 6
+  mov [1713070], R0
+  mov R0, 9
+  mov [1713071], R0
+  mov R0, 12
+  mov [1713072], R0
+  mov R0, 3
+  mov [1713073], R0
+  mov R0, 6
+  mov [1713074], R0
+  mov R0, 9
+  mov [1713075], R0
+  mov R0, 9
+  mov [1713076], R0
+  mov R0, 12
+  mov [1713077], R0
+  mov R0, 3
+  mov [1713078], R0
+  mov R0, 3
+  mov [1713079], R0
+  mov R0, 3
+  mov [1713080], R0
+  mov R0, 3
+  mov [1713081], R0
+  mov R0, 9
+  mov [1713082], R0
+  mov R0, 9
+  mov [1713083], R0
+  mov R0, 9
+  mov [1713084], R0
+  mov R0, 6
+  mov [1713085], R0
+  mov R0, 9
+  mov [1713086], R0
+  mov R0, 9
+  mov [1713087], R0
+  mov R0, 3
+  mov [1713088], R0
+  mov R0, 3
+  mov [1713089], R0
+  mov R0, 3
+  mov [1713090], R0
+  mov R0, 6
+  mov [1713091], R0
+  mov R0, 9
+  mov [1713092], R0
+  mov R0, 9
+  mov [1713093], R0
+  mov R0, 9
+  mov [1713094], R0
+  mov R0, 3
+  mov [1713095], R0
+  mov R0, 9
+  mov [1713096], R0
+  mov R0, 9
+  mov [1713097], R0
+  mov R0, 12
+  mov [1713098], R0
+  mov R0, 6
+  mov [1713099], R0
+  mov R0, 3
+  mov [1713100], R0
+  mov R0, 3
+  mov [1713101], R0
+  mov R0, 3
+  mov [1713102], R0
+  mov R0, 6
+  mov [1713103], R0
+  mov R0, 9
+  mov [1713104], R0
+  mov R0, 9
+  mov [1713105], R0
+  mov R0, 9
+  mov [1713106], R0
+  mov R0, 6
+  mov [1713107], R0
+  mov R0, 6
+  mov [1713108], R0
+  mov R0, 3
+  mov [1713109], R0
+  mov R0, 6
+  mov [1713110], R0
+  mov R0, 6
+  mov [1713111], R0
+  mov R0, 6
+  mov [1713112], R0
+  mov R0, 12
+  mov [1713113], R0
+  mov R0, 6
+  mov [1713114], R0
+  mov R0, 21
+  mov [1713115], R0
+  mov R0, 24
+  mov [1713116], R0
+  mov R0, 3
+  mov [1713117], R0
+  mov R0, 6
+  mov [1713118], R0
+  mov R0, 6
+  mov [1713119], R0
+  mov R0, 9
+  mov [1713120], R0
+  mov R0, 9
+  mov [1713121], R0
+  mov R0, 6
+  mov [1713122], R0
+  mov R0, 6
+  mov [1713123], R0
+  mov R0, 3
+  mov [1713124], R0
+  mov R0, 3
+  mov [1713125], R0
+  mov R0, 6
+  mov [1713126], R0
+  mov R0, 9
+  mov [1713127], R0
+  mov R0, 12
+  mov [1713128], R0
+  mov R0, 9
+  mov [1713129], R0
+  mov R0, 9
+  mov [1713130], R0
+  mov R0, 3
+  mov [1713131], R0
+  mov R0, 6
+  mov [1713132], R0
+  mov R0, 6
+  mov [1713133], R0
+  mov R0, 6
+  mov [1713134], R0
+  mov R0, 9
+  mov [1713135], R0
+  mov R0, 3
+  mov [1713136], R0
+  mov R0, 3
+  mov [1713137], R0
+  mov R0, 3
+  mov [1713138], R0
+  mov R0, 6
+  mov [1713139], R0
+  mov R0, 9
+  mov [1713140], R0
+  mov R0, 9
+  mov [1713141], R0
+  mov R0, 9
+  mov [1713142], R0
+  mov R0, 6
+  mov [1713143], R0
+  mov R0, 9
+  mov [1713144], R0
+  mov R0, 9
+  mov [1713145], R0
+  mov R0, 3
+  mov [1713146], R0
+  mov R0, 3
+  mov [1713147], R0
+  mov R0, 3
+  mov [1713148], R0
+  mov R0, 3
+  mov [1713149], R0
+  mov R0, 9
+  mov [1713150], R0
+  mov R0, 9
+  mov [1713151], R0
+  mov R0, 9
+  mov [1713152], R0
+  mov R0, 3
+  mov [1713153], R0
+  mov R0, 6
+  mov [1713154], R0
+  mov R0, 6
+  mov [1713155], R0
+  mov R0, 6
+  mov [1713156], R0
+  mov R0, 9
+  mov [1713157], R0
+  mov R0, 3
+  mov [1713158], R0
+  mov R0, 3
+  mov [1713159], R0
+  mov R0, 3
+  mov [1713160], R0
+  mov R0, 3
+  mov [1713161], R0
+  mov R0, 9
+  mov [1713162], R0
+  mov R0, 48
+  mov [1713163], R0
+  mov R0, 48
+  mov [1713164], R0
+  mov R0, 42
+  mov [1713165], R0
+  mov R0, 42
+  mov [1713166], R0
+  mov R0, 3
+  mov [1713167], R0
+  mov R0, 3
+  mov [1713168], R0
+  mov R0, 9
+  mov [1713169], R0
+  mov R0, 6
+  mov [1713170], R0
+  mov R0, 3
+  mov [1713171], R0
+  mov R0, 6
+  mov [1713172], R0
+  mov R0, 12
+  mov [1713173], R0
+  mov R0, 3
+  mov [1713174], R0
+  mov R0, 3
+  mov [1713175], R0
+  mov R0, 6
+  mov [1713176], R0
+  mov R0, 6
+  mov [1713177], R0
+  mov R0, 9
+  mov [1713178], R0
+  mov R0, 12
+  mov [1713179], R0
+  mov R0, 12
+  mov [1713180], R0
+  mov R0, 3
+  mov [1713181], R0
+  mov R0, 6
+  mov [1713182], R0
+  mov R0, 9
+  mov [1713183], R0
+  mov R0, 9
+  mov [1713184], R0
+  mov R0, 12
+  mov [1713185], R0
+  mov R0, 3
+  mov [1713186], R0
+  mov R0, 3
+  mov [1713187], R0
+  mov R0, 3
+  mov [1713188], R0
+  mov R0, 3
+  mov [1713189], R0
+  mov R0, 9
+  mov [1713190], R0
+  mov R0, 9
+  mov [1713191], R0
+  mov R0, 9
+  mov [1713192], R0
+  mov R0, 3
+  mov [1713193], R0
+  mov R0, 6
+  mov [1713194], R0
+  mov R0, 6
+  mov [1713195], R0
+  mov R0, 3
+  mov [1713196], R0
+  mov R0, 3
+  mov [1713197], R0
+  mov R0, 6
+  mov [1713198], R0
+  mov R0, 6
+  mov [1713199], R0
+  mov R0, 12
+  mov [1713200], R0
+  mov R0, 9
+  mov [1713201], R0
+  mov R0, 9
+  mov [1713202], R0
+  mov R0, 3
+  mov [1713203], R0
+  mov R0, 6
+  mov [1713204], R0
+  mov R0, 6
+  mov [1713205], R0
+  mov R0, 9
+  mov [1713206], R0
+  mov R0, 9
+  mov [1713207], R0
+  mov R0, 3
+  mov [1713208], R0
+  mov R0, 3
+  mov [1713209], R0
+  mov R0, 3
+  mov [1713210], R0
+  mov R0, 6
+  mov [1713211], R0
+  mov R0, 9
+  mov [1713212], R0
+  mov R0, 9
+  mov [1713213], R0
+  mov R0, 9
+  mov [1713214], R0
+  mov R0, 9
+  mov [1713215], R0
+  mov R0, 9
+  mov [1713216], R0
+  mov R0, 3
+  mov [1713217], R0
+  mov R0, 3
+  mov [1713218], R0
+  mov R0, 3
+  mov [1713219], R0
+  mov R0, 6
+  mov [1713220], R0
+  mov R0, 9
+  mov [1713221], R0
+  mov R0, 21
+  mov [1713222], R0
+  mov R0, 21
+  mov [1713223], R0
+  mov R0, 3
+  mov [1713224], R0
+  mov R0, 6
+  mov [1713225], R0
+  mov R0, 9
+  mov [1713226], R0
+  mov R0, 9
+  mov [1713227], R0
+  mov R0, 12
+  mov [1713228], R0
+  mov R0, 6
+  mov [1713229], R0
+  mov R0, 9
+  mov [1713230], R0
+  mov R0, 3
+  mov [1713231], R0
+  mov R0, 3
+  mov [1713232], R0
+  mov R0, 3
+  mov [1713233], R0
+  mov R0, 6
+  mov [1713234], R0
+  mov R0, 9
+  mov [1713235], R0
+  mov R0, 15
+  mov [1713236], R0
+  mov R0, 15
+  mov [1713237], R0
+  mov R0, 3
+  mov [1713238], R0
+  mov R0, 6
+  mov [1713239], R0
+  mov R0, 9
+  mov [1713240], R0
+  mov R0, 9
+  mov [1713241], R0
+  mov R0, 9
+  mov [1713242], R0
+  mov R0, 3
+  mov [1713243], R0
+  mov R0, 3
+  mov [1713244], R0
+  mov R0, 6
+  mov [1713245], R0
+  mov R0, 12
+  mov [1713246], R0
+  mov R0, 12
+  mov [1713247], R0
+  mov R0, 3
+  mov [1713248], R0
+  mov R0, 9
+  mov [1713249], R0
+  mov R0, 6
+  mov [1713250], R0
+  mov R0, 9
+  mov [1713251], R0
+  mov R0, 9
+  mov [1713252], R0
+  mov R0, 3
+  mov [1713253], R0
+  mov R0, 3
+  mov [1713254], R0
+  mov R0, 3
+  mov [1713255], R0
+  mov R0, 6
+  mov [1713256], R0
+  mov R0, 12
+  mov [1713257], R0
+  mov R0, 6
+  mov [1713258], R0
+  mov R0, 6
+  mov [1713259], R0
+  mov R0, 3
+  mov [1713260], R0
+  mov R0, 3
+  mov [1713261], R0
+  mov R0, 3
+  mov [1713262], R0
+  mov R0, 3
+  mov [1713263], R0
+  mov R0, 6
+  mov [1713264], R0
+  mov R0, 6
+  mov [1713265], R0
+  mov R0, 9
+  mov [1713266], R0
+  mov R0, 3
+  mov [1713267], R0
+  mov R0, 3
+  mov [1713268], R0
+  mov R0, 3
+  mov [1713269], R0
+  mov R0, 6
+  mov [1713270], R0
+  mov R0, 6
+  mov [1713271], R0
+  mov R0, 3
+  mov [1713272], R0
+  mov R0, 3
+  mov [1713273], R0
+  mov R0, 3
+  mov [1713274], R0
+  mov R0, 6
+  mov [1713275], R0
+  mov R0, 6
+  mov [1713276], R0
+  mov R0, 3
+  mov [1713277], R0
+  mov R0, 3
+  mov [1713278], R0
+  mov R0, 3
+  mov [1713279], R0
+  mov R0, 3
+  mov [1713280], R0
+  mov R0, 6
+  mov [1713281], R0
+  mov R0, 6
+  mov [1713282], R0
+  mov R0, 3
+  mov [1713283], R0
+  mov R0, 3
+  mov [1713284], R0
+  mov R0, 3
+  mov [1713285], R0
+  mov R0, 3
+  mov [1713286], R0
+  mov R0, 6
+  mov [1713287], R0
+  mov R0, 6
+  mov [1713288], R0
+  mov R0, 3
+  mov [1713289], R0
+  mov R0, 3
+  mov [1713290], R0
+  mov R0, 3
+  mov [1713291], R0
+  mov R0, 6
+  mov [1713292], R0
+  mov R0, 6
+  mov [1713293], R0
+  mov R0, 3
+  mov [1713294], R0
+  mov R0, 3
+  mov [1713295], R0
+  mov R0, 3
+  mov [1713296], R0
+  mov R0, 3
+  mov [1713297], R0
+  mov R0, 3
+  mov [1713298], R0
+  mov R0, 6
+  mov [1713299], R0
+  mov R0, 6
+  mov [1713300], R0
+  mov R0, 6
+  mov [1713301], R0
+  mov R0, 6
+  mov [1713302], R0
+  mov R0, 6
+  mov [1713303], R0
+  mov R0, 6
+  mov [1713304], R0
+  mov R0, 9
+  mov [1713305], R0
+  mov R0, 9
+  mov [1713306], R0
+  mov R0, 3
+  mov [1713307], R0
+  mov R0, 3
+  mov [1713308], R0
+  mov R0, 6
+  mov [1713309], R0
+  mov R0, 6
+  mov [1713310], R0
+  mov R0, 3
+  mov [1713311], R0
+  mov R0, 3
+  mov [1713312], R0
+  mov R0, 9
+  mov [1713313], R0
+  mov R0, 9
+  mov [1713314], R0
+  mov R0, 6
+  mov [1713315], R0
+  mov R0, 6
+  mov [1713316], R0
+  mov R0, 3
+  mov [1713317], R0
+  mov R0, 3
+  mov [1713318], R0
+  mov R0, 9
+  mov [1713319], R0
+  mov R0, 9
+  mov [1713320], R0
+  mov R0, 9
+  mov [1713321], R0
+  mov R0, 9
+  mov [1713322], R0
+  mov R0, 3
+  mov [1713323], R0
+  mov R0, 3
+  mov [1713324], R0
+  mov R0, 9
+  mov [1713325], R0
+  mov R0, 9
+  mov [1713326], R0
+  mov R0, 9
+  mov [1713327], R0
+  mov R0, 9
+  mov [1713328], R0
+  mov R0, 3
+  mov [1713329], R0
+  mov R0, 3
+  mov [1713330], R0
+  mov R0, 21
+  mov [1713331], R0
+  mov R0, 21
+  mov [1713332], R0
+  mov R0, 9
+  mov [1713333], R0
+  mov R0, 9
+  mov [1713334], R0
+  mov R0, 9
+  mov [1713335], R0
+  mov R0, 9
+  mov [1713336], R0
+  mov R0, 3
+  mov [1713337], R0
+  mov R0, 3
+  mov [1713338], R0
+  mov R0, 6
+  mov [1713339], R0
+  mov R0, 6
+  mov [1713340], R0
+  mov R0, 6
+  mov [1713341], R0
+  mov R0, 6
+  mov [1713342], R0
+  mov R0, 6
+  mov [1713343], R0
+  mov R0, 9
+  mov [1713344], R0
+  mov R0, 9
+  mov [1713345], R0
+  mov R0, 9
+  mov [1713346], R0
+  mov R0, 3
+  mov [1713347], R0
+  mov R0, 3
+  mov [1713348], R0
+  mov R0, 9
+  mov [1713349], R0
+  mov R0, 9
+  mov [1713350], R0
+  mov R0, 3
+  mov [1713351], R0
+  mov R0, 3
+  mov [1713352], R0
+  mov R0, 9
+  mov [1713353], R0
+  mov R0, 9
+  mov [1713354], R0
+  mov R0, 9
+  mov [1713355], R0
+  mov R0, 6
+  mov [1713356], R0
+  mov R0, 3
+  mov [1713357], R0
+  mov R0, 3
+  mov [1713358], R0
+  mov R0, 9
+  mov [1713359], R0
+  mov R0, 9
+  mov [1713360], R0
+  mov R0, 6
+  mov [1713361], R0
+  mov R0, 6
+  mov [1713362], R0
+  mov R0, 3
+  mov [1713363], R0
+  mov R0, 3
+  mov [1713364], R0
+  mov R0, 48
+  mov [1713365], R0
+  mov R0, 48
+  mov [1713366], R0
+  mov R0, 42
+  mov [1713367], R0
+  mov R0, 42
+  mov [1713368], R0
+  mov R0, 3
+  mov [1713369], R0
+  mov R0, 6
+  mov [1713370], R0
+  mov R0, 6
+  mov [1713371], R0
+  mov R0, 9
+  mov [1713372], R0
+  mov R0, 9
+  mov [1713373], R0
+  mov R0, 9
+  mov [1713374], R0
+  mov R0, 9
+  mov [1713375], R0
+  mov R0, 3
+  mov [1713376], R0
+  mov R0, 12
+  mov [1713377], R0
+  mov R0, 12
+  mov [1713378], R0
+  mov R0, 3
+  mov [1713379], R0
+  mov R0, 3
+  mov [1713380], R0
+  mov R0, 9
+  mov [1713381], R0
+  mov R0, 9
+  mov [1713382], R0
+  mov R0, 3
+  mov [1713383], R0
+  mov R0, 3
+  mov [1713384], R0
+  mov R0, 12
+  mov [1713385], R0
+  mov R0, 12
+  mov [1713386], R0
+  mov R0, 9
+  mov [1713387], R0
+  mov R0, 9
+  mov [1713388], R0
+  mov R0, 3
+  mov [1713389], R0
+  mov R0, 3
+  mov [1713390], R0
+  mov R0, 6
+  mov [1713391], R0
+  mov R0, 9
+  mov [1713392], R0
+  mov R0, 9
+  mov [1713393], R0
+  mov R0, 9
+  mov [1713394], R0
+  mov R0, 3
+  mov [1713395], R0
+  mov R0, 3
+  mov [1713396], R0
+  mov R0, 9
+  mov [1713397], R0
+  mov R0, 9
+  mov [1713398], R0
+  mov R0, 12
+  mov [1713399], R0
+  mov R0, 9
+  mov [1713400], R0
+  mov R0, 3
+  mov [1713401], R0
+  mov R0, 3
+  mov [1713402], R0
+  mov R0, 21
+  mov [1713403], R0
+  mov R0, 21
+  mov [1713404], R0
+  mov R0, 6
+  mov [1713405], R0
+  mov R0, 6
+  mov [1713406], R0
+  mov R0, 9
+  mov [1713407], R0
+  mov R0, 9
+  mov [1713408], R0
+  mov R0, 3
+  mov [1713409], R0
+  mov R0, 3
+  mov [1713410], R0
+  mov R0, 6
+  mov [1713411], R0
+  mov R0, 6
+  mov [1713412], R0
+  mov R0, 6
+  mov [1713413], R0
+  mov R0, 6
+  mov [1713414], R0
+  mov R0, 6
+  mov [1713415], R0
+  mov R0, 12
+  mov [1713416], R0
+  mov R0, 15
+  mov [1713417], R0
+  mov R0, 15
+  mov [1713418], R0
+  mov R0, 3
+  mov [1713419], R0
+  mov R0, 3
+  mov [1713420], R0
+  mov R0, 9
+  mov [1713421], R0
+  mov R0, 9
+  mov [1713422], R0
+  mov R0, 3
+  mov [1713423], R0
+  mov R0, 3
+  mov [1713424], R0
+  mov R0, 9
+  mov [1713425], R0
+  mov R0, 12
+  mov [1713426], R0
+  mov R0, 6
+  mov [1713427], R0
+  mov R0, 9
+  mov [1713428], R0
+  mov R0, 3
+  mov [1713429], R0
+  mov R0, 3
+  mov [1713430], R0
+  mov R0, 6
+  mov [1713431], R0
+  mov R0, 6
+  mov [1713432], R0
+  mov R0, 3
+  mov [1713433], R0
+  mov R0, 3
+  mov [1713434], R0
+  mov R0, 3
+  mov [1713435], R0
+  mov R0, 3
+  mov [1713436], R0
+  mov R0, 6
+  mov [1713437], R0
+  mov R0, 6
+  mov [1713438], R0
+  mov R0, 3
+  mov [1713439], R0
+  mov R0, 3
+  mov [1713440], R0
+  mov R0, 3
+  mov [1713441], R0
+  mov R0, 3
+  mov [1713442], R0
+  mov R0, 3
+  mov [1713443], R0
+  mov R0, 6
+  mov [1713444], R0
+  mov R0, 6
+  mov [1713445], R0
+  mov R0, 6
+  mov [1713446], R0
+  mov R0, 6
+  mov [1713447], R0
+  mov R0, 3
+  mov [1713448], R0
+  mov R0, 3
+  mov [1713449], R0
+  mov R0, 3
+  mov [1713450], R0
+  mov R0, 3
+  mov [1713451], R0
+  mov R0, 6
+  mov [1713452], R0
+  mov R0, 6
+  mov [1713453], R0
+  mov R0, 3
+  mov [1713454], R0
+  mov R0, 3
+  mov [1713455], R0
+  mov R0, 3
+  mov [1713456], R0
+  mov R0, 3
+  mov [1713457], R0
+  mov R0, 3
+  mov [1713458], R0
+  mov R0, 3
+  mov [1713459], R0
+  mov R0, 6
+  mov [1713460], R0
+  mov R0, 6
+  mov [1713461], R0
+  mov R0, 3
+  mov [1713462], R0
+  mov R0, 3
+  mov [1713463], R0
+  mov R0, 3
+  mov [1713464], R0
+  mov R0, 3
+  mov [1713465], R0
+  mov R0, 3
+  mov [1713466], R0
+  mov R0, 3
+  mov [1713467], R0
+  mov R0, 3
+  mov [1713468], R0
+  mov R0, 3
+  mov [1713469], R0
+  mov R0, 6
+  mov [1713470], R0
+  mov R0, 6
+  mov [1713471], R0
+  mov R0, 6
+  mov [1713472], R0
+  mov R0, 6
+  mov [1713473], R0
+  mov R0, 3
+  mov [1713474], R0
+  mov R0, 3
+  mov [1713475], R0
+  mov R0, 3
+  mov [1713476], R0
+  mov R0, 3
+  mov [1713477], R0
+  mov R0, 3
+  mov [1713478], R0
+  mov R0, 3
+  mov [1713479], R0
+  mov R0, 3
+  mov [1713480], R0
+  mov R0, 6
+  mov [1713481], R0
+  mov R0, 6
+  mov [1713482], R0
+  mov R0, 3
+  mov [1713483], R0
+  mov R0, 3
+  mov [1713484], R0
+  mov R0, 6
+  mov [1713485], R0
+  mov R0, 6
+  mov [1713486], R0
+  mov R0, 6
+  mov [1713487], R0
+  mov R0, 12
+  mov [1713488], R0
+  mov R0, 9
+  mov [1713489], R0
+  mov R0, 6
+  mov [1713490], R0
+  mov R0, 6
+  mov [1713491], R0
+  mov R0, 6
+  mov [1713492], R0
+  mov R0, 9
+  mov [1713493], R0
+  mov R0, 9
+  mov [1713494], R0
+  mov R0, 3
+  mov [1713495], R0
+  mov R0, 3
+  mov [1713496], R0
+  mov R0, 3
+  mov [1713497], R0
+  mov R0, 6
+  mov [1713498], R0
+  mov R0, 6
+  mov [1713499], R0
+  mov R0, 9
+  mov [1713500], R0
+  mov R0, 9
+  mov [1713501], R0
+  mov R0, 6
+  mov [1713502], R0
+  mov R0, 9
+  mov [1713503], R0
+  mov R0, 9
+  mov [1713504], R0
+  mov R0, 3
+  mov [1713505], R0
+  mov R0, 3
+  mov [1713506], R0
+  mov R0, 6
+  mov [1713507], R0
+  mov R0, 6
+  mov [1713508], R0
+  mov R0, 3
+  mov [1713509], R0
+  mov R0, 9
+  mov [1713510], R0
+  mov R0, 9
+  mov [1713511], R0
+  mov R0, 6
+  mov [1713512], R0
+  mov R0, 6
+  mov [1713513], R0
+  mov R0, 6
+  mov [1713514], R0
+  mov R0, 6
+  mov [1713515], R0
+  mov R0, 6
+  mov [1713516], R0
+  mov R0, 3
+  mov [1713517], R0
+  mov R0, 3
+  mov [1713518], R0
+  mov R0, 6
+  mov [1713519], R0
+  mov R0, 6
+  mov [1713520], R0
+  mov R0, 6
+  mov [1713521], R0
+  mov R0, 9
+  mov [1713522], R0
+  mov R0, 9
+  mov [1713523], R0
+  mov R0, 6
+  mov [1713524], R0
+  mov R0, 6
+  mov [1713525], R0
+  mov R0, 6
+  mov [1713526], R0
+  mov R0, 6
+  mov [1713527], R0
+  mov R0, 9
+  mov [1713528], R0
+  mov R0, 3
+  mov [1713529], R0
+  mov R0, 6
+  mov [1713530], R0
+  mov R0, 6
+  mov [1713531], R0
+  mov R0, 24
+  mov [1713532], R0
+  mov R0, 24
+  mov [1713533], R0
+  mov R0, 6
+  mov [1713534], R0
+  mov R0, 6
+  mov [1713535], R0
+  mov R0, 6
+  mov [1713536], R0
+  mov R0, 9
+  mov [1713537], R0
+  mov R0, 9
+  mov [1713538], R0
+  mov R0, 6
+  mov [1713539], R0
+  mov R0, 6
+  mov [1713540], R0
+  mov R0, 3
+  mov [1713541], R0
+  mov R0, 3
+  mov [1713542], R0
+  mov R0, 6
+  mov [1713543], R0
+  mov R0, 9
+  mov [1713544], R0
+  mov R0, 3
+  mov [1713545], R0
+  mov R0, 9
+  mov [1713546], R0
+  mov R0, 12
+  mov [1713547], R0
+  mov R0, 6
+  mov [1713548], R0
+  mov R0, 6
+  mov [1713549], R0
+  mov R0, 6
+  mov [1713550], R0
+  mov R0, 6
+  mov [1713551], R0
+  mov R0, 6
+  mov [1713552], R0
+  mov R0, 3
+  mov [1713553], R0
+  mov R0, 3
+  mov [1713554], R0
+  mov R0, 6
+  mov [1713555], R0
+  mov R0, 9
+  mov [1713556], R0
+  mov R0, 9
+  mov [1713557], R0
+  mov R0, 12
+  mov [1713558], R0
+  mov R0, 6
+  mov [1713559], R0
+  mov R0, 6
+  mov [1713560], R0
+  mov R0, 9
+  mov [1713561], R0
+  mov R0, 9
+  mov [1713562], R0
+  mov R0, 3
+  mov [1713563], R0
+  mov R0, 3
+  mov [1713564], R0
+  mov R0, 6
+  mov [1713565], R0
+  mov R0, 6
+  mov [1713566], R0
+  mov R0, 6
+  mov [1713567], R0
+  mov R0, 9
+  mov [1713568], R0
+  mov R0, 6
+  mov [1713569], R0
+  mov R0, 6
+  mov [1713570], R0
+  mov R0, 6
+  mov [1713571], R0
+  mov R0, 6
+  mov [1713572], R0
+  mov R0, 6
+  mov [1713573], R0
+  mov R0, 9
+  mov [1713574], R0
+  mov R0, 3
+  mov [1713575], R0
+  mov R0, 3
+  mov [1713576], R0
+  mov R0, 3
+  mov [1713577], R0
+  mov R0, 6
+  mov [1713578], R0
+  mov R0, 6
+  mov [1713579], R0
+  mov R0, 48
+  mov [1713580], R0
+  mov R0, 48
+  mov [1713581], R0
+  mov R0, 42
+  mov [1713582], R0
+  mov R0, 42
+  mov [1713583], R0
+  mov R0, 6
+  mov [1713584], R0
+  mov R0, 6
+  mov [1713585], R0
+  mov R0, 6
+  mov [1713586], R0
+  mov R0, 6
+  mov [1713587], R0
+  mov R0, 3
+  mov [1713588], R0
+  mov R0, 6
+  mov [1713589], R0
+  mov R0, 6
+  mov [1713590], R0
+  mov R0, 3
+  mov [1713591], R0
+  mov R0, 3
+  mov [1713592], R0
+  mov R0, 6
+  mov [1713593], R0
+  mov R0, 6
+  mov [1713594], R0
+  mov R0, 9
+  mov [1713595], R0
+  mov R0, 12
+  mov [1713596], R0
+  mov R0, 12
+  mov [1713597], R0
+  mov R0, 6
+  mov [1713598], R0
+  mov R0, 6
+  mov [1713599], R0
+  mov R0, 9
+  mov [1713600], R0
+  mov R0, 9
+  mov [1713601], R0
+  mov R0, 6
+  mov [1713602], R0
+  mov R0, 3
+  mov [1713603], R0
+  mov R0, 3
+  mov [1713604], R0
+  mov R0, 3
+  mov [1713605], R0
+  mov R0, 6
+  mov [1713606], R0
+  mov R0, 6
+  mov [1713607], R0
+  mov R0, 9
+  mov [1713608], R0
+  mov R0, 9
+  mov [1713609], R0
+  mov R0, 3
+  mov [1713610], R0
+  mov R0, 6
+  mov [1713611], R0
+  mov R0, 9
+  mov [1713612], R0
+  mov R0, 3
+  mov [1713613], R0
+  mov R0, 6
+  mov [1713614], R0
+  mov R0, 6
+  mov [1713615], R0
+  mov R0, 6
+  mov [1713616], R0
+  mov R0, 9
+  mov [1713617], R0
+  mov R0, 9
+  mov [1713618], R0
+  mov R0, 9
+  mov [1713619], R0
+  mov R0, 6
+  mov [1713620], R0
+  mov R0, 6
+  mov [1713621], R0
+  mov R0, 6
+  mov [1713622], R0
+  mov R0, 6
+  mov [1713623], R0
+  mov R0, 9
+  mov [1713624], R0
+  mov R0, 3
+  mov [1713625], R0
+  mov R0, 3
+  mov [1713626], R0
+  mov R0, 6
+  mov [1713627], R0
+  mov R0, 6
+  mov [1713628], R0
+  mov R0, 9
+  mov [1713629], R0
+  mov R0, 9
+  mov [1713630], R0
+  mov R0, 9
+  mov [1713631], R0
+  mov R0, 9
+  mov [1713632], R0
+  mov R0, 9
+  mov [1713633], R0
+  mov R0, 3
+  mov [1713634], R0
+  mov R0, 3
+  mov [1713635], R0
+  mov R0, 6
+  mov [1713636], R0
+  mov R0, 6
+  mov [1713637], R0
+  mov R0, 6
+  mov [1713638], R0
+  mov R0, 21
+  mov [1713639], R0
+  mov R0, 21
+  mov [1713640], R0
+  mov R0, 6
+  mov [1713641], R0
+  mov R0, 6
+  mov [1713642], R0
+  mov R0, 9
+  mov [1713643], R0
+  mov R0, 9
+  mov [1713644], R0
+  mov R0, 9
+  mov [1713645], R0
+  mov R0, 9
+  mov [1713646], R0
+  mov R0, 9
+  mov [1713647], R0
+  mov R0, 3
+  mov [1713648], R0
+  mov R0, 3
+  mov [1713649], R0
+  mov R0, 3
+  mov [1713650], R0
+  mov R0, 6
+  mov [1713651], R0
+  mov R0, 6
+  mov [1713652], R0
+  mov R0, 15
+  mov [1713653], R0
+  mov R0, 15
+  mov [1713654], R0
+  mov R0, 6
+  mov [1713655], R0
+  mov R0, 6
+  mov [1713656], R0
+  mov R0, 6
+  mov [1713657], R0
+  mov R0, 9
+  mov [1713658], R0
+  mov R0, 9
+  mov [1713659], R0
+  mov R0, 3
+  mov [1713660], R0
+  mov R0, 3
+  mov [1713661], R0
+  mov R0, 3
+  mov [1713662], R0
+  mov R0, 3
+  mov [1713663], R0
+  mov R0, 6
+  mov [1713664], R0
+  mov R0, 9
+  mov [1713665], R0
+  mov R0, 9
+  mov [1713666], R0
+  mov R0, 6
+  mov [1713667], R0
+  mov R0, 9
+  mov [1713668], R0
+  mov R0, 9
+  mov [1713669], R0
+  mov R0, 3
+  mov [1713670], R0
+  mov R0, 3
+  mov [1713671], R0
+  mov R0, 6
+  mov [1713672], R0
+  mov R0, 6
+  mov [1713673], R0
+  mov R0, 6
+  mov [1713674], R0
+  mov R0, 3
+  mov [1713675], R0
+  mov R0, 3
+  mov [1713676], R0
+  mov R0, 3
+  mov [1713677], R0
+  mov R0, 6
+  mov [1713678], R0
+  mov R0, 9
+  mov [1713679], R0
+  mov R0, 3
+  mov [1713680], R0
+  mov R0, 3
+  mov [1713681], R0
+  mov R0, 3
+  mov [1713682], R0
+  mov R0, 3
+  mov [1713683], R0
+  mov R0, 3
+  mov [1713684], R0
+  mov R0, 3
+  mov [1713685], R0
+  mov R0, 6
+  mov [1713686], R0
+  mov R0, 6
+  mov [1713687], R0
+  mov R0, 3
+  mov [1713688], R0
+  mov R0, 3
+  mov [1713689], R0
+  mov R0, 3
+  mov [1713690], R0
+  mov R0, 3
+  mov [1713691], R0
+  mov R0, 3
+  mov [1713692], R0
+  mov R0, 3
+  mov [1713693], R0
+  mov R0, 3
+  mov [1713694], R0
+  mov R0, 6
+  mov [1713695], R0
+  mov R0, 6
+  mov [1713696], R0
+  mov R0, 6
+  mov [1713697], R0
+  mov R0, 3
+  mov [1713698], R0
+  mov R0, 3
+  mov [1713699], R0
+  mov R0, 3
+  mov [1713700], R0
+  mov R0, 3
+  mov [1713701], R0
+  mov R0, 3
+  mov [1713702], R0
+  mov R0, 3
+  mov [1713703], R0
+  mov R0, 6
+  mov [1713704], R0
+  mov R0, 6
+  mov [1713705], R0
+  mov R0, 9
+  mov [1713706], R0
+  mov R0, 3
+  mov [1713707], R0
+  mov R0, 3
+  mov [1713708], R0
+  mov R0, 3
+  mov [1713709], R0
+  mov R0, 3
+  mov [1713710], R0
+  mov R0, 3
+  mov [1713711], R0
+  mov R0, 3
+  mov [1713712], R0
+  mov R0, 6
+  mov [1713713], R0
+  mov R0, 6
+  mov [1713714], R0
+  mov R0, 3
+  mov [1713715], R0
+  mov R0, 3
+  mov [1713716], R0
+  mov R0, 3
+  mov [1713717], R0
+  mov R0, 3
+  mov [1713718], R0
+  mov R0, 3
+  mov [1713719], R0
+  mov R0, 3
+  mov [1713720], R0
+  mov R0, 6
+  mov [1713721], R0
+  mov R0, 6
+  mov [1713722], R0
+  mov R0, 6
+  mov [1713723], R0
+  mov R0, 3
+  mov [1713724], R0
+  mov R0, 3
+  mov [1713725], R0
+  mov R0, 3
+  mov [1713726], R0
+  mov R0, 3
+  mov [1713727], R0
+  mov R0, 3
+  mov [1713728], R0
+  mov R0, 3
+  mov [1713729], R0
+  mov R0, 3
+  mov [1713730], R0
+  mov R0, 6
+  mov [1713731], R0
+  mov R0, 6
+  mov [1713732], R0
+  mov R0, 9
+  mov [1713733], R0
+  mov R0, 9
+  mov [1713734], R0
+  mov R0, 9
+  mov [1713735], R0
+  mov R0, 3
+  mov [1713736], R0
+  mov R0, 6
+  mov [1713737], R0
+  mov R0, 6
+  mov [1713738], R0
+  mov R0, 6
+  mov [1713739], R0
+  mov R0, 9
+  mov [1713740], R0
+  mov R0, 3
+  mov [1713741], R0
+  mov R0, 3
+  mov [1713742], R0
+  mov R0, 6
+  mov [1713743], R0
+  mov R0, 6
+  mov [1713744], R0
+  mov R0, 6
+  mov [1713745], R0
+  mov R0, 9
+  mov [1713746], R0
+  mov R0, 9
+  mov [1713747], R0
+  mov R0, 6
+  mov [1713748], R0
+  mov R0, 6
+  mov [1713749], R0
+  mov R0, 6
+  mov [1713750], R0
+  mov R0, 3
+  mov [1713751], R0
+  mov R0, 3
+  mov [1713752], R0
+  mov R0, 3
+  mov [1713753], R0
+  mov R0, 3
+  mov [1713754], R0
+  mov R0, 6
+  mov [1713755], R0
+  mov R0, 9
+  mov [1713756], R0
+  mov R0, 9
+  mov [1713757], R0
+  mov R0, 6
+  mov [1713758], R0
+  mov R0, 6
+  mov [1713759], R0
+  mov R0, 6
+  mov [1713760], R0
+  mov R0, 9
+  mov [1713761], R0
+  mov R0, 9
+  mov [1713762], R0
+  mov R0, 3
+  mov [1713763], R0
+  mov R0, 3
+  mov [1713764], R0
+  mov R0, 3
+  mov [1713765], R0
+  mov R0, 3
+  mov [1713766], R0
+  mov R0, 6
+  mov [1713767], R0
+  mov R0, 6
+  mov [1713768], R0
+  mov R0, 9
+  mov [1713769], R0
+  mov R0, 9
+  mov [1713770], R0
+  mov R0, 9
+  mov [1713771], R0
+  mov R0, 3
+  mov [1713772], R0
+  mov R0, 3
+  mov [1713773], R0
+  mov R0, 3
+  mov [1713774], R0
+  mov R0, 6
+  mov [1713775], R0
+  mov R0, 6
+  mov [1713776], R0
+  mov R0, 3
+  mov [1713777], R0
+  mov R0, 21
+  mov [1713778], R0
+  mov R0, 21
+  mov [1713779], R0
+  mov R0, 6
+  mov [1713780], R0
+  mov R0, 6
+  mov [1713781], R0
+  mov R0, 9
+  mov [1713782], R0
+  mov R0, 9
+  mov [1713783], R0
+  mov R0, 6
+  mov [1713784], R0
+  mov R0, 9
+  mov [1713785], R0
+  mov R0, 9
+  mov [1713786], R0
+  mov R0, 3
+  mov [1713787], R0
+  mov R0, 3
+  mov [1713788], R0
+  mov R0, 6
+  mov [1713789], R0
+  mov R0, 6
+  mov [1713790], R0
+  mov R0, 6
+  mov [1713791], R0
+  mov R0, 9
+  mov [1713792], R0
+  mov R0, 9
+  mov [1713793], R0
+  mov R0, 6
+  mov [1713794], R0
+  mov R0, 6
+  mov [1713795], R0
+  mov R0, 9
+  mov [1713796], R0
+  mov R0, 9
+  mov [1713797], R0
+  mov R0, 9
+  mov [1713798], R0
+  mov R0, 3
+  mov [1713799], R0
+  mov R0, 3
+  mov [1713800], R0
+  mov R0, 3
+  mov [1713801], R0
+  mov R0, 6
+  mov [1713802], R0
+  mov R0, 6
+  mov [1713803], R0
+  mov R0, 9
+  mov [1713804], R0
+  mov R0, 9
+  mov [1713805], R0
+  mov R0, 3
+  mov [1713806], R0
+  mov R0, 6
+  mov [1713807], R0
+  mov R0, 6
+  mov [1713808], R0
+  mov R0, 3
+  mov [1713809], R0
+  mov R0, 3
+  mov [1713810], R0
+  mov R0, 6
+  mov [1713811], R0
+  mov R0, 6
+  mov [1713812], R0
+  mov R0, 9
+  mov [1713813], R0
+  mov R0, 9
+  mov [1713814], R0
+  mov R0, 9
+  mov [1713815], R0
+  mov R0, 3
+  mov [1713816], R0
+  mov R0, 6
+  mov [1713817], R0
+  mov R0, 6
+  mov [1713818], R0
+  mov R0, 6
+  mov [1713819], R0
+  mov R0, 6
+  mov [1713820], R0
+  mov R0, 3
+  mov [1713821], R0
+  mov R0, 3
+  mov [1713822], R0
+  mov R0, 6
+  mov [1713823], R0
+  mov R0, 6
+  mov [1713824], R0
+  mov R0, 9
+  mov [1713825], R0
+  mov R0, 48
+  mov [1713826], R0
+  mov R0, 48
+  mov [1713827], R0
+  mov R0, 42
+  mov [1713828], R0
+  mov R0, 42
+  mov [1713829], R0
+  mov R0, 3
+  mov [1713830], R0
+  mov R0, 3
+  mov [1713831], R0
+  mov R0, 6
+  mov [1713832], R0
+  mov R0, 6
+  mov [1713833], R0
+  mov R0, 6
+  mov [1713834], R0
+  mov R0, 6
+  mov [1713835], R0
+  mov R0, 9
+  mov [1713836], R0
+  mov R0, 3
+  mov [1713837], R0
+  mov R0, 3
+  mov [1713838], R0
+  mov R0, 3
+  mov [1713839], R0
+  mov R0, 6
+  mov [1713840], R0
+  mov R0, 6
+  mov [1713841], R0
+  mov R0, 12
+  mov [1713842], R0
+  mov R0, 12
+  mov [1713843], R0
+  mov R0, 6
+  mov [1713844], R0
+  mov R0, 6
+  mov [1713845], R0
+  mov R0, 6
+  mov [1713846], R0
+  mov R0, 9
+  mov [1713847], R0
+  mov R0, 9
+  mov [1713848], R0
+  mov R0, 3
+  mov [1713849], R0
+  mov R0, 3
+  mov [1713850], R0
+  mov R0, 6
+  mov [1713851], R0
+  mov R0, 6
+  mov [1713852], R0
+  mov R0, 9
+  mov [1713853], R0
+  mov R0, 12
+  mov [1713854], R0
+  mov R0, 9
+  mov [1713855], R0
+  mov R0, 6
+  mov [1713856], R0
+  mov R0, 9
+  mov [1713857], R0
+  mov R0, 9
+  mov [1713858], R0
+  mov R0, 3
+  mov [1713859], R0
+  mov R0, 3
+  mov [1713860], R0
+  mov R0, 3
+  mov [1713861], R0
+  mov R0, 6
+  mov [1713862], R0
+  mov R0, 6
+  mov [1713863], R0
+  mov R0, 9
+  mov [1713864], R0
+  mov R0, 9
+  mov [1713865], R0
+  mov R0, 6
+  mov [1713866], R0
+  mov R0, 6
+  mov [1713867], R0
+  mov R0, 9
+  mov [1713868], R0
+  mov R0, 9
+  mov [1713869], R0
+  mov R0, 9
+  mov [1713870], R0
+  mov R0, 3
+  mov [1713871], R0
+  mov R0, 3
+  mov [1713872], R0
+  mov R0, 3
+  mov [1713873], R0
+  mov R0, 6
+  mov [1713874], R0
+  mov R0, 6
+  mov [1713875], R0
+  mov R0, 9
+  mov [1713876], R0
+  mov R0, 9
+  mov [1713877], R0
+  mov R0, 9
+  mov [1713878], R0
+  mov R0, 9
+  mov [1713879], R0
+  mov R0, 3
+  mov [1713880], R0
+  mov R0, 3
+  mov [1713881], R0
+  mov R0, 6
+  mov [1713882], R0
+  mov R0, 6
+  mov [1713883], R0
+  mov R0, 6
+  mov [1713884], R0
+  mov R0, 21
+  mov [1713885], R0
+  mov R0, 21
+  mov [1713886], R0
+  mov R0, 3
+  mov [1713887], R0
+  mov R0, 6
+  mov [1713888], R0
+  mov R0, 6
+  mov [1713889], R0
+  mov R0, 6
+  mov [1713890], R0
+  mov R0, 9
+  mov [1713891], R0
+  mov R0, 9
+  mov [1713892], R0
+  mov R0, 6
+  mov [1713893], R0
+  mov R0, 3
+  mov [1713894], R0
+  mov R0, 3
+  mov [1713895], R0
+  mov R0, 6
+  mov [1713896], R0
+  mov R0, 6
+  mov [1713897], R0
+  mov R0, 9
+  mov [1713898], R0
+  mov R0, 15
+  mov [1713899], R0
+  mov R0, 15
+  mov [1713900], R0
+  mov R0, 3
+  mov [1713901], R0
+  mov R0, 6
+  mov [1713902], R0
+  mov R0, 6
+  mov [1713903], R0
+  mov R0, 9
+  mov [1713904], R0
+  mov R0, 9
+  mov [1713905], R0
+  mov R0, 3
+  mov [1713906], R0
+  mov R0, 3
+  mov [1713907], R0
+  mov R0, 6
+  mov [1713908], R0
+  mov R0, 6
+  mov [1713909], R0
+  mov R0, 9
+  mov [1713910], R0
+  mov R0, 12
+  mov [1713911], R0
+  mov R0, 12
+  mov [1713912], R0
+  mov R0, 6
+  mov [1713913], R0
+  mov R0, 9
+  mov [1713914], R0
+  mov R0, 9
+  mov [1713915], R0
+  mov R0, 3
+  mov [1713916], R0
+  mov R0, 3
+  mov [1713917], R0
+  mov R0, 3
+  mov [1713918], R0
+  mov R0, 3
+  mov [1713919], R0
+  mov R0, 6
+  mov [1713920], R0
+  mov R0, 6
+  mov [1713921], R0
+  mov R0, 6
+  mov [1713922], R0
+  mov R0, 3
+  mov [1713923], R0
+  mov R0, 3
+  mov [1713924], R0
+  mov R0, 3
+  mov [1713925], R0
+  mov R0, 6
+  mov [1713926], R0
+  mov R0, 6
+  mov [1713927], R0
+  mov R0, 6
+  mov [1713928], R0
+  mov R0, 6
+  mov [1713929], R0
+  mov R0, 3
+  mov [1713930], R0
+  mov R0, 3
+  mov [1713931], R0
+  mov R0, 3
+  mov [1713932], R0
+  mov R0, 3
+  mov [1713933], R0
+  mov R0, 6
+  mov [1713934], R0
+  mov R0, 3
+  mov [1713935], R0
+  mov R0, 6
+  mov [1713936], R0
+  mov R0, 9
+  mov [1713937], R0
+  mov R0, 3
+  mov [1713938], R0
+  mov R0, 3
+  mov [1713939], R0
+  mov R0, 3
+  mov [1713940], R0
+  mov R0, 3
+  mov [1713941], R0
+  mov R0, 6
+  mov [1713942], R0
+  mov R0, 6
+  mov [1713943], R0
+  mov R0, 3
+  mov [1713944], R0
+  mov R0, 3
+  mov [1713945], R0
+  mov R0, 3
+  mov [1713946], R0
+  mov R0, 3
+  mov [1713947], R0
+  mov R0, 3
+  mov [1713948], R0
+  mov R0, 3
+  mov [1713949], R0
+  mov R0, 6
+  mov [1713950], R0
+  mov R0, 3
+  mov [1713951], R0
+  mov R0, 6
+  mov [1713952], R0
+  mov R0, 6
+  mov [1713953], R0
+  mov R0, 3
+  mov [1713954], R0
+  mov R0, 3
+  mov [1713955], R0
+  mov R0, 3
+  mov [1713956], R0
+  mov R0, 3
+  mov [1713957], R0
+  mov R0, 3
+  mov [1713958], R0
+  mov R0, 6
+  mov [1713959], R0
+  mov R0, 6
+  mov [1713960], R0
+  mov R0, 9
+  mov [1713961], R0
+  mov R0, 3
+  mov [1713962], R0
+  mov R0, 3
+  mov [1713963], R0
+  mov R0, 3
+  mov [1713964], R0
+  mov R0, 3
+  mov [1713965], R0
+  mov R0, 3
+  mov [1713966], R0
+  mov R0, 6
+  mov [1713967], R0
+  mov R0, 3
+  mov [1713968], R0
+  mov R0, 6
+  mov [1713969], R0
+  mov R0, 3
+  mov [1713970], R0
+  mov R0, 3
+  mov [1713971], R0
+  mov R0, 3
+  mov [1713972], R0
+  mov R0, 6
+  mov [1713973], R0
+  mov R0, 6
+  mov [1713974], R0
+  mov R0, 6
+  mov [1713975], R0
+  mov R0, 9
+  mov [1713976], R0
+  mov R0, 9
+  mov [1713977], R0
+  mov R0, 6
+  mov [1713978], R0
+  mov R0, 6
+  mov [1713979], R0
+  mov R0, 6
+  mov [1713980], R0
+  mov R0, 9
+  mov [1713981], R0
+  mov R0, 9
+  mov [1713982], R0
+  mov R0, 3
+  mov [1713983], R0
+  mov R0, 3
+  mov [1713984], R0
+  mov R0, 3
+  mov [1713985], R0
+  mov R0, 6
+  mov [1713986], R0
+  mov R0, 6
+  mov [1713987], R0
+  mov R0, 9
+  mov [1713988], R0
+  mov R0, 9
+  mov [1713989], R0
+  mov R0, 6
+  mov [1713990], R0
+  mov R0, 9
+  mov [1713991], R0
+  mov R0, 6
+  mov [1713992], R0
+  mov R0, 3
+  mov [1713993], R0
+  mov R0, 3
+  mov [1713994], R0
+  mov R0, 6
+  mov [1713995], R0
+  mov R0, 6
+  mov [1713996], R0
+  mov R0, 3
+  mov [1713997], R0
+  mov R0, 9
+  mov [1713998], R0
+  mov R0, 9
+  mov [1713999], R0
+  mov R0, 6
+  mov [1714000], R0
+  mov R0, 6
+  mov [1714001], R0
+  mov R0, 6
+  mov [1714002], R0
+  mov R0, 6
+  mov [1714003], R0
+  mov R0, 6
+  mov [1714004], R0
+  mov R0, 3
+  mov [1714005], R0
+  mov R0, 3
+  mov [1714006], R0
+  mov R0, 6
+  mov [1714007], R0
+  mov R0, 6
+  mov [1714008], R0
+  mov R0, 9
+  mov [1714009], R0
+  mov R0, 9
+  mov [1714010], R0
+  mov R0, 3
+  mov [1714011], R0
+  mov R0, 6
+  mov [1714012], R0
+  mov R0, 9
+  mov [1714013], R0
+  mov R0, 3
+  mov [1714014], R0
+  mov R0, 3
+  mov [1714015], R0
+  mov R0, 3
+  mov [1714016], R0
+  mov R0, 6
+  mov [1714017], R0
+  mov R0, 6
+  mov [1714018], R0
+  mov R0, 6
+  mov [1714019], R0
+  mov R0, 24
+  mov [1714020], R0
+  mov R0, 24
+  mov [1714021], R0
+  mov R0, 6
+  mov [1714022], R0
+  mov R0, 6
+  mov [1714023], R0
+  mov R0, 6
+  mov [1714024], R0
+  mov R0, 9
+  mov [1714025], R0
+  mov R0, 9
+  mov [1714026], R0
+  mov R0, 6
+  mov [1714027], R0
+  mov R0, 6
+  mov [1714028], R0
+  mov R0, 3
+  mov [1714029], R0
+  mov R0, 9
+  mov [1714030], R0
+  mov R0, 9
+  mov [1714031], R0
+  mov R0, 3
+  mov [1714032], R0
+  mov R0, 6
+  mov [1714033], R0
+  mov R0, 9
+  mov [1714034], R0
+  mov R0, 12
+  mov [1714035], R0
+  mov R0, 6
+  mov [1714036], R0
+  mov R0, 6
+  mov [1714037], R0
+  mov R0, 6
+  mov [1714038], R0
+  mov R0, 6
+  mov [1714039], R0
+  mov R0, 9
+  mov [1714040], R0
+  mov R0, 3
+  mov [1714041], R0
+  mov R0, 3
+  mov [1714042], R0
+  mov R0, 6
+  mov [1714043], R0
+  mov R0, 9
+  mov [1714044], R0
+  mov R0, 9
+  mov [1714045], R0
+  mov R0, 12
+  mov [1714046], R0
+  mov R0, 6
+  mov [1714047], R0
+  mov R0, 6
+  mov [1714048], R0
+  mov R0, 9
+  mov [1714049], R0
+  mov R0, 9
+  mov [1714050], R0
+  mov R0, 3
+  mov [1714051], R0
+  mov R0, 3
+  mov [1714052], R0
+  mov R0, 6
+  mov [1714053], R0
+  mov R0, 6
+  mov [1714054], R0
+  mov R0, 6
+  mov [1714055], R0
+  mov R0, 6
+  mov [1714056], R0
+  mov R0, 9
+  mov [1714057], R0
+  mov R0, 6
+  mov [1714058], R0
+  mov R0, 6
+  mov [1714059], R0
+  mov R0, 9
+  mov [1714060], R0
+  mov R0, 9
+  mov [1714061], R0
+  mov R0, 9
+  mov [1714062], R0
+  mov R0, 3
+  mov [1714063], R0
+  mov R0, 3
+  mov [1714064], R0
+  mov R0, 6
+  mov [1714065], R0
+  mov R0, 6
+  mov [1714066], R0
+  mov R0, 6
+  mov [1714067], R0
+  mov R0, 48
+  mov [1714068], R0
+  mov R0, 48
+  mov [1714069], R0
+  mov R0, 45
+  mov [1714070], R0
+  mov R0, 42
+  mov [1714071], R0
+  mov R0, 6
+  mov [1714072], R0
+  mov R0, 6
+  mov [1714073], R0
+  mov R0, 9
+  mov [1714074], R0
+  mov R0, 6
+  mov [1714075], R0
+  mov R0, 3
+  mov [1714076], R0
+  mov R0, 6
+  mov [1714077], R0
+  mov R0, 6
+  mov [1714078], R0
+  mov R0, 3
+  mov [1714079], R0
+  mov R0, 3
+  mov [1714080], R0
+  mov R0, 6
+  mov [1714081], R0
+  mov R0, 6
+  mov [1714082], R0
+  mov R0, 9
+  mov [1714083], R0
+  mov R0, 12
+  mov [1714084], R0
+  mov R0, 12
+  mov [1714085], R0
+  mov R0, 6
+  mov [1714086], R0
+  mov R0, 3
+  mov [1714087], R0
+  mov R0, 6
+  mov [1714088], R0
+  mov R0, 6
+  mov [1714089], R0
+  mov R0, 6
+  mov [1714090], R0
+  mov R0, 3
+  mov [1714091], R0
+  mov R0, 3
+  mov [1714092], R0
+  mov R0, 6
+  mov [1714093], R0
+  mov R0, 6
+  mov [1714094], R0
+  mov R0, 6
+  mov [1714095], R0
+  mov R0, 9
+  mov [1714096], R0
+  mov R0, 9
+  mov [1714097], R0
+  mov R0, 3
+  mov [1714098], R0
+  mov R0, 9
+  mov [1714099], R0
+  mov R0, 9
+  mov [1714100], R0
+  mov R0, 6
+  mov [1714101], R0
+  mov R0, 6
+  mov [1714102], R0
+  mov R0, 6
+  mov [1714103], R0
+  mov R0, 9
+  mov [1714104], R0
+  mov R0, 3
+  mov [1714105], R0
+  mov R0, 9
+  mov [1714106], R0
+  mov R0, 9
+  mov [1714107], R0
+  mov R0, 6
+  mov [1714108], R0
+  mov R0, 6
+  mov [1714109], R0
+  mov R0, 6
+  mov [1714110], R0
+  mov R0, 9
+  mov [1714111], R0
+  mov R0, 9
+  mov [1714112], R0
+  mov R0, 3
+  mov [1714113], R0
+  mov R0, 3
+  mov [1714114], R0
+  mov R0, 6
+  mov [1714115], R0
+  mov R0, 9
+  mov [1714116], R0
+  mov R0, 9
+  mov [1714117], R0
+  mov R0, 9
+  mov [1714118], R0
+  mov R0, 3
+  mov [1714119], R0
+  mov R0, 9
+  mov [1714120], R0
+  mov R0, 9
+  mov [1714121], R0
+  mov R0, 3
+  mov [1714122], R0
+  mov R0, 3
+  mov [1714123], R0
+  mov R0, 6
+  mov [1714124], R0
+  mov R0, 6
+  mov [1714125], R0
+  mov R0, 6
+  mov [1714126], R0
+  mov R0, 21
+  mov [1714127], R0
+  mov R0, 21
+  mov [1714128], R0
+  mov R0, 6
+  mov [1714129], R0
+  mov R0, 9
+  mov [1714130], R0
+  mov R0, 9
+  mov [1714131], R0
+  mov R0, 9
+  mov [1714132], R0
+  mov R0, 3
+  mov [1714133], R0
+  mov R0, 9
+  mov [1714134], R0
+  mov R0, 9
+  mov [1714135], R0
+  mov R0, 3
+  mov [1714136], R0
+  mov R0, 3
+  mov [1714137], R0
+  mov R0, 6
+  mov [1714138], R0
+  mov R0, 6
+  mov [1714139], R0
+  mov R0, 6
+  mov [1714140], R0
+  mov R0, 15
+  mov [1714141], R0
+  mov R0, 12
+  mov [1714142], R0
+  mov R0, 6
+  mov [1714143], R0
+  mov R0, 6
+  mov [1714144], R0
+  mov R0, 9
+  mov [1714145], R0
+  mov R0, 9
+  mov [1714146], R0
+  mov R0, 9
+  mov [1714147], R0
+  mov R0, 3
+  mov [1714148], R0
+  mov R0, 3
+  mov [1714149], R0
+  mov R0, 3
+  mov [1714150], R0
+  mov R0, 6
+  mov [1714151], R0
+  mov R0, 6
+  mov [1714152], R0
+  mov R0, 9
+  mov [1714153], R0
+  mov R0, 9
+  mov [1714154], R0
+  mov R0, 6
+  mov [1714155], R0
+  mov R0, 9
+  mov [1714156], R0
+  mov R0, 9
+  mov [1714157], R0
+  mov R0, 3
+  mov [1714158], R0
+  mov R0, 3
+  mov [1714159], R0
+  mov R0, 6
+  mov [1714160], R0
+  mov R0, 6
+  mov [1714161], R0
+  mov R0, 6
+  mov [1714162], R0
+  mov R0, 9
+  mov [1714163], R0
+  mov R0, 9
+  mov [1714164], R0
+  mov R0, 3
+  mov [1714165], R0
+  mov R0, 3
+  mov [1714166], R0
+  mov R0, 6
+  mov [1714167], R0
+  mov R0, 12
+  mov [1714168], R0
+  mov R0, 12
+  mov [1714169], R0
+  mov R0, 3
+  mov [1714170], R0
+  mov R0, 3
+  mov [1714171], R0
+  mov R0, 3
+  mov [1714172], R0
+  mov R0, 3
+  mov [1714173], R0
+  mov R0, 3
+  mov [1714174], R0
+  mov R0, 6
+  mov [1714175], R0
+  mov R0, 48
+  mov [1714176], R0
+  mov R0, 48
+  mov [1714177], R0
+  mov R0, 3
+  mov [1714178], R0
+  mov R0, 39
+  mov [1714179], R0
+  mov R0, 39
+  mov [1714180], R0
+  mov R0, 3
+  mov [1714181], R0
+  mov R0, 9
+  mov [1714182], R0
+  mov R0, 3
+  mov [1714183], R0
+  mov R0, 3
+  mov [1714184], R0
+  mov R0, 3
+  mov [1714185], R0
+  mov R0, 3
+  mov [1714186], R0
+  mov R0, 3
+  mov [1714187], R0
+  mov R0, 3
+  mov [1714188], R0
+  mov R0, 6
+  mov [1714189], R0
+  mov R0, 3
+  mov [1714190], R0
+  mov R0, 3
+  mov [1714191], R0
+  mov R0, 3
+  mov [1714192], R0
+  mov R0, 6
+  mov [1714193], R0
+  mov R0, 9
+  mov [1714194], R0
+  mov R0, 9
+  mov [1714195], R0
+  mov R0, 9
+  mov [1714196], R0
+  mov R0, 9
+  mov [1714197], R0
+  mov R0, 3
+  mov [1714198], R0
+  mov R0, 6
+  mov [1714199], R0
+  mov R0, 6
+  mov [1714200], R0
+  mov R0, 9
+  mov [1714201], R0
+  mov R0, 9
+  mov [1714202], R0
+  mov R0, 3
+  mov [1714203], R0
+  mov R0, 3
+  mov [1714204], R0
+  mov R0, 3
+  mov [1714205], R0
+  mov R0, 6
+  mov [1714206], R0
+  mov R0, 9
+  mov [1714207], R0
+  mov R0, 9
+  mov [1714208], R0
+  mov R0, 12
+  mov [1714209], R0
+  mov R0, 6
+  mov [1714210], R0
+  mov R0, 6
+  mov [1714211], R0
+  mov R0, 9
+  mov [1714212], R0
+  mov R0, 3
+  mov [1714213], R0
+  mov R0, 3
+  mov [1714214], R0
+  mov R0, 3
+  mov [1714215], R0
+  mov R0, 3
+  mov [1714216], R0
+  mov R0, 9
+  mov [1714217], R0
+  mov R0, 9
+  mov [1714218], R0
+  mov R0, 6
+  mov [1714219], R0
+  mov R0, 3
+  mov [1714220], R0
+  mov R0, 6
+  mov [1714221], R0
+  mov R0, 9
+  mov [1714222], R0
+  mov R0, 9
+  mov [1714223], R0
+  mov R0, 9
+  mov [1714224], R0
+  mov R0, 3
+  mov [1714225], R0
+  mov R0, 3
+  mov [1714226], R0
+  mov R0, 3
+  mov [1714227], R0
+  mov R0, 3
+  mov [1714228], R0
+  mov R0, 9
+  mov [1714229], R0
+  mov R0, 9
+  mov [1714230], R0
+  mov R0, 9
+  mov [1714231], R0
+  mov R0, 9
+  mov [1714232], R0
+  mov R0, 9
+  mov [1714233], R0
+  mov R0, 3
+  mov [1714234], R0
+  mov R0, 3
+  mov [1714235], R0
+  mov R0, 3
+  mov [1714236], R0
+  mov R0, 6
+  mov [1714237], R0
+  mov R0, 12
+  mov [1714238], R0
+  mov R0, 3
+  mov [1714239], R0
+  mov R0, 21
+  mov [1714240], R0
+  mov R0, 21
+  mov [1714241], R0
+  mov R0, 3
+  mov [1714242], R0
+  mov R0, 3
+  mov [1714243], R0
+  mov R0, 6
+  mov [1714244], R0
+  mov R0, 6
+  mov [1714245], R0
+  mov R0, 9
+  mov [1714246], R0
+  mov R0, 9
+  mov [1714247], R0
+  mov R0, 9
+  mov [1714248], R0
+  mov R0, 3
+  mov [1714249], R0
+  mov R0, 3
+  mov [1714250], R0
+  mov R0, 6
+  mov [1714251], R0
+  mov R0, 6
+  mov [1714252], R0
+  mov R0, 12
+  mov [1714253], R0
+  mov R0, 9
+  mov [1714254], R0
+  mov R0, 9
+  mov [1714255], R0
+  mov R0, 3
+  mov [1714256], R0
+  mov R0, 6
+  mov [1714257], R0
+  mov R0, 9
+  mov [1714258], R0
+  mov R0, 12
+  mov [1714259], R0
+  mov R0, 6
+  mov [1714260], R0
+  mov R0, 3
+  mov [1714261], R0
+  mov R0, 3
+  mov [1714262], R0
+  mov R0, 3
+  mov [1714263], R0
+  mov R0, 3
+  mov [1714264], R0
+  mov R0, 9
+  mov [1714265], R0
+  mov R0, 9
+  mov [1714266], R0
+  mov R0, 9
+  mov [1714267], R0
+  mov R0, 3
+  mov [1714268], R0
+  mov R0, 6
+  mov [1714269], R0
+  mov R0, 6
+  mov [1714270], R0
+  mov R0, 3
+  mov [1714271], R0
+  mov R0, 3
+  mov [1714272], R0
+  mov R0, 3
+  mov [1714273], R0
+  mov R0, 6
+  mov [1714274], R0
+  mov R0, 12
+  mov [1714275], R0
+  mov R0, 9
+  mov [1714276], R0
+  mov R0, 9
+  mov [1714277], R0
+  mov R0, 3
+  mov [1714278], R0
+  mov R0, 6
+  mov [1714279], R0
+  mov R0, 6
+  mov [1714280], R0
+  mov R0, 6
+  mov [1714281], R0
+  mov R0, 9
+  mov [1714282], R0
+  mov R0, 3
+  mov [1714283], R0
+  mov R0, 3
+  mov [1714284], R0
+  mov R0, 3
+  mov [1714285], R0
+  mov R0, 6
+  mov [1714286], R0
+  mov R0, 12
+  mov [1714287], R0
+  mov R0, 48
+  mov [1714288], R0
+  mov R0, 48
+  mov [1714289], R0
+  mov R0, 42
+  mov [1714290], R0
+  mov R0, 42
+  mov [1714291], R0
+  mov R0, 3
+  mov [1714292], R0
+  mov R0, 3
+  mov [1714293], R0
+  mov R0, 9
+  mov [1714294], R0
+  mov R0, 6
+  mov [1714295], R0
+  mov R0, 3
+  mov [1714296], R0
+  mov R0, 6
+  mov [1714297], R0
+  mov R0, 12
+  mov [1714298], R0
+  mov R0, 3
+  mov [1714299], R0
+  mov R0, 3
+  mov [1714300], R0
+  mov R0, 3
+  mov [1714301], R0
+  mov R0, 6
+  mov [1714302], R0
+  mov R0, 9
+  mov [1714303], R0
+  mov R0, 12
+  mov [1714304], R0
+  mov R0, 12
+  mov [1714305], R0
+  mov R0, 3
+  mov [1714306], R0
+  mov R0, 6
+  mov [1714307], R0
+  mov R0, 9
+  mov [1714308], R0
+  mov R0, 9
+  mov [1714309], R0
+  mov R0, 12
+  mov [1714310], R0
+  mov R0, 3
+  mov [1714311], R0
+  mov R0, 3
+  mov [1714312], R0
+  mov R0, 3
+  mov [1714313], R0
+  mov R0, 3
+  mov [1714314], R0
+  mov R0, 9
+  mov [1714315], R0
+  mov R0, 9
+  mov [1714316], R0
+  mov R0, 9
+  mov [1714317], R0
+  mov R0, 6
+  mov [1714318], R0
+  mov R0, 9
+  mov [1714319], R0
+  mov R0, 9
+  mov [1714320], R0
+  mov R0, 3
+  mov [1714321], R0
+  mov R0, 3
+  mov [1714322], R0
+  mov R0, 3
+  mov [1714323], R0
+  mov R0, 6
+  mov [1714324], R0
+  mov R0, 12
+  mov [1714325], R0
+  mov R0, 9
+  mov [1714326], R0
+  mov R0, 9
+  mov [1714327], R0
+  mov R0, 3
+  mov [1714328], R0
+  mov R0, 6
+  mov [1714329], R0
+  mov R0, 9
+  mov [1714330], R0
+  mov R0, 12
+  mov [1714331], R0
+  mov R0, 6
+  mov [1714332], R0
+  mov R0, 3
+  mov [1714333], R0
+  mov R0, 3
+  mov [1714334], R0
+  mov R0, 3
+  mov [1714335], R0
+  mov R0, 6
+  mov [1714336], R0
+  mov R0, 9
+  mov [1714337], R0
+  mov R0, 9
+  mov [1714338], R0
+  mov R0, 9
+  mov [1714339], R0
+  mov R0, 9
+  mov [1714340], R0
+  mov R0, 9
+  mov [1714341], R0
+  mov R0, 3
+  mov [1714342], R0
+  mov R0, 3
+  mov [1714343], R0
+  mov R0, 3
+  mov [1714344], R0
+  mov R0, 6
+  mov [1714345], R0
+  mov R0, 12
+  mov [1714346], R0
+  mov R0, 21
+  mov [1714347], R0
+  mov R0, 21
+  mov [1714348], R0
+  mov R0, 3
+  mov [1714349], R0
+  mov R0, 6
+  mov [1714350], R0
+  mov R0, 9
+  mov [1714351], R0
+  mov R0, 9
+  mov [1714352], R0
+  mov R0, 9
+  mov [1714353], R0
+  mov R0, 6
+  mov [1714354], R0
+  mov R0, 6
+  mov [1714355], R0
+  mov R0, 3
+  mov [1714356], R0
+  mov R0, 3
+  mov [1714357], R0
+  mov R0, 3
+  mov [1714358], R0
+  mov R0, 6
+  mov [1714359], R0
+  mov R0, 9
+  mov [1714360], R0
+  mov R0, 15
+  mov [1714361], R0
+  mov R0, 15
+  mov [1714362], R0
+  mov R0, 3
+  mov [1714363], R0
+  mov R0, 6
+  mov [1714364], R0
+  mov R0, 9
+  mov [1714365], R0
+  mov R0, 9
+  mov [1714366], R0
+  mov R0, 9
+  mov [1714367], R0
+  mov R0, 3
+  mov [1714368], R0
+  mov R0, 3
+  mov [1714369], R0
+  mov R0, 3
+  mov [1714370], R0
+  mov R0, 6
+  mov [1714371], R0
+  mov R0, 12
+  mov [1714372], R0
+  mov R0, 12
+  mov [1714373], R0
+  mov R0, 12
+  mov [1714374], R0
+  mov R0, 6
+  mov [1714375], R0
+  mov R0, 9
+  mov [1714376], R0
+  mov R0, 9
+  mov [1714377], R0
+  mov R0, 3
+  mov [1714378], R0
+  mov R0, 3
+  mov [1714379], R0
+  mov R0, 3
+  mov [1714380], R0
+  mov R0, 3
+  mov [1714381], R0
+  mov R0, 12
+  mov [1714382], R0
+  mov R0, 9
+  mov [1714383], R0
+  mov R0, 9
+  mov [1714384], R0
+  mov R0, 3
+  mov [1714385], R0
+  mov R0, 3
+  mov [1714386], R0
+  mov R0, 3
+  mov [1714387], R0
+  mov R0, 3
+  mov [1714388], R0
+  mov R0, 3
+  mov [1714389], R0
+  mov R0, 6
+  mov [1714390], R0
+  mov R0, 9
+  mov [1714391], R0
+  mov R0, 6
+  mov [1714392], R0
+  mov R0, 3
+  mov [1714393], R0
+  mov R0, 3
+  mov [1714394], R0
+  mov R0, 3
+  mov [1714395], R0
+  mov R0, 6
+  mov [1714396], R0
+  mov R0, 6
+  mov [1714397], R0
+  mov R0, 3
+  mov [1714398], R0
+  mov R0, 3
+  mov [1714399], R0
+  mov R0, 3
+  mov [1714400], R0
+  mov R0, 3
+  mov [1714401], R0
+  mov R0, 6
+  mov [1714402], R0
+  mov R0, 6
+  mov [1714403], R0
+  mov R0, 3
+  mov [1714404], R0
+  mov R0, 3
+  mov [1714405], R0
+  mov R0, 3
+  mov [1714406], R0
+  mov R0, 3
+  mov [1714407], R0
+  mov R0, 6
+  mov [1714408], R0
+  mov R0, 6
+  mov [1714409], R0
+  mov R0, 3
+  mov [1714410], R0
+  mov R0, 3
+  mov [1714411], R0
+  mov R0, 3
+  mov [1714412], R0
+  mov R0, 6
+  mov [1714413], R0
+  mov R0, 6
+  mov [1714414], R0
+  mov R0, 3
+  mov [1714415], R0
+  mov R0, 3
+  mov [1714416], R0
+  mov R0, 3
+  mov [1714417], R0
+  mov R0, 6
+  mov [1714418], R0
+  mov R0, 6
+  mov [1714419], R0
+  mov R0, 3
+  mov [1714420], R0
+  mov R0, 3
+  mov [1714421], R0
+  mov R0, 0
+  mov [global_mus_e1m1_inst], R0
+  mov R0, 1
+  mov [1714423], R0
+  mov R0, 2
+  mov [1714424], R0
+  mov R0, 3
+  mov [1714425], R0
+  mov R0, 3
+  mov [1714426], R0
+  mov R0, 0
+  mov [1714427], R0
+  mov R0, 0
+  mov [1714428], R0
+  mov R0, 0
+  mov [1714429], R0
+  mov R0, 0
+  mov [1714430], R0
+  mov R0, 0
+  mov [1714431], R0
+  mov R0, 0
+  mov [1714432], R0
+  mov R0, 0
+  mov [1714433], R0
+  mov R0, 0
+  mov [1714434], R0
+  mov R0, 0
+  mov [1714435], R0
+  mov R0, 0
+  mov [1714436], R0
+  mov R0, 0
+  mov [1714437], R0
+  mov R0, 0
+  mov [1714438], R0
+  mov R0, 0
+  mov [1714439], R0
+  mov R0, 0
+  mov [1714440], R0
+  mov R0, 0
+  mov [1714441], R0
+  mov R0, 0
+  mov [1714442], R0
+  mov R0, 2
+  mov [1714443], R0
+  mov R0, 3
+  mov [1714444], R0
+  mov R0, 3
+  mov [1714445], R0
+  mov R0, 1
+  mov [1714446], R0
+  mov R0, 0
+  mov [1714447], R0
+  mov R0, 0
+  mov [1714448], R0
+  mov R0, 0
+  mov [1714449], R0
+  mov R0, 0
+  mov [1714450], R0
+  mov R0, 0
+  mov [1714451], R0
+  mov R0, 0
+  mov [1714452], R0
+  mov R0, 0
+  mov [1714453], R0
+  mov R0, 0
+  mov [1714454], R0
+  mov R0, 0
+  mov [1714455], R0
+  mov R0, 0
+  mov [1714456], R0
+  mov R0, 0
+  mov [1714457], R0
+  mov R0, 0
+  mov [1714458], R0
+  mov R0, 2
+  mov [1714459], R0
+  mov R0, 1
+  mov [1714460], R0
+  mov R0, 3
+  mov [1714461], R0
+  mov R0, 3
+  mov [1714462], R0
+  mov R0, 0
+  mov [1714463], R0
+  mov R0, 0
+  mov [1714464], R0
+  mov R0, 0
+  mov [1714465], R0
+  mov R0, 0
+  mov [1714466], R0
+  mov R0, 0
+  mov [1714467], R0
+  mov R0, 0
+  mov [1714468], R0
+  mov R0, 0
+  mov [1714469], R0
+  mov R0, 0
+  mov [1714470], R0
+  mov R0, 0
+  mov [1714471], R0
+  mov R0, 0
+  mov [1714472], R0
+  mov R0, 0
+  mov [1714473], R0
+  mov R0, 0
+  mov [1714474], R0
+  mov R0, 0
+  mov [1714475], R0
+  mov R0, 0
+  mov [1714476], R0
+  mov R0, 0
+  mov [1714477], R0
+  mov R0, 0
+  mov [1714478], R0
+  mov R0, 2
+  mov [1714479], R0
+  mov R0, 3
+  mov [1714480], R0
+  mov R0, 1
+  mov [1714481], R0
+  mov R0, 3
+  mov [1714482], R0
+  mov R0, 0
+  mov [1714483], R0
+  mov R0, 0
+  mov [1714484], R0
+  mov R0, 0
+  mov [1714485], R0
+  mov R0, 0
+  mov [1714486], R0
+  mov R0, 0
+  mov [1714487], R0
+  mov R0, 0
+  mov [1714488], R0
+  mov R0, 0
+  mov [1714489], R0
+  mov R0, 0
+  mov [1714490], R0
+  mov R0, 0
+  mov [1714491], R0
+  mov R0, 0
+  mov [1714492], R0
+  mov R0, 0
+  mov [1714493], R0
+  mov R0, 0
+  mov [1714494], R0
+  mov R0, 2
+  mov [1714495], R0
+  mov R0, 3
+  mov [1714496], R0
+  mov R0, 3
+  mov [1714497], R0
+  mov R0, 3
+  mov [1714498], R0
+  mov R0, 3
+  mov [1714499], R0
+  mov R0, 1
+  mov [1714500], R0
+  mov R0, 0
+  mov [1714501], R0
+  mov R0, 0
+  mov [1714502], R0
+  mov R0, 0
+  mov [1714503], R0
+  mov R0, 3
+  mov [1714504], R0
+  mov R0, 3
+  mov [1714505], R0
+  mov R0, 0
+  mov [1714506], R0
+  mov R0, 0
+  mov [1714507], R0
+  mov R0, 0
+  mov [1714508], R0
+  mov R0, 0
+  mov [1714509], R0
+  mov R0, 0
+  mov [1714510], R0
+  mov R0, 0
+  mov [1714511], R0
+  mov R0, 0
+  mov [1714512], R0
+  mov R0, 0
+  mov [1714513], R0
+  mov R0, 0
+  mov [1714514], R0
+  mov R0, 0
+  mov [1714515], R0
+  mov R0, 0
+  mov [1714516], R0
+  mov R0, 0
+  mov [1714517], R0
+  mov R0, 0
+  mov [1714518], R0
+  mov R0, 0
+  mov [1714519], R0
+  mov R0, 0
+  mov [1714520], R0
+  mov R0, 0
+  mov [1714521], R0
+  mov R0, 0
+  mov [1714522], R0
+  mov R0, 0
+  mov [1714523], R0
+  mov R0, 0
+  mov [1714524], R0
+  mov R0, 0
+  mov [1714525], R0
+  mov R0, 0
+  mov [1714526], R0
+  mov R0, 0
+  mov [1714527], R0
+  mov R0, 0
+  mov [1714528], R0
+  mov R0, 0
+  mov [1714529], R0
+  mov R0, 0
+  mov [1714530], R0
+  mov R0, 0
+  mov [1714531], R0
+  mov R0, 0
+  mov [1714532], R0
+  mov R0, 0
+  mov [1714533], R0
+  mov R0, 0
+  mov [1714534], R0
+  mov R0, 0
+  mov [1714535], R0
+  mov R0, 3
+  mov [1714536], R0
+  mov R0, 2
+  mov [1714537], R0
+  mov R0, 3
+  mov [1714538], R0
+  mov R0, 3
+  mov [1714539], R0
+  mov R0, 3
+  mov [1714540], R0
+  mov R0, 1
+  mov [1714541], R0
+  mov R0, 0
+  mov [1714542], R0
+  mov R0, 0
+  mov [1714543], R0
+  mov R0, 3
+  mov [1714544], R0
+  mov R0, 3
+  mov [1714545], R0
+  mov R0, 0
+  mov [1714546], R0
+  mov R0, 0
+  mov [1714547], R0
+  mov R0, 0
+  mov [1714548], R0
+  mov R0, 0
+  mov [1714549], R0
+  mov R0, 0
+  mov [1714550], R0
+  mov R0, 0
+  mov [1714551], R0
+  mov R0, 0
+  mov [1714552], R0
+  mov R0, 0
+  mov [1714553], R0
+  mov R0, 0
+  mov [1714554], R0
+  mov R0, 0
+  mov [1714555], R0
+  mov R0, 0
+  mov [1714556], R0
+  mov R0, 0
+  mov [1714557], R0
+  mov R0, 0
+  mov [1714558], R0
+  mov R0, 0
+  mov [1714559], R0
+  mov R0, 0
+  mov [1714560], R0
+  mov R0, 0
+  mov [1714561], R0
+  mov R0, 0
+  mov [1714562], R0
+  mov R0, 0
+  mov [1714563], R0
+  mov R0, 0
+  mov [1714564], R0
+  mov R0, 0
+  mov [1714565], R0
+  mov R0, 0
+  mov [1714566], R0
+  mov R0, 0
+  mov [1714567], R0
+  mov R0, 3
+  mov [1714568], R0
+  mov R0, 3
+  mov [1714569], R0
+  mov R0, 2
+  mov [1714570], R0
+  mov R0, 3
+  mov [1714571], R0
+  mov R0, 3
+  mov [1714572], R0
+  mov R0, 1
+  mov [1714573], R0
+  mov R0, 0
+  mov [1714574], R0
+  mov R0, 0
+  mov [1714575], R0
+  mov R0, 3
+  mov [1714576], R0
+  mov R0, 3
+  mov [1714577], R0
+  mov R0, 0
+  mov [1714578], R0
+  mov R0, 0
+  mov [1714579], R0
+  mov R0, 0
+  mov [1714580], R0
+  mov R0, 0
+  mov [1714581], R0
+  mov R0, 0
+  mov [1714582], R0
+  mov R0, 0
+  mov [1714583], R0
+  mov R0, 0
+  mov [1714584], R0
+  mov R0, 0
+  mov [1714585], R0
+  mov R0, 0
+  mov [1714586], R0
+  mov R0, 0
+  mov [1714587], R0
+  mov R0, 0
+  mov [1714588], R0
+  mov R0, 0
+  mov [1714589], R0
+  mov R0, 0
+  mov [1714590], R0
+  mov R0, 0
+  mov [1714591], R0
+  mov R0, 0
+  mov [1714592], R0
+  mov R0, 0
+  mov [1714593], R0
+  mov R0, 0
+  mov [1714594], R0
+  mov R0, 0
+  mov [1714595], R0
+  mov R0, 0
+  mov [1714596], R0
+  mov R0, 0
+  mov [1714597], R0
+  mov R0, 0
+  mov [1714598], R0
+  mov R0, 0
+  mov [1714599], R0
+  mov R0, 0
+  mov [1714600], R0
+  mov R0, 0
+  mov [1714601], R0
+  mov R0, 0
+  mov [1714602], R0
+  mov R0, 0
+  mov [1714603], R0
+  mov R0, 0
+  mov [1714604], R0
+  mov R0, 0
+  mov [1714605], R0
+  mov R0, 0
+  mov [1714606], R0
+  mov R0, 0
+  mov [1714607], R0
+  mov R0, 3
+  mov [1714608], R0
+  mov R0, 3
+  mov [1714609], R0
+  mov R0, 2
+  mov [1714610], R0
+  mov R0, 3
+  mov [1714611], R0
+  mov R0, 3
+  mov [1714612], R0
+  mov R0, 1
+  mov [1714613], R0
+  mov R0, 0
+  mov [1714614], R0
+  mov R0, 0
+  mov [1714615], R0
+  mov R0, 3
+  mov [1714616], R0
+  mov R0, 3
+  mov [1714617], R0
+  mov R0, 0
+  mov [1714618], R0
+  mov R0, 0
+  mov [1714619], R0
+  mov R0, 0
+  mov [1714620], R0
+  mov R0, 0
+  mov [1714621], R0
+  mov R0, 0
+  mov [1714622], R0
+  mov R0, 0
+  mov [1714623], R0
+  mov R0, 0
+  mov [1714624], R0
+  mov R0, 0
+  mov [1714625], R0
+  mov R0, 0
+  mov [1714626], R0
+  mov R0, 0
+  mov [1714627], R0
+  mov R0, 0
+  mov [1714628], R0
+  mov R0, 0
+  mov [1714629], R0
+  mov R0, 3
+  mov [1714630], R0
+  mov R0, 3
+  mov [1714631], R0
+  mov R0, 2
+  mov [1714632], R0
+  mov R0, 0
+  mov [1714633], R0
+  mov R0, 0
+  mov [1714634], R0
+  mov R0, 0
+  mov [1714635], R0
+  mov R0, 0
+  mov [1714636], R0
+  mov R0, 3
+  mov [1714637], R0
+  mov R0, 3
+  mov [1714638], R0
+  mov R0, 2
+  mov [1714639], R0
+  mov R0, 0
+  mov [1714640], R0
+  mov R0, 0
+  mov [1714641], R0
+  mov R0, 0
+  mov [1714642], R0
+  mov R0, 0
+  mov [1714643], R0
+  mov R0, 2
+  mov [1714644], R0
+  mov R0, 3
+  mov [1714645], R0
+  mov R0, 0
+  mov [1714646], R0
+  mov R0, 3
+  mov [1714647], R0
+  mov R0, 0
+  mov [1714648], R0
+  mov R0, 0
+  mov [1714649], R0
+  mov R0, 0
+  mov [1714650], R0
+  mov R0, 3
+  mov [1714651], R0
+  mov R0, 3
+  mov [1714652], R0
+  mov R0, 0
+  mov [1714653], R0
+  mov R0, 2
+  mov [1714654], R0
+  mov R0, 0
+  mov [1714655], R0
+  mov R0, 0
+  mov [1714656], R0
+  mov R0, 0
+  mov [1714657], R0
+  mov R0, 2
+  mov [1714658], R0
+  mov R0, 3
+  mov [1714659], R0
+  mov R0, 3
+  mov [1714660], R0
+  mov R0, 0
+  mov [1714661], R0
+  mov R0, 0
+  mov [1714662], R0
+  mov R0, 0
+  mov [1714663], R0
+  mov R0, 0
+  mov [1714664], R0
+  mov R0, 3
+  mov [1714665], R0
+  mov R0, 2
+  mov [1714666], R0
+  mov R0, 3
+  mov [1714667], R0
+  mov R0, 0
+  mov [1714668], R0
+  mov R0, 0
+  mov [1714669], R0
+  mov R0, 0
+  mov [1714670], R0
+  mov R0, 0
+  mov [1714671], R0
+  mov R0, 2
+  mov [1714672], R0
+  mov R0, 3
+  mov [1714673], R0
+  mov R0, 0
+  mov [1714674], R0
+  mov R0, 3
+  mov [1714675], R0
+  mov R0, 0
+  mov [1714676], R0
+  mov R0, 0
+  mov [1714677], R0
+  mov R0, 0
+  mov [1714678], R0
+  mov R0, 3
+  mov [1714679], R0
+  mov R0, 3
+  mov [1714680], R0
+  mov R0, 2
+  mov [1714681], R0
+  mov R0, 0
+  mov [1714682], R0
+  mov R0, 0
+  mov [1714683], R0
+  mov R0, 0
+  mov [1714684], R0
+  mov R0, 0
+  mov [1714685], R0
+  mov R0, 0
+  mov [1714686], R0
+  mov R0, 0
+  mov [1714687], R0
+  mov R0, 1
+  mov [1714688], R0
+  mov R0, 3
+  mov [1714689], R0
+  mov R0, 2
+  mov [1714690], R0
+  mov R0, 0
+  mov [1714691], R0
+  mov R0, 0
+  mov [1714692], R0
+  mov R0, 3
+  mov [1714693], R0
+  mov R0, 1
+  mov [1714694], R0
+  mov R0, 0
+  mov [1714695], R0
+  mov R0, 3
+  mov [1714696], R0
+  mov R0, 0
+  mov [1714697], R0
+  mov R0, 0
+  mov [1714698], R0
+  mov R0, 0
+  mov [1714699], R0
+  mov R0, 2
+  mov [1714700], R0
+  mov R0, 1
+  mov [1714701], R0
+  mov R0, 3
+  mov [1714702], R0
+  mov R0, 0
+  mov [1714703], R0
+  mov R0, 0
+  mov [1714704], R0
+  mov R0, 2
+  mov [1714705], R0
+  mov R0, 0
+  mov [1714706], R0
+  mov R0, 0
+  mov [1714707], R0
+  mov R0, 0
+  mov [1714708], R0
+  mov R0, 0
+  mov [1714709], R0
+  mov R0, 3
+  mov [1714710], R0
+  mov R0, 1
+  mov [1714711], R0
+  mov R0, 3
+  mov [1714712], R0
+  mov R0, 0
+  mov [1714713], R0
+  mov R0, 0
+  mov [1714714], R0
+  mov R0, 2
+  mov [1714715], R0
+  mov R0, 3
+  mov [1714716], R0
+  mov R0, 1
+  mov [1714717], R0
+  mov R0, 0
+  mov [1714718], R0
+  mov R0, 0
+  mov [1714719], R0
+  mov R0, 0
+  mov [1714720], R0
+  mov R0, 0
+  mov [1714721], R0
+  mov R0, 3
+  mov [1714722], R0
+  mov R0, 1
+  mov [1714723], R0
+  mov R0, 0
+  mov [1714724], R0
+  mov R0, 0
+  mov [1714725], R0
+  mov R0, 3
+  mov [1714726], R0
+  mov R0, 0
+  mov [1714727], R0
+  mov R0, 0
+  mov [1714728], R0
+  mov R0, 0
+  mov [1714729], R0
+  mov R0, 0
+  mov [1714730], R0
+  mov R0, 2
+  mov [1714731], R0
+  mov R0, 3
+  mov [1714732], R0
+  mov R0, 1
+  mov [1714733], R0
+  mov R0, 2
+  mov [1714734], R0
+  mov R0, 0
+  mov [1714735], R0
+  mov R0, 0
+  mov [1714736], R0
+  mov R0, 3
+  mov [1714737], R0
+  mov R0, 3
+  mov [1714738], R0
+  mov R0, 1
+  mov [1714739], R0
+  mov R0, 0
+  mov [1714740], R0
+  mov R0, 0
+  mov [1714741], R0
+  mov R0, 0
+  mov [1714742], R0
+  mov R0, 0
+  mov [1714743], R0
+  mov R0, 0
+  mov [1714744], R0
+  mov R0, 0
+  mov [1714745], R0
+  mov R0, 2
+  mov [1714746], R0
+  mov R0, 3
+  mov [1714747], R0
+  mov R0, 1
+  mov [1714748], R0
+  mov R0, 0
+  mov [1714749], R0
+  mov R0, 0
+  mov [1714750], R0
+  mov R0, 3
+  mov [1714751], R0
+  mov R0, 3
+  mov [1714752], R0
+  mov R0, 1
+  mov [1714753], R0
+  mov R0, 0
+  mov [1714754], R0
+  mov R0, 0
+  mov [1714755], R0
+  mov R0, 0
+  mov [1714756], R0
+  mov R0, 0
+  mov [1714757], R0
+  mov R0, 2
+  mov [1714758], R0
+  mov R0, 1
+  mov [1714759], R0
+  mov R0, 3
+  mov [1714760], R0
+  mov R0, 0
+  mov [1714761], R0
+  mov R0, 0
+  mov [1714762], R0
+  mov R0, 2
+  mov [1714763], R0
+  mov R0, 0
+  mov [1714764], R0
+  mov R0, 0
+  mov [1714765], R0
+  mov R0, 0
+  mov [1714766], R0
+  mov R0, 0
+  mov [1714767], R0
+  mov R0, 3
+  mov [1714768], R0
+  mov R0, 3
+  mov [1714769], R0
+  mov R0, 1
+  mov [1714770], R0
+  mov R0, 0
+  mov [1714771], R0
+  mov R0, 0
+  mov [1714772], R0
+  mov R0, 3
+  mov [1714773], R0
+  mov R0, 2
+  mov [1714774], R0
+  mov R0, 0
+  mov [1714775], R0
+  mov R0, 1
+  mov [1714776], R0
+  mov R0, 0
+  mov [1714777], R0
+  mov R0, 0
+  mov [1714778], R0
+  mov R0, 0
+  mov [1714779], R0
+  mov R0, 3
+  mov [1714780], R0
+  mov R0, 3
+  mov [1714781], R0
+  mov R0, 1
+  mov [1714782], R0
+  mov R0, 0
+  mov [1714783], R0
+  mov R0, 0
+  mov [1714784], R0
+  mov R0, 0
+  mov [1714785], R0
+  mov R0, 0
+  mov [1714786], R0
+  mov R0, 2
+  mov [1714787], R0
+  mov R0, 3
+  mov [1714788], R0
+  mov R0, 1
+  mov [1714789], R0
+  mov R0, 2
+  mov [1714790], R0
+  mov R0, 3
+  mov [1714791], R0
+  mov R0, 3
+  mov [1714792], R0
+  mov R0, 1
+  mov [1714793], R0
+  mov R0, 0
+  mov [1714794], R0
+  mov R0, 0
+  mov [1714795], R0
+  mov R0, 3
+  mov [1714796], R0
+  mov R0, 2
+  mov [1714797], R0
+  mov R0, 1
+  mov [1714798], R0
+  mov R0, 0
+  mov [1714799], R0
+  mov R0, 0
+  mov [1714800], R0
+  mov R0, 3
+  mov [1714801], R0
+  mov R0, 3
+  mov [1714802], R0
+  mov R0, 1
+  mov [1714803], R0
+  mov R0, 0
+  mov [1714804], R0
+  mov R0, 0
+  mov [1714805], R0
+  mov R0, 0
+  mov [1714806], R0
+  mov R0, 0
+  mov [1714807], R0
+  mov R0, 2
+  mov [1714808], R0
+  mov R0, 3
+  mov [1714809], R0
+  mov R0, 1
+  mov [1714810], R0
+  mov R0, 0
+  mov [1714811], R0
+  mov R0, 0
+  mov [1714812], R0
+  mov R0, 2
+  mov [1714813], R0
+  mov R0, 0
+  mov [1714814], R0
+  mov R0, 0
+  mov [1714815], R0
+  mov R0, 0
+  mov [1714816], R0
+  mov R0, 0
+  mov [1714817], R0
+  mov R0, 3
+  mov [1714818], R0
+  mov R0, 3
+  mov [1714819], R0
+  mov R0, 1
+  mov [1714820], R0
+  mov R0, 0
+  mov [1714821], R0
+  mov R0, 0
+  mov [1714822], R0
+  mov R0, 2
+  mov [1714823], R0
+  mov R0, 3
+  mov [1714824], R0
+  mov R0, 1
+  mov [1714825], R0
+  mov R0, 0
+  mov [1714826], R0
+  mov R0, 0
+  mov [1714827], R0
+  mov R0, 0
+  mov [1714828], R0
+  mov R0, 0
+  mov [1714829], R0
+  mov R0, 3
+  mov [1714830], R0
+  mov R0, 3
+  mov [1714831], R0
+  mov R0, 1
+  mov [1714832], R0
+  mov R0, 0
+  mov [1714833], R0
+  mov R0, 0
+  mov [1714834], R0
+  mov R0, 0
+  mov [1714835], R0
+  mov R0, 0
+  mov [1714836], R0
+  mov R0, 0
+  mov [1714837], R0
+  mov R0, 0
+  mov [1714838], R0
+  mov R0, 3
+  mov [1714839], R0
+  mov R0, 2
+  mov [1714840], R0
+  mov R0, 1
+  mov [1714841], R0
+  mov R0, 0
+  mov [1714842], R0
+  mov R0, 0
+  mov [1714843], R0
+  mov R0, 3
+  mov [1714844], R0
+  mov R0, 1
+  mov [1714845], R0
+  mov R0, 0
+  mov [1714846], R0
+  mov R0, 3
+  mov [1714847], R0
+  mov R0, 0
+  mov [1714848], R0
+  mov R0, 0
+  mov [1714849], R0
+  mov R0, 0
+  mov [1714850], R0
+  mov R0, 0
+  mov [1714851], R0
+  mov R0, 0
+  mov [1714852], R0
+  mov R0, 3
+  mov [1714853], R0
+  mov R0, 2
+  mov [1714854], R0
+  mov R0, 1
+  mov [1714855], R0
+  mov R0, 0
+  mov [1714856], R0
+  mov R0, 0
+  mov [1714857], R0
+  mov R0, 3
+  mov [1714858], R0
+  mov R0, 3
+  mov [1714859], R0
+  mov R0, 1
+  mov [1714860], R0
+  mov R0, 0
+  mov [1714861], R0
+  mov R0, 0
+  mov [1714862], R0
+  mov R0, 0
+  mov [1714863], R0
+  mov R0, 0
+  mov [1714864], R0
+  mov R0, 2
+  mov [1714865], R0
+  mov R0, 3
+  mov [1714866], R0
+  mov R0, 1
+  mov [1714867], R0
+  mov R0, 0
+  mov [1714868], R0
+  mov R0, 0
+  mov [1714869], R0
+  mov R0, 2
+  mov [1714870], R0
+  mov R0, 0
+  mov [1714871], R0
+  mov R0, 0
+  mov [1714872], R0
+  mov R0, 0
+  mov [1714873], R0
+  mov R0, 0
+  mov [1714874], R0
+  mov R0, 3
+  mov [1714875], R0
+  mov R0, 3
+  mov [1714876], R0
+  mov R0, 1
+  mov [1714877], R0
+  mov R0, 0
+  mov [1714878], R0
+  mov R0, 0
+  mov [1714879], R0
+  mov R0, 2
+  mov [1714880], R0
+  mov R0, 3
+  mov [1714881], R0
+  mov R0, 3
+  mov [1714882], R0
+  mov R0, 0
+  mov [1714883], R0
+  mov R0, 0
+  mov [1714884], R0
+  mov R0, 1
+  mov [1714885], R0
+  mov R0, 0
+  mov [1714886], R0
+  mov R0, 0
+  mov [1714887], R0
+  mov R0, 2
+  mov [1714888], R0
+  mov R0, 0
+  mov [1714889], R0
+  mov R0, 0
+  mov [1714890], R0
+  mov R0, 0
+  mov [1714891], R0
+  mov R0, 0
+  mov [1714892], R0
+  mov R0, 2
+  mov [1714893], R0
+  mov R0, 3
+  mov [1714894], R0
+  mov R0, 0
+  mov [1714895], R0
+  mov R0, 0
+  mov [1714896], R0
+  mov R0, 1
+  mov [1714897], R0
+  mov R0, 3
+  mov [1714898], R0
+  mov R0, 0
+  mov [1714899], R0
+  mov R0, 0
+  mov [1714900], R0
+  mov R0, 2
+  mov [1714901], R0
+  mov R0, 0
+  mov [1714902], R0
+  mov R0, 0
+  mov [1714903], R0
+  mov R0, 0
+  mov [1714904], R0
+  mov R0, 0
+  mov [1714905], R0
+  mov R0, 2
+  mov [1714906], R0
+  mov R0, 3
+  mov [1714907], R0
+  mov R0, 0
+  mov [1714908], R0
+  mov R0, 3
+  mov [1714909], R0
+  mov R0, 0
+  mov [1714910], R0
+  mov R0, 1
+  mov [1714911], R0
+  mov R0, 0
+  mov [1714912], R0
+  mov R0, 0
+  mov [1714913], R0
+  mov R0, 2
+  mov [1714914], R0
+  mov R0, 0
+  mov [1714915], R0
+  mov R0, 0
+  mov [1714916], R0
+  mov R0, 0
+  mov [1714917], R0
+  mov R0, 0
+  mov [1714918], R0
+  mov R0, 2
+  mov [1714919], R0
+  mov R0, 0
+  mov [1714920], R0
+  mov R0, 0
+  mov [1714921], R0
+  mov R0, 1
+  mov [1714922], R0
+  mov R0, 3
+  mov [1714923], R0
+  mov R0, 3
+  mov [1714924], R0
+  mov R0, 0
+  mov [1714925], R0
+  mov R0, 0
+  mov [1714926], R0
+  mov R0, 2
+  mov [1714927], R0
+  mov R0, 3
+  mov [1714928], R0
+  mov R0, 3
+  mov [1714929], R0
+  mov R0, 0
+  mov [1714930], R0
+  mov R0, 0
+  mov [1714931], R0
+  mov R0, 0
+  mov [1714932], R0
+  mov R0, 0
+  mov [1714933], R0
+  mov R0, 0
+  mov [1714934], R0
+  mov R0, 0
+  mov [1714935], R0
+  mov R0, 3
+  mov [1714936], R0
+  mov R0, 1
+  mov [1714937], R0
+  mov R0, 2
+  mov [1714938], R0
+  mov R0, 0
+  mov [1714939], R0
+  mov R0, 0
+  mov [1714940], R0
+  mov R0, 3
+  mov [1714941], R0
+  mov R0, 3
+  mov [1714942], R0
+  mov R0, 1
+  mov [1714943], R0
+  mov R0, 0
+  mov [1714944], R0
+  mov R0, 0
+  mov [1714945], R0
+  mov R0, 0
+  mov [1714946], R0
+  mov R0, 0
+  mov [1714947], R0
+  mov R0, 2
+  mov [1714948], R0
+  mov R0, 3
+  mov [1714949], R0
+  mov R0, 1
+  mov [1714950], R0
+  mov R0, 0
+  mov [1714951], R0
+  mov R0, 0
+  mov [1714952], R0
+  mov R0, 2
+  mov [1714953], R0
+  mov R0, 0
+  mov [1714954], R0
+  mov R0, 0
+  mov [1714955], R0
+  mov R0, 0
+  mov [1714956], R0
+  mov R0, 0
+  mov [1714957], R0
+  mov R0, 3
+  mov [1714958], R0
+  mov R0, 3
+  mov [1714959], R0
+  mov R0, 1
+  mov [1714960], R0
+  mov R0, 0
+  mov [1714961], R0
+  mov R0, 0
+  mov [1714962], R0
+  mov R0, 3
+  mov [1714963], R0
+  mov R0, 2
+  mov [1714964], R0
+  mov R0, 1
+  mov [1714965], R0
+  mov R0, 0
+  mov [1714966], R0
+  mov R0, 0
+  mov [1714967], R0
+  mov R0, 0
+  mov [1714968], R0
+  mov R0, 0
+  mov [1714969], R0
+  mov R0, 3
+  mov [1714970], R0
+  mov R0, 3
+  mov [1714971], R0
+  mov R0, 1
+  mov [1714972], R0
+  mov R0, 0
+  mov [1714973], R0
+  mov R0, 0
+  mov [1714974], R0
+  mov R0, 0
+  mov [1714975], R0
+  mov R0, 0
+  mov [1714976], R0
+  mov R0, 0
+  mov [1714977], R0
+  mov R0, 0
+  mov [1714978], R0
+  mov R0, 2
+  mov [1714979], R0
+  mov R0, 3
+  mov [1714980], R0
+  mov R0, 1
+  mov [1714981], R0
+  mov R0, 2
+  mov [1714982], R0
+  mov R0, 0
+  mov [1714983], R0
+  mov R0, 0
+  mov [1714984], R0
+  mov R0, 3
+  mov [1714985], R0
+  mov R0, 3
+  mov [1714986], R0
+  mov R0, 1
+  mov [1714987], R0
+  mov R0, 0
+  mov [1714988], R0
+  mov R0, 0
+  mov [1714989], R0
+  mov R0, 0
+  mov [1714990], R0
+  mov R0, 0
+  mov [1714991], R0
+  mov R0, 0
+  mov [1714992], R0
+  mov R0, 0
+  mov [1714993], R0
+  mov R0, 3
+  mov [1714994], R0
+  mov R0, 2
+  mov [1714995], R0
+  mov R0, 1
+  mov [1714996], R0
+  mov R0, 0
+  mov [1714997], R0
+  mov R0, 0
+  mov [1714998], R0
+  mov R0, 3
+  mov [1714999], R0
+  mov R0, 3
+  mov [1715000], R0
+  mov R0, 1
+  mov [1715001], R0
+  mov R0, 0
+  mov [1715002], R0
+  mov R0, 0
+  mov [1715003], R0
+  mov R0, 0
+  mov [1715004], R0
+  mov R0, 0
+  mov [1715005], R0
+  mov R0, 2
+  mov [1715006], R0
+  mov R0, 3
+  mov [1715007], R0
+  mov R0, 1
+  mov [1715008], R0
+  mov R0, 0
+  mov [1715009], R0
+  mov R0, 0
+  mov [1715010], R0
+  mov R0, 2
+  mov [1715011], R0
+  mov R0, 0
+  mov [1715012], R0
+  mov R0, 0
+  mov [1715013], R0
+  mov R0, 0
+  mov [1715014], R0
+  mov R0, 0
+  mov [1715015], R0
+  mov R0, 3
+  mov [1715016], R0
+  mov R0, 3
+  mov [1715017], R0
+  mov R0, 1
+  mov [1715018], R0
+  mov R0, 0
+  mov [1715019], R0
+  mov R0, 0
+  mov [1715020], R0
+  mov R0, 3
+  mov [1715021], R0
+  mov R0, 2
+  mov [1715022], R0
+  mov R0, 0
+  mov [1715023], R0
+  mov R0, 1
+  mov [1715024], R0
+  mov R0, 0
+  mov [1715025], R0
+  mov R0, 0
+  mov [1715026], R0
+  mov R0, 0
+  mov [1715027], R0
+  mov R0, 3
+  mov [1715028], R0
+  mov R0, 3
+  mov [1715029], R0
+  mov R0, 1
+  mov [1715030], R0
+  mov R0, 0
+  mov [1715031], R0
+  mov R0, 0
+  mov [1715032], R0
+  mov R0, 0
+  mov [1715033], R0
+  mov R0, 0
+  mov [1715034], R0
+  mov R0, 2
+  mov [1715035], R0
+  mov R0, 3
+  mov [1715036], R0
+  mov R0, 1
+  mov [1715037], R0
+  mov R0, 2
+  mov [1715038], R0
+  mov R0, 3
+  mov [1715039], R0
+  mov R0, 3
+  mov [1715040], R0
+  mov R0, 1
+  mov [1715041], R0
+  mov R0, 0
+  mov [1715042], R0
+  mov R0, 0
+  mov [1715043], R0
+  mov R0, 3
+  mov [1715044], R0
+  mov R0, 2
+  mov [1715045], R0
+  mov R0, 1
+  mov [1715046], R0
+  mov R0, 0
+  mov [1715047], R0
+  mov R0, 0
+  mov [1715048], R0
+  mov R0, 3
+  mov [1715049], R0
+  mov R0, 3
+  mov [1715050], R0
+  mov R0, 1
+  mov [1715051], R0
+  mov R0, 0
+  mov [1715052], R0
+  mov R0, 0
+  mov [1715053], R0
+  mov R0, 0
+  mov [1715054], R0
+  mov R0, 0
+  mov [1715055], R0
+  mov R0, 2
+  mov [1715056], R0
+  mov R0, 3
+  mov [1715057], R0
+  mov R0, 1
+  mov [1715058], R0
+  mov R0, 0
+  mov [1715059], R0
+  mov R0, 0
+  mov [1715060], R0
+  mov R0, 2
+  mov [1715061], R0
+  mov R0, 0
+  mov [1715062], R0
+  mov R0, 0
+  mov [1715063], R0
+  mov R0, 0
+  mov [1715064], R0
+  mov R0, 0
+  mov [1715065], R0
+  mov R0, 3
+  mov [1715066], R0
+  mov R0, 3
+  mov [1715067], R0
+  mov R0, 1
+  mov [1715068], R0
+  mov R0, 0
+  mov [1715069], R0
+  mov R0, 0
+  mov [1715070], R0
+  mov R0, 3
+  mov [1715071], R0
+  mov R0, 2
+  mov [1715072], R0
+  mov R0, 1
+  mov [1715073], R0
+  mov R0, 0
+  mov [1715074], R0
+  mov R0, 0
+  mov [1715075], R0
+  mov R0, 0
+  mov [1715076], R0
+  mov R0, 0
+  mov [1715077], R0
+  mov R0, 3
+  mov [1715078], R0
+  mov R0, 3
+  mov [1715079], R0
+  mov R0, 1
+  mov [1715080], R0
+  mov R0, 0
+  mov [1715081], R0
+  mov R0, 0
+  mov [1715082], R0
+  mov R0, 0
+  mov [1715083], R0
+  mov R0, 0
+  mov [1715084], R0
+  mov R0, 0
+  mov [1715085], R0
+  mov R0, 0
+  mov [1715086], R0
+  mov R0, 3
+  mov [1715087], R0
+  mov R0, 2
+  mov [1715088], R0
+  mov R0, 1
+  mov [1715089], R0
+  mov R0, 0
+  mov [1715090], R0
+  mov R0, 0
+  mov [1715091], R0
+  mov R0, 3
+  mov [1715092], R0
+  mov R0, 3
+  mov [1715093], R0
+  mov R0, 1
+  mov [1715094], R0
+  mov R0, 0
+  mov [1715095], R0
+  mov R0, 0
+  mov [1715096], R0
+  mov R0, 0
+  mov [1715097], R0
+  mov R0, 0
+  mov [1715098], R0
+  mov R0, 0
+  mov [1715099], R0
+  mov R0, 3
+  mov [1715100], R0
+  mov R0, 2
+  mov [1715101], R0
+  mov R0, 1
+  mov [1715102], R0
+  mov R0, 0
+  mov [1715103], R0
+  mov R0, 0
+  mov [1715104], R0
+  mov R0, 0
+  mov [1715105], R0
+  mov R0, 3
+  mov [1715106], R0
+  mov R0, 3
+  mov [1715107], R0
+  mov R0, 1
+  mov [1715108], R0
+  mov R0, 0
+  mov [1715109], R0
+  mov R0, 0
+  mov [1715110], R0
+  mov R0, 0
+  mov [1715111], R0
+  mov R0, 0
+  mov [1715112], R0
+  mov R0, 2
+  mov [1715113], R0
+  mov R0, 3
+  mov [1715114], R0
+  mov R0, 1
+  mov [1715115], R0
+  mov R0, 0
+  mov [1715116], R0
+  mov R0, 0
+  mov [1715117], R0
+  mov R0, 2
+  mov [1715118], R0
+  mov R0, 0
+  mov [1715119], R0
+  mov R0, 0
+  mov [1715120], R0
+  mov R0, 0
+  mov [1715121], R0
+  mov R0, 0
+  mov [1715122], R0
+  mov R0, 3
+  mov [1715123], R0
+  mov R0, 3
+  mov [1715124], R0
+  mov R0, 1
+  mov [1715125], R0
+  mov R0, 0
+  mov [1715126], R0
+  mov R0, 0
+  mov [1715127], R0
+  mov R0, 0
+  mov [1715128], R0
+  mov R0, 0
+  mov [1715129], R0
+  mov R0, 3
+  mov [1715130], R0
+  mov R0, 1
+  mov [1715131], R0
+  mov R0, 3
+  mov [1715132], R0
+  mov R0, 3
+  mov [1715133], R0
+  mov R0, 0
+  mov [1715134], R0
+  mov R0, 0
+  mov [1715135], R0
+  mov R0, 2
+  mov [1715136], R0
+  mov R0, 0
+  mov [1715137], R0
+  mov R0, 0
+  mov [1715138], R0
+  mov R0, 0
+  mov [1715139], R0
+  mov R0, 0
+  mov [1715140], R0
+  mov R0, 3
+  mov [1715141], R0
+  mov R0, 0
+  mov [1715142], R0
+  mov R0, 0
+  mov [1715143], R0
+  mov R0, 1
+  mov [1715144], R0
+  mov R0, 0
+  mov [1715145], R0
+  mov R0, 0
+  mov [1715146], R0
+  mov R0, 0
+  mov [1715147], R0
+  mov R0, 2
+  mov [1715148], R0
+  mov R0, 0
+  mov [1715149], R0
+  mov R0, 2
+  mov [1715150], R0
+  mov R0, 0
+  mov [1715151], R0
+  mov R0, 0
+  mov [1715152], R0
+  mov R0, 3
+  mov [1715153], R0
+  mov R0, 0
+  mov [1715154], R0
+  mov R0, 0
+  mov [1715155], R0
+  mov R0, 1
+  mov [1715156], R0
+  mov R0, 3
+  mov [1715157], R0
+  mov R0, 0
+  mov [1715158], R0
+  mov R0, 0
+  mov [1715159], R0
+  mov R0, 2
+  mov [1715160], R0
+  mov R0, 0
+  mov [1715161], R0
+  mov R0, 0
+  mov [1715162], R0
+  mov R0, 2
+  mov [1715163], R0
+  mov R0, 0
+  mov [1715164], R0
+  mov R0, 0
+  mov [1715165], R0
+  mov R0, 3
+  mov [1715166], R0
+  mov R0, 0
+  mov [1715167], R0
+  mov R0, 0
+  mov [1715168], R0
+  mov R0, 1
+  mov [1715169], R0
+  mov R0, 3
+  mov [1715170], R0
+  mov R0, 0
+  mov [1715171], R0
+  mov R0, 0
+  mov [1715172], R0
+  mov R0, 0
+  mov [1715173], R0
+  mov R0, 0
+  mov [1715174], R0
+  mov R0, 2
+  mov [1715175], R0
+  mov R0, 0
+  mov [1715176], R0
+  mov R0, 0
+  mov [1715177], R0
+  mov R0, 0
+  mov [1715178], R0
+  mov R0, 0
+  mov [1715179], R0
+  mov R0, 1
+  mov [1715180], R0
+  mov R0, 3
+  mov [1715181], R0
+  mov R0, 2
+  mov [1715182], R0
+  mov R0, 0
+  mov [1715183], R0
+  mov R0, 0
+  mov [1715184], R0
+  mov R0, 3
+  mov [1715185], R0
+  mov R0, 1
+  mov [1715186], R0
+  mov R0, 3
+  mov [1715187], R0
+  mov R0, 0
+  mov [1715188], R0
+  mov R0, 0
+  mov [1715189], R0
+  mov R0, 0
+  mov [1715190], R0
+  mov R0, 0
+  mov [1715191], R0
+  mov R0, 2
+  mov [1715192], R0
+  mov R0, 1
+  mov [1715193], R0
+  mov R0, 3
+  mov [1715194], R0
+  mov R0, 0
+  mov [1715195], R0
+  mov R0, 0
+  mov [1715196], R0
+  mov R0, 2
+  mov [1715197], R0
+  mov R0, 0
+  mov [1715198], R0
+  mov R0, 0
+  mov [1715199], R0
+  mov R0, 0
+  mov [1715200], R0
+  mov R0, 3
+  mov [1715201], R0
+  mov R0, 1
+  mov [1715202], R0
+  mov R0, 0
+  mov [1715203], R0
+  mov R0, 3
+  mov [1715204], R0
+  mov R0, 0
+  mov [1715205], R0
+  mov R0, 0
+  mov [1715206], R0
+  mov R0, 2
+  mov [1715207], R0
+  mov R0, 3
+  mov [1715208], R0
+  mov R0, 1
+  mov [1715209], R0
+  mov R0, 0
+  mov [1715210], R0
+  mov R0, 0
+  mov [1715211], R0
+  mov R0, 0
+  mov [1715212], R0
+  mov R0, 0
+  mov [1715213], R0
+  mov R0, 3
+  mov [1715214], R0
+  mov R0, 1
+  mov [1715215], R0
+  mov R0, 0
+  mov [1715216], R0
+  mov R0, 0
+  mov [1715217], R0
+  mov R0, 3
+  mov [1715218], R0
+  mov R0, 0
+  mov [1715219], R0
+  mov R0, 0
+  mov [1715220], R0
+  mov R0, 0
+  mov [1715221], R0
+  mov R0, 0
+  mov [1715222], R0
+  mov R0, 2
+  mov [1715223], R0
+  mov R0, 3
+  mov [1715224], R0
+  mov R0, 1
+  mov [1715225], R0
+  mov R0, 2
+  mov [1715226], R0
+  mov R0, 0
+  mov [1715227], R0
+  mov R0, 0
+  mov [1715228], R0
+  mov R0, 3
+  mov [1715229], R0
+  mov R0, 1
+  mov [1715230], R0
+  mov R0, 0
+  mov [1715231], R0
+  mov R0, 0
+  mov [1715232], R0
+  mov R0, 3
+  mov [1715233], R0
+  mov R0, 0
+  mov [1715234], R0
+  mov R0, 0
+  mov [1715235], R0
+  mov R0, 0
+  mov [1715236], R0
+  mov R0, 0
+  mov [1715237], R0
+  mov R0, 2
+  mov [1715238], R0
+  mov R0, 3
+  mov [1715239], R0
+  mov R0, 1
+  mov [1715240], R0
+  mov R0, 0
+  mov [1715241], R0
+  mov R0, 0
+  mov [1715242], R0
+  mov R0, 3
+  mov [1715243], R0
+  mov R0, 3
+  mov [1715244], R0
+  mov R0, 1
+  mov [1715245], R0
+  mov R0, 0
+  mov [1715246], R0
+  mov R0, 0
+  mov [1715247], R0
+  mov R0, 0
+  mov [1715248], R0
+  mov R0, 0
+  mov [1715249], R0
+  mov R0, 2
+  mov [1715250], R0
+  mov R0, 1
+  mov [1715251], R0
+  mov R0, 3
+  mov [1715252], R0
+  mov R0, 0
+  mov [1715253], R0
+  mov R0, 0
+  mov [1715254], R0
+  mov R0, 2
+  mov [1715255], R0
+  mov R0, 0
+  mov [1715256], R0
+  mov R0, 0
+  mov [1715257], R0
+  mov R0, 0
+  mov [1715258], R0
+  mov R0, 0
+  mov [1715259], R0
+  mov R0, 3
+  mov [1715260], R0
+  mov R0, 1
+  mov [1715261], R0
+  mov R0, 3
+  mov [1715262], R0
+  mov R0, 0
+  mov [1715263], R0
+  mov R0, 0
+  mov [1715264], R0
+  mov R0, 3
+  mov [1715265], R0
+  mov R0, 2
+  mov [1715266], R0
+  mov R0, 0
+  mov [1715267], R0
+  mov R0, 1
+  mov [1715268], R0
+  mov R0, 0
+  mov [1715269], R0
+  mov R0, 0
+  mov [1715270], R0
+  mov R0, 0
+  mov [1715271], R0
+  mov R0, 3
+  mov [1715272], R0
+  mov R0, 3
+  mov [1715273], R0
+  mov R0, 1
+  mov [1715274], R0
+  mov R0, 0
+  mov [1715275], R0
+  mov R0, 0
+  mov [1715276], R0
+  mov R0, 0
+  mov [1715277], R0
+  mov R0, 0
+  mov [1715278], R0
+  mov R0, 2
+  mov [1715279], R0
+  mov R0, 3
+  mov [1715280], R0
+  mov R0, 1
+  mov [1715281], R0
+  mov R0, 2
+  mov [1715282], R0
+  mov R0, 3
+  mov [1715283], R0
+  mov R0, 3
+  mov [1715284], R0
+  mov R0, 1
+  mov [1715285], R0
+  mov R0, 0
+  mov [1715286], R0
+  mov R0, 0
+  mov [1715287], R0
+  mov R0, 3
+  mov [1715288], R0
+  mov R0, 2
+  mov [1715289], R0
+  mov R0, 1
+  mov [1715290], R0
+  mov R0, 0
+  mov [1715291], R0
+  mov R0, 0
+  mov [1715292], R0
+  mov R0, 3
+  mov [1715293], R0
+  mov R0, 3
+  mov [1715294], R0
+  mov R0, 1
+  mov [1715295], R0
+  mov R0, 0
+  mov [1715296], R0
+  mov R0, 0
+  mov [1715297], R0
+  mov R0, 0
+  mov [1715298], R0
+  mov R0, 0
+  mov [1715299], R0
+  mov R0, 2
+  mov [1715300], R0
+  mov R0, 3
+  mov [1715301], R0
+  mov R0, 1
+  mov [1715302], R0
+  mov R0, 0
+  mov [1715303], R0
+  mov R0, 0
+  mov [1715304], R0
+  mov R0, 2
+  mov [1715305], R0
+  mov R0, 0
+  mov [1715306], R0
+  mov R0, 0
+  mov [1715307], R0
+  mov R0, 0
+  mov [1715308], R0
+  mov R0, 0
+  mov [1715309], R0
+  mov R0, 3
+  mov [1715310], R0
+  mov R0, 3
+  mov [1715311], R0
+  mov R0, 1
+  mov [1715312], R0
+  mov R0, 0
+  mov [1715313], R0
+  mov R0, 0
+  mov [1715314], R0
+  mov R0, 2
+  mov [1715315], R0
+  mov R0, 3
+  mov [1715316], R0
+  mov R0, 1
+  mov [1715317], R0
+  mov R0, 0
+  mov [1715318], R0
+  mov R0, 0
+  mov [1715319], R0
+  mov R0, 0
+  mov [1715320], R0
+  mov R0, 0
+  mov [1715321], R0
+  mov R0, 3
+  mov [1715322], R0
+  mov R0, 3
+  mov [1715323], R0
+  mov R0, 1
+  mov [1715324], R0
+  mov R0, 0
+  mov [1715325], R0
+  mov R0, 0
+  mov [1715326], R0
+  mov R0, 0
+  mov [1715327], R0
+  mov R0, 0
+  mov [1715328], R0
+  mov R0, 0
+  mov [1715329], R0
+  mov R0, 0
+  mov [1715330], R0
+  mov R0, 3
+  mov [1715331], R0
+  mov R0, 2
+  mov [1715332], R0
+  mov R0, 1
+  mov [1715333], R0
+  mov R0, 0
+  mov [1715334], R0
+  mov R0, 0
+  mov [1715335], R0
+  mov R0, 3
+  mov [1715336], R0
+  mov R0, 3
+  mov [1715337], R0
+  mov R0, 1
+  mov [1715338], R0
+  mov R0, 0
+  mov [1715339], R0
+  mov R0, 0
+  mov [1715340], R0
+  mov R0, 0
+  mov [1715341], R0
+  mov R0, 0
+  mov [1715342], R0
+  mov R0, 0
+  mov [1715343], R0
+  mov R0, 0
+  mov [1715344], R0
+  mov R0, 3
+  mov [1715345], R0
+  mov R0, 2
+  mov [1715346], R0
+  mov R0, 1
+  mov [1715347], R0
+  mov R0, 0
+  mov [1715348], R0
+  mov R0, 0
+  mov [1715349], R0
+  mov R0, 3
+  mov [1715350], R0
+  mov R0, 3
+  mov [1715351], R0
+  mov R0, 1
+  mov [1715352], R0
+  mov R0, 0
+  mov [1715353], R0
+  mov R0, 0
+  mov [1715354], R0
+  mov R0, 0
+  mov [1715355], R0
+  mov R0, 0
+  mov [1715356], R0
+  mov R0, 2
+  mov [1715357], R0
+  mov R0, 3
+  mov [1715358], R0
+  mov R0, 1
+  mov [1715359], R0
+  mov R0, 0
+  mov [1715360], R0
+  mov R0, 0
+  mov [1715361], R0
+  mov R0, 2
+  mov [1715362], R0
+  mov R0, 0
+  mov [1715363], R0
+  mov R0, 0
+  mov [1715364], R0
+  mov R0, 0
+  mov [1715365], R0
+  mov R0, 0
+  mov [1715366], R0
+  mov R0, 3
+  mov [1715367], R0
+  mov R0, 1
+  mov [1715368], R0
+  mov R0, 3
+  mov [1715369], R0
+  mov R0, 0
+  mov [1715370], R0
+  mov R0, 0
+  mov [1715371], R0
+  mov R0, 3
+  mov [1715372], R0
+  mov R0, 3
+  mov [1715373], R0
+  mov R0, 1
+  mov [1715374], R0
+  mov R0, 0
+  mov [1715375], R0
+  mov R0, 0
+  mov [1715376], R0
+  mov R0, 2
+  mov [1715377], R0
+  mov R0, 0
+  mov [1715378], R0
+  mov R0, 0
+  mov [1715379], R0
+  mov R0, 3
+  mov [1715380], R0
+  mov R0, 3
+  mov [1715381], R0
+  mov R0, 1
+  mov [1715382], R0
+  mov R0, 0
+  mov [1715383], R0
+  mov R0, 0
+  mov [1715384], R0
+  mov R0, 2
+  mov [1715385], R0
+  mov R0, 0
+  mov [1715386], R0
+  mov R0, 0
+  mov [1715387], R0
+  mov R0, 3
+  mov [1715388], R0
+  mov R0, 3
+  mov [1715389], R0
+  mov R0, 1
+  mov [1715390], R0
+  mov R0, 3
+  mov [1715391], R0
+  mov R0, 3
+  mov [1715392], R0
+  mov R0, 2
+  mov [1715393], R0
+  mov R0, 3
+  mov [1715394], R0
+  mov R0, 3
+  mov [1715395], R0
+  mov R0, 1
+  mov [1715396], R0
+  mov R0, 2
+  mov [1715397], R0
+  mov R0, 0
+  mov [1715398], R0
+  mov R0, 0
+  mov [1715399], R0
+  mov R0, 3
+  mov [1715400], R0
+  mov R0, 2
+  mov [1715401], R0
+  mov R0, 1
+  mov [1715402], R0
+  mov R0, 0
+  mov [1715403], R0
+  mov R0, 0
+  mov [1715404], R0
+  mov R0, 3
+  mov [1715405], R0
+  mov R0, 3
+  mov [1715406], R0
+  mov R0, 0
+  mov [1715407], R0
+  mov R0, 0
+  mov [1715408], R0
+  mov R0, 1
+  mov [1715409], R0
+  mov R0, 0
+  mov [1715410], R0
+  mov R0, 0
+  mov [1715411], R0
+  mov R0, 3
+  mov [1715412], R0
+  mov R0, 2
+  mov [1715413], R0
+  mov R0, 0
+  mov [1715414], R0
+  mov R0, 0
+  mov [1715415], R0
+  mov R0, 1
+  mov [1715416], R0
+  mov R0, 2
+  mov [1715417], R0
+  mov R0, 0
+  mov [1715418], R0
+  mov R0, 0
+  mov [1715419], R0
+  mov R0, 3
+  mov [1715420], R0
+  mov R0, 0
+  mov [1715421], R0
+  mov R0, 0
+  mov [1715422], R0
+  mov R0, 3
+  mov [1715423], R0
+  mov R0, 1
+  mov [1715424], R0
+  mov R0, 0
+  mov [1715425], R0
+  mov R0, 0
+  mov [1715426], R0
+  mov R0, 3
+  mov [1715427], R0
+  mov R0, 2
+  mov [1715428], R0
+  mov R0, 0
+  mov [1715429], R0
+  mov R0, 1
+  mov [1715430], R0
+  mov R0, 0
+  mov [1715431], R0
+  mov R0, 0
+  mov [1715432], R0
+  mov R0, 0
+  mov [1715433], R0
+  mov R0, 3
+  mov [1715434], R0
+  mov R0, 3
+  mov [1715435], R0
+  mov R0, 0
+  mov [1715436], R0
+  mov R0, 0
+  mov [1715437], R0
+  mov R0, 1
+  mov [1715438], R0
+  mov R0, 0
+  mov [1715439], R0
+  mov R0, 0
+  mov [1715440], R0
+  mov R0, 3
+  mov [1715441], R0
+  mov R0, 0
+  mov [1715442], R0
+  mov R0, 0
+  mov [1715443], R0
+  mov R0, 2
+  mov [1715444], R0
+  mov R0, 1
+  mov [1715445], R0
+  mov R0, 2
+  mov [1715446], R0
+  mov R0, 0
+  mov [1715447], R0
+  mov R0, 0
+  mov [1715448], R0
+  mov R0, 3
+  mov [1715449], R0
+  mov R0, 3
+  mov [1715450], R0
+  mov R0, 0
+  mov [1715451], R0
+  mov R0, 0
+  mov [1715452], R0
+  mov R0, 1
+  mov [1715453], R0
+  mov R0, 0
+  mov [1715454], R0
+  mov R0, 0
+  mov [1715455], R0
+  mov R0, 0
+  mov [1715456], R0
+  mov R0, 0
+  mov [1715457], R0
+  mov R0, 2
+  mov [1715458], R0
+  mov R0, 3
+  mov [1715459], R0
+  mov R0, 1
+  mov [1715460], R0
+  mov R0, 0
+  mov [1715461], R0
+  mov R0, 0
+  mov [1715462], R0
+  mov R0, 3
+  mov [1715463], R0
+  mov R0, 3
+  mov [1715464], R0
+  mov R0, 0
+  mov [1715465], R0
+  mov R0, 0
+  mov [1715466], R0
+  mov R0, 1
+  mov [1715467], R0
+  mov R0, 0
+  mov [1715468], R0
+  mov R0, 0
+  mov [1715469], R0
+  mov R0, 3
+  mov [1715470], R0
+  mov R0, 2
+  mov [1715471], R0
+  mov R0, 0
+  mov [1715472], R0
+  mov R0, 0
+  mov [1715473], R0
+  mov R0, 1
+  mov [1715474], R0
+  mov R0, 2
+  mov [1715475], R0
+  mov R0, 0
+  mov [1715476], R0
+  mov R0, 0
+  mov [1715477], R0
+  mov R0, 3
+  mov [1715478], R0
+  mov R0, 0
+  mov [1715479], R0
+  mov R0, 0
+  mov [1715480], R0
+  mov R0, 3
+  mov [1715481], R0
+  mov R0, 1
+  mov [1715482], R0
+  mov R0, 0
+  mov [1715483], R0
+  mov R0, 0
+  mov [1715484], R0
+  mov R0, 3
+  mov [1715485], R0
+  mov R0, 2
+  mov [1715486], R0
+  mov R0, 0
+  mov [1715487], R0
+  mov R0, 0
+  mov [1715488], R0
+  mov R0, 1
+  mov [1715489], R0
+  mov R0, 0
+  mov [1715490], R0
+  mov R0, 0
+  mov [1715491], R0
+  mov R0, 3
+  mov [1715492], R0
+  mov R0, 3
+  mov [1715493], R0
+  mov R0, 1
+  mov [1715494], R0
+  mov R0, 0
+  mov [1715495], R0
+  mov R0, 0
+  mov [1715496], R0
+  mov R0, 0
+  mov [1715497], R0
+  mov R0, 0
+  mov [1715498], R0
+  mov R0, 3
+  mov [1715499], R0
+  mov R0, 2
+  mov [1715500], R0
+  mov R0, 1
+  mov [1715501], R0
+  mov R0, 2
+  mov [1715502], R0
+  mov R0, 3
+  mov [1715503], R0
+  mov R0, 3
+  mov [1715504], R0
+  mov R0, 1
+  mov [1715505], R0
+  mov R0, 0
+  mov [1715506], R0
+  mov R0, 0
+  mov [1715507], R0
+  mov R0, 3
+  mov [1715508], R0
+  mov R0, 2
+  mov [1715509], R0
+  mov R0, 1
+  mov [1715510], R0
+  mov R0, 0
+  mov [1715511], R0
+  mov R0, 0
+  mov [1715512], R0
+  mov R0, 3
+  mov [1715513], R0
+  mov R0, 3
+  mov [1715514], R0
+  mov R0, 0
+  mov [1715515], R0
+  mov R0, 0
+  mov [1715516], R0
+  mov R0, 1
+  mov [1715517], R0
+  mov R0, 0
+  mov [1715518], R0
+  mov R0, 0
+  mov [1715519], R0
+  mov R0, 3
+  mov [1715520], R0
+  mov R0, 2
+  mov [1715521], R0
+  mov R0, 0
+  mov [1715522], R0
+  mov R0, 0
+  mov [1715523], R0
+  mov R0, 1
+  mov [1715524], R0
+  mov R0, 2
+  mov [1715525], R0
+  mov R0, 0
+  mov [1715526], R0
+  mov R0, 0
+  mov [1715527], R0
+  mov R0, 3
+  mov [1715528], R0
+  mov R0, 0
+  mov [1715529], R0
+  mov R0, 0
+  mov [1715530], R0
+  mov R0, 3
+  mov [1715531], R0
+  mov R0, 1
+  mov [1715532], R0
+  mov R0, 0
+  mov [1715533], R0
+  mov R0, 0
+  mov [1715534], R0
+  mov R0, 3
+  mov [1715535], R0
+  mov R0, 2
+  mov [1715536], R0
+  mov R0, 0
+  mov [1715537], R0
+  mov R0, 0
+  mov [1715538], R0
+  mov R0, 1
+  mov [1715539], R0
+  mov R0, 0
+  mov [1715540], R0
+  mov R0, 0
+  mov [1715541], R0
+  mov R0, 3
+  mov [1715542], R0
+  mov R0, 3
+  mov [1715543], R0
+  mov R0, 0
+  mov [1715544], R0
+  mov R0, 0
+  mov [1715545], R0
+  mov R0, 1
+  mov [1715546], R0
+  mov R0, 0
+  mov [1715547], R0
+  mov R0, 0
+  mov [1715548], R0
+  mov R0, 3
+  mov [1715549], R0
+  mov R0, 0
+  mov [1715550], R0
+  mov R0, 0
+  mov [1715551], R0
+  mov R0, 2
+  mov [1715552], R0
+  mov R0, 1
+  mov [1715553], R0
+  mov R0, 0
+  mov [1715554], R0
+  mov R0, 0
+  mov [1715555], R0
+  mov R0, 3
+  mov [1715556], R0
+  mov R0, 3
+  mov [1715557], R0
+  mov R0, 0
+  mov [1715558], R0
+  mov R0, 0
+  mov [1715559], R0
+  mov R0, 1
+  mov [1715560], R0
+  mov R0, 0
+  mov [1715561], R0
+  mov R0, 0
+  mov [1715562], R0
+  mov R0, 3
+  mov [1715563], R0
+  mov R0, 0
+  mov [1715564], R0
+  mov R0, 0
+  mov [1715565], R0
+  mov R0, 2
+  mov [1715566], R0
+  mov R0, 1
+  mov [1715567], R0
+  mov R0, 0
+  mov [1715568], R0
+  mov R0, 0
+  mov [1715569], R0
+  mov R0, 3
+  mov [1715570], R0
+  mov R0, 3
+  mov [1715571], R0
+  mov R0, 0
+  mov [1715572], R0
+  mov R0, 1
+  mov [1715573], R0
+  mov R0, 0
+  mov [1715574], R0
+  mov R0, 0
+  mov [1715575], R0
+  mov R0, 0
+  mov [1715576], R0
+  mov R0, 2
+  mov [1715577], R0
+  mov R0, 1
+  mov [1715578], R0
+  mov R0, 0
+  mov [1715579], R0
+  mov R0, 3
+  mov [1715580], R0
+  mov R0, 0
+  mov [1715581], R0
+  mov R0, 2
+  mov [1715582], R0
+  mov R0, 0
+  mov [1715583], R0
+  mov R0, 0
+  mov [1715584], R0
+  mov R0, 3
+  mov [1715585], R0
+  mov R0, 0
+  mov [1715586], R0
+  mov R0, 0
+  mov [1715587], R0
+  mov R0, 3
+  mov [1715588], R0
+  mov R0, 1
+  mov [1715589], R0
+  mov R0, 0
+  mov [1715590], R0
+  mov R0, 0
+  mov [1715591], R0
+  mov R0, 2
+  mov [1715592], R0
+  mov R0, 3
+  mov [1715593], R0
+  mov R0, 3
+  mov [1715594], R0
+  mov R0, 3
+  mov [1715595], R0
+  mov R0, 0
+  mov [1715596], R0
+  mov R0, 0
+  mov [1715597], R0
+  mov R0, 1
+  mov [1715598], R0
+  mov R0, 0
+  mov [1715599], R0
+  mov R0, 0
+  mov [1715600], R0
+  mov R0, 0
+  mov [1715601], R0
+  mov R0, 0
+  mov [1715602], R0
+  mov R0, 0
+  mov [1715603], R0
+  mov R0, 0
+  mov [1715604], R0
+  mov R0, 0
+  mov [1715605], R0
+  mov R0, 0
+  mov [1715606], R0
+  mov R0, 0
+  mov [1715607], R0
+  mov R0, 0
+  mov [1715608], R0
+  mov R0, 0
+  mov [1715609], R0
+  mov R0, 0
+  mov [1715610], R0
+  mov R0, 0
+  mov [1715611], R0
+  mov R0, 0
+  mov [1715612], R0
+  mov R0, 0
+  mov [1715613], R0
+  mov R0, 0
+  mov [1715614], R0
+  mov R0, 0
+  mov [1715615], R0
+  mov R0, 0
+  mov [1715616], R0
+  mov R0, 0
+  mov [1715617], R0
+  mov R0, 0
+  mov [1715618], R0
+  mov R0, 0
+  mov [1715619], R0
+  mov R0, 0
+  mov [1715620], R0
+  mov R0, 0
+  mov [1715621], R0
+  mov R0, 0
+  mov [1715622], R0
+  mov R0, 0
+  mov [1715623], R0
+  mov R0, 0
+  mov [1715624], R0
+  mov R0, 0
+  mov [1715625], R0
+  mov R0, 0
+  mov [1715626], R0
+  mov R0, 0
+  mov [1715627], R0
+  mov R0, 0
+  mov [1715628], R0
+  mov R0, 0
+  mov [1715629], R0
+  mov R0, 0
+  mov [1715630], R0
+  mov R0, 2
+  mov [1715631], R0
+  mov R0, 3
+  mov [1715632], R0
+  mov R0, 3
+  mov [1715633], R0
+  mov R0, 3
+  mov [1715634], R0
+  mov R0, 3
+  mov [1715635], R0
+  mov R0, 1
+  mov [1715636], R0
+  mov R0, 0
+  mov [1715637], R0
+  mov R0, 0
+  mov [1715638], R0
+  mov R0, 3
+  mov [1715639], R0
+  mov R0, 3
+  mov [1715640], R0
+  mov R0, 0
+  mov [1715641], R0
+  mov R0, 0
+  mov [1715642], R0
+  mov R0, 0
+  mov [1715643], R0
+  mov R0, 0
+  mov [1715644], R0
+  mov R0, 0
+  mov [1715645], R0
+  mov R0, 0
+  mov [1715646], R0
+  mov R0, 0
+  mov [1715647], R0
+  mov R0, 0
+  mov [1715648], R0
+  mov R0, 0
+  mov [1715649], R0
+  mov R0, 0
+  mov [1715650], R0
+  mov R0, 0
+  mov [1715651], R0
+  mov R0, 0
+  mov [1715652], R0
+  mov R0, 0
+  mov [1715653], R0
+  mov R0, 0
+  mov [1715654], R0
+  mov R0, 0
+  mov [1715655], R0
+  mov R0, 0
+  mov [1715656], R0
+  mov R0, 0
+  mov [1715657], R0
+  mov R0, 0
+  mov [1715658], R0
+  mov R0, 0
+  mov [1715659], R0
+  mov R0, 0
+  mov [1715660], R0
+  mov R0, 0
+  mov [1715661], R0
+  mov R0, 0
+  mov [1715662], R0
+  mov R0, 0
+  mov [1715663], R0
+  mov R0, 0
+  mov [1715664], R0
+  mov R0, 0
+  mov [1715665], R0
+  mov R0, 0
+  mov [1715666], R0
+  mov R0, 0
+  mov [1715667], R0
+  mov R0, 0
+  mov [1715668], R0
+  mov R0, 0
+  mov [1715669], R0
+  mov R0, 0
+  mov [1715670], R0
+  mov R0, 3
+  mov [1715671], R0
+  mov R0, 2
+  mov [1715672], R0
+  mov R0, 3
+  mov [1715673], R0
+  mov R0, 3
+  mov [1715674], R0
+  mov R0, 3
+  mov [1715675], R0
+  mov R0, 1
+  mov [1715676], R0
+  mov R0, 0
+  mov [1715677], R0
+  mov R0, 0
+  mov [1715678], R0
+  mov R0, 3
+  mov [1715679], R0
+  mov R0, 3
+  mov [1715680], R0
+  mov R0, 0
+  mov [1715681], R0
+  mov R0, 0
+  mov [1715682], R0
+  mov R0, 0
+  mov [1715683], R0
+  mov R0, 0
+  mov [1715684], R0
+  mov R0, 0
+  mov [1715685], R0
+  mov R0, 0
+  mov [1715686], R0
+  mov R0, 0
+  mov [1715687], R0
+  mov R0, 0
+  mov [1715688], R0
+  mov R0, 0
+  mov [1715689], R0
+  mov R0, 0
+  mov [1715690], R0
+  mov R0, 0
+  mov [1715691], R0
+  mov R0, 0
+  mov [1715692], R0
+  mov R0, 0
+  mov [1715693], R0
+  mov R0, 0
+  mov [1715694], R0
+  mov R0, 0
+  mov [1715695], R0
+  mov R0, 0
+  mov [1715696], R0
+  mov R0, 0
+  mov [1715697], R0
+  mov R0, 0
+  mov [1715698], R0
+  mov R0, 0
+  mov [1715699], R0
+  mov R0, 0
+  mov [1715700], R0
+  mov R0, 0
+  mov [1715701], R0
+  mov R0, 3
+  mov [1715702], R0
+  mov R0, 3
+  mov [1715703], R0
+  mov R0, 2
+  mov [1715704], R0
+  mov R0, 3
+  mov [1715705], R0
+  mov R0, 3
+  mov [1715706], R0
+  mov R0, 1
+  mov [1715707], R0
+  mov R0, 0
+  mov [1715708], R0
+  mov R0, 0
+  mov [1715709], R0
+  mov R0, 0
+  mov [1715710], R0
+  mov R0, 3
+  mov [1715711], R0
+  mov R0, 3
+  mov [1715712], R0
+  mov R0, 0
+  mov [1715713], R0
+  mov R0, 0
+  mov [1715714], R0
+  mov R0, 0
+  mov [1715715], R0
+  mov R0, 0
+  mov [1715716], R0
+  mov R0, 0
+  mov [1715717], R0
+  mov R0, 0
+  mov [1715718], R0
+  mov R0, 0
+  mov [1715719], R0
+  mov R0, 0
+  mov [1715720], R0
+  mov R0, 0
+  mov [1715721], R0
+  mov R0, 0
+  mov [1715722], R0
+  mov R0, 0
+  mov [1715723], R0
+  mov R0, 0
+  mov [1715724], R0
+  mov R0, 0
+  mov [1715725], R0
+  mov R0, 0
+  mov [1715726], R0
+  mov R0, 0
+  mov [1715727], R0
+  mov R0, 0
+  mov [1715728], R0
+  mov R0, 0
+  mov [1715729], R0
+  mov R0, 0
+  mov [1715730], R0
+  mov R0, 0
+  mov [1715731], R0
+  mov R0, 0
+  mov [1715732], R0
+  mov R0, 0
+  mov [1715733], R0
+  mov R0, 0
+  mov [1715734], R0
+  mov R0, 0
+  mov [1715735], R0
+  mov R0, 0
+  mov [1715736], R0
+  mov R0, 0
+  mov [1715737], R0
+  mov R0, 0
+  mov [1715738], R0
+  mov R0, 0
+  mov [1715739], R0
+  mov R0, 0
+  mov [1715740], R0
+  mov R0, 0
+  mov [1715741], R0
+  mov R0, 0
+  mov [1715742], R0
+  mov R0, 3
+  mov [1715743], R0
+  mov R0, 3
+  mov [1715744], R0
+  mov R0, 2
+  mov [1715745], R0
+  mov R0, 3
+  mov [1715746], R0
+  mov R0, 3
+  mov [1715747], R0
+  mov R0, 1
+  mov [1715748], R0
+  mov R0, 0
+  mov [1715749], R0
+  mov R0, 0
+  mov [1715750], R0
+  mov R0, 3
+  mov [1715751], R0
+  mov R0, 3
+  mov [1715752], R0
+  mov R0, 0
+  mov [1715753], R0
+  mov R0, 0
+  mov [1715754], R0
+  mov R0, 0
+  mov [1715755], R0
+  mov R0, 0
+  mov [1715756], R0
+  mov R0, 0
+  mov [1715757], R0
+  mov R0, 0
+  mov [1715758], R0
+  mov R0, 0
+  mov [1715759], R0
+  mov R0, 0
+  mov [1715760], R0
+  mov R0, 0
+  mov [1715761], R0
+  mov R0, 0
+  mov [1715762], R0
+  mov R0, 0
+  mov [1715763], R0
+  mov R0, 0
+  mov [1715764], R0
+  mov R0, 3
+  mov [1715765], R0
+  mov R0, 3
+  mov [1715766], R0
+  mov R0, 0
+  mov [1715767], R0
+  mov R0, 0
+  mov [1715768], R0
+  mov R0, 0
+  mov [1715769], R0
+  mov R0, 0
+  mov [1715770], R0
+  mov R0, 2
+  mov [1715771], R0
+  mov R0, 0
+  mov [1715772], R0
+  mov R0, 0
+  mov [1715773], R0
+  mov R0, 0
+  mov [1715774], R0
+  mov R0, 0
+  mov [1715775], R0
+  mov R0, 3
+  mov [1715776], R0
+  mov R0, 0
+  mov [1715777], R0
+  mov R0, 3
+  mov [1715778], R0
+  mov R0, 0
+  mov [1715779], R0
+  mov R0, 0
+  mov [1715780], R0
+  mov R0, 0
+  mov [1715781], R0
+  mov R0, 2
+  mov [1715782], R0
+  mov R0, 0
+  mov [1715783], R0
+  mov R0, 0
+  mov [1715784], R0
+  mov R0, 0
+  mov [1715785], R0
+  mov R0, 0
+  mov [1715786], R0
+  mov R0, 2
+  mov [1715787], R0
+  mov R0, 3
+  mov [1715788], R0
+  mov R0, 3
+  mov [1715789], R0
+  mov R0, 0
+  mov [1715790], R0
+  mov R0, 0
+  mov [1715791], R0
+  mov R0, 0
+  mov [1715792], R0
+  mov R0, 0
+  mov [1715793], R0
+  mov R0, 3
+  mov [1715794], R0
+  mov R0, 2
+  mov [1715795], R0
+  mov R0, 3
+  mov [1715796], R0
+  mov R0, 0
+  mov [1715797], R0
+  mov R0, 0
+  mov [1715798], R0
+  mov R0, 0
+  mov [1715799], R0
+  mov R0, 0
+  mov [1715800], R0
+  mov R0, 2
+  mov [1715801], R0
+  mov R0, 3
+  mov [1715802], R0
+  mov R0, 0
+  mov [1715803], R0
+  mov R0, 3
+  mov [1715804], R0
+  mov R0, 0
+  mov [1715805], R0
+  mov R0, 0
+  mov [1715806], R0
+  mov R0, 0
+  mov [1715807], R0
+  mov R0, 3
+  mov [1715808], R0
+  mov R0, 3
+  mov [1715809], R0
+  mov R0, 2
+  mov [1715810], R0
+  mov R0, 0
+  mov [1715811], R0
+  mov R0, 0
+  mov [1715812], R0
+  mov R0, 0
+  mov [1715813], R0
+  mov R0, 0
+  mov [1715814], R0
+  mov R0, 0
+  mov [1715815], R0
+  mov R0, 0
+  mov [1715816], R0
+  mov R0, 1
+  mov [1715817], R0
+  mov R0, 3
+  mov [1715818], R0
+  mov R0, 2
+  mov [1715819], R0
+  mov R0, 0
+  mov [1715820], R0
+  mov R0, 0
+  mov [1715821], R0
+  mov R0, 3
+  mov [1715822], R0
+  mov R0, 1
+  mov [1715823], R0
+  mov R0, 3
+  mov [1715824], R0
+  mov R0, 0
+  mov [1715825], R0
+  mov R0, 0
+  mov [1715826], R0
+  mov R0, 0
+  mov [1715827], R0
+  mov R0, 0
+  mov [1715828], R0
+  mov R0, 2
+  mov [1715829], R0
+  mov R0, 1
+  mov [1715830], R0
+  mov R0, 3
+  mov [1715831], R0
+  mov R0, 0
+  mov [1715832], R0
+  mov R0, 0
+  mov [1715833], R0
+  mov R0, 2
+  mov [1715834], R0
+  mov R0, 0
+  mov [1715835], R0
+  mov R0, 0
+  mov [1715836], R0
+  mov R0, 0
+  mov [1715837], R0
+  mov R0, 0
+  mov [1715838], R0
+  mov R0, 3
+  mov [1715839], R0
+  mov R0, 1
+  mov [1715840], R0
+  mov R0, 3
+  mov [1715841], R0
+  mov R0, 0
+  mov [1715842], R0
+  mov R0, 0
+  mov [1715843], R0
+  mov R0, 2
+  mov [1715844], R0
+  mov R0, 3
+  mov [1715845], R0
+  mov R0, 1
+  mov [1715846], R0
+  mov R0, 0
+  mov [1715847], R0
+  mov R0, 0
+  mov [1715848], R0
+  mov R0, 0
+  mov [1715849], R0
+  mov R0, 0
+  mov [1715850], R0
+  mov R0, 3
+  mov [1715851], R0
+  mov R0, 1
+  mov [1715852], R0
+  mov R0, 3
+  mov [1715853], R0
+  mov R0, 0
+  mov [1715854], R0
+  mov R0, 0
+  mov [1715855], R0
+  mov R0, 0
+  mov [1715856], R0
+  mov R0, 0
+  mov [1715857], R0
+  mov R0, 0
+  mov [1715858], R0
+  mov R0, 2
+  mov [1715859], R0
+  mov R0, 1
+  mov [1715860], R0
+  mov R0, 0
+  mov [1715861], R0
+  mov R0, 3
+  mov [1715862], R0
+  mov R0, 2
+  mov [1715863], R0
+  mov R0, 0
+  mov [1715864], R0
+  mov R0, 0
+  mov [1715865], R0
+  mov R0, 3
+  mov [1715866], R0
+  mov R0, 3
+  mov [1715867], R0
+  mov R0, 1
+  mov [1715868], R0
+  mov R0, 0
+  mov [1715869], R0
+  mov R0, 0
+  mov [1715870], R0
+  mov R0, 0
+  mov [1715871], R0
+  mov R0, 0
+  mov [1715872], R0
+  mov R0, 0
+  mov [1715873], R0
+  mov R0, 0
+  mov [1715874], R0
+  mov R0, 2
+  mov [1715875], R0
+  mov R0, 1
+  mov [1715876], R0
+  mov R0, 3
+  mov [1715877], R0
+  mov R0, 0
+  mov [1715878], R0
+  mov R0, 0
+  mov [1715879], R0
+  mov R0, 3
+  mov [1715880], R0
+  mov R0, 3
+  mov [1715881], R0
+  mov R0, 1
+  mov [1715882], R0
+  mov R0, 0
+  mov [1715883], R0
+  mov R0, 0
+  mov [1715884], R0
+  mov R0, 0
+  mov [1715885], R0
+  mov R0, 0
+  mov [1715886], R0
+  mov R0, 2
+  mov [1715887], R0
+  mov R0, 1
+  mov [1715888], R0
+  mov R0, 0
+  mov [1715889], R0
+  mov R0, 0
+  mov [1715890], R0
+  mov R0, 3
+  mov [1715891], R0
+  mov R0, 2
+  mov [1715892], R0
+  mov R0, 0
+  mov [1715893], R0
+  mov R0, 0
+  mov [1715894], R0
+  mov R0, 0
+  mov [1715895], R0
+  mov R0, 0
+  mov [1715896], R0
+  mov R0, 3
+  mov [1715897], R0
+  mov R0, 3
+  mov [1715898], R0
+  mov R0, 1
+  mov [1715899], R0
+  mov R0, 0
+  mov [1715900], R0
+  mov R0, 0
+  mov [1715901], R0
+  mov R0, 3
+  mov [1715902], R0
+  mov R0, 2
+  mov [1715903], R0
+  mov R0, 0
+  mov [1715904], R0
+  mov R0, 1
+  mov [1715905], R0
+  mov R0, 0
+  mov [1715906], R0
+  mov R0, 0
+  mov [1715907], R0
+  mov R0, 0
+  mov [1715908], R0
+  mov R0, 3
+  mov [1715909], R0
+  mov R0, 3
+  mov [1715910], R0
+  mov R0, 1
+  mov [1715911], R0
+  mov R0, 0
+  mov [1715912], R0
+  mov R0, 0
+  mov [1715913], R0
+  mov R0, 0
+  mov [1715914], R0
+  mov R0, 0
+  mov [1715915], R0
+  mov R0, 2
+  mov [1715916], R0
+  mov R0, 3
+  mov [1715917], R0
+  mov R0, 1
+  mov [1715918], R0
+  mov R0, 2
+  mov [1715919], R0
+  mov R0, 3
+  mov [1715920], R0
+  mov R0, 3
+  mov [1715921], R0
+  mov R0, 1
+  mov [1715922], R0
+  mov R0, 0
+  mov [1715923], R0
+  mov R0, 0
+  mov [1715924], R0
+  mov R0, 3
+  mov [1715925], R0
+  mov R0, 2
+  mov [1715926], R0
+  mov R0, 1
+  mov [1715927], R0
+  mov R0, 0
+  mov [1715928], R0
+  mov R0, 0
+  mov [1715929], R0
+  mov R0, 3
+  mov [1715930], R0
+  mov R0, 3
+  mov [1715931], R0
+  mov R0, 1
+  mov [1715932], R0
+  mov R0, 0
+  mov [1715933], R0
+  mov R0, 0
+  mov [1715934], R0
+  mov R0, 0
+  mov [1715935], R0
+  mov R0, 0
+  mov [1715936], R0
+  mov R0, 2
+  mov [1715937], R0
+  mov R0, 3
+  mov [1715938], R0
+  mov R0, 1
+  mov [1715939], R0
+  mov R0, 0
+  mov [1715940], R0
+  mov R0, 0
+  mov [1715941], R0
+  mov R0, 2
+  mov [1715942], R0
+  mov R0, 0
+  mov [1715943], R0
+  mov R0, 0
+  mov [1715944], R0
+  mov R0, 0
+  mov [1715945], R0
+  mov R0, 0
+  mov [1715946], R0
+  mov R0, 3
+  mov [1715947], R0
+  mov R0, 3
+  mov [1715948], R0
+  mov R0, 1
+  mov [1715949], R0
+  mov R0, 0
+  mov [1715950], R0
+  mov R0, 0
+  mov [1715951], R0
+  mov R0, 2
+  mov [1715952], R0
+  mov R0, 3
+  mov [1715953], R0
+  mov R0, 1
+  mov [1715954], R0
+  mov R0, 0
+  mov [1715955], R0
+  mov R0, 0
+  mov [1715956], R0
+  mov R0, 0
+  mov [1715957], R0
+  mov R0, 0
+  mov [1715958], R0
+  mov R0, 3
+  mov [1715959], R0
+  mov R0, 3
+  mov [1715960], R0
+  mov R0, 1
+  mov [1715961], R0
+  mov R0, 0
+  mov [1715962], R0
+  mov R0, 0
+  mov [1715963], R0
+  mov R0, 0
+  mov [1715964], R0
+  mov R0, 0
+  mov [1715965], R0
+  mov R0, 0
+  mov [1715966], R0
+  mov R0, 0
+  mov [1715967], R0
+  mov R0, 3
+  mov [1715968], R0
+  mov R0, 2
+  mov [1715969], R0
+  mov R0, 1
+  mov [1715970], R0
+  mov R0, 0
+  mov [1715971], R0
+  mov R0, 0
+  mov [1715972], R0
+  mov R0, 3
+  mov [1715973], R0
+  mov R0, 3
+  mov [1715974], R0
+  mov R0, 1
+  mov [1715975], R0
+  mov R0, 0
+  mov [1715976], R0
+  mov R0, 0
+  mov [1715977], R0
+  mov R0, 0
+  mov [1715978], R0
+  mov R0, 0
+  mov [1715979], R0
+  mov R0, 0
+  mov [1715980], R0
+  mov R0, 0
+  mov [1715981], R0
+  mov R0, 3
+  mov [1715982], R0
+  mov R0, 2
+  mov [1715983], R0
+  mov R0, 1
+  mov [1715984], R0
+  mov R0, 0
+  mov [1715985], R0
+  mov R0, 0
+  mov [1715986], R0
+  mov R0, 3
+  mov [1715987], R0
+  mov R0, 3
+  mov [1715988], R0
+  mov R0, 1
+  mov [1715989], R0
+  mov R0, 0
+  mov [1715990], R0
+  mov R0, 0
+  mov [1715991], R0
+  mov R0, 0
+  mov [1715992], R0
+  mov R0, 0
+  mov [1715993], R0
+  mov R0, 2
+  mov [1715994], R0
+  mov R0, 3
+  mov [1715995], R0
+  mov R0, 1
+  mov [1715996], R0
+  mov R0, 0
+  mov [1715997], R0
+  mov R0, 0
+  mov [1715998], R0
+  mov R0, 2
+  mov [1715999], R0
+  mov R0, 0
+  mov [1716000], R0
+  mov R0, 0
+  mov [1716001], R0
+  mov R0, 0
+  mov [1716002], R0
+  mov R0, 0
+  mov [1716003], R0
+  mov R0, 3
+  mov [1716004], R0
+  mov R0, 3
+  mov [1716005], R0
+  mov R0, 1
+  mov [1716006], R0
+  mov R0, 0
+  mov [1716007], R0
+  mov R0, 0
+  mov [1716008], R0
+  mov R0, 2
+  mov [1716009], R0
+  mov R0, 0
+  mov [1716010], R0
+  mov R0, 1
+  mov [1716011], R0
+  mov R0, 3
+  mov [1716012], R0
+  mov R0, 3
+  mov [1716013], R0
+  mov R0, 0
+  mov [1716014], R0
+  mov R0, 0
+  mov [1716015], R0
+  mov R0, 0
+  mov [1716016], R0
+  mov R0, 2
+  mov [1716017], R0
+  mov R0, 0
+  mov [1716018], R0
+  mov R0, 0
+  mov [1716019], R0
+  mov R0, 0
+  mov [1716020], R0
+  mov R0, 0
+  mov [1716021], R0
+  mov R0, 2
+  mov [1716022], R0
+  mov R0, 3
+  mov [1716023], R0
+  mov R0, 3
+  mov [1716024], R0
+  mov R0, 0
+  mov [1716025], R0
+  mov R0, 0
+  mov [1716026], R0
+  mov R0, 1
+  mov [1716027], R0
+  mov R0, 0
+  mov [1716028], R0
+  mov R0, 0
+  mov [1716029], R0
+  mov R0, 2
+  mov [1716030], R0
+  mov R0, 0
+  mov [1716031], R0
+  mov R0, 0
+  mov [1716032], R0
+  mov R0, 0
+  mov [1716033], R0
+  mov R0, 0
+  mov [1716034], R0
+  mov R0, 2
+  mov [1716035], R0
+  mov R0, 0
+  mov [1716036], R0
+  mov R0, 0
+  mov [1716037], R0
+  mov R0, 1
+  mov [1716038], R0
+  mov R0, 3
+  mov [1716039], R0
+  mov R0, 3
+  mov [1716040], R0
+  mov R0, 0
+  mov [1716041], R0
+  mov R0, 0
+  mov [1716042], R0
+  mov R0, 2
+  mov [1716043], R0
+  mov R0, 0
+  mov [1716044], R0
+  mov R0, 0
+  mov [1716045], R0
+  mov R0, 0
+  mov [1716046], R0
+  mov R0, 0
+  mov [1716047], R0
+  mov R0, 2
+  mov [1716048], R0
+  mov R0, 3
+  mov [1716049], R0
+  mov R0, 3
+  mov [1716050], R0
+  mov R0, 0
+  mov [1716051], R0
+  mov R0, 0
+  mov [1716052], R0
+  mov R0, 1
+  mov [1716053], R0
+  mov R0, 0
+  mov [1716054], R0
+  mov R0, 0
+  mov [1716055], R0
+  mov R0, 2
+  mov [1716056], R0
+  mov R0, 0
+  mov [1716057], R0
+  mov R0, 0
+  mov [1716058], R0
+  mov R0, 0
+  mov [1716059], R0
+  mov R0, 0
+  mov [1716060], R0
+  mov R0, 0
+  mov [1716061], R0
+  mov R0, 0
+  mov [1716062], R0
+  mov R0, 3
+  mov [1716063], R0
+  mov R0, 1
+  mov [1716064], R0
+  mov R0, 2
+  mov [1716065], R0
+  mov R0, 0
+  mov [1716066], R0
+  mov R0, 0
+  mov [1716067], R0
+  mov R0, 3
+  mov [1716068], R0
+  mov R0, 3
+  mov [1716069], R0
+  mov R0, 1
+  mov [1716070], R0
+  mov R0, 0
+  mov [1716071], R0
+  mov R0, 0
+  mov [1716072], R0
+  mov R0, 0
+  mov [1716073], R0
+  mov R0, 0
+  mov [1716074], R0
+  mov R0, 2
+  mov [1716075], R0
+  mov R0, 3
+  mov [1716076], R0
+  mov R0, 1
+  mov [1716077], R0
+  mov R0, 0
+  mov [1716078], R0
+  mov R0, 0
+  mov [1716079], R0
+  mov R0, 2
+  mov [1716080], R0
+  mov R0, 0
+  mov [1716081], R0
+  mov R0, 0
+  mov [1716082], R0
+  mov R0, 0
+  mov [1716083], R0
+  mov R0, 0
+  mov [1716084], R0
+  mov R0, 3
+  mov [1716085], R0
+  mov R0, 3
+  mov [1716086], R0
+  mov R0, 1
+  mov [1716087], R0
+  mov R0, 0
+  mov [1716088], R0
+  mov R0, 0
+  mov [1716089], R0
+  mov R0, 3
+  mov [1716090], R0
+  mov R0, 2
+  mov [1716091], R0
+  mov R0, 1
+  mov [1716092], R0
+  mov R0, 0
+  mov [1716093], R0
+  mov R0, 0
+  mov [1716094], R0
+  mov R0, 0
+  mov [1716095], R0
+  mov R0, 0
+  mov [1716096], R0
+  mov R0, 3
+  mov [1716097], R0
+  mov R0, 3
+  mov [1716098], R0
+  mov R0, 1
+  mov [1716099], R0
+  mov R0, 0
+  mov [1716100], R0
+  mov R0, 0
+  mov [1716101], R0
+  mov R0, 0
+  mov [1716102], R0
+  mov R0, 0
+  mov [1716103], R0
+  mov R0, 0
+  mov [1716104], R0
+  mov R0, 0
+  mov [1716105], R0
+  mov R0, 2
+  mov [1716106], R0
+  mov R0, 3
+  mov [1716107], R0
+  mov R0, 1
+  mov [1716108], R0
+  mov R0, 2
+  mov [1716109], R0
+  mov R0, 0
+  mov [1716110], R0
+  mov R0, 0
+  mov [1716111], R0
+  mov R0, 3
+  mov [1716112], R0
+  mov R0, 3
+  mov [1716113], R0
+  mov R0, 1
+  mov [1716114], R0
+  mov R0, 0
+  mov [1716115], R0
+  mov R0, 0
+  mov [1716116], R0
+  mov R0, 0
+  mov [1716117], R0
+  mov R0, 0
+  mov [1716118], R0
+  mov R0, 0
+  mov [1716119], R0
+  mov R0, 0
+  mov [1716120], R0
+  mov R0, 3
+  mov [1716121], R0
+  mov R0, 2
+  mov [1716122], R0
+  mov R0, 1
+  mov [1716123], R0
+  mov R0, 0
+  mov [1716124], R0
+  mov R0, 0
+  mov [1716125], R0
+  mov R0, 3
+  mov [1716126], R0
+  mov R0, 3
+  mov [1716127], R0
+  mov R0, 1
+  mov [1716128], R0
+  mov R0, 0
+  mov [1716129], R0
+  mov R0, 0
+  mov [1716130], R0
+  mov R0, 0
+  mov [1716131], R0
+  mov R0, 0
+  mov [1716132], R0
+  mov R0, 2
+  mov [1716133], R0
+  mov R0, 3
+  mov [1716134], R0
+  mov R0, 1
+  mov [1716135], R0
+  mov R0, 0
+  mov [1716136], R0
+  mov R0, 0
+  mov [1716137], R0
+  mov R0, 2
+  mov [1716138], R0
+  mov R0, 0
+  mov [1716139], R0
+  mov R0, 0
+  mov [1716140], R0
+  mov R0, 0
+  mov [1716141], R0
+  mov R0, 0
+  mov [1716142], R0
+  mov R0, 3
+  mov [1716143], R0
+  mov R0, 3
+  mov [1716144], R0
+  mov R0, 1
+  mov [1716145], R0
+  mov R0, 0
+  mov [1716146], R0
+  mov R0, 0
+  mov [1716147], R0
+  mov R0, 3
+  mov [1716148], R0
+  mov R0, 2
+  mov [1716149], R0
+  mov R0, 0
+  mov [1716150], R0
+  mov R0, 1
+  mov [1716151], R0
+  mov R0, 0
+  mov [1716152], R0
+  mov R0, 0
+  mov [1716153], R0
+  mov R0, 0
+  mov [1716154], R0
+  mov R0, 3
+  mov [1716155], R0
+  mov R0, 3
+  mov [1716156], R0
+  mov R0, 1
+  mov [1716157], R0
+  mov R0, 0
+  mov [1716158], R0
+  mov R0, 0
+  mov [1716159], R0
+  mov R0, 0
+  mov [1716160], R0
+  mov R0, 0
+  mov [1716161], R0
+  mov R0, 2
+  mov [1716162], R0
+  mov R0, 3
+  mov [1716163], R0
+  mov R0, 1
+  mov [1716164], R0
+  mov R0, 2
+  mov [1716165], R0
+  mov R0, 3
+  mov [1716166], R0
+  mov R0, 3
+  mov [1716167], R0
+  mov R0, 1
+  mov [1716168], R0
+  mov R0, 0
+  mov [1716169], R0
+  mov R0, 0
+  mov [1716170], R0
+  mov R0, 3
+  mov [1716171], R0
+  mov R0, 2
+  mov [1716172], R0
+  mov R0, 1
+  mov [1716173], R0
+  mov R0, 0
+  mov [1716174], R0
+  mov R0, 0
+  mov [1716175], R0
+  mov R0, 3
+  mov [1716176], R0
+  mov R0, 3
+  mov [1716177], R0
+  mov R0, 1
+  mov [1716178], R0
+  mov R0, 0
+  mov [1716179], R0
+  mov R0, 0
+  mov [1716180], R0
+  mov R0, 0
+  mov [1716181], R0
+  mov R0, 0
+  mov [1716182], R0
+  mov R0, 2
+  mov [1716183], R0
+  mov R0, 3
+  mov [1716184], R0
+  mov R0, 1
+  mov [1716185], R0
+  mov R0, 0
+  mov [1716186], R0
+  mov R0, 0
+  mov [1716187], R0
+  mov R0, 2
+  mov [1716188], R0
+  mov R0, 0
+  mov [1716189], R0
+  mov R0, 0
+  mov [1716190], R0
+  mov R0, 0
+  mov [1716191], R0
+  mov R0, 0
+  mov [1716192], R0
+  mov R0, 3
+  mov [1716193], R0
+  mov R0, 3
+  mov [1716194], R0
+  mov R0, 1
+  mov [1716195], R0
+  mov R0, 0
+  mov [1716196], R0
+  mov R0, 0
+  mov [1716197], R0
+  mov R0, 3
+  mov [1716198], R0
+  mov R0, 2
+  mov [1716199], R0
+  mov R0, 1
+  mov [1716200], R0
+  mov R0, 0
+  mov [1716201], R0
+  mov R0, 0
+  mov [1716202], R0
+  mov R0, 0
+  mov [1716203], R0
+  mov R0, 0
+  mov [1716204], R0
+  mov R0, 3
+  mov [1716205], R0
+  mov R0, 3
+  mov [1716206], R0
+  mov R0, 1
+  mov [1716207], R0
+  mov R0, 0
+  mov [1716208], R0
+  mov R0, 0
+  mov [1716209], R0
+  mov R0, 0
+  mov [1716210], R0
+  mov R0, 0
+  mov [1716211], R0
+  mov R0, 0
+  mov [1716212], R0
+  mov R0, 0
+  mov [1716213], R0
+  mov R0, 3
+  mov [1716214], R0
+  mov R0, 2
+  mov [1716215], R0
+  mov R0, 1
+  mov [1716216], R0
+  mov R0, 0
+  mov [1716217], R0
+  mov R0, 0
+  mov [1716218], R0
+  mov R0, 3
+  mov [1716219], R0
+  mov R0, 3
+  mov [1716220], R0
+  mov R0, 1
+  mov [1716221], R0
+  mov R0, 0
+  mov [1716222], R0
+  mov R0, 0
+  mov [1716223], R0
+  mov R0, 0
+  mov [1716224], R0
+  mov R0, 0
+  mov [1716225], R0
+  mov R0, 0
+  mov [1716226], R0
+  mov R0, 0
+  mov [1716227], R0
+  mov R0, 3
+  mov [1716228], R0
+  mov R0, 2
+  mov [1716229], R0
+  mov R0, 1
+  mov [1716230], R0
+  mov R0, 0
+  mov [1716231], R0
+  mov R0, 0
+  mov [1716232], R0
+  mov R0, 3
+  mov [1716233], R0
+  mov R0, 3
+  mov [1716234], R0
+  mov R0, 1
+  mov [1716235], R0
+  mov R0, 0
+  mov [1716236], R0
+  mov R0, 0
+  mov [1716237], R0
+  mov R0, 0
+  mov [1716238], R0
+  mov R0, 0
+  mov [1716239], R0
+  mov R0, 2
+  mov [1716240], R0
+  mov R0, 3
+  mov [1716241], R0
+  mov R0, 1
+  mov [1716242], R0
+  mov R0, 0
+  mov [1716243], R0
+  mov R0, 0
+  mov [1716244], R0
+  mov R0, 2
+  mov [1716245], R0
+  mov R0, 0
+  mov [1716246], R0
+  mov R0, 0
+  mov [1716247], R0
+  mov R0, 0
+  mov [1716248], R0
+  mov R0, 0
+  mov [1716249], R0
+  mov R0, 3
+  mov [1716250], R0
+  mov R0, 3
+  mov [1716251], R0
+  mov R0, 1
+  mov [1716252], R0
+  mov R0, 0
+  mov [1716253], R0
+  mov R0, 0
+  mov [1716254], R0
+  mov R0, 3
+  mov [1716255], R0
+  mov R0, 0
+  mov [1716256], R0
+  mov R0, 0
+  mov [1716257], R0
+  mov R0, 3
+  mov [1716258], R0
+  mov R0, 1
+  mov [1716259], R0
+  mov R0, 0
+  mov [1716260], R0
+  mov R0, 0
+  mov [1716261], R0
+  mov R0, 2
+  mov [1716262], R0
+  mov R0, 0
+  mov [1716263], R0
+  mov R0, 0
+  mov [1716264], R0
+  mov R0, 0
+  mov [1716265], R0
+  mov R0, 0
+  mov [1716266], R0
+  mov R0, 3
+  mov [1716267], R0
+  mov R0, 0
+  mov [1716268], R0
+  mov R0, 1
+  mov [1716269], R0
+  mov R0, 0
+  mov [1716270], R0
+  mov R0, 0
+  mov [1716271], R0
+  mov R0, 0
+  mov [1716272], R0
+  mov R0, 2
+  mov [1716273], R0
+  mov R0, 0
+  mov [1716274], R0
+  mov R0, 0
+  mov [1716275], R0
+  mov R0, 2
+  mov [1716276], R0
+  mov R0, 0
+  mov [1716277], R0
+  mov R0, 0
+  mov [1716278], R0
+  mov R0, 3
+  mov [1716279], R0
+  mov R0, 0
+  mov [1716280], R0
+  mov R0, 0
+  mov [1716281], R0
+  mov R0, 1
+  mov [1716282], R0
+  mov R0, 3
+  mov [1716283], R0
+  mov R0, 0
+  mov [1716284], R0
+  mov R0, 0
+  mov [1716285], R0
+  mov R0, 2
+  mov [1716286], R0
+  mov R0, 0
+  mov [1716287], R0
+  mov R0, 0
+  mov [1716288], R0
+  mov R0, 0
+  mov [1716289], R0
+  mov R0, 0
+  mov [1716290], R0
+  mov R0, 0
+  mov [1716291], R0
+  mov R0, 0
+  mov [1716292], R0
+  mov R0, 1
+  mov [1716293], R0
+  mov R0, 3
+  mov [1716294], R0
+  mov R0, 0
+  mov [1716295], R0
+  mov R0, 0
+  mov [1716296], R0
+  mov R0, 2
+  mov [1716297], R0
+  mov R0, 0
+  mov [1716298], R0
+  mov R0, 0
+  mov [1716299], R0
+  mov R0, 2
+  mov [1716300], R0
+  mov R0, 0
+  mov [1716301], R0
+  mov R0, 0
+  mov [1716302], R0
+  mov R0, 0
+  mov [1716303], R0
+  mov R0, 0
+  mov [1716304], R0
+  mov R0, 1
+  mov [1716305], R0
+  mov R0, 3
+  mov [1716306], R0
+  mov R0, 2
+  mov [1716307], R0
+  mov R0, 0
+  mov [1716308], R0
+  mov R0, 0
+  mov [1716309], R0
+  mov R0, 3
+  mov [1716310], R0
+  mov R0, 1
+  mov [1716311], R0
+  mov R0, 3
+  mov [1716312], R0
+  mov R0, 0
+  mov [1716313], R0
+  mov R0, 0
+  mov [1716314], R0
+  mov R0, 0
+  mov [1716315], R0
+  mov R0, 0
+  mov [1716316], R0
+  mov R0, 2
+  mov [1716317], R0
+  mov R0, 1
+  mov [1716318], R0
+  mov R0, 3
+  mov [1716319], R0
+  mov R0, 0
+  mov [1716320], R0
+  mov R0, 0
+  mov [1716321], R0
+  mov R0, 2
+  mov [1716322], R0
+  mov R0, 0
+  mov [1716323], R0
+  mov R0, 0
+  mov [1716324], R0
+  mov R0, 0
+  mov [1716325], R0
+  mov R0, 0
+  mov [1716326], R0
+  mov R0, 3
+  mov [1716327], R0
+  mov R0, 1
+  mov [1716328], R0
+  mov R0, 3
+  mov [1716329], R0
+  mov R0, 0
+  mov [1716330], R0
+  mov R0, 0
+  mov [1716331], R0
+  mov R0, 2
+  mov [1716332], R0
+  mov R0, 3
+  mov [1716333], R0
+  mov R0, 1
+  mov [1716334], R0
+  mov R0, 0
+  mov [1716335], R0
+  mov R0, 0
+  mov [1716336], R0
+  mov R0, 0
+  mov [1716337], R0
+  mov R0, 0
+  mov [1716338], R0
+  mov R0, 3
+  mov [1716339], R0
+  mov R0, 1
+  mov [1716340], R0
+  mov R0, 0
+  mov [1716341], R0
+  mov R0, 0
+  mov [1716342], R0
+  mov R0, 3
+  mov [1716343], R0
+  mov R0, 0
+  mov [1716344], R0
+  mov R0, 0
+  mov [1716345], R0
+  mov R0, 0
+  mov [1716346], R0
+  mov R0, 0
+  mov [1716347], R0
+  mov R0, 2
+  mov [1716348], R0
+  mov R0, 3
+  mov [1716349], R0
+  mov R0, 1
+  mov [1716350], R0
+  mov R0, 2
+  mov [1716351], R0
+  mov R0, 0
+  mov [1716352], R0
+  mov R0, 0
+  mov [1716353], R0
+  mov R0, 3
+  mov [1716354], R0
+  mov R0, 3
+  mov [1716355], R0
+  mov R0, 1
+  mov [1716356], R0
+  mov R0, 0
+  mov [1716357], R0
+  mov R0, 0
+  mov [1716358], R0
+  mov R0, 0
+  mov [1716359], R0
+  mov R0, 0
+  mov [1716360], R0
+  mov R0, 0
+  mov [1716361], R0
+  mov R0, 2
+  mov [1716362], R0
+  mov R0, 1
+  mov [1716363], R0
+  mov R0, 0
+  mov [1716364], R0
+  mov R0, 3
+  mov [1716365], R0
+  mov R0, 0
+  mov [1716366], R0
+  mov R0, 0
+  mov [1716367], R0
+  mov R0, 3
+  mov [1716368], R0
+  mov R0, 3
+  mov [1716369], R0
+  mov R0, 1
+  mov [1716370], R0
+  mov R0, 0
+  mov [1716371], R0
+  mov R0, 0
+  mov [1716372], R0
+  mov R0, 0
+  mov [1716373], R0
+  mov R0, 0
+  mov [1716374], R0
+  mov R0, 2
+  mov [1716375], R0
+  mov R0, 1
+  mov [1716376], R0
+  mov R0, 0
+  mov [1716377], R0
+  mov R0, 0
+  mov [1716378], R0
+  mov R0, 3
+  mov [1716379], R0
+  mov R0, 2
+  mov [1716380], R0
+  mov R0, 0
+  mov [1716381], R0
+  mov R0, 0
+  mov [1716382], R0
+  mov R0, 0
+  mov [1716383], R0
+  mov R0, 0
+  mov [1716384], R0
+  mov R0, 3
+  mov [1716385], R0
+  mov R0, 3
+  mov [1716386], R0
+  mov R0, 1
+  mov [1716387], R0
+  mov R0, 0
+  mov [1716388], R0
+  mov R0, 0
+  mov [1716389], R0
+  mov R0, 3
+  mov [1716390], R0
+  mov R0, 2
+  mov [1716391], R0
+  mov R0, 0
+  mov [1716392], R0
+  mov R0, 1
+  mov [1716393], R0
+  mov R0, 0
+  mov [1716394], R0
+  mov R0, 0
+  mov [1716395], R0
+  mov R0, 0
+  mov [1716396], R0
+  mov R0, 3
+  mov [1716397], R0
+  mov R0, 3
+  mov [1716398], R0
+  mov R0, 1
+  mov [1716399], R0
+  mov R0, 0
+  mov [1716400], R0
+  mov R0, 0
+  mov [1716401], R0
+  mov R0, 0
+  mov [1716402], R0
+  mov R0, 0
+  mov [1716403], R0
+  mov R0, 2
+  mov [1716404], R0
+  mov R0, 3
+  mov [1716405], R0
+  mov R0, 1
+  mov [1716406], R0
+  mov R0, 2
+  mov [1716407], R0
+  mov R0, 3
+  mov [1716408], R0
+  mov R0, 3
+  mov [1716409], R0
+  mov R0, 1
+  mov [1716410], R0
+  mov R0, 0
+  mov [1716411], R0
+  mov R0, 0
+  mov [1716412], R0
+  mov R0, 3
+  mov [1716413], R0
+  mov R0, 2
+  mov [1716414], R0
+  mov R0, 1
+  mov [1716415], R0
+  mov R0, 0
+  mov [1716416], R0
+  mov R0, 0
+  mov [1716417], R0
+  mov R0, 3
+  mov [1716418], R0
+  mov R0, 3
+  mov [1716419], R0
+  mov R0, 1
+  mov [1716420], R0
+  mov R0, 0
+  mov [1716421], R0
+  mov R0, 0
+  mov [1716422], R0
+  mov R0, 0
+  mov [1716423], R0
+  mov R0, 0
+  mov [1716424], R0
+  mov R0, 2
+  mov [1716425], R0
+  mov R0, 3
+  mov [1716426], R0
+  mov R0, 1
+  mov [1716427], R0
+  mov R0, 0
+  mov [1716428], R0
+  mov R0, 0
+  mov [1716429], R0
+  mov R0, 2
+  mov [1716430], R0
+  mov R0, 0
+  mov [1716431], R0
+  mov R0, 0
+  mov [1716432], R0
+  mov R0, 0
+  mov [1716433], R0
+  mov R0, 3
+  mov [1716434], R0
+  mov R0, 3
+  mov [1716435], R0
+  mov R0, 1
+  mov [1716436], R0
+  mov R0, 0
+  mov [1716437], R0
+  mov R0, 0
+  mov [1716438], R0
+  mov R0, 0
+  mov [1716439], R0
+  mov R0, 2
+  mov [1716440], R0
+  mov R0, 3
+  mov [1716441], R0
+  mov R0, 1
+  mov [1716442], R0
+  mov R0, 0
+  mov [1716443], R0
+  mov R0, 0
+  mov [1716444], R0
+  mov R0, 0
+  mov [1716445], R0
+  mov R0, 0
+  mov [1716446], R0
+  mov R0, 3
+  mov [1716447], R0
+  mov R0, 1
+  mov [1716448], R0
+  mov R0, 0
+  mov [1716449], R0
+  mov R0, 0
+  mov [1716450], R0
+  mov R0, 3
+  mov [1716451], R0
+  mov R0, 0
+  mov [1716452], R0
+  mov R0, 0
+  mov [1716453], R0
+  mov R0, 0
+  mov [1716454], R0
+  mov R0, 0
+  mov [1716455], R0
+  mov R0, 3
+  mov [1716456], R0
+  mov R0, 2
+  mov [1716457], R0
+  mov R0, 1
+  mov [1716458], R0
+  mov R0, 0
+  mov [1716459], R0
+  mov R0, 0
+  mov [1716460], R0
+  mov R0, 3
+  mov [1716461], R0
+  mov R0, 1
+  mov [1716462], R0
+  mov R0, 0
+  mov [1716463], R0
+  mov R0, 0
+  mov [1716464], R0
+  mov R0, 3
+  mov [1716465], R0
+  mov R0, 0
+  mov [1716466], R0
+  mov R0, 0
+  mov [1716467], R0
+  mov R0, 0
+  mov [1716468], R0
+  mov R0, 0
+  mov [1716469], R0
+  mov R0, 3
+  mov [1716470], R0
+  mov R0, 2
+  mov [1716471], R0
+  mov R0, 1
+  mov [1716472], R0
+  mov R0, 0
+  mov [1716473], R0
+  mov R0, 0
+  mov [1716474], R0
+  mov R0, 3
+  mov [1716475], R0
+  mov R0, 3
+  mov [1716476], R0
+  mov R0, 1
+  mov [1716477], R0
+  mov R0, 0
+  mov [1716478], R0
+  mov R0, 0
+  mov [1716479], R0
+  mov R0, 0
+  mov [1716480], R0
+  mov R0, 0
+  mov [1716481], R0
+  mov R0, 2
+  mov [1716482], R0
+  mov R0, 3
+  mov [1716483], R0
+  mov R0, 1
+  mov [1716484], R0
+  mov R0, 0
+  mov [1716485], R0
+  mov R0, 0
+  mov [1716486], R0
+  mov R0, 2
+  mov [1716487], R0
+  mov R0, 0
+  mov [1716488], R0
+  mov R0, 0
+  mov [1716489], R0
+  mov R0, 0
+  mov [1716490], R0
+  mov R0, 0
+  mov [1716491], R0
+  mov R0, 3
+  mov [1716492], R0
+  mov R0, 3
+  mov [1716493], R0
+  mov R0, 1
+  mov [1716494], R0
+  mov R0, 0
+  mov [1716495], R0
+  mov R0, 0
+  mov [1716496], R0
+  mov R0, 3
+  mov [1716497], R0
+  mov R0, 3
+  mov [1716498], R0
+  mov R0, 1
+  mov [1716499], R0
+  mov R0, 0
+  mov [1716500], R0
+  mov R0, 0
+  mov [1716501], R0
+  mov R0, 2
+  mov [1716502], R0
+  mov R0, 0
+  mov [1716503], R0
+  mov R0, 0
+  mov [1716504], R0
+  mov R0, 3
+  mov [1716505], R0
+  mov R0, 3
+  mov [1716506], R0
+  mov R0, 1
+  mov [1716507], R0
+  mov R0, 0
+  mov [1716508], R0
+  mov R0, 0
+  mov [1716509], R0
+  mov R0, 2
+  mov [1716510], R0
+  mov R0, 0
+  mov [1716511], R0
+  mov R0, 0
+  mov [1716512], R0
+  mov R0, 3
+  mov [1716513], R0
+  mov R0, 1
+  mov [1716514], R0
+  mov R0, 3
+  mov [1716515], R0
+  mov R0, 3
+  mov [1716516], R0
+  mov R0, 3
+  mov [1716517], R0
+  mov R0, 2
+  mov [1716518], R0
+  mov R0, 3
+  mov [1716519], R0
+  mov R0, 3
+  mov [1716520], R0
+  mov R0, 1
+  mov [1716521], R0
+  mov R0, 2
+  mov [1716522], R0
+  mov R0, 0
+  mov [1716523], R0
+  mov R0, 0
+  mov [1716524], R0
+  mov R0, 3
+  mov [1716525], R0
+  mov R0, 2
+  mov [1716526], R0
+  mov R0, 1
+  mov [1716527], R0
+  mov R0, 0
+  mov [1716528], R0
+  mov R0, 0
+  mov [1716529], R0
+  mov R0, 3
+  mov [1716530], R0
+  mov R0, 3
+  mov [1716531], R0
+  mov R0, 0
+  mov [1716532], R0
+  mov R0, 0
+  mov [1716533], R0
+  mov R0, 1
+  mov [1716534], R0
+  mov R0, 0
+  mov [1716535], R0
+  mov R0, 0
+  mov [1716536], R0
+  mov R0, 3
+  mov [1716537], R0
+  mov R0, 2
+  mov [1716538], R0
+  mov R0, 0
+  mov [1716539], R0
+  mov R0, 0
+  mov [1716540], R0
+  mov R0, 1
+  mov [1716541], R0
+  mov R0, 2
+  mov [1716542], R0
+  mov R0, 0
+  mov [1716543], R0
+  mov R0, 0
+  mov [1716544], R0
+  mov R0, 3
+  mov [1716545], R0
+  mov R0, 0
+  mov [1716546], R0
+  mov R0, 0
+  mov [1716547], R0
+  mov R0, 3
+  mov [1716548], R0
+  mov R0, 1
+  mov [1716549], R0
+  mov R0, 0
+  mov [1716550], R0
+  mov R0, 0
+  mov [1716551], R0
+  mov R0, 3
+  mov [1716552], R0
+  mov R0, 2
+  mov [1716553], R0
+  mov R0, 0
+  mov [1716554], R0
+  mov R0, 0
+  mov [1716555], R0
+  mov R0, 1
+  mov [1716556], R0
+  mov R0, 0
+  mov [1716557], R0
+  mov R0, 0
+  mov [1716558], R0
+  mov R0, 3
+  mov [1716559], R0
+  mov R0, 3
+  mov [1716560], R0
+  mov R0, 0
+  mov [1716561], R0
+  mov R0, 0
+  mov [1716562], R0
+  mov R0, 1
+  mov [1716563], R0
+  mov R0, 0
+  mov [1716564], R0
+  mov R0, 0
+  mov [1716565], R0
+  mov R0, 3
+  mov [1716566], R0
+  mov R0, 0
+  mov [1716567], R0
+  mov R0, 0
+  mov [1716568], R0
+  mov R0, 2
+  mov [1716569], R0
+  mov R0, 1
+  mov [1716570], R0
+  mov R0, 2
+  mov [1716571], R0
+  mov R0, 0
+  mov [1716572], R0
+  mov R0, 0
+  mov [1716573], R0
+  mov R0, 3
+  mov [1716574], R0
+  mov R0, 3
+  mov [1716575], R0
+  mov R0, 0
+  mov [1716576], R0
+  mov R0, 0
+  mov [1716577], R0
+  mov R0, 1
+  mov [1716578], R0
+  mov R0, 0
+  mov [1716579], R0
+  mov R0, 0
+  mov [1716580], R0
+  mov R0, 0
+  mov [1716581], R0
+  mov R0, 0
+  mov [1716582], R0
+  mov R0, 2
+  mov [1716583], R0
+  mov R0, 3
+  mov [1716584], R0
+  mov R0, 1
+  mov [1716585], R0
+  mov R0, 0
+  mov [1716586], R0
+  mov R0, 0
+  mov [1716587], R0
+  mov R0, 3
+  mov [1716588], R0
+  mov R0, 3
+  mov [1716589], R0
+  mov R0, 0
+  mov [1716590], R0
+  mov R0, 1
+  mov [1716591], R0
+  mov R0, 0
+  mov [1716592], R0
+  mov R0, 0
+  mov [1716593], R0
+  mov R0, 0
+  mov [1716594], R0
+  mov R0, 3
+  mov [1716595], R0
+  mov R0, 2
+  mov [1716596], R0
+  mov R0, 0
+  mov [1716597], R0
+  mov R0, 0
+  mov [1716598], R0
+  mov R0, 1
+  mov [1716599], R0
+  mov R0, 2
+  mov [1716600], R0
+  mov R0, 0
+  mov [1716601], R0
+  mov R0, 0
+  mov [1716602], R0
+  mov R0, 3
+  mov [1716603], R0
+  mov R0, 0
+  mov [1716604], R0
+  mov R0, 0
+  mov [1716605], R0
+  mov R0, 3
+  mov [1716606], R0
+  mov R0, 1
+  mov [1716607], R0
+  mov R0, 0
+  mov [1716608], R0
+  mov R0, 0
+  mov [1716609], R0
+  mov R0, 3
+  mov [1716610], R0
+  mov R0, 2
+  mov [1716611], R0
+  mov R0, 0
+  mov [1716612], R0
+  mov R0, 0
+  mov [1716613], R0
+  mov R0, 1
+  mov [1716614], R0
+  mov R0, 0
+  mov [1716615], R0
+  mov R0, 0
+  mov [1716616], R0
+  mov R0, 3
+  mov [1716617], R0
+  mov R0, 3
+  mov [1716618], R0
+  mov R0, 1
+  mov [1716619], R0
+  mov R0, 0
+  mov [1716620], R0
+  mov R0, 0
+  mov [1716621], R0
+  mov R0, 0
+  mov [1716622], R0
+  mov R0, 0
+  mov [1716623], R0
+  mov R0, 3
+  mov [1716624], R0
+  mov R0, 2
+  mov [1716625], R0
+  mov R0, 1
+  mov [1716626], R0
+  mov R0, 2
+  mov [1716627], R0
+  mov R0, 3
+  mov [1716628], R0
+  mov R0, 3
+  mov [1716629], R0
+  mov R0, 1
+  mov [1716630], R0
+  mov R0, 0
+  mov [1716631], R0
+  mov R0, 0
+  mov [1716632], R0
+  mov R0, 3
+  mov [1716633], R0
+  mov R0, 2
+  mov [1716634], R0
+  mov R0, 1
+  mov [1716635], R0
+  mov R0, 0
+  mov [1716636], R0
+  mov R0, 0
+  mov [1716637], R0
+  mov R0, 3
+  mov [1716638], R0
+  mov R0, 3
+  mov [1716639], R0
+  mov R0, 0
+  mov [1716640], R0
+  mov R0, 0
+  mov [1716641], R0
+  mov R0, 1
+  mov [1716642], R0
+  mov R0, 0
+  mov [1716643], R0
+  mov R0, 0
+  mov [1716644], R0
+  mov R0, 3
+  mov [1716645], R0
+  mov R0, 2
+  mov [1716646], R0
+  mov R0, 0
+  mov [1716647], R0
+  mov R0, 0
+  mov [1716648], R0
+  mov R0, 1
+  mov [1716649], R0
+  mov R0, 2
+  mov [1716650], R0
+  mov R0, 0
+  mov [1716651], R0
+  mov R0, 0
+  mov [1716652], R0
+  mov R0, 3
+  mov [1716653], R0
+  mov R0, 0
+  mov [1716654], R0
+  mov R0, 0
+  mov [1716655], R0
+  mov R0, 3
+  mov [1716656], R0
+  mov R0, 1
+  mov [1716657], R0
+  mov R0, 0
+  mov [1716658], R0
+  mov R0, 0
+  mov [1716659], R0
+  mov R0, 3
+  mov [1716660], R0
+  mov R0, 2
+  mov [1716661], R0
+  mov R0, 0
+  mov [1716662], R0
+  mov R0, 1
+  mov [1716663], R0
+  mov R0, 0
+  mov [1716664], R0
+  mov R0, 0
+  mov [1716665], R0
+  mov R0, 0
+  mov [1716666], R0
+  mov R0, 3
+  mov [1716667], R0
+  mov R0, 3
+  mov [1716668], R0
+  mov R0, 0
+  mov [1716669], R0
+  mov R0, 0
+  mov [1716670], R0
+  mov R0, 1
+  mov [1716671], R0
+  mov R0, 0
+  mov [1716672], R0
+  mov R0, 0
+  mov [1716673], R0
+  mov R0, 3
+  mov [1716674], R0
+  mov R0, 0
+  mov [1716675], R0
+  mov R0, 0
+  mov [1716676], R0
+  mov R0, 2
+  mov [1716677], R0
+  mov R0, 1
+  mov [1716678], R0
+  mov R0, 0
+  mov [1716679], R0
+  mov R0, 0
+  mov [1716680], R0
+  mov R0, 3
+  mov [1716681], R0
+  mov R0, 3
+  mov [1716682], R0
+  mov R0, 0
+  mov [1716683], R0
+  mov R0, 0
+  mov [1716684], R0
+  mov R0, 1
+  mov [1716685], R0
+  mov R0, 0
+  mov [1716686], R0
+  mov R0, 0
+  mov [1716687], R0
+  mov R0, 3
+  mov [1716688], R0
+  mov R0, 0
+  mov [1716689], R0
+  mov R0, 0
+  mov [1716690], R0
+  mov R0, 2
+  mov [1716691], R0
+  mov R0, 1
+  mov [1716692], R0
+  mov R0, 0
+  mov [1716693], R0
+  mov R0, 0
+  mov [1716694], R0
+  mov R0, 3
+  mov [1716695], R0
+  mov R0, 3
+  mov [1716696], R0
+  mov R0, 0
+  mov [1716697], R0
+  mov R0, 1
+  mov [1716698], R0
+  mov R0, 0
+  mov [1716699], R0
+  mov R0, 0
+  mov [1716700], R0
+  mov R0, 0
+  mov [1716701], R0
+  mov R0, 3
+  mov [1716702], R0
+  mov R0, 2
+  mov [1716703], R0
+  mov R0, 1
+  mov [1716704], R0
+  mov R0, 0
+  mov [1716705], R0
+  mov R0, 0
+  mov [1716706], R0
+  mov R0, 2
+  mov [1716707], R0
+  mov R0, 0
+  mov [1716708], R0
+  mov R0, 0
+  mov [1716709], R0
+  mov R0, 3
+  mov [1716710], R0
+  mov R0, 0
+  mov [1716711], R0
+  mov R0, 0
+  mov [1716712], R0
+  mov R0, 3
+  mov [1716713], R0
+  mov R0, 1
+  mov [1716714], R0
+  mov R0, 0
+  mov [1716715], R0
+  mov R0, 0
+  mov [1716716], R0
+  mov R0, 2
+  mov [1716717], R0
+  mov R0, 3
+  mov [1716718], R0
+  mov R0, 3
+  mov [1716719], R0
+  mov R0, 3
+  mov [1716720], R0
+  mov R0, 0
+  mov [1716721], R0
+  mov R0, 0
+  mov [1716722], R0
+  mov R0, 1
+  mov [1716723], R0
+  mov R0, 0
+  mov [1716724], R0
+  mov R0, 0
+  mov [1716725], R0
+  mov R0, 0
+  mov [1716726], R0
+  mov R0, 0
+  mov [1716727], R0
+  mov R0, 0
+  mov [1716728], R0
+  mov R0, 0
+  mov [1716729], R0
+  mov R0, 0
+  mov [1716730], R0
+  mov R0, 0
+  mov [1716731], R0
+  mov R0, 0
+  mov [1716732], R0
+  mov R0, 0
+  mov [1716733], R0
+  mov R0, 0
+  mov [1716734], R0
+  mov R0, 0
+  mov [1716735], R0
+  mov R0, 0
+  mov [1716736], R0
+  mov R0, 0
+  mov [1716737], R0
+  mov R0, 0
+  mov [1716738], R0
+  mov R0, 0
+  mov [1716739], R0
+  mov R0, 0
+  mov [1716740], R0
+  mov R0, 0
+  mov [1716741], R0
+  mov R0, 0
+  mov [1716742], R0
+  mov R0, 0
+  mov [1716743], R0
+  mov R0, 0
+  mov [1716744], R0
+  mov R0, 0
+  mov [1716745], R0
+  mov R0, 0
+  mov [1716746], R0
+  mov R0, 0
+  mov [1716747], R0
+  mov R0, 0
+  mov [1716748], R0
+  mov R0, 0
+  mov [1716749], R0
+  mov R0, 0
+  mov [1716750], R0
+  mov R0, 0
+  mov [1716751], R0
+  mov R0, 0
+  mov [1716752], R0
+  mov R0, 0
+  mov [1716753], R0
+  mov R0, 40
+  mov [global_mus_e1m1_note], R0
+  mov R0, 40
+  mov [1716755], R0
+  mov R0, 36
+  mov [1716756], R0
+  mov R0, 60
+  mov [1716757], R0
+  mov R0, 60
+  mov [1716758], R0
+  mov R0, 40
+  mov [1716759], R0
+  mov R0, 52
+  mov [1716760], R0
+  mov R0, 40
+  mov [1716761], R0
+  mov R0, 40
+  mov [1716762], R0
+  mov R0, 50
+  mov [1716763], R0
+  mov R0, 40
+  mov [1716764], R0
+  mov R0, 40
+  mov [1716765], R0
+  mov R0, 48
+  mov [1716766], R0
+  mov R0, 40
+  mov [1716767], R0
+  mov R0, 40
+  mov [1716768], R0
+  mov R0, 46
+  mov [1716769], R0
+  mov R0, 40
+  mov [1716770], R0
+  mov R0, 40
+  mov [1716771], R0
+  mov R0, 47
+  mov [1716772], R0
+  mov R0, 48
+  mov [1716773], R0
+  mov R0, 40
+  mov [1716774], R0
+  mov R0, 36
+  mov [1716775], R0
+  mov R0, 60
+  mov [1716776], R0
+  mov R0, 60
+  mov [1716777], R0
+  mov R0, 40
+  mov [1716778], R0
+  mov R0, 40
+  mov [1716779], R0
+  mov R0, 52
+  mov [1716780], R0
+  mov R0, 40
+  mov [1716781], R0
+  mov R0, 40
+  mov [1716782], R0
+  mov R0, 50
+  mov [1716783], R0
+  mov R0, 40
+  mov [1716784], R0
+  mov R0, 40
+  mov [1716785], R0
+  mov R0, 48
+  mov [1716786], R0
+  mov R0, 40
+  mov [1716787], R0
+  mov R0, 40
+  mov [1716788], R0
+  mov R0, 46
+  mov [1716789], R0
+  mov R0, 40
+  mov [1716790], R0
+  mov R0, 36
+  mov [1716791], R0
+  mov R0, 40
+  mov [1716792], R0
+  mov R0, 60
+  mov [1716793], R0
+  mov R0, 60
+  mov [1716794], R0
+  mov R0, 40
+  mov [1716795], R0
+  mov R0, 52
+  mov [1716796], R0
+  mov R0, 40
+  mov [1716797], R0
+  mov R0, 40
+  mov [1716798], R0
+  mov R0, 50
+  mov [1716799], R0
+  mov R0, 40
+  mov [1716800], R0
+  mov R0, 40
+  mov [1716801], R0
+  mov R0, 48
+  mov [1716802], R0
+  mov R0, 40
+  mov [1716803], R0
+  mov R0, 40
+  mov [1716804], R0
+  mov R0, 46
+  mov [1716805], R0
+  mov R0, 40
+  mov [1716806], R0
+  mov R0, 40
+  mov [1716807], R0
+  mov R0, 47
+  mov [1716808], R0
+  mov R0, 48
+  mov [1716809], R0
+  mov R0, 40
+  mov [1716810], R0
+  mov R0, 36
+  mov [1716811], R0
+  mov R0, 60
+  mov [1716812], R0
+  mov R0, 40
+  mov [1716813], R0
+  mov R0, 60
+  mov [1716814], R0
+  mov R0, 40
+  mov [1716815], R0
+  mov R0, 52
+  mov [1716816], R0
+  mov R0, 40
+  mov [1716817], R0
+  mov R0, 40
+  mov [1716818], R0
+  mov R0, 50
+  mov [1716819], R0
+  mov R0, 40
+  mov [1716820], R0
+  mov R0, 40
+  mov [1716821], R0
+  mov R0, 48
+  mov [1716822], R0
+  mov R0, 40
+  mov [1716823], R0
+  mov R0, 40
+  mov [1716824], R0
+  mov R0, 46
+  mov [1716825], R0
+  mov R0, 40
+  mov [1716826], R0
+  mov R0, 36
+  mov [1716827], R0
+  mov R0, 60
+  mov [1716828], R0
+  mov R0, 60
+  mov [1716829], R0
+  mov R0, 60
+  mov [1716830], R0
+  mov R0, 60
+  mov [1716831], R0
+  mov R0, 40
+  mov [1716832], R0
+  mov R0, 40
+  mov [1716833], R0
+  mov R0, 40
+  mov [1716834], R0
+  mov R0, 40
+  mov [1716835], R0
+  mov R0, 60
+  mov [1716836], R0
+  mov R0, 60
+  mov [1716837], R0
+  mov R0, 52
+  mov [1716838], R0
+  mov R0, 52
+  mov [1716839], R0
+  mov R0, 40
+  mov [1716840], R0
+  mov R0, 40
+  mov [1716841], R0
+  mov R0, 40
+  mov [1716842], R0
+  mov R0, 40
+  mov [1716843], R0
+  mov R0, 50
+  mov [1716844], R0
+  mov R0, 50
+  mov [1716845], R0
+  mov R0, 40
+  mov [1716846], R0
+  mov R0, 40
+  mov [1716847], R0
+  mov R0, 40
+  mov [1716848], R0
+  mov R0, 40
+  mov [1716849], R0
+  mov R0, 48
+  mov [1716850], R0
+  mov R0, 48
+  mov [1716851], R0
+  mov R0, 40
+  mov [1716852], R0
+  mov R0, 40
+  mov [1716853], R0
+  mov R0, 40
+  mov [1716854], R0
+  mov R0, 40
+  mov [1716855], R0
+  mov R0, 46
+  mov [1716856], R0
+  mov R0, 46
+  mov [1716857], R0
+  mov R0, 40
+  mov [1716858], R0
+  mov R0, 40
+  mov [1716859], R0
+  mov R0, 40
+  mov [1716860], R0
+  mov R0, 40
+  mov [1716861], R0
+  mov R0, 47
+  mov [1716862], R0
+  mov R0, 47
+  mov [1716863], R0
+  mov R0, 48
+  mov [1716864], R0
+  mov R0, 48
+  mov [1716865], R0
+  mov R0, 40
+  mov [1716866], R0
+  mov R0, 40
+  mov [1716867], R0
+  mov R0, 60
+  mov [1716868], R0
+  mov R0, 36
+  mov [1716869], R0
+  mov R0, 60
+  mov [1716870], R0
+  mov R0, 60
+  mov [1716871], R0
+  mov R0, 60
+  mov [1716872], R0
+  mov R0, 40
+  mov [1716873], R0
+  mov R0, 40
+  mov [1716874], R0
+  mov R0, 40
+  mov [1716875], R0
+  mov R0, 60
+  mov [1716876], R0
+  mov R0, 60
+  mov [1716877], R0
+  mov R0, 52
+  mov [1716878], R0
+  mov R0, 52
+  mov [1716879], R0
+  mov R0, 40
+  mov [1716880], R0
+  mov R0, 40
+  mov [1716881], R0
+  mov R0, 40
+  mov [1716882], R0
+  mov R0, 40
+  mov [1716883], R0
+  mov R0, 50
+  mov [1716884], R0
+  mov R0, 50
+  mov [1716885], R0
+  mov R0, 40
+  mov [1716886], R0
+  mov R0, 40
+  mov [1716887], R0
+  mov R0, 40
+  mov [1716888], R0
+  mov R0, 40
+  mov [1716889], R0
+  mov R0, 48
+  mov [1716890], R0
+  mov R0, 48
+  mov [1716891], R0
+  mov R0, 40
+  mov [1716892], R0
+  mov R0, 40
+  mov [1716893], R0
+  mov R0, 40
+  mov [1716894], R0
+  mov R0, 40
+  mov [1716895], R0
+  mov R0, 46
+  mov [1716896], R0
+  mov R0, 46
+  mov [1716897], R0
+  mov R0, 40
+  mov [1716898], R0
+  mov R0, 40
+  mov [1716899], R0
+  mov R0, 60
+  mov [1716900], R0
+  mov R0, 60
+  mov [1716901], R0
+  mov R0, 36
+  mov [1716902], R0
+  mov R0, 60
+  mov [1716903], R0
+  mov R0, 60
+  mov [1716904], R0
+  mov R0, 40
+  mov [1716905], R0
+  mov R0, 40
+  mov [1716906], R0
+  mov R0, 40
+  mov [1716907], R0
+  mov R0, 60
+  mov [1716908], R0
+  mov R0, 60
+  mov [1716909], R0
+  mov R0, 52
+  mov [1716910], R0
+  mov R0, 52
+  mov [1716911], R0
+  mov R0, 40
+  mov [1716912], R0
+  mov R0, 40
+  mov [1716913], R0
+  mov R0, 40
+  mov [1716914], R0
+  mov R0, 40
+  mov [1716915], R0
+  mov R0, 50
+  mov [1716916], R0
+  mov R0, 50
+  mov [1716917], R0
+  mov R0, 40
+  mov [1716918], R0
+  mov R0, 40
+  mov [1716919], R0
+  mov R0, 40
+  mov [1716920], R0
+  mov R0, 40
+  mov [1716921], R0
+  mov R0, 48
+  mov [1716922], R0
+  mov R0, 48
+  mov [1716923], R0
+  mov R0, 40
+  mov [1716924], R0
+  mov R0, 40
+  mov [1716925], R0
+  mov R0, 40
+  mov [1716926], R0
+  mov R0, 40
+  mov [1716927], R0
+  mov R0, 46
+  mov [1716928], R0
+  mov R0, 46
+  mov [1716929], R0
+  mov R0, 40
+  mov [1716930], R0
+  mov R0, 40
+  mov [1716931], R0
+  mov R0, 40
+  mov [1716932], R0
+  mov R0, 40
+  mov [1716933], R0
+  mov R0, 47
+  mov [1716934], R0
+  mov R0, 47
+  mov [1716935], R0
+  mov R0, 48
+  mov [1716936], R0
+  mov R0, 48
+  mov [1716937], R0
+  mov R0, 40
+  mov [1716938], R0
+  mov R0, 40
+  mov [1716939], R0
+  mov R0, 60
+  mov [1716940], R0
+  mov R0, 60
+  mov [1716941], R0
+  mov R0, 36
+  mov [1716942], R0
+  mov R0, 60
+  mov [1716943], R0
+  mov R0, 60
+  mov [1716944], R0
+  mov R0, 40
+  mov [1716945], R0
+  mov R0, 40
+  mov [1716946], R0
+  mov R0, 40
+  mov [1716947], R0
+  mov R0, 60
+  mov [1716948], R0
+  mov R0, 60
+  mov [1716949], R0
+  mov R0, 52
+  mov [1716950], R0
+  mov R0, 52
+  mov [1716951], R0
+  mov R0, 40
+  mov [1716952], R0
+  mov R0, 40
+  mov [1716953], R0
+  mov R0, 40
+  mov [1716954], R0
+  mov R0, 40
+  mov [1716955], R0
+  mov R0, 50
+  mov [1716956], R0
+  mov R0, 50
+  mov [1716957], R0
+  mov R0, 40
+  mov [1716958], R0
+  mov R0, 40
+  mov [1716959], R0
+  mov R0, 40
+  mov [1716960], R0
+  mov R0, 40
+  mov [1716961], R0
+  mov R0, 60
+  mov [1716962], R0
+  mov R0, 60
+  mov [1716963], R0
+  mov R0, 36
+  mov [1716964], R0
+  mov R0, 63
+  mov [1716965], R0
+  mov R0, 66
+  mov [1716966], R0
+  mov R0, 60
+  mov [1716967], R0
+  mov R0, 64
+  mov [1716968], R0
+  mov R0, 60
+  mov [1716969], R0
+  mov R0, 60
+  mov [1716970], R0
+  mov R0, 36
+  mov [1716971], R0
+  mov R0, 59
+  mov [1716972], R0
+  mov R0, 63
+  mov [1716973], R0
+  mov R0, 63
+  mov [1716974], R0
+  mov R0, 66
+  mov [1716975], R0
+  mov R0, 36
+  mov [1716976], R0
+  mov R0, 60
+  mov [1716977], R0
+  mov R0, 66
+  mov [1716978], R0
+  mov R0, 60
+  mov [1716979], R0
+  mov R0, 69
+  mov [1716980], R0
+  mov R0, 64
+  mov [1716981], R0
+  mov R0, 67
+  mov [1716982], R0
+  mov R0, 60
+  mov [1716983], R0
+  mov R0, 60
+  mov [1716984], R0
+  mov R0, 63
+  mov [1716985], R0
+  mov R0, 36
+  mov [1716986], R0
+  mov R0, 66
+  mov [1716987], R0
+  mov R0, 59
+  mov [1716988], R0
+  mov R0, 63
+  mov [1716989], R0
+  mov R0, 36
+  mov [1716990], R0
+  mov R0, 60
+  mov [1716991], R0
+  mov R0, 60
+  mov [1716992], R0
+  mov R0, 63
+  mov [1716993], R0
+  mov R0, 66
+  mov [1716994], R0
+  mov R0, 64
+  mov [1716995], R0
+  mov R0, 67
+  mov [1716996], R0
+  mov R0, 60
+  mov [1716997], R0
+  mov R0, 36
+  mov [1716998], R0
+  mov R0, 60
+  mov [1716999], R0
+  mov R0, 66
+  mov [1717000], R0
+  mov R0, 69
+  mov [1717001], R0
+  mov R0, 67
+  mov [1717002], R0
+  mov R0, 71
+  mov [1717003], R0
+  mov R0, 36
+  mov [1717004], R0
+  mov R0, 60
+  mov [1717005], R0
+  mov R0, 66
+  mov [1717006], R0
+  mov R0, 60
+  mov [1717007], R0
+  mov R0, 69
+  mov [1717008], R0
+  mov R0, 64
+  mov [1717009], R0
+  mov R0, 67
+  mov [1717010], R0
+  mov R0, 60
+  mov [1717011], R0
+  mov R0, 60
+  mov [1717012], R0
+  mov R0, 36
+  mov [1717013], R0
+  mov R0, 63
+  mov [1717014], R0
+  mov R0, 66
+  mov [1717015], R0
+  mov R0, 59
+  mov [1717016], R0
+  mov R0, 63
+  mov [1717017], R0
+  mov R0, 40
+  mov [1717018], R0
+  mov R0, 40
+  mov [1717019], R0
+  mov R0, 40
+  mov [1717020], R0
+  mov R0, 60
+  mov [1717021], R0
+  mov R0, 36
+  mov [1717022], R0
+  mov R0, 40
+  mov [1717023], R0
+  mov R0, 40
+  mov [1717024], R0
+  mov R0, 60
+  mov [1717025], R0
+  mov R0, 40
+  mov [1717026], R0
+  mov R0, 52
+  mov [1717027], R0
+  mov R0, 60
+  mov [1717028], R0
+  mov R0, 52
+  mov [1717029], R0
+  mov R0, 40
+  mov [1717030], R0
+  mov R0, 40
+  mov [1717031], R0
+  mov R0, 36
+  mov [1717032], R0
+  mov R0, 40
+  mov [1717033], R0
+  mov R0, 60
+  mov [1717034], R0
+  mov R0, 40
+  mov [1717035], R0
+  mov R0, 40
+  mov [1717036], R0
+  mov R0, 36
+  mov [1717037], R0
+  mov R0, 50
+  mov [1717038], R0
+  mov R0, 50
+  mov [1717039], R0
+  mov R0, 40
+  mov [1717040], R0
+  mov R0, 40
+  mov [1717041], R0
+  mov R0, 60
+  mov [1717042], R0
+  mov R0, 40
+  mov [1717043], R0
+  mov R0, 60
+  mov [1717044], R0
+  mov R0, 40
+  mov [1717045], R0
+  mov R0, 40
+  mov [1717046], R0
+  mov R0, 36
+  mov [1717047], R0
+  mov R0, 60
+  mov [1717048], R0
+  mov R0, 40
+  mov [1717049], R0
+  mov R0, 48
+  mov [1717050], R0
+  mov R0, 48
+  mov [1717051], R0
+  mov R0, 40
+  mov [1717052], R0
+  mov R0, 40
+  mov [1717053], R0
+  mov R0, 60
+  mov [1717054], R0
+  mov R0, 40
+  mov [1717055], R0
+  mov R0, 40
+  mov [1717056], R0
+  mov R0, 40
+  mov [1717057], R0
+  mov R0, 60
+  mov [1717058], R0
+  mov R0, 46
+  mov [1717059], R0
+  mov R0, 46
+  mov [1717060], R0
+  mov R0, 40
+  mov [1717061], R0
+  mov R0, 40
+  mov [1717062], R0
+  mov R0, 36
+  mov [1717063], R0
+  mov R0, 60
+  mov [1717064], R0
+  mov R0, 40
+  mov [1717065], R0
+  mov R0, 36
+  mov [1717066], R0
+  mov R0, 40
+  mov [1717067], R0
+  mov R0, 40
+  mov [1717068], R0
+  mov R0, 60
+  mov [1717069], R0
+  mov R0, 60
+  mov [1717070], R0
+  mov R0, 40
+  mov [1717071], R0
+  mov R0, 47
+  mov [1717072], R0
+  mov R0, 47
+  mov [1717073], R0
+  mov R0, 48
+  mov [1717074], R0
+  mov R0, 48
+  mov [1717075], R0
+  mov R0, 40
+  mov [1717076], R0
+  mov R0, 40
+  mov [1717077], R0
+  mov R0, 36
+  mov [1717078], R0
+  mov R0, 60
+  mov [1717079], R0
+  mov R0, 40
+  mov [1717080], R0
+  mov R0, 40
+  mov [1717081], R0
+  mov R0, 40
+  mov [1717082], R0
+  mov R0, 60
+  mov [1717083], R0
+  mov R0, 60
+  mov [1717084], R0
+  mov R0, 40
+  mov [1717085], R0
+  mov R0, 52
+  mov [1717086], R0
+  mov R0, 52
+  mov [1717087], R0
+  mov R0, 40
+  mov [1717088], R0
+  mov R0, 40
+  mov [1717089], R0
+  mov R0, 36
+  mov [1717090], R0
+  mov R0, 40
+  mov [1717091], R0
+  mov R0, 60
+  mov [1717092], R0
+  mov R0, 40
+  mov [1717093], R0
+  mov R0, 40
+  mov [1717094], R0
+  mov R0, 36
+  mov [1717095], R0
+  mov R0, 50
+  mov [1717096], R0
+  mov R0, 50
+  mov [1717097], R0
+  mov R0, 40
+  mov [1717098], R0
+  mov R0, 40
+  mov [1717099], R0
+  mov R0, 60
+  mov [1717100], R0
+  mov R0, 60
+  mov [1717101], R0
+  mov R0, 40
+  mov [1717102], R0
+  mov R0, 40
+  mov [1717103], R0
+  mov R0, 40
+  mov [1717104], R0
+  mov R0, 60
+  mov [1717105], R0
+  mov R0, 36
+  mov [1717106], R0
+  mov R0, 48
+  mov [1717107], R0
+  mov R0, 40
+  mov [1717108], R0
+  mov R0, 48
+  mov [1717109], R0
+  mov R0, 40
+  mov [1717110], R0
+  mov R0, 40
+  mov [1717111], R0
+  mov R0, 60
+  mov [1717112], R0
+  mov R0, 60
+  mov [1717113], R0
+  mov R0, 40
+  mov [1717114], R0
+  mov R0, 40
+  mov [1717115], R0
+  mov R0, 40
+  mov [1717116], R0
+  mov R0, 46
+  mov [1717117], R0
+  mov R0, 46
+  mov [1717118], R0
+  mov R0, 36
+  mov [1717119], R0
+  mov R0, 60
+  mov [1717120], R0
+  mov R0, 40
+  mov [1717121], R0
+  mov R0, 36
+  mov [1717122], R0
+  mov R0, 60
+  mov [1717123], R0
+  mov R0, 60
+  mov [1717124], R0
+  mov R0, 40
+  mov [1717125], R0
+  mov R0, 40
+  mov [1717126], R0
+  mov R0, 40
+  mov [1717127], R0
+  mov R0, 60
+  mov [1717128], R0
+  mov R0, 36
+  mov [1717129], R0
+  mov R0, 40
+  mov [1717130], R0
+  mov R0, 40
+  mov [1717131], R0
+  mov R0, 40
+  mov [1717132], R0
+  mov R0, 60
+  mov [1717133], R0
+  mov R0, 60
+  mov [1717134], R0
+  mov R0, 40
+  mov [1717135], R0
+  mov R0, 52
+  mov [1717136], R0
+  mov R0, 52
+  mov [1717137], R0
+  mov R0, 40
+  mov [1717138], R0
+  mov R0, 40
+  mov [1717139], R0
+  mov R0, 36
+  mov [1717140], R0
+  mov R0, 60
+  mov [1717141], R0
+  mov R0, 40
+  mov [1717142], R0
+  mov R0, 40
+  mov [1717143], R0
+  mov R0, 40
+  mov [1717144], R0
+  mov R0, 36
+  mov [1717145], R0
+  mov R0, 50
+  mov [1717146], R0
+  mov R0, 50
+  mov [1717147], R0
+  mov R0, 40
+  mov [1717148], R0
+  mov R0, 40
+  mov [1717149], R0
+  mov R0, 60
+  mov [1717150], R0
+  mov R0, 60
+  mov [1717151], R0
+  mov R0, 40
+  mov [1717152], R0
+  mov R0, 40
+  mov [1717153], R0
+  mov R0, 40
+  mov [1717154], R0
+  mov R0, 36
+  mov [1717155], R0
+  mov R0, 60
+  mov [1717156], R0
+  mov R0, 40
+  mov [1717157], R0
+  mov R0, 48
+  mov [1717158], R0
+  mov R0, 48
+  mov [1717159], R0
+  mov R0, 40
+  mov [1717160], R0
+  mov R0, 40
+  mov [1717161], R0
+  mov R0, 60
+  mov [1717162], R0
+  mov R0, 60
+  mov [1717163], R0
+  mov R0, 40
+  mov [1717164], R0
+  mov R0, 40
+  mov [1717165], R0
+  mov R0, 40
+  mov [1717166], R0
+  mov R0, 46
+  mov [1717167], R0
+  mov R0, 46
+  mov [1717168], R0
+  mov R0, 40
+  mov [1717169], R0
+  mov R0, 40
+  mov [1717170], R0
+  mov R0, 60
+  mov [1717171], R0
+  mov R0, 36
+  mov [1717172], R0
+  mov R0, 40
+  mov [1717173], R0
+  mov R0, 40
+  mov [1717174], R0
+  mov R0, 40
+  mov [1717175], R0
+  mov R0, 60
+  mov [1717176], R0
+  mov R0, 40
+  mov [1717177], R0
+  mov R0, 47
+  mov [1717178], R0
+  mov R0, 60
+  mov [1717179], R0
+  mov R0, 47
+  mov [1717180], R0
+  mov R0, 48
+  mov [1717181], R0
+  mov R0, 48
+  mov [1717182], R0
+  mov R0, 40
+  mov [1717183], R0
+  mov R0, 40
+  mov [1717184], R0
+  mov R0, 60
+  mov [1717185], R0
+  mov R0, 36
+  mov [1717186], R0
+  mov R0, 40
+  mov [1717187], R0
+  mov R0, 40
+  mov [1717188], R0
+  mov R0, 40
+  mov [1717189], R0
+  mov R0, 60
+  mov [1717190], R0
+  mov R0, 60
+  mov [1717191], R0
+  mov R0, 40
+  mov [1717192], R0
+  mov R0, 52
+  mov [1717193], R0
+  mov R0, 52
+  mov [1717194], R0
+  mov R0, 40
+  mov [1717195], R0
+  mov R0, 40
+  mov [1717196], R0
+  mov R0, 36
+  mov [1717197], R0
+  mov R0, 60
+  mov [1717198], R0
+  mov R0, 40
+  mov [1717199], R0
+  mov R0, 40
+  mov [1717200], R0
+  mov R0, 40
+  mov [1717201], R0
+  mov R0, 36
+  mov [1717202], R0
+  mov R0, 50
+  mov [1717203], R0
+  mov R0, 50
+  mov [1717204], R0
+  mov R0, 40
+  mov [1717205], R0
+  mov R0, 40
+  mov [1717206], R0
+  mov R0, 60
+  mov [1717207], R0
+  mov R0, 60
+  mov [1717208], R0
+  mov R0, 40
+  mov [1717209], R0
+  mov R0, 40
+  mov [1717210], R0
+  mov R0, 40
+  mov [1717211], R0
+  mov R0, 36
+  mov [1717212], R0
+  mov R0, 60
+  mov [1717213], R0
+  mov R0, 60
+  mov [1717214], R0
+  mov R0, 67
+  mov [1717215], R0
+  mov R0, 71
+  mov [1717216], R0
+  mov R0, 40
+  mov [1717217], R0
+  mov R0, 64
+  mov [1717218], R0
+  mov R0, 67
+  mov [1717219], R0
+  mov R0, 36
+  mov [1717220], R0
+  mov R0, 59
+  mov [1717221], R0
+  mov R0, 64
+  mov [1717222], R0
+  mov R0, 64
+  mov [1717223], R0
+  mov R0, 67
+  mov [1717224], R0
+  mov R0, 36
+  mov [1717225], R0
+  mov R0, 60
+  mov [1717226], R0
+  mov R0, 67
+  mov [1717227], R0
+  mov R0, 71
+  mov [1717228], R0
+  mov R0, 40
+  mov [1717229], R0
+  mov R0, 60
+  mov [1717230], R0
+  mov R0, 64
+  mov [1717231], R0
+  mov R0, 67
+  mov [1717232], R0
+  mov R0, 36
+  mov [1717233], R0
+  mov R0, 67
+  mov [1717234], R0
+  mov R0, 71
+  mov [1717235], R0
+  mov R0, 71
+  mov [1717236], R0
+  mov R0, 76
+  mov [1717237], R0
+  mov R0, 36
+  mov [1717238], R0
+  mov R0, 60
+  mov [1717239], R0
+  mov R0, 67
+  mov [1717240], R0
+  mov R0, 60
+  mov [1717241], R0
+  mov R0, 71
+  mov [1717242], R0
+  mov R0, 40
+  mov [1717243], R0
+  mov R0, 64
+  mov [1717244], R0
+  mov R0, 67
+  mov [1717245], R0
+  mov R0, 36
+  mov [1717246], R0
+  mov R0, 67
+  mov [1717247], R0
+  mov R0, 71
+  mov [1717248], R0
+  mov R0, 64
+  mov [1717249], R0
+  mov R0, 67
+  mov [1717250], R0
+  mov R0, 36
+  mov [1717251], R0
+  mov R0, 67
+  mov [1717252], R0
+  mov R0, 71
+  mov [1717253], R0
+  mov R0, 40
+  mov [1717254], R0
+  mov R0, 60
+  mov [1717255], R0
+  mov R0, 60
+  mov [1717256], R0
+  mov R0, 71
+  mov [1717257], R0
+  mov R0, 76
+  mov [1717258], R0
+  mov R0, 36
+  mov [1717259], R0
+  mov R0, 60
+  mov [1717260], R0
+  mov R0, 60
+  mov [1717261], R0
+  mov R0, 76
+  mov [1717262], R0
+  mov R0, 79
+  mov [1717263], R0
+  mov R0, 79
+  mov [1717264], R0
+  mov R0, 83
+  mov [1717265], R0
+  mov R0, 45
+  mov [1717266], R0
+  mov R0, 45
+  mov [1717267], R0
+  mov R0, 60
+  mov [1717268], R0
+  mov R0, 33
+  mov [1717269], R0
+  mov R0, 36
+  mov [1717270], R0
+  mov R0, 45
+  mov [1717271], R0
+  mov R0, 45
+  mov [1717272], R0
+  mov R0, 60
+  mov [1717273], R0
+  mov R0, 60
+  mov [1717274], R0
+  mov R0, 33
+  mov [1717275], R0
+  mov R0, 57
+  mov [1717276], R0
+  mov R0, 57
+  mov [1717277], R0
+  mov R0, 45
+  mov [1717278], R0
+  mov R0, 45
+  mov [1717279], R0
+  mov R0, 36
+  mov [1717280], R0
+  mov R0, 60
+  mov [1717281], R0
+  mov R0, 33
+  mov [1717282], R0
+  mov R0, 45
+  mov [1717283], R0
+  mov R0, 45
+  mov [1717284], R0
+  mov R0, 36
+  mov [1717285], R0
+  mov R0, 55
+  mov [1717286], R0
+  mov R0, 55
+  mov [1717287], R0
+  mov R0, 45
+  mov [1717288], R0
+  mov R0, 45
+  mov [1717289], R0
+  mov R0, 60
+  mov [1717290], R0
+  mov R0, 60
+  mov [1717291], R0
+  mov R0, 33
+  mov [1717292], R0
+  mov R0, 45
+  mov [1717293], R0
+  mov R0, 45
+  mov [1717294], R0
+  mov R0, 60
+  mov [1717295], R0
+  mov R0, 36
+  mov [1717296], R0
+  mov R0, 33
+  mov [1717297], R0
+  mov R0, 53
+  mov [1717298], R0
+  mov R0, 53
+  mov [1717299], R0
+  mov R0, 45
+  mov [1717300], R0
+  mov R0, 45
+  mov [1717301], R0
+  mov R0, 60
+  mov [1717302], R0
+  mov R0, 60
+  mov [1717303], R0
+  mov R0, 33
+  mov [1717304], R0
+  mov R0, 45
+  mov [1717305], R0
+  mov R0, 45
+  mov [1717306], R0
+  mov R0, 51
+  mov [1717307], R0
+  mov R0, 51
+  mov [1717308], R0
+  mov R0, 45
+  mov [1717309], R0
+  mov R0, 45
+  mov [1717310], R0
+  mov R0, 36
+  mov [1717311], R0
+  mov R0, 60
+  mov [1717312], R0
+  mov R0, 33
+  mov [1717313], R0
+  mov R0, 36
+  mov [1717314], R0
+  mov R0, 45
+  mov [1717315], R0
+  mov R0, 45
+  mov [1717316], R0
+  mov R0, 60
+  mov [1717317], R0
+  mov R0, 60
+  mov [1717318], R0
+  mov R0, 33
+  mov [1717319], R0
+  mov R0, 52
+  mov [1717320], R0
+  mov R0, 52
+  mov [1717321], R0
+  mov R0, 53
+  mov [1717322], R0
+  mov R0, 53
+  mov [1717323], R0
+  mov R0, 45
+  mov [1717324], R0
+  mov R0, 45
+  mov [1717325], R0
+  mov R0, 60
+  mov [1717326], R0
+  mov R0, 36
+  mov [1717327], R0
+  mov R0, 33
+  mov [1717328], R0
+  mov R0, 45
+  mov [1717329], R0
+  mov R0, 45
+  mov [1717330], R0
+  mov R0, 60
+  mov [1717331], R0
+  mov R0, 60
+  mov [1717332], R0
+  mov R0, 33
+  mov [1717333], R0
+  mov R0, 57
+  mov [1717334], R0
+  mov R0, 57
+  mov [1717335], R0
+  mov R0, 45
+  mov [1717336], R0
+  mov R0, 45
+  mov [1717337], R0
+  mov R0, 36
+  mov [1717338], R0
+  mov R0, 60
+  mov [1717339], R0
+  mov R0, 33
+  mov [1717340], R0
+  mov R0, 45
+  mov [1717341], R0
+  mov R0, 45
+  mov [1717342], R0
+  mov R0, 36
+  mov [1717343], R0
+  mov R0, 55
+  mov [1717344], R0
+  mov R0, 55
+  mov [1717345], R0
+  mov R0, 45
+  mov [1717346], R0
+  mov R0, 45
+  mov [1717347], R0
+  mov R0, 60
+  mov [1717348], R0
+  mov R0, 60
+  mov [1717349], R0
+  mov R0, 33
+  mov [1717350], R0
+  mov R0, 45
+  mov [1717351], R0
+  mov R0, 45
+  mov [1717352], R0
+  mov R0, 60
+  mov [1717353], R0
+  mov R0, 36
+  mov [1717354], R0
+  mov R0, 53
+  mov [1717355], R0
+  mov R0, 33
+  mov [1717356], R0
+  mov R0, 53
+  mov [1717357], R0
+  mov R0, 45
+  mov [1717358], R0
+  mov R0, 45
+  mov [1717359], R0
+  mov R0, 60
+  mov [1717360], R0
+  mov R0, 60
+  mov [1717361], R0
+  mov R0, 33
+  mov [1717362], R0
+  mov R0, 45
+  mov [1717363], R0
+  mov R0, 45
+  mov [1717364], R0
+  mov R0, 51
+  mov [1717365], R0
+  mov R0, 51
+  mov [1717366], R0
+  mov R0, 36
+  mov [1717367], R0
+  mov R0, 60
+  mov [1717368], R0
+  mov R0, 33
+  mov [1717369], R0
+  mov R0, 36
+  mov [1717370], R0
+  mov R0, 60
+  mov [1717371], R0
+  mov R0, 60
+  mov [1717372], R0
+  mov R0, 33
+  mov [1717373], R0
+  mov R0, 45
+  mov [1717374], R0
+  mov R0, 45
+  mov [1717375], R0
+  mov R0, 60
+  mov [1717376], R0
+  mov R0, 36
+  mov [1717377], R0
+  mov R0, 33
+  mov [1717378], R0
+  mov R0, 45
+  mov [1717379], R0
+  mov R0, 45
+  mov [1717380], R0
+  mov R0, 60
+  mov [1717381], R0
+  mov R0, 60
+  mov [1717382], R0
+  mov R0, 33
+  mov [1717383], R0
+  mov R0, 57
+  mov [1717384], R0
+  mov R0, 57
+  mov [1717385], R0
+  mov R0, 45
+  mov [1717386], R0
+  mov R0, 45
+  mov [1717387], R0
+  mov R0, 36
+  mov [1717388], R0
+  mov R0, 60
+  mov [1717389], R0
+  mov R0, 33
+  mov [1717390], R0
+  mov R0, 45
+  mov [1717391], R0
+  mov R0, 45
+  mov [1717392], R0
+  mov R0, 36
+  mov [1717393], R0
+  mov R0, 55
+  mov [1717394], R0
+  mov R0, 55
+  mov [1717395], R0
+  mov R0, 45
+  mov [1717396], R0
+  mov R0, 45
+  mov [1717397], R0
+  mov R0, 60
+  mov [1717398], R0
+  mov R0, 60
+  mov [1717399], R0
+  mov R0, 33
+  mov [1717400], R0
+  mov R0, 45
+  mov [1717401], R0
+  mov R0, 45
+  mov [1717402], R0
+  mov R0, 60
+  mov [1717403], R0
+  mov R0, 36
+  mov [1717404], R0
+  mov R0, 33
+  mov [1717405], R0
+  mov R0, 53
+  mov [1717406], R0
+  mov R0, 53
+  mov [1717407], R0
+  mov R0, 45
+  mov [1717408], R0
+  mov R0, 45
+  mov [1717409], R0
+  mov R0, 60
+  mov [1717410], R0
+  mov R0, 60
+  mov [1717411], R0
+  mov R0, 33
+  mov [1717412], R0
+  mov R0, 45
+  mov [1717413], R0
+  mov R0, 45
+  mov [1717414], R0
+  mov R0, 51
+  mov [1717415], R0
+  mov R0, 51
+  mov [1717416], R0
+  mov R0, 45
+  mov [1717417], R0
+  mov R0, 45
+  mov [1717418], R0
+  mov R0, 60
+  mov [1717419], R0
+  mov R0, 36
+  mov [1717420], R0
+  mov R0, 33
+  mov [1717421], R0
+  mov R0, 45
+  mov [1717422], R0
+  mov R0, 45
+  mov [1717423], R0
+  mov R0, 60
+  mov [1717424], R0
+  mov R0, 60
+  mov [1717425], R0
+  mov R0, 33
+  mov [1717426], R0
+  mov R0, 52
+  mov [1717427], R0
+  mov R0, 52
+  mov [1717428], R0
+  mov R0, 53
+  mov [1717429], R0
+  mov R0, 53
+  mov [1717430], R0
+  mov R0, 45
+  mov [1717431], R0
+  mov R0, 60
+  mov [1717432], R0
+  mov R0, 36
+  mov [1717433], R0
+  mov R0, 33
+  mov [1717434], R0
+  mov R0, 45
+  mov [1717435], R0
+  mov R0, 45
+  mov [1717436], R0
+  mov R0, 45
+  mov [1717437], R0
+  mov R0, 60
+  mov [1717438], R0
+  mov R0, 60
+  mov [1717439], R0
+  mov R0, 33
+  mov [1717440], R0
+  mov R0, 57
+  mov [1717441], R0
+  mov R0, 57
+  mov [1717442], R0
+  mov R0, 45
+  mov [1717443], R0
+  mov R0, 45
+  mov [1717444], R0
+  mov R0, 36
+  mov [1717445], R0
+  mov R0, 60
+  mov [1717446], R0
+  mov R0, 33
+  mov [1717447], R0
+  mov R0, 45
+  mov [1717448], R0
+  mov R0, 45
+  mov [1717449], R0
+  mov R0, 36
+  mov [1717450], R0
+  mov R0, 55
+  mov [1717451], R0
+  mov R0, 55
+  mov [1717452], R0
+  mov R0, 45
+  mov [1717453], R0
+  mov R0, 45
+  mov [1717454], R0
+  mov R0, 60
+  mov [1717455], R0
+  mov R0, 60
+  mov [1717456], R0
+  mov R0, 33
+  mov [1717457], R0
+  mov R0, 45
+  mov [1717458], R0
+  mov R0, 45
+  mov [1717459], R0
+  mov R0, 69
+  mov [1717460], R0
+  mov R0, 64
+  mov [1717461], R0
+  mov R0, 60
+  mov [1717462], R0
+  mov R0, 33
+  mov [1717463], R0
+  mov R0, 60
+  mov [1717464], R0
+  mov R0, 60
+  mov [1717465], R0
+  mov R0, 65
+  mov [1717466], R0
+  mov R0, 62
+  mov [1717467], R0
+  mov R0, 36
+  mov [1717468], R0
+  mov R0, 64
+  mov [1717469], R0
+  mov R0, 60
+  mov [1717470], R0
+  mov R0, 69
+  mov [1717471], R0
+  mov R0, 64
+  mov [1717472], R0
+  mov R0, 60
+  mov [1717473], R0
+  mov R0, 64
+  mov [1717474], R0
+  mov R0, 60
+  mov [1717475], R0
+  mov R0, 33
+  mov [1717476], R0
+  mov R0, 60
+  mov [1717477], R0
+  mov R0, 57
+  mov [1717478], R0
+  mov R0, 64
+  mov [1717479], R0
+  mov R0, 36
+  mov [1717480], R0
+  mov R0, 60
+  mov [1717481], R0
+  mov R0, 36
+  mov [1717482], R0
+  mov R0, 69
+  mov [1717483], R0
+  mov R0, 64
+  mov [1717484], R0
+  mov R0, 60
+  mov [1717485], R0
+  mov R0, 72
+  mov [1717486], R0
+  mov R0, 69
+  mov [1717487], R0
+  mov R0, 33
+  mov [1717488], R0
+  mov R0, 60
+  mov [1717489], R0
+  mov R0, 69
+  mov [1717490], R0
+  mov R0, 64
+  mov [1717491], R0
+  mov R0, 36
+  mov [1717492], R0
+  mov R0, 64
+  mov [1717493], R0
+  mov R0, 60
+  mov [1717494], R0
+  mov R0, 36
+  mov [1717495], R0
+  mov R0, 69
+  mov [1717496], R0
+  mov R0, 64
+  mov [1717497], R0
+  mov R0, 60
+  mov [1717498], R0
+  mov R0, 64
+  mov [1717499], R0
+  mov R0, 60
+  mov [1717500], R0
+  mov R0, 33
+  mov [1717501], R0
+  mov R0, 60
+  mov [1717502], R0
+  mov R0, 69
+  mov [1717503], R0
+  mov R0, 64
+  mov [1717504], R0
+  mov R0, 64
+  mov [1717505], R0
+  mov R0, 60
+  mov [1717506], R0
+  mov R0, 36
+  mov [1717507], R0
+  mov R0, 60
+  mov [1717508], R0
+  mov R0, 57
+  mov [1717509], R0
+  mov R0, 40
+  mov [1717510], R0
+  mov R0, 40
+  mov [1717511], R0
+  mov R0, 40
+  mov [1717512], R0
+  mov R0, 60
+  mov [1717513], R0
+  mov R0, 36
+  mov [1717514], R0
+  mov R0, 40
+  mov [1717515], R0
+  mov R0, 40
+  mov [1717516], R0
+  mov R0, 60
+  mov [1717517], R0
+  mov R0, 40
+  mov [1717518], R0
+  mov R0, 60
+  mov [1717519], R0
+  mov R0, 52
+  mov [1717520], R0
+  mov R0, 52
+  mov [1717521], R0
+  mov R0, 40
+  mov [1717522], R0
+  mov R0, 40
+  mov [1717523], R0
+  mov R0, 36
+  mov [1717524], R0
+  mov R0, 40
+  mov [1717525], R0
+  mov R0, 60
+  mov [1717526], R0
+  mov R0, 40
+  mov [1717527], R0
+  mov R0, 40
+  mov [1717528], R0
+  mov R0, 36
+  mov [1717529], R0
+  mov R0, 50
+  mov [1717530], R0
+  mov R0, 50
+  mov [1717531], R0
+  mov R0, 40
+  mov [1717532], R0
+  mov R0, 60
+  mov [1717533], R0
+  mov R0, 40
+  mov [1717534], R0
+  mov R0, 40
+  mov [1717535], R0
+  mov R0, 60
+  mov [1717536], R0
+  mov R0, 40
+  mov [1717537], R0
+  mov R0, 40
+  mov [1717538], R0
+  mov R0, 36
+  mov [1717539], R0
+  mov R0, 60
+  mov [1717540], R0
+  mov R0, 40
+  mov [1717541], R0
+  mov R0, 48
+  mov [1717542], R0
+  mov R0, 48
+  mov [1717543], R0
+  mov R0, 40
+  mov [1717544], R0
+  mov R0, 40
+  mov [1717545], R0
+  mov R0, 60
+  mov [1717546], R0
+  mov R0, 40
+  mov [1717547], R0
+  mov R0, 40
+  mov [1717548], R0
+  mov R0, 40
+  mov [1717549], R0
+  mov R0, 60
+  mov [1717550], R0
+  mov R0, 46
+  mov [1717551], R0
+  mov R0, 46
+  mov [1717552], R0
+  mov R0, 40
+  mov [1717553], R0
+  mov R0, 40
+  mov [1717554], R0
+  mov R0, 36
+  mov [1717555], R0
+  mov R0, 60
+  mov [1717556], R0
+  mov R0, 40
+  mov [1717557], R0
+  mov R0, 36
+  mov [1717558], R0
+  mov R0, 40
+  mov [1717559], R0
+  mov R0, 40
+  mov [1717560], R0
+  mov R0, 60
+  mov [1717561], R0
+  mov R0, 40
+  mov [1717562], R0
+  mov R0, 47
+  mov [1717563], R0
+  mov R0, 47
+  mov [1717564], R0
+  mov R0, 60
+  mov [1717565], R0
+  mov R0, 48
+  mov [1717566], R0
+  mov R0, 48
+  mov [1717567], R0
+  mov R0, 40
+  mov [1717568], R0
+  mov R0, 40
+  mov [1717569], R0
+  mov R0, 36
+  mov [1717570], R0
+  mov R0, 60
+  mov [1717571], R0
+  mov R0, 40
+  mov [1717572], R0
+  mov R0, 40
+  mov [1717573], R0
+  mov R0, 40
+  mov [1717574], R0
+  mov R0, 60
+  mov [1717575], R0
+  mov R0, 60
+  mov [1717576], R0
+  mov R0, 40
+  mov [1717577], R0
+  mov R0, 52
+  mov [1717578], R0
+  mov R0, 52
+  mov [1717579], R0
+  mov R0, 40
+  mov [1717580], R0
+  mov R0, 40
+  mov [1717581], R0
+  mov R0, 36
+  mov [1717582], R0
+  mov R0, 40
+  mov [1717583], R0
+  mov R0, 60
+  mov [1717584], R0
+  mov R0, 40
+  mov [1717585], R0
+  mov R0, 40
+  mov [1717586], R0
+  mov R0, 36
+  mov [1717587], R0
+  mov R0, 50
+  mov [1717588], R0
+  mov R0, 50
+  mov [1717589], R0
+  mov R0, 40
+  mov [1717590], R0
+  mov R0, 40
+  mov [1717591], R0
+  mov R0, 60
+  mov [1717592], R0
+  mov R0, 40
+  mov [1717593], R0
+  mov R0, 60
+  mov [1717594], R0
+  mov R0, 40
+  mov [1717595], R0
+  mov R0, 40
+  mov [1717596], R0
+  mov R0, 60
+  mov [1717597], R0
+  mov R0, 36
+  mov [1717598], R0
+  mov R0, 48
+  mov [1717599], R0
+  mov R0, 40
+  mov [1717600], R0
+  mov R0, 48
+  mov [1717601], R0
+  mov R0, 40
+  mov [1717602], R0
+  mov R0, 40
+  mov [1717603], R0
+  mov R0, 60
+  mov [1717604], R0
+  mov R0, 60
+  mov [1717605], R0
+  mov R0, 40
+  mov [1717606], R0
+  mov R0, 40
+  mov [1717607], R0
+  mov R0, 40
+  mov [1717608], R0
+  mov R0, 46
+  mov [1717609], R0
+  mov R0, 46
+  mov [1717610], R0
+  mov R0, 36
+  mov [1717611], R0
+  mov R0, 60
+  mov [1717612], R0
+  mov R0, 40
+  mov [1717613], R0
+  mov R0, 36
+  mov [1717614], R0
+  mov R0, 60
+  mov [1717615], R0
+  mov R0, 60
+  mov [1717616], R0
+  mov R0, 40
+  mov [1717617], R0
+  mov R0, 40
+  mov [1717618], R0
+  mov R0, 40
+  mov [1717619], R0
+  mov R0, 60
+  mov [1717620], R0
+  mov R0, 36
+  mov [1717621], R0
+  mov R0, 40
+  mov [1717622], R0
+  mov R0, 40
+  mov [1717623], R0
+  mov R0, 40
+  mov [1717624], R0
+  mov R0, 60
+  mov [1717625], R0
+  mov R0, 60
+  mov [1717626], R0
+  mov R0, 40
+  mov [1717627], R0
+  mov R0, 52
+  mov [1717628], R0
+  mov R0, 52
+  mov [1717629], R0
+  mov R0, 40
+  mov [1717630], R0
+  mov R0, 40
+  mov [1717631], R0
+  mov R0, 36
+  mov [1717632], R0
+  mov R0, 60
+  mov [1717633], R0
+  mov R0, 40
+  mov [1717634], R0
+  mov R0, 40
+  mov [1717635], R0
+  mov R0, 40
+  mov [1717636], R0
+  mov R0, 36
+  mov [1717637], R0
+  mov R0, 50
+  mov [1717638], R0
+  mov R0, 50
+  mov [1717639], R0
+  mov R0, 40
+  mov [1717640], R0
+  mov R0, 40
+  mov [1717641], R0
+  mov R0, 60
+  mov [1717642], R0
+  mov R0, 60
+  mov [1717643], R0
+  mov R0, 40
+  mov [1717644], R0
+  mov R0, 40
+  mov [1717645], R0
+  mov R0, 40
+  mov [1717646], R0
+  mov R0, 36
+  mov [1717647], R0
+  mov R0, 60
+  mov [1717648], R0
+  mov R0, 40
+  mov [1717649], R0
+  mov R0, 48
+  mov [1717650], R0
+  mov R0, 48
+  mov [1717651], R0
+  mov R0, 40
+  mov [1717652], R0
+  mov R0, 40
+  mov [1717653], R0
+  mov R0, 60
+  mov [1717654], R0
+  mov R0, 60
+  mov [1717655], R0
+  mov R0, 40
+  mov [1717656], R0
+  mov R0, 40
+  mov [1717657], R0
+  mov R0, 40
+  mov [1717658], R0
+  mov R0, 46
+  mov [1717659], R0
+  mov R0, 46
+  mov [1717660], R0
+  mov R0, 40
+  mov [1717661], R0
+  mov R0, 40
+  mov [1717662], R0
+  mov R0, 60
+  mov [1717663], R0
+  mov R0, 36
+  mov [1717664], R0
+  mov R0, 40
+  mov [1717665], R0
+  mov R0, 40
+  mov [1717666], R0
+  mov R0, 40
+  mov [1717667], R0
+  mov R0, 60
+  mov [1717668], R0
+  mov R0, 60
+  mov [1717669], R0
+  mov R0, 40
+  mov [1717670], R0
+  mov R0, 47
+  mov [1717671], R0
+  mov R0, 47
+  mov [1717672], R0
+  mov R0, 48
+  mov [1717673], R0
+  mov R0, 48
+  mov [1717674], R0
+  mov R0, 40
+  mov [1717675], R0
+  mov R0, 40
+  mov [1717676], R0
+  mov R0, 60
+  mov [1717677], R0
+  mov R0, 36
+  mov [1717678], R0
+  mov R0, 40
+  mov [1717679], R0
+  mov R0, 40
+  mov [1717680], R0
+  mov R0, 40
+  mov [1717681], R0
+  mov R0, 60
+  mov [1717682], R0
+  mov R0, 60
+  mov [1717683], R0
+  mov R0, 40
+  mov [1717684], R0
+  mov R0, 52
+  mov [1717685], R0
+  mov R0, 52
+  mov [1717686], R0
+  mov R0, 40
+  mov [1717687], R0
+  mov R0, 40
+  mov [1717688], R0
+  mov R0, 36
+  mov [1717689], R0
+  mov R0, 60
+  mov [1717690], R0
+  mov R0, 40
+  mov [1717691], R0
+  mov R0, 40
+  mov [1717692], R0
+  mov R0, 40
+  mov [1717693], R0
+  mov R0, 36
+  mov [1717694], R0
+  mov R0, 50
+  mov [1717695], R0
+  mov R0, 50
+  mov [1717696], R0
+  mov R0, 40
+  mov [1717697], R0
+  mov R0, 40
+  mov [1717698], R0
+  mov R0, 60
+  mov [1717699], R0
+  mov R0, 40
+  mov [1717700], R0
+  mov R0, 60
+  mov [1717701], R0
+  mov R0, 40
+  mov [1717702], R0
+  mov R0, 40
+  mov [1717703], R0
+  mov R0, 60
+  mov [1717704], R0
+  mov R0, 60
+  mov [1717705], R0
+  mov R0, 40
+  mov [1717706], R0
+  mov R0, 48
+  mov [1717707], R0
+  mov R0, 48
+  mov [1717708], R0
+  mov R0, 36
+  mov [1717709], R0
+  mov R0, 40
+  mov [1717710], R0
+  mov R0, 40
+  mov [1717711], R0
+  mov R0, 60
+  mov [1717712], R0
+  mov R0, 60
+  mov [1717713], R0
+  mov R0, 40
+  mov [1717714], R0
+  mov R0, 40
+  mov [1717715], R0
+  mov R0, 40
+  mov [1717716], R0
+  mov R0, 36
+  mov [1717717], R0
+  mov R0, 46
+  mov [1717718], R0
+  mov R0, 46
+  mov [1717719], R0
+  mov R0, 60
+  mov [1717720], R0
+  mov R0, 60
+  mov [1717721], R0
+  mov R0, 40
+  mov [1717722], R0
+  mov R0, 60
+  mov [1717723], R0
+  mov R0, 60
+  mov [1717724], R0
+  mov R0, 36
+  mov [1717725], R0
+  mov R0, 60
+  mov [1717726], R0
+  mov R0, 60
+  mov [1717727], R0
+  mov R0, 40
+  mov [1717728], R0
+  mov R0, 36
+  mov [1717729], R0
+  mov R0, 49
+  mov [1717730], R0
+  mov R0, 49
+  mov [1717731], R0
+  mov R0, 60
+  mov [1717732], R0
+  mov R0, 36
+  mov [1717733], R0
+  mov R0, 37
+  mov [1717734], R0
+  mov R0, 49
+  mov [1717735], R0
+  mov R0, 49
+  mov [1717736], R0
+  mov R0, 60
+  mov [1717737], R0
+  mov R0, 60
+  mov [1717738], R0
+  mov R0, 61
+  mov [1717739], R0
+  mov R0, 61
+  mov [1717740], R0
+  mov R0, 37
+  mov [1717741], R0
+  mov R0, 49
+  mov [1717742], R0
+  mov R0, 49
+  mov [1717743], R0
+  mov R0, 60
+  mov [1717744], R0
+  mov R0, 36
+  mov [1717745], R0
+  mov R0, 49
+  mov [1717746], R0
+  mov R0, 49
+  mov [1717747], R0
+  mov R0, 37
+  mov [1717748], R0
+  mov R0, 36
+  mov [1717749], R0
+  mov R0, 59
+  mov [1717750], R0
+  mov R0, 59
+  mov [1717751], R0
+  mov R0, 60
+  mov [1717752], R0
+  mov R0, 49
+  mov [1717753], R0
+  mov R0, 49
+  mov [1717754], R0
+  mov R0, 60
+  mov [1717755], R0
+  mov R0, 37
+  mov [1717756], R0
+  mov R0, 49
+  mov [1717757], R0
+  mov R0, 49
+  mov [1717758], R0
+  mov R0, 60
+  mov [1717759], R0
+  mov R0, 36
+  mov [1717760], R0
+  mov R0, 57
+  mov [1717761], R0
+  mov R0, 37
+  mov [1717762], R0
+  mov R0, 57
+  mov [1717763], R0
+  mov R0, 49
+  mov [1717764], R0
+  mov R0, 49
+  mov [1717765], R0
+  mov R0, 60
+  mov [1717766], R0
+  mov R0, 60
+  mov [1717767], R0
+  mov R0, 49
+  mov [1717768], R0
+  mov R0, 49
+  mov [1717769], R0
+  mov R0, 37
+  mov [1717770], R0
+  mov R0, 55
+  mov [1717771], R0
+  mov R0, 55
+  mov [1717772], R0
+  mov R0, 60
+  mov [1717773], R0
+  mov R0, 49
+  mov [1717774], R0
+  mov R0, 49
+  mov [1717775], R0
+  mov R0, 36
+  mov [1717776], R0
+  mov R0, 37
+  mov [1717777], R0
+  mov R0, 36
+  mov [1717778], R0
+  mov R0, 49
+  mov [1717779], R0
+  mov R0, 49
+  mov [1717780], R0
+  mov R0, 60
+  mov [1717781], R0
+  mov R0, 60
+  mov [1717782], R0
+  mov R0, 56
+  mov [1717783], R0
+  mov R0, 56
+  mov [1717784], R0
+  mov R0, 37
+  mov [1717785], R0
+  mov R0, 57
+  mov [1717786], R0
+  mov R0, 57
+  mov [1717787], R0
+  mov R0, 47
+  mov [1717788], R0
+  mov R0, 47
+  mov [1717789], R0
+  mov R0, 36
+  mov [1717790], R0
+  mov R0, 60
+  mov [1717791], R0
+  mov R0, 35
+  mov [1717792], R0
+  mov R0, 47
+  mov [1717793], R0
+  mov R0, 47
+  mov [1717794], R0
+  mov R0, 60
+  mov [1717795], R0
+  mov R0, 60
+  mov [1717796], R0
+  mov R0, 59
+  mov [1717797], R0
+  mov R0, 59
+  mov [1717798], R0
+  mov R0, 35
+  mov [1717799], R0
+  mov R0, 47
+  mov [1717800], R0
+  mov R0, 47
+  mov [1717801], R0
+  mov R0, 60
+  mov [1717802], R0
+  mov R0, 36
+  mov [1717803], R0
+  mov R0, 47
+  mov [1717804], R0
+  mov R0, 47
+  mov [1717805], R0
+  mov R0, 35
+  mov [1717806], R0
+  mov R0, 36
+  mov [1717807], R0
+  mov R0, 57
+  mov [1717808], R0
+  mov R0, 57
+  mov [1717809], R0
+  mov R0, 60
+  mov [1717810], R0
+  mov R0, 47
+  mov [1717811], R0
+  mov R0, 47
+  mov [1717812], R0
+  mov R0, 60
+  mov [1717813], R0
+  mov R0, 35
+  mov [1717814], R0
+  mov R0, 47
+  mov [1717815], R0
+  mov R0, 47
+  mov [1717816], R0
+  mov R0, 60
+  mov [1717817], R0
+  mov R0, 36
+  mov [1717818], R0
+  mov R0, 55
+  mov [1717819], R0
+  mov R0, 55
+  mov [1717820], R0
+  mov R0, 33
+  mov [1717821], R0
+  mov R0, 46
+  mov [1717822], R0
+  mov R0, 46
+  mov [1717823], R0
+  mov R0, 60
+  mov [1717824], R0
+  mov R0, 60
+  mov [1717825], R0
+  mov R0, 33
+  mov [1717826], R0
+  mov R0, 45
+  mov [1717827], R0
+  mov R0, 45
+  mov [1717828], R0
+  mov R0, 53
+  mov [1717829], R0
+  mov R0, 53
+  mov [1717830], R0
+  mov R0, 60
+  mov [1717831], R0
+  mov R0, 36
+  mov [1717832], R0
+  mov R0, 33
+  mov [1717833], R0
+  mov R0, 36
+  mov [1717834], R0
+  mov R0, 60
+  mov [1717835], R0
+  mov R0, 60
+  mov [1717836], R0
+  mov R0, 33
+  mov [1717837], R0
+  mov R0, 40
+  mov [1717838], R0
+  mov R0, 40
+  mov [1717839], R0
+  mov R0, 60
+  mov [1717840], R0
+  mov R0, 36
+  mov [1717841], R0
+  mov R0, 40
+  mov [1717842], R0
+  mov R0, 40
+  mov [1717843], R0
+  mov R0, 40
+  mov [1717844], R0
+  mov R0, 60
+  mov [1717845], R0
+  mov R0, 60
+  mov [1717846], R0
+  mov R0, 52
+  mov [1717847], R0
+  mov R0, 52
+  mov [1717848], R0
+  mov R0, 40
+  mov [1717849], R0
+  mov R0, 40
+  mov [1717850], R0
+  mov R0, 40
+  mov [1717851], R0
+  mov R0, 60
+  mov [1717852], R0
+  mov R0, 36
+  mov [1717853], R0
+  mov R0, 40
+  mov [1717854], R0
+  mov R0, 40
+  mov [1717855], R0
+  mov R0, 40
+  mov [1717856], R0
+  mov R0, 36
+  mov [1717857], R0
+  mov R0, 50
+  mov [1717858], R0
+  mov R0, 50
+  mov [1717859], R0
+  mov R0, 60
+  mov [1717860], R0
+  mov R0, 40
+  mov [1717861], R0
+  mov R0, 40
+  mov [1717862], R0
+  mov R0, 60
+  mov [1717863], R0
+  mov R0, 40
+  mov [1717864], R0
+  mov R0, 40
+  mov [1717865], R0
+  mov R0, 40
+  mov [1717866], R0
+  mov R0, 60
+  mov [1717867], R0
+  mov R0, 36
+  mov [1717868], R0
+  mov R0, 48
+  mov [1717869], R0
+  mov R0, 48
+  mov [1717870], R0
+  mov R0, 40
+  mov [1717871], R0
+  mov R0, 40
+  mov [1717872], R0
+  mov R0, 40
+  mov [1717873], R0
+  mov R0, 60
+  mov [1717874], R0
+  mov R0, 60
+  mov [1717875], R0
+  mov R0, 40
+  mov [1717876], R0
+  mov R0, 40
+  mov [1717877], R0
+  mov R0, 40
+  mov [1717878], R0
+  mov R0, 46
+  mov [1717879], R0
+  mov R0, 46
+  mov [1717880], R0
+  mov R0, 60
+  mov [1717881], R0
+  mov R0, 40
+  mov [1717882], R0
+  mov R0, 40
+  mov [1717883], R0
+  mov R0, 36
+  mov [1717884], R0
+  mov R0, 40
+  mov [1717885], R0
+  mov R0, 40
+  mov [1717886], R0
+  mov R0, 40
+  mov [1717887], R0
+  mov R0, 60
+  mov [1717888], R0
+  mov R0, 60
+  mov [1717889], R0
+  mov R0, 47
+  mov [1717890], R0
+  mov R0, 47
+  mov [1717891], R0
+  mov R0, 40
+  mov [1717892], R0
+  mov R0, 48
+  mov [1717893], R0
+  mov R0, 48
+  mov [1717894], R0
+  mov R0, 60
+  mov [1717895], R0
+  mov R0, 40
+  mov [1717896], R0
+  mov R0, 40
+  mov [1717897], R0
+  mov R0, 36
+  mov [1717898], R0
+  mov R0, 40
+  mov [1717899], R0
+  mov R0, 40
+  mov [1717900], R0
+  mov R0, 40
+  mov [1717901], R0
+  mov R0, 60
+  mov [1717902], R0
+  mov R0, 60
+  mov [1717903], R0
+  mov R0, 52
+  mov [1717904], R0
+  mov R0, 40
+  mov [1717905], R0
+  mov R0, 52
+  mov [1717906], R0
+  mov R0, 40
+  mov [1717907], R0
+  mov R0, 40
+  mov [1717908], R0
+  mov R0, 36
+  mov [1717909], R0
+  mov R0, 40
+  mov [1717910], R0
+  mov R0, 40
+  mov [1717911], R0
+  mov R0, 60
+  mov [1717912], R0
+  mov R0, 40
+  mov [1717913], R0
+  mov R0, 36
+  mov [1717914], R0
+  mov R0, 50
+  mov [1717915], R0
+  mov R0, 50
+  mov [1717916], R0
+  mov R0, 60
+  mov [1717917], R0
+  mov R0, 40
+  mov [1717918], R0
+  mov R0, 40
+  mov [1717919], R0
+  mov R0, 60
+  mov [1717920], R0
+  mov R0, 40
+  mov [1717921], R0
+  mov R0, 40
+  mov [1717922], R0
+  mov R0, 40
+  mov [1717923], R0
+  mov R0, 36
+  mov [1717924], R0
+  mov R0, 60
+  mov [1717925], R0
+  mov R0, 60
+  mov [1717926], R0
+  mov R0, 60
+  mov [1717927], R0
+  mov R0, 67
+  mov [1717928], R0
+  mov R0, 64
+  mov [1717929], R0
+  mov R0, 28
+  mov [1717930], R0
+  mov R0, 71
+  mov [1717931], R0
+  mov R0, 67
+  mov [1717932], R0
+  mov R0, 64
+  mov [1717933], R0
+  mov R0, 59
+  mov [1717934], R0
+  mov R0, 59
+  mov [1717935], R0
+  mov R0, 55
+  mov [1717936], R0
+  mov R0, 67
+  mov [1717937], R0
+  mov R0, 64
+  mov [1717938], R0
+  mov R0, 64
+  mov [1717939], R0
+  mov R0, 59
+  mov [1717940], R0
+  mov R0, 71
+  mov [1717941], R0
+  mov R0, 67
+  mov [1717942], R0
+  mov R0, 67
+  mov [1717943], R0
+  mov R0, 64
+  mov [1717944], R0
+  mov R0, 71
+  mov [1717945], R0
+  mov R0, 67
+  mov [1717946], R0
+  mov R0, 67
+  mov [1717947], R0
+  mov R0, 64
+  mov [1717948], R0
+  mov R0, 64
+  mov [1717949], R0
+  mov R0, 59
+  mov [1717950], R0
+  mov R0, 59
+  mov [1717951], R0
+  mov R0, 55
+  mov [1717952], R0
+  mov R0, 67
+  mov [1717953], R0
+  mov R0, 64
+  mov [1717954], R0
+  mov R0, 71
+  mov [1717955], R0
+  mov R0, 67
+  mov [1717956], R0
+  mov R0, 76
+  mov [1717957], R0
+  mov R0, 71
+  mov [1717958], R0
+  mov R0, 79
+  mov [1717959], R0
+  mov R0, 76
+  mov [1717960], R0
+  mov R0, 40
+  mov [1717961], R0
+  mov R0, 40
+  mov [1717962], R0
+  mov R0, 36
+  mov [1717963], R0
+  mov R0, 60
+  mov [1717964], R0
+  mov R0, 60
+  mov [1717965], R0
+  mov R0, 60
+  mov [1717966], R0
+  mov R0, 60
+  mov [1717967], R0
+  mov R0, 40
+  mov [1717968], R0
+  mov R0, 40
+  mov [1717969], R0
+  mov R0, 40
+  mov [1717970], R0
+  mov R0, 60
+  mov [1717971], R0
+  mov R0, 60
+  mov [1717972], R0
+  mov R0, 52
+  mov [1717973], R0
+  mov R0, 52
+  mov [1717974], R0
+  mov R0, 40
+  mov [1717975], R0
+  mov R0, 40
+  mov [1717976], R0
+  mov R0, 40
+  mov [1717977], R0
+  mov R0, 40
+  mov [1717978], R0
+  mov R0, 50
+  mov [1717979], R0
+  mov R0, 50
+  mov [1717980], R0
+  mov R0, 40
+  mov [1717981], R0
+  mov R0, 40
+  mov [1717982], R0
+  mov R0, 40
+  mov [1717983], R0
+  mov R0, 40
+  mov [1717984], R0
+  mov R0, 48
+  mov [1717985], R0
+  mov R0, 48
+  mov [1717986], R0
+  mov R0, 40
+  mov [1717987], R0
+  mov R0, 40
+  mov [1717988], R0
+  mov R0, 40
+  mov [1717989], R0
+  mov R0, 40
+  mov [1717990], R0
+  mov R0, 46
+  mov [1717991], R0
+  mov R0, 46
+  mov [1717992], R0
+  mov R0, 40
+  mov [1717993], R0
+  mov R0, 40
+  mov [1717994], R0
+  mov R0, 40
+  mov [1717995], R0
+  mov R0, 40
+  mov [1717996], R0
+  mov R0, 47
+  mov [1717997], R0
+  mov R0, 47
+  mov [1717998], R0
+  mov R0, 48
+  mov [1717999], R0
+  mov R0, 48
+  mov [1718000], R0
+  mov R0, 40
+  mov [1718001], R0
+  mov R0, 40
+  mov [1718002], R0
+  mov R0, 60
+  mov [1718003], R0
+  mov R0, 36
+  mov [1718004], R0
+  mov R0, 60
+  mov [1718005], R0
+  mov R0, 60
+  mov [1718006], R0
+  mov R0, 60
+  mov [1718007], R0
+  mov R0, 40
+  mov [1718008], R0
+  mov R0, 40
+  mov [1718009], R0
+  mov R0, 40
+  mov [1718010], R0
+  mov R0, 60
+  mov [1718011], R0
+  mov R0, 60
+  mov [1718012], R0
+  mov R0, 52
+  mov [1718013], R0
+  mov R0, 52
+  mov [1718014], R0
+  mov R0, 40
+  mov [1718015], R0
+  mov R0, 40
+  mov [1718016], R0
+  mov R0, 40
+  mov [1718017], R0
+  mov R0, 40
+  mov [1718018], R0
+  mov R0, 50
+  mov [1718019], R0
+  mov R0, 50
+  mov [1718020], R0
+  mov R0, 40
+  mov [1718021], R0
+  mov R0, 40
+  mov [1718022], R0
+  mov R0, 40
+  mov [1718023], R0
+  mov R0, 40
+  mov [1718024], R0
+  mov R0, 48
+  mov [1718025], R0
+  mov R0, 48
+  mov [1718026], R0
+  mov R0, 40
+  mov [1718027], R0
+  mov R0, 40
+  mov [1718028], R0
+  mov R0, 40
+  mov [1718029], R0
+  mov R0, 40
+  mov [1718030], R0
+  mov R0, 46
+  mov [1718031], R0
+  mov R0, 46
+  mov [1718032], R0
+  mov R0, 40
+  mov [1718033], R0
+  mov R0, 60
+  mov [1718034], R0
+  mov R0, 60
+  mov [1718035], R0
+  mov R0, 36
+  mov [1718036], R0
+  mov R0, 60
+  mov [1718037], R0
+  mov R0, 60
+  mov [1718038], R0
+  mov R0, 40
+  mov [1718039], R0
+  mov R0, 40
+  mov [1718040], R0
+  mov R0, 40
+  mov [1718041], R0
+  mov R0, 40
+  mov [1718042], R0
+  mov R0, 60
+  mov [1718043], R0
+  mov R0, 60
+  mov [1718044], R0
+  mov R0, 52
+  mov [1718045], R0
+  mov R0, 52
+  mov [1718046], R0
+  mov R0, 40
+  mov [1718047], R0
+  mov R0, 40
+  mov [1718048], R0
+  mov R0, 40
+  mov [1718049], R0
+  mov R0, 40
+  mov [1718050], R0
+  mov R0, 50
+  mov [1718051], R0
+  mov R0, 50
+  mov [1718052], R0
+  mov R0, 40
+  mov [1718053], R0
+  mov R0, 40
+  mov [1718054], R0
+  mov R0, 40
+  mov [1718055], R0
+  mov R0, 40
+  mov [1718056], R0
+  mov R0, 48
+  mov [1718057], R0
+  mov R0, 48
+  mov [1718058], R0
+  mov R0, 40
+  mov [1718059], R0
+  mov R0, 40
+  mov [1718060], R0
+  mov R0, 40
+  mov [1718061], R0
+  mov R0, 40
+  mov [1718062], R0
+  mov R0, 46
+  mov [1718063], R0
+  mov R0, 46
+  mov [1718064], R0
+  mov R0, 40
+  mov [1718065], R0
+  mov R0, 40
+  mov [1718066], R0
+  mov R0, 40
+  mov [1718067], R0
+  mov R0, 40
+  mov [1718068], R0
+  mov R0, 47
+  mov [1718069], R0
+  mov R0, 47
+  mov [1718070], R0
+  mov R0, 48
+  mov [1718071], R0
+  mov R0, 48
+  mov [1718072], R0
+  mov R0, 40
+  mov [1718073], R0
+  mov R0, 40
+  mov [1718074], R0
+  mov R0, 60
+  mov [1718075], R0
+  mov R0, 60
+  mov [1718076], R0
+  mov R0, 36
+  mov [1718077], R0
+  mov R0, 60
+  mov [1718078], R0
+  mov R0, 60
+  mov [1718079], R0
+  mov R0, 40
+  mov [1718080], R0
+  mov R0, 40
+  mov [1718081], R0
+  mov R0, 40
+  mov [1718082], R0
+  mov R0, 60
+  mov [1718083], R0
+  mov R0, 60
+  mov [1718084], R0
+  mov R0, 52
+  mov [1718085], R0
+  mov R0, 52
+  mov [1718086], R0
+  mov R0, 40
+  mov [1718087], R0
+  mov R0, 40
+  mov [1718088], R0
+  mov R0, 40
+  mov [1718089], R0
+  mov R0, 40
+  mov [1718090], R0
+  mov R0, 50
+  mov [1718091], R0
+  mov R0, 50
+  mov [1718092], R0
+  mov R0, 40
+  mov [1718093], R0
+  mov R0, 40
+  mov [1718094], R0
+  mov R0, 40
+  mov [1718095], R0
+  mov R0, 40
+  mov [1718096], R0
+  mov R0, 60
+  mov [1718097], R0
+  mov R0, 60
+  mov [1718098], R0
+  mov R0, 66
+  mov [1718099], R0
+  mov R0, 63
+  mov [1718100], R0
+  mov R0, 64
+  mov [1718101], R0
+  mov R0, 60
+  mov [1718102], R0
+  mov R0, 36
+  mov [1718103], R0
+  mov R0, 63
+  mov [1718104], R0
+  mov R0, 59
+  mov [1718105], R0
+  mov R0, 59
+  mov [1718106], R0
+  mov R0, 54
+  mov [1718107], R0
+  mov R0, 60
+  mov [1718108], R0
+  mov R0, 69
+  mov [1718109], R0
+  mov R0, 60
+  mov [1718110], R0
+  mov R0, 66
+  mov [1718111], R0
+  mov R0, 66
+  mov [1718112], R0
+  mov R0, 63
+  mov [1718113], R0
+  mov R0, 36
+  mov [1718114], R0
+  mov R0, 63
+  mov [1718115], R0
+  mov R0, 59
+  mov [1718116], R0
+  mov R0, 59
+  mov [1718117], R0
+  mov R0, 57
+  mov [1718118], R0
+  mov R0, 36
+  mov [1718119], R0
+  mov R0, 60
+  mov [1718120], R0
+  mov R0, 60
+  mov [1718121], R0
+  mov R0, 71
+  mov [1718122], R0
+  mov R0, 69
+  mov [1718123], R0
+  mov R0, 69
+  mov [1718124], R0
+  mov R0, 66
+  mov [1718125], R0
+  mov R0, 60
+  mov [1718126], R0
+  mov R0, 36
+  mov [1718127], R0
+  mov R0, 60
+  mov [1718128], R0
+  mov R0, 66
+  mov [1718129], R0
+  mov R0, 63
+  mov [1718130], R0
+  mov R0, 63
+  mov [1718131], R0
+  mov R0, 59
+  mov [1718132], R0
+  mov R0, 36
+  mov [1718133], R0
+  mov R0, 60
+  mov [1718134], R0
+  mov R0, 75
+  mov [1718135], R0
+  mov R0, 60
+  mov [1718136], R0
+  mov R0, 71
+  mov [1718137], R0
+  mov R0, 73
+  mov [1718138], R0
+  mov R0, 69
+  mov [1718139], R0
+  mov R0, 60
+  mov [1718140], R0
+  mov R0, 60
+  mov [1718141], R0
+  mov R0, 36
+  mov [1718142], R0
+  mov R0, 71
+  mov [1718143], R0
+  mov R0, 66
+  mov [1718144], R0
+  mov R0, 69
+  mov [1718145], R0
+  mov R0, 63
+  mov [1718146], R0
+  mov R0, 40
+  mov [1718147], R0
+  mov R0, 40
+  mov [1718148], R0
+  mov R0, 40
+  mov [1718149], R0
+  mov R0, 60
+  mov [1718150], R0
+  mov R0, 36
+  mov [1718151], R0
+  mov R0, 40
+  mov [1718152], R0
+  mov R0, 40
+  mov [1718153], R0
+  mov R0, 60
+  mov [1718154], R0
+  mov R0, 40
+  mov [1718155], R0
+  mov R0, 60
+  mov [1718156], R0
+  mov R0, 52
+  mov [1718157], R0
+  mov R0, 55
+  mov [1718158], R0
+  mov R0, 40
+  mov [1718159], R0
+  mov R0, 40
+  mov [1718160], R0
+  mov R0, 36
+  mov [1718161], R0
+  mov R0, 40
+  mov [1718162], R0
+  mov R0, 60
+  mov [1718163], R0
+  mov R0, 40
+  mov [1718164], R0
+  mov R0, 40
+  mov [1718165], R0
+  mov R0, 36
+  mov [1718166], R0
+  mov R0, 50
+  mov [1718167], R0
+  mov R0, 54
+  mov [1718168], R0
+  mov R0, 40
+  mov [1718169], R0
+  mov R0, 40
+  mov [1718170], R0
+  mov R0, 60
+  mov [1718171], R0
+  mov R0, 40
+  mov [1718172], R0
+  mov R0, 60
+  mov [1718173], R0
+  mov R0, 40
+  mov [1718174], R0
+  mov R0, 40
+  mov [1718175], R0
+  mov R0, 36
+  mov [1718176], R0
+  mov R0, 60
+  mov [1718177], R0
+  mov R0, 40
+  mov [1718178], R0
+  mov R0, 48
+  mov [1718179], R0
+  mov R0, 51
+  mov [1718180], R0
+  mov R0, 40
+  mov [1718181], R0
+  mov R0, 40
+  mov [1718182], R0
+  mov R0, 60
+  mov [1718183], R0
+  mov R0, 40
+  mov [1718184], R0
+  mov R0, 60
+  mov [1718185], R0
+  mov R0, 40
+  mov [1718186], R0
+  mov R0, 40
+  mov [1718187], R0
+  mov R0, 46
+  mov [1718188], R0
+  mov R0, 50
+  mov [1718189], R0
+  mov R0, 40
+  mov [1718190], R0
+  mov R0, 36
+  mov [1718191], R0
+  mov R0, 40
+  mov [1718192], R0
+  mov R0, 40
+  mov [1718193], R0
+  mov R0, 60
+  mov [1718194], R0
+  mov R0, 36
+  mov [1718195], R0
+  mov R0, 40
+  mov [1718196], R0
+  mov R0, 40
+  mov [1718197], R0
+  mov R0, 60
+  mov [1718198], R0
+  mov R0, 60
+  mov [1718199], R0
+  mov R0, 40
+  mov [1718200], R0
+  mov R0, 47
+  mov [1718201], R0
+  mov R0, 50
+  mov [1718202], R0
+  mov R0, 48
+  mov [1718203], R0
+  mov R0, 52
+  mov [1718204], R0
+  mov R0, 40
+  mov [1718205], R0
+  mov R0, 40
+  mov [1718206], R0
+  mov R0, 36
+  mov [1718207], R0
+  mov R0, 40
+  mov [1718208], R0
+  mov R0, 60
+  mov [1718209], R0
+  mov R0, 40
+  mov [1718210], R0
+  mov R0, 40
+  mov [1718211], R0
+  mov R0, 60
+  mov [1718212], R0
+  mov R0, 60
+  mov [1718213], R0
+  mov R0, 40
+  mov [1718214], R0
+  mov R0, 52
+  mov [1718215], R0
+  mov R0, 55
+  mov [1718216], R0
+  mov R0, 40
+  mov [1718217], R0
+  mov R0, 40
+  mov [1718218], R0
+  mov R0, 36
+  mov [1718219], R0
+  mov R0, 40
+  mov [1718220], R0
+  mov R0, 40
+  mov [1718221], R0
+  mov R0, 40
+  mov [1718222], R0
+  mov R0, 60
+  mov [1718223], R0
+  mov R0, 36
+  mov [1718224], R0
+  mov R0, 50
+  mov [1718225], R0
+  mov R0, 54
+  mov [1718226], R0
+  mov R0, 40
+  mov [1718227], R0
+  mov R0, 40
+  mov [1718228], R0
+  mov R0, 60
+  mov [1718229], R0
+  mov R0, 60
+  mov [1718230], R0
+  mov R0, 40
+  mov [1718231], R0
+  mov R0, 40
+  mov [1718232], R0
+  mov R0, 40
+  mov [1718233], R0
+  mov R0, 60
+  mov [1718234], R0
+  mov R0, 36
+  mov [1718235], R0
+  mov R0, 48
+  mov [1718236], R0
+  mov R0, 40
+  mov [1718237], R0
+  mov R0, 52
+  mov [1718238], R0
+  mov R0, 40
+  mov [1718239], R0
+  mov R0, 40
+  mov [1718240], R0
+  mov R0, 60
+  mov [1718241], R0
+  mov R0, 60
+  mov [1718242], R0
+  mov R0, 40
+  mov [1718243], R0
+  mov R0, 40
+  mov [1718244], R0
+  mov R0, 40
+  mov [1718245], R0
+  mov R0, 49
+  mov [1718246], R0
+  mov R0, 46
+  mov [1718247], R0
+  mov R0, 36
+  mov [1718248], R0
+  mov R0, 60
+  mov [1718249], R0
+  mov R0, 40
+  mov [1718250], R0
+  mov R0, 36
+  mov [1718251], R0
+  mov R0, 60
+  mov [1718252], R0
+  mov R0, 60
+  mov [1718253], R0
+  mov R0, 40
+  mov [1718254], R0
+  mov R0, 40
+  mov [1718255], R0
+  mov R0, 40
+  mov [1718256], R0
+  mov R0, 60
+  mov [1718257], R0
+  mov R0, 36
+  mov [1718258], R0
+  mov R0, 40
+  mov [1718259], R0
+  mov R0, 40
+  mov [1718260], R0
+  mov R0, 40
+  mov [1718261], R0
+  mov R0, 60
+  mov [1718262], R0
+  mov R0, 60
+  mov [1718263], R0
+  mov R0, 40
+  mov [1718264], R0
+  mov R0, 52
+  mov [1718265], R0
+  mov R0, 55
+  mov [1718266], R0
+  mov R0, 40
+  mov [1718267], R0
+  mov R0, 40
+  mov [1718268], R0
+  mov R0, 36
+  mov [1718269], R0
+  mov R0, 60
+  mov [1718270], R0
+  mov R0, 40
+  mov [1718271], R0
+  mov R0, 40
+  mov [1718272], R0
+  mov R0, 40
+  mov [1718273], R0
+  mov R0, 36
+  mov [1718274], R0
+  mov R0, 50
+  mov [1718275], R0
+  mov R0, 54
+  mov [1718276], R0
+  mov R0, 40
+  mov [1718277], R0
+  mov R0, 40
+  mov [1718278], R0
+  mov R0, 60
+  mov [1718279], R0
+  mov R0, 60
+  mov [1718280], R0
+  mov R0, 40
+  mov [1718281], R0
+  mov R0, 40
+  mov [1718282], R0
+  mov R0, 40
+  mov [1718283], R0
+  mov R0, 36
+  mov [1718284], R0
+  mov R0, 60
+  mov [1718285], R0
+  mov R0, 40
+  mov [1718286], R0
+  mov R0, 48
+  mov [1718287], R0
+  mov R0, 51
+  mov [1718288], R0
+  mov R0, 40
+  mov [1718289], R0
+  mov R0, 40
+  mov [1718290], R0
+  mov R0, 60
+  mov [1718291], R0
+  mov R0, 60
+  mov [1718292], R0
+  mov R0, 40
+  mov [1718293], R0
+  mov R0, 40
+  mov [1718294], R0
+  mov R0, 40
+  mov [1718295], R0
+  mov R0, 46
+  mov [1718296], R0
+  mov R0, 50
+  mov [1718297], R0
+  mov R0, 40
+  mov [1718298], R0
+  mov R0, 40
+  mov [1718299], R0
+  mov R0, 60
+  mov [1718300], R0
+  mov R0, 36
+  mov [1718301], R0
+  mov R0, 40
+  mov [1718302], R0
+  mov R0, 40
+  mov [1718303], R0
+  mov R0, 40
+  mov [1718304], R0
+  mov R0, 60
+  mov [1718305], R0
+  mov R0, 60
+  mov [1718306], R0
+  mov R0, 40
+  mov [1718307], R0
+  mov R0, 47
+  mov [1718308], R0
+  mov R0, 50
+  mov [1718309], R0
+  mov R0, 48
+  mov [1718310], R0
+  mov R0, 52
+  mov [1718311], R0
+  mov R0, 40
+  mov [1718312], R0
+  mov R0, 40
+  mov [1718313], R0
+  mov R0, 60
+  mov [1718314], R0
+  mov R0, 36
+  mov [1718315], R0
+  mov R0, 40
+  mov [1718316], R0
+  mov R0, 40
+  mov [1718317], R0
+  mov R0, 40
+  mov [1718318], R0
+  mov R0, 60
+  mov [1718319], R0
+  mov R0, 60
+  mov [1718320], R0
+  mov R0, 40
+  mov [1718321], R0
+  mov R0, 52
+  mov [1718322], R0
+  mov R0, 55
+  mov [1718323], R0
+  mov R0, 40
+  mov [1718324], R0
+  mov R0, 40
+  mov [1718325], R0
+  mov R0, 36
+  mov [1718326], R0
+  mov R0, 60
+  mov [1718327], R0
+  mov R0, 40
+  mov [1718328], R0
+  mov R0, 40
+  mov [1718329], R0
+  mov R0, 40
+  mov [1718330], R0
+  mov R0, 36
+  mov [1718331], R0
+  mov R0, 50
+  mov [1718332], R0
+  mov R0, 54
+  mov [1718333], R0
+  mov R0, 40
+  mov [1718334], R0
+  mov R0, 40
+  mov [1718335], R0
+  mov R0, 60
+  mov [1718336], R0
+  mov R0, 60
+  mov [1718337], R0
+  mov R0, 40
+  mov [1718338], R0
+  mov R0, 40
+  mov [1718339], R0
+  mov R0, 40
+  mov [1718340], R0
+  mov R0, 36
+  mov [1718341], R0
+  mov R0, 79
+  mov [1718342], R0
+  mov R0, 40
+  mov [1718343], R0
+  mov R0, 60
+  mov [1718344], R0
+  mov R0, 60
+  mov [1718345], R0
+  mov R0, 76
+  mov [1718346], R0
+  mov R0, 76
+  mov [1718347], R0
+  mov R0, 71
+  mov [1718348], R0
+  mov R0, 36
+  mov [1718349], R0
+  mov R0, 71
+  mov [1718350], R0
+  mov R0, 67
+  mov [1718351], R0
+  mov R0, 67
+  mov [1718352], R0
+  mov R0, 64
+  mov [1718353], R0
+  mov R0, 36
+  mov [1718354], R0
+  mov R0, 60
+  mov [1718355], R0
+  mov R0, 60
+  mov [1718356], R0
+  mov R0, 76
+  mov [1718357], R0
+  mov R0, 71
+  mov [1718358], R0
+  mov R0, 40
+  mov [1718359], R0
+  mov R0, 79
+  mov [1718360], R0
+  mov R0, 76
+  mov [1718361], R0
+  mov R0, 36
+  mov [1718362], R0
+  mov R0, 76
+  mov [1718363], R0
+  mov R0, 71
+  mov [1718364], R0
+  mov R0, 71
+  mov [1718365], R0
+  mov R0, 67
+  mov [1718366], R0
+  mov R0, 36
+  mov [1718367], R0
+  mov R0, 67
+  mov [1718368], R0
+  mov R0, 64
+  mov [1718369], R0
+  mov R0, 40
+  mov [1718370], R0
+  mov R0, 60
+  mov [1718371], R0
+  mov R0, 60
+  mov [1718372], R0
+  mov R0, 71
+  mov [1718373], R0
+  mov R0, 67
+  mov [1718374], R0
+  mov R0, 36
+  mov [1718375], R0
+  mov R0, 76
+  mov [1718376], R0
+  mov R0, 71
+  mov [1718377], R0
+  mov R0, 71
+  mov [1718378], R0
+  mov R0, 67
+  mov [1718379], R0
+  mov R0, 36
+  mov [1718380], R0
+  mov R0, 60
+  mov [1718381], R0
+  mov R0, 60
+  mov [1718382], R0
+  mov R0, 79
+  mov [1718383], R0
+  mov R0, 76
+  mov [1718384], R0
+  mov R0, 40
+  mov [1718385], R0
+  mov R0, 76
+  mov [1718386], R0
+  mov R0, 71
+  mov [1718387], R0
+  mov R0, 36
+  mov [1718388], R0
+  mov R0, 71
+  mov [1718389], R0
+  mov R0, 67
+  mov [1718390], R0
+  mov R0, 67
+  mov [1718391], R0
+  mov R0, 64
+  mov [1718392], R0
+  mov R0, 45
+  mov [1718393], R0
+  mov R0, 45
+  mov [1718394], R0
+  mov R0, 60
+  mov [1718395], R0
+  mov R0, 33
+  mov [1718396], R0
+  mov R0, 36
+  mov [1718397], R0
+  mov R0, 45
+  mov [1718398], R0
+  mov R0, 45
+  mov [1718399], R0
+  mov R0, 60
+  mov [1718400], R0
+  mov R0, 60
+  mov [1718401], R0
+  mov R0, 33
+  mov [1718402], R0
+  mov R0, 57
+  mov [1718403], R0
+  mov R0, 60
+  mov [1718404], R0
+  mov R0, 45
+  mov [1718405], R0
+  mov R0, 45
+  mov [1718406], R0
+  mov R0, 36
+  mov [1718407], R0
+  mov R0, 60
+  mov [1718408], R0
+  mov R0, 33
+  mov [1718409], R0
+  mov R0, 45
+  mov [1718410], R0
+  mov R0, 45
+  mov [1718411], R0
+  mov R0, 36
+  mov [1718412], R0
+  mov R0, 55
+  mov [1718413], R0
+  mov R0, 59
+  mov [1718414], R0
+  mov R0, 45
+  mov [1718415], R0
+  mov R0, 45
+  mov [1718416], R0
+  mov R0, 60
+  mov [1718417], R0
+  mov R0, 60
+  mov [1718418], R0
+  mov R0, 33
+  mov [1718419], R0
+  mov R0, 45
+  mov [1718420], R0
+  mov R0, 45
+  mov [1718421], R0
+  mov R0, 60
+  mov [1718422], R0
+  mov R0, 36
+  mov [1718423], R0
+  mov R0, 33
+  mov [1718424], R0
+  mov R0, 53
+  mov [1718425], R0
+  mov R0, 56
+  mov [1718426], R0
+  mov R0, 45
+  mov [1718427], R0
+  mov R0, 45
+  mov [1718428], R0
+  mov R0, 60
+  mov [1718429], R0
+  mov R0, 60
+  mov [1718430], R0
+  mov R0, 33
+  mov [1718431], R0
+  mov R0, 45
+  mov [1718432], R0
+  mov R0, 45
+  mov [1718433], R0
+  mov R0, 51
+  mov [1718434], R0
+  mov R0, 55
+  mov [1718435], R0
+  mov R0, 45
+  mov [1718436], R0
+  mov R0, 45
+  mov [1718437], R0
+  mov R0, 36
+  mov [1718438], R0
+  mov R0, 60
+  mov [1718439], R0
+  mov R0, 33
+  mov [1718440], R0
+  mov R0, 36
+  mov [1718441], R0
+  mov R0, 45
+  mov [1718442], R0
+  mov R0, 45
+  mov [1718443], R0
+  mov R0, 60
+  mov [1718444], R0
+  mov R0, 60
+  mov [1718445], R0
+  mov R0, 33
+  mov [1718446], R0
+  mov R0, 52
+  mov [1718447], R0
+  mov R0, 55
+  mov [1718448], R0
+  mov R0, 53
+  mov [1718449], R0
+  mov R0, 57
+  mov [1718450], R0
+  mov R0, 45
+  mov [1718451], R0
+  mov R0, 45
+  mov [1718452], R0
+  mov R0, 60
+  mov [1718453], R0
+  mov R0, 36
+  mov [1718454], R0
+  mov R0, 33
+  mov [1718455], R0
+  mov R0, 45
+  mov [1718456], R0
+  mov R0, 45
+  mov [1718457], R0
+  mov R0, 60
+  mov [1718458], R0
+  mov R0, 60
+  mov [1718459], R0
+  mov R0, 33
+  mov [1718460], R0
+  mov R0, 57
+  mov [1718461], R0
+  mov R0, 60
+  mov [1718462], R0
+  mov R0, 45
+  mov [1718463], R0
+  mov R0, 45
+  mov [1718464], R0
+  mov R0, 36
+  mov [1718465], R0
+  mov R0, 60
+  mov [1718466], R0
+  mov R0, 33
+  mov [1718467], R0
+  mov R0, 45
+  mov [1718468], R0
+  mov R0, 45
+  mov [1718469], R0
+  mov R0, 36
+  mov [1718470], R0
+  mov R0, 55
+  mov [1718471], R0
+  mov R0, 59
+  mov [1718472], R0
+  mov R0, 45
+  mov [1718473], R0
+  mov R0, 45
+  mov [1718474], R0
+  mov R0, 60
+  mov [1718475], R0
+  mov R0, 60
+  mov [1718476], R0
+  mov R0, 33
+  mov [1718477], R0
+  mov R0, 45
+  mov [1718478], R0
+  mov R0, 45
+  mov [1718479], R0
+  mov R0, 60
+  mov [1718480], R0
+  mov R0, 36
+  mov [1718481], R0
+  mov R0, 53
+  mov [1718482], R0
+  mov R0, 33
+  mov [1718483], R0
+  mov R0, 57
+  mov [1718484], R0
+  mov R0, 45
+  mov [1718485], R0
+  mov R0, 45
+  mov [1718486], R0
+  mov R0, 60
+  mov [1718487], R0
+  mov R0, 60
+  mov [1718488], R0
+  mov R0, 33
+  mov [1718489], R0
+  mov R0, 45
+  mov [1718490], R0
+  mov R0, 45
+  mov [1718491], R0
+  mov R0, 51
+  mov [1718492], R0
+  mov R0, 55
+  mov [1718493], R0
+  mov R0, 36
+  mov [1718494], R0
+  mov R0, 60
+  mov [1718495], R0
+  mov R0, 33
+  mov [1718496], R0
+  mov R0, 36
+  mov [1718497], R0
+  mov R0, 60
+  mov [1718498], R0
+  mov R0, 60
+  mov [1718499], R0
+  mov R0, 33
+  mov [1718500], R0
+  mov R0, 45
+  mov [1718501], R0
+  mov R0, 45
+  mov [1718502], R0
+  mov R0, 60
+  mov [1718503], R0
+  mov R0, 36
+  mov [1718504], R0
+  mov R0, 33
+  mov [1718505], R0
+  mov R0, 45
+  mov [1718506], R0
+  mov R0, 45
+  mov [1718507], R0
+  mov R0, 60
+  mov [1718508], R0
+  mov R0, 60
+  mov [1718509], R0
+  mov R0, 33
+  mov [1718510], R0
+  mov R0, 57
+  mov [1718511], R0
+  mov R0, 60
+  mov [1718512], R0
+  mov R0, 45
+  mov [1718513], R0
+  mov R0, 45
+  mov [1718514], R0
+  mov R0, 36
+  mov [1718515], R0
+  mov R0, 60
+  mov [1718516], R0
+  mov R0, 33
+  mov [1718517], R0
+  mov R0, 45
+  mov [1718518], R0
+  mov R0, 45
+  mov [1718519], R0
+  mov R0, 36
+  mov [1718520], R0
+  mov R0, 55
+  mov [1718521], R0
+  mov R0, 59
+  mov [1718522], R0
+  mov R0, 45
+  mov [1718523], R0
+  mov R0, 45
+  mov [1718524], R0
+  mov R0, 60
+  mov [1718525], R0
+  mov R0, 60
+  mov [1718526], R0
+  mov R0, 33
+  mov [1718527], R0
+  mov R0, 45
+  mov [1718528], R0
+  mov R0, 45
+  mov [1718529], R0
+  mov R0, 60
+  mov [1718530], R0
+  mov R0, 36
+  mov [1718531], R0
+  mov R0, 33
+  mov [1718532], R0
+  mov R0, 53
+  mov [1718533], R0
+  mov R0, 56
+  mov [1718534], R0
+  mov R0, 45
+  mov [1718535], R0
+  mov R0, 45
+  mov [1718536], R0
+  mov R0, 60
+  mov [1718537], R0
+  mov R0, 60
+  mov [1718538], R0
+  mov R0, 33
+  mov [1718539], R0
+  mov R0, 45
+  mov [1718540], R0
+  mov R0, 45
+  mov [1718541], R0
+  mov R0, 51
+  mov [1718542], R0
+  mov R0, 55
+  mov [1718543], R0
+  mov R0, 45
+  mov [1718544], R0
+  mov R0, 45
+  mov [1718545], R0
+  mov R0, 60
+  mov [1718546], R0
+  mov R0, 36
+  mov [1718547], R0
+  mov R0, 33
+  mov [1718548], R0
+  mov R0, 45
+  mov [1718549], R0
+  mov R0, 45
+  mov [1718550], R0
+  mov R0, 60
+  mov [1718551], R0
+  mov R0, 60
+  mov [1718552], R0
+  mov R0, 33
+  mov [1718553], R0
+  mov R0, 52
+  mov [1718554], R0
+  mov R0, 55
+  mov [1718555], R0
+  mov R0, 53
+  mov [1718556], R0
+  mov R0, 57
+  mov [1718557], R0
+  mov R0, 45
+  mov [1718558], R0
+  mov R0, 45
+  mov [1718559], R0
+  mov R0, 60
+  mov [1718560], R0
+  mov R0, 36
+  mov [1718561], R0
+  mov R0, 33
+  mov [1718562], R0
+  mov R0, 45
+  mov [1718563], R0
+  mov R0, 45
+  mov [1718564], R0
+  mov R0, 60
+  mov [1718565], R0
+  mov R0, 60
+  mov [1718566], R0
+  mov R0, 33
+  mov [1718567], R0
+  mov R0, 57
+  mov [1718568], R0
+  mov R0, 60
+  mov [1718569], R0
+  mov R0, 45
+  mov [1718570], R0
+  mov R0, 45
+  mov [1718571], R0
+  mov R0, 36
+  mov [1718572], R0
+  mov R0, 60
+  mov [1718573], R0
+  mov R0, 33
+  mov [1718574], R0
+  mov R0, 45
+  mov [1718575], R0
+  mov R0, 45
+  mov [1718576], R0
+  mov R0, 36
+  mov [1718577], R0
+  mov R0, 55
+  mov [1718578], R0
+  mov R0, 59
+  mov [1718579], R0
+  mov R0, 45
+  mov [1718580], R0
+  mov R0, 45
+  mov [1718581], R0
+  mov R0, 60
+  mov [1718582], R0
+  mov R0, 60
+  mov [1718583], R0
+  mov R0, 33
+  mov [1718584], R0
+  mov R0, 45
+  mov [1718585], R0
+  mov R0, 45
+  mov [1718586], R0
+  mov R0, 60
+  mov [1718587], R0
+  mov R0, 69
+  mov [1718588], R0
+  mov R0, 64
+  mov [1718589], R0
+  mov R0, 60
+  mov [1718590], R0
+  mov R0, 33
+  mov [1718591], R0
+  mov R0, 65
+  mov [1718592], R0
+  mov R0, 62
+  mov [1718593], R0
+  mov R0, 36
+  mov [1718594], R0
+  mov R0, 64
+  mov [1718595], R0
+  mov R0, 60
+  mov [1718596], R0
+  mov R0, 69
+  mov [1718597], R0
+  mov R0, 64
+  mov [1718598], R0
+  mov R0, 60
+  mov [1718599], R0
+  mov R0, 64
+  mov [1718600], R0
+  mov R0, 33
+  mov [1718601], R0
+  mov R0, 60
+  mov [1718602], R0
+  mov R0, 60
+  mov [1718603], R0
+  mov R0, 57
+  mov [1718604], R0
+  mov R0, 36
+  mov [1718605], R0
+  mov R0, 64
+  mov [1718606], R0
+  mov R0, 60
+  mov [1718607], R0
+  mov R0, 36
+  mov [1718608], R0
+  mov R0, 69
+  mov [1718609], R0
+  mov R0, 64
+  mov [1718610], R0
+  mov R0, 60
+  mov [1718611], R0
+  mov R0, 72
+  mov [1718612], R0
+  mov R0, 69
+  mov [1718613], R0
+  mov R0, 33
+  mov [1718614], R0
+  mov R0, 60
+  mov [1718615], R0
+  mov R0, 69
+  mov [1718616], R0
+  mov R0, 64
+  mov [1718617], R0
+  mov R0, 36
+  mov [1718618], R0
+  mov R0, 64
+  mov [1718619], R0
+  mov R0, 60
+  mov [1718620], R0
+  mov R0, 69
+  mov [1718621], R0
+  mov R0, 64
+  mov [1718622], R0
+  mov R0, 64
+  mov [1718623], R0
+  mov R0, 60
+  mov [1718624], R0
+  mov R0, 33
+  mov [1718625], R0
+  mov R0, 60
+  mov [1718626], R0
+  mov R0, 69
+  mov [1718627], R0
+  mov R0, 64
+  mov [1718628], R0
+  mov R0, 36
+  mov [1718629], R0
+  mov R0, 64
+  mov [1718630], R0
+  mov R0, 60
+  mov [1718631], R0
+  mov R0, 36
+  mov [1718632], R0
+  mov R0, 60
+  mov [1718633], R0
+  mov R0, 57
+  mov [1718634], R0
+  mov R0, 40
+  mov [1718635], R0
+  mov R0, 40
+  mov [1718636], R0
+  mov R0, 40
+  mov [1718637], R0
+  mov R0, 60
+  mov [1718638], R0
+  mov R0, 36
+  mov [1718639], R0
+  mov R0, 40
+  mov [1718640], R0
+  mov R0, 40
+  mov [1718641], R0
+  mov R0, 60
+  mov [1718642], R0
+  mov R0, 40
+  mov [1718643], R0
+  mov R0, 60
+  mov [1718644], R0
+  mov R0, 52
+  mov [1718645], R0
+  mov R0, 55
+  mov [1718646], R0
+  mov R0, 40
+  mov [1718647], R0
+  mov R0, 40
+  mov [1718648], R0
+  mov R0, 36
+  mov [1718649], R0
+  mov R0, 40
+  mov [1718650], R0
+  mov R0, 60
+  mov [1718651], R0
+  mov R0, 40
+  mov [1718652], R0
+  mov R0, 40
+  mov [1718653], R0
+  mov R0, 36
+  mov [1718654], R0
+  mov R0, 50
+  mov [1718655], R0
+  mov R0, 54
+  mov [1718656], R0
+  mov R0, 40
+  mov [1718657], R0
+  mov R0, 40
+  mov [1718658], R0
+  mov R0, 60
+  mov [1718659], R0
+  mov R0, 40
+  mov [1718660], R0
+  mov R0, 60
+  mov [1718661], R0
+  mov R0, 40
+  mov [1718662], R0
+  mov R0, 40
+  mov [1718663], R0
+  mov R0, 36
+  mov [1718664], R0
+  mov R0, 60
+  mov [1718665], R0
+  mov R0, 40
+  mov [1718666], R0
+  mov R0, 48
+  mov [1718667], R0
+  mov R0, 51
+  mov [1718668], R0
+  mov R0, 40
+  mov [1718669], R0
+  mov R0, 40
+  mov [1718670], R0
+  mov R0, 60
+  mov [1718671], R0
+  mov R0, 40
+  mov [1718672], R0
+  mov R0, 40
+  mov [1718673], R0
+  mov R0, 40
+  mov [1718674], R0
+  mov R0, 60
+  mov [1718675], R0
+  mov R0, 46
+  mov [1718676], R0
+  mov R0, 50
+  mov [1718677], R0
+  mov R0, 40
+  mov [1718678], R0
+  mov R0, 40
+  mov [1718679], R0
+  mov R0, 36
+  mov [1718680], R0
+  mov R0, 60
+  mov [1718681], R0
+  mov R0, 40
+  mov [1718682], R0
+  mov R0, 36
+  mov [1718683], R0
+  mov R0, 40
+  mov [1718684], R0
+  mov R0, 40
+  mov [1718685], R0
+  mov R0, 60
+  mov [1718686], R0
+  mov R0, 60
+  mov [1718687], R0
+  mov R0, 40
+  mov [1718688], R0
+  mov R0, 47
+  mov [1718689], R0
+  mov R0, 50
+  mov [1718690], R0
+  mov R0, 48
+  mov [1718691], R0
+  mov R0, 52
+  mov [1718692], R0
+  mov R0, 40
+  mov [1718693], R0
+  mov R0, 36
+  mov [1718694], R0
+  mov R0, 40
+  mov [1718695], R0
+  mov R0, 40
+  mov [1718696], R0
+  mov R0, 60
+  mov [1718697], R0
+  mov R0, 40
+  mov [1718698], R0
+  mov R0, 40
+  mov [1718699], R0
+  mov R0, 60
+  mov [1718700], R0
+  mov R0, 60
+  mov [1718701], R0
+  mov R0, 40
+  mov [1718702], R0
+  mov R0, 52
+  mov [1718703], R0
+  mov R0, 55
+  mov [1718704], R0
+  mov R0, 40
+  mov [1718705], R0
+  mov R0, 40
+  mov [1718706], R0
+  mov R0, 36
+  mov [1718707], R0
+  mov R0, 40
+  mov [1718708], R0
+  mov R0, 40
+  mov [1718709], R0
+  mov R0, 40
+  mov [1718710], R0
+  mov R0, 60
+  mov [1718711], R0
+  mov R0, 36
+  mov [1718712], R0
+  mov R0, 50
+  mov [1718713], R0
+  mov R0, 54
+  mov [1718714], R0
+  mov R0, 40
+  mov [1718715], R0
+  mov R0, 40
+  mov [1718716], R0
+  mov R0, 60
+  mov [1718717], R0
+  mov R0, 60
+  mov [1718718], R0
+  mov R0, 40
+  mov [1718719], R0
+  mov R0, 40
+  mov [1718720], R0
+  mov R0, 40
+  mov [1718721], R0
+  mov R0, 60
+  mov [1718722], R0
+  mov R0, 36
+  mov [1718723], R0
+  mov R0, 48
+  mov [1718724], R0
+  mov R0, 40
+  mov [1718725], R0
+  mov R0, 52
+  mov [1718726], R0
+  mov R0, 40
+  mov [1718727], R0
+  mov R0, 40
+  mov [1718728], R0
+  mov R0, 60
+  mov [1718729], R0
+  mov R0, 60
+  mov [1718730], R0
+  mov R0, 40
+  mov [1718731], R0
+  mov R0, 40
+  mov [1718732], R0
+  mov R0, 40
+  mov [1718733], R0
+  mov R0, 46
+  mov [1718734], R0
+  mov R0, 49
+  mov [1718735], R0
+  mov R0, 36
+  mov [1718736], R0
+  mov R0, 60
+  mov [1718737], R0
+  mov R0, 40
+  mov [1718738], R0
+  mov R0, 36
+  mov [1718739], R0
+  mov R0, 60
+  mov [1718740], R0
+  mov R0, 60
+  mov [1718741], R0
+  mov R0, 40
+  mov [1718742], R0
+  mov R0, 40
+  mov [1718743], R0
+  mov R0, 40
+  mov [1718744], R0
+  mov R0, 60
+  mov [1718745], R0
+  mov R0, 36
+  mov [1718746], R0
+  mov R0, 40
+  mov [1718747], R0
+  mov R0, 40
+  mov [1718748], R0
+  mov R0, 40
+  mov [1718749], R0
+  mov R0, 60
+  mov [1718750], R0
+  mov R0, 60
+  mov [1718751], R0
+  mov R0, 40
+  mov [1718752], R0
+  mov R0, 52
+  mov [1718753], R0
+  mov R0, 55
+  mov [1718754], R0
+  mov R0, 40
+  mov [1718755], R0
+  mov R0, 40
+  mov [1718756], R0
+  mov R0, 36
+  mov [1718757], R0
+  mov R0, 60
+  mov [1718758], R0
+  mov R0, 40
+  mov [1718759], R0
+  mov R0, 40
+  mov [1718760], R0
+  mov R0, 40
+  mov [1718761], R0
+  mov R0, 36
+  mov [1718762], R0
+  mov R0, 50
+  mov [1718763], R0
+  mov R0, 54
+  mov [1718764], R0
+  mov R0, 40
+  mov [1718765], R0
+  mov R0, 60
+  mov [1718766], R0
+  mov R0, 60
+  mov [1718767], R0
+  mov R0, 40
+  mov [1718768], R0
+  mov R0, 40
+  mov [1718769], R0
+  mov R0, 40
+  mov [1718770], R0
+  mov R0, 40
+  mov [1718771], R0
+  mov R0, 36
+  mov [1718772], R0
+  mov R0, 60
+  mov [1718773], R0
+  mov R0, 40
+  mov [1718774], R0
+  mov R0, 48
+  mov [1718775], R0
+  mov R0, 51
+  mov [1718776], R0
+  mov R0, 40
+  mov [1718777], R0
+  mov R0, 40
+  mov [1718778], R0
+  mov R0, 60
+  mov [1718779], R0
+  mov R0, 40
+  mov [1718780], R0
+  mov R0, 40
+  mov [1718781], R0
+  mov R0, 40
+  mov [1718782], R0
+  mov R0, 60
+  mov [1718783], R0
+  mov R0, 46
+  mov [1718784], R0
+  mov R0, 50
+  mov [1718785], R0
+  mov R0, 40
+  mov [1718786], R0
+  mov R0, 40
+  mov [1718787], R0
+  mov R0, 60
+  mov [1718788], R0
+  mov R0, 36
+  mov [1718789], R0
+  mov R0, 40
+  mov [1718790], R0
+  mov R0, 40
+  mov [1718791], R0
+  mov R0, 40
+  mov [1718792], R0
+  mov R0, 60
+  mov [1718793], R0
+  mov R0, 40
+  mov [1718794], R0
+  mov R0, 47
+  mov [1718795], R0
+  mov R0, 50
+  mov [1718796], R0
+  mov R0, 60
+  mov [1718797], R0
+  mov R0, 48
+  mov [1718798], R0
+  mov R0, 52
+  mov [1718799], R0
+  mov R0, 40
+  mov [1718800], R0
+  mov R0, 40
+  mov [1718801], R0
+  mov R0, 60
+  mov [1718802], R0
+  mov R0, 36
+  mov [1718803], R0
+  mov R0, 40
+  mov [1718804], R0
+  mov R0, 40
+  mov [1718805], R0
+  mov R0, 40
+  mov [1718806], R0
+  mov R0, 60
+  mov [1718807], R0
+  mov R0, 60
+  mov [1718808], R0
+  mov R0, 40
+  mov [1718809], R0
+  mov R0, 52
+  mov [1718810], R0
+  mov R0, 55
+  mov [1718811], R0
+  mov R0, 40
+  mov [1718812], R0
+  mov R0, 40
+  mov [1718813], R0
+  mov R0, 36
+  mov [1718814], R0
+  mov R0, 60
+  mov [1718815], R0
+  mov R0, 40
+  mov [1718816], R0
+  mov R0, 40
+  mov [1718817], R0
+  mov R0, 40
+  mov [1718818], R0
+  mov R0, 36
+  mov [1718819], R0
+  mov R0, 50
+  mov [1718820], R0
+  mov R0, 54
+  mov [1718821], R0
+  mov R0, 40
+  mov [1718822], R0
+  mov R0, 40
+  mov [1718823], R0
+  mov R0, 60
+  mov [1718824], R0
+  mov R0, 60
+  mov [1718825], R0
+  mov R0, 40
+  mov [1718826], R0
+  mov R0, 40
+  mov [1718827], R0
+  mov R0, 40
+  mov [1718828], R0
+  mov R0, 60
+  mov [1718829], R0
+  mov R0, 60
+  mov [1718830], R0
+  mov R0, 40
+  mov [1718831], R0
+  mov R0, 48
+  mov [1718832], R0
+  mov R0, 52
+  mov [1718833], R0
+  mov R0, 36
+  mov [1718834], R0
+  mov R0, 40
+  mov [1718835], R0
+  mov R0, 40
+  mov [1718836], R0
+  mov R0, 60
+  mov [1718837], R0
+  mov R0, 60
+  mov [1718838], R0
+  mov R0, 40
+  mov [1718839], R0
+  mov R0, 40
+  mov [1718840], R0
+  mov R0, 40
+  mov [1718841], R0
+  mov R0, 36
+  mov [1718842], R0
+  mov R0, 46
+  mov [1718843], R0
+  mov R0, 49
+  mov [1718844], R0
+  mov R0, 60
+  mov [1718845], R0
+  mov R0, 40
+  mov [1718846], R0
+  mov R0, 60
+  mov [1718847], R0
+  mov R0, 60
+  mov [1718848], R0
+  mov R0, 60
+  mov [1718849], R0
+  mov R0, 36
+  mov [1718850], R0
+  mov R0, 60
+  mov [1718851], R0
+  mov R0, 60
+  mov [1718852], R0
+  mov R0, 40
+  mov [1718853], R0
+  mov R0, 36
+  mov [1718854], R0
+  mov R0, 49
+  mov [1718855], R0
+  mov R0, 49
+  mov [1718856], R0
+  mov R0, 60
+  mov [1718857], R0
+  mov R0, 36
+  mov [1718858], R0
+  mov R0, 37
+  mov [1718859], R0
+  mov R0, 49
+  mov [1718860], R0
+  mov R0, 49
+  mov [1718861], R0
+  mov R0, 60
+  mov [1718862], R0
+  mov R0, 60
+  mov [1718863], R0
+  mov R0, 61
+  mov [1718864], R0
+  mov R0, 67
+  mov [1718865], R0
+  mov R0, 37
+  mov [1718866], R0
+  mov R0, 49
+  mov [1718867], R0
+  mov R0, 49
+  mov [1718868], R0
+  mov R0, 60
+  mov [1718869], R0
+  mov R0, 36
+  mov [1718870], R0
+  mov R0, 49
+  mov [1718871], R0
+  mov R0, 49
+  mov [1718872], R0
+  mov R0, 37
+  mov [1718873], R0
+  mov R0, 36
+  mov [1718874], R0
+  mov R0, 59
+  mov [1718875], R0
+  mov R0, 66
+  mov [1718876], R0
+  mov R0, 60
+  mov [1718877], R0
+  mov R0, 49
+  mov [1718878], R0
+  mov R0, 49
+  mov [1718879], R0
+  mov R0, 60
+  mov [1718880], R0
+  mov R0, 37
+  mov [1718881], R0
+  mov R0, 49
+  mov [1718882], R0
+  mov R0, 49
+  mov [1718883], R0
+  mov R0, 60
+  mov [1718884], R0
+  mov R0, 36
+  mov [1718885], R0
+  mov R0, 57
+  mov [1718886], R0
+  mov R0, 64
+  mov [1718887], R0
+  mov R0, 37
+  mov [1718888], R0
+  mov R0, 49
+  mov [1718889], R0
+  mov R0, 49
+  mov [1718890], R0
+  mov R0, 60
+  mov [1718891], R0
+  mov R0, 60
+  mov [1718892], R0
+  mov R0, 49
+  mov [1718893], R0
+  mov R0, 49
+  mov [1718894], R0
+  mov R0, 37
+  mov [1718895], R0
+  mov R0, 55
+  mov [1718896], R0
+  mov R0, 61
+  mov [1718897], R0
+  mov R0, 60
+  mov [1718898], R0
+  mov R0, 49
+  mov [1718899], R0
+  mov R0, 49
+  mov [1718900], R0
+  mov R0, 36
+  mov [1718901], R0
+  mov R0, 37
+  mov [1718902], R0
+  mov R0, 36
+  mov [1718903], R0
+  mov R0, 49
+  mov [1718904], R0
+  mov R0, 49
+  mov [1718905], R0
+  mov R0, 60
+  mov [1718906], R0
+  mov R0, 60
+  mov [1718907], R0
+  mov R0, 56
+  mov [1718908], R0
+  mov R0, 61
+  mov [1718909], R0
+  mov R0, 37
+  mov [1718910], R0
+  mov R0, 57
+  mov [1718911], R0
+  mov R0, 64
+  mov [1718912], R0
+  mov R0, 47
+  mov [1718913], R0
+  mov R0, 47
+  mov [1718914], R0
+  mov R0, 36
+  mov [1718915], R0
+  mov R0, 60
+  mov [1718916], R0
+  mov R0, 35
+  mov [1718917], R0
+  mov R0, 47
+  mov [1718918], R0
+  mov R0, 47
+  mov [1718919], R0
+  mov R0, 60
+  mov [1718920], R0
+  mov R0, 60
+  mov [1718921], R0
+  mov R0, 59
+  mov [1718922], R0
+  mov R0, 35
+  mov [1718923], R0
+  mov R0, 66
+  mov [1718924], R0
+  mov R0, 47
+  mov [1718925], R0
+  mov R0, 47
+  mov [1718926], R0
+  mov R0, 60
+  mov [1718927], R0
+  mov R0, 36
+  mov [1718928], R0
+  mov R0, 47
+  mov [1718929], R0
+  mov R0, 47
+  mov [1718930], R0
+  mov R0, 35
+  mov [1718931], R0
+  mov R0, 36
+  mov [1718932], R0
+  mov R0, 57
+  mov [1718933], R0
+  mov R0, 64
+  mov [1718934], R0
+  mov R0, 60
+  mov [1718935], R0
+  mov R0, 47
+  mov [1718936], R0
+  mov R0, 47
+  mov [1718937], R0
+  mov R0, 60
+  mov [1718938], R0
+  mov R0, 35
+  mov [1718939], R0
+  mov R0, 47
+  mov [1718940], R0
+  mov R0, 47
+  mov [1718941], R0
+  mov R0, 60
+  mov [1718942], R0
+  mov R0, 36
+  mov [1718943], R0
+  mov R0, 55
+  mov [1718944], R0
+  mov R0, 63
+  mov [1718945], R0
+  mov R0, 33
+  mov [1718946], R0
+  mov R0, 46
+  mov [1718947], R0
+  mov R0, 46
+  mov [1718948], R0
+  mov R0, 60
+  mov [1718949], R0
+  mov R0, 60
+  mov [1718950], R0
+  mov R0, 33
+  mov [1718951], R0
+  mov R0, 45
+  mov [1718952], R0
+  mov R0, 45
+  mov [1718953], R0
+  mov R0, 53
+  mov [1718954], R0
+  mov R0, 59
+  mov [1718955], R0
+  mov R0, 60
+  mov [1718956], R0
+  mov R0, 36
+  mov [1718957], R0
+  mov R0, 33
+  mov [1718958], R0
+  mov R0, 36
+  mov [1718959], R0
+  mov R0, 60
+  mov [1718960], R0
+  mov R0, 60
+  mov [1718961], R0
+  mov R0, 33
+  mov [1718962], R0
+  mov R0, 40
+  mov [1718963], R0
+  mov R0, 40
+  mov [1718964], R0
+  mov R0, 60
+  mov [1718965], R0
+  mov R0, 36
+  mov [1718966], R0
+  mov R0, 40
+  mov [1718967], R0
+  mov R0, 40
+  mov [1718968], R0
+  mov R0, 40
+  mov [1718969], R0
+  mov R0, 60
+  mov [1718970], R0
+  mov R0, 60
+  mov [1718971], R0
+  mov R0, 52
+  mov [1718972], R0
+  mov R0, 55
+  mov [1718973], R0
+  mov R0, 40
+  mov [1718974], R0
+  mov R0, 40
+  mov [1718975], R0
+  mov R0, 40
+  mov [1718976], R0
+  mov R0, 60
+  mov [1718977], R0
+  mov R0, 36
+  mov [1718978], R0
+  mov R0, 40
+  mov [1718979], R0
+  mov R0, 40
+  mov [1718980], R0
+  mov R0, 40
+  mov [1718981], R0
+  mov R0, 36
+  mov [1718982], R0
+  mov R0, 50
+  mov [1718983], R0
+  mov R0, 54
+  mov [1718984], R0
+  mov R0, 60
+  mov [1718985], R0
+  mov R0, 40
+  mov [1718986], R0
+  mov R0, 40
+  mov [1718987], R0
+  mov R0, 60
+  mov [1718988], R0
+  mov R0, 40
+  mov [1718989], R0
+  mov R0, 40
+  mov [1718990], R0
+  mov R0, 40
+  mov [1718991], R0
+  mov R0, 60
+  mov [1718992], R0
+  mov R0, 36
+  mov [1718993], R0
+  mov R0, 48
+  mov [1718994], R0
+  mov R0, 40
+  mov [1718995], R0
+  mov R0, 51
+  mov [1718996], R0
+  mov R0, 40
+  mov [1718997], R0
+  mov R0, 40
+  mov [1718998], R0
+  mov R0, 60
+  mov [1718999], R0
+  mov R0, 60
+  mov [1719000], R0
+  mov R0, 40
+  mov [1719001], R0
+  mov R0, 40
+  mov [1719002], R0
+  mov R0, 40
+  mov [1719003], R0
+  mov R0, 46
+  mov [1719004], R0
+  mov R0, 50
+  mov [1719005], R0
+  mov R0, 60
+  mov [1719006], R0
+  mov R0, 40
+  mov [1719007], R0
+  mov R0, 40
+  mov [1719008], R0
+  mov R0, 36
+  mov [1719009], R0
+  mov R0, 40
+  mov [1719010], R0
+  mov R0, 40
+  mov [1719011], R0
+  mov R0, 40
+  mov [1719012], R0
+  mov R0, 60
+  mov [1719013], R0
+  mov R0, 60
+  mov [1719014], R0
+  mov R0, 47
+  mov [1719015], R0
+  mov R0, 50
+  mov [1719016], R0
+  mov R0, 40
+  mov [1719017], R0
+  mov R0, 48
+  mov [1719018], R0
+  mov R0, 52
+  mov [1719019], R0
+  mov R0, 60
+  mov [1719020], R0
+  mov R0, 40
+  mov [1719021], R0
+  mov R0, 40
+  mov [1719022], R0
+  mov R0, 36
+  mov [1719023], R0
+  mov R0, 40
+  mov [1719024], R0
+  mov R0, 40
+  mov [1719025], R0
+  mov R0, 40
+  mov [1719026], R0
+  mov R0, 60
+  mov [1719027], R0
+  mov R0, 60
+  mov [1719028], R0
+  mov R0, 52
+  mov [1719029], R0
+  mov R0, 40
+  mov [1719030], R0
+  mov R0, 55
+  mov [1719031], R0
+  mov R0, 40
+  mov [1719032], R0
+  mov R0, 40
+  mov [1719033], R0
+  mov R0, 60
+  mov [1719034], R0
+  mov R0, 36
+  mov [1719035], R0
+  mov R0, 40
+  mov [1719036], R0
+  mov R0, 40
+  mov [1719037], R0
+  mov R0, 40
+  mov [1719038], R0
+  mov R0, 36
+  mov [1719039], R0
+  mov R0, 50
+  mov [1719040], R0
+  mov R0, 54
+  mov [1719041], R0
+  mov R0, 60
+  mov [1719042], R0
+  mov R0, 40
+  mov [1719043], R0
+  mov R0, 40
+  mov [1719044], R0
+  mov R0, 60
+  mov [1719045], R0
+  mov R0, 40
+  mov [1719046], R0
+  mov R0, 40
+  mov [1719047], R0
+  mov R0, 40
+  mov [1719048], R0
+  mov R0, 36
+  mov [1719049], R0
+  mov R0, 60
+  mov [1719050], R0
+  mov R0, 60
+  mov [1719051], R0
+  mov R0, 60
+  mov [1719052], R0
+  mov R0, 71
+  mov [1719053], R0
+  mov R0, 69
+  mov [1719054], R0
+  mov R0, 28
+  mov [1719055], R0
+  mov R0, 69
+  mov [1719056], R0
+  mov R0, 66
+  mov [1719057], R0
+  mov R0, 66
+  mov [1719058], R0
+  mov R0, 63
+  mov [1719059], R0
+  mov R0, 63
+  mov [1719060], R0
+  mov R0, 59
+  mov [1719061], R0
+  mov R0, 59
+  mov [1719062], R0
+  mov R0, 57
+  mov [1719063], R0
+  mov R0, 57
+  mov [1719064], R0
+  mov R0, 54
+  mov [1719065], R0
+  mov R0, 54
+  mov [1719066], R0
+  mov R0, 51
+  mov [1719067], R0
+  mov R0, 51
+  mov [1719068], R0
+  mov R0, 47
+  mov [1719069], R0
+  mov R0, 75
+  mov [1719070], R0
+  mov R0, 71
+  mov [1719071], R0
+  mov R0, 73
+  mov [1719072], R0
+  mov R0, 69
+  mov [1719073], R0
+  mov R0, 71
+  mov [1719074], R0
+  mov R0, 66
+  mov [1719075], R0
+  mov R0, 69
+  mov [1719076], R0
+  mov R0, 63
+  mov [1719077], R0
+  mov R0, 66
+  mov [1719078], R0
+  mov R0, 59
+  mov [1719079], R0
+  mov R0, 63
+  mov [1719080], R0
+  mov R0, 57
+  mov [1719081], R0
+  mov R0, 59
+  mov [1719082], R0
+  mov R0, 54
+  mov [1719083], R0
+  mov R0, 57
+  mov [1719084], R0
+  mov R0, 51
+  mov [1719085], R0
+  mov R0, 108
+  mov [global_mus_e1m1_vel], R0
+  mov R0, 120
+  mov [1719087], R0
+  mov R0, 123
+  mov [1719088], R0
+  mov R0, 115
+  mov [1719089], R0
+  mov R0, 120
+  mov [1719090], R0
+  mov R0, 114
+  mov [1719091], R0
+  mov R0, 114
+  mov [1719092], R0
+  mov R0, 110
+  mov [1719093], R0
+  mov R0, 110
+  mov [1719094], R0
+  mov R0, 111
+  mov [1719095], R0
+  mov R0, 104
+  mov [1719096], R0
+  mov R0, 111
+  mov [1719097], R0
+  mov R0, 116
+  mov [1719098], R0
+  mov R0, 108
+  mov [1719099], R0
+  mov R0, 110
+  mov [1719100], R0
+  mov R0, 110
+  mov [1719101], R0
+  mov R0, 110
+  mov [1719102], R0
+  mov R0, 111
+  mov [1719103], R0
+  mov R0, 110
+  mov [1719104], R0
+  mov R0, 117
+  mov [1719105], R0
+  mov R0, 111
+  mov [1719106], R0
+  mov R0, 123
+  mov [1719107], R0
+  mov R0, 123
+  mov [1719108], R0
+  mov R0, 123
+  mov [1719109], R0
+  mov R0, 127
+  mov [1719110], R0
+  mov R0, 111
+  mov [1719111], R0
+  mov R0, 114
+  mov [1719112], R0
+  mov R0, 106
+  mov [1719113], R0
+  mov R0, 108
+  mov [1719114], R0
+  mov R0, 106
+  mov [1719115], R0
+  mov R0, 114
+  mov [1719116], R0
+  mov R0, 106
+  mov [1719117], R0
+  mov R0, 117
+  mov [1719118], R0
+  mov R0, 111
+  mov [1719119], R0
+  mov R0, 114
+  mov [1719120], R0
+  mov R0, 114
+  mov [1719121], R0
+  mov R0, 108
+  mov [1719122], R0
+  mov R0, 123
+  mov [1719123], R0
+  mov R0, 127
+  mov [1719124], R0
+  mov R0, 123
+  mov [1719125], R0
+  mov R0, 123
+  mov [1719126], R0
+  mov R0, 107
+  mov [1719127], R0
+  mov R0, 113
+  mov [1719128], R0
+  mov R0, 105
+  mov [1719129], R0
+  mov R0, 111
+  mov [1719130], R0
+  mov R0, 110
+  mov [1719131], R0
+  mov R0, 111
+  mov [1719132], R0
+  mov R0, 114
+  mov [1719133], R0
+  mov R0, 118
+  mov [1719134], R0
+  mov R0, 106
+  mov [1719135], R0
+  mov R0, 108
+  mov [1719136], R0
+  mov R0, 115
+  mov [1719137], R0
+  mov R0, 111
+  mov [1719138], R0
+  mov R0, 111
+  mov [1719139], R0
+  mov R0, 110
+  mov [1719140], R0
+  mov R0, 111
+  mov [1719141], R0
+  mov R0, 110
+  mov [1719142], R0
+  mov R0, 119
+  mov [1719143], R0
+  mov R0, 123
+  mov [1719144], R0
+  mov R0, 127
+  mov [1719145], R0
+  mov R0, 119
+  mov [1719146], R0
+  mov R0, 108
+  mov [1719147], R0
+  mov R0, 117
+  mov [1719148], R0
+  mov R0, 111
+  mov [1719149], R0
+  mov R0, 108
+  mov [1719150], R0
+  mov R0, 110
+  mov [1719151], R0
+  mov R0, 114
+  mov [1719152], R0
+  mov R0, 115
+  mov [1719153], R0
+  mov R0, 117
+  mov [1719154], R0
+  mov R0, 111
+  mov [1719155], R0
+  mov R0, 114
+  mov [1719156], R0
+  mov R0, 114
+  mov [1719157], R0
+  mov R0, 108
+  mov [1719158], R0
+  mov R0, 123
+  mov [1719159], R0
+  mov R0, 61
+  mov [1719160], R0
+  mov R0, 71
+  mov [1719161], R0
+  mov R0, 123
+  mov [1719162], R0
+  mov R0, 123
+  mov [1719163], R0
+  mov R0, 122
+  mov [1719164], R0
+  mov R0, 108
+  mov [1719165], R0
+  mov R0, 114
+  mov [1719166], R0
+  mov R0, 114
+  mov [1719167], R0
+  mov R0, 23
+  mov [1719168], R0
+  mov R0, 23
+  mov [1719169], R0
+  mov R0, 114
+  mov [1719170], R0
+  mov R0, 114
+  mov [1719171], R0
+  mov R0, 110
+  mov [1719172], R0
+  mov R0, 110
+  mov [1719173], R0
+  mov R0, 110
+  mov [1719174], R0
+  mov R0, 110
+  mov [1719175], R0
+  mov R0, 111
+  mov [1719176], R0
+  mov R0, 111
+  mov [1719177], R0
+  mov R0, 104
+  mov [1719178], R0
+  mov R0, 104
+  mov [1719179], R0
+  mov R0, 111
+  mov [1719180], R0
+  mov R0, 111
+  mov [1719181], R0
+  mov R0, 116
+  mov [1719182], R0
+  mov R0, 116
+  mov [1719183], R0
+  mov R0, 108
+  mov [1719184], R0
+  mov R0, 108
+  mov [1719185], R0
+  mov R0, 110
+  mov [1719186], R0
+  mov R0, 110
+  mov [1719187], R0
+  mov R0, 110
+  mov [1719188], R0
+  mov R0, 110
+  mov [1719189], R0
+  mov R0, 110
+  mov [1719190], R0
+  mov R0, 110
+  mov [1719191], R0
+  mov R0, 111
+  mov [1719192], R0
+  mov R0, 111
+  mov [1719193], R0
+  mov R0, 110
+  mov [1719194], R0
+  mov R0, 110
+  mov [1719195], R0
+  mov R0, 117
+  mov [1719196], R0
+  mov R0, 117
+  mov [1719197], R0
+  mov R0, 111
+  mov [1719198], R0
+  mov R0, 111
+  mov [1719199], R0
+  mov R0, 64
+  mov [1719200], R0
+  mov R0, 123
+  mov [1719201], R0
+  mov R0, 70
+  mov [1719202], R0
+  mov R0, 123
+  mov [1719203], R0
+  mov R0, 123
+  mov [1719204], R0
+  mov R0, 125
+  mov [1719205], R0
+  mov R0, 111
+  mov [1719206], R0
+  mov R0, 111
+  mov [1719207], R0
+  mov R0, 23
+  mov [1719208], R0
+  mov R0, 23
+  mov [1719209], R0
+  mov R0, 114
+  mov [1719210], R0
+  mov R0, 114
+  mov [1719211], R0
+  mov R0, 106
+  mov [1719212], R0
+  mov R0, 106
+  mov [1719213], R0
+  mov R0, 108
+  mov [1719214], R0
+  mov R0, 108
+  mov [1719215], R0
+  mov R0, 106
+  mov [1719216], R0
+  mov R0, 106
+  mov [1719217], R0
+  mov R0, 114
+  mov [1719218], R0
+  mov R0, 114
+  mov [1719219], R0
+  mov R0, 106
+  mov [1719220], R0
+  mov R0, 106
+  mov [1719221], R0
+  mov R0, 117
+  mov [1719222], R0
+  mov R0, 117
+  mov [1719223], R0
+  mov R0, 111
+  mov [1719224], R0
+  mov R0, 111
+  mov [1719225], R0
+  mov R0, 114
+  mov [1719226], R0
+  mov R0, 114
+  mov [1719227], R0
+  mov R0, 114
+  mov [1719228], R0
+  mov R0, 114
+  mov [1719229], R0
+  mov R0, 108
+  mov [1719230], R0
+  mov R0, 108
+  mov [1719231], R0
+  mov R0, 56
+  mov [1719232], R0
+  mov R0, 74
+  mov [1719233], R0
+  mov R0, 122
+  mov [1719234], R0
+  mov R0, 123
+  mov [1719235], R0
+  mov R0, 121
+  mov [1719236], R0
+  mov R0, 125
+  mov [1719237], R0
+  mov R0, 107
+  mov [1719238], R0
+  mov R0, 107
+  mov [1719239], R0
+  mov R0, 23
+  mov [1719240], R0
+  mov R0, 23
+  mov [1719241], R0
+  mov R0, 113
+  mov [1719242], R0
+  mov R0, 113
+  mov [1719243], R0
+  mov R0, 105
+  mov [1719244], R0
+  mov R0, 105
+  mov [1719245], R0
+  mov R0, 111
+  mov [1719246], R0
+  mov R0, 111
+  mov [1719247], R0
+  mov R0, 110
+  mov [1719248], R0
+  mov R0, 110
+  mov [1719249], R0
+  mov R0, 111
+  mov [1719250], R0
+  mov R0, 111
+  mov [1719251], R0
+  mov R0, 114
+  mov [1719252], R0
+  mov R0, 114
+  mov [1719253], R0
+  mov R0, 118
+  mov [1719254], R0
+  mov R0, 118
+  mov [1719255], R0
+  mov R0, 106
+  mov [1719256], R0
+  mov R0, 106
+  mov [1719257], R0
+  mov R0, 108
+  mov [1719258], R0
+  mov R0, 108
+  mov [1719259], R0
+  mov R0, 115
+  mov [1719260], R0
+  mov R0, 115
+  mov [1719261], R0
+  mov R0, 111
+  mov [1719262], R0
+  mov R0, 111
+  mov [1719263], R0
+  mov R0, 111
+  mov [1719264], R0
+  mov R0, 111
+  mov [1719265], R0
+  mov R0, 110
+  mov [1719266], R0
+  mov R0, 110
+  mov [1719267], R0
+  mov R0, 111
+  mov [1719268], R0
+  mov R0, 111
+  mov [1719269], R0
+  mov R0, 110
+  mov [1719270], R0
+  mov R0, 110
+  mov [1719271], R0
+  mov R0, 68
+  mov [1719272], R0
+  mov R0, 74
+  mov [1719273], R0
+  mov R0, 123
+  mov [1719274], R0
+  mov R0, 123
+  mov [1719275], R0
+  mov R0, 123
+  mov [1719276], R0
+  mov R0, 116
+  mov [1719277], R0
+  mov R0, 108
+  mov [1719278], R0
+  mov R0, 108
+  mov [1719279], R0
+  mov R0, 23
+  mov [1719280], R0
+  mov R0, 23
+  mov [1719281], R0
+  mov R0, 117
+  mov [1719282], R0
+  mov R0, 117
+  mov [1719283], R0
+  mov R0, 111
+  mov [1719284], R0
+  mov R0, 111
+  mov [1719285], R0
+  mov R0, 108
+  mov [1719286], R0
+  mov R0, 108
+  mov [1719287], R0
+  mov R0, 110
+  mov [1719288], R0
+  mov R0, 110
+  mov [1719289], R0
+  mov R0, 114
+  mov [1719290], R0
+  mov R0, 114
+  mov [1719291], R0
+  mov R0, 115
+  mov [1719292], R0
+  mov R0, 115
+  mov [1719293], R0
+  mov R0, 91
+  mov [1719294], R0
+  mov R0, 90
+  mov [1719295], R0
+  mov R0, 93
+  mov [1719296], R0
+  mov R0, 112
+  mov [1719297], R0
+  mov R0, 112
+  mov [1719298], R0
+  mov R0, 105
+  mov [1719299], R0
+  mov R0, 105
+  mov [1719300], R0
+  mov R0, 93
+  mov [1719301], R0
+  mov R0, 81
+  mov [1719302], R0
+  mov R0, 85
+  mov [1719303], R0
+  mov R0, 112
+  mov [1719304], R0
+  mov R0, 112
+  mov [1719305], R0
+  mov R0, 103
+  mov [1719306], R0
+  mov R0, 103
+  mov [1719307], R0
+  mov R0, 88
+  mov [1719308], R0
+  mov R0, 90
+  mov [1719309], R0
+  mov R0, 111
+  mov [1719310], R0
+  mov R0, 88
+  mov [1719311], R0
+  mov R0, 111
+  mov [1719312], R0
+  mov R0, 102
+  mov [1719313], R0
+  mov R0, 102
+  mov [1719314], R0
+  mov R0, 91
+  mov [1719315], R0
+  mov R0, 73
+  mov [1719316], R0
+  mov R0, 113
+  mov [1719317], R0
+  mov R0, 88
+  mov [1719318], R0
+  mov R0, 113
+  mov [1719319], R0
+  mov R0, 103
+  mov [1719320], R0
+  mov R0, 103
+  mov [1719321], R0
+  mov R0, 93
+  mov [1719322], R0
+  mov R0, 88
+  mov [1719323], R0
+  mov R0, 88
+  mov [1719324], R0
+  mov R0, 111
+  mov [1719325], R0
+  mov R0, 111
+  mov [1719326], R0
+  mov R0, 101
+  mov [1719327], R0
+  mov R0, 101
+  mov [1719328], R0
+  mov R0, 87
+  mov [1719329], R0
+  mov R0, 93
+  mov [1719330], R0
+  mov R0, 82
+  mov [1719331], R0
+  mov R0, 112
+  mov [1719332], R0
+  mov R0, 112
+  mov [1719333], R0
+  mov R0, 103
+  mov [1719334], R0
+  mov R0, 103
+  mov [1719335], R0
+  mov R0, 91
+  mov [1719336], R0
+  mov R0, 93
+  mov [1719337], R0
+  mov R0, 110
+  mov [1719338], R0
+  mov R0, 91
+  mov [1719339], R0
+  mov R0, 110
+  mov [1719340], R0
+  mov R0, 100
+  mov [1719341], R0
+  mov R0, 100
+  mov [1719342], R0
+  mov R0, 90
+  mov [1719343], R0
+  mov R0, 93
+  mov [1719344], R0
+  mov R0, 93
+  mov [1719345], R0
+  mov R0, 113
+  mov [1719346], R0
+  mov R0, 113
+  mov [1719347], R0
+  mov R0, 103
+  mov [1719348], R0
+  mov R0, 103
+  mov [1719349], R0
+  mov R0, 108
+  mov [1719350], R0
+  mov R0, 108
+  mov [1719351], R0
+  mov R0, 86
+  mov [1719352], R0
+  mov R0, 72
+  mov [1719353], R0
+  mov R0, 118
+  mov [1719354], R0
+  mov R0, 114
+  mov [1719355], R0
+  mov R0, 114
+  mov [1719356], R0
+  mov R0, 118
+  mov [1719357], R0
+  mov R0, 92
+  mov [1719358], R0
+  mov R0, 114
+  mov [1719359], R0
+  mov R0, 85
+  mov [1719360], R0
+  mov R0, 114
+  mov [1719361], R0
+  mov R0, 110
+  mov [1719362], R0
+  mov R0, 110
+  mov [1719363], R0
+  mov R0, 116
+  mov [1719364], R0
+  mov R0, 86
+  mov [1719365], R0
+  mov R0, 81
+  mov [1719366], R0
+  mov R0, 110
+  mov [1719367], R0
+  mov R0, 110
+  mov [1719368], R0
+  mov R0, 118
+  mov [1719369], R0
+  mov R0, 111
+  mov [1719370], R0
+  mov R0, 111
+  mov [1719371], R0
+  mov R0, 104
+  mov [1719372], R0
+  mov R0, 104
+  mov [1719373], R0
+  mov R0, 123
+  mov [1719374], R0
+  mov R0, 92
+  mov [1719375], R0
+  mov R0, 81
+  mov [1719376], R0
+  mov R0, 111
+  mov [1719377], R0
+  mov R0, 111
+  mov [1719378], R0
+  mov R0, 123
+  mov [1719379], R0
+  mov R0, 75
+  mov [1719380], R0
+  mov R0, 89
+  mov [1719381], R0
+  mov R0, 116
+  mov [1719382], R0
+  mov R0, 116
+  mov [1719383], R0
+  mov R0, 108
+  mov [1719384], R0
+  mov R0, 108
+  mov [1719385], R0
+  mov R0, 117
+  mov [1719386], R0
+  mov R0, 92
+  mov [1719387], R0
+  mov R0, 110
+  mov [1719388], R0
+  mov R0, 110
+  mov [1719389], R0
+  mov R0, 72
+  mov [1719390], R0
+  mov R0, 110
+  mov [1719391], R0
+  mov R0, 110
+  mov [1719392], R0
+  mov R0, 110
+  mov [1719393], R0
+  mov R0, 110
+  mov [1719394], R0
+  mov R0, 116
+  mov [1719395], R0
+  mov R0, 75
+  mov [1719396], R0
+  mov R0, 83
+  mov [1719397], R0
+  mov R0, 121
+  mov [1719398], R0
+  mov R0, 111
+  mov [1719399], R0
+  mov R0, 111
+  mov [1719400], R0
+  mov R0, 122
+  mov [1719401], R0
+  mov R0, 78
+  mov [1719402], R0
+  mov R0, 83
+  mov [1719403], R0
+  mov R0, 110
+  mov [1719404], R0
+  mov R0, 110
+  mov [1719405], R0
+  mov R0, 117
+  mov [1719406], R0
+  mov R0, 117
+  mov [1719407], R0
+  mov R0, 111
+  mov [1719408], R0
+  mov R0, 111
+  mov [1719409], R0
+  mov R0, 122
+  mov [1719410], R0
+  mov R0, 68
+  mov [1719411], R0
+  mov R0, 92
+  mov [1719412], R0
+  mov R0, 111
+  mov [1719413], R0
+  mov R0, 111
+  mov [1719414], R0
+  mov R0, 121
+  mov [1719415], R0
+  mov R0, 72
+  mov [1719416], R0
+  mov R0, 92
+  mov [1719417], R0
+  mov R0, 114
+  mov [1719418], R0
+  mov R0, 114
+  mov [1719419], R0
+  mov R0, 106
+  mov [1719420], R0
+  mov R0, 106
+  mov [1719421], R0
+  mov R0, 116
+  mov [1719422], R0
+  mov R0, 89
+  mov [1719423], R0
+  mov R0, 65
+  mov [1719424], R0
+  mov R0, 108
+  mov [1719425], R0
+  mov R0, 108
+  mov [1719426], R0
+  mov R0, 117
+  mov [1719427], R0
+  mov R0, 106
+  mov [1719428], R0
+  mov R0, 106
+  mov [1719429], R0
+  mov R0, 114
+  mov [1719430], R0
+  mov R0, 114
+  mov [1719431], R0
+  mov R0, 122
+  mov [1719432], R0
+  mov R0, 75
+  mov [1719433], R0
+  mov R0, 83
+  mov [1719434], R0
+  mov R0, 106
+  mov [1719435], R0
+  mov R0, 106
+  mov [1719436], R0
+  mov R0, 75
+  mov [1719437], R0
+  mov R0, 123
+  mov [1719438], R0
+  mov R0, 117
+  mov [1719439], R0
+  mov R0, 89
+  mov [1719440], R0
+  mov R0, 117
+  mov [1719441], R0
+  mov R0, 111
+  mov [1719442], R0
+  mov R0, 111
+  mov [1719443], R0
+  mov R0, 117
+  mov [1719444], R0
+  mov R0, 69
+  mov [1719445], R0
+  mov R0, 92
+  mov [1719446], R0
+  mov R0, 114
+  mov [1719447], R0
+  mov R0, 114
+  mov [1719448], R0
+  mov R0, 114
+  mov [1719449], R0
+  mov R0, 114
+  mov [1719450], R0
+  mov R0, 121
+  mov [1719451], R0
+  mov R0, 73
+  mov [1719452], R0
+  mov R0, 86
+  mov [1719453], R0
+  mov R0, 120
+  mov [1719454], R0
+  mov R0, 122
+  mov [1719455], R0
+  mov R0, 71
+  mov [1719456], R0
+  mov R0, 71
+  mov [1719457], R0
+  mov R0, 108
+  mov [1719458], R0
+  mov R0, 108
+  mov [1719459], R0
+  mov R0, 75
+  mov [1719460], R0
+  mov R0, 122
+  mov [1719461], R0
+  mov R0, 77
+  mov [1719462], R0
+  mov R0, 107
+  mov [1719463], R0
+  mov R0, 107
+  mov [1719464], R0
+  mov R0, 69
+  mov [1719465], R0
+  mov R0, 121
+  mov [1719466], R0
+  mov R0, 92
+  mov [1719467], R0
+  mov R0, 113
+  mov [1719468], R0
+  mov R0, 113
+  mov [1719469], R0
+  mov R0, 105
+  mov [1719470], R0
+  mov R0, 105
+  mov [1719471], R0
+  mov R0, 122
+  mov [1719472], R0
+  mov R0, 79
+  mov [1719473], R0
+  mov R0, 92
+  mov [1719474], R0
+  mov R0, 111
+  mov [1719475], R0
+  mov R0, 111
+  mov [1719476], R0
+  mov R0, 115
+  mov [1719477], R0
+  mov R0, 110
+  mov [1719478], R0
+  mov R0, 110
+  mov [1719479], R0
+  mov R0, 111
+  mov [1719480], R0
+  mov R0, 111
+  mov [1719481], R0
+  mov R0, 123
+  mov [1719482], R0
+  mov R0, 71
+  mov [1719483], R0
+  mov R0, 89
+  mov [1719484], R0
+  mov R0, 114
+  mov [1719485], R0
+  mov R0, 114
+  mov [1719486], R0
+  mov R0, 122
+  mov [1719487], R0
+  mov R0, 65
+  mov [1719488], R0
+  mov R0, 98
+  mov [1719489], R0
+  mov R0, 118
+  mov [1719490], R0
+  mov R0, 118
+  mov [1719491], R0
+  mov R0, 106
+  mov [1719492], R0
+  mov R0, 106
+  mov [1719493], R0
+  mov R0, 122
+  mov [1719494], R0
+  mov R0, 75
+  mov [1719495], R0
+  mov R0, 89
+  mov [1719496], R0
+  mov R0, 108
+  mov [1719497], R0
+  mov R0, 108
+  mov [1719498], R0
+  mov R0, 115
+  mov [1719499], R0
+  mov R0, 115
+  mov [1719500], R0
+  mov R0, 111
+  mov [1719501], R0
+  mov R0, 111
+  mov [1719502], R0
+  mov R0, 72
+  mov [1719503], R0
+  mov R0, 122
+  mov [1719504], R0
+  mov R0, 86
+  mov [1719505], R0
+  mov R0, 111
+  mov [1719506], R0
+  mov R0, 111
+  mov [1719507], R0
+  mov R0, 122
+  mov [1719508], R0
+  mov R0, 92
+  mov [1719509], R0
+  mov R0, 110
+  mov [1719510], R0
+  mov R0, 71
+  mov [1719511], R0
+  mov R0, 110
+  mov [1719512], R0
+  mov R0, 111
+  mov [1719513], R0
+  mov R0, 111
+  mov [1719514], R0
+  mov R0, 110
+  mov [1719515], R0
+  mov R0, 110
+  mov [1719516], R0
+  mov R0, 72
+  mov [1719517], R0
+  mov R0, 123
+  mov [1719518], R0
+  mov R0, 92
+  mov [1719519], R0
+  mov R0, 108
+  mov [1719520], R0
+  mov R0, 108
+  mov [1719521], R0
+  mov R0, 73
+  mov [1719522], R0
+  mov R0, 123
+  mov [1719523], R0
+  mov R0, 83
+  mov [1719524], R0
+  mov R0, 117
+  mov [1719525], R0
+  mov R0, 117
+  mov [1719526], R0
+  mov R0, 111
+  mov [1719527], R0
+  mov R0, 111
+  mov [1719528], R0
+  mov R0, 122
+  mov [1719529], R0
+  mov R0, 71
+  mov [1719530], R0
+  mov R0, 89
+  mov [1719531], R0
+  mov R0, 108
+  mov [1719532], R0
+  mov R0, 108
+  mov [1719533], R0
+  mov R0, 122
+  mov [1719534], R0
+  mov R0, 110
+  mov [1719535], R0
+  mov R0, 110
+  mov [1719536], R0
+  mov R0, 114
+  mov [1719537], R0
+  mov R0, 114
+  mov [1719538], R0
+  mov R0, 120
+  mov [1719539], R0
+  mov R0, 73
+  mov [1719540], R0
+  mov R0, 98
+  mov [1719541], R0
+  mov R0, 115
+  mov [1719542], R0
+  mov R0, 115
+  mov [1719543], R0
+  mov R0, 82
+  mov [1719544], R0
+  mov R0, 91
+  mov [1719545], R0
+  mov R0, 82
+  mov [1719546], R0
+  mov R0, 112
+  mov [1719547], R0
+  mov R0, 112
+  mov [1719548], R0
+  mov R0, 104
+  mov [1719549], R0
+  mov R0, 105
+  mov [1719550], R0
+  mov R0, 105
+  mov [1719551], R0
+  mov R0, 92
+  mov [1719552], R0
+  mov R0, 112
+  mov [1719553], R0
+  mov R0, 112
+  mov [1719554], R0
+  mov R0, 103
+  mov [1719555], R0
+  mov R0, 103
+  mov [1719556], R0
+  mov R0, 92
+  mov [1719557], R0
+  mov R0, 85
+  mov [1719558], R0
+  mov R0, 111
+  mov [1719559], R0
+  mov R0, 111
+  mov [1719560], R0
+  mov R0, 98
+  mov [1719561], R0
+  mov R0, 85
+  mov [1719562], R0
+  mov R0, 102
+  mov [1719563], R0
+  mov R0, 102
+  mov [1719564], R0
+  mov R0, 93
+  mov [1719565], R0
+  mov R0, 113
+  mov [1719566], R0
+  mov R0, 113
+  mov [1719567], R0
+  mov R0, 103
+  mov [1719568], R0
+  mov R0, 103
+  mov [1719569], R0
+  mov R0, 87
+  mov [1719570], R0
+  mov R0, 93
+  mov [1719571], R0
+  mov R0, 111
+  mov [1719572], R0
+  mov R0, 91
+  mov [1719573], R0
+  mov R0, 111
+  mov [1719574], R0
+  mov R0, 92
+  mov [1719575], R0
+  mov R0, 101
+  mov [1719576], R0
+  mov R0, 101
+  mov [1719577], R0
+  mov R0, 93
+  mov [1719578], R0
+  mov R0, 112
+  mov [1719579], R0
+  mov R0, 112
+  mov [1719580], R0
+  mov R0, 103
+  mov [1719581], R0
+  mov R0, 103
+  mov [1719582], R0
+  mov R0, 93
+  mov [1719583], R0
+  mov R0, 110
+  mov [1719584], R0
+  mov R0, 110
+  mov [1719585], R0
+  mov R0, 104
+  mov [1719586], R0
+  mov R0, 90
+  mov [1719587], R0
+  mov R0, 73
+  mov [1719588], R0
+  mov R0, 100
+  mov [1719589], R0
+  mov R0, 100
+  mov [1719590], R0
+  mov R0, 93
+  mov [1719591], R0
+  mov R0, 91
+  mov [1719592], R0
+  mov R0, 88
+  mov [1719593], R0
+  mov R0, 113
+  mov [1719594], R0
+  mov R0, 113
+  mov [1719595], R0
+  mov R0, 103
+  mov [1719596], R0
+  mov R0, 103
+  mov [1719597], R0
+  mov R0, 108
+  mov [1719598], R0
+  mov R0, 108
+  mov [1719599], R0
+  mov R0, 112
+  mov [1719600], R0
+  mov R0, 86
+  mov [1719601], R0
+  mov R0, 118
+  mov [1719602], R0
+  mov R0, 114
+  mov [1719603], R0
+  mov R0, 114
+  mov [1719604], R0
+  mov R0, 116
+  mov [1719605], R0
+  mov R0, 118
+  mov [1719606], R0
+  mov R0, 92
+  mov [1719607], R0
+  mov R0, 114
+  mov [1719608], R0
+  mov R0, 114
+  mov [1719609], R0
+  mov R0, 110
+  mov [1719610], R0
+  mov R0, 110
+  mov [1719611], R0
+  mov R0, 116
+  mov [1719612], R0
+  mov R0, 116
+  mov [1719613], R0
+  mov R0, 86
+  mov [1719614], R0
+  mov R0, 110
+  mov [1719615], R0
+  mov R0, 110
+  mov [1719616], R0
+  mov R0, 118
+  mov [1719617], R0
+  mov R0, 111
+  mov [1719618], R0
+  mov R0, 111
+  mov [1719619], R0
+  mov R0, 104
+  mov [1719620], R0
+  mov R0, 104
+  mov [1719621], R0
+  mov R0, 110
+  mov [1719622], R0
+  mov R0, 123
+  mov [1719623], R0
+  mov R0, 92
+  mov [1719624], R0
+  mov R0, 111
+  mov [1719625], R0
+  mov R0, 111
+  mov [1719626], R0
+  mov R0, 117
+  mov [1719627], R0
+  mov R0, 123
+  mov [1719628], R0
+  mov R0, 89
+  mov [1719629], R0
+  mov R0, 116
+  mov [1719630], R0
+  mov R0, 116
+  mov [1719631], R0
+  mov R0, 108
+  mov [1719632], R0
+  mov R0, 108
+  mov [1719633], R0
+  mov R0, 119
+  mov [1719634], R0
+  mov R0, 117
+  mov [1719635], R0
+  mov R0, 92
+  mov [1719636], R0
+  mov R0, 110
+  mov [1719637], R0
+  mov R0, 110
+  mov [1719638], R0
+  mov R0, 110
+  mov [1719639], R0
+  mov R0, 110
+  mov [1719640], R0
+  mov R0, 110
+  mov [1719641], R0
+  mov R0, 110
+  mov [1719642], R0
+  mov R0, 116
+  mov [1719643], R0
+  mov R0, 111
+  mov [1719644], R0
+  mov R0, 83
+  mov [1719645], R0
+  mov R0, 121
+  mov [1719646], R0
+  mov R0, 111
+  mov [1719647], R0
+  mov R0, 111
+  mov [1719648], R0
+  mov R0, 122
+  mov [1719649], R0
+  mov R0, 111
+  mov [1719650], R0
+  mov R0, 83
+  mov [1719651], R0
+  mov R0, 110
+  mov [1719652], R0
+  mov R0, 110
+  mov [1719653], R0
+  mov R0, 117
+  mov [1719654], R0
+  mov R0, 117
+  mov [1719655], R0
+  mov R0, 111
+  mov [1719656], R0
+  mov R0, 111
+  mov [1719657], R0
+  mov R0, 108
+  mov [1719658], R0
+  mov R0, 122
+  mov [1719659], R0
+  mov R0, 92
+  mov [1719660], R0
+  mov R0, 111
+  mov [1719661], R0
+  mov R0, 111
+  mov [1719662], R0
+  mov R0, 111
+  mov [1719663], R0
+  mov R0, 121
+  mov [1719664], R0
+  mov R0, 92
+  mov [1719665], R0
+  mov R0, 114
+  mov [1719666], R0
+  mov R0, 114
+  mov [1719667], R0
+  mov R0, 106
+  mov [1719668], R0
+  mov R0, 106
+  mov [1719669], R0
+  mov R0, 116
+  mov [1719670], R0
+  mov R0, 101
+  mov [1719671], R0
+  mov R0, 89
+  mov [1719672], R0
+  mov R0, 108
+  mov [1719673], R0
+  mov R0, 108
+  mov [1719674], R0
+  mov R0, 117
+  mov [1719675], R0
+  mov R0, 106
+  mov [1719676], R0
+  mov R0, 106
+  mov [1719677], R0
+  mov R0, 114
+  mov [1719678], R0
+  mov R0, 114
+  mov [1719679], R0
+  mov R0, 122
+  mov [1719680], R0
+  mov R0, 112
+  mov [1719681], R0
+  mov R0, 83
+  mov [1719682], R0
+  mov R0, 106
+  mov [1719683], R0
+  mov R0, 106
+  mov [1719684], R0
+  mov R0, 105
+  mov [1719685], R0
+  mov R0, 123
+  mov [1719686], R0
+  mov R0, 117
+  mov [1719687], R0
+  mov R0, 89
+  mov [1719688], R0
+  mov R0, 117
+  mov [1719689], R0
+  mov R0, 111
+  mov [1719690], R0
+  mov R0, 111
+  mov [1719691], R0
+  mov R0, 108
+  mov [1719692], R0
+  mov R0, 117
+  mov [1719693], R0
+  mov R0, 92
+  mov [1719694], R0
+  mov R0, 114
+  mov [1719695], R0
+  mov R0, 114
+  mov [1719696], R0
+  mov R0, 114
+  mov [1719697], R0
+  mov R0, 114
+  mov [1719698], R0
+  mov R0, 121
+  mov [1719699], R0
+  mov R0, 117
+  mov [1719700], R0
+  mov R0, 86
+  mov [1719701], R0
+  mov R0, 120
+  mov [1719702], R0
+  mov R0, 122
+  mov [1719703], R0
+  mov R0, 108
+  mov [1719704], R0
+  mov R0, 71
+  mov [1719705], R0
+  mov R0, 108
+  mov [1719706], R0
+  mov R0, 108
+  mov [1719707], R0
+  mov R0, 107
+  mov [1719708], R0
+  mov R0, 122
+  mov [1719709], R0
+  mov R0, 77
+  mov [1719710], R0
+  mov R0, 107
+  mov [1719711], R0
+  mov R0, 107
+  mov [1719712], R0
+  mov R0, 115
+  mov [1719713], R0
+  mov R0, 121
+  mov [1719714], R0
+  mov R0, 92
+  mov [1719715], R0
+  mov R0, 113
+  mov [1719716], R0
+  mov R0, 113
+  mov [1719717], R0
+  mov R0, 105
+  mov [1719718], R0
+  mov R0, 105
+  mov [1719719], R0
+  mov R0, 122
+  mov [1719720], R0
+  mov R0, 107
+  mov [1719721], R0
+  mov R0, 92
+  mov [1719722], R0
+  mov R0, 111
+  mov [1719723], R0
+  mov R0, 111
+  mov [1719724], R0
+  mov R0, 115
+  mov [1719725], R0
+  mov R0, 110
+  mov [1719726], R0
+  mov R0, 110
+  mov [1719727], R0
+  mov R0, 111
+  mov [1719728], R0
+  mov R0, 111
+  mov [1719729], R0
+  mov R0, 123
+  mov [1719730], R0
+  mov R0, 114
+  mov [1719731], R0
+  mov R0, 89
+  mov [1719732], R0
+  mov R0, 114
+  mov [1719733], R0
+  mov R0, 114
+  mov [1719734], R0
+  mov R0, 110
+  mov [1719735], R0
+  mov R0, 122
+  mov [1719736], R0
+  mov R0, 98
+  mov [1719737], R0
+  mov R0, 118
+  mov [1719738], R0
+  mov R0, 118
+  mov [1719739], R0
+  mov R0, 106
+  mov [1719740], R0
+  mov R0, 106
+  mov [1719741], R0
+  mov R0, 119
+  mov [1719742], R0
+  mov R0, 122
+  mov [1719743], R0
+  mov R0, 89
+  mov [1719744], R0
+  mov R0, 108
+  mov [1719745], R0
+  mov R0, 108
+  mov [1719746], R0
+  mov R0, 115
+  mov [1719747], R0
+  mov R0, 115
+  mov [1719748], R0
+  mov R0, 111
+  mov [1719749], R0
+  mov R0, 111
+  mov [1719750], R0
+  mov R0, 110
+  mov [1719751], R0
+  mov R0, 122
+  mov [1719752], R0
+  mov R0, 86
+  mov [1719753], R0
+  mov R0, 111
+  mov [1719754], R0
+  mov R0, 111
+  mov [1719755], R0
+  mov R0, 110
+  mov [1719756], R0
+  mov R0, 122
+  mov [1719757], R0
+  mov R0, 92
+  mov [1719758], R0
+  mov R0, 110
+  mov [1719759], R0
+  mov R0, 110
+  mov [1719760], R0
+  mov R0, 111
+  mov [1719761], R0
+  mov R0, 111
+  mov [1719762], R0
+  mov R0, 110
+  mov [1719763], R0
+  mov R0, 119
+  mov [1719764], R0
+  mov R0, 123
+  mov [1719765], R0
+  mov R0, 92
+  mov [1719766], R0
+  mov R0, 110
+  mov [1719767], R0
+  mov R0, 108
+  mov [1719768], R0
+  mov R0, 108
+  mov [1719769], R0
+  mov R0, 115
+  mov [1719770], R0
+  mov R0, 123
+  mov [1719771], R0
+  mov R0, 83
+  mov [1719772], R0
+  mov R0, 117
+  mov [1719773], R0
+  mov R0, 117
+  mov [1719774], R0
+  mov R0, 111
+  mov [1719775], R0
+  mov R0, 111
+  mov [1719776], R0
+  mov R0, 122
+  mov [1719777], R0
+  mov R0, 119
+  mov [1719778], R0
+  mov R0, 89
+  mov [1719779], R0
+  mov R0, 108
+  mov [1719780], R0
+  mov R0, 108
+  mov [1719781], R0
+  mov R0, 122
+  mov [1719782], R0
+  mov R0, 110
+  mov [1719783], R0
+  mov R0, 110
+  mov [1719784], R0
+  mov R0, 114
+  mov [1719785], R0
+  mov R0, 114
+  mov [1719786], R0
+  mov R0, 117
+  mov [1719787], R0
+  mov R0, 120
+  mov [1719788], R0
+  mov R0, 98
+  mov [1719789], R0
+  mov R0, 115
+  mov [1719790], R0
+  mov R0, 115
+  mov [1719791], R0
+  mov R0, 112
+  mov [1719792], R0
+  mov R0, 112
+  mov [1719793], R0
+  mov R0, 113
+  mov [1719794], R0
+  mov R0, 104
+  mov [1719795], R0
+  mov R0, 82
+  mov [1719796], R0
+  mov R0, 88
+  mov [1719797], R0
+  mov R0, 105
+  mov [1719798], R0
+  mov R0, 105
+  mov [1719799], R0
+  mov R0, 79
+  mov [1719800], R0
+  mov R0, 112
+  mov [1719801], R0
+  mov R0, 112
+  mov [1719802], R0
+  mov R0, 103
+  mov [1719803], R0
+  mov R0, 103
+  mov [1719804], R0
+  mov R0, 93
+  mov [1719805], R0
+  mov R0, 111
+  mov [1719806], R0
+  mov R0, 111
+  mov [1719807], R0
+  mov R0, 98
+  mov [1719808], R0
+  mov R0, 102
+  mov [1719809], R0
+  mov R0, 102
+  mov [1719810], R0
+  mov R0, 113
+  mov [1719811], R0
+  mov R0, 88
+  mov [1719812], R0
+  mov R0, 113
+  mov [1719813], R0
+  mov R0, 86
+  mov [1719814], R0
+  mov R0, 103
+  mov [1719815], R0
+  mov R0, 103
+  mov [1719816], R0
+  mov R0, 93
+  mov [1719817], R0
+  mov R0, 111
+  mov [1719818], R0
+  mov R0, 111
+  mov [1719819], R0
+  mov R0, 92
+  mov [1719820], R0
+  mov R0, 87
+  mov [1719821], R0
+  mov R0, 101
+  mov [1719822], R0
+  mov R0, 101
+  mov [1719823], R0
+  mov R0, 86
+  mov [1719824], R0
+  mov R0, 112
+  mov [1719825], R0
+  mov R0, 112
+  mov [1719826], R0
+  mov R0, 93
+  mov [1719827], R0
+  mov R0, 103
+  mov [1719828], R0
+  mov R0, 103
+  mov [1719829], R0
+  mov R0, 93
+  mov [1719830], R0
+  mov R0, 110
+  mov [1719831], R0
+  mov R0, 110
+  mov [1719832], R0
+  mov R0, 104
+  mov [1719833], R0
+  mov R0, 88
+  mov [1719834], R0
+  mov R0, 100
+  mov [1719835], R0
+  mov R0, 100
+  mov [1719836], R0
+  mov R0, 113
+  mov [1719837], R0
+  mov R0, 113
+  mov [1719838], R0
+  mov R0, 93
+  mov [1719839], R0
+  mov R0, 103
+  mov [1719840], R0
+  mov R0, 103
+  mov [1719841], R0
+  mov R0, 108
+  mov [1719842], R0
+  mov R0, 108
+  mov [1719843], R0
+  mov R0, 86
+  mov [1719844], R0
+  mov R0, 72
+  mov [1719845], R0
+  mov R0, 118
+  mov [1719846], R0
+  mov R0, 114
+  mov [1719847], R0
+  mov R0, 114
+  mov [1719848], R0
+  mov R0, 118
+  mov [1719849], R0
+  mov R0, 92
+  mov [1719850], R0
+  mov R0, 85
+  mov [1719851], R0
+  mov R0, 114
+  mov [1719852], R0
+  mov R0, 114
+  mov [1719853], R0
+  mov R0, 110
+  mov [1719854], R0
+  mov R0, 110
+  mov [1719855], R0
+  mov R0, 116
+  mov [1719856], R0
+  mov R0, 86
+  mov [1719857], R0
+  mov R0, 81
+  mov [1719858], R0
+  mov R0, 110
+  mov [1719859], R0
+  mov R0, 110
+  mov [1719860], R0
+  mov R0, 118
+  mov [1719861], R0
+  mov R0, 111
+  mov [1719862], R0
+  mov R0, 111
+  mov [1719863], R0
+  mov R0, 104
+  mov [1719864], R0
+  mov R0, 123
+  mov [1719865], R0
+  mov R0, 92
+  mov [1719866], R0
+  mov R0, 104
+  mov [1719867], R0
+  mov R0, 81
+  mov [1719868], R0
+  mov R0, 111
+  mov [1719869], R0
+  mov R0, 111
+  mov [1719870], R0
+  mov R0, 123
+  mov [1719871], R0
+  mov R0, 75
+  mov [1719872], R0
+  mov R0, 89
+  mov [1719873], R0
+  mov R0, 116
+  mov [1719874], R0
+  mov R0, 116
+  mov [1719875], R0
+  mov R0, 108
+  mov [1719876], R0
+  mov R0, 108
+  mov [1719877], R0
+  mov R0, 117
+  mov [1719878], R0
+  mov R0, 92
+  mov [1719879], R0
+  mov R0, 110
+  mov [1719880], R0
+  mov R0, 110
+  mov [1719881], R0
+  mov R0, 72
+  mov [1719882], R0
+  mov R0, 110
+  mov [1719883], R0
+  mov R0, 110
+  mov [1719884], R0
+  mov R0, 110
+  mov [1719885], R0
+  mov R0, 110
+  mov [1719886], R0
+  mov R0, 116
+  mov [1719887], R0
+  mov R0, 75
+  mov [1719888], R0
+  mov R0, 83
+  mov [1719889], R0
+  mov R0, 121
+  mov [1719890], R0
+  mov R0, 111
+  mov [1719891], R0
+  mov R0, 111
+  mov [1719892], R0
+  mov R0, 122
+  mov [1719893], R0
+  mov R0, 83
+  mov [1719894], R0
+  mov R0, 110
+  mov [1719895], R0
+  mov R0, 110
+  mov [1719896], R0
+  mov R0, 78
+  mov [1719897], R0
+  mov R0, 117
+  mov [1719898], R0
+  mov R0, 117
+  mov [1719899], R0
+  mov R0, 111
+  mov [1719900], R0
+  mov R0, 111
+  mov [1719901], R0
+  mov R0, 122
+  mov [1719902], R0
+  mov R0, 68
+  mov [1719903], R0
+  mov R0, 92
+  mov [1719904], R0
+  mov R0, 111
+  mov [1719905], R0
+  mov R0, 111
+  mov [1719906], R0
+  mov R0, 121
+  mov [1719907], R0
+  mov R0, 72
+  mov [1719908], R0
+  mov R0, 92
+  mov [1719909], R0
+  mov R0, 114
+  mov [1719910], R0
+  mov R0, 114
+  mov [1719911], R0
+  mov R0, 106
+  mov [1719912], R0
+  mov R0, 106
+  mov [1719913], R0
+  mov R0, 116
+  mov [1719914], R0
+  mov R0, 89
+  mov [1719915], R0
+  mov R0, 65
+  mov [1719916], R0
+  mov R0, 108
+  mov [1719917], R0
+  mov R0, 108
+  mov [1719918], R0
+  mov R0, 117
+  mov [1719919], R0
+  mov R0, 106
+  mov [1719920], R0
+  mov R0, 106
+  mov [1719921], R0
+  mov R0, 114
+  mov [1719922], R0
+  mov R0, 114
+  mov [1719923], R0
+  mov R0, 122
+  mov [1719924], R0
+  mov R0, 83
+  mov [1719925], R0
+  mov R0, 75
+  mov [1719926], R0
+  mov R0, 106
+  mov [1719927], R0
+  mov R0, 106
+  mov [1719928], R0
+  mov R0, 75
+  mov [1719929], R0
+  mov R0, 123
+  mov [1719930], R0
+  mov R0, 117
+  mov [1719931], R0
+  mov R0, 89
+  mov [1719932], R0
+  mov R0, 117
+  mov [1719933], R0
+  mov R0, 111
+  mov [1719934], R0
+  mov R0, 111
+  mov [1719935], R0
+  mov R0, 117
+  mov [1719936], R0
+  mov R0, 69
+  mov [1719937], R0
+  mov R0, 92
+  mov [1719938], R0
+  mov R0, 114
+  mov [1719939], R0
+  mov R0, 114
+  mov [1719940], R0
+  mov R0, 114
+  mov [1719941], R0
+  mov R0, 114
+  mov [1719942], R0
+  mov R0, 121
+  mov [1719943], R0
+  mov R0, 73
+  mov [1719944], R0
+  mov R0, 86
+  mov [1719945], R0
+  mov R0, 120
+  mov [1719946], R0
+  mov R0, 122
+  mov [1719947], R0
+  mov R0, 71
+  mov [1719948], R0
+  mov R0, 71
+  mov [1719949], R0
+  mov R0, 108
+  mov [1719950], R0
+  mov R0, 108
+  mov [1719951], R0
+  mov R0, 75
+  mov [1719952], R0
+  mov R0, 122
+  mov [1719953], R0
+  mov R0, 77
+  mov [1719954], R0
+  mov R0, 107
+  mov [1719955], R0
+  mov R0, 107
+  mov [1719956], R0
+  mov R0, 69
+  mov [1719957], R0
+  mov R0, 121
+  mov [1719958], R0
+  mov R0, 92
+  mov [1719959], R0
+  mov R0, 113
+  mov [1719960], R0
+  mov R0, 113
+  mov [1719961], R0
+  mov R0, 105
+  mov [1719962], R0
+  mov R0, 105
+  mov [1719963], R0
+  mov R0, 122
+  mov [1719964], R0
+  mov R0, 79
+  mov [1719965], R0
+  mov R0, 92
+  mov [1719966], R0
+  mov R0, 111
+  mov [1719967], R0
+  mov R0, 111
+  mov [1719968], R0
+  mov R0, 115
+  mov [1719969], R0
+  mov R0, 110
+  mov [1719970], R0
+  mov R0, 110
+  mov [1719971], R0
+  mov R0, 111
+  mov [1719972], R0
+  mov R0, 111
+  mov [1719973], R0
+  mov R0, 123
+  mov [1719974], R0
+  mov R0, 71
+  mov [1719975], R0
+  mov R0, 89
+  mov [1719976], R0
+  mov R0, 114
+  mov [1719977], R0
+  mov R0, 114
+  mov [1719978], R0
+  mov R0, 122
+  mov [1719979], R0
+  mov R0, 65
+  mov [1719980], R0
+  mov R0, 98
+  mov [1719981], R0
+  mov R0, 118
+  mov [1719982], R0
+  mov R0, 118
+  mov [1719983], R0
+  mov R0, 106
+  mov [1719984], R0
+  mov R0, 106
+  mov [1719985], R0
+  mov R0, 122
+  mov [1719986], R0
+  mov R0, 75
+  mov [1719987], R0
+  mov R0, 89
+  mov [1719988], R0
+  mov R0, 108
+  mov [1719989], R0
+  mov R0, 108
+  mov [1719990], R0
+  mov R0, 115
+  mov [1719991], R0
+  mov R0, 115
+  mov [1719992], R0
+  mov R0, 111
+  mov [1719993], R0
+  mov R0, 111
+  mov [1719994], R0
+  mov R0, 72
+  mov [1719995], R0
+  mov R0, 122
+  mov [1719996], R0
+  mov R0, 86
+  mov [1719997], R0
+  mov R0, 111
+  mov [1719998], R0
+  mov R0, 111
+  mov [1719999], R0
+  mov R0, 122
+  mov [1720000], R0
+  mov R0, 71
+  mov [1720001], R0
+  mov R0, 92
+  mov [1720002], R0
+  mov R0, 110
+  mov [1720003], R0
+  mov R0, 110
+  mov [1720004], R0
+  mov R0, 111
+  mov [1720005], R0
+  mov R0, 111
+  mov [1720006], R0
+  mov R0, 110
+  mov [1720007], R0
+  mov R0, 110
+  mov [1720008], R0
+  mov R0, 72
+  mov [1720009], R0
+  mov R0, 123
+  mov [1720010], R0
+  mov R0, 92
+  mov [1720011], R0
+  mov R0, 108
+  mov [1720012], R0
+  mov R0, 108
+  mov [1720013], R0
+  mov R0, 73
+  mov [1720014], R0
+  mov R0, 123
+  mov [1720015], R0
+  mov R0, 83
+  mov [1720016], R0
+  mov R0, 117
+  mov [1720017], R0
+  mov R0, 117
+  mov [1720018], R0
+  mov R0, 111
+  mov [1720019], R0
+  mov R0, 111
+  mov [1720020], R0
+  mov R0, 122
+  mov [1720021], R0
+  mov R0, 71
+  mov [1720022], R0
+  mov R0, 89
+  mov [1720023], R0
+  mov R0, 108
+  mov [1720024], R0
+  mov R0, 108
+  mov [1720025], R0
+  mov R0, 122
+  mov [1720026], R0
+  mov R0, 110
+  mov [1720027], R0
+  mov R0, 110
+  mov [1720028], R0
+  mov R0, 114
+  mov [1720029], R0
+  mov R0, 114
+  mov [1720030], R0
+  mov R0, 120
+  mov [1720031], R0
+  mov R0, 98
+  mov [1720032], R0
+  mov R0, 73
+  mov [1720033], R0
+  mov R0, 115
+  mov [1720034], R0
+  mov R0, 115
+  mov [1720035], R0
+  mov R0, 85
+  mov [1720036], R0
+  mov R0, 92
+  mov [1720037], R0
+  mov R0, 104
+  mov [1720038], R0
+  mov R0, 117
+  mov [1720039], R0
+  mov R0, 117
+  mov [1720040], R0
+  mov R0, 86
+  mov [1720041], R0
+  mov R0, 111
+  mov [1720042], R0
+  mov R0, 111
+  mov [1720043], R0
+  mov R0, 82
+  mov [1720044], R0
+  mov R0, 92
+  mov [1720045], R0
+  mov R0, 98
+  mov [1720046], R0
+  mov R0, 114
+  mov [1720047], R0
+  mov R0, 114
+  mov [1720048], R0
+  mov R0, 91
+  mov [1720049], R0
+  mov R0, 114
+  mov [1720050], R0
+  mov R0, 114
+  mov [1720051], R0
+  mov R0, 79
+  mov [1720052], R0
+  mov R0, 88
+  mov [1720053], R0
+  mov R0, 92
+  mov [1720054], R0
+  mov R0, 79
+  mov [1720055], R0
+  mov R0, 90
+  mov [1720056], R0
+  mov R0, 93
+  mov [1720057], R0
+  mov R0, 87
+  mov [1720058], R0
+  mov R0, 93
+  mov [1720059], R0
+  mov R0, 104
+  mov [1720060], R0
+  mov R0, 93
+  mov [1720061], R0
+  mov R0, 108
+  mov [1720062], R0
+  mov R0, 108
+  mov [1720063], R0
+  mov R0, 79
+  mov [1720064], R0
+  mov R0, 118
+  mov [1720065], R0
+  mov R0, 110
+  mov [1720066], R0
+  mov R0, 114
+  mov [1720067], R0
+  mov R0, 114
+  mov [1720068], R0
+  mov R0, 123
+  mov [1720069], R0
+  mov R0, 118
+  mov [1720070], R0
+  mov R0, 114
+  mov [1720071], R0
+  mov R0, 114
+  mov [1720072], R0
+  mov R0, 98
+  mov [1720073], R0
+  mov R0, 110
+  mov [1720074], R0
+  mov R0, 110
+  mov [1720075], R0
+  mov R0, 125
+  mov [1720076], R0
+  mov R0, 116
+  mov [1720077], R0
+  mov R0, 110
+  mov [1720078], R0
+  mov R0, 110
+  mov [1720079], R0
+  mov R0, 89
+  mov [1720080], R0
+  mov R0, 118
+  mov [1720081], R0
+  mov R0, 111
+  mov [1720082], R0
+  mov R0, 111
+  mov [1720083], R0
+  mov R0, 122
+  mov [1720084], R0
+  mov R0, 104
+  mov [1720085], R0
+  mov R0, 104
+  mov [1720086], R0
+  mov R0, 123
+  mov [1720087], R0
+  mov R0, 104
+  mov [1720088], R0
+  mov R0, 111
+  mov [1720089], R0
+  mov R0, 111
+  mov [1720090], R0
+  mov R0, 124
+  mov [1720091], R0
+  mov R0, 123
+  mov [1720092], R0
+  mov R0, 116
+  mov [1720093], R0
+  mov R0, 114
+  mov [1720094], R0
+  mov R0, 116
+  mov [1720095], R0
+  mov R0, 108
+  mov [1720096], R0
+  mov R0, 108
+  mov [1720097], R0
+  mov R0, 114
+  mov [1720098], R0
+  mov R0, 117
+  mov [1720099], R0
+  mov R0, 110
+  mov [1720100], R0
+  mov R0, 110
+  mov [1720101], R0
+  mov R0, 104
+  mov [1720102], R0
+  mov R0, 110
+  mov [1720103], R0
+  mov R0, 110
+  mov [1720104], R0
+  mov R0, 120
+  mov [1720105], R0
+  mov R0, 110
+  mov [1720106], R0
+  mov R0, 110
+  mov [1720107], R0
+  mov R0, 116
+  mov [1720108], R0
+  mov R0, 104
+  mov [1720109], R0
+  mov R0, 121
+  mov [1720110], R0
+  mov R0, 111
+  mov [1720111], R0
+  mov R0, 111
+  mov [1720112], R0
+  mov R0, 124
+  mov [1720113], R0
+  mov R0, 122
+  mov [1720114], R0
+  mov R0, 110
+  mov [1720115], R0
+  mov R0, 110
+  mov [1720116], R0
+  mov R0, 98
+  mov [1720117], R0
+  mov R0, 117
+  mov [1720118], R0
+  mov R0, 117
+  mov [1720119], R0
+  mov R0, 111
+  mov [1720120], R0
+  mov R0, 111
+  mov [1720121], R0
+  mov R0, 122
+  mov [1720122], R0
+  mov R0, 79
+  mov [1720123], R0
+  mov R0, 77
+  mov [1720124], R0
+  mov R0, 111
+  mov [1720125], R0
+  mov R0, 111
+  mov [1720126], R0
+  mov R0, 124
+  mov [1720127], R0
+  mov R0, 121
+  mov [1720128], R0
+  mov R0, 114
+  mov [1720129], R0
+  mov R0, 114
+  mov [1720130], R0
+  mov R0, 92
+  mov [1720131], R0
+  mov R0, 106
+  mov [1720132], R0
+  mov R0, 106
+  mov [1720133], R0
+  mov R0, 119
+  mov [1720134], R0
+  mov R0, 116
+  mov [1720135], R0
+  mov R0, 108
+  mov [1720136], R0
+  mov R0, 108
+  mov [1720137], R0
+  mov R0, 104
+  mov [1720138], R0
+  mov R0, 117
+  mov [1720139], R0
+  mov R0, 106
+  mov [1720140], R0
+  mov R0, 106
+  mov [1720141], R0
+  mov R0, 124
+  mov [1720142], R0
+  mov R0, 114
+  mov [1720143], R0
+  mov R0, 114
+  mov [1720144], R0
+  mov R0, 122
+  mov [1720145], R0
+  mov R0, 86
+  mov [1720146], R0
+  mov R0, 106
+  mov [1720147], R0
+  mov R0, 106
+  mov [1720148], R0
+  mov R0, 125
+  mov [1720149], R0
+  mov R0, 123
+  mov [1720150], R0
+  mov R0, 117
+  mov [1720151], R0
+  mov R0, 117
+  mov [1720152], R0
+  mov R0, 98
+  mov [1720153], R0
+  mov R0, 111
+  mov [1720154], R0
+  mov R0, 111
+  mov [1720155], R0
+  mov R0, 125
+  mov [1720156], R0
+  mov R0, 117
+  mov [1720157], R0
+  mov R0, 98
+  mov [1720158], R0
+  mov R0, 114
+  mov [1720159], R0
+  mov R0, 114
+  mov [1720160], R0
+  mov R0, 114
+  mov [1720161], R0
+  mov R0, 114
+  mov [1720162], R0
+  mov R0, 125
+  mov [1720163], R0
+  mov R0, 121
+  mov [1720164], R0
+  mov R0, 86
+  mov [1720165], R0
+  mov R0, 120
+  mov [1720166], R0
+  mov R0, 125
+  mov [1720167], R0
+  mov R0, 122
+  mov [1720168], R0
+  mov R0, 89
+  mov [1720169], R0
+  mov R0, 108
+  mov [1720170], R0
+  mov R0, 108
+  mov [1720171], R0
+  mov R0, 79
+  mov [1720172], R0
+  mov R0, 122
+  mov [1720173], R0
+  mov R0, 80
+  mov [1720174], R0
+  mov R0, 107
+  mov [1720175], R0
+  mov R0, 107
+  mov [1720176], R0
+  mov R0, 125
+  mov [1720177], R0
+  mov R0, 121
+  mov [1720178], R0
+  mov R0, 113
+  mov [1720179], R0
+  mov R0, 113
+  mov [1720180], R0
+  mov R0, 83
+  mov [1720181], R0
+  mov R0, 105
+  mov [1720182], R0
+  mov R0, 105
+  mov [1720183], R0
+  mov R0, 125
+  mov [1720184], R0
+  mov R0, 122
+  mov [1720185], R0
+  mov R0, 111
+  mov [1720186], R0
+  mov R0, 111
+  mov [1720187], R0
+  mov R0, 83
+  mov [1720188], R0
+  mov R0, 115
+  mov [1720189], R0
+  mov R0, 110
+  mov [1720190], R0
+  mov R0, 110
+  mov [1720191], R0
+  mov R0, 124
+  mov [1720192], R0
+  mov R0, 111
+  mov [1720193], R0
+  mov R0, 111
+  mov [1720194], R0
+  mov R0, 123
+  mov [1720195], R0
+  mov R0, 83
+  mov [1720196], R0
+  mov R0, 114
+  mov [1720197], R0
+  mov R0, 114
+  mov [1720198], R0
+  mov R0, 124
+  mov [1720199], R0
+  mov R0, 122
+  mov [1720200], R0
+  mov R0, 118
+  mov [1720201], R0
+  mov R0, 118
+  mov [1720202], R0
+  mov R0, 77
+  mov [1720203], R0
+  mov R0, 106
+  mov [1720204], R0
+  mov R0, 106
+  mov [1720205], R0
+  mov R0, 125
+  mov [1720206], R0
+  mov R0, 122
+  mov [1720207], R0
+  mov R0, 108
+  mov [1720208], R0
+  mov R0, 108
+  mov [1720209], R0
+  mov R0, 74
+  mov [1720210], R0
+  mov R0, 115
+  mov [1720211], R0
+  mov R0, 115
+  mov [1720212], R0
+  mov R0, 125
+  mov [1720213], R0
+  mov R0, 111
+  mov [1720214], R0
+  mov R0, 111
+  mov [1720215], R0
+  mov R0, 122
+  mov [1720216], R0
+  mov R0, 89
+  mov [1720217], R0
+  mov R0, 111
+  mov [1720218], R0
+  mov R0, 111
+  mov [1720219], R0
+  mov R0, 119
+  mov [1720220], R0
+  mov R0, 122
+  mov [1720221], R0
+  mov R0, 110
+  mov [1720222], R0
+  mov R0, 110
+  mov [1720223], R0
+  mov R0, 83
+  mov [1720224], R0
+  mov R0, 111
+  mov [1720225], R0
+  mov R0, 111
+  mov [1720226], R0
+  mov R0, 124
+  mov [1720227], R0
+  mov R0, 110
+  mov [1720228], R0
+  mov R0, 110
+  mov [1720229], R0
+  mov R0, 123
+  mov [1720230], R0
+  mov R0, 86
+  mov [1720231], R0
+  mov R0, 108
+  mov [1720232], R0
+  mov R0, 108
+  mov [1720233], R0
+  mov R0, 125
+  mov [1720234], R0
+  mov R0, 123
+  mov [1720235], R0
+  mov R0, 117
+  mov [1720236], R0
+  mov R0, 98
+  mov [1720237], R0
+  mov R0, 117
+  mov [1720238], R0
+  mov R0, 111
+  mov [1720239], R0
+  mov R0, 111
+  mov [1720240], R0
+  mov R0, 122
+  mov [1720241], R0
+  mov R0, 89
+  mov [1720242], R0
+  mov R0, 108
+  mov [1720243], R0
+  mov R0, 124
+  mov [1720244], R0
+  mov R0, 108
+  mov [1720245], R0
+  mov R0, 122
+  mov [1720246], R0
+  mov R0, 110
+  mov [1720247], R0
+  mov R0, 110
+  mov [1720248], R0
+  mov R0, 125
+  mov [1720249], R0
+  mov R0, 114
+  mov [1720250], R0
+  mov R0, 114
+  mov [1720251], R0
+  mov R0, 120
+  mov [1720252], R0
+  mov R0, 104
+  mov [1720253], R0
+  mov R0, 115
+  mov [1720254], R0
+  mov R0, 115
+  mov [1720255], R0
+  mov R0, 99
+  mov [1720256], R0
+  mov R0, 116
+  mov [1720257], R0
+  mov R0, 125
+  mov [1720258], R0
+  mov R0, 122
+  mov [1720259], R0
+  mov R0, 112
+  mov [1720260], R0
+  mov R0, 112
+  mov [1720261], R0
+  mov R0, 104
+  mov [1720262], R0
+  mov R0, 105
+  mov [1720263], R0
+  mov R0, 105
+  mov [1720264], R0
+  mov R0, 112
+  mov [1720265], R0
+  mov R0, 112
+  mov [1720266], R0
+  mov R0, 103
+  mov [1720267], R0
+  mov R0, 103
+  mov [1720268], R0
+  mov R0, 111
+  mov [1720269], R0
+  mov R0, 111
+  mov [1720270], R0
+  mov R0, 102
+  mov [1720271], R0
+  mov R0, 102
+  mov [1720272], R0
+  mov R0, 113
+  mov [1720273], R0
+  mov R0, 113
+  mov [1720274], R0
+  mov R0, 103
+  mov [1720275], R0
+  mov R0, 103
+  mov [1720276], R0
+  mov R0, 111
+  mov [1720277], R0
+  mov R0, 111
+  mov [1720278], R0
+  mov R0, 101
+  mov [1720279], R0
+  mov R0, 101
+  mov [1720280], R0
+  mov R0, 112
+  mov [1720281], R0
+  mov R0, 112
+  mov [1720282], R0
+  mov R0, 103
+  mov [1720283], R0
+  mov R0, 103
+  mov [1720284], R0
+  mov R0, 110
+  mov [1720285], R0
+  mov R0, 110
+  mov [1720286], R0
+  mov R0, 100
+  mov [1720287], R0
+  mov R0, 100
+  mov [1720288], R0
+  mov R0, 113
+  mov [1720289], R0
+  mov R0, 113
+  mov [1720290], R0
+  mov R0, 103
+  mov [1720291], R0
+  mov R0, 103
+  mov [1720292], R0
+  mov R0, 108
+  mov [1720293], R0
+  mov R0, 108
+  mov [1720294], R0
+  mov R0, 123
+  mov [1720295], R0
+  mov R0, 61
+  mov [1720296], R0
+  mov R0, 71
+  mov [1720297], R0
+  mov R0, 123
+  mov [1720298], R0
+  mov R0, 123
+  mov [1720299], R0
+  mov R0, 122
+  mov [1720300], R0
+  mov R0, 114
+  mov [1720301], R0
+  mov R0, 114
+  mov [1720302], R0
+  mov R0, 23
+  mov [1720303], R0
+  mov R0, 23
+  mov [1720304], R0
+  mov R0, 114
+  mov [1720305], R0
+  mov R0, 114
+  mov [1720306], R0
+  mov R0, 110
+  mov [1720307], R0
+  mov R0, 110
+  mov [1720308], R0
+  mov R0, 110
+  mov [1720309], R0
+  mov R0, 110
+  mov [1720310], R0
+  mov R0, 111
+  mov [1720311], R0
+  mov R0, 111
+  mov [1720312], R0
+  mov R0, 104
+  mov [1720313], R0
+  mov R0, 104
+  mov [1720314], R0
+  mov R0, 111
+  mov [1720315], R0
+  mov R0, 111
+  mov [1720316], R0
+  mov R0, 116
+  mov [1720317], R0
+  mov R0, 116
+  mov [1720318], R0
+  mov R0, 108
+  mov [1720319], R0
+  mov R0, 108
+  mov [1720320], R0
+  mov R0, 110
+  mov [1720321], R0
+  mov R0, 110
+  mov [1720322], R0
+  mov R0, 110
+  mov [1720323], R0
+  mov R0, 110
+  mov [1720324], R0
+  mov R0, 110
+  mov [1720325], R0
+  mov R0, 110
+  mov [1720326], R0
+  mov R0, 111
+  mov [1720327], R0
+  mov R0, 111
+  mov [1720328], R0
+  mov R0, 110
+  mov [1720329], R0
+  mov R0, 110
+  mov [1720330], R0
+  mov R0, 117
+  mov [1720331], R0
+  mov R0, 117
+  mov [1720332], R0
+  mov R0, 111
+  mov [1720333], R0
+  mov R0, 111
+  mov [1720334], R0
+  mov R0, 64
+  mov [1720335], R0
+  mov R0, 123
+  mov [1720336], R0
+  mov R0, 70
+  mov [1720337], R0
+  mov R0, 123
+  mov [1720338], R0
+  mov R0, 123
+  mov [1720339], R0
+  mov R0, 125
+  mov [1720340], R0
+  mov R0, 111
+  mov [1720341], R0
+  mov R0, 111
+  mov [1720342], R0
+  mov R0, 23
+  mov [1720343], R0
+  mov R0, 23
+  mov [1720344], R0
+  mov R0, 114
+  mov [1720345], R0
+  mov R0, 114
+  mov [1720346], R0
+  mov R0, 106
+  mov [1720347], R0
+  mov R0, 106
+  mov [1720348], R0
+  mov R0, 108
+  mov [1720349], R0
+  mov R0, 108
+  mov [1720350], R0
+  mov R0, 106
+  mov [1720351], R0
+  mov R0, 106
+  mov [1720352], R0
+  mov R0, 114
+  mov [1720353], R0
+  mov R0, 114
+  mov [1720354], R0
+  mov R0, 106
+  mov [1720355], R0
+  mov R0, 106
+  mov [1720356], R0
+  mov R0, 117
+  mov [1720357], R0
+  mov R0, 117
+  mov [1720358], R0
+  mov R0, 111
+  mov [1720359], R0
+  mov R0, 111
+  mov [1720360], R0
+  mov R0, 114
+  mov [1720361], R0
+  mov R0, 114
+  mov [1720362], R0
+  mov R0, 114
+  mov [1720363], R0
+  mov R0, 114
+  mov [1720364], R0
+  mov R0, 108
+  mov [1720365], R0
+  mov R0, 56
+  mov [1720366], R0
+  mov R0, 74
+  mov [1720367], R0
+  mov R0, 122
+  mov [1720368], R0
+  mov R0, 123
+  mov [1720369], R0
+  mov R0, 121
+  mov [1720370], R0
+  mov R0, 125
+  mov [1720371], R0
+  mov R0, 108
+  mov [1720372], R0
+  mov R0, 107
+  mov [1720373], R0
+  mov R0, 107
+  mov [1720374], R0
+  mov R0, 23
+  mov [1720375], R0
+  mov R0, 23
+  mov [1720376], R0
+  mov R0, 113
+  mov [1720377], R0
+  mov R0, 113
+  mov [1720378], R0
+  mov R0, 105
+  mov [1720379], R0
+  mov R0, 105
+  mov [1720380], R0
+  mov R0, 111
+  mov [1720381], R0
+  mov R0, 111
+  mov [1720382], R0
+  mov R0, 110
+  mov [1720383], R0
+  mov R0, 110
+  mov [1720384], R0
+  mov R0, 111
+  mov [1720385], R0
+  mov R0, 111
+  mov [1720386], R0
+  mov R0, 114
+  mov [1720387], R0
+  mov R0, 114
+  mov [1720388], R0
+  mov R0, 118
+  mov [1720389], R0
+  mov R0, 118
+  mov [1720390], R0
+  mov R0, 106
+  mov [1720391], R0
+  mov R0, 106
+  mov [1720392], R0
+  mov R0, 108
+  mov [1720393], R0
+  mov R0, 108
+  mov [1720394], R0
+  mov R0, 115
+  mov [1720395], R0
+  mov R0, 115
+  mov [1720396], R0
+  mov R0, 111
+  mov [1720397], R0
+  mov R0, 111
+  mov [1720398], R0
+  mov R0, 111
+  mov [1720399], R0
+  mov R0, 111
+  mov [1720400], R0
+  mov R0, 110
+  mov [1720401], R0
+  mov R0, 110
+  mov [1720402], R0
+  mov R0, 111
+  mov [1720403], R0
+  mov R0, 111
+  mov [1720404], R0
+  mov R0, 110
+  mov [1720405], R0
+  mov R0, 110
+  mov [1720406], R0
+  mov R0, 68
+  mov [1720407], R0
+  mov R0, 74
+  mov [1720408], R0
+  mov R0, 123
+  mov [1720409], R0
+  mov R0, 123
+  mov [1720410], R0
+  mov R0, 123
+  mov [1720411], R0
+  mov R0, 116
+  mov [1720412], R0
+  mov R0, 108
+  mov [1720413], R0
+  mov R0, 108
+  mov [1720414], R0
+  mov R0, 23
+  mov [1720415], R0
+  mov R0, 23
+  mov [1720416], R0
+  mov R0, 117
+  mov [1720417], R0
+  mov R0, 117
+  mov [1720418], R0
+  mov R0, 111
+  mov [1720419], R0
+  mov R0, 111
+  mov [1720420], R0
+  mov R0, 108
+  mov [1720421], R0
+  mov R0, 108
+  mov [1720422], R0
+  mov R0, 110
+  mov [1720423], R0
+  mov R0, 110
+  mov [1720424], R0
+  mov R0, 114
+  mov [1720425], R0
+  mov R0, 114
+  mov [1720426], R0
+  mov R0, 115
+  mov [1720427], R0
+  mov R0, 115
+  mov [1720428], R0
+  mov R0, 91
+  mov [1720429], R0
+  mov R0, 90
+  mov [1720430], R0
+  mov R0, 112
+  mov [1720431], R0
+  mov R0, 112
+  mov [1720432], R0
+  mov R0, 105
+  mov [1720433], R0
+  mov R0, 105
+  mov [1720434], R0
+  mov R0, 93
+  mov [1720435], R0
+  mov R0, 112
+  mov [1720436], R0
+  mov R0, 112
+  mov [1720437], R0
+  mov R0, 103
+  mov [1720438], R0
+  mov R0, 103
+  mov [1720439], R0
+  mov R0, 90
+  mov [1720440], R0
+  mov R0, 111
+  mov [1720441], R0
+  mov R0, 88
+  mov [1720442], R0
+  mov R0, 111
+  mov [1720443], R0
+  mov R0, 102
+  mov [1720444], R0
+  mov R0, 102
+  mov [1720445], R0
+  mov R0, 88
+  mov [1720446], R0
+  mov R0, 113
+  mov [1720447], R0
+  mov R0, 113
+  mov [1720448], R0
+  mov R0, 103
+  mov [1720449], R0
+  mov R0, 103
+  mov [1720450], R0
+  mov R0, 93
+  mov [1720451], R0
+  mov R0, 88
+  mov [1720452], R0
+  mov R0, 88
+  mov [1720453], R0
+  mov R0, 111
+  mov [1720454], R0
+  mov R0, 111
+  mov [1720455], R0
+  mov R0, 101
+  mov [1720456], R0
+  mov R0, 101
+  mov [1720457], R0
+  mov R0, 87
+  mov [1720458], R0
+  mov R0, 93
+  mov [1720459], R0
+  mov R0, 82
+  mov [1720460], R0
+  mov R0, 112
+  mov [1720461], R0
+  mov R0, 112
+  mov [1720462], R0
+  mov R0, 103
+  mov [1720463], R0
+  mov R0, 103
+  mov [1720464], R0
+  mov R0, 91
+  mov [1720465], R0
+  mov R0, 93
+  mov [1720466], R0
+  mov R0, 110
+  mov [1720467], R0
+  mov R0, 91
+  mov [1720468], R0
+  mov R0, 110
+  mov [1720469], R0
+  mov R0, 100
+  mov [1720470], R0
+  mov R0, 100
+  mov [1720471], R0
+  mov R0, 90
+  mov [1720472], R0
+  mov R0, 93
+  mov [1720473], R0
+  mov R0, 93
+  mov [1720474], R0
+  mov R0, 113
+  mov [1720475], R0
+  mov R0, 113
+  mov [1720476], R0
+  mov R0, 103
+  mov [1720477], R0
+  mov R0, 103
+  mov [1720478], R0
+  mov R0, 108
+  mov [1720479], R0
+  mov R0, 108
+  mov [1720480], R0
+  mov R0, 86
+  mov [1720481], R0
+  mov R0, 72
+  mov [1720482], R0
+  mov R0, 118
+  mov [1720483], R0
+  mov R0, 114
+  mov [1720484], R0
+  mov R0, 114
+  mov [1720485], R0
+  mov R0, 118
+  mov [1720486], R0
+  mov R0, 92
+  mov [1720487], R0
+  mov R0, 85
+  mov [1720488], R0
+  mov R0, 114
+  mov [1720489], R0
+  mov R0, 114
+  mov [1720490], R0
+  mov R0, 110
+  mov [1720491], R0
+  mov R0, 110
+  mov [1720492], R0
+  mov R0, 116
+  mov [1720493], R0
+  mov R0, 86
+  mov [1720494], R0
+  mov R0, 81
+  mov [1720495], R0
+  mov R0, 110
+  mov [1720496], R0
+  mov R0, 110
+  mov [1720497], R0
+  mov R0, 118
+  mov [1720498], R0
+  mov R0, 111
+  mov [1720499], R0
+  mov R0, 111
+  mov [1720500], R0
+  mov R0, 104
+  mov [1720501], R0
+  mov R0, 104
+  mov [1720502], R0
+  mov R0, 123
+  mov [1720503], R0
+  mov R0, 92
+  mov [1720504], R0
+  mov R0, 81
+  mov [1720505], R0
+  mov R0, 111
+  mov [1720506], R0
+  mov R0, 111
+  mov [1720507], R0
+  mov R0, 123
+  mov [1720508], R0
+  mov R0, 75
+  mov [1720509], R0
+  mov R0, 89
+  mov [1720510], R0
+  mov R0, 116
+  mov [1720511], R0
+  mov R0, 116
+  mov [1720512], R0
+  mov R0, 108
+  mov [1720513], R0
+  mov R0, 108
+  mov [1720514], R0
+  mov R0, 117
+  mov [1720515], R0
+  mov R0, 92
+  mov [1720516], R0
+  mov R0, 72
+  mov [1720517], R0
+  mov R0, 110
+  mov [1720518], R0
+  mov R0, 110
+  mov [1720519], R0
+  mov R0, 110
+  mov [1720520], R0
+  mov R0, 110
+  mov [1720521], R0
+  mov R0, 110
+  mov [1720522], R0
+  mov R0, 116
+  mov [1720523], R0
+  mov R0, 83
+  mov [1720524], R0
+  mov R0, 110
+  mov [1720525], R0
+  mov R0, 75
+  mov [1720526], R0
+  mov R0, 121
+  mov [1720527], R0
+  mov R0, 111
+  mov [1720528], R0
+  mov R0, 111
+  mov [1720529], R0
+  mov R0, 122
+  mov [1720530], R0
+  mov R0, 78
+  mov [1720531], R0
+  mov R0, 83
+  mov [1720532], R0
+  mov R0, 110
+  mov [1720533], R0
+  mov R0, 110
+  mov [1720534], R0
+  mov R0, 117
+  mov [1720535], R0
+  mov R0, 117
+  mov [1720536], R0
+  mov R0, 111
+  mov [1720537], R0
+  mov R0, 111
+  mov [1720538], R0
+  mov R0, 122
+  mov [1720539], R0
+  mov R0, 92
+  mov [1720540], R0
+  mov R0, 68
+  mov [1720541], R0
+  mov R0, 111
+  mov [1720542], R0
+  mov R0, 111
+  mov [1720543], R0
+  mov R0, 121
+  mov [1720544], R0
+  mov R0, 72
+  mov [1720545], R0
+  mov R0, 92
+  mov [1720546], R0
+  mov R0, 114
+  mov [1720547], R0
+  mov R0, 114
+  mov [1720548], R0
+  mov R0, 106
+  mov [1720549], R0
+  mov R0, 106
+  mov [1720550], R0
+  mov R0, 116
+  mov [1720551], R0
+  mov R0, 89
+  mov [1720552], R0
+  mov R0, 108
+  mov [1720553], R0
+  mov R0, 108
+  mov [1720554], R0
+  mov R0, 65
+  mov [1720555], R0
+  mov R0, 117
+  mov [1720556], R0
+  mov R0, 106
+  mov [1720557], R0
+  mov R0, 106
+  mov [1720558], R0
+  mov R0, 114
+  mov [1720559], R0
+  mov R0, 114
+  mov [1720560], R0
+  mov R0, 122
+  mov [1720561], R0
+  mov R0, 75
+  mov [1720562], R0
+  mov R0, 83
+  mov [1720563], R0
+  mov R0, 106
+  mov [1720564], R0
+  mov R0, 106
+  mov [1720565], R0
+  mov R0, 75
+  mov [1720566], R0
+  mov R0, 123
+  mov [1720567], R0
+  mov R0, 117
+  mov [1720568], R0
+  mov R0, 89
+  mov [1720569], R0
+  mov R0, 117
+  mov [1720570], R0
+  mov R0, 111
+  mov [1720571], R0
+  mov R0, 111
+  mov [1720572], R0
+  mov R0, 117
+  mov [1720573], R0
+  mov R0, 69
+  mov [1720574], R0
+  mov R0, 92
+  mov [1720575], R0
+  mov R0, 114
+  mov [1720576], R0
+  mov R0, 114
+  mov [1720577], R0
+  mov R0, 114
+  mov [1720578], R0
+  mov R0, 114
+  mov [1720579], R0
+  mov R0, 121
+  mov [1720580], R0
+  mov R0, 73
+  mov [1720581], R0
+  mov R0, 86
+  mov [1720582], R0
+  mov R0, 120
+  mov [1720583], R0
+  mov R0, 122
+  mov [1720584], R0
+  mov R0, 71
+  mov [1720585], R0
+  mov R0, 71
+  mov [1720586], R0
+  mov R0, 108
+  mov [1720587], R0
+  mov R0, 108
+  mov [1720588], R0
+  mov R0, 75
+  mov [1720589], R0
+  mov R0, 122
+  mov [1720590], R0
+  mov R0, 77
+  mov [1720591], R0
+  mov R0, 107
+  mov [1720592], R0
+  mov R0, 107
+  mov [1720593], R0
+  mov R0, 69
+  mov [1720594], R0
+  mov R0, 121
+  mov [1720595], R0
+  mov R0, 92
+  mov [1720596], R0
+  mov R0, 113
+  mov [1720597], R0
+  mov R0, 113
+  mov [1720598], R0
+  mov R0, 105
+  mov [1720599], R0
+  mov R0, 105
+  mov [1720600], R0
+  mov R0, 122
+  mov [1720601], R0
+  mov R0, 79
+  mov [1720602], R0
+  mov R0, 92
+  mov [1720603], R0
+  mov R0, 111
+  mov [1720604], R0
+  mov R0, 111
+  mov [1720605], R0
+  mov R0, 115
+  mov [1720606], R0
+  mov R0, 110
+  mov [1720607], R0
+  mov R0, 110
+  mov [1720608], R0
+  mov R0, 111
+  mov [1720609], R0
+  mov R0, 111
+  mov [1720610], R0
+  mov R0, 123
+  mov [1720611], R0
+  mov R0, 71
+  mov [1720612], R0
+  mov R0, 89
+  mov [1720613], R0
+  mov R0, 114
+  mov [1720614], R0
+  mov R0, 114
+  mov [1720615], R0
+  mov R0, 122
+  mov [1720616], R0
+  mov R0, 65
+  mov [1720617], R0
+  mov R0, 98
+  mov [1720618], R0
+  mov R0, 118
+  mov [1720619], R0
+  mov R0, 118
+  mov [1720620], R0
+  mov R0, 106
+  mov [1720621], R0
+  mov R0, 106
+  mov [1720622], R0
+  mov R0, 122
+  mov [1720623], R0
+  mov R0, 75
+  mov [1720624], R0
+  mov R0, 89
+  mov [1720625], R0
+  mov R0, 108
+  mov [1720626], R0
+  mov R0, 108
+  mov [1720627], R0
+  mov R0, 115
+  mov [1720628], R0
+  mov R0, 115
+  mov [1720629], R0
+  mov R0, 111
+  mov [1720630], R0
+  mov R0, 111
+  mov [1720631], R0
+  mov R0, 72
+  mov [1720632], R0
+  mov R0, 122
+  mov [1720633], R0
+  mov R0, 86
+  mov [1720634], R0
+  mov R0, 111
+  mov [1720635], R0
+  mov R0, 111
+  mov [1720636], R0
+  mov R0, 122
+  mov [1720637], R0
+  mov R0, 71
+  mov [1720638], R0
+  mov R0, 92
+  mov [1720639], R0
+  mov R0, 110
+  mov [1720640], R0
+  mov R0, 110
+  mov [1720641], R0
+  mov R0, 111
+  mov [1720642], R0
+  mov R0, 111
+  mov [1720643], R0
+  mov R0, 110
+  mov [1720644], R0
+  mov R0, 110
+  mov [1720645], R0
+  mov R0, 72
+  mov [1720646], R0
+  mov R0, 123
+  mov [1720647], R0
+  mov R0, 92
+  mov [1720648], R0
+  mov R0, 108
+  mov [1720649], R0
+  mov R0, 108
+  mov [1720650], R0
+  mov R0, 73
+  mov [1720651], R0
+  mov R0, 123
+  mov [1720652], R0
+  mov R0, 83
+  mov [1720653], R0
+  mov R0, 117
+  mov [1720654], R0
+  mov R0, 117
+  mov [1720655], R0
+  mov R0, 111
+  mov [1720656], R0
+  mov R0, 111
+  mov [1720657], R0
+  mov R0, 122
+  mov [1720658], R0
+  mov R0, 71
+  mov [1720659], R0
+  mov R0, 89
+  mov [1720660], R0
+  mov R0, 108
+  mov [1720661], R0
+  mov R0, 108
+  mov [1720662], R0
+  mov R0, 122
+  mov [1720663], R0
+  mov R0, 110
+  mov [1720664], R0
+  mov R0, 110
+  mov [1720665], R0
+  mov R0, 114
+  mov [1720666], R0
+  mov R0, 114
+  mov [1720667], R0
+  mov R0, 120
+  mov [1720668], R0
+  mov R0, 73
+  mov [1720669], R0
+  mov R0, 98
+  mov [1720670], R0
+  mov R0, 115
+  mov [1720671], R0
+  mov R0, 115
+  mov [1720672], R0
+  mov R0, 82
+  mov [1720673], R0
+  mov R0, 103
+  mov [1720674], R0
+  mov R0, 104
+  mov [1720675], R0
+  mov R0, 91
+  mov [1720676], R0
+  mov R0, 82
+  mov [1720677], R0
+  mov R0, 103
+  mov [1720678], R0
+  mov R0, 113
+  mov [1720679], R0
+  mov R0, 113
+  mov [1720680], R0
+  mov R0, 92
+  mov [1720681], R0
+  mov R0, 100
+  mov [1720682], R0
+  mov R0, 100
+  mov [1720683], R0
+  mov R0, 110
+  mov [1720684], R0
+  mov R0, 110
+  mov [1720685], R0
+  mov R0, 92
+  mov [1720686], R0
+  mov R0, 85
+  mov [1720687], R0
+  mov R0, 85
+  mov [1720688], R0
+  mov R0, 103
+  mov [1720689], R0
+  mov R0, 103
+  mov [1720690], R0
+  mov R0, 98
+  mov [1720691], R0
+  mov R0, 112
+  mov [1720692], R0
+  mov R0, 112
+  mov [1720693], R0
+  mov R0, 93
+  mov [1720694], R0
+  mov R0, 101
+  mov [1720695], R0
+  mov R0, 101
+  mov [1720696], R0
+  mov R0, 111
+  mov [1720697], R0
+  mov R0, 111
+  mov [1720698], R0
+  mov R0, 87
+  mov [1720699], R0
+  mov R0, 103
+  mov [1720700], R0
+  mov R0, 103
+  mov [1720701], R0
+  mov R0, 92
+  mov [1720702], R0
+  mov R0, 93
+  mov [1720703], R0
+  mov R0, 91
+  mov [1720704], R0
+  mov R0, 113
+  mov [1720705], R0
+  mov R0, 113
+  mov [1720706], R0
+  mov R0, 93
+  mov [1720707], R0
+  mov R0, 102
+  mov [1720708], R0
+  mov R0, 102
+  mov [1720709], R0
+  mov R0, 111
+  mov [1720710], R0
+  mov R0, 111
+  mov [1720711], R0
+  mov R0, 93
+  mov [1720712], R0
+  mov R0, 90
+  mov [1720713], R0
+  mov R0, 73
+  mov [1720714], R0
+  mov R0, 103
+  mov [1720715], R0
+  mov R0, 103
+  mov [1720716], R0
+  mov R0, 104
+  mov [1720717], R0
+  mov R0, 112
+  mov [1720718], R0
+  mov R0, 112
+  mov [1720719], R0
+  mov R0, 93
+  mov [1720720], R0
+  mov R0, 105
+  mov [1720721], R0
+  mov R0, 105
+  mov [1720722], R0
+  mov R0, 112
+  mov [1720723], R0
+  mov R0, 112
+  mov [1720724], R0
+  mov R0, 108
+  mov [1720725], R0
+  mov R0, 108
+  mov [1720726], R0
+  mov R0, 112
+  mov [1720727], R0
+  mov R0, 86
+  mov [1720728], R0
+  mov R0, 118
+  mov [1720729], R0
+  mov R0, 114
+  mov [1720730], R0
+  mov R0, 114
+  mov [1720731], R0
+  mov R0, 116
+  mov [1720732], R0
+  mov R0, 118
+  mov [1720733], R0
+  mov R0, 92
+  mov [1720734], R0
+  mov R0, 114
+  mov [1720735], R0
+  mov R0, 114
+  mov [1720736], R0
+  mov R0, 110
+  mov [1720737], R0
+  mov R0, 110
+  mov [1720738], R0
+  mov R0, 116
+  mov [1720739], R0
+  mov R0, 116
+  mov [1720740], R0
+  mov R0, 86
+  mov [1720741], R0
+  mov R0, 110
+  mov [1720742], R0
+  mov R0, 110
+  mov [1720743], R0
+  mov R0, 118
+  mov [1720744], R0
+  mov R0, 111
+  mov [1720745], R0
+  mov R0, 111
+  mov [1720746], R0
+  mov R0, 104
+  mov [1720747], R0
+  mov R0, 104
+  mov [1720748], R0
+  mov R0, 110
+  mov [1720749], R0
+  mov R0, 123
+  mov [1720750], R0
+  mov R0, 92
+  mov [1720751], R0
+  mov R0, 111
+  mov [1720752], R0
+  mov R0, 111
+  mov [1720753], R0
+  mov R0, 117
+  mov [1720754], R0
+  mov R0, 123
+  mov [1720755], R0
+  mov R0, 89
+  mov [1720756], R0
+  mov R0, 116
+  mov [1720757], R0
+  mov R0, 116
+  mov [1720758], R0
+  mov R0, 108
+  mov [1720759], R0
+  mov R0, 108
+  mov [1720760], R0
+  mov R0, 119
+  mov [1720761], R0
+  mov R0, 117
+  mov [1720762], R0
+  mov R0, 92
+  mov [1720763], R0
+  mov R0, 110
+  mov [1720764], R0
+  mov R0, 110
+  mov [1720765], R0
+  mov R0, 110
+  mov [1720766], R0
+  mov R0, 110
+  mov [1720767], R0
+  mov R0, 110
+  mov [1720768], R0
+  mov R0, 110
+  mov [1720769], R0
+  mov R0, 116
+  mov [1720770], R0
+  mov R0, 111
+  mov [1720771], R0
+  mov R0, 83
+  mov [1720772], R0
+  mov R0, 121
+  mov [1720773], R0
+  mov R0, 111
+  mov [1720774], R0
+  mov R0, 111
+  mov [1720775], R0
+  mov R0, 122
+  mov [1720776], R0
+  mov R0, 111
+  mov [1720777], R0
+  mov R0, 83
+  mov [1720778], R0
+  mov R0, 110
+  mov [1720779], R0
+  mov R0, 110
+  mov [1720780], R0
+  mov R0, 117
+  mov [1720781], R0
+  mov R0, 117
+  mov [1720782], R0
+  mov R0, 111
+  mov [1720783], R0
+  mov R0, 111
+  mov [1720784], R0
+  mov R0, 108
+  mov [1720785], R0
+  mov R0, 122
+  mov [1720786], R0
+  mov R0, 92
+  mov [1720787], R0
+  mov R0, 111
+  mov [1720788], R0
+  mov R0, 111
+  mov [1720789], R0
+  mov R0, 111
+  mov [1720790], R0
+  mov R0, 121
+  mov [1720791], R0
+  mov R0, 92
+  mov [1720792], R0
+  mov R0, 114
+  mov [1720793], R0
+  mov R0, 114
+  mov [1720794], R0
+  mov R0, 106
+  mov [1720795], R0
+  mov R0, 106
+  mov [1720796], R0
+  mov R0, 116
+  mov [1720797], R0
+  mov R0, 101
+  mov [1720798], R0
+  mov R0, 89
+  mov [1720799], R0
+  mov R0, 108
+  mov [1720800], R0
+  mov R0, 108
+  mov [1720801], R0
+  mov R0, 117
+  mov [1720802], R0
+  mov R0, 106
+  mov [1720803], R0
+  mov R0, 106
+  mov [1720804], R0
+  mov R0, 114
+  mov [1720805], R0
+  mov R0, 114
+  mov [1720806], R0
+  mov R0, 122
+  mov [1720807], R0
+  mov R0, 112
+  mov [1720808], R0
+  mov R0, 83
+  mov [1720809], R0
+  mov R0, 106
+  mov [1720810], R0
+  mov R0, 106
+  mov [1720811], R0
+  mov R0, 105
+  mov [1720812], R0
+  mov R0, 123
+  mov [1720813], R0
+  mov R0, 117
+  mov [1720814], R0
+  mov R0, 89
+  mov [1720815], R0
+  mov R0, 117
+  mov [1720816], R0
+  mov R0, 111
+  mov [1720817], R0
+  mov R0, 111
+  mov [1720818], R0
+  mov R0, 108
+  mov [1720819], R0
+  mov R0, 117
+  mov [1720820], R0
+  mov R0, 92
+  mov [1720821], R0
+  mov R0, 114
+  mov [1720822], R0
+  mov R0, 114
+  mov [1720823], R0
+  mov R0, 114
+  mov [1720824], R0
+  mov R0, 114
+  mov [1720825], R0
+  mov R0, 121
+  mov [1720826], R0
+  mov R0, 117
+  mov [1720827], R0
+  mov R0, 86
+  mov [1720828], R0
+  mov R0, 120
+  mov [1720829], R0
+  mov R0, 122
+  mov [1720830], R0
+  mov R0, 108
+  mov [1720831], R0
+  mov R0, 71
+  mov [1720832], R0
+  mov R0, 108
+  mov [1720833], R0
+  mov R0, 108
+  mov [1720834], R0
+  mov R0, 107
+  mov [1720835], R0
+  mov R0, 122
+  mov [1720836], R0
+  mov R0, 77
+  mov [1720837], R0
+  mov R0, 107
+  mov [1720838], R0
+  mov R0, 107
+  mov [1720839], R0
+  mov R0, 115
+  mov [1720840], R0
+  mov R0, 121
+  mov [1720841], R0
+  mov R0, 92
+  mov [1720842], R0
+  mov R0, 113
+  mov [1720843], R0
+  mov R0, 113
+  mov [1720844], R0
+  mov R0, 105
+  mov [1720845], R0
+  mov R0, 105
+  mov [1720846], R0
+  mov R0, 122
+  mov [1720847], R0
+  mov R0, 107
+  mov [1720848], R0
+  mov R0, 92
+  mov [1720849], R0
+  mov R0, 111
+  mov [1720850], R0
+  mov R0, 111
+  mov [1720851], R0
+  mov R0, 115
+  mov [1720852], R0
+  mov R0, 110
+  mov [1720853], R0
+  mov R0, 110
+  mov [1720854], R0
+  mov R0, 111
+  mov [1720855], R0
+  mov R0, 111
+  mov [1720856], R0
+  mov R0, 123
+  mov [1720857], R0
+  mov R0, 114
+  mov [1720858], R0
+  mov R0, 89
+  mov [1720859], R0
+  mov R0, 114
+  mov [1720860], R0
+  mov R0, 114
+  mov [1720861], R0
+  mov R0, 110
+  mov [1720862], R0
+  mov R0, 122
+  mov [1720863], R0
+  mov R0, 98
+  mov [1720864], R0
+  mov R0, 118
+  mov [1720865], R0
+  mov R0, 118
+  mov [1720866], R0
+  mov R0, 106
+  mov [1720867], R0
+  mov R0, 106
+  mov [1720868], R0
+  mov R0, 119
+  mov [1720869], R0
+  mov R0, 122
+  mov [1720870], R0
+  mov R0, 89
+  mov [1720871], R0
+  mov R0, 108
+  mov [1720872], R0
+  mov R0, 108
+  mov [1720873], R0
+  mov R0, 115
+  mov [1720874], R0
+  mov R0, 115
+  mov [1720875], R0
+  mov R0, 111
+  mov [1720876], R0
+  mov R0, 111
+  mov [1720877], R0
+  mov R0, 110
+  mov [1720878], R0
+  mov R0, 122
+  mov [1720879], R0
+  mov R0, 86
+  mov [1720880], R0
+  mov R0, 111
+  mov [1720881], R0
+  mov R0, 111
+  mov [1720882], R0
+  mov R0, 110
+  mov [1720883], R0
+  mov R0, 122
+  mov [1720884], R0
+  mov R0, 92
+  mov [1720885], R0
+  mov R0, 110
+  mov [1720886], R0
+  mov R0, 110
+  mov [1720887], R0
+  mov R0, 111
+  mov [1720888], R0
+  mov R0, 111
+  mov [1720889], R0
+  mov R0, 110
+  mov [1720890], R0
+  mov R0, 110
+  mov [1720891], R0
+  mov R0, 119
+  mov [1720892], R0
+  mov R0, 123
+  mov [1720893], R0
+  mov R0, 92
+  mov [1720894], R0
+  mov R0, 108
+  mov [1720895], R0
+  mov R0, 108
+  mov [1720896], R0
+  mov R0, 115
+  mov [1720897], R0
+  mov R0, 123
+  mov [1720898], R0
+  mov R0, 83
+  mov [1720899], R0
+  mov R0, 117
+  mov [1720900], R0
+  mov R0, 117
+  mov [1720901], R0
+  mov R0, 111
+  mov [1720902], R0
+  mov R0, 111
+  mov [1720903], R0
+  mov R0, 122
+  mov [1720904], R0
+  mov R0, 119
+  mov [1720905], R0
+  mov R0, 89
+  mov [1720906], R0
+  mov R0, 108
+  mov [1720907], R0
+  mov R0, 108
+  mov [1720908], R0
+  mov R0, 122
+  mov [1720909], R0
+  mov R0, 110
+  mov [1720910], R0
+  mov R0, 110
+  mov [1720911], R0
+  mov R0, 114
+  mov [1720912], R0
+  mov R0, 114
+  mov [1720913], R0
+  mov R0, 117
+  mov [1720914], R0
+  mov R0, 120
+  mov [1720915], R0
+  mov R0, 98
+  mov [1720916], R0
+  mov R0, 115
+  mov [1720917], R0
+  mov R0, 115
+  mov [1720918], R0
+  mov R0, 82
+  mov [1720919], R0
+  mov R0, 112
+  mov [1720920], R0
+  mov R0, 112
+  mov [1720921], R0
+  mov R0, 113
+  mov [1720922], R0
+  mov R0, 104
+  mov [1720923], R0
+  mov R0, 105
+  mov [1720924], R0
+  mov R0, 105
+  mov [1720925], R0
+  mov R0, 79
+  mov [1720926], R0
+  mov R0, 112
+  mov [1720927], R0
+  mov R0, 112
+  mov [1720928], R0
+  mov R0, 103
+  mov [1720929], R0
+  mov R0, 103
+  mov [1720930], R0
+  mov R0, 93
+  mov [1720931], R0
+  mov R0, 111
+  mov [1720932], R0
+  mov R0, 98
+  mov [1720933], R0
+  mov R0, 111
+  mov [1720934], R0
+  mov R0, 102
+  mov [1720935], R0
+  mov R0, 102
+  mov [1720936], R0
+  mov R0, 88
+  mov [1720937], R0
+  mov R0, 113
+  mov [1720938], R0
+  mov R0, 113
+  mov [1720939], R0
+  mov R0, 86
+  mov [1720940], R0
+  mov R0, 103
+  mov [1720941], R0
+  mov R0, 103
+  mov [1720942], R0
+  mov R0, 93
+  mov [1720943], R0
+  mov R0, 111
+  mov [1720944], R0
+  mov R0, 111
+  mov [1720945], R0
+  mov R0, 92
+  mov [1720946], R0
+  mov R0, 87
+  mov [1720947], R0
+  mov R0, 101
+  mov [1720948], R0
+  mov R0, 101
+  mov [1720949], R0
+  mov R0, 86
+  mov [1720950], R0
+  mov R0, 112
+  mov [1720951], R0
+  mov R0, 112
+  mov [1720952], R0
+  mov R0, 103
+  mov [1720953], R0
+  mov R0, 103
+  mov [1720954], R0
+  mov R0, 110
+  mov [1720955], R0
+  mov R0, 110
+  mov [1720956], R0
+  mov R0, 104
+  mov [1720957], R0
+  mov R0, 93
+  mov [1720958], R0
+  mov R0, 100
+  mov [1720959], R0
+  mov R0, 100
+  mov [1720960], R0
+  mov R0, 93
+  mov [1720961], R0
+  mov R0, 113
+  mov [1720962], R0
+  mov R0, 113
+  mov [1720963], R0
+  mov R0, 88
+  mov [1720964], R0
+  mov R0, 103
+  mov [1720965], R0
+  mov R0, 103
+  mov [1720966], R0
+  mov R0, 108
+  mov [1720967], R0
+  mov R0, 108
+  mov [1720968], R0
+  mov R0, 86
+  mov [1720969], R0
+  mov R0, 72
+  mov [1720970], R0
+  mov R0, 118
+  mov [1720971], R0
+  mov R0, 114
+  mov [1720972], R0
+  mov R0, 114
+  mov [1720973], R0
+  mov R0, 118
+  mov [1720974], R0
+  mov R0, 92
+  mov [1720975], R0
+  mov R0, 85
+  mov [1720976], R0
+  mov R0, 114
+  mov [1720977], R0
+  mov R0, 114
+  mov [1720978], R0
+  mov R0, 110
+  mov [1720979], R0
+  mov R0, 110
+  mov [1720980], R0
+  mov R0, 116
+  mov [1720981], R0
+  mov R0, 86
+  mov [1720982], R0
+  mov R0, 81
+  mov [1720983], R0
+  mov R0, 110
+  mov [1720984], R0
+  mov R0, 110
+  mov [1720985], R0
+  mov R0, 118
+  mov [1720986], R0
+  mov R0, 111
+  mov [1720987], R0
+  mov R0, 111
+  mov [1720988], R0
+  mov R0, 104
+  mov [1720989], R0
+  mov R0, 104
+  mov [1720990], R0
+  mov R0, 123
+  mov [1720991], R0
+  mov R0, 92
+  mov [1720992], R0
+  mov R0, 81
+  mov [1720993], R0
+  mov R0, 111
+  mov [1720994], R0
+  mov R0, 111
+  mov [1720995], R0
+  mov R0, 123
+  mov [1720996], R0
+  mov R0, 75
+  mov [1720997], R0
+  mov R0, 89
+  mov [1720998], R0
+  mov R0, 116
+  mov [1720999], R0
+  mov R0, 116
+  mov [1721000], R0
+  mov R0, 108
+  mov [1721001], R0
+  mov R0, 108
+  mov [1721002], R0
+  mov R0, 117
+  mov [1721003], R0
+  mov R0, 92
+  mov [1721004], R0
+  mov R0, 110
+  mov [1721005], R0
+  mov R0, 110
+  mov [1721006], R0
+  mov R0, 72
+  mov [1721007], R0
+  mov R0, 110
+  mov [1721008], R0
+  mov R0, 110
+  mov [1721009], R0
+  mov R0, 110
+  mov [1721010], R0
+  mov R0, 110
+  mov [1721011], R0
+  mov R0, 116
+  mov [1721012], R0
+  mov R0, 75
+  mov [1721013], R0
+  mov R0, 83
+  mov [1721014], R0
+  mov R0, 121
+  mov [1721015], R0
+  mov R0, 111
+  mov [1721016], R0
+  mov R0, 111
+  mov [1721017], R0
+  mov R0, 122
+  mov [1721018], R0
+  mov R0, 78
+  mov [1721019], R0
+  mov R0, 83
+  mov [1721020], R0
+  mov R0, 110
+  mov [1721021], R0
+  mov R0, 110
+  mov [1721022], R0
+  mov R0, 117
+  mov [1721023], R0
+  mov R0, 117
+  mov [1721024], R0
+  mov R0, 111
+  mov [1721025], R0
+  mov R0, 122
+  mov [1721026], R0
+  mov R0, 92
+  mov [1721027], R0
+  mov R0, 111
+  mov [1721028], R0
+  mov R0, 68
+  mov [1721029], R0
+  mov R0, 111
+  mov [1721030], R0
+  mov R0, 111
+  mov [1721031], R0
+  mov R0, 121
+  mov [1721032], R0
+  mov R0, 72
+  mov [1721033], R0
+  mov R0, 92
+  mov [1721034], R0
+  mov R0, 114
+  mov [1721035], R0
+  mov R0, 114
+  mov [1721036], R0
+  mov R0, 106
+  mov [1721037], R0
+  mov R0, 106
+  mov [1721038], R0
+  mov R0, 116
+  mov [1721039], R0
+  mov R0, 89
+  mov [1721040], R0
+  mov R0, 108
+  mov [1721041], R0
+  mov R0, 108
+  mov [1721042], R0
+  mov R0, 65
+  mov [1721043], R0
+  mov R0, 117
+  mov [1721044], R0
+  mov R0, 106
+  mov [1721045], R0
+  mov R0, 106
+  mov [1721046], R0
+  mov R0, 114
+  mov [1721047], R0
+  mov R0, 114
+  mov [1721048], R0
+  mov R0, 122
+  mov [1721049], R0
+  mov R0, 75
+  mov [1721050], R0
+  mov R0, 83
+  mov [1721051], R0
+  mov R0, 106
+  mov [1721052], R0
+  mov R0, 106
+  mov [1721053], R0
+  mov R0, 75
+  mov [1721054], R0
+  mov R0, 123
+  mov [1721055], R0
+  mov R0, 117
+  mov [1721056], R0
+  mov R0, 89
+  mov [1721057], R0
+  mov R0, 117
+  mov [1721058], R0
+  mov R0, 111
+  mov [1721059], R0
+  mov R0, 111
+  mov [1721060], R0
+  mov R0, 117
+  mov [1721061], R0
+  mov R0, 69
+  mov [1721062], R0
+  mov R0, 92
+  mov [1721063], R0
+  mov R0, 114
+  mov [1721064], R0
+  mov R0, 114
+  mov [1721065], R0
+  mov R0, 114
+  mov [1721066], R0
+  mov R0, 114
+  mov [1721067], R0
+  mov R0, 121
+  mov [1721068], R0
+  mov R0, 73
+  mov [1721069], R0
+  mov R0, 86
+  mov [1721070], R0
+  mov R0, 120
+  mov [1721071], R0
+  mov R0, 122
+  mov [1721072], R0
+  mov R0, 71
+  mov [1721073], R0
+  mov R0, 71
+  mov [1721074], R0
+  mov R0, 108
+  mov [1721075], R0
+  mov R0, 108
+  mov [1721076], R0
+  mov R0, 75
+  mov [1721077], R0
+  mov R0, 122
+  mov [1721078], R0
+  mov R0, 77
+  mov [1721079], R0
+  mov R0, 107
+  mov [1721080], R0
+  mov R0, 107
+  mov [1721081], R0
+  mov R0, 69
+  mov [1721082], R0
+  mov R0, 121
+  mov [1721083], R0
+  mov R0, 92
+  mov [1721084], R0
+  mov R0, 113
+  mov [1721085], R0
+  mov R0, 113
+  mov [1721086], R0
+  mov R0, 105
+  mov [1721087], R0
+  mov R0, 105
+  mov [1721088], R0
+  mov R0, 122
+  mov [1721089], R0
+  mov R0, 79
+  mov [1721090], R0
+  mov R0, 92
+  mov [1721091], R0
+  mov R0, 111
+  mov [1721092], R0
+  mov R0, 111
+  mov [1721093], R0
+  mov R0, 115
+  mov [1721094], R0
+  mov R0, 110
+  mov [1721095], R0
+  mov R0, 110
+  mov [1721096], R0
+  mov R0, 111
+  mov [1721097], R0
+  mov R0, 123
+  mov [1721098], R0
+  mov R0, 71
+  mov [1721099], R0
+  mov R0, 89
+  mov [1721100], R0
+  mov R0, 111
+  mov [1721101], R0
+  mov R0, 114
+  mov [1721102], R0
+  mov R0, 114
+  mov [1721103], R0
+  mov R0, 122
+  mov [1721104], R0
+  mov R0, 65
+  mov [1721105], R0
+  mov R0, 98
+  mov [1721106], R0
+  mov R0, 118
+  mov [1721107], R0
+  mov R0, 118
+  mov [1721108], R0
+  mov R0, 106
+  mov [1721109], R0
+  mov R0, 106
+  mov [1721110], R0
+  mov R0, 122
+  mov [1721111], R0
+  mov R0, 89
+  mov [1721112], R0
+  mov R0, 108
+  mov [1721113], R0
+  mov R0, 108
+  mov [1721114], R0
+  mov R0, 75
+  mov [1721115], R0
+  mov R0, 115
+  mov [1721116], R0
+  mov R0, 115
+  mov [1721117], R0
+  mov R0, 111
+  mov [1721118], R0
+  mov R0, 111
+  mov [1721119], R0
+  mov R0, 72
+  mov [1721120], R0
+  mov R0, 122
+  mov [1721121], R0
+  mov R0, 86
+  mov [1721122], R0
+  mov R0, 111
+  mov [1721123], R0
+  mov R0, 111
+  mov [1721124], R0
+  mov R0, 122
+  mov [1721125], R0
+  mov R0, 92
+  mov [1721126], R0
+  mov R0, 110
+  mov [1721127], R0
+  mov R0, 110
+  mov [1721128], R0
+  mov R0, 71
+  mov [1721129], R0
+  mov R0, 111
+  mov [1721130], R0
+  mov R0, 111
+  mov [1721131], R0
+  mov R0, 110
+  mov [1721132], R0
+  mov R0, 110
+  mov [1721133], R0
+  mov R0, 72
+  mov [1721134], R0
+  mov R0, 123
+  mov [1721135], R0
+  mov R0, 92
+  mov [1721136], R0
+  mov R0, 108
+  mov [1721137], R0
+  mov R0, 108
+  mov [1721138], R0
+  mov R0, 73
+  mov [1721139], R0
+  mov R0, 123
+  mov [1721140], R0
+  mov R0, 83
+  mov [1721141], R0
+  mov R0, 117
+  mov [1721142], R0
+  mov R0, 117
+  mov [1721143], R0
+  mov R0, 111
+  mov [1721144], R0
+  mov R0, 111
+  mov [1721145], R0
+  mov R0, 122
+  mov [1721146], R0
+  mov R0, 71
+  mov [1721147], R0
+  mov R0, 89
+  mov [1721148], R0
+  mov R0, 108
+  mov [1721149], R0
+  mov R0, 108
+  mov [1721150], R0
+  mov R0, 122
+  mov [1721151], R0
+  mov R0, 110
+  mov [1721152], R0
+  mov R0, 110
+  mov [1721153], R0
+  mov R0, 114
+  mov [1721154], R0
+  mov R0, 114
+  mov [1721155], R0
+  mov R0, 120
+  mov [1721156], R0
+  mov R0, 73
+  mov [1721157], R0
+  mov R0, 98
+  mov [1721158], R0
+  mov R0, 115
+  mov [1721159], R0
+  mov R0, 115
+  mov [1721160], R0
+  mov R0, 85
+  mov [1721161], R0
+  mov R0, 92
+  mov [1721162], R0
+  mov R0, 104
+  mov [1721163], R0
+  mov R0, 117
+  mov [1721164], R0
+  mov R0, 117
+  mov [1721165], R0
+  mov R0, 86
+  mov [1721166], R0
+  mov R0, 111
+  mov [1721167], R0
+  mov R0, 111
+  mov [1721168], R0
+  mov R0, 82
+  mov [1721169], R0
+  mov R0, 92
+  mov [1721170], R0
+  mov R0, 98
+  mov [1721171], R0
+  mov R0, 114
+  mov [1721172], R0
+  mov R0, 114
+  mov [1721173], R0
+  mov R0, 91
+  mov [1721174], R0
+  mov R0, 114
+  mov [1721175], R0
+  mov R0, 114
+  mov [1721176], R0
+  mov R0, 79
+  mov [1721177], R0
+  mov R0, 92
+  mov [1721178], R0
+  mov R0, 88
+  mov [1721179], R0
+  mov R0, 79
+  mov [1721180], R0
+  mov R0, 90
+  mov [1721181], R0
+  mov R0, 93
+  mov [1721182], R0
+  mov R0, 87
+  mov [1721183], R0
+  mov R0, 93
+  mov [1721184], R0
+  mov R0, 104
+  mov [1721185], R0
+  mov R0, 93
+  mov [1721186], R0
+  mov R0, 108
+  mov [1721187], R0
+  mov R0, 108
+  mov [1721188], R0
+  mov R0, 79
+  mov [1721189], R0
+  mov R0, 118
+  mov [1721190], R0
+  mov R0, 110
+  mov [1721191], R0
+  mov R0, 114
+  mov [1721192], R0
+  mov R0, 114
+  mov [1721193], R0
+  mov R0, 123
+  mov [1721194], R0
+  mov R0, 118
+  mov [1721195], R0
+  mov R0, 114
+  mov [1721196], R0
+  mov R0, 114
+  mov [1721197], R0
+  mov R0, 98
+  mov [1721198], R0
+  mov R0, 110
+  mov [1721199], R0
+  mov R0, 110
+  mov [1721200], R0
+  mov R0, 125
+  mov [1721201], R0
+  mov R0, 116
+  mov [1721202], R0
+  mov R0, 110
+  mov [1721203], R0
+  mov R0, 110
+  mov [1721204], R0
+  mov R0, 89
+  mov [1721205], R0
+  mov R0, 118
+  mov [1721206], R0
+  mov R0, 111
+  mov [1721207], R0
+  mov R0, 111
+  mov [1721208], R0
+  mov R0, 122
+  mov [1721209], R0
+  mov R0, 104
+  mov [1721210], R0
+  mov R0, 104
+  mov [1721211], R0
+  mov R0, 123
+  mov [1721212], R0
+  mov R0, 104
+  mov [1721213], R0
+  mov R0, 111
+  mov [1721214], R0
+  mov R0, 111
+  mov [1721215], R0
+  mov R0, 124
+  mov [1721216], R0
+  mov R0, 123
+  mov [1721217], R0
+  mov R0, 116
+  mov [1721218], R0
+  mov R0, 116
+  mov [1721219], R0
+  mov R0, 114
+  mov [1721220], R0
+  mov R0, 108
+  mov [1721221], R0
+  mov R0, 108
+  mov [1721222], R0
+  mov R0, 114
+  mov [1721223], R0
+  mov R0, 117
+  mov [1721224], R0
+  mov R0, 110
+  mov [1721225], R0
+  mov R0, 110
+  mov [1721226], R0
+  mov R0, 104
+  mov [1721227], R0
+  mov R0, 110
+  mov [1721228], R0
+  mov R0, 110
+  mov [1721229], R0
+  mov R0, 120
+  mov [1721230], R0
+  mov R0, 110
+  mov [1721231], R0
+  mov R0, 110
+  mov [1721232], R0
+  mov R0, 116
+  mov [1721233], R0
+  mov R0, 104
+  mov [1721234], R0
+  mov R0, 121
+  mov [1721235], R0
+  mov R0, 111
+  mov [1721236], R0
+  mov R0, 111
+  mov [1721237], R0
+  mov R0, 124
+  mov [1721238], R0
+  mov R0, 122
+  mov [1721239], R0
+  mov R0, 110
+  mov [1721240], R0
+  mov R0, 110
+  mov [1721241], R0
+  mov R0, 98
+  mov [1721242], R0
+  mov R0, 117
+  mov [1721243], R0
+  mov R0, 117
+  mov [1721244], R0
+  mov R0, 111
+  mov [1721245], R0
+  mov R0, 111
+  mov [1721246], R0
+  mov R0, 122
+  mov [1721247], R0
+  mov R0, 79
+  mov [1721248], R0
+  mov R0, 77
+  mov [1721249], R0
+  mov R0, 111
+  mov [1721250], R0
+  mov R0, 111
+  mov [1721251], R0
+  mov R0, 124
+  mov [1721252], R0
+  mov R0, 121
+  mov [1721253], R0
+  mov R0, 114
+  mov [1721254], R0
+  mov R0, 92
+  mov [1721255], R0
+  mov R0, 114
+  mov [1721256], R0
+  mov R0, 106
+  mov [1721257], R0
+  mov R0, 106
+  mov [1721258], R0
+  mov R0, 119
+  mov [1721259], R0
+  mov R0, 116
+  mov [1721260], R0
+  mov R0, 108
+  mov [1721261], R0
+  mov R0, 108
+  mov [1721262], R0
+  mov R0, 104
+  mov [1721263], R0
+  mov R0, 117
+  mov [1721264], R0
+  mov R0, 106
+  mov [1721265], R0
+  mov R0, 106
+  mov [1721266], R0
+  mov R0, 124
+  mov [1721267], R0
+  mov R0, 114
+  mov [1721268], R0
+  mov R0, 114
+  mov [1721269], R0
+  mov R0, 122
+  mov [1721270], R0
+  mov R0, 86
+  mov [1721271], R0
+  mov R0, 106
+  mov [1721272], R0
+  mov R0, 106
+  mov [1721273], R0
+  mov R0, 125
+  mov [1721274], R0
+  mov R0, 123
+  mov [1721275], R0
+  mov R0, 117
+  mov [1721276], R0
+  mov R0, 117
+  mov [1721277], R0
+  mov R0, 98
+  mov [1721278], R0
+  mov R0, 111
+  mov [1721279], R0
+  mov R0, 111
+  mov [1721280], R0
+  mov R0, 125
+  mov [1721281], R0
+  mov R0, 117
+  mov [1721282], R0
+  mov R0, 98
+  mov [1721283], R0
+  mov R0, 114
+  mov [1721284], R0
+  mov R0, 114
+  mov [1721285], R0
+  mov R0, 114
+  mov [1721286], R0
+  mov R0, 114
+  mov [1721287], R0
+  mov R0, 125
+  mov [1721288], R0
+  mov R0, 121
+  mov [1721289], R0
+  mov R0, 86
+  mov [1721290], R0
+  mov R0, 120
+  mov [1721291], R0
+  mov R0, 125
+  mov [1721292], R0
+  mov R0, 122
+  mov [1721293], R0
+  mov R0, 89
+  mov [1721294], R0
+  mov R0, 108
+  mov [1721295], R0
+  mov R0, 108
+  mov [1721296], R0
+  mov R0, 79
+  mov [1721297], R0
+  mov R0, 122
+  mov [1721298], R0
+  mov R0, 80
+  mov [1721299], R0
+  mov R0, 107
+  mov [1721300], R0
+  mov R0, 107
+  mov [1721301], R0
+  mov R0, 125
+  mov [1721302], R0
+  mov R0, 121
+  mov [1721303], R0
+  mov R0, 113
+  mov [1721304], R0
+  mov R0, 113
+  mov [1721305], R0
+  mov R0, 83
+  mov [1721306], R0
+  mov R0, 105
+  mov [1721307], R0
+  mov R0, 105
+  mov [1721308], R0
+  mov R0, 125
+  mov [1721309], R0
+  mov R0, 122
+  mov [1721310], R0
+  mov R0, 111
+  mov [1721311], R0
+  mov R0, 111
+  mov [1721312], R0
+  mov R0, 83
+  mov [1721313], R0
+  mov R0, 115
+  mov [1721314], R0
+  mov R0, 110
+  mov [1721315], R0
+  mov R0, 110
+  mov [1721316], R0
+  mov R0, 124
+  mov [1721317], R0
+  mov R0, 111
+  mov [1721318], R0
+  mov R0, 111
+  mov [1721319], R0
+  mov R0, 123
+  mov [1721320], R0
+  mov R0, 83
+  mov [1721321], R0
+  mov R0, 114
+  mov [1721322], R0
+  mov R0, 114
+  mov [1721323], R0
+  mov R0, 124
+  mov [1721324], R0
+  mov R0, 122
+  mov [1721325], R0
+  mov R0, 118
+  mov [1721326], R0
+  mov R0, 77
+  mov [1721327], R0
+  mov R0, 118
+  mov [1721328], R0
+  mov R0, 106
+  mov [1721329], R0
+  mov R0, 106
+  mov [1721330], R0
+  mov R0, 125
+  mov [1721331], R0
+  mov R0, 122
+  mov [1721332], R0
+  mov R0, 108
+  mov [1721333], R0
+  mov R0, 108
+  mov [1721334], R0
+  mov R0, 74
+  mov [1721335], R0
+  mov R0, 115
+  mov [1721336], R0
+  mov R0, 115
+  mov [1721337], R0
+  mov R0, 125
+  mov [1721338], R0
+  mov R0, 111
+  mov [1721339], R0
+  mov R0, 111
+  mov [1721340], R0
+  mov R0, 122
+  mov [1721341], R0
+  mov R0, 89
+  mov [1721342], R0
+  mov R0, 111
+  mov [1721343], R0
+  mov R0, 111
+  mov [1721344], R0
+  mov R0, 119
+  mov [1721345], R0
+  mov R0, 122
+  mov [1721346], R0
+  mov R0, 110
+  mov [1721347], R0
+  mov R0, 110
+  mov [1721348], R0
+  mov R0, 83
+  mov [1721349], R0
+  mov R0, 111
+  mov [1721350], R0
+  mov R0, 111
+  mov [1721351], R0
+  mov R0, 124
+  mov [1721352], R0
+  mov R0, 110
+  mov [1721353], R0
+  mov R0, 110
+  mov [1721354], R0
+  mov R0, 123
+  mov [1721355], R0
+  mov R0, 86
+  mov [1721356], R0
+  mov R0, 108
+  mov [1721357], R0
+  mov R0, 108
+  mov [1721358], R0
+  mov R0, 125
+  mov [1721359], R0
+  mov R0, 123
+  mov [1721360], R0
+  mov R0, 117
+  mov [1721361], R0
+  mov R0, 98
+  mov [1721362], R0
+  mov R0, 117
+  mov [1721363], R0
+  mov R0, 111
+  mov [1721364], R0
+  mov R0, 111
+  mov [1721365], R0
+  mov R0, 124
+  mov [1721366], R0
+  mov R0, 122
+  mov [1721367], R0
+  mov R0, 89
+  mov [1721368], R0
+  mov R0, 108
+  mov [1721369], R0
+  mov R0, 108
+  mov [1721370], R0
+  mov R0, 122
+  mov [1721371], R0
+  mov R0, 110
+  mov [1721372], R0
+  mov R0, 110
+  mov [1721373], R0
+  mov R0, 125
+  mov [1721374], R0
+  mov R0, 114
+  mov [1721375], R0
+  mov R0, 114
+  mov [1721376], R0
+  mov R0, 120
+  mov [1721377], R0
+  mov R0, 104
+  mov [1721378], R0
+  mov R0, 115
+  mov [1721379], R0
+  mov R0, 115
+  mov [1721380], R0
+  mov R0, 99
+  mov [1721381], R0
+  mov R0, 116
+  mov [1721382], R0
+  mov R0, 125
+  mov [1721383], R0
+  mov R0, 122
+  mov [1721384], R0
+  mov R0, 112
+  mov [1721385], R0
+  mov R0, 112
+  mov [1721386], R0
+  mov R0, 104
+  mov [1721387], R0
+  mov R0, 105
+  mov [1721388], R0
+  mov R0, 105
+  mov [1721389], R0
+  mov R0, 112
+  mov [1721390], R0
+  mov R0, 112
+  mov [1721391], R0
+  mov R0, 103
+  mov [1721392], R0
+  mov R0, 103
+  mov [1721393], R0
+  mov R0, 111
+  mov [1721394], R0
+  mov R0, 111
+  mov [1721395], R0
+  mov R0, 102
+  mov [1721396], R0
+  mov R0, 102
+  mov [1721397], R0
+  mov R0, 113
+  mov [1721398], R0
+  mov R0, 113
+  mov [1721399], R0
+  mov R0, 103
+  mov [1721400], R0
+  mov R0, 103
+  mov [1721401], R0
+  mov R0, 111
+  mov [1721402], R0
+  mov R0, 111
+  mov [1721403], R0
+  mov R0, 101
+  mov [1721404], R0
+  mov R0, 101
+  mov [1721405], R0
+  mov R0, 112
+  mov [1721406], R0
+  mov R0, 112
+  mov [1721407], R0
+  mov R0, 103
+  mov [1721408], R0
+  mov R0, 103
+  mov [1721409], R0
+  mov R0, 110
+  mov [1721410], R0
+  mov R0, 110
+  mov [1721411], R0
+  mov R0, 100
+  mov [1721412], R0
+  mov R0, 100
+  mov [1721413], R0
+  mov R0, 113
+  mov [1721414], R0
+  mov R0, 113
+  mov [1721415], R0
+  mov R0, 103
+  mov [1721416], R0
+  mov R0, 103
+  mov [1721417], R0
   mov R0, 110
   mov [global_st_arms_x], R0
   mov R0, 122
-  mov [1706617], R0
+  mov [1721618], R0
   mov R0, 134
-  mov [1706618], R0
+  mov [1721619], R0
   mov R0, 110
-  mov [1706619], R0
+  mov [1721620], R0
   mov R0, 122
-  mov [1706620], R0
+  mov [1721621], R0
   mov R0, 134
-  mov [1706621], R0
+  mov [1721622], R0
   mov R0, 172
   mov [global_st_arms_y], R0
   mov R0, 172
-  mov [1706623], R0
+  mov [1721624], R0
   mov R0, 172
-  mov [1706624], R0
+  mov [1721625], R0
   mov R0, 181
-  mov [1706625], R0
+  mov [1721626], R0
   mov R0, 181
-  mov [1706626], R0
+  mov [1721627], R0
   mov R0, 181
-  mov [1706627], R0
+  mov [1721628], R0
   mov R0, 173
   mov [global_st_ammo_y], R0
   mov R0, 179
-  mov [1706629], R0
+  mov [1721630], R0
   mov R0, 191
-  mov [1706630], R0
+  mov [1721631], R0
   mov R0, 185
-  mov [1706631], R0
+  mov [1721632], R0
   mov R0, 171
   mov [global_st_key_y], R0
   mov R0, 181
-  mov [1706633], R0
+  mov [1721634], R0
   mov R0, 191
-  mov [1706634], R0
+  mov [1721635], R0
   mov R0, 0
   mov [global_st_faceindex], R0
   mov R0, 0
@@ -2461,6 +26102,36 @@ __function_abs_return:
   pop BP
   ret
 
+__function_fabs:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  fabs R0
+__function_fabs_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_floor:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  flr R0
+__function_floor_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_sin:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  sin R0
+__function_sin_return:
+  mov SP, BP
+  pop BP
+  ret
+
 __function_atan2:
   push BP
   mov BP, SP
@@ -2483,6 +26154,19 @@ __function_sqrt:
   pow R0, R1
   pop R1
 __function_sqrt_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_pow:
+  push BP
+  mov BP, SP
+  push R1
+  mov R0, [BP+2]
+  mov R1, [BP+3]
+  pow R0, R1
+  pop R1
+__function_pow_return:
   mov SP, BP
   pop BP
   ret
@@ -31767,6 +55451,26 @@ __function_set_sound_loop_return:
   pop BP
   ret
 
+__function_set_sound_loop_start:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SoundLoopStart, R0
+__function_set_sound_loop_start_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_set_sound_loop_end:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  out SPU_SoundLoopEnd, R0
+__function_set_sound_loop_end_return:
+  mov SP, BP
+  pop BP
+  ret
+
 __function_set_channel_volume:
   push BP
   mov BP, SP
@@ -31861,32 +55565,3296 @@ __function_stop_all_channels_return:
   pop BP
   ret
 
+__function_synth_lcg:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  mov R0, [BP+2]
+  imul R0, 1103515245
+  iadd R0, 12345
+  mov [BP-1], R0
+  mov R0, [BP-1]
+  and R0, 2147483647
+__function_synth_lcg_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_ch:
+  push BP
+  mov BP, SP
+  push R1
+  mov R0, [global_synth_channel_base]
+  mov R1, [BP+2]
+  iadd R0, R1
+__function_synth_ch_return:
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_build_tables:
+  push BP
+  mov BP, SP
+  isub SP, 5
+  mov R0, 0
+  mov [BP-1], R0
+__for_30431_start:
+  mov R0, [BP-1]
+  ilt R0, 128
+  jf R0, __for_30431_end
+  mov R0, [BP-1]
+  isub R0, 69
+  cif R0
+  fdiv R0, 12.000000
+  mov [BP-2], R0
+  mov R2, 2.000000
+  mov [SP], R2
+  mov R2, [BP-2]
+  mov [SP+1], R2
+  call __function_pow
+  mov R1, R0
+  fmul R1, 440.000000
+  mov R0, R1
+  mov [BP-3], R0
+  mov R0, [BP-3]
+  mov R1, global_synth_note_freq
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP-3]
+  fmul R0, 2048.000000
+  fdiv R0, 44100.000000
+  mov R1, global_synth_note_speed
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__for_30431_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_30431_start
+__for_30431_end:
+__function_synth_build_tables_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_scheduler_clear:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  mov R0, 0
+  mov [BP-1], R0
+__for_30471_start:
+  mov R0, [BP-1]
+  ilt R0, 64
+  jf R0, __for_30471_end
+  mov R0, 0
+  mov R1, global_synth_ev_active
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__for_30471_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_30471_start
+__for_30471_end:
+__function_synth_scheduler_clear_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_init:
+  push BP
+  mov BP, SP
+  isub SP, 3
+  mov R0, [BP+2]
+  mov [global_synth_wave_base], R0
+  mov R0, 6
+  mov [global_synth_channel_base], R0
+  mov R0, 0.850000
+  mov [global_synth_master], R0
+  mov R0, 0
+  mov [global_synth_transpose], R0
+  mov R0, 8
+  mov [global_synth_cur_row_frames], R0
+  mov R0, 305441741
+  mov [global_synth_rng], R0
+  mov R0, 3
+  mov [global_synth_echo_taps], R0
+  mov R0, 8
+  mov [global_synth_echo_delay], R0
+  mov R0, 0.500000
+  mov [global_synth_echo_feedback], R0
+  call __function_synth_build_tables
+  call __function_synth_scheduler_clear
+  mov R0, 0
+  mov [BP-1], R0
+__for_30516_start:
+  mov R0, [BP-1]
+  ilt R0, 7
+  jf R0, __for_30516_end
+  mov R1, [BP+2]
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [SP], R1
+  call __function_select_sound
+  mov R1, 1
+  mov [SP], R1
+  call __function_set_sound_loop
+__for_30516_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_30516_start
+__for_30516_end:
+  mov R0, 0
+  mov [BP-1], R0
+__for_30532_start:
+  mov R0, [BP-1]
+  ilt R0, 10
+  jf R0, __for_30532_end
+  mov R0, 0
+  mov R1, global_synth_v_active
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_phase
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_level
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_amp
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, -1
+  mov R1, global_synth_v_timer
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_inst
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R2, [BP-1]
+  mov [SP], R2
+  call __function_synth_ch
+  mov R1, R0
+  mov [BP-2], R1
+  mov R1, [BP-2]
+  mov [SP], R1
+  call __function_stop_channel
+__for_30532_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_30532_start
+__for_30532_end:
+  mov R1, 1.000000
+  mov [SP], R1
+  call __function_set_global_volume
+__function_synth_init_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_master_volume:
+  push BP
+  mov BP, SP
+  mov R0, [BP+2]
+  mov [global_synth_master], R0
+__function_synth_master_volume_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_base_speed:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  push R1
+  push R2
+  push R3
+  push R4
+  isub SP, 2
+  mov R0, [BP+2]
+  mov R1, [global_synth_transpose]
+  iadd R0, R1
+  mov [BP-1], R0
+__if_30609_start:
+  mov R0, [BP-1]
+  ilt R0, 0
+  jf R0, __if_30609_end
+  mov R0, 0
+  mov [BP-1], R0
+__if_30609_end:
+__if_30616_start:
+  mov R0, [BP-1]
+  igt R0, 127
+  jf R0, __if_30616_end
+  mov R0, 127
+  mov [BP-1], R0
+__if_30616_end:
+  mov R0, global_synth_note_speed
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+__if_30628_start:
+  mov R1, [BP+3]
+  iadd R1, 25
+  mov R0, [R1]
+  fne R0, 0.000000
+  jf R0, __if_30628_end
+  mov R1, [BP-2]
+  mov R3, 2.000000
+  mov [SP], R3
+  mov R4, [BP+3]
+  iadd R4, 25
+  mov R3, [R4]
+  fdiv R3, 12.000000
+  mov [SP+1], R3
+  call __function_pow
+  mov R2, R0
+  fmul R1, R2
+  mov [BP-2], R1
+  mov R0, R1
+__if_30628_end:
+  mov R0, [BP-2]
+__function_synth_base_speed_return:
+  iadd SP, 2
+  pop R4
+  pop R3
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_inst_sound:
+  push BP
+  mov BP, SP
+  push R1
+  push R2
+__if_30647_start:
+  mov R1, [BP+2]
+  iadd R1, 37
+  mov R0, [R1]
+  ige R0, 0
+  jf R0, __if_30647_end
+  mov R1, [BP+2]
+  iadd R1, 37
+  mov R0, [R1]
+  jmp __function_synth_inst_sound_return
+__if_30647_end:
+  mov R0, [global_synth_wave_base]
+  mov R2, [BP+2]
+  mov R1, [R2]
+  iadd R0, R1
+__function_synth_inst_sound_return:
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_alloc_voice:
+  push BP
+  mov BP, SP
+  isub SP, 3
+  push R1
+  mov R0, 0
+  mov [BP-3], R0
+__for_30661_start:
+  mov R0, [BP-3]
+  ilt R0, 10
+  jf R0, __for_30661_end
+__if_30670_start:
+  mov R0, global_synth_v_active
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R0, [R0]
+  bnot R0
+  jf R0, __if_30670_end
+  mov R0, [BP-3]
+  jmp __function_synth_alloc_voice_return
+__if_30670_end:
+__for_30661_continue:
+  mov R0, [BP-3]
+  iadd R0, 1
+  mov [BP-3], R0
+  jmp __for_30661_start
+__for_30661_end:
+  mov R0, 0
+  mov [BP-1], R0
+  mov R0, [global_synth_v_amp]
+  mov [BP-2], R0
+  mov R0, 1
+  mov [BP-3], R0
+__for_30685_start:
+  mov R0, [BP-3]
+  ilt R0, 10
+  jf R0, __for_30685_end
+__if_30694_start:
+  mov R0, global_synth_v_amp
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, [BP-2]
+  flt R0, R1
+  jf R0, __if_30694_end
+  mov R0, global_synth_v_amp
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+  mov R0, [BP-3]
+  mov [BP-1], R0
+__if_30694_end:
+__for_30685_continue:
+  mov R0, [BP-3]
+  iadd R0, 1
+  mov [BP-3], R0
+  jmp __for_30685_start
+__for_30685_end:
+  mov R0, [BP-1]
+__function_synth_alloc_voice_return:
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_voice_begin:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  mov R0, 1
+  mov R1, global_synth_v_active
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, global_synth_v_note
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, global_synth_v_basenote
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+3]
+  mov R1, global_synth_v_inst
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 1
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_level
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_frames
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_age
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_relstart
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+6]
+  mov R1, global_synth_v_curspeed
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+6]
+  mov R1, global_synth_v_tgtspeed
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_glideframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_vibphase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_tremphase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_lfophase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_shval
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R2, [global_synth_rng]
+  mov R3, [BP+2]
+  imul R3, 2749
+  iadd R2, R3
+  mov [SP], R2
+  call __function_synth_lcg
+  mov R1, R0
+  mov R2, global_synth_v_shseed
+  mov R3, [BP+2]
+  iadd R2, R3
+  mov [R2], R1
+  mov R0, R1
+  mov R0, 0
+  mov R1, global_synth_v_menvstage
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_menvframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_arpstep
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_arptimer
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R1, [BP+3]
+  iadd R1, 39
+  mov R0, [R1]
+  mov R1, global_synth_v_morphpos
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_bend
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, global_synth_v_vel
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, -1
+  mov R1, global_synth_v_timer
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__function_synth_voice_begin_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_morph_reset:
+  push BP
+  mov BP, SP
+  isub SP, 2
+__if_30851_start:
+  mov R1, [BP+2]
+  iadd R1, 37
+  mov R0, [R1]
+  ilt R0, 0
+  jf R0, __if_30851_end
+  jmp __function_synth_morph_reset_return
+__if_30851_end:
+  mov R1, [BP+2]
+  iadd R1, 39
+  mov R0, [R1]
+  cfi R0
+  mov [BP-1], R0
+__if_30862_start:
+  mov R0, [BP-1]
+  ilt R0, 0
+  jf R0, __if_30862_end
+  mov R0, 0
+  mov [BP-1], R0
+__if_30862_end:
+__if_30869_start:
+  mov R0, [BP-1]
+  mov R2, [BP+2]
+  iadd R2, 38
+  mov R1, [R2]
+  ige R0, R1
+  jf R0, __if_30869_end
+  mov R1, [BP+2]
+  iadd R1, 38
+  mov R0, [R1]
+  isub R0, 1
+  mov [BP-1], R0
+__if_30869_end:
+  mov R2, [BP+2]
+  iadd R2, 37
+  mov R1, [R2]
+  mov [SP], R1
+  call __function_select_sound
+  mov R1, 1
+  mov [SP], R1
+  call __function_set_sound_loop
+  mov R1, [BP-1]
+  imul R1, 2048
+  mov [SP], R1
+  call __function_set_sound_loop_start
+  mov R1, [BP-1]
+  imul R1, 2048
+  iadd R1, 2048
+  mov [SP], R1
+  call __function_set_sound_loop_end
+__function_synth_morph_reset_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_note_on_channel:
+  push BP
+  mov BP, SP
+  isub SP, 3
+  push R1
+  push R2
+  isub SP, 5
+__if_30900_start:
+  mov R0, [BP+3]
+  ilt R0, 0
+  jf R0, __if_30900_end
+  mov R0, 0
+  mov [BP+3], R0
+__if_30900_end:
+__if_30907_start:
+  mov R0, [BP+3]
+  igt R0, 127
+  jf R0, __if_30907_end
+  mov R0, 127
+  mov [BP+3], R0
+__if_30907_end:
+  mov R1, [BP+3]
+  mov [SP], R1
+  mov R1, [BP+2]
+  mov [SP+1], R1
+  call __function_synth_base_speed
+  mov [BP-1], R0
+  mov R1, [BP+5]
+  mov [SP], R1
+  mov R1, [BP+2]
+  mov [SP+1], R1
+  mov R1, [BP+3]
+  mov [SP+2], R1
+  mov R1, [BP+4]
+  mov [SP+3], R1
+  mov R1, [BP-1]
+  mov [SP+4], R1
+  call __function_synth_voice_begin
+  mov R0, global_synth_note_freq
+  mov R1, [BP+3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, global_synth_v_freq
+  mov R2, [BP+5]
+  iadd R1, R2
+  mov [R1], R0
+  mov R1, [BP+2]
+  mov [SP], R1
+  call __function_synth_morph_reset
+  mov R2, [BP+5]
+  mov [SP], R2
+  call __function_synth_ch
+  mov R1, R0
+  mov [BP-2], R1
+  mov R1, [BP-2]
+  mov [SP], R1
+  call __function_stop_channel
+  mov R2, [BP+2]
+  mov [SP], R2
+  call __function_synth_inst_sound
+  mov R1, R0
+  mov [BP-2], R1
+  mov R2, [BP+5]
+  mov [SP], R2
+  call __function_synth_ch
+  mov R1, R0
+  mov [BP-3], R1
+  mov R1, [BP-3]
+  mov [SP], R1
+  mov R1, [BP-2]
+  mov [SP+1], R1
+  call __function_assign_channel_sound
+  mov R2, [BP+5]
+  mov [SP], R2
+  call __function_synth_ch
+  mov R1, R0
+  mov [BP-2], R1
+  mov R1, [BP-2]
+  mov [SP], R1
+  call __function_select_channel
+  mov R1, 0.000000
+  mov [SP], R1
+  call __function_set_channel_volume
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_set_channel_speed
+  mov R2, [BP+5]
+  mov [SP], R2
+  call __function_synth_ch
+  mov R1, R0
+  mov [BP-2], R1
+  mov R1, [BP-2]
+  mov [SP], R1
+  call __function_play_channel
+  mov R0, [BP+5]
+__function_synth_note_on_channel_return:
+  iadd SP, 5
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_note_on:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  push R1
+  isub SP, 4
+  call __function_synth_alloc_voice
+  mov [BP-1], R0
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, [BP+3]
+  mov [SP+1], R1
+  mov R1, [BP+4]
+  mov [SP+2], R1
+  mov R1, [BP-1]
+  mov [SP+3], R1
+  call __function_synth_note_on_channel
+__function_synth_note_on_return:
+  iadd SP, 4
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_play_timed:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  push R1
+  push R2
+  isub SP, 3
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, [BP+3]
+  mov [SP+1], R1
+  mov R1, [BP+4]
+  mov [SP+2], R1
+  call __function_synth_note_on
+  mov [BP-1], R0
+  mov R0, [BP+5]
+  mov R1, global_synth_v_timer
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP-1]
+__function_synth_play_timed_return:
+  iadd SP, 3
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_note_retrigger:
+  push BP
+  mov BP, SP
+  isub SP, 4
+__if_31050_start:
+  mov R0, [BP+2]
+  ilt R0, 0
+  jt R0, __LogicalOr_ShortCircuit_31055
+  mov R1, [BP+2]
+  ige R1, 10
+  or R0, R1
+__LogicalOr_ShortCircuit_31055:
+  jf R0, __if_31050_end
+  jmp __function_synth_note_retrigger_return
+__if_31050_end:
+__if_31059_start:
+  mov R0, global_synth_v_active
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  bnot R0
+  jf R0, __if_31059_end
+  jmp __function_synth_note_retrigger_return
+__if_31059_end:
+  mov R0, global_synth_v_inst
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-1], R0
+__if_31070_start:
+  mov R0, [BP+3]
+  ilt R0, 0
+  jf R0, __if_31070_end
+  mov R0, 0
+  mov [BP+3], R0
+__if_31070_end:
+__if_31077_start:
+  mov R0, [BP+3]
+  igt R0, 127
+  jf R0, __if_31077_end
+  mov R0, 127
+  mov [BP+3], R0
+__if_31077_end:
+  mov R1, [BP+3]
+  mov [SP], R1
+  mov R1, [BP-1]
+  mov [SP+1], R1
+  call __function_synth_base_speed
+  mov [BP-2], R0
+  mov R0, [BP-2]
+  mov R1, global_synth_v_tgtspeed
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+3]
+  mov R1, global_synth_v_note
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+3]
+  mov R1, global_synth_v_basenote
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, global_synth_note_freq
+  mov R1, [BP+3]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, global_synth_v_freq
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31111_start:
+  mov R1, [BP-1]
+  iadd R1, 24
+  mov R0, [R1]
+  igt R0, 0
+  jf R0, __if_31111_else
+  mov R1, [BP-1]
+  iadd R1, 24
+  mov R0, [R1]
+  mov R1, global_synth_v_glideframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_31111_end
+__if_31111_else:
+  mov R0, [BP-2]
+  mov R1, global_synth_v_curspeed
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_glideframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31111_end:
+__function_synth_note_retrigger_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_note_off:
+  push BP
+  mov BP, SP
+__if_31135_start:
+  mov R0, [BP+2]
+  ilt R0, 0
+  jt R0, __LogicalOr_ShortCircuit_31140
+  mov R1, [BP+2]
+  ige R1, 10
+  or R0, R1
+__LogicalOr_ShortCircuit_31140:
+  jf R0, __if_31135_end
+  jmp __function_synth_note_off_return
+__if_31135_end:
+__if_31144_start:
+  mov R0, global_synth_v_active
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  bnot R0
+  jf R0, __if_31144_end
+  jmp __function_synth_note_off_return
+__if_31144_end:
+__if_31150_start:
+  mov R0, global_synth_v_phase
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  ieq R0, 5
+  jt R0, __LogicalOr_ShortCircuit_31159
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov R1, [R1]
+  ieq R1, 0
+  or R0, R1
+__LogicalOr_ShortCircuit_31159:
+  jf R0, __if_31150_end
+  jmp __function_synth_note_off_return
+__if_31150_end:
+  mov R0, global_synth_v_level
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, global_synth_v_relstart
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 5
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_frames
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__function_synth_note_off_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_voice_kill:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, 0
+  mov R1, global_synth_v_active
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_level
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, global_synth_v_amp
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, -1
+  mov R1, global_synth_v_timer
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R2, [BP+2]
+  mov [SP], R2
+  call __function_synth_ch
+  mov R1, R0
+  mov [BP-1], R1
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_stop_channel
+__function_synth_voice_kill_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_panic:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, 0
+  mov [BP-1], R0
+__for_31245_start:
+  mov R0, [BP-1]
+  ilt R0, 10
+  jf R0, __for_31245_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_synth_voice_kill
+__for_31245_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_31245_start
+__for_31245_end:
+  call __function_synth_scheduler_clear
+__function_synth_panic_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_lfo_value:
+  push BP
+  mov BP, SP
+  isub SP, 6
+  push R1
+  push R2
+  push R3
+  isub SP, 1
+__if_31293_start:
+  mov R0, global_synth_v_age
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R2, [BP+3]
+  iadd R2, 16
+  mov R1, [R2]
+  ilt R0, R1
+  jf R0, __if_31293_end
+  mov R0, 0.000000
+  jmp __function_synth_lfo_value_return
+__if_31293_end:
+__if_31304_start:
+  mov R1, [BP+3]
+  iadd R1, 18
+  mov R0, [R1]
+  cib R0
+  jf R0, __if_31304_else
+  mov R0, [global_synth_cur_row_frames]
+  mov [BP-6], R0
+__if_31311_start:
+  mov R0, [BP-6]
+  ilt R0, 1
+  jf R0, __if_31311_end
+  mov R0, 1
+  mov [BP-6], R0
+__if_31311_end:
+  mov R1, [BP+3]
+  iadd R1, 14
+  mov R0, [R1]
+  mov R1, [BP-6]
+  cif R1
+  fdiv R0, R1
+  mov [BP-1], R0
+  jmp __if_31304_end
+__if_31304_else:
+  mov R1, [BP+3]
+  iadd R1, 14
+  mov R0, [R1]
+  fdiv R0, 60.000000
+  mov [BP-1], R0
+__if_31304_end:
+  mov R0, global_synth_v_lfophase
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+  mov R0, [BP-2]
+  mov R1, [BP-1]
+  fadd R0, R1
+  mov R1, global_synth_v_lfophase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R1, [BP+3]
+  iadd R1, 13
+  mov R0, [R1]
+  mov [BP-3], R0
+  mov R0, global_synth_v_lfophase
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-4], R0
+  mov R1, [BP-4]
+  mov R3, [BP-4]
+  mov [SP], R3
+  call __function_floor
+  mov R2, R0
+  fsub R1, R2
+  mov R0, R1
+  mov [BP-5], R0
+__if_31357_start:
+  mov R0, [BP-3]
+  ieq R0, 0
+  jf R0, __if_31357_end
+  mov R1, [BP-5]
+  fmul R1, 6.283185
+  mov [SP], R1
+  call __function_sin
+  jmp __function_synth_lfo_value_return
+__if_31357_end:
+__if_31366_start:
+  mov R0, [BP-3]
+  ieq R0, 1
+  jf R0, __if_31366_end
+  mov R2, [BP-5]
+  fsub R2, 0.500000
+  mov [SP], R2
+  call __function_fabs
+  mov R1, R0
+  fmul R1, 4.000000
+  fsub R1, 1.000000
+  mov R0, R1
+  jmp __function_synth_lfo_value_return
+__if_31366_end:
+__if_31379_start:
+  mov R0, [BP-3]
+  ieq R0, 2
+  jf R0, __if_31379_end
+  mov R0, [BP-5]
+  fmul R0, 2.000000
+  fsub R0, 1.000000
+  jmp __function_synth_lfo_value_return
+__if_31379_end:
+__if_31389_start:
+  mov R0, [BP-3]
+  ieq R0, 3
+  jf R0, __if_31389_end
+__if_31394_start:
+  mov R0, [BP-5]
+  flt R0, 0.500000
+  jf R0, __if_31394_end
+  mov R0, 1.000000
+  jmp __function_synth_lfo_value_return
+__if_31394_end:
+  mov R0, -1.000000
+  jmp __function_synth_lfo_value_return
+__if_31389_end:
+__if_31403_start:
+  mov R0, [BP-4]
+  cfi R0
+  mov R1, [BP-2]
+  cfi R1
+  ine R0, R1
+  jf R0, __if_31403_end
+  mov R2, global_synth_v_shseed
+  mov R3, [BP+2]
+  iadd R2, R3
+  mov R2, [R2]
+  mov [SP], R2
+  call __function_synth_lcg
+  mov R1, R0
+  mov R2, global_synth_v_shseed
+  mov R3, [BP+2]
+  iadd R2, R3
+  mov [R2], R1
+  mov R0, R1
+  mov R0, global_synth_v_shseed
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  cif R0
+  fdiv R0, 1073741824.000000
+  fsub R0, 1.000000
+  mov R1, global_synth_v_shval
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31403_end:
+  mov R0, global_synth_v_shval
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+__function_synth_lfo_value_return:
+  iadd SP, 1
+  pop R3
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_step_modenv:
+  push BP
+  mov BP, SP
+  isub SP, 3
+  push R1
+  push R2
+__if_31436_start:
+  mov R1, [BP+3]
+  iadd R1, 22
+  mov R0, [R1]
+  ieq R0, 0
+  jt R0, __LogicalOr_ShortCircuit_31443
+  mov R2, [BP+3]
+  iadd R2, 21
+  mov R1, [R2]
+  feq R1, 0.000000
+  or R0, R1
+__LogicalOr_ShortCircuit_31443:
+  jf R0, __if_31436_end
+  mov R0, 0.000000
+  jmp __function_synth_step_modenv_return
+__if_31436_end:
+  mov R0, global_synth_v_menvstage
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-1], R0
+  mov R0, global_synth_v_menvframes
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+  mov R0, 0.000000
+  mov [BP-3], R0
+__if_31461_start:
+  mov R0, [BP-1]
+  ieq R0, 0
+  jf R0, __if_31461_else
+__if_31466_start:
+  mov R1, [BP+3]
+  iadd R1, 19
+  mov R0, [R1]
+  ile R0, 0
+  jf R0, __if_31466_else
+  mov R0, 1.000000
+  mov [BP-3], R0
+  mov R0, 1
+  mov R1, global_synth_v_menvstage
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_menvframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_31466_end
+__if_31466_else:
+  mov R0, [BP-2]
+  cif R0
+  mov R2, [BP+3]
+  iadd R2, 19
+  mov R1, [R2]
+  cif R1
+  fdiv R0, R1
+  mov [BP-3], R0
+__if_31493_start:
+  mov R0, [BP-3]
+  fge R0, 1.000000
+  jf R0, __if_31493_else
+  mov R0, 1.000000
+  mov [BP-3], R0
+  mov R0, 1
+  mov R1, global_synth_v_menvstage
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_menvframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_31493_end
+__if_31493_else:
+  mov R0, global_synth_v_menvframes
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  iadd R0, 1
+  mov R1, global_synth_v_menvframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31493_end:
+__if_31466_end:
+  jmp __if_31461_end
+__if_31461_else:
+__if_31516_start:
+  mov R0, [BP-1]
+  ieq R0, 1
+  jf R0, __if_31516_end
+__if_31521_start:
+  mov R1, [BP+3]
+  iadd R1, 20
+  mov R0, [R1]
+  ile R0, 0
+  jf R0, __if_31521_else
+  mov R0, 0.000000
+  mov [BP-3], R0
+  mov R0, 2
+  mov R1, global_synth_v_menvstage
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_31521_end
+__if_31521_else:
+  mov R0, [BP-2]
+  cif R0
+  mov R2, [BP+3]
+  iadd R2, 20
+  mov R1, [R2]
+  cif R1
+  fdiv R0, R1
+  fsgn R0
+  fadd R0, 1.000000
+  mov [BP-3], R0
+__if_31545_start:
+  mov R0, [BP-3]
+  fle R0, 0.000000
+  jf R0, __if_31545_else
+  mov R0, 0.000000
+  mov [BP-3], R0
+  mov R0, 2
+  mov R1, global_synth_v_menvstage
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_31545_end
+__if_31545_else:
+  mov R0, global_synth_v_menvframes
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  iadd R0, 1
+  mov R1, global_synth_v_menvframes
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31545_end:
+__if_31521_end:
+__if_31516_end:
+__if_31461_end:
+  mov R0, [BP-3]
+__function_synth_step_modenv_return:
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_step_envelope:
+  push BP
+  mov BP, SP
+  isub SP, 5
+  push R1
+  push R2
+  push R3
+  isub SP, 2
+  mov R0, global_synth_v_phase
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-1], R0
+  mov R0, global_synth_v_frames
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+  mov R0, global_synth_v_level
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-3], R0
+__if_31583_start:
+  mov R0, [BP-1]
+  ieq R0, 1
+  jf R0, __if_31583_else
+__if_31588_start:
+  mov R1, [BP+3]
+  iadd R1, 2
+  mov R0, [R1]
+  ile R0, 0
+  jf R0, __if_31588_else
+  mov R0, 1.000000
+  mov [BP-3], R0
+  jmp __if_31588_end
+__if_31588_else:
+  mov R0, [BP-2]
+  cif R0
+  mov R2, [BP+3]
+  iadd R2, 2
+  mov R1, [R2]
+  cif R1
+  fdiv R0, R1
+  mov [BP-3], R0
+__if_31588_end:
+__if_31603_start:
+  mov R0, [BP-3]
+  fge R0, 1.000000
+  jf R0, __if_31603_end
+  mov R0, 1.000000
+  mov [BP-3], R0
+  mov R0, 0
+  mov R1, global_synth_v_frames
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31616_start:
+  mov R1, [BP+3]
+  iadd R1, 3
+  mov R0, [R1]
+  igt R0, 0
+  jf R0, __if_31616_else
+  mov R0, 2
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_31616_end
+__if_31616_else:
+  mov R0, 3
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31616_end:
+__if_31603_end:
+  jmp __if_31583_end
+__if_31583_else:
+__if_31631_start:
+  mov R0, [BP-1]
+  ieq R0, 2
+  jf R0, __if_31631_else
+  mov R0, 1.000000
+  mov [BP-3], R0
+__if_31639_start:
+  mov R0, [BP-2]
+  mov R2, [BP+3]
+  iadd R2, 3
+  mov R1, [R2]
+  ige R0, R1
+  jf R0, __if_31639_end
+  mov R0, 3
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_frames
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31639_end:
+  jmp __if_31631_end
+__if_31631_else:
+__if_31655_start:
+  mov R0, [BP-1]
+  ieq R0, 3
+  jf R0, __if_31655_else
+  mov R0, 0
+  mov [BP-4], R0
+__if_31663_start:
+  mov R1, [BP+3]
+  iadd R1, 4
+  mov R0, [R1]
+  ile R0, 0
+  jf R0, __if_31663_else
+  mov R1, [BP+3]
+  iadd R1, 5
+  mov R0, [R1]
+  mov [BP-3], R0
+  mov R0, 1
+  mov [BP-4], R0
+  jmp __if_31663_end
+__if_31663_else:
+  mov R0, [BP-2]
+  cif R0
+  mov R2, [BP+3]
+  iadd R2, 4
+  mov R1, [R2]
+  cif R1
+  fdiv R0, R1
+  mov [BP-5], R0
+__if_31684_start:
+  mov R1, [BP+3]
+  iadd R1, 7
+  mov R0, [R1]
+  fne R0, 1.000000
+  jf R0, __if_31684_end
+  mov R2, [BP-5]
+  mov [SP], R2
+  mov R3, [BP+3]
+  iadd R3, 7
+  mov R2, [R3]
+  mov [SP+1], R2
+  call __function_pow
+  mov R1, R0
+  mov [BP-5], R1
+  mov R0, R1
+__if_31684_end:
+  mov R1, [BP+3]
+  iadd R1, 5
+  mov R0, [R1]
+  fsgn R0
+  fadd R0, 1.000000
+  mov R1, [BP-5]
+  fmul R0, R1
+  fsgn R0
+  fadd R0, 1.000000
+  mov [BP-3], R0
+__if_31706_start:
+  mov R0, [BP-2]
+  mov R2, [BP+3]
+  iadd R2, 4
+  mov R1, [R2]
+  ige R0, R1
+  jf R0, __if_31706_end
+  mov R1, [BP+3]
+  iadd R1, 5
+  mov R0, [R1]
+  mov [BP-3], R0
+  mov R0, 1
+  mov [BP-4], R0
+__if_31706_end:
+__if_31663_end:
+__if_31719_start:
+  mov R0, [BP-4]
+  cib R0
+  jf R0, __if_31719_end
+__if_31722_start:
+  mov R1, [BP+3]
+  iadd R1, 5
+  mov R0, [R1]
+  fle R0, 0.001000
+  jf R0, __if_31722_else
+  mov R0, 0
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_31722_end
+__if_31722_else:
+  mov R0, 4
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, global_synth_v_frames
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31722_end:
+__if_31719_end:
+  jmp __if_31655_end
+__if_31655_else:
+__if_31743_start:
+  mov R0, [BP-1]
+  ieq R0, 4
+  jf R0, __if_31743_else
+  mov R1, [BP+3]
+  iadd R1, 5
+  mov R0, [R1]
+  mov [BP-3], R0
+  jmp __if_31743_end
+__if_31743_else:
+__if_31752_start:
+  mov R0, [BP-1]
+  ieq R0, 5
+  jf R0, __if_31752_end
+__if_31757_start:
+  mov R1, [BP+3]
+  iadd R1, 6
+  mov R0, [R1]
+  ile R0, 0
+  jf R0, __if_31757_else
+  mov R0, 0.000000
+  mov [BP-3], R0
+  jmp __if_31757_end
+__if_31757_else:
+  mov R0, [BP-2]
+  cif R0
+  mov R2, [BP+3]
+  iadd R2, 6
+  mov R1, [R2]
+  cif R1
+  fdiv R0, R1
+  mov [BP-4], R0
+__if_31773_start:
+  mov R1, [BP+3]
+  iadd R1, 7
+  mov R0, [R1]
+  fne R0, 1.000000
+  jf R0, __if_31773_end
+  mov R2, [BP-4]
+  mov [SP], R2
+  mov R3, [BP+3]
+  iadd R3, 7
+  mov R2, [R3]
+  mov [SP+1], R2
+  call __function_pow
+  mov R1, R0
+  mov [BP-4], R1
+  mov R0, R1
+__if_31773_end:
+  mov R0, global_synth_v_relstart
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, [BP-4]
+  fsgn R1
+  fadd R1, 1.000000
+  fmul R0, R1
+  mov [BP-3], R0
+__if_31757_end:
+__if_31794_start:
+  mov R0, [BP-3]
+  fle R0, 0.000000
+  jt R0, __LogicalOr_ShortCircuit_31799
+  mov R1, [BP-2]
+  mov R3, [BP+3]
+  iadd R3, 6
+  mov R2, [R3]
+  ige R1, R2
+  or R0, R1
+__LogicalOr_ShortCircuit_31799:
+  jf R0, __if_31794_end
+  mov R0, 0.000000
+  mov [BP-3], R0
+  mov R0, 0
+  mov R1, global_synth_v_phase
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__if_31794_end:
+__if_31752_end:
+__if_31743_end:
+__if_31655_end:
+__if_31631_end:
+__if_31583_end:
+  mov R0, [BP-3]
+  mov R1, global_synth_v_level
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP-3]
+__function_synth_step_envelope_return:
+  iadd SP, 2
+  pop R3
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_step_arp:
+  push BP
+  mov BP, SP
+  isub SP, 6
+__if_31822_start:
+  mov R0, global_synth_v_arptimer
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  igt R0, 0
+  jf R0, __if_31822_end
+  mov R0, global_synth_v_arptimer
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  isub R0, 1
+  mov R1, global_synth_v_arptimer
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __function_synth_step_arp_return
+__if_31822_end:
+  mov R1, [BP+3]
+  iadd R1, 35
+  mov R0, [R1]
+  mov [BP-1], R0
+__if_31839_start:
+  mov R0, [BP-1]
+  ilt R0, 1
+  jf R0, __if_31839_end
+  mov R0, 1
+  mov [BP-1], R0
+__if_31839_end:
+  mov R0, global_synth_v_arpstep
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+  mov R0, [BP+3]
+  iadd R0, 27
+  mov R1, [BP-2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-3], R0
+  mov R0, global_synth_v_basenote
+  mov R1, [BP+2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, [BP-3]
+  iadd R0, R1
+  mov [BP-4], R0
+__if_31864_start:
+  mov R0, [BP-4]
+  ilt R0, 0
+  jf R0, __if_31864_end
+  mov R0, 0
+  mov [BP-4], R0
+__if_31864_end:
+__if_31871_start:
+  mov R0, [BP-4]
+  igt R0, 127
+  jf R0, __if_31871_end
+  mov R0, 127
+  mov [BP-4], R0
+__if_31871_end:
+  mov R2, [BP-4]
+  mov [SP], R2
+  mov R2, [BP+3]
+  mov [SP+1], R2
+  call __function_synth_base_speed
+  mov R1, R0
+  mov R2, global_synth_v_curspeed
+  mov R3, [BP+2]
+  iadd R2, R3
+  mov [R2], R1
+  mov R0, R1
+  mov R0, [BP-4]
+  mov R1, global_synth_v_note
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, global_synth_note_freq
+  mov R1, [BP-4]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, global_synth_v_freq
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP-2]
+  iadd R0, 1
+  mov R1, [BP-1]
+  imod R0, R1
+  mov R1, global_synth_v_arpstep
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+  mov R1, [BP+3]
+  iadd R1, 36
+  mov R0, [R1]
+  mov R1, global_synth_v_arptimer
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__function_synth_step_arp_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_apply_morph:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, [BP+4]
+  cfi R0
+  mov [BP-1], R0
+__if_31921_start:
+  mov R0, [BP-1]
+  ilt R0, 0
+  jf R0, __if_31921_end
+  mov R0, 0
+  mov [BP-1], R0
+__if_31921_end:
+__if_31928_start:
+  mov R0, [BP-1]
+  mov R2, [BP+3]
+  iadd R2, 38
+  mov R1, [R2]
+  ige R0, R1
+  jf R0, __if_31928_end
+  mov R1, [BP+3]
+  iadd R1, 38
+  mov R0, [R1]
+  isub R0, 1
+  mov [BP-1], R0
+__if_31928_end:
+  mov R2, [BP+3]
+  iadd R2, 37
+  mov R1, [R2]
+  mov [SP], R1
+  call __function_select_sound
+  mov R1, [BP-1]
+  imul R1, 2048
+  mov [SP], R1
+  call __function_set_sound_loop_start
+  mov R1, [BP-1]
+  imul R1, 2048
+  iadd R1, 2048
+  mov [SP], R1
+  call __function_set_sound_loop_end
+  mov R0, [BP+4]
+  mov R1, global_synth_v_morphpos
+  mov R2, [BP+2]
+  iadd R1, R2
+  mov [R1], R0
+__function_synth_apply_morph_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_update:
+  push BP
+  mov BP, SP
+  isub SP, 13
+  call __function_synth_scheduler_update
+  mov R0, 0
+  mov [BP-1], R0
+__for_31960_start:
+  mov R0, [BP-1]
+  ilt R0, 10
+  jf R0, __for_31960_end
+__if_31970_start:
+  mov R0, global_synth_v_active
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  bnot R0
+  jf R0, __if_31970_end
+  jmp __for_31960_continue
+__if_31970_end:
+  mov R0, global_synth_v_inst
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-2], R0
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, [BP-2]
+  mov [SP+1], R1
+  call __function_synth_step_envelope
+  mov [BP-3], R0
+__if_31986_start:
+  mov R0, global_synth_v_phase
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  ieq R0, 0
+  jf R0, __if_31986_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_synth_voice_kill
+  jmp __for_31960_continue
+__if_31986_end:
+__if_31996_start:
+  mov R1, [BP-2]
+  iadd R1, 26
+  mov R0, [R1]
+  cib R0
+  jf R0, __if_31996_else
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, [BP-2]
+  mov [SP+1], R1
+  call __function_synth_step_arp
+  jmp __if_31996_end
+__if_31996_else:
+__if_32002_start:
+  mov R0, global_synth_v_glideframes
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  igt R0, 0
+  jf R0, __if_32002_end
+  mov R0, global_synth_v_tgtspeed
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, global_synth_v_curspeed
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  fsub R0, R1
+  mov [BP-9], R0
+  mov R0, global_synth_v_curspeed
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, [BP-9]
+  mov R2, global_synth_v_glideframes
+  mov R3, [BP-1]
+  iadd R2, R3
+  mov R2, [R2]
+  cif R2
+  fdiv R1, R2
+  fadd R0, R1
+  mov R1, global_synth_v_curspeed
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, global_synth_v_glideframes
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  isub R0, 1
+  mov R1, global_synth_v_glideframes
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_32032_start:
+  mov R0, global_synth_v_glideframes
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  ieq R0, 0
+  jf R0, __if_32032_end
+  mov R0, global_synth_v_tgtspeed
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, global_synth_v_curspeed
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_32032_end:
+__if_32002_end:
+__if_31996_end:
+  mov R0, 0.000000
+  mov [BP-4], R0
+__if_32048_start:
+  mov R1, [BP-2]
+  iadd R1, 17
+  mov R0, [R1]
+  ine R0, 0
+  jf R0, __LogicalAnd_ShortCircuit_32055
+  mov R2, [BP-2]
+  iadd R2, 15
+  mov R1, [R2]
+  fne R1, 0.000000
+  and R0, R1
+__LogicalAnd_ShortCircuit_32055:
+  jf R0, __if_32048_end
+  mov R2, [BP-1]
+  mov [SP], R2
+  mov R2, [BP-2]
+  mov [SP+1], R2
+  call __function_synth_lfo_value
+  mov R1, R0
+  mov [BP-4], R1
+  mov R0, R1
+__if_32048_end:
+  mov R0, 0.000000
+  mov [BP-5], R0
+__if_32066_start:
+  mov R1, [BP-2]
+  iadd R1, 22
+  mov R0, [R1]
+  ine R0, 0
+  jf R0, __if_32066_end
+  mov R2, [BP-1]
+  mov [SP], R2
+  mov R2, [BP-2]
+  mov [SP+1], R2
+  call __function_synth_step_modenv
+  mov R1, R0
+  mov [BP-5], R1
+  mov R0, R1
+__if_32066_end:
+  mov R0, [BP-3]
+  mov R2, [BP-2]
+  iadd R2, 1
+  mov R1, [R2]
+  fmul R0, R1
+  mov R1, global_synth_v_vel
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  fmul R0, R1
+  mov R1, [global_synth_master]
+  fmul R0, R1
+  mov [BP-6], R0
+__if_32088_start:
+  mov R1, [BP-2]
+  iadd R1, 11
+  mov R0, [R1]
+  fgt R0, 0.000000
+  jf R0, __if_32088_end
+  mov R0, global_synth_v_tremphase
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R2, [BP-2]
+  iadd R2, 12
+  mov R1, [R2]
+  fdiv R1, 60.000000
+  fadd R0, R1
+  mov R1, global_synth_v_tremphase
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R2, global_synth_v_tremphase
+  mov R3, [BP-1]
+  iadd R2, R3
+  mov R2, [R2]
+  fmul R2, 6.283185
+  mov [SP], R2
+  call __function_sin
+  mov R1, R0
+  fmul R1, 0.500000
+  fadd R1, 0.500000
+  mov R0, R1
+  mov [BP-9], R0
+  mov R0, [BP-6]
+  mov R2, [BP-2]
+  iadd R2, 11
+  mov R1, [R2]
+  mov R2, [BP-9]
+  fmul R1, R2
+  fsgn R1
+  fadd R1, 1.000000
+  fmul R0, R1
+  mov [BP-6], R0
+__if_32088_end:
+__if_32125_start:
+  mov R1, [BP-2]
+  iadd R1, 17
+  mov R0, [R1]
+  ieq R0, 2
+  jf R0, __if_32125_end
+  mov R0, [BP-4]
+  fmul R0, 0.500000
+  fadd R0, 0.500000
+  mov [BP-9], R0
+  mov R0, [BP-6]
+  mov R2, [BP-2]
+  iadd R2, 15
+  mov R1, [R2]
+  mov R2, [BP-9]
+  fmul R1, R2
+  fsgn R1
+  fadd R1, 1.000000
+  fmul R0, R1
+  mov [BP-6], R0
+__if_32125_end:
+  mov R0, [BP-6]
+  mov R1, global_synth_v_amp
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, global_synth_v_bend
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-7], R0
+__if_32159_start:
+  mov R1, [BP-2]
+  iadd R1, 23
+  mov R0, [R1]
+  fne R0, 0.000000
+  jf R0, __if_32159_end
+  mov R0, [BP-7]
+  mov R2, [BP-2]
+  iadd R2, 23
+  mov R1, [R2]
+  mov R2, global_synth_v_age
+  mov R3, [BP-1]
+  iadd R2, R3
+  mov R2, [R2]
+  cif R2
+  fmul R1, R2
+  fadd R0, R1
+  mov [BP-7], R0
+__if_32159_end:
+__if_32172_start:
+  mov R1, [BP-2]
+  iadd R1, 22
+  mov R0, [R1]
+  ieq R0, 1
+  jf R0, __if_32172_end
+  mov R0, [BP-7]
+  mov R2, [BP-2]
+  iadd R2, 21
+  mov R1, [R2]
+  mov R2, [BP-5]
+  fmul R1, R2
+  fadd R0, R1
+  mov [BP-7], R0
+__if_32172_end:
+__if_32183_start:
+  mov R1, [BP-2]
+  iadd R1, 8
+  mov R0, [R1]
+  fgt R0, 0.000000
+  jf R0, __LogicalAnd_ShortCircuit_32191
+  mov R1, global_synth_v_age
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov R3, [BP-2]
+  iadd R3, 10
+  mov R2, [R3]
+  ige R1, R2
+  and R0, R1
+__LogicalAnd_ShortCircuit_32191:
+  jf R0, __if_32183_end
+  mov R0, global_synth_v_vibphase
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R2, [BP-2]
+  iadd R2, 9
+  mov R1, [R2]
+  fdiv R1, 60.000000
+  fadd R0, R1
+  mov R1, global_synth_v_vibphase
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R1, [BP-7]
+  mov R3, [BP-2]
+  iadd R3, 8
+  mov R2, [R3]
+  mov R4, global_synth_v_vibphase
+  mov R5, [BP-1]
+  iadd R4, R5
+  mov R4, [R4]
+  fmul R4, 6.283185
+  mov [SP], R4
+  call __function_sin
+  mov R3, R0
+  fmul R2, R3
+  fadd R1, R2
+  mov [BP-7], R1
+  mov R0, R1
+__if_32183_end:
+__if_32215_start:
+  mov R1, [BP-2]
+  iadd R1, 17
+  mov R0, [R1]
+  ieq R0, 1
+  jf R0, __if_32215_end
+  mov R0, [BP-7]
+  mov R2, [BP-2]
+  iadd R2, 15
+  mov R1, [R2]
+  mov R2, [BP-4]
+  fmul R1, R2
+  fadd R0, R1
+  mov [BP-7], R0
+__if_32215_end:
+  mov R0, global_synth_v_curspeed
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-8], R0
+__if_32231_start:
+  mov R0, [BP-7]
+  fne R0, 0.000000
+  jf R0, __if_32231_end
+  mov R1, [BP-8]
+  mov R3, 2.000000
+  mov [SP], R3
+  mov R3, [BP-7]
+  fdiv R3, 12.000000
+  mov [SP+1], R3
+  call __function_pow
+  mov R2, R0
+  fmul R1, R2
+  mov [BP-8], R1
+  mov R0, R1
+__if_32231_end:
+__if_32244_start:
+  mov R1, [BP-2]
+  iadd R1, 37
+  mov R0, [R1]
+  ige R0, 0
+  jf R0, __if_32244_end
+  mov R1, [BP-2]
+  iadd R1, 39
+  mov R0, [R1]
+  mov [BP-9], R0
+__if_32254_start:
+  mov R1, [BP-2]
+  iadd R1, 17
+  mov R0, [R1]
+  ieq R0, 3
+  jf R0, __if_32254_end
+  mov R0, [BP-9]
+  mov R2, [BP-2]
+  iadd R2, 15
+  mov R1, [R2]
+  mov R2, [BP-4]
+  fmul R2, 0.500000
+  fadd R2, 0.500000
+  fmul R1, R2
+  fadd R0, R1
+  mov [BP-9], R0
+__if_32254_end:
+__if_32270_start:
+  mov R1, [BP-2]
+  iadd R1, 22
+  mov R0, [R1]
+  ieq R0, 3
+  jf R0, __if_32270_end
+  mov R0, [BP-9]
+  mov R2, [BP-2]
+  iadd R2, 21
+  mov R1, [R2]
+  mov R2, [BP-5]
+  fmul R1, R2
+  fadd R0, R1
+  mov [BP-9], R0
+__if_32270_end:
+  mov R1, [BP-1]
+  mov [SP], R1
+  mov R1, [BP-2]
+  mov [SP+1], R1
+  mov R1, [BP-9]
+  mov [SP+2], R1
+  call __function_synth_apply_morph
+__if_32244_end:
+  mov R2, [BP-1]
+  mov [SP], R2
+  call __function_synth_ch
+  mov R1, R0
+  mov [BP-10], R1
+  mov R1, [BP-10]
+  mov [SP], R1
+  call __function_select_channel
+  mov R1, [BP-6]
+  mov [SP], R1
+  call __function_set_channel_volume
+  mov R1, [BP-8]
+  mov [SP], R1
+  call __function_set_channel_speed
+  mov R0, global_synth_v_frames
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  iadd R0, 1
+  mov R1, global_synth_v_frames
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, global_synth_v_age
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  iadd R0, 1
+  mov R1, global_synth_v_age
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_32302_start:
+  mov R0, global_synth_v_timer
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  igt R0, 0
+  jf R0, __if_32302_end
+  mov R0, global_synth_v_timer
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  isub R0, 1
+  mov R1, global_synth_v_timer
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_32314_start:
+  mov R0, global_synth_v_timer
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  ieq R0, 0
+  jf R0, __if_32314_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_synth_note_off
+  mov R0, -1
+  mov R1, global_synth_v_timer
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_32314_end:
+__if_32302_end:
+__for_31960_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_31960_start
+__for_31960_end:
+__function_synth_update_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_patch:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  iadd R1, 1
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, [BP+2]
+  iadd R1, 2
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 3
+  mov [R1], R0
+  mov R0, [BP+6]
+  mov R1, [BP+2]
+  iadd R1, 4
+  mov [R1], R0
+  mov R0, [BP+7]
+  mov R1, [BP+2]
+  iadd R1, 5
+  mov [R1], R0
+  mov R0, [BP+8]
+  mov R1, [BP+2]
+  iadd R1, 6
+  mov [R1], R0
+  mov R0, 1.000000
+  mov R1, [BP+2]
+  iadd R1, 7
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 8
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 9
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 10
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 11
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 12
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 13
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 14
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 15
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 16
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 17
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 18
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 19
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 20
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 21
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 22
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 23
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 24
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 25
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 26
+  mov [R1], R0
+  mov R0, 1
+  mov R1, [BP+2]
+  iadd R1, 35
+  mov [R1], R0
+  mov R0, 3
+  mov R1, [BP+2]
+  iadd R1, 36
+  mov [R1], R0
+  mov R0, -1
+  mov R1, [BP+2]
+  iadd R1, 37
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 38
+  mov [R1], R0
+  mov R0, 0.000000
+  mov R1, [BP+2]
+  iadd R1, 39
+  mov [R1], R0
+__function_synth_patch_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_vibrato:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  iadd R1, 8
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  iadd R1, 9
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, [BP+2]
+  iadd R1, 10
+  mov [R1], R0
+__function_synth_set_vibrato_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_tremolo:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  iadd R1, 11
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  iadd R1, 12
+  mov [R1], R0
+__function_synth_set_tremolo_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_lfo:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  iadd R1, 13
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  iadd R1, 14
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, [BP+2]
+  iadd R1, 15
+  mov [R1], R0
+  mov R0, [BP+6]
+  mov R1, [BP+2]
+  iadd R1, 16
+  mov [R1], R0
+  mov R0, [BP+7]
+  mov R1, [BP+2]
+  iadd R1, 17
+  mov [R1], R0
+  mov R0, 0
+  mov R1, [BP+2]
+  iadd R1, 18
+  mov [R1], R0
+__function_synth_set_lfo_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_lfo_sync:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  iadd R1, 18
+  mov [R1], R0
+__function_synth_set_lfo_sync_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_modenv:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  iadd R1, 19
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  iadd R1, 20
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, [BP+2]
+  iadd R1, 21
+  mov [R1], R0
+  mov R0, [BP+6]
+  mov R1, [BP+2]
+  iadd R1, 22
+  mov [R1], R0
+__function_synth_set_modenv_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_pitch_env:
+  push BP
+  mov BP, SP
+  isub SP, 5
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, 0
+  mov [SP+1], R1
+  mov R1, [BP+4]
+  mov [SP+2], R1
+  mov R1, [BP+3]
+  mov [SP+3], R1
+  mov R1, 1
+  mov [SP+4], R1
+  call __function_synth_set_modenv
+__function_synth_set_pitch_env_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_glide:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  iadd R1, 24
+  mov [R1], R0
+__function_synth_set_glide_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_arp:
+  push BP
+  mov BP, SP
+  isub SP, 1
+__if_32598_start:
+  mov R0, [BP+4]
+  ilt R0, 1
+  jf R0, __if_32598_end
+  mov R0, 1
+  mov [BP+4], R0
+__if_32598_end:
+__if_32605_start:
+  mov R0, [BP+4]
+  igt R0, 8
+  jf R0, __if_32605_end
+  mov R0, 8
+  mov [BP+4], R0
+__if_32605_end:
+  mov R0, 1
+  mov R1, [BP+2]
+  iadd R1, 26
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  iadd R1, 35
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, [BP+2]
+  iadd R1, 36
+  mov [R1], R0
+  mov R0, 0
+  mov [BP-1], R0
+__for_32624_start:
+  mov R0, [BP-1]
+  mov R1, [BP+4]
+  ilt R0, R1
+  jf R0, __for_32624_end
+  mov R0, [BP+3]
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  mov R1, [BP+2]
+  iadd R1, 27
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__for_32624_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_32624_start
+__for_32624_end:
+__function_synth_set_arp_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_set_morph:
+  push BP
+  mov BP, SP
+  mov R0, [BP+3]
+  mov R1, [BP+2]
+  iadd R1, 37
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, [BP+2]
+  iadd R1, 38
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, [BP+2]
+  iadd R1, 39
+  mov [R1], R0
+__function_synth_set_morph_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_schedule_alloc:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  push R1
+  mov R0, 0
+  mov [BP-1], R0
+__for_33623_start:
+  mov R0, [BP-1]
+  ilt R0, 64
+  jf R0, __for_33623_end
+__if_33632_start:
+  mov R0, global_synth_ev_active
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  bnot R0
+  jf R0, __if_33632_end
+  mov R0, [BP-1]
+  jmp __function_synth_schedule_alloc_return
+__if_33632_end:
+__for_33623_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_33623_start
+__for_33623_end:
+  mov R0, -1
+__function_synth_schedule_alloc_return:
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_schedule_note:
+  push BP
+  mov BP, SP
+  isub SP, 1
+  call __function_synth_schedule_alloc
+  mov [BP-1], R0
+__if_33651_start:
+  mov R0, [BP-1]
+  ilt R0, 0
+  jf R0, __if_33651_end
+  jmp __function_synth_schedule_note_return
+__if_33651_end:
+  mov R0, 1
+  mov R1, global_synth_ev_active
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+5]
+  mov R1, global_synth_ev_timer
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+2]
+  mov R1, global_synth_ev_inst
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+3]
+  mov R1, global_synth_ev_note
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+4]
+  mov R1, global_synth_ev_vel
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  mov R0, [BP+6]
+  mov R1, global_synth_ev_dur
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__function_synth_schedule_note_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_scheduler_update:
+  push BP
+  mov BP, SP
+  isub SP, 5
+  mov R0, 0
+  mov [BP-1], R0
+__for_33687_start:
+  mov R0, [BP-1]
+  ilt R0, 64
+  jf R0, __for_33687_end
+__if_33697_start:
+  mov R0, global_synth_ev_active
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  bnot R0
+  jf R0, __if_33697_end
+  jmp __for_33687_continue
+__if_33697_end:
+__if_33703_start:
+  mov R0, global_synth_ev_timer
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  ile R0, 0
+  jf R0, __if_33703_else
+__if_33710_start:
+  mov R0, global_synth_ev_dur
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  igt R0, 0
+  jf R0, __if_33710_else
+  mov R1, global_synth_ev_inst
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP], R1
+  mov R1, global_synth_ev_note
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP+1], R1
+  mov R1, global_synth_ev_vel
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP+2], R1
+  mov R1, global_synth_ev_dur
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP+3], R1
+  call __function_synth_play_timed
+  jmp __if_33710_end
+__if_33710_else:
+  mov R1, global_synth_ev_inst
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP], R1
+  mov R1, global_synth_ev_note
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP+1], R1
+  mov R1, global_synth_ev_vel
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP+2], R1
+  call __function_synth_note_on
+__if_33710_end:
+  mov R0, 0
+  mov R1, global_synth_ev_active
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __if_33703_end
+__if_33703_else:
+  mov R0, global_synth_ev_timer
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  isub R0, 1
+  mov R1, global_synth_ev_timer
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_33703_end:
+__for_33687_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_33687_start
+__for_33687_end:
+__function_synth_scheduler_update_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_play_echo:
+  push BP
+  mov BP, SP
+  isub SP, 3
+  push R1
+  push R2
+  isub SP, 5
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, [BP+3]
+  mov [SP+1], R1
+  mov R1, [BP+4]
+  mov [SP+2], R1
+  mov R1, [BP+5]
+  mov [SP+3], R1
+  call __function_synth_play_timed
+  mov [BP-1], R0
+  mov R0, [BP+4]
+  mov [BP-2], R0
+  mov R0, 1
+  mov [BP-3], R0
+__for_33780_start:
+  mov R0, [BP-3]
+  mov R1, [BP+6]
+  ile R0, R1
+  jf R0, __for_33780_end
+  mov R0, [BP-2]
+  mov R1, [BP+8]
+  fmul R0, R1
+  mov [BP-2], R0
+  mov R1, [BP+2]
+  mov [SP], R1
+  mov R1, [BP+3]
+  mov [SP+1], R1
+  mov R1, [BP-2]
+  mov [SP+2], R1
+  mov R1, [BP-3]
+  mov R2, [BP+7]
+  imul R1, R2
+  mov [SP+3], R1
+  mov R1, [BP+5]
+  mov [SP+4], R1
+  call __function_synth_schedule_note
+__for_33780_continue:
+  mov R0, [BP-3]
+  iadd R0, 1
+  mov [BP-3], R0
+  jmp __for_33780_start
+__for_33780_end:
+  mov R0, [BP-1]
+__function_synth_play_echo_return:
+  iadd SP, 5
+  pop R2
+  pop R1
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_seq_stop:
+  push BP
+  mov BP, SP
+  isub SP, 2
+  mov R0, 0
+  mov [global_synth_seq_playing], R0
+  mov R0, 0
+  mov [BP-1], R0
+__for_33894_start:
+  mov R0, [BP-1]
+  ilt R0, 8
+  jf R0, __for_33894_end
+__if_33903_start:
+  mov R0, global_synth_seq_voice
+  mov R1, [BP-1]
+  iadd R0, R1
+  mov R0, [R0]
+  ige R0, 0
+  jf R0, __if_33903_end
+  mov R1, global_synth_seq_voice
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP], R1
+  call __function_synth_note_off
+  mov R0, -1
+  mov R1, global_synth_seq_voice
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov [R1], R0
+__if_33903_end:
+__for_33894_continue:
+  mov R0, [BP-1]
+  iadd R0, 1
+  mov [BP-1], R0
+  jmp __for_33894_start
+__for_33894_end:
+__function_synth_seq_stop_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_synth_seq_trigger_row:
+  push BP
+  mov BP, SP
+  isub SP, 11
+  mov R0, [global_synth_seq_song]
+  mov [BP-1], R0
+  mov R0, 0
+  mov [BP-2], R0
+__for_33945_start:
+  mov R0, [BP-2]
+  mov R2, [BP-1]
+  iadd R2, 40
+  mov R1, [R2]
+  ilt R0, R1
+  jf R0, __for_33945_end
+  mov R0, [BP-1]
+  mov R1, [BP-2]
+  imul R1, 5
+  iadd R0, R1
+  mov [BP-3], R0
+  mov R2, [BP-3]
+  iadd R2, 1
+  mov R0, [R2]
+  mov R1, [global_synth_seq_row]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-4], R0
+__if_33969_start:
+  mov R0, [BP-4]
+  ieq R0, 0
+  jf R0, __if_33969_end
+  jmp __for_33945_continue
+__if_33969_end:
+__if_33974_start:
+  mov R0, [BP-4]
+  ieq R0, -2
+  jf R0, __if_33974_end
+  jmp __for_33945_continue
+__if_33974_end:
+  mov R0, global_synth_seq_voice
+  mov R1, [BP-2]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-5], R0
+__if_33985_start:
+  mov R0, [BP-4]
+  ieq R0, -1
+  jf R0, __if_33985_end
+__if_33991_start:
+  mov R0, [BP-5]
+  ige R0, 0
+  jf R0, __if_33991_end
+  mov R1, [BP-5]
+  mov [SP], R1
+  call __function_synth_note_off
+__if_33991_end:
+  mov R0, -1
+  mov R1, global_synth_seq_voice
+  mov R2, [BP-2]
+  iadd R1, R2
+  mov [R1], R0
+  jmp __for_33945_continue
+__if_33985_end:
+  mov R0, [BP-4]
+  mov R2, [BP-1]
+  iadd R2, 44
+  mov R1, [R2]
+  iadd R0, R1
+  mov [BP-6], R0
+__if_34010_start:
+  mov R1, [BP-3]
+  iadd R1, 3
+  mov R0, [R1]
+  cib R0
+  jf R0, __LogicalAnd_ShortCircuit_34013
+  mov R1, [BP-5]
+  ige R1, 0
+  and R0, R1
+__LogicalAnd_ShortCircuit_34013:
+  jf R0, __LogicalAnd_ShortCircuit_34020
+  mov R1, global_synth_v_active
+  mov R2, [BP-5]
+  iadd R1, R2
+  mov R1, [R1]
+  cib R1
+  and R0, R1
+__LogicalAnd_ShortCircuit_34020:
+  jf R0, __if_34010_end
+  mov R1, [BP-5]
+  mov [SP], R1
+  mov R1, [BP-6]
+  mov [SP+1], R1
+  call __function_synth_note_retrigger
+__if_34025_start:
+  mov R1, [BP-3]
+  iadd R1, 4
+  mov R0, [R1]
+  igt R0, 0
+  jf R0, __if_34025_end
+  mov R1, [BP-3]
+  iadd R1, 4
+  mov R0, [R1]
+  mov R1, global_synth_v_timer
+  mov R2, [BP-5]
+  iadd R1, R2
+  mov [R1], R0
+__if_34025_end:
+  jmp __for_33945_continue
+__if_34010_end:
+__if_34037_start:
+  mov R0, [BP-5]
+  ige R0, 0
+  jf R0, __if_34037_end
+  mov R1, [BP-5]
+  mov [SP], R1
+  call __function_synth_note_off
+__if_34037_end:
+__if_34045_start:
+  mov R1, [BP-3]
+  iadd R1, 4
+  mov R0, [R1]
+  igt R0, 0
+  jf R0, __if_34045_else
+  mov R3, [BP-3]
+  mov R2, [R3]
+  mov [SP], R2
+  mov R2, [BP-6]
+  mov [SP+1], R2
+  mov R3, [BP-3]
+  iadd R3, 2
+  mov R2, [R3]
+  mov [SP+2], R2
+  mov R3, [BP-3]
+  iadd R3, 4
+  mov R2, [R3]
+  mov [SP+3], R2
+  call __function_synth_play_timed
+  mov R1, R0
+  mov [BP-7], R1
+  mov R0, R1
+  jmp __if_34045_end
+__if_34045_else:
+  mov R3, [BP-3]
+  mov R2, [R3]
+  mov [SP], R2
+  mov R2, [BP-6]
+  mov [SP+1], R2
+  mov R3, [BP-3]
+  iadd R3, 2
+  mov R2, [R3]
+  mov [SP+2], R2
+  call __function_synth_note_on
+  mov R1, R0
+  mov [BP-7], R1
+  mov R0, R1
+__if_34045_end:
+  mov R0, [BP-7]
+  mov R1, global_synth_seq_voice
+  mov R2, [BP-2]
+  iadd R1, R2
+  mov [R1], R0
+__for_33945_continue:
+  mov R0, [BP-2]
+  iadd R0, 1
+  mov [BP-2], R0
+  jmp __for_33945_start
+__for_33945_end:
+__function_synth_seq_trigger_row_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_MUS_Init:
+  push BP
+  mov BP, SP
+  isub SP, 7
+  mov R1, global_mi_lead
+  mov [SP], R1
+  mov R1, 3
+  mov [SP+1], R1
+  mov R1, 0.140000
+  mov [SP+2], R1
+  mov R1, 1
+  mov [SP+3], R1
+  mov R1, 0
+  mov [SP+4], R1
+  mov R1, 1.000000
+  mov [SP+5], R1
+  mov R1, 2
+  mov [SP+6], R1
+  call __function_synth_patch
+  mov R1, global_mi_bass
+  mov [SP], R1
+  mov R1, 3
+  mov [SP+1], R1
+  mov R1, 0.180000
+  mov [SP+2], R1
+  mov R1, 1
+  mov [SP+3], R1
+  mov R1, 0
+  mov [SP+4], R1
+  mov R1, 1.000000
+  mov [SP+5], R1
+  mov R1, 2
+  mov [SP+6], R1
+  call __function_synth_patch
+  mov R1, global_mi_kick
+  mov [SP], R1
+  mov R1, 1
+  mov [SP+1], R1
+  mov R1, 0.340000
+  mov [SP+2], R1
+  mov R1, 0
+  mov [SP+3], R1
+  mov R1, 6
+  mov [SP+4], R1
+  mov R1, 0.000000
+  mov [SP+5], R1
+  mov R1, 4
+  mov [SP+6], R1
+  call __function_synth_patch
+  mov R0, -0.900000
+  mov [1721521], R0
+  mov R1, global_mi_snhat
+  mov [SP], R1
+  mov R1, 6
+  mov [SP+1], R1
+  mov R1, 0.200000
+  mov [SP+2], R1
+  mov R1, 0
+  mov [SP+3], R1
+  mov R1, 4
+  mov [SP+4], R1
+  mov R1, 0.000000
+  mov [SP+5], R1
+  mov R1, 2
+  mov [SP+6], R1
+  call __function_synth_patch
+  mov R0, 0.500000
+  mov [1721545], R0
+  mov R0, global_mi_lead
+  mov [global_mi_inst], R0
+  mov R0, global_mi_bass
+  mov [1721579], R0
+  mov R0, global_mi_kick
+  mov [1721580], R0
+  mov R0, global_mi_snhat
+  mov [1721581], R0
+  mov R0, 0
+  mov [global_mp_cur], R0
+  mov R0, 0
+  mov [global_mp_row], R0
+  mov R0, 0
+  mov [global_mp_timer], R0
+  mov R0, 0
+  mov [global_mp_playing], R0
+__function_MUS_Init_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_MUS_Start:
+  push BP
+  mov BP, SP
+  call __function_synth_panic
+  mov R0, 0
+  mov [global_mp_cur], R0
+  mov R0, 0
+  mov [global_mp_row], R0
+  mov R0, 0
+  mov [global_mp_timer], R0
+  mov R0, 1
+  mov [global_mp_playing], R0
+__function_MUS_Start_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_MUS_Stop:
+  push BP
+  mov BP, SP
+  mov R0, 0
+  mov [global_mp_playing], R0
+  call __function_synth_panic
+__function_MUS_Stop_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_MUS_TickFrame:
+  push BP
+  mov BP, SP
+  isub SP, 6
+__if_45928_start:
+  mov R0, [global_mp_playing]
+  jf R0, __LogicalAnd_ShortCircuit_45930
+  mov R1, [global_mp_timer]
+  ile R1, 0
+  and R0, R1
+__LogicalAnd_ShortCircuit_45930:
+  jf R0, __if_45928_end
+__while_45935_start:
+__while_45935_continue:
+  mov R0, [global_mp_cur]
+  ilt R0, 2332
+  jf R0, __LogicalAnd_ShortCircuit_45942
+  mov R1, global_mus_e1m1_srow
+  mov R2, [global_mp_cur]
+  iadd R1, R2
+  mov R1, [R1]
+  mov R2, [global_mp_row]
+  ieq R1, R2
+  and R0, R1
+__LogicalAnd_ShortCircuit_45942:
+  jf R0, __while_45935_end
+  mov R0, global_mus_e1m1_inst
+  mov R1, [global_mp_cur]
+  iadd R0, R1
+  mov R0, [R0]
+  mov [BP-1], R0
+  mov R0, global_mus_e1m1_vel
+  mov R1, [global_mp_cur]
+  iadd R0, R1
+  mov R0, [R0]
+  cif R0
+  fdiv R0, 127.000000
+  mov [BP-2], R0
+  mov R1, global_mi_inst
+  mov R2, [BP-1]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP], R1
+  mov R1, global_mus_e1m1_note
+  mov R2, [global_mp_cur]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP+1], R1
+  mov R1, [BP-2]
+  mov [SP+2], R1
+  mov R1, global_mus_e1m1_dur
+  mov R2, [global_mp_cur]
+  iadd R1, R2
+  mov R1, [R1]
+  mov [SP+3], R1
+  call __function_synth_play_timed
+  mov R0, [global_mp_cur]
+  mov R1, R0
+  iadd R1, 1
+  mov [global_mp_cur], R1
+  jmp __while_45935_start
+__while_45935_end:
+  mov R0, [global_mp_row]
+  mov R1, R0
+  iadd R1, 1
+  mov [global_mp_row], R1
+  mov R0, 3
+  mov [global_mp_timer], R0
+__if_45977_start:
+  mov R0, [global_mp_row]
+  ige R0, 1920
+  jf R0, __if_45977_end
+  mov R0, 0
+  mov [global_mp_row], R0
+  mov R0, 0
+  mov [global_mp_cur], R0
+__if_45977_end:
+__if_45928_end:
+  mov R0, [global_mp_timer]
+  mov R1, R0
+  isub R1, 1
+  mov [global_mp_timer], R1
+  call __function_synth_update
+__function_MUS_TickFrame_return:
+  mov SP, BP
+  pop BP
+  ret
+
 __function_S_Init:
   push BP
   mov BP, SP
   isub SP, 2
+  call __function_stop_all_channels
+__if_46012_start:
+  mov R0, 1
+  jf R0, __if_46012_end
+  mov R1, 56
+  mov [SP], R1
+  call __function_synth_init
+  mov R1, 0.900000
+  mov [SP], R1
+  call __function_synth_master_volume
+  call __function_MUS_Init
+__if_46012_end:
+  call __function_get_frame_counter
+  mov R1, R0
+  mov [global_s_music_lastfc], R1
+  mov R0, R1
   mov R1, 0.720000
   mov [SP], R1
   call __function_set_global_volume
-  call __function_stop_all_channels
   mov R0, 0
   mov [BP-1], R0
-__for_30232_start:
+__for_46027_start:
   mov R0, [BP-1]
-  ilt R0, 15
-  jf R0, __for_30232_end
+  ilt R0, 6
+  jf R0, __for_46027_end
   mov R0, -1
   mov R1, global_ch_prio
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_30232_continue:
+__for_46027_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_30232_start
-__for_30232_end:
+  jmp __for_46027_start
+__for_46027_end:
 __function_S_Init_return:
   mov SP, BP
   pop BP
@@ -31895,26 +58863,42 @@ __function_S_Init_return:
 __function_S_StopAllSounds:
   push BP
   mov BP, SP
-  isub SP, 1
-  call __function_stop_all_channels
+  isub SP, 2
   mov R0, 0
   mov [BP-1], R0
-__for_30251_start:
+__for_46045_start:
   mov R0, [BP-1]
-  ilt R0, 15
-  jf R0, __for_30251_end
+  ilt R0, 6
+  jf R0, __for_46045_end
+  mov R1, [BP-1]
+  mov [SP], R1
+  call __function_stop_channel
+__for_46045_continue:
+  mov R0, [BP-1]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-1], R1
+  jmp __for_46045_start
+__for_46045_end:
+  call __function_MUS_Stop
+  mov R0, 0
+  mov [BP-1], R0
+__for_46057_start:
+  mov R0, [BP-1]
+  ilt R0, 6
+  jf R0, __for_46057_end
   mov R0, -1
   mov R1, global_ch_prio
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_30251_continue:
+__for_46057_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_30251_start
-__for_30251_end:
+  jmp __for_46057_start
+__for_46057_end:
 __function_S_StopAllSounds_return:
   mov SP, BP
   pop BP
@@ -31923,36 +58907,63 @@ __function_S_StopAllSounds_return:
 __function_S_StartMusic:
   push BP
   mov BP, SP
-  isub SP, 2
-__if_30267_start:
+__if_46073_start:
   mov R0, 0
-  jf R0, __if_30267_end
+  jf R0, __if_46073_end
   jmp __function_S_StartMusic_return
-__if_30267_end:
-  mov R1, 55
-  mov [SP], R1
-  call __function_select_sound
-  mov R1, 1
-  mov [SP], R1
-  call __function_set_sound_loop
-  mov R1, 15
-  mov [SP], R1
-  mov R1, 55
-  mov [SP+1], R1
-  call __function_assign_channel_sound
-  mov R1, 0
-  mov [SP], R1
-  call __function_set_channel_position
-  mov R1, 0.450000
-  mov [SP], R1
-  call __function_set_channel_volume
-  mov R1, 1.000000
-  mov [SP], R1
-  call __function_set_channel_speed
-  mov R1, 15
-  mov [SP], R1
-  call __function_play_channel
+__if_46073_end:
+  call __function_MUS_Start
+  call __function_get_frame_counter
+  mov R1, R0
+  mov [global_s_music_lastfc], R1
+  mov R0, R1
 __function_S_StartMusic_return:
+  mov SP, BP
+  pop BP
+  ret
+
+__function_S_MusicUpdate:
+  push BP
+  mov BP, SP
+  isub SP, 3
+  call __function_get_frame_counter
+  mov [BP-1], R0
+  mov R0, [BP-1]
+  mov R1, [global_s_music_lastfc]
+  isub R0, R1
+  mov [BP-2], R0
+  mov R0, [BP-1]
+  mov [global_s_music_lastfc], R0
+__if_46096_start:
+  mov R0, [BP-2]
+  ilt R0, 0
+  jf R0, __if_46096_end
+  mov R0, 0
+  mov [BP-2], R0
+__if_46096_end:
+__if_46103_start:
+  mov R0, [BP-2]
+  igt R0, 8
+  jf R0, __if_46103_end
+  mov R0, 8
+  mov [BP-2], R0
+__if_46103_end:
+  mov R0, 0
+  mov [BP-3], R0
+__for_46110_start:
+  mov R0, [BP-3]
+  mov R1, [BP-2]
+  ilt R0, R1
+  jf R0, __for_46110_end
+  call __function_MUS_TickFrame
+__for_46110_continue:
+  mov R0, [BP-3]
+  mov R1, R0
+  iadd R1, 1
+  mov [BP-3], R1
+  jmp __for_46110_start
+__for_46110_end:
+__function_S_MusicUpdate_return:
   mov SP, BP
   pop BP
   ret
@@ -31971,38 +58982,38 @@ __function_S_DistVol:
   mov R1, [BP+2]
   isub R0, R1
   mov [BP-2], R0
-__if_30308_start:
+__if_46141_start:
   mov R0, [BP-2]
   ilt R0, 0
-  jf R0, __if_30308_end
+  jf R0, __if_46141_end
   mov R0, [BP-2]
   isgn R0
   mov [BP-2], R0
-__if_30308_end:
+__if_46141_end:
   mov R1, [BP-1]
   iadd R1, 5
   mov R0, [R1]
   mov R1, [BP+3]
   isub R0, R1
   mov [BP-3], R0
-__if_30322_start:
+__if_46155_start:
   mov R0, [BP-3]
   ilt R0, 0
-  jf R0, __if_30322_end
+  jf R0, __if_46155_end
   mov R0, [BP-3]
   isgn R0
   mov [BP-3], R0
-__if_30322_end:
+__if_46155_end:
   mov R0, [BP-2]
   mov [BP-4], R0
-__if_30333_start:
+__if_46166_start:
   mov R0, [BP-3]
   mov R1, [BP-4]
   ilt R0, R1
-  jf R0, __if_30333_end
+  jf R0, __if_46166_end
   mov R0, [BP-3]
   mov [BP-4], R0
-__if_30333_end:
+__if_46166_end:
   mov R0, [BP-2]
   mov R1, [BP-3]
   iadd R0, R1
@@ -32015,20 +59026,20 @@ __if_30333_end:
   or R1, R2
   isub R0, R1
   mov [BP-5], R0
-__if_30368_start:
+__if_46201_start:
   mov R0, [BP-5]
   igt R0, 78643200
-  jf R0, __if_30368_end
+  jf R0, __if_46201_end
   mov R0, -1.000000
   jmp __function_S_DistVol_return
-__if_30368_end:
-__if_30378_start:
+__if_46201_end:
+__if_46211_start:
   mov R0, [BP-5]
   ilt R0, 10485760
-  jf R0, __if_30378_end
+  jf R0, __if_46211_end
   mov R0, 1.000000
   jmp __function_S_DistVol_return
-__if_30378_end:
+__if_46211_end:
   mov R0, [BP-5]
   isgn R0
   iadd R0, 78643200
@@ -32055,39 +59066,39 @@ __function_S_Reconcile:
   isub SP, 2
   mov R0, 0
   mov [BP-1], R0
-__for_30431_start:
+__for_46264_start:
   mov R0, [BP-1]
-  ilt R0, 15
-  jf R0, __for_30431_end
-__if_30440_start:
+  ilt R0, 6
+  jf R0, __for_46264_end
+__if_46273_start:
   mov R1, global_ch_prio
   mov R2, [BP-1]
   iadd R1, R2
   mov R1, [R1]
   ige R1, 0
-  jf R1, __LogicalAnd_ShortCircuit_30448
+  jf R1, __LogicalAnd_ShortCircuit_46281
   mov R3, [BP-1]
   mov [SP], R3
   call __function_get_channel_state
   mov R2, R0
   ieq R2, 64
   and R1, R2
-__LogicalAnd_ShortCircuit_30448:
+__LogicalAnd_ShortCircuit_46281:
   mov R0, R1
-  jf R0, __if_30440_end
+  jf R0, __if_46273_end
   mov R0, -1
   mov R1, global_ch_prio
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__if_30440_end:
-__for_30431_continue:
+__if_46273_end:
+__for_46264_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_30431_start
-__for_30431_end:
+  jmp __for_46264_start
+__for_46264_end:
 __function_S_Reconcile_return:
   mov SP, BP
   pop BP
@@ -32097,28 +59108,28 @@ __function_S_StartSoundOrigin:
   push BP
   mov BP, SP
   isub SP, 9
-__if_30477_start:
+__if_46310_start:
   mov R0, [BP+6]
   ile R0, 0
-  jt R0, __LogicalOr_ShortCircuit_30482
+  jt R0, __LogicalOr_ShortCircuit_46315
   mov R1, [BP+6]
   ige R1, 109
   or R0, R1
-__LogicalOr_ShortCircuit_30482:
-  jf R0, __if_30477_end
+__LogicalOr_ShortCircuit_46315:
+  jf R0, __if_46310_end
   jmp __function_S_StartSoundOrigin_return
-__if_30477_end:
+__if_46310_end:
   mov R0, __embedded_gen_sfx_sound
   mov R1, [BP+6]
   iadd R0, R1
   mov R0, [R0]
   mov [BP-1], R0
-__if_30491_start:
+__if_46324_start:
   mov R0, [BP-1]
   ilt R0, 0
-  jf R0, __if_30491_end
+  jf R0, __if_46324_end
   jmp __function_S_StartSoundOrigin_return
-__if_30491_end:
+__if_46324_end:
   mov R0, __embedded_gen_sfx_priority
   mov R1, [BP+6]
   iadd R0, R1
@@ -32126,10 +59137,10 @@ __if_30491_end:
   mov [BP-2], R0
   mov R0, 1.000000
   mov [BP-3], R0
-__if_30504_start:
+__if_46337_start:
   mov R0, [BP+5]
   cib R0
-  jf R0, __if_30504_end
+  jf R0, __if_46337_end
   mov R2, [BP+3]
   mov [SP], R2
   mov R2, [BP+4]
@@ -32138,24 +59149,24 @@ __if_30504_start:
   mov R1, R0
   mov [BP-3], R1
   mov R0, R1
-__if_30512_start:
+__if_46345_start:
   mov R0, [BP-3]
   flt R0, 0.000000
-  jf R0, __if_30512_end
+  jf R0, __if_46345_end
   jmp __function_S_StartSoundOrigin_return
-__if_30512_end:
-__if_30504_end:
+__if_46345_end:
+__if_46337_end:
   mov R0, 128
   mov [BP-4], R0
-__if_30520_start:
+__if_46353_start:
   mov R0, [BP+6]
   ine R0, 32
-  jf R0, __LogicalAnd_ShortCircuit_30525
+  jf R0, __LogicalAnd_ShortCircuit_46358
   mov R1, [BP+6]
   ine R1, 87
   and R0, R1
-__LogicalAnd_ShortCircuit_30525:
-  jf R0, __if_30520_end
+__LogicalAnd_ShortCircuit_46358:
+  jf R0, __if_46353_end
   mov R1, [BP-4]
   call __function_M_Random
   mov R2, R0
@@ -32165,45 +59176,45 @@ __LogicalAnd_ShortCircuit_30525:
   iadd R1, R2
   mov [BP-4], R1
   mov R0, R1
-__if_30520_end:
-__if_30536_start:
+__if_46353_end:
+__if_46369_start:
   mov R0, [BP-4]
   ilt R0, 0
-  jf R0, __if_30536_else
+  jf R0, __if_46369_else
   mov R0, 0
   mov [BP-4], R0
-  jmp __if_30536_end
-__if_30536_else:
-__if_30543_start:
+  jmp __if_46369_end
+__if_46369_else:
+__if_46376_start:
   mov R0, [BP-4]
   igt R0, 255
-  jf R0, __if_30543_end
+  jf R0, __if_46376_end
   mov R0, 255
   mov [BP-4], R0
-__if_30543_end:
-__if_30536_end:
+__if_46376_end:
+__if_46369_end:
   mov R0, [BP-4]
   cif R0
   fmul R0, 0.007812
   mov [BP-5], R0
   call __function_S_Reconcile
-__if_30557_start:
+__if_46390_start:
   mov R0, [BP+2]
   ine R0, -1
-  jf R0, __if_30557_end
+  jf R0, __if_46390_end
   mov R0, 0
   mov [BP-6], R0
-__for_30561_start:
+__for_46394_start:
   mov R0, [BP-6]
-  ilt R0, 15
-  jf R0, __for_30561_end
-__if_30570_start:
+  ilt R0, 6
+  jf R0, __for_46394_end
+__if_46403_start:
   mov R0, global_ch_prio
   mov R1, [BP-6]
   iadd R0, R1
   mov R0, [R0]
   ige R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_30579
+  jf R0, __LogicalAnd_ShortCircuit_46412
   mov R1, global_ch_id
   mov R2, [BP-6]
   iadd R1, R2
@@ -32211,8 +59222,8 @@ __if_30570_start:
   mov R2, [BP+2]
   ieq R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_30579:
-  jf R0, __if_30570_end
+__LogicalAnd_ShortCircuit_46412:
+  jf R0, __if_46403_end
   mov R1, [BP-6]
   mov [SP], R1
   call __function_stop_channel
@@ -32221,81 +59232,81 @@ __LogicalAnd_ShortCircuit_30579:
   mov R2, [BP-6]
   iadd R1, R2
   mov [R1], R0
-  jmp __for_30561_end
-__if_30570_end:
-__for_30561_continue:
+  jmp __for_46394_end
+__if_46403_end:
+__for_46394_continue:
   mov R0, [BP-6]
   mov R1, R0
   iadd R1, 1
   mov [BP-6], R1
-  jmp __for_30561_start
-__for_30561_end:
-__if_30557_end:
+  jmp __for_46394_start
+__for_46394_end:
+__if_46390_end:
   mov R0, -1
   mov [BP-7], R0
   mov R0, 0
   mov [BP-6], R0
-__for_30596_start:
+__for_46429_start:
   mov R0, [BP-6]
-  ilt R0, 15
-  jf R0, __for_30596_end
-__if_30605_start:
+  ilt R0, 6
+  jf R0, __for_46429_end
+__if_46438_start:
   mov R0, global_ch_prio
   mov R1, [BP-6]
   iadd R0, R1
   mov R0, [R0]
   ilt R0, 0
-  jf R0, __if_30605_end
+  jf R0, __if_46438_end
   mov R0, [BP-6]
   mov [BP-7], R0
-  jmp __for_30596_end
-__if_30605_end:
-__for_30596_continue:
+  jmp __for_46429_end
+__if_46438_end:
+__for_46429_continue:
   mov R0, [BP-6]
   mov R1, R0
   iadd R1, 1
   mov [BP-6], R1
-  jmp __for_30596_start
-__for_30596_end:
-__if_30616_start:
+  jmp __for_46429_start
+__for_46429_end:
+__if_46449_start:
   mov R0, [BP-7]
   ilt R0, 0
-  jf R0, __if_30616_end
+  jf R0, __if_46449_end
   mov R0, 0
   mov [BP-6], R0
-__for_30621_start:
+__for_46454_start:
   mov R0, [BP-6]
-  ilt R0, 15
-  jf R0, __for_30621_end
-__if_30630_start:
+  ilt R0, 6
+  jf R0, __for_46454_end
+__if_46463_start:
   mov R0, global_ch_prio
   mov R1, [BP-6]
   iadd R0, R1
   mov R0, [R0]
   mov R1, [BP-2]
   ige R0, R1
-  jf R0, __if_30630_end
+  jf R0, __if_46463_end
   mov R0, [BP-6]
   mov [BP-7], R0
-  jmp __for_30621_end
-__if_30630_end:
-__for_30621_continue:
+  jmp __for_46454_end
+__if_46463_end:
+__for_46454_continue:
   mov R0, [BP-6]
   mov R1, R0
   iadd R1, 1
   mov [BP-6], R1
-  jmp __for_30621_start
-__for_30621_end:
-__if_30641_start:
+  jmp __for_46454_start
+__for_46454_end:
+__if_46474_start:
   mov R0, [BP-7]
   ilt R0, 0
-  jf R0, __if_30641_end
+  jf R0, __if_46474_end
   jmp __function_S_StartSoundOrigin_return
-__if_30641_end:
+__if_46474_end:
   mov R1, [BP-7]
   mov [SP], R1
   call __function_stop_channel
-__if_30616_end:
+__if_46449_end:
   mov R1, [BP-7]
   mov [SP], R1
   mov R1, [BP-1]
@@ -32347,10 +59358,10 @@ __function_S_StartSound:
   push BP
   mov BP, SP
   isub SP, 7
-__if_30691_start:
+__if_46524_start:
   mov R0, [BP+2]
   ieq R0, -1
-  jf R0, __if_30691_end
+  jf R0, __if_46524_end
   mov R1, -1
   mov [SP], R1
   mov R1, 0
@@ -32363,19 +59374,19 @@ __if_30691_start:
   mov [SP+4], R1
   call __function_S_StartSoundOrigin
   jmp __function_S_StartSound_return
-__if_30691_end:
+__if_46524_end:
   mov R0, [BP+2]
   mov [BP-1], R0
   mov R0, 1
   mov [BP-2], R0
-__if_30710_start:
+__if_46543_start:
   mov R0, [BP+2]
   mov R1, [global_player1]
   ieq R0, R1
-  jf R0, __if_30710_end
+  jf R0, __if_46543_end
   mov R0, 0
   mov [BP-2], R0
-__if_30710_end:
+__if_46543_end:
   mov R1, [BP+2]
   mov [SP], R1
   mov R2, [BP-1]
@@ -32428,41 +59439,41 @@ __function_S_UpdateSounds:
   isub SP, 4
   mov R0, 0
   mov [BP-1], R0
-__for_30748_start:
+__for_46581_start:
   mov R0, [BP-1]
-  ilt R0, 15
-  jf R0, __for_30748_end
-__if_30758_start:
+  ilt R0, 6
+  jf R0, __for_46581_end
+__if_46591_start:
   mov R0, global_ch_prio
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   ilt R0, 0
-  jf R0, __if_30758_end
-  jmp __for_30748_continue
-__if_30758_end:
-__if_30765_start:
+  jf R0, __if_46591_end
+  jmp __for_46581_continue
+__if_46591_end:
+__if_46598_start:
   mov R2, [BP-1]
   mov [SP], R2
   call __function_get_channel_state
   mov R1, R0
   ieq R1, 64
   mov R0, R1
-  jf R0, __if_30765_end
+  jf R0, __if_46598_end
   mov R0, -1
   mov R1, global_ch_prio
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-  jmp __for_30748_continue
-__if_30765_end:
-__if_30778_start:
+  jmp __for_46581_continue
+__if_46598_end:
+__if_46611_start:
   mov R0, global_ch_att
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_30778_end
+  jf R0, __if_46611_end
   mov R2, global_ch_x
   mov R3, [BP-1]
   iadd R2, R3
@@ -32477,10 +59488,10 @@ __if_30778_start:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_30792_start:
+__if_46625_start:
   mov R0, [BP-2]
   flt R0, 0.000000
-  jf R0, __if_30792_else
+  jf R0, __if_46625_else
   mov R1, [BP-1]
   mov [SP], R1
   call __function_stop_channel
@@ -32489,23 +59500,23 @@ __if_30792_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-  jmp __if_30792_end
-__if_30792_else:
+  jmp __if_46625_end
+__if_46625_else:
   mov R1, [BP-1]
   mov [SP], R1
   call __function_select_channel
   mov R1, [BP-2]
   mov [SP], R1
   call __function_set_channel_volume
-__if_30792_end:
-__if_30778_end:
-__for_30748_continue:
+__if_46625_end:
+__if_46611_end:
+__for_46581_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_30748_start
-__for_30748_end:
+  jmp __for_46581_start
+__for_46581_end:
 __function_S_UpdateSounds_return:
   mov SP, BP
   pop BP
@@ -32518,18 +59529,18 @@ __function_ST_calcPainOffset:
   push R1
   mov R0, [1616633]
   mov [BP-1], R0
-__if_30880_start:
+__if_46713_start:
   mov R0, [BP-1]
   igt R0, 100
-  jf R0, __if_30880_end
+  jf R0, __if_46713_end
   mov R0, 100
   mov [BP-1], R0
-__if_30880_end:
-__if_30887_start:
+__if_46713_end:
+__if_46720_start:
   mov R0, [BP-1]
   mov R1, [global_st_pain_oldhealth]
   ine R0, R1
-  jf R0, __if_30887_end
+  jf R0, __if_46720_end
   mov R0, [BP-1]
   isgn R0
   iadd R0, 100
@@ -32539,7 +59550,7 @@ __if_30887_start:
   mov [global_st_pain_lastcalc], R0
   mov R0, [BP-1]
   mov [global_st_pain_oldhealth], R0
-__if_30887_end:
+__if_46720_end:
   mov R0, [global_st_pain_lastcalc]
 __function_ST_calcPainOffset_return:
   pop R1
@@ -32551,39 +59562,39 @@ __function_ST_updateFaceWidget:
   push BP
   mov BP, SP
   isub SP, 8
-__if_30920_start:
+__if_46753_start:
   mov R0, [global_st_face_priority]
   ilt R0, 10
-  jf R0, __if_30920_end
-__if_30925_start:
+  jf R0, __if_46753_end
+__if_46758_start:
   mov R0, [1616633]
   bnot R0
-  jf R0, __if_30925_end
+  jf R0, __if_46758_end
   mov R0, 9
   mov [global_st_face_priority], R0
   mov R0, 41
   mov [global_st_faceindex], R0
   mov R0, 1
   mov [global_st_facecount], R0
-__if_30925_end:
-__if_30920_end:
-__if_30939_start:
+__if_46758_end:
+__if_46753_end:
+__if_46772_start:
   mov R0, [global_st_face_priority]
   ilt R0, 9
-  jf R0, __if_30939_end
-__if_30944_start:
+  jf R0, __if_46772_end
+__if_46777_start:
   mov R0, [1616670]
   cib R0
-  jf R0, __if_30944_end
+  jf R0, __if_46777_end
   mov R0, 0
   mov [BP-4], R0
   mov R0, 0
   mov [BP-1], R0
-__for_30951_start:
+__for_46784_start:
   mov R0, [BP-1]
   ilt R0, 8
-  jf R0, __for_30951_end
-__if_30961_start:
+  jf R0, __for_46784_end
+__if_46794_start:
   mov R0, global_st_oldweaponsowned
   mov R1, [BP-1]
   iadd R0, R1
@@ -32593,7 +59604,7 @@ __if_30961_start:
   iadd R1, R2
   mov R1, [R1]
   ine R0, R1
-  jf R0, __if_30961_end
+  jf R0, __if_46794_end
   mov R0, 1
   mov [BP-4], R0
   mov R0, 1616651
@@ -32604,17 +59615,17 @@ __if_30961_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__if_30961_end:
-__for_30951_continue:
+__if_46794_end:
+__for_46784_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_30951_start
-__for_30951_end:
-__if_30982_start:
+  jmp __for_46784_start
+__for_46784_end:
+__if_46815_start:
   mov R0, [BP-4]
-  jf R0, __if_30982_end
+  jf R0, __if_46815_end
   mov R0, 8
   mov [global_st_face_priority], R0
   mov R0, 60
@@ -32624,36 +59635,36 @@ __if_30982_start:
   iadd R1, 6
   mov [global_st_faceindex], R1
   mov R0, R1
-__if_30982_end:
-__if_30944_end:
-__if_30939_end:
-__if_30999_start:
+__if_46815_end:
+__if_46777_end:
+__if_46772_end:
+__if_46832_start:
   mov R0, [global_st_face_priority]
   ilt R0, 8
-  jf R0, __if_30999_end
-__if_31004_start:
+  jf R0, __if_46832_end
+__if_46837_start:
   mov R0, [1616669]
   cib R0
-  jf R0, __LogicalAnd_ShortCircuit_31007
+  jf R0, __LogicalAnd_ShortCircuit_46840
   mov R1, [1616671]
   ine R1, -1
   and R0, R1
-__LogicalAnd_ShortCircuit_31007:
-  jf R0, __LogicalAnd_ShortCircuit_31012
+__LogicalAnd_ShortCircuit_46840:
+  jf R0, __LogicalAnd_ShortCircuit_46845
   mov R1, [1616671]
   mov R2, [global_player1]
   ine R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_31012:
-  jf R0, __if_31004_end
+__LogicalAnd_ShortCircuit_46845:
+  jf R0, __if_46837_end
   mov R0, 7
   mov [global_st_face_priority], R0
-__if_31020_start:
+__if_46853_start:
   mov R0, [1616633]
   mov R1, [global_st_oldhealth]
   isub R0, R1
   igt R0, 20
-  jf R0, __if_31020_else
+  jf R0, __if_46853_else
   mov R0, 30
   mov [global_st_facecount], R0
   call __function_ST_calcPainOffset
@@ -32661,8 +59672,8 @@ __if_31020_start:
   iadd R1, 5
   mov [global_st_faceindex], R1
   mov R0, R1
-  jmp __if_31020_end
-__if_31020_else:
+  jmp __if_46853_end
+__if_46853_else:
   mov R3, [global_player1]
   iadd R3, 4
   mov R2, [R3]
@@ -32683,7 +59694,7 @@ __if_31020_else:
   mov R1, R0
   mov [BP-2], R1
   mov R0, R1
-__if_31055_start:
+__if_46888_start:
   mov R1, [global_player1]
   iadd R1, 11
   mov R0, [R1]
@@ -32691,7 +59702,7 @@ __if_31055_start:
   mov R1, [BP-2]
   xor R1, 0x80000000
   ilt R0, R1
-  jf R0, __if_31055_else
+  jf R0, __if_46888_else
   mov R0, [BP-2]
   mov R2, [global_player1]
   iadd R2, 11
@@ -32702,8 +59713,8 @@ __if_31055_start:
   xor R0, 0x80000000
   igt R0, 0
   mov [BP-1], R0
-  jmp __if_31055_end
-__if_31055_else:
+  jmp __if_46888_end
+__if_46888_else:
   mov R1, [global_player1]
   iadd R1, 11
   mov R0, [R1]
@@ -32715,54 +59726,54 @@ __if_31055_else:
   igt R0, 0
   bnot R0
   mov [BP-1], R0
-__if_31055_end:
+__if_46888_end:
   mov R0, 30
   mov [global_st_facecount], R0
   call __function_ST_calcPainOffset
   mov R1, R0
   mov [global_st_faceindex], R1
   mov R0, R1
-__if_31124_start:
+__if_46957_start:
   mov R0, [BP-3]
   xor R0, 0x80000000
   ilt R0, -1610612736
-  jf R0, __if_31124_else
+  jf R0, __if_46957_else
   mov R0, [global_st_faceindex]
   iadd R0, 7
   mov [global_st_faceindex], R0
-  jmp __if_31124_end
-__if_31124_else:
-__if_31140_start:
+  jmp __if_46957_end
+__if_46957_else:
+__if_46973_start:
   mov R0, [BP-1]
   cib R0
-  jf R0, __if_31140_else
+  jf R0, __if_46973_else
   mov R0, [global_st_faceindex]
   iadd R0, 3
   mov [global_st_faceindex], R0
-  jmp __if_31140_end
-__if_31140_else:
+  jmp __if_46973_end
+__if_46973_else:
   mov R0, [global_st_faceindex]
   iadd R0, 4
   mov [global_st_faceindex], R0
-__if_31140_end:
-__if_31124_end:
-__if_31020_end:
-__if_31004_end:
-__if_30999_end:
-__if_31150_start:
+__if_46973_end:
+__if_46957_end:
+__if_46853_end:
+__if_46837_end:
+__if_46832_end:
+__if_46983_start:
   mov R0, [global_st_face_priority]
   ilt R0, 7
-  jf R0, __if_31150_end
-__if_31155_start:
+  jf R0, __if_46983_end
+__if_46988_start:
   mov R0, [1616669]
   cib R0
-  jf R0, __if_31155_end
-__if_31159_start:
+  jf R0, __if_46988_end
+__if_46992_start:
   mov R0, [1616633]
   mov R1, [global_st_oldhealth]
   isub R0, R1
   igt R0, 20
-  jf R0, __if_31159_else
+  jf R0, __if_46992_else
   mov R0, 7
   mov [global_st_face_priority], R0
   mov R0, 30
@@ -32772,8 +59783,8 @@ __if_31159_start:
   iadd R1, 5
   mov [global_st_faceindex], R1
   mov R0, R1
-  jmp __if_31159_end
-__if_31159_else:
+  jmp __if_46992_end
+__if_46992_else:
   mov R0, 6
   mov [global_st_face_priority], R0
   mov R0, 30
@@ -32783,32 +59794,32 @@ __if_31159_else:
   iadd R1, 7
   mov [global_st_faceindex], R1
   mov R0, R1
-__if_31159_end:
-__if_31155_end:
-__if_31150_end:
-__if_31196_start:
+__if_46992_end:
+__if_46988_end:
+__if_46983_end:
+__if_47029_start:
   mov R0, [global_st_face_priority]
   ilt R0, 6
-  jf R0, __if_31196_end
-__if_31201_start:
+  jf R0, __if_47029_end
+__if_47034_start:
   mov R0, [1616667]
-  jf R0, __if_31201_else
-__if_31205_start:
+  jf R0, __if_47034_else
+__if_47038_start:
   mov R0, [global_st_lastattackdown]
   ieq R0, -1
-  jf R0, __if_31205_else
+  jf R0, __if_47038_else
   mov R0, 60
   mov [global_st_lastattackdown], R0
-  jmp __if_31205_end
-__if_31205_else:
+  jmp __if_47038_end
+__if_47038_else:
   mov R0, [global_st_lastattackdown]
   mov R1, R0
   isub R1, 1
   mov [global_st_lastattackdown], R1
-__if_31219_start:
+__if_47052_start:
   mov R0, [global_st_lastattackdown]
   bnot R0
-  jf R0, __if_31219_end
+  jf R0, __if_47052_end
   mov R0, 5
   mov [global_st_face_priority], R0
   call __function_ST_calcPainOffset
@@ -32820,34 +59831,34 @@ __if_31219_start:
   mov [global_st_facecount], R0
   mov R0, 1
   mov [global_st_lastattackdown], R0
-__if_31219_end:
-__if_31205_end:
-  jmp __if_31201_end
-__if_31201_else:
+__if_47052_end:
+__if_47038_end:
+  jmp __if_47034_end
+__if_47034_else:
   mov R0, -1
   mov [global_st_lastattackdown], R0
-__if_31201_end:
-__if_31196_end:
-__if_31241_start:
+__if_47034_end:
+__if_47029_end:
+__if_47074_start:
   mov R0, [global_st_face_priority]
   ilt R0, 5
-  jf R0, __if_31241_end
-__if_31246_start:
+  jf R0, __if_47074_end
+__if_47079_start:
   mov R0, [1616636]
   cib R0
-  jf R0, __if_31246_end
+  jf R0, __if_47079_end
   mov R0, 4
   mov [global_st_face_priority], R0
   mov R0, 40
   mov [global_st_faceindex], R0
   mov R0, 1
   mov [global_st_facecount], R0
-__if_31246_end:
-__if_31241_end:
-__if_31261_start:
+__if_47079_end:
+__if_47074_end:
+__if_47094_start:
   mov R0, [global_st_facecount]
   bnot R0
-  jf R0, __if_31261_end
+  jf R0, __if_47094_end
   call __function_ST_calcPainOffset
   mov R1, R0
   mov R2, [global_st_randomnumber]
@@ -32859,7 +59870,7 @@ __if_31261_start:
   mov [global_st_facecount], R0
   mov R0, 0
   mov [global_st_face_priority], R0
-__if_31261_end:
+__if_47094_end:
   mov R0, [global_st_facecount]
   mov R1, R0
   isub R1, 1
@@ -32904,10 +59915,10 @@ __function_ST_Init:
   mov [global_st_pain_oldhealth], R0
   mov R0, 0
   mov [BP-1], R0
-__for_31320_start:
+__for_47153_start:
   mov R0, [BP-1]
   ilt R0, 8
-  jf R0, __for_31320_end
+  jf R0, __for_47153_end
   mov R0, 1616651
   mov R1, [BP-1]
   iadd R0, R1
@@ -32916,13 +59927,13 @@ __for_31320_start:
   mov R2, [BP-1]
   iadd R1, R2
   mov [R1], R0
-__for_31320_continue:
+__for_47153_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_31320_start
-__for_31320_end:
+  jmp __for_47153_start
+__for_47153_end:
 __function_ST_Init_return:
   mov SP, BP
   pop BP
@@ -33047,17 +60058,17 @@ __function_ST_DrawNum:
   mov [BP-2], R0
   mov R0, 0
   mov [BP-3], R0
-__if_31455_start:
+__if_47288_start:
   mov R0, [BP+5]
   ilt R0, 0
-  jf R0, __if_31455_end
+  jf R0, __if_47288_end
   mov R0, 0
   mov [BP+5], R0
-__if_31455_end:
-__if_31462_start:
+__if_47288_end:
+__if_47295_start:
   mov R0, [BP+5]
   ieq R0, 0
-  jf R0, __if_31462_end
+  jf R0, __if_47295_end
   mov R1, [BP+2]
   iadd R1, 0
   mov [SP], R1
@@ -33069,18 +60080,18 @@ __if_31462_start:
   mov [SP+2], R1
   call __function_ST_DrawPatch
   jmp __function_ST_DrawNum_return
-__if_31462_end:
-__while_31476_start:
-__while_31476_continue:
+__if_47295_end:
+__while_47309_start:
+__while_47309_continue:
   mov R0, [BP+5]
   igt R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_31481
+  jf R0, __LogicalAnd_ShortCircuit_47314
   mov R1, [BP-3]
   mov R2, [BP+6]
   ilt R1, R2
   and R0, R1
-__LogicalAnd_ShortCircuit_31481:
-  jf R0, __while_31476_end
+__LogicalAnd_ShortCircuit_47314:
+  jf R0, __while_47309_end
   mov R0, [BP+5]
   imod R0, 10
   mov [BP-4], R0
@@ -33104,8 +60115,8 @@ __LogicalAnd_ShortCircuit_31481:
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __while_31476_start
-__while_31476_end:
+  jmp __while_47309_start
+__while_47309_end:
 __function_ST_DrawNum_return:
   mov SP, BP
   pop BP
@@ -33117,28 +60128,28 @@ __function_ST_DrawArms:
   isub SP, 6
   mov R0, 0
   mov [BP-1], R0
-__for_31509_start:
+__for_47342_start:
   mov R0, [BP-1]
   ilt R0, 6
-  jf R0, __for_31509_end
+  jf R0, __for_47342_end
   mov R0, [BP-1]
   iadd R0, 2
   mov [BP-2], R0
-__if_31526_start:
+__if_47359_start:
   mov R0, 1616651
   mov R1, [BP-1]
   iadd R1, 1
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_31526_else
+  jf R0, __if_47359_else
   mov R0, 13
   mov [BP-3], R0
-  jmp __if_31526_end
-__if_31526_else:
+  jmp __if_47359_end
+__if_47359_else:
   mov R0, 23
   mov [BP-3], R0
-__if_31526_end:
+__if_47359_end:
   mov R1, [BP-3]
   mov R2, [BP-2]
   iadd R1, R2
@@ -33154,13 +60165,13 @@ __if_31526_end:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_ST_DrawPatch
-__for_31509_continue:
+__for_47342_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_31509_start
-__for_31509_end:
+  jmp __for_47342_start
+__for_47342_end:
 __function_ST_DrawArms_return:
   mov SP, BP
   pop BP
@@ -33172,17 +60183,17 @@ __function_ST_DrawKeys:
   isub SP, 4
   mov R0, 0
   mov [BP-1], R0
-__for_31552_start:
+__for_47385_start:
   mov R0, [BP-1]
   ilt R0, 3
-  jf R0, __for_31552_end
-__if_31562_start:
+  jf R0, __for_47385_end
+__if_47395_start:
   mov R0, 1616642
   mov R1, [BP-1]
   iadd R1, 3
   iadd R0, R1
   mov R0, [R0]
-  jf R0, __if_31562_else
+  jf R0, __if_47395_else
   mov R1, [BP-1]
   iadd R1, 75
   iadd R1, 3
@@ -33195,14 +60206,14 @@ __if_31562_start:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_ST_DrawPatch
-  jmp __if_31562_end
-__if_31562_else:
-__if_31579_start:
+  jmp __if_47395_end
+__if_47395_else:
+__if_47412_start:
   mov R0, 1616642
   mov R1, [BP-1]
   iadd R0, R1
   mov R0, [R0]
-  jf R0, __if_31579_end
+  jf R0, __if_47412_end
   mov R1, [BP-1]
   iadd R1, 75
   mov [SP], R1
@@ -33214,15 +60225,15 @@ __if_31579_start:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_ST_DrawPatch
-__if_31579_end:
-__if_31562_end:
-__for_31552_continue:
+__if_47412_end:
+__if_47395_end:
+__for_47385_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_31552_start
-__for_31552_end:
+  jmp __for_47385_start
+__for_47385_end:
 __function_ST_DrawKeys_return:
   mov SP, BP
   pop BP
@@ -33255,10 +60266,10 @@ __function_ST_Drawer:
   iadd R0, R1
   mov R0, [R0]
   mov [BP-1], R0
-__if_31611_start:
+__if_47444_start:
   mov R0, [BP-1]
   ine R0, 5
-  jf R0, __if_31611_end
+  jf R0, __if_47444_end
   mov R1, 2
   mov [SP], R1
   mov R1, 44
@@ -33273,7 +60284,7 @@ __if_31611_start:
   mov R1, 3
   mov [SP+4], R1
   call __function_ST_DrawNum
-__if_31611_end:
+__if_47444_end:
   mov R1, 2
   mov [SP], R1
   mov R1, 90
@@ -33313,10 +60324,10 @@ __if_31611_end:
   call __function_ST_DrawArms
   mov R0, 0
   mov [BP-2], R0
-__for_31649_start:
+__for_47482_start:
   mov R0, [BP-2]
   ilt R0, 4
-  jf R0, __for_31649_end
+  jf R0, __for_47482_end
   mov R1, 13
   mov [SP], R1
   mov R1, 288
@@ -33351,13 +60362,13 @@ __for_31649_start:
   mov R1, 3
   mov [SP+4], R1
   call __function_ST_DrawNum
-__for_31649_continue:
+__for_47482_continue:
   mov R0, [BP-2]
   mov R1, R0
   iadd R1, 1
   mov [BP-2], R1
-  jmp __for_31649_start
-__for_31649_end:
+  jmp __for_47482_start
+__for_47482_end:
   call __function_ST_DrawKeys
   mov R1, [global_st_faceindex]
   iadd R1, 33
@@ -33388,49 +60399,49 @@ __function_ST_DrawFlash:
   mov R0, [global_viewheight]
   imul R0, 2
   mov [BP-3], R0
-__if_31707_start:
+__if_47540_start:
   mov R0, [1616637]
   cib R0
-  jf R0, __if_31707_end
+  jf R0, __if_47540_end
   mov R0, [1616637]
   shl R0, -6
   isgn R0
   iadd R0, 12
   mov [BP-5], R0
-__if_31724_start:
+__if_47557_start:
   mov R0, [BP-5]
   mov R1, [BP-1]
   igt R0, R1
-  jf R0, __if_31724_end
+  jf R0, __if_47557_end
   mov R0, [BP-5]
   mov [BP-1], R0
-__if_31724_end:
-__if_31707_end:
-__if_31731_start:
+__if_47557_end:
+__if_47540_end:
+__if_47564_start:
   mov R0, [BP-1]
   cib R0
-  jf R0, __if_31731_else
+  jf R0, __if_47564_else
   mov R0, [BP-1]
   iadd R0, 7
   shl R0, -3
   mov [BP-5], R0
-__if_31742_start:
+__if_47575_start:
   mov R0, [BP-5]
   igt R0, 8
-  jf R0, __if_31742_end
+  jf R0, __if_47575_end
   mov R0, 8
   mov [BP-5], R0
-__if_31742_end:
+__if_47575_end:
   mov R0, [BP-5]
   imul R0, 24
   mov [BP-4], R0
-__if_31754_start:
+__if_47587_start:
   mov R0, [BP-4]
   igt R0, 200
-  jf R0, __if_31754_end
+  jf R0, __if_47587_end
   mov R0, 200
   mov [BP-4], R0
-__if_31754_end:
+__if_47587_end:
   mov R1, [global_viewwindowx]
   mov [SP], R1
   mov R1, [global_viewwindowy]
@@ -33444,23 +60455,23 @@ __if_31754_end:
   or R1, 224
   mov [SP+4], R1
   call __function_GPU_FillScreen
-  jmp __if_31731_end
-__if_31731_else:
-__if_31772_start:
+  jmp __if_47564_end
+__if_47564_else:
+__if_47605_start:
   mov R0, [1616670]
   cib R0
-  jf R0, __if_31772_else
+  jf R0, __if_47605_else
   mov R0, [1616670]
   iadd R0, 7
   shl R0, -3
   mov [BP-5], R0
-__if_31785_start:
+__if_47618_start:
   mov R0, [BP-5]
   igt R0, 4
-  jf R0, __if_31785_end
+  jf R0, __if_47618_end
   mov R0, 4
   mov [BP-5], R0
-__if_31785_end:
+__if_47618_end:
   mov R0, [BP-5]
   imul R0, 20
   mov [BP-4], R0
@@ -33477,18 +60488,18 @@ __if_31785_end:
   or R1, 2150624
   mov [SP+4], R1
   call __function_GPU_FillScreen
-  jmp __if_31772_end
-__if_31772_else:
-__if_31808_start:
+  jmp __if_47605_end
+__if_47605_else:
+__if_47641_start:
   mov R0, [1616639]
   igt R0, 128
-  jt R0, __LogicalOr_ShortCircuit_31822
+  jt R0, __LogicalOr_ShortCircuit_47655
   mov R1, [1616639]
   and R1, 8
   cib R1
   or R0, R1
-__LogicalOr_ShortCircuit_31822:
-  jf R0, __if_31808_end
+__LogicalOr_ShortCircuit_47655:
+  jf R0, __if_47641_end
   mov R1, [global_viewwindowx]
   mov [SP], R1
   mov R1, [global_viewwindowy]
@@ -33500,9 +60511,9 @@ __LogicalOr_ShortCircuit_31822:
   mov R1, 805355520
   mov [SP+4], R1
   call __function_GPU_FillScreen
-__if_31808_end:
-__if_31772_end:
-__if_31731_end:
+__if_47641_end:
+__if_47605_end:
+__if_47564_end:
 __function_ST_DrawFlash_return:
   mov SP, BP
   pop BP
@@ -33527,102 +60538,102 @@ __function_AM_Init:
   mov R0, 0
   mov [global_am_ar_by], R0
   mov R0, [BP-1]
-  mov [1706672], R0
+  mov [1721673], R0
   mov R0, 0
-  mov [1706679], R0
+  mov [1721680], R0
   mov R0, [BP-1]
   mov R1, [BP-1]
   idiv R1, 2
   isub R0, R1
-  mov [1706686], R0
+  mov [1721687], R0
   mov R0, [BP-1]
   idiv R0, 4
-  mov [1706693], R0
+  mov [1721694], R0
   mov R0, [BP-1]
-  mov [1706673], R0
+  mov [1721674], R0
   mov R0, 0
-  mov [1706680], R0
+  mov [1721681], R0
   mov R0, [BP-1]
   mov R1, [BP-1]
   idiv R1, 2
   isub R0, R1
-  mov [1706687], R0
+  mov [1721688], R0
   mov R0, [BP-1]
   isgn R0
   idiv R0, 4
-  mov [1706694], R0
+  mov [1721695], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   idiv R1, 8
   iadd R0, R1
-  mov [1706674], R0
+  mov [1721675], R0
   mov R0, 0
-  mov [1706681], R0
+  mov [1721682], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   idiv R1, 8
   isub R0, R1
-  mov [1706688], R0
+  mov [1721689], R0
   mov R0, [BP-1]
   idiv R0, 4
-  mov [1706695], R0
+  mov [1721696], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   idiv R1, 8
   iadd R0, R1
-  mov [1706675], R0
+  mov [1721676], R0
   mov R0, 0
-  mov [1706682], R0
+  mov [1721683], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   idiv R1, 8
   isub R0, R1
-  mov [1706689], R0
+  mov [1721690], R0
   mov R0, [BP-1]
   isgn R0
   idiv R0, 4
-  mov [1706696], R0
+  mov [1721697], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   imul R1, 3
   idiv R1, 8
   iadd R0, R1
-  mov [1706676], R0
+  mov [1721677], R0
   mov R0, 0
-  mov [1706683], R0
+  mov [1721684], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   idiv R1, 8
   iadd R0, R1
-  mov [1706690], R0
+  mov [1721691], R0
   mov R0, [BP-1]
   idiv R0, 4
-  mov [1706697], R0
+  mov [1721698], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   imul R1, 3
   idiv R1, 8
   iadd R0, R1
-  mov [1706677], R0
+  mov [1721678], R0
   mov R0, 0
-  mov [1706684], R0
+  mov [1721685], R0
   mov R0, [BP-1]
   isgn R0
   mov R1, [BP-1]
   idiv R1, 8
   iadd R0, R1
-  mov [1706691], R0
+  mov [1721692], R0
   mov R0, [BP-1]
   isgn R0
   idiv R0, 4
-  mov [1706698], R0
+  mov [1721699], R0
 __function_AM_Init_return:
   mov SP, BP
   pop BP
@@ -33738,12 +60749,12 @@ __function_AM_findMinMaxBoundaries:
   mov [global_am_max_y], R0
   mov R0, 0
   mov [BP-1], R0
-__for_32197_start:
+__for_48030_start:
   mov R0, [BP-1]
   mov R1, [global_numvertexes]
   ilt R0, R1
-  jf R0, __for_32197_end
-__if_32207_start:
+  jf R0, __for_48030_end
+__if_48040_start:
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
@@ -33751,16 +60762,16 @@ __if_32207_start:
   mov R0, [R1]
   mov R1, [global_am_min_x]
   ilt R0, R1
-  jf R0, __if_32207_else
+  jf R0, __if_48040_else
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
   iadd R1, R2
   mov R0, [R1]
   mov [global_am_min_x], R0
-  jmp __if_32207_end
-__if_32207_else:
-__if_32220_start:
+  jmp __if_48040_end
+__if_48040_else:
+__if_48053_start:
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
@@ -33768,16 +60779,16 @@ __if_32220_start:
   mov R0, [R1]
   mov R1, [global_am_max_x]
   igt R0, R1
-  jf R0, __if_32220_end
+  jf R0, __if_48053_end
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
   iadd R1, R2
   mov R0, [R1]
   mov [global_am_max_x], R0
-__if_32220_end:
-__if_32207_end:
-__if_32233_start:
+__if_48053_end:
+__if_48040_end:
+__if_48066_start:
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
@@ -33786,7 +60797,7 @@ __if_32233_start:
   mov R0, [R1]
   mov R1, [global_am_min_y]
   ilt R0, R1
-  jf R0, __if_32233_else
+  jf R0, __if_48066_else
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
@@ -33794,9 +60805,9 @@ __if_32233_start:
   iadd R1, 1
   mov R0, [R1]
   mov [global_am_min_y], R0
-  jmp __if_32233_end
-__if_32233_else:
-__if_32246_start:
+  jmp __if_48066_end
+__if_48066_else:
+__if_48079_start:
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
@@ -33805,7 +60816,7 @@ __if_32246_start:
   mov R0, [R1]
   mov R1, [global_am_max_y]
   igt R0, R1
-  jf R0, __if_32246_end
+  jf R0, __if_48079_end
   mov R1, [global_vertexes]
   mov R2, [BP-1]
   imul R2, 2
@@ -33813,15 +60824,15 @@ __if_32246_start:
   iadd R1, 1
   mov R0, [R1]
   mov [global_am_max_y], R0
-__if_32246_end:
-__if_32233_end:
-__for_32197_continue:
+__if_48079_end:
+__if_48066_end:
+__for_48030_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_32197_start
-__for_32197_end:
+  jmp __for_48030_start
+__for_48030_end:
   mov R0, [global_am_max_x]
   mov R1, [global_am_min_x]
   isub R0, R1
@@ -33842,18 +60853,18 @@ __for_32197_end:
   mov [SP+1], R1
   call __function_FixedDiv
   mov [BP-3], R0
-__if_32283_start:
+__if_48116_start:
   mov R0, [BP-2]
   mov R1, [BP-3]
   ilt R0, R1
-  jf R0, __if_32283_else
+  jf R0, __if_48116_else
   mov R0, [BP-2]
   mov [global_am_min_scale_mtof], R0
-  jmp __if_32283_end
-__if_32283_else:
+  jmp __if_48116_end
+__if_48116_else:
   mov R0, [BP-3]
   mov [global_am_min_scale_mtof], R0
-__if_32283_end:
+__if_48116_end:
   mov R2, 19398656
   mov [SP], R2
   mov R2, 2097152
@@ -33882,14 +60893,14 @@ __function_AM_LevelInit:
   mov R1, R0
   mov [global_am_scale_mtof], R1
   mov R0, R1
-__if_32315_start:
+__if_48148_start:
   mov R0, [global_am_scale_mtof]
   mov R1, [global_am_max_scale_mtof]
   igt R0, R1
-  jf R0, __if_32315_end
+  jf R0, __if_48148_end
   mov R0, [global_am_min_scale_mtof]
   mov [global_am_scale_mtof], R0
-__if_32315_end:
+__if_48148_end:
   mov R2, 65536
   mov [SP], R2
   mov R2, [global_am_scale_mtof]
@@ -34006,25 +61017,25 @@ __function_AM_changeWindowScale:
   mov R1, R0
   mov [global_am_scale_ftom], R1
   mov R0, R1
-__if_32390_start:
+__if_48223_start:
   mov R0, [global_am_scale_mtof]
   mov R1, [global_am_min_scale_mtof]
   ilt R0, R1
-  jf R0, __if_32390_else
+  jf R0, __if_48223_else
   call __function_AM_minOutWindowScale
-  jmp __if_32390_end
-__if_32390_else:
-__if_32395_start:
+  jmp __if_48223_end
+__if_48223_else:
+__if_48228_start:
   mov R0, [global_am_scale_mtof]
   mov R1, [global_am_max_scale_mtof]
   igt R0, R1
-  jf R0, __if_32395_else
+  jf R0, __if_48228_else
   call __function_AM_maxOutWindowScale
-  jmp __if_32395_end
-__if_32395_else:
+  jmp __if_48228_end
+__if_48228_else:
   call __function_AM_activateNewScale
-__if_32395_end:
-__if_32390_end:
+__if_48228_end:
+__if_48223_end:
 __function_AM_changeWindowScale_return:
   mov SP, BP
   pop BP
@@ -34036,13 +61047,13 @@ __function_AM_doFollowPlayer:
   isub SP, 3
   mov R0, [global_player1]
   mov [BP-1], R0
-__if_32406_start:
+__if_48239_start:
   mov R0, [global_am_oldloc_x]
   mov R2, [BP-1]
   iadd R2, 4
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_32406_end
+  jf R0, __if_48239_end
   mov R4, [BP-1]
   iadd R4, 4
   mov R3, [R4]
@@ -34079,7 +61090,7 @@ __if_32406_start:
   iadd R1, 4
   mov R0, [R1]
   mov [global_am_oldloc_x], R0
-__if_32406_end:
+__if_48239_end:
 __function_AM_doFollowPlayer_return:
   mov SP, BP
   pop BP
@@ -34089,17 +61100,17 @@ __function_AM_Start:
   push BP
   mov BP, SP
   isub SP, 1
-__if_32437_start:
+__if_48270_start:
   mov R0, [global_am_leveljuststarted]
   cib R0
-  jt R0, __LogicalOr_ShortCircuit_32439
+  jt R0, __LogicalOr_ShortCircuit_48272
   mov R1, [global_am_lastlevelinit]
   ieq R1, 0
   or R0, R1
-__LogicalOr_ShortCircuit_32439:
-  jf R0, __if_32437_end
+__LogicalOr_ShortCircuit_48272:
+  jf R0, __if_48270_end
   call __function_AM_LevelInit
-__if_32437_end:
+__if_48270_end:
   mov R0, 1
   mov [global_automapactive], R0
   mov R0, 2147483647
@@ -34154,45 +61165,45 @@ __function_AM_NotifyLevel_return:
 __function_AM_Ticker:
   push BP
   mov BP, SP
-__if_32491_start:
+__if_48324_start:
   mov R0, [global_automapactive]
   bnot R0
-  jf R0, __if_32491_end
+  jf R0, __if_48324_end
   jmp __function_AM_Ticker_return
-__if_32491_end:
+__if_48324_end:
   call __function_AM_doFollowPlayer
-__if_32496_start:
+__if_48329_start:
   mov R0, [BP+2]
   igt R0, 0
-  jf R0, __if_32496_else
+  jf R0, __if_48329_else
   mov R0, 66846
   mov [global_am_mtof_zoommul], R0
   mov R0, 64251
   mov [global_am_ftom_zoommul], R0
-  jmp __if_32496_end
-__if_32496_else:
-__if_32507_start:
+  jmp __if_48329_end
+__if_48329_else:
+__if_48340_start:
   mov R0, [BP+2]
   ilt R0, 0
-  jf R0, __if_32507_else
+  jf R0, __if_48340_else
   mov R0, 64251
   mov [global_am_mtof_zoommul], R0
   mov R0, 66846
   mov [global_am_ftom_zoommul], R0
-  jmp __if_32507_end
-__if_32507_else:
+  jmp __if_48340_end
+__if_48340_else:
   mov R0, 65536
   mov [global_am_mtof_zoommul], R0
   mov R0, 65536
   mov [global_am_ftom_zoommul], R0
-__if_32507_end:
-__if_32496_end:
-__if_32525_start:
+__if_48340_end:
+__if_48329_end:
+__if_48358_start:
   mov R0, [global_am_ftom_zoommul]
   ine R0, 65536
-  jf R0, __if_32525_end
+  jf R0, __if_48358_end
   call __function_AM_changeWindowScale
-__if_32525_end:
+__if_48358_end:
 __function_AM_Ticker_return:
   mov SP, BP
   pop BP
@@ -34202,50 +61213,50 @@ __function_AM_DrawScreenLine:
   push BP
   mov BP, SP
   isub SP, 6
-__if_32536_start:
+__if_48369_start:
   mov R0, [BP+2]
   ilt R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_32541
+  jf R0, __LogicalAnd_ShortCircuit_48374
   mov R1, [BP+4]
   ilt R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_32541:
-  jf R0, __if_32536_end
+__LogicalAnd_ShortCircuit_48374:
+  jf R0, __if_48369_end
   jmp __function_AM_DrawScreenLine_return
-__if_32536_end:
-__if_32545_start:
+__if_48369_end:
+__if_48378_start:
   mov R0, [BP+2]
   igt R0, 640
-  jf R0, __LogicalAnd_ShortCircuit_32550
+  jf R0, __LogicalAnd_ShortCircuit_48383
   mov R1, [BP+4]
   igt R1, 640
   and R0, R1
-__LogicalAnd_ShortCircuit_32550:
-  jf R0, __if_32545_end
+__LogicalAnd_ShortCircuit_48383:
+  jf R0, __if_48378_end
   jmp __function_AM_DrawScreenLine_return
-__if_32545_end:
-__if_32554_start:
+__if_48378_end:
+__if_48387_start:
   mov R0, [BP+3]
   ilt R0, 0
-  jf R0, __LogicalAnd_ShortCircuit_32559
+  jf R0, __LogicalAnd_ShortCircuit_48392
   mov R1, [BP+5]
   ilt R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_32559:
-  jf R0, __if_32554_end
+__LogicalAnd_ShortCircuit_48392:
+  jf R0, __if_48387_end
   jmp __function_AM_DrawScreenLine_return
-__if_32554_end:
-__if_32563_start:
+__if_48387_end:
+__if_48396_start:
   mov R0, [BP+3]
   igt R0, 296
-  jf R0, __LogicalAnd_ShortCircuit_32568
+  jf R0, __LogicalAnd_ShortCircuit_48401
   mov R1, [BP+5]
   igt R1, 296
   and R0, R1
-__LogicalAnd_ShortCircuit_32568:
-  jf R0, __if_32563_end
+__LogicalAnd_ShortCircuit_48401:
+  jf R0, __if_48396_end
   jmp __function_AM_DrawScreenLine_return
-__if_32563_end:
+__if_48396_end:
   mov R0, [BP+4]
   mov R1, [BP+2]
   isub R0, R1
@@ -34266,24 +61277,24 @@ __if_32563_end:
   mov [SP], R1
   call __function_sqrt
   mov [BP-3], R0
-__if_32596_start:
+__if_48429_start:
   mov R0, [BP-3]
   flt R0, 1.000000
-  jf R0, __if_32596_end
+  jf R0, __if_48429_end
   mov R0, 1.000000
   mov [BP-3], R0
-__if_32596_end:
+__if_48429_end:
   mov R0, 0.000000
   mov [BP-4], R0
-__if_32606_start:
+__if_48439_start:
   mov R0, [BP-1]
   fne R0, 0.000000
-  jt R0, __LogicalOr_ShortCircuit_32611
+  jt R0, __LogicalOr_ShortCircuit_48444
   mov R1, [BP-2]
   fne R1, 0.000000
   or R0, R1
-__LogicalOr_ShortCircuit_32611:
-  jf R0, __if_32606_end
+__LogicalOr_ShortCircuit_48444:
+  jf R0, __if_48439_end
   mov R2, [BP-2]
   mov [SP], R2
   mov R2, [BP-1]
@@ -34292,7 +61303,7 @@ __LogicalOr_ShortCircuit_32611:
   mov R1, R0
   mov [BP-4], R1
   mov R0, R1
-__if_32606_end:
+__if_48439_end:
   mov R1, [BP+6]
   mov [SP], R1
   call __function_set_multiply_color
@@ -34364,11 +61375,11 @@ __function_AM_drawWalls:
   mov [BP-2], R0
   mov R0, 0
   mov [BP-1], R0
-__for_32660_start:
+__for_48493_start:
   mov R0, [BP-1]
   mov R1, [global_numlines]
   ilt R0, R1
-  jf R0, __for_32660_end
+  jf R0, __for_48493_end
   mov R0, [global_lines]
   mov R1, [BP-1]
   imul R1, 17
@@ -34394,28 +61405,28 @@ __for_32660_start:
   iadd R1, 1
   mov R0, [R1]
   mov [BP-7], R0
-__if_32696_start:
+__if_48529_start:
   mov R1, [BP-3]
   iadd R1, 4
   mov R0, [R1]
   and R0, 256
   cib R0
-  jf R0, __if_32696_else
-__if_32702_start:
+  jf R0, __if_48529_else
+__if_48535_start:
   mov R1, [BP-3]
   iadd R1, 4
   mov R0, [R1]
   and R0, 128
   cib R0
-  jf R0, __if_32702_end
-  jmp __for_32660_continue
-__if_32702_end:
-__if_32708_start:
+  jf R0, __if_48535_end
+  jmp __for_48493_continue
+__if_48535_end:
+__if_48541_start:
   mov R1, [BP-3]
   iadd R1, 16
   mov R0, [R1]
   ieq R0, -1
-  jf R0, __if_32708_else
+  jf R0, __if_48541_else
   mov R1, [BP-4]
   mov [SP], R1
   mov R1, [BP-5]
@@ -34427,14 +61438,14 @@ __if_32708_start:
   mov R1, -16776961
   mov [SP+4], R1
   call __function_AM_DrawMline
-  jmp __if_32708_end
-__if_32708_else:
-__if_32719_start:
+  jmp __if_48541_end
+__if_48541_else:
+__if_48552_start:
   mov R1, [BP-3]
   iadd R1, 5
   mov R0, [R1]
   ieq R0, 39
-  jf R0, __if_32719_else
+  jf R0, __if_48552_else
   mov R1, [BP-4]
   mov [SP], R1
   mov R1, [BP-5]
@@ -34446,9 +61457,9 @@ __if_32719_start:
   mov R1, -16777061
   mov [SP+4], R1
   call __function_AM_DrawMline
-  jmp __if_32719_end
-__if_32719_else:
-__if_32730_start:
+  jmp __if_48552_end
+__if_48552_else:
+__if_48563_start:
   mov R2, [BP-3]
   iadd R2, 16
   mov R1, [R2]
@@ -34458,7 +61469,7 @@ __if_32730_start:
   mov R2, [R3]
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_32730_else
+  jf R0, __if_48563_else
   mov R1, [BP-4]
   mov [SP], R1
   mov R1, [BP-5]
@@ -34470,9 +61481,9 @@ __if_32730_start:
   mov R1, -11830337
   mov [SP+4], R1
   call __function_AM_DrawMline
-  jmp __if_32730_end
-__if_32730_else:
-__if_32744_start:
+  jmp __if_48563_end
+__if_48563_else:
+__if_48577_start:
   mov R2, [BP-3]
   iadd R2, 16
   mov R1, [R2]
@@ -34484,7 +61495,7 @@ __if_32744_start:
   iadd R2, 1
   mov R1, [R2]
   ine R0, R1
-  jf R0, __if_32744_end
+  jf R0, __if_48577_end
   mov R1, [BP-4]
   mov [SP], R1
   mov R1, [BP-5]
@@ -34496,22 +61507,22 @@ __if_32744_start:
   mov R1, -16711681
   mov [SP+4], R1
   call __function_AM_DrawMline
-__if_32744_end:
-__if_32730_end:
-__if_32719_end:
-__if_32708_end:
-  jmp __if_32696_end
-__if_32696_else:
-__if_32758_start:
+__if_48577_end:
+__if_48563_end:
+__if_48552_end:
+__if_48541_end:
+  jmp __if_48529_end
+__if_48529_else:
+__if_48591_start:
   mov R0, [BP-2]
-  jf R0, __if_32758_end
-__if_32761_start:
+  jf R0, __if_48591_end
+__if_48594_start:
   mov R1, [BP-3]
   iadd R1, 4
   mov R0, [R1]
   and R0, 128
   bnot R0
-  jf R0, __if_32761_end
+  jf R0, __if_48594_end
   mov R1, [BP-4]
   mov [SP], R1
   mov R1, [BP-5]
@@ -34523,16 +61534,16 @@ __if_32761_start:
   mov R1, -9737365
   mov [SP+4], R1
   call __function_AM_DrawMline
-__if_32761_end:
-__if_32758_end:
-__if_32696_end:
-__for_32660_continue:
+__if_48594_end:
+__if_48591_end:
+__if_48529_end:
+__for_48493_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_32660_start
-__for_32660_end:
+  jmp __for_48493_start
+__for_48493_end:
 __function_AM_drawWalls_return:
   mov SP, BP
   pop BP
@@ -34614,10 +61625,10 @@ __function_AM_drawPlayer:
   mov [BP-2], R0
   mov R0, 0
   mov [BP-3], R0
-__for_32829_start:
+__for_48662_start:
   mov R0, [BP-3]
   ilt R0, 7
-  jf R0, __for_32829_end
+  jf R0, __for_48662_end
   mov R0, global_am_ar_ax
   mov R1, [BP-3]
   iadd R0, R1
@@ -34679,13 +61690,13 @@ __for_32829_start:
   mov R1, -2364417
   mov [SP+4], R1
   call __function_AM_DrawMline
-__for_32829_continue:
+__for_48662_continue:
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
   mov [BP-3], R1
-  jmp __for_32829_start
-__for_32829_end:
+  jmp __for_48662_start
+__for_48662_end:
 __function_AM_drawPlayer_return:
   mov SP, BP
   pop BP
@@ -34695,12 +61706,12 @@ __function_AM_Drawer:
   push BP
   mov BP, SP
   isub SP, 6
-__if_32890_start:
+__if_48723_start:
   mov R0, [global_automapactive]
   bnot R0
-  jf R0, __if_32890_end
+  jf R0, __if_48723_end
   jmp __function_AM_Drawer_return
-__if_32890_end:
+__if_48723_end:
   mov R1, 4
   mov [SP], R1
   call __function_select_texture
@@ -34762,13 +61773,13 @@ __function_Pct:
   push BP
   mov BP, SP
   push R1
-__if_32933_start:
+__if_48766_start:
   mov R0, [BP+3]
   ile R0, 0
-  jf R0, __if_32933_end
+  jf R0, __if_48766_end
   mov R0, 100
   jmp __function_Pct_return
-__if_32933_end:
+__if_48766_end:
   mov R0, [BP+2]
   imul R0, 100
   mov R1, [BP+3]
@@ -34813,19 +61824,19 @@ __function_ShowTime:
   mov [SP], R1
   mov R1, [BP+3]
   mov [SP+1], R1
-  mov R1, __literal_string_32982
+  mov R1, __literal_string_48815
   mov [SP+2], R1
   call __function_print_at
-__if_32983_start:
+__if_48816_start:
   mov R0, [BP-1]
   ilt R0, 10
-  jf R0, __if_32983_else
+  jf R0, __if_48816_else
   mov R1, [BP+2]
   iadd R1, 25
   mov [SP], R1
   mov R1, [BP+3]
   mov [SP+1], R1
-  mov R1, __literal_string_32993
+  mov R1, __literal_string_48826
   mov [SP+2], R1
   call __function_print_at
   mov R1, [BP+2]
@@ -34836,8 +61847,8 @@ __if_32983_start:
   mov R1, [BP-1]
   mov [SP+2], R1
   call __function_ShowInt
-  jmp __if_32983_end
-__if_32983_else:
+  jmp __if_48816_end
+__if_48816_else:
   mov R1, [BP+2]
   iadd R1, 25
   mov [SP], R1
@@ -34846,7 +61857,7 @@ __if_32983_else:
   mov R1, [BP-1]
   mov [SP+2], R1
   call __function_ShowInt
-__if_32983_end:
+__if_48816_end:
 __function_ShowTime_return:
   mov SP, BP
   pop BP
@@ -34857,38 +61868,38 @@ __function_G_NextMap:
   mov BP, SP
   isub SP, 1
   push R1
-__if_33009_start:
+__if_48842_start:
   mov R0, [global_secretexit]
-  jf R0, __if_33009_else
+  jf R0, __if_48842_else
   mov R0, 9
   mov [BP-1], R0
-  jmp __if_33009_end
-__if_33009_else:
-__if_33014_start:
+  jmp __if_48842_end
+__if_48842_else:
+__if_48847_start:
   mov R0, [global_gamemap]
   ieq R0, 9
-  jf R0, __if_33014_else
+  jf R0, __if_48847_else
   mov R0, 4
   mov [BP-1], R0
-  jmp __if_33014_end
-__if_33014_else:
+  jmp __if_48847_end
+__if_48847_else:
   mov R0, [global_gamemap]
   iadd R0, 1
   mov [BP-1], R0
-__if_33014_end:
-__if_33009_end:
-__if_33026_start:
+__if_48847_end:
+__if_48842_end:
+__if_48859_start:
   mov R0, [BP-1]
   ilt R0, 1
-  jt R0, __LogicalOr_ShortCircuit_33031
+  jt R0, __LogicalOr_ShortCircuit_48864
   mov R1, [BP-1]
   igt R1, 9
   or R0, R1
-__LogicalOr_ShortCircuit_33031:
-  jf R0, __if_33026_end
+__LogicalOr_ShortCircuit_48864:
+  jf R0, __if_48859_end
   mov R0, 1
   mov [BP-1], R0
-__if_33026_end:
+__if_48859_end:
   mov R0, [BP-1]
 __function_G_NextMap_return:
   pop R1
@@ -34917,12 +61928,12 @@ __function_G_LoadLevel:
   mov [global_secretexit], R0
   mov R0, 0
   mov [BP-1], R0
-__for_33058_start:
+__for_48891_start:
   mov R0, [BP-1]
   mov R1, [global_gen_things_num]
   ilt R0, R1
-  jf R0, __for_33058_end
-__if_33068_start:
+  jf R0, __for_48891_end
+__if_48901_start:
   mov R0, __embedded_gen_things
   mov R1, [global_gen_things_base]
   mov R2, [BP-1]
@@ -34932,7 +61943,7 @@ __if_33068_start:
   iadd R0, 3
   mov R0, [R0]
   ieq R0, 1
-  jf R0, __if_33068_end
+  jf R0, __if_48901_end
   mov R1, __embedded_gen_things
   mov R2, [global_gen_things_base]
   mov R3, [BP-1]
@@ -34960,15 +61971,15 @@ __if_33068_start:
   mov R1, [R1]
   mov [SP+2], R1
   call __function_P_SpawnPlayer
-  jmp __for_33058_end
-__if_33068_end:
-__for_33058_continue:
+  jmp __for_48891_end
+__if_48901_end:
+__for_48891_continue:
   mov R0, [BP-1]
   mov R1, R0
   iadd R1, 1
   mov [BP-1], R1
-  jmp __for_33058_start
-__for_33058_end:
+  jmp __for_48891_start
+__for_48891_end:
   call __function_P_SpawnMapThings
   call __function_P_SpawnSpecials
   mov R1, global_player1
@@ -34985,25 +61996,25 @@ __function_PressedInWindow:
   push BP
   mov BP, SP
   push R1
-__if_33113_start:
+__if_48946_start:
   mov R0, [BP+2]
   igt R0, 0
-  jf R0, __if_33113_end
+  jf R0, __if_48946_end
   mov R0, [BP+2]
   mov R1, [BP+3]
   ile R0, R1
   jmp __function_PressedInWindow_return
-__if_33113_end:
-__if_33121_start:
+__if_48946_end:
+__if_48954_start:
   mov R0, [BP+4]
   bnot R0
-  jf R0, __if_33121_end
+  jf R0, __if_48954_end
   mov R0, [BP+2]
   isgn R0
   mov R1, [BP+3]
   ile R0, R1
   jmp __function_PressedInWindow_return
-__if_33121_end:
+__if_48954_end:
   mov R0, 0
 __function_PressedInWindow_return:
   pop R1
@@ -35059,10 +62070,10 @@ __function_main:
   mov [BP-15], R0
   mov R0, 0
   mov [BP-16], R0
-__while_33191_start:
-__while_33191_continue:
+__while_49024_start:
+__while_49024_continue:
   mov R0, 1
-  jf R0, __while_33191_end
+  jf R0, __while_49024_end
   call __function_get_frame_counter
   mov [BP-17], R0
   mov R0, [BP-17]
@@ -35071,13 +62082,13 @@ __while_33191_continue:
   mov [BP-18], R0
   mov R0, [BP-17]
   mov [BP-15], R0
-__if_33205_start:
+__if_49038_start:
   mov R0, [BP-18]
   ilt R0, 1
-  jf R0, __if_33205_end
+  jf R0, __if_49038_end
   mov R0, 1
   mov [BP-18], R0
-__if_33205_end:
+__if_49038_end:
   mov R1, 0
   mov [SP], R1
   call __function_select_gamepad
@@ -35208,159 +62219,159 @@ __if_33205_end:
   mov [BP-14], R0
   mov R0, [BP-19]
   bnot R0
-  jf R0, __LogicalAnd_ShortCircuit_33359
+  jf R0, __LogicalAnd_ShortCircuit_49192
   mov R1, [BP-31]
   and R0, R1
-__LogicalAnd_ShortCircuit_33359:
+__LogicalAnd_ShortCircuit_49192:
   mov [BP-44], R0
   mov R0, 0
   mov [BP-45], R0
-__if_33364_start:
+__if_49197_start:
   mov R0, [global_automapactive]
-  jf R0, __LogicalAnd_ShortCircuit_33366
+  jf R0, __LogicalAnd_ShortCircuit_49199
   mov R1, [BP-19]
   bnot R1
   and R0, R1
-__LogicalAnd_ShortCircuit_33366:
-  jf R0, __if_33364_end
-__if_33370_start:
+__LogicalAnd_ShortCircuit_49199:
+  jf R0, __if_49197_end
+__if_49203_start:
   call __function_gamepad_button_r
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_33370_else
+  jf R0, __if_49203_else
   mov R0, 1
   mov [BP-45], R0
-  jmp __if_33370_end
-__if_33370_else:
-__if_33377_start:
+  jmp __if_49203_end
+__if_49203_else:
+__if_49210_start:
   call __function_gamepad_button_l
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_33377_end
+  jf R0, __if_49210_end
   mov R0, -1
   mov [BP-45], R0
-__if_33377_end:
-__if_33370_end:
-__if_33364_end:
+__if_49210_end:
+__if_49203_end:
+__if_49197_end:
   mov R0, 0
   mov [BP-46], R0
   mov R0, 0
   mov [BP-47], R0
   mov R0, 0
   mov [BP-48], R0
-__if_33394_start:
+__if_49227_start:
   mov R0, [BP-19]
   bnot R0
-  jf R0, __if_33394_end
-__if_33398_start:
+  jf R0, __if_49227_end
+__if_49231_start:
   mov R0, [BP-28]
-  jf R0, __if_33398_end
-__if_33401_start:
+  jf R0, __if_49231_end
+__if_49234_start:
   mov R0, [BP-44]
-  jf R0, __if_33401_else
+  jf R0, __if_49234_else
   mov R0, 50
   mov [BP-46], R0
-  jmp __if_33401_end
-__if_33401_else:
+  jmp __if_49234_end
+__if_49234_else:
   mov R0, 25
   mov [BP-46], R0
-__if_33401_end:
-__if_33398_end:
-__if_33409_start:
+__if_49234_end:
+__if_49231_end:
+__if_49242_start:
   mov R0, [BP-29]
-  jf R0, __if_33409_end
-__if_33412_start:
+  jf R0, __if_49242_end
+__if_49245_start:
   mov R0, [BP-44]
-  jf R0, __if_33412_else
+  jf R0, __if_49245_else
   mov R0, -50
   mov [BP-46], R0
-  jmp __if_33412_end
-__if_33412_else:
+  jmp __if_49245_end
+__if_49245_else:
   mov R0, -25
   mov [BP-46], R0
-__if_33412_end:
-__if_33409_end:
-__if_33422_start:
+__if_49245_end:
+__if_49242_end:
+__if_49255_start:
   mov R1, [global_automapactive]
   bnot R1
-  jf R1, __LogicalAnd_ShortCircuit_33425
+  jf R1, __LogicalAnd_ShortCircuit_49258
   call __function_gamepad_button_r
   mov R2, R0
   igt R2, 0
   and R1, R2
-__LogicalAnd_ShortCircuit_33425:
+__LogicalAnd_ShortCircuit_49258:
   mov R0, R1
-  jf R0, __if_33422_end
-__if_33430_start:
+  jf R0, __if_49255_end
+__if_49263_start:
   mov R0, [BP-44]
-  jf R0, __if_33430_else
+  jf R0, __if_49263_else
   mov R0, 40
   mov [BP-47], R0
-  jmp __if_33430_end
-__if_33430_else:
+  jmp __if_49263_end
+__if_49263_else:
   mov R0, 24
   mov [BP-47], R0
-__if_33430_end:
-__if_33422_end:
-__if_33438_start:
+__if_49263_end:
+__if_49255_end:
+__if_49271_start:
   mov R1, [global_automapactive]
   bnot R1
-  jf R1, __LogicalAnd_ShortCircuit_33441
+  jf R1, __LogicalAnd_ShortCircuit_49274
   call __function_gamepad_button_l
   mov R2, R0
   igt R2, 0
   and R1, R2
-__LogicalAnd_ShortCircuit_33441:
+__LogicalAnd_ShortCircuit_49274:
   mov R0, R1
-  jf R0, __if_33438_end
-__if_33446_start:
+  jf R0, __if_49271_end
+__if_49279_start:
   mov R0, [BP-44]
-  jf R0, __if_33446_else
+  jf R0, __if_49279_else
   mov R0, -40
   mov [BP-47], R0
-  jmp __if_33446_end
-__if_33446_else:
+  jmp __if_49279_end
+__if_49279_else:
   mov R0, -24
   mov [BP-47], R0
-__if_33446_end:
-__if_33438_end:
-__if_33456_start:
+__if_49279_end:
+__if_49271_end:
+__if_49289_start:
   call __function_gamepad_left
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_33456_end
-__if_33461_start:
+  jf R0, __if_49289_end
+__if_49294_start:
   mov R0, [BP-44]
-  jf R0, __if_33461_else
+  jf R0, __if_49294_else
   mov R0, 1280
   mov [BP-48], R0
-  jmp __if_33461_end
-__if_33461_else:
+  jmp __if_49294_end
+__if_49294_else:
   mov R0, 640
   mov [BP-48], R0
-__if_33461_end:
-__if_33456_end:
-__if_33469_start:
+__if_49294_end:
+__if_49289_end:
+__if_49302_start:
   call __function_gamepad_right
   mov R1, R0
   igt R1, 0
   mov R0, R1
-  jf R0, __if_33469_end
-__if_33474_start:
+  jf R0, __if_49302_end
+__if_49307_start:
   mov R0, [BP-44]
-  jf R0, __if_33474_else
+  jf R0, __if_49307_else
   mov R0, -1280
   mov [BP-48], R0
-  jmp __if_33474_end
-__if_33474_else:
+  jmp __if_49307_end
+__if_49307_else:
   mov R0, -640
   mov [BP-48], R0
-__if_33474_end:
-__if_33469_end:
-__if_33394_end:
+__if_49307_end:
+__if_49302_end:
+__if_49227_end:
   mov R0, [BP-46]
   mov [1616684], R0
   mov R0, [BP-47]
@@ -35368,45 +62379,45 @@ __if_33394_end:
   mov R0, [BP-48]
   mov [1616686], R0
   mov R0, [BP-33]
-  jt R0, __LogicalOr_ShortCircuit_33501
+  jt R0, __LogicalOr_ShortCircuit_49334
   mov R1, [BP-41]
   or R0, R1
-__LogicalOr_ShortCircuit_33501:
+__LogicalOr_ShortCircuit_49334:
   mov [1616687], R0
   mov R0, [BP-32]
-  jt R0, __LogicalOr_ShortCircuit_33507
+  jt R0, __LogicalOr_ShortCircuit_49340
   mov R1, [BP-40]
   or R0, R1
-__LogicalOr_ShortCircuit_33507:
+__LogicalOr_ShortCircuit_49340:
   mov [1616688], R0
   mov R0, 9
   mov [1616689], R0
-__if_33512_start:
+__if_49345_start:
   mov R0, [BP-19]
-  jf R0, __if_33512_else
-__if_33515_start:
+  jf R0, __if_49345_else
+__if_49348_start:
   mov R0, [BP-39]
-  jf R0, __if_33515_end
+  jf R0, __if_49348_end
   mov R0, [BP-1]
   bnot R0
   mov [BP-1], R0
-__if_33515_end:
-__if_33521_start:
+__if_49348_end:
+__if_49354_start:
   mov R0, [BP-41]
-  jf R0, __if_33521_end
-__if_33524_start:
+  jf R0, __if_49354_end
+__if_49357_start:
   mov R0, [global_automapactive]
-  jf R0, __if_33524_else
+  jf R0, __if_49357_else
   mov R0, 0
   mov [global_automapactive], R0
-  jmp __if_33524_end
-__if_33524_else:
+  jmp __if_49357_end
+__if_49357_else:
   call __function_AM_Start
-__if_33524_end:
-__if_33521_end:
-__if_33530_start:
+__if_49357_end:
+__if_49354_end:
+__if_49363_start:
   mov R0, [BP-38]
-  jf R0, __if_33530_end
+  jf R0, __if_49363_end
   mov R0, [BP-2]
   bnot R0
   mov [BP-2], R0
@@ -35415,15 +62426,15 @@ __if_33530_start:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_33530_end:
-__if_33540_start:
+__if_49363_end:
+__if_49373_start:
   mov R0, [BP-36]
-  jf R0, __LogicalAnd_ShortCircuit_33542
+  jf R0, __LogicalAnd_ShortCircuit_49375
   mov R1, [BP-3]
   ilt R1, 2
   and R0, R1
-__LogicalAnd_ShortCircuit_33542:
-  jf R0, __if_33540_end
+__LogicalAnd_ShortCircuit_49375:
+  jf R0, __if_49373_end
   mov R0, [BP-3]
   mov R1, R0
   iadd R1, 1
@@ -35433,15 +62444,15 @@ __LogicalAnd_ShortCircuit_33542:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_33540_end:
-__if_33552_start:
+__if_49373_end:
+__if_49385_start:
   mov R0, [BP-37]
-  jf R0, __LogicalAnd_ShortCircuit_33554
+  jf R0, __LogicalAnd_ShortCircuit_49387
   mov R1, [BP-3]
   igt R1, 0
   and R0, R1
-__LogicalAnd_ShortCircuit_33554:
-  jf R0, __if_33552_end
+__LogicalAnd_ShortCircuit_49387:
+  jf R0, __if_49385_end
   mov R0, [BP-3]
   mov R1, R0
   isub R1, 1
@@ -35451,104 +62462,105 @@ __LogicalAnd_ShortCircuit_33554:
   mov R1, [BP-2]
   mov [SP+1], R1
   call __function_R_SetView
-__if_33552_end:
-__if_33564_start:
+__if_49385_end:
+__if_49397_start:
   mov R0, [BP-42]
-  jt R0, __LogicalOr_ShortCircuit_33566
+  jt R0, __LogicalOr_ShortCircuit_49399
   mov R1, [BP-43]
   or R0, R1
-__LogicalOr_ShortCircuit_33566:
-  jf R0, __if_33564_end
-__if_33569_start:
+__LogicalOr_ShortCircuit_49399:
+  jf R0, __if_49397_end
+__if_49402_start:
   mov R0, [BP-43]
-  jf R0, __if_33569_else
+  jf R0, __if_49402_else
   mov R0, [global_gamemap]
   mov R1, R0
   iadd R1, 1
   mov [global_gamemap], R1
-__if_33574_start:
+__if_49407_start:
   mov R0, [global_gamemap]
   igt R0, 9
-  jf R0, __if_33574_end
+  jf R0, __if_49407_end
   mov R0, 1
   mov [global_gamemap], R0
-__if_33574_end:
-  jmp __if_33569_end
-__if_33569_else:
+__if_49407_end:
+  jmp __if_49402_end
+__if_49402_else:
   mov R0, [global_gamemap]
   mov R1, R0
   isub R1, 1
   mov [global_gamemap], R1
-__if_33584_start:
+__if_49417_start:
   mov R0, [global_gamemap]
   ilt R0, 1
-  jf R0, __if_33584_end
+  jf R0, __if_49417_end
   mov R0, 9
   mov [global_gamemap], R0
-__if_33584_end:
-__if_33569_end:
+__if_49417_end:
+__if_49402_end:
   mov R0, 0
   mov [global_automapactive], R0
   call __function_G_LoadLevel
   mov R0, 45
   mov [BP-16], R0
-__if_33564_end:
-  jmp __if_33512_end
-__if_33512_else:
-__if_33598_start:
+__if_49397_end:
+  jmp __if_49345_end
+__if_49345_else:
+__if_49431_start:
   mov R0, [BP-38]
-  jf R0, __if_33598_end
+  jf R0, __if_49431_end
   mov R0, [1616649]
   mov [BP-50], R0
-__if_33605_start:
+__if_49438_start:
   mov R0, [1616650]
   ine R0, 9
-  jf R0, __if_33605_end
+  jf R0, __if_49438_end
   mov R0, [1616650]
   mov [BP-50], R0
-__if_33605_end:
+__if_49438_end:
   mov R0, [BP-50]
   mov [BP-51], R0
   mov R0, 0
   mov [BP-52], R0
-__while_33620_start:
-__while_33620_continue:
+__while_49453_start:
+__while_49453_continue:
   mov R0, [BP-52]
   ilt R0, 8
-  jf R0, __while_33620_end
+  jf R0, __while_49453_end
   mov R0, [BP-51]
   iadd R0, 1
   mov [BP-51], R0
-__if_33630_start:
+__if_49463_start:
   mov R0, [BP-51]
   ige R0, 8
-  jf R0, __if_33630_end
+  jf R0, __if_49463_end
   mov R0, 0
   mov [BP-51], R0
-__if_33630_end:
-__if_33637_start:
+__if_49463_end:
+__if_49470_start:
   mov R0, 1616651
   mov R1, [BP-51]
   iadd R0, R1
   mov R0, [R0]
   cib R0
-  jf R0, __if_33637_end
-  jmp __while_33620_end
-__if_33637_end:
+  jf R0, __if_49470_end
+  jmp __while_49453_end
+__if_49470_end:
   mov R0, [BP-52]
   mov R1, R0
   iadd R1, 1
   mov [BP-52], R1
-  jmp __while_33620_start
-__while_33620_end:
+  jmp __while_49453_start
+__while_49453_end:
   mov R0, [BP-51]
   mov [1616689], R0
-__if_33598_end:
-__if_33512_end:
-__if_33649_start:
+__if_49431_end:
+__if_49345_end:
+  call __function_S_MusicUpdate
+__if_49483_start:
   mov R0, [global_gameexit]
   bnot R0
-  jf R0, __if_33649_end
+  jf R0, __if_49483_end
   mov R1, global_player1
   mov [SP], R1
   call __function_P_PlayerThink
@@ -35564,26 +62576,26 @@ __if_33649_start:
   mov R1, R0
   iadd R1, 1
   mov [global_leveltime], R1
-__if_33649_end:
-__if_33665_start:
+__if_49483_end:
+__if_49499_start:
   mov R0, [1616627]
   ieq R0, 2
-  jf R0, __if_33665_end
+  jf R0, __if_49499_end
   call __function_G_LoadLevel
-__if_33665_end:
-__if_33671_start:
+__if_49499_end:
+__if_49505_start:
   mov R0, [global_gameexit]
-  jf R0, __LogicalAnd_ShortCircuit_33673
+  jf R0, __LogicalAnd_ShortCircuit_49507
   mov R1, [BP-40]
   and R0, R1
-__LogicalAnd_ShortCircuit_33673:
-  jf R0, __if_33671_end
+__LogicalAnd_ShortCircuit_49507:
+  jf R0, __if_49505_end
   call __function_G_NextMap
   mov R1, R0
   mov [global_gamemap], R1
   mov R0, R1
   call __function_G_LoadLevel
-__if_33671_end:
+__if_49505_end:
   mov R0, 0
   mov [global_perf_segs], R0
   mov R0, 0
@@ -35612,34 +62624,34 @@ __if_33671_end:
   iadd R1, 11
   mov R0, [R1]
   mov [global_viewangle], R0
-__if_33720_start:
+__if_49554_start:
   mov R0, [1616641]
   igt R0, 128
-  jt R0, __LogicalOr_ShortCircuit_33736
+  jt R0, __LogicalOr_ShortCircuit_49570
   mov R1, [1616641]
   and R1, 8
   cib R1
   or R0, R1
-__LogicalOr_ShortCircuit_33736:
-  jf R0, __if_33720_else
+__LogicalOr_ShortCircuit_49570:
+  jf R0, __if_49554_else
   mov R0, 255
   mov [global_r_fixedlight], R0
-  jmp __if_33720_end
-__if_33720_else:
+  jmp __if_49554_end
+__if_49554_else:
   mov R0, 0
   mov [global_r_fixedlight], R0
-__if_33720_end:
+__if_49554_end:
   call __function_R_RenderView
   call __function_end_frame
   mov R1, -16777216
   mov [SP], R1
   call __function_clear_screen
-__if_33747_start:
+__if_49581_start:
   mov R0, [global_automapactive]
-  jf R0, __if_33747_else
+  jf R0, __if_49581_else
   call __function_AM_Drawer
-  jmp __if_33747_end
-__if_33747_else:
+  jmp __if_49581_end
+__if_49581_else:
   mov R0, [global_colpix]
   mov R1, [global_viewwidth]
   imul R0, R1
@@ -35674,33 +62686,33 @@ __if_33747_else:
   mov [SP+4], R1
   call __function_GPU_FillScreen
   call __function_GPU_Flush
-__if_33747_end:
+__if_49581_end:
   call __function_ST_DrawFlash
   call __function_ST_Drawer
   mov R1, -1
   mov [SP], R1
   call __function_set_multiply_color
-__if_33785_start:
+__if_49619_start:
   mov R0, [1616627]
   ieq R0, 1
-  jf R0, __if_33785_end
+  jf R0, __if_49619_end
   mov R1, 220
   mov [SP], R1
   mov R1, 250
   mov [SP+1], R1
-  mov R1, __literal_string_33793
+  mov R1, __literal_string_49627
   mov [SP+2], R1
   call __function_print_at
-__if_33785_end:
-__if_33794_start:
+__if_49619_end:
+__if_49628_start:
   mov R0, [BP-16]
   igt R0, 0
-  jf R0, __if_33794_end
+  jf R0, __if_49628_end
   mov R1, 270
   mov [SP], R1
   mov R1, 80
   mov [SP+1], R1
-  mov R1, __literal_string_33802
+  mov R1, __literal_string_49636
   mov [SP+2], R1
   call __function_print_at
   mov R1, 315
@@ -35714,10 +62726,10 @@ __if_33794_start:
   mov R1, R0
   isub R1, 1
   mov [BP-16], R1
-__if_33794_end:
-__if_33809_start:
+__if_49628_end:
+__if_49643_start:
   mov R0, [global_gameexit]
-  jf R0, __if_33809_end
+  jf R0, __if_49643_end
   call __function_G_NextMap
   mov [BP-50], R0
   mov R1, 0
@@ -35738,7 +62750,7 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 60
   mov [SP+1], R1
-  mov R1, __literal_string_33826
+  mov R1, __literal_string_49660
   mov [SP+2], R1
   call __function_print_at
   mov R1, 330
@@ -35752,14 +62764,14 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 60
   mov [SP+1], R1
-  mov R1, __literal_string_33834
+  mov R1, __literal_string_49668
   mov [SP+2], R1
   call __function_print_at
   mov R1, 235
   mov [SP], R1
   mov R1, 120
   mov [SP+1], R1
-  mov R1, __literal_string_33838
+  mov R1, __literal_string_49672
   mov [SP+2], R1
   call __function_print_at
   mov R2, [1616673]
@@ -35780,14 +62792,14 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 120
   mov [SP+1], R1
-  mov R1, __literal_string_33849
+  mov R1, __literal_string_49683
   mov [SP+2], R1
   call __function_print_at
   mov R1, 235
   mov [SP], R1
   mov R1, 145
   mov [SP+1], R1
-  mov R1, __literal_string_33853
+  mov R1, __literal_string_49687
   mov [SP+2], R1
   call __function_print_at
   mov R2, [1616674]
@@ -35808,14 +62820,14 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 145
   mov [SP+1], R1
-  mov R1, __literal_string_33864
+  mov R1, __literal_string_49698
   mov [SP+2], R1
   call __function_print_at
   mov R1, 235
   mov [SP], R1
   mov R1, 170
   mov [SP+1], R1
-  mov R1, __literal_string_33868
+  mov R1, __literal_string_49702
   mov [SP+2], R1
   call __function_print_at
   mov R2, [1616675]
@@ -35836,14 +62848,14 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 170
   mov [SP+1], R1
-  mov R1, __literal_string_33879
+  mov R1, __literal_string_49713
   mov [SP+2], R1
   call __function_print_at
   mov R1, 235
   mov [SP], R1
   mov R1, 205
   mov [SP+1], R1
-  mov R1, __literal_string_33883
+  mov R1, __literal_string_49717
   mov [SP+2], R1
   call __function_print_at
   mov R1, 320
@@ -35857,7 +62869,7 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 205
   mov [SP+1], R1
-  mov R1, __literal_string_33891
+  mov R1, __literal_string_49725
   mov [SP+2], R1
   call __function_print_at
   mov R1, 470
@@ -35876,7 +62888,7 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 245
   mov [SP+1], R1
-  mov R1, __literal_string_33905
+  mov R1, __literal_string_49739
   mov [SP+2], R1
   call __function_print_at
   mov R1, 425
@@ -35890,18 +62902,18 @@ __if_33809_start:
   mov [SP], R1
   mov R1, 275
   mov [SP+1], R1
-  mov R1, __literal_string_33913
+  mov R1, __literal_string_49747
   mov [SP+2], R1
   call __function_print_at
-__if_33809_end:
-__if_33914_start:
+__if_49643_end:
+__if_49748_start:
   mov R0, [BP-1]
-  jf R0, __if_33914_end
+  jf R0, __if_49748_end
   mov R1, 10
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_33920
+  mov R1, __literal_string_49754
   mov [SP+2], R1
   call __function_print_at
   mov R1, 25
@@ -35918,7 +62930,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_33932
+  mov R1, __literal_string_49766
   mov [SP+2], R1
   call __function_print_at
   mov R1, 105
@@ -35935,7 +62947,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_33944
+  mov R1, __literal_string_49778
   mov [SP+2], R1
   call __function_print_at
   mov R1, 185
@@ -35952,7 +62964,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_33956
+  mov R1, __literal_string_49790
   mov [SP+2], R1
   call __function_print_at
   mov R1, 285
@@ -35972,7 +62984,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_33969
+  mov R1, __literal_string_49803
   mov [SP+2], R1
   call __function_print_at
   mov R1, 400
@@ -35986,7 +62998,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 4
   mov [SP+1], R1
-  mov R1, __literal_string_33977
+  mov R1, __literal_string_49811
   mov [SP+2], R1
   call __function_print_at
   call __function_Z_UsedWords
@@ -36004,7 +63016,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_33987
+  mov R1, __literal_string_49821
   mov [SP+2], R1
   call __function_print_at
   mov R1, 60
@@ -36018,7 +63030,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_33995
+  mov R1, __literal_string_49829
   mov [SP+2], R1
   call __function_print_at
   mov R1, 160
@@ -36032,7 +63044,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_34003
+  mov R1, __literal_string_49837
   mov [SP+2], R1
   call __function_print_at
   mov R1, 280
@@ -36046,7 +63058,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_34011
+  mov R1, __literal_string_49845
   mov [SP+2], R1
   call __function_print_at
   mov R1, 370
@@ -36060,7 +63072,7 @@ __if_33914_start:
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_34019
+  mov R1, __literal_string_49853
   mov [SP+2], R1
   call __function_print_at
   mov R1, 475
@@ -36070,31 +63082,31 @@ __if_33914_start:
   mov R1, [global_perf_drops]
   mov [SP+2], R1
   call __function_ShowInt
-__if_34024_start:
+__if_49858_start:
   mov R0, [BP-2]
-  jf R0, __if_34024_else
+  jf R0, __if_49858_else
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_34029
+  mov R1, __literal_string_49863
   mov [SP+2], R1
   call __function_print_at
-  jmp __if_34024_end
-__if_34024_else:
+  jmp __if_49858_end
+__if_49858_else:
   mov R1, 550
   mov [SP], R1
   mov R1, 24
   mov [SP+1], R1
-  mov R1, __literal_string_34033
+  mov R1, __literal_string_49867
   mov [SP+2], R1
   call __function_print_at
-__if_34024_end:
+__if_49858_end:
   mov R1, 10
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_34037
+  mov R1, __literal_string_49871
   mov [SP+2], R1
   call __function_print_at
   mov R1, 50
@@ -36108,7 +63120,7 @@ __if_34024_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_34045
+  mov R1, __literal_string_49879
   mov [SP+2], R1
   call __function_print_at
   mov R1, 150
@@ -36122,7 +63134,7 @@ __if_34024_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_34053
+  mov R1, __literal_string_49887
   mov [SP+2], R1
   call __function_print_at
   mov R1, 265
@@ -36136,7 +63148,7 @@ __if_34024_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_34061
+  mov R1, __literal_string_49895
   mov [SP+2], R1
   call __function_print_at
   mov R1, 385
@@ -36150,7 +63162,7 @@ __if_34024_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_34069
+  mov R1, __literal_string_49903
   mov [SP+2], R1
   call __function_print_at
   mov R1, 540
@@ -36164,7 +63176,7 @@ __if_34024_end:
   mov [SP], R1
   mov R1, 44
   mov [SP+1], R1
-  mov R1, __literal_string_34077
+  mov R1, __literal_string_49911
   mov [SP+2], R1
   call __function_print_at
   mov R1, 615
@@ -36174,7 +63186,7 @@ __if_34024_end:
   mov R1, [global_gamemap]
   mov [SP+2], R1
   call __function_ShowInt
-__if_33914_end:
+__if_49748_end:
   mov R0, [BP-4]
   mov R1, R0
   iadd R1, 1
@@ -36188,13 +63200,93 @@ __if_33914_end:
   mov [BP-6], R0
   mov R0, [BP-49]
   mov [BP-5], R0
-  jmp __while_33191_start
-__while_33191_end:
+  jmp __while_49024_start
+__while_49024_end:
 __function_main_return:
   mov SP, BP
   pop BP
   ret
 
+__literal_string_32672:
+  string "SQ LEAD"
+__literal_string_32673:
+  string "PLS LEAD"
+__literal_string_32674:
+  string "SAW LEAD"
+__literal_string_32675:
+  string "SINE LEAD"
+__literal_string_32676:
+  string "CHIP LEAD"
+__literal_string_32677:
+  string "SUB BASS"
+__literal_string_32678:
+  string "TRI BASS"
+__literal_string_32679:
+  string "SQ BASS"
+__literal_string_32680:
+  string "SAW BASS"
+__literal_string_32681:
+  string "PLUCK BASS"
+__literal_string_32682:
+  string "SQ PLUCK"
+__literal_string_32683:
+  string "SAW PLUCK"
+__literal_string_32684:
+  string "E-PIANO"
+__literal_string_32685:
+  string "HARP"
+__literal_string_32686:
+  string "MARIMBA"
+__literal_string_32687:
+  string "SAW PAD"
+__literal_string_32688:
+  string "SQ PAD"
+__literal_string_32689:
+  string "WARM PAD"
+__literal_string_32690:
+  string "STRINGS"
+__literal_string_32691:
+  string "ORGAN"
+__literal_string_32692:
+  string "SOFT ORGAN"
+__literal_string_32693:
+  string "BRASS"
+__literal_string_32694:
+  string "BELL"
+__literal_string_32695:
+  string "CHIME"
+__literal_string_32696:
+  string "ZAP"
+__literal_string_32697:
+  string "LASER"
+__literal_string_32698:
+  string "SIREN"
+__literal_string_32699:
+  string "DROP"
+__literal_string_32700:
+  string "KICK"
+__literal_string_32701:
+  string "SNARE"
+__literal_string_32702:
+  string "CL HAT"
+__literal_string_32703:
+  string "OP HAT"
+__literal_string_32704:
+  string "TOM"
+__literal_string_32705:
+  string "CLAP"
+__literal_string_32706:
+  string "COWBELL"
+__literal_string_32707:
+  string "MAJ ARP"
+__literal_string_32708:
+  string "MIN ARP"
+__literal_string_32709:
+  string "WOBBLE"
+__literal_string_32710:
+  string "ECHO PLUCK"
+__literal_string_32711:
+  string "PWM LEAD"
 __literal_string_809:
   string "0123456789ABCDEF"
 __literal_string_846:
@@ -36253,73 +63345,73 @@ __embedded_gen_sfx_sound:
   datafile "data\\sfx_sound.bin"
 __embedded_gen_sfx_priority:
   datafile "data\\sfx_priority.bin"
-__literal_string_32982:
+__literal_string_48815:
   string ":"
-__literal_string_32993:
+__literal_string_48826:
   string "0"
-__literal_string_33793:
+__literal_string_49627:
   string "YOU DIED - PRESS B"
-__literal_string_33802:
+__literal_string_49636:
   string "E1M"
-__literal_string_33826:
+__literal_string_49660:
   string "E1M"
-__literal_string_33834:
+__literal_string_49668:
   string "COMPLETE"
-__literal_string_33838:
+__literal_string_49672:
   string "KILLS"
-__literal_string_33849:
+__literal_string_49683:
   string "%"
-__literal_string_33853:
+__literal_string_49687:
   string "ITEMS"
-__literal_string_33864:
+__literal_string_49698:
   string "%"
-__literal_string_33868:
+__literal_string_49702:
   string "SECRET"
-__literal_string_33879:
+__literal_string_49713:
   string "%"
-__literal_string_33883:
+__literal_string_49717:
   string "TIME"
-__literal_string_33891:
+__literal_string_49725:
   string "PAR"
-__literal_string_33905:
+__literal_string_49739:
   string "ENTERING  E1M"
-__literal_string_33913:
+__literal_string_49747:
   string "PRESS A"
-__literal_string_33920:
+__literal_string_49754:
   string "X"
-__literal_string_33932:
+__literal_string_49766:
   string "Y"
-__literal_string_33944:
+__literal_string_49778:
   string "Z"
-__literal_string_33956:
+__literal_string_49790:
   string "SEC"
-__literal_string_33969:
+__literal_string_49803:
   string "FRAME"
-__literal_string_33977:
+__literal_string_49811:
   string "ZONE"
-__literal_string_33987:
+__literal_string_49821:
   string "SEGS"
-__literal_string_33995:
+__literal_string_49829:
   string "COLS"
-__literal_string_34003:
+__literal_string_49837:
   string "DRAWS"
-__literal_string_34011:
+__literal_string_49845:
   string "VS"
-__literal_string_34019:
+__literal_string_49853:
   string "DROP"
-__literal_string_34029:
+__literal_string_49863:
   string "LO"
-__literal_string_34033:
+__literal_string_49867:
   string "HI"
-__literal_string_34037:
+__literal_string_49871:
   string "PLN"
-__literal_string_34045:
+__literal_string_49879:
   string "FIL"
-__literal_string_34053:
+__literal_string_49887:
   string "SPR"
-__literal_string_34061:
+__literal_string_49895:
   string "MSK"
-__literal_string_34069:
+__literal_string_49903:
   string "SIZE"
-__literal_string_34077:
+__literal_string_49911:
   string "MAP"

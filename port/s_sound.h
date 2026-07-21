@@ -28,10 +28,34 @@
 #define S_SOUND_H
 
 #include "audio.h"
+#include "time.h"                     // get_frame_counter (music catch-up)
 #include "gen_sounds.h"
 
-#define S_NUMCH           15         // sfx use channels 0..14
-#define S_MUSIC_CHANNEL   15         // channel 15 reserved for looping music
+// -----------------------------------------------------------------------------
+//  MUSIC BACKEND (A/B):
+//    MUSIC_SYNTH defined  -> live full-polyphony EVENT-PLAYER music via
+//      port/synth.h + port/mus_player.h (faithful to the original bake_music
+//      render; approved in musictest.c). The synth owns SPU channels 6..15 (10
+//      voices, covering E1M1's 9-note peak); sfx use channels 0..5. The 17MB
+//      baked WAV is not played. Software timing is frame-rate slaved
+//      (S_MusicUpdate, once per game-loop iteration) so tempo holds under the
+//      variable-rate renderer -- see synthprobe.c and PLAN.
+//    MUSIC_SYNTH undefined -> the original baked-WAV path (music on channel 15,
+//      sfx on 0..14). Keep for A/B until the synth version is confirmed good.
+// -----------------------------------------------------------------------------
+#define MUSIC_SYNTH
+
+#ifdef MUSIC_SYNTH
+  #define SYNTH_VOICES        10      // synth owns 10 SPU channels...
+  #define SYNTH_CHANNEL_BASE  6       // ...channels 6..15 (covers the 9-voice peak)
+  #include "synth.h"
+  #include "mus_player.h"             // full-polyphony event player (gen_musicev.h)
+  #define S_NUMCH           6         // sfx use channels 0..5
+#else
+  #define S_NUMCH           15        // sfx use channels 0..14
+  #define S_MUSIC_CHANNEL   15        // channel 15 reserved for looping music
+#endif
+
 #define S_CLIPPING_DIST   ( 1200 * FRACUNIT )
 #define S_CLOSE_DIST      ( 160 * FRACUNIT )
 #define S_ATTENUATOR      ( ( 1200 - 160 ) )    // (CLIP-CLOSE)>>FRACBITS
@@ -43,16 +67,32 @@ fixed_t[S_NUMCH] ch_x;                            // emitter position snapshot
 fixed_t[S_NUMCH] ch_y;
 void*[S_NUMCH]   ch_id;                           // origin identity (or NULL)
 
+#ifdef MUSIC_SYNTH
+int s_music_lastfc;                              // frame counter at last music tick
+#endif
+
 void S_Init()
 {
     int i;
+    stop_all_channels();
+#ifdef MUSIC_SYNTH
+    // Stand up the synth on its channel window before setting the shared global
+    // volume (synth_init sets it to 1.0 internally; we override below so there
+    // is a single last writer). Wavetables are cartridge sounds GEN_WAVE_BASE..
+    if( GEN_WAVE_BASE >= 0 )
+    {
+        synth_init( GEN_WAVE_BASE );
+        synth_master_volume( 0.9 );              // event-player insts are modest
+        MUS_Init();
+    }
+    s_music_lastfc = get_frame_counter();
+#endif
     // < 1.0 gives mix headroom: the SPU sums GlobalVolume*ChannelVolume*sample
     // across channels and only clamps at final output (V32SPU.cpp), so a loud
     // full-volume gunshot stacked with music + other sfx would otherwise clip
     // (audible crackle). 0.72 keeps it loud while leaving room for ~4 stacked
     // near-full sounds. Raise toward 1.0 for more loudness, lower if it clips.
-    set_global_volume( 0.72 );
-    stop_all_channels();
+    set_global_volume( 0.72 );                   // single last writer of global vol
     for( i = 0; i < S_NUMCH; i++ )
         ch_prio[i] = -1;
 }
@@ -60,13 +100,51 @@ void S_Init()
 void S_StopAllSounds()
 {
     int i;
+#ifdef MUSIC_SYNTH
+    // Stop only the sfx channels (0..S_NUMCH-1); park the music player and resync
+    // the synth (MUS_Stop panics) so its voice-state can't desync from a blind
+    // stop of its channels. Parity with the baked path (which silences music).
+    for( i = 0; i < S_NUMCH; i++ )
+        stop_channel( i );
+    MUS_Stop();
+#else
     stop_all_channels();                          // also stops music channel 15
+#endif
     for( i = 0; i < S_NUMCH; i++ )
         ch_prio[i] = -1;
 }
 
-// looping background music on the reserved channel (chiptune render of D_E1M1;
-// see tools/wadtool.py bake_music). No-op if no music was baked.
+// (Re)start the looping level music for the current map.
+#ifdef MUSIC_SYNTH
+// Live synth: restart the event player from the top. (Only E1M1 is generated so
+// far; S_SelectSong-style per-map dispatch is a follow-up once every map's
+// gen_musicev is generated.)
+void S_StartMusic()
+{
+    if( GEN_WAVE_BASE < 0 )
+        return;
+    MUS_Start();
+    s_music_lastfc = get_frame_counter();         // reset catch-up baseline
+}
+
+// Frame-rate-compensated music tick. Call ONCE per game-loop iteration: it runs
+// the event player one frame per 60 Hz frame elapsed since the last call, so
+// tempo tracks wall-clock regardless of the variable render rate. The cap stops
+// a level-load hitch from fast-forwarding the song. (Proven by synthprobe.c.)
+void S_MusicUpdate()
+{
+    int fc = get_frame_counter();
+    int n = fc - s_music_lastfc;
+    int k;
+    s_music_lastfc = fc;
+    if( n < 0 ) n = 0;
+    if( n > 8 ) n = 8;
+    for( k = 0; k < n; k++ )
+        MUS_TickFrame();
+}
+#else
+// Baked WAV on the reserved channel (chiptune render of D_E1M1; see
+// tools/wadtool.py bake_music). No-op if no music was baked.
 void S_StartMusic()
 {
     if( GEN_MUSIC_SOUND < 0 )
@@ -83,6 +161,9 @@ void S_StartMusic()
     set_channel_speed( 1.0 );
     play_channel( S_MUSIC_CHANNEL );
 }
+
+void S_MusicUpdate() { }                          // baked WAV needs no per-frame tick
+#endif
 
 // distance volume from listener (player1) to (x,y).
 // returns -1.0 when inaudible (beyond clipping distance).

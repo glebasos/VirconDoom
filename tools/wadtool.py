@@ -1177,6 +1177,17 @@ def main():
     if music_name:
         music_id = len(wav_files)
         wav_files.append(music_name)
+    # ---- synth wavetables (live music via port/synth.h): 7 single-cycle tables
+    #      in WAVE_* order, appended AFTER sfx+music so the precomputed
+    #      data/sfx_sound.bin sound_ids never shift. GEN_WAVE_BASE = sound_id of
+    #      wt_sine (== synth_init base). Assets ship in sounds/ (copied from
+    #      VirconSynthesizer); skipped cleanly if any are missing.
+    WAVETABLES = ['wt_sine.wav', 'wt_triangle.wav', 'wt_saw.wav', 'wt_square.wav',
+                  'wt_pulse25.wav', 'wt_pulse12.wav', 'wt_noise.wav']
+    wave_base = -1
+    if all(os.path.exists(os.path.join(ROOT, 'sounds', wt)) for wt in WAVETABLES):
+        wave_base = len(wav_files)
+        wav_files.extend(WAVETABLES)
     w('data/sfx_sound.bin', sound_of)
     w('data/sfx_priority.bin', sfx_prio)
     write_game_xml_sounds(wav_files)
@@ -1189,6 +1200,9 @@ def main():
     lines.append('#define GEN_NUMVSOUNDS %d' % len(wav_files))
     lines.append('#define GEN_MUSIC_SOUND %d   // Vircon sound_id of looping music, -1 if none'
                  % music_id)
+    lines.append('#define GEN_WAVE_BASE %d   // sound_id of wt_sine (synth_init base), -1 if none'
+                 % wave_base)
+    lines.append('#define GEN_WAVE_COUNT 7   // synth wavetables in WAVE_* order')
     lines.append('')
     lines.append('// forward prototypes for the playsim (defined in s_sound.h, late in')
     lines.append('// the TU). Kept here (not doomdefs.h) so the sound-free harness/walls')

@@ -69,5 +69,12 @@
         <sound path="obj/snd_053.vsnd" />
         <sound path="obj/snd_054.vsnd" />
         <sound path="obj/music_e1m1.vsnd" />
+        <sound path="obj/wt_sine.vsnd" />
+        <sound path="obj/wt_triangle.vsnd" />
+        <sound path="obj/wt_saw.vsnd" />
+        <sound path="obj/wt_square.vsnd" />
+        <sound path="obj/wt_pulse25.vsnd" />
+        <sound path="obj/wt_pulse12.vsnd" />
+        <sound path="obj/wt_noise.vsnd" />
     </sounds>
 </rom-definition>

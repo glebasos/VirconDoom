@@ -3,8 +3,10 @@
 #define GEN_SOUNDS_H
 
 #define GEN_NUMSFX 109
-#define GEN_NUMVSOUNDS 56
+#define GEN_NUMVSOUNDS 63
 #define GEN_MUSIC_SOUND 55   // Vircon sound_id of looping music, -1 if none
+#define GEN_WAVE_BASE 56   // sound_id of wt_sine (synth_init base), -1 if none
+#define GEN_WAVE_COUNT 7   // synth wavetables in WAVE_* order
 
 // forward prototypes for the playsim (defined in s_sound.h, late in
 // the TU). Kept here (not doomdefs.h) so the sound-free harness/walls

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<rom-definition version="1.0">
+    <rom type="cartridge" title="Synth Timing Probe" version="0.1" />
+    <binary path="obj/synthprobe.vbin" />
+    <textures />
+    <sounds>
+        <sound path="obj/wt_sine.vsnd" />
+        <sound path="obj/wt_triangle.vsnd" />
+        <sound path="obj/wt_saw.vsnd" />
+        <sound path="obj/wt_square.vsnd" />
+        <sound path="obj/wt_pulse25.vsnd" />
+        <sound path="obj/wt_pulse12.vsnd" />
+        <sound path="obj/wt_noise.vsnd" />
+    </sounds>
+</rom-definition>
