@@ -186,6 +186,8 @@ struct player_t
 
     int damagecount;             // screen-flash counters (display is M7)
     int bonuscount;
+    int* message;                // HUD pickup message (int[] string; see p_inter.h)
+    int messagetics;             // >0 = message showing; counts down in P_PlayerThink
     mobj_t* attacker;            // killed-by, for death-cam facing
     int extralight;              // muzzle-flash light boost (unused by GPU yet)
 
@@ -213,6 +215,17 @@ struct player_t
 
 player_t player1;                // single player (referenced by the renderer
                                  // for psprites, so it lives here, not p_mobj)
+
+// HUD message timeout (upstream HU_MSGTIMEOUT = 4*TICRATE; 35Hz literal kept at
+// 30Hz like the power durations). Lives here (not p_inter.h) because p_spec.h --
+// included EARLIER -- also posts messages (locked-door denials).
+#define MESSAGE_TICS ( 4 * 35 )
+
+void P_SetMessage( player_t* pl, int* msg )
+{
+    pl->message = msg;
+    pl->messagetics = MESSAGE_TICS;
+}
 
 // ---- state-machine action dispatch (M6)
 // Upstream stores function pointers inside states[]; here the baked states

@@ -4,7 +4,7 @@
 
 #define GEN_NUMSFX 109
 #define GEN_NUMVSOUNDS 62
-#define GEN_MUSIC_SOUND -1   // Vircon sound_id of looping music, -1 if none (baked WAV retired)
+#define GEN_MUSIC_SOUND -1   // Vircon sound_id of looping music, -1 if none
 #define GEN_WAVE_BASE 55   // sound_id of wt_sine (synth_init base), -1 if none
 #define GEN_WAVE_COUNT 7   // synth wavetables in WAVE_* order
 

@@ -25,7 +25,7 @@ Outputs (paths relative to project root, the parent of tools/):
 
 Usage: python tools/wadtool.py [--map E1M1]
 """
-import os, re, struct, sys, argparse
+import os, re, struct, sys, argparse, zipfile
 from PIL import Image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -689,6 +689,25 @@ def main():
         draw_patch(img, patch, palette)
         ui_imgs.append((nm, img, wdt, hgt, lo, to))
 
+    # ---- HUD message font (DOOM small HU_FONT: STCFN033..STCFN095 = ASCII '!'..'_',
+    # punctuation/digits/UPPERCASE). Baked into the SAME UI atlas so st_bar.h's
+    # existing TEXID_UI binding + ST_DrawPatch machinery draws it. Sourced from
+    # DoomSmallFontSquare.pk3 (a stylized square restyle of the vanilla font) per
+    # the user's chosen look, NOT the WAD's own STCFN. Each glyph is a standard
+    # DOOM-paletted patch, so draw_patch + the WAD's PLAYPAL render it verbatim.
+    HU_FONTSTART = 33; HU_FONTEND = 95
+    hufont_base = len(ui_imgs)
+    fontpk3 = os.path.join(ROOT, 'DoomSmallFontSquare.pk3')
+    with zipfile.ZipFile(fontpk3) as z:
+        for a in range(HU_FONTSTART, HU_FONTEND + 1):
+            patch = z.read('graphics/STCFN%03d.lmp' % a)
+            wdt = s16(patch, 0); hgt = s16(patch, 2)
+            lo = s16(patch, 4); to = s16(patch, 6)
+            img = Image.new('RGBA', (wdt, hgt), (0, 0, 0, 0))
+            draw_patch(img, patch, palette)
+            ui_imgs.append(('STCFN%03d' % a, img, wdt, hgt, lo, to))
+    assert len(ui_imgs) == hufont_base + (HU_FONTEND - HU_FONTSTART + 1)
+
     uiatlas = Atlas()
     ui_texid0 = spr_texid0 + len(spratlas.sheets)        # after all sprite sheets
     uiorder = sorted(range(len(ui_imgs)), key=lambda i: -ui_imgs[i][3])
@@ -712,8 +731,10 @@ def main():
         'GNUM':   ui_names.index('STGNUM0'),
         'FACE':   ui_names.index('STFST00'),
         'KEYS':   ui_names.index('STKEYS0'),
+        'HUFONT': hufont_base,
     }
-    report.append('ui: %d elements -> 1 sheet, texid %d' % (len(ui_imgs), ui_texid0))
+    report.append('ui: %d elements (%d + %d font glyphs) -> 1 sheet, texid %d' %
+                  (len(ui_imgs), hufont_base, len(ui_imgs) - hufont_base, ui_texid0))
 
 
     # ---- maps (M9 level progression): bake EVERY E1 map present in the WAD and
@@ -953,6 +974,9 @@ def main():
     lines.append('#define UI_GNUM %d' % ui_base['GNUM'])      # +digit 0..9
     lines.append('#define UI_FACE %d' % ui_base['FACE'])      # +faceindex 0..41
     lines.append('#define UI_KEYS %d' % ui_base['KEYS'])      # +card 0..5
+    lines.append('#define UI_HUFONT %d' % ui_base['HUFONT'])  # +(ascii - HU_FONTSTART)
+    lines.append('#define HU_FONTSTART 33')                   # ASCII '!'
+    lines.append('#define HU_FONTEND 95')                     # ASCII '_'
     lines.append('')
     lines.append('// action fn indices (states[s][3]; 0 = no action)')
     for i, an in enumerate(actnames):
@@ -986,7 +1010,10 @@ def main():
                 'BKEY', 'RKEY', 'YKEY',
                 # session 11: soulsphere, backpack, and the E1 power-ups
                 # (blur / radsuit / computer-map / light-amp visor)
-                'SOUL', 'BPAK', 'PINS', 'SUIT', 'PMAP', 'PVIS'):
+                'SOUL', 'BPAK', 'PINS', 'SUIT', 'PMAP', 'PVIS',
+                # session 12b: chainsaw + rocket-launcher pickups (placed in E1M2/
+                # E1M9 etc.; sprites CSAW/LAUN present in shareware, verified)
+                'CSAW', 'LAUN'):
         lines.append('#define GEN_SPR_%s %d' % (spn, sprnames.index(spn)))
     lines.append('')
     # GEN_NUM* stay the E1M1 (map-0) counts: the harness/walls ROMs read gen_*

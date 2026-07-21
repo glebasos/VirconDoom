@@ -186,6 +186,8 @@ void P_PlayerThink( player_t* player )
         player->damagecount--;
     if( player->bonuscount )
         player->bonuscount--;
+    if( player->messagetics )
+        player->messagetics--;
 }
 
 #endif

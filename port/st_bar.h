@@ -298,6 +298,54 @@ void ST_DrawPatch( int uiidx, int x200, int y200 )
     draw_region_zoomed_at( sx, sy );
 }
 
+// ---- HUD text in the small DOOM font (HU_FONT), SCREEN space, 2x scale.
+// Draws a null-terminated int[] string left-to-right (HUlib_drawTextLine):
+// letters are upcased (the font is uppercase-only), each glyph advances by its
+// own width (variable-width font), space + any non-font char advance a fixed
+// gap. topoffset lets low glyphs ('.','_') sit on the baseline. Native color
+// (this font is red) -- caller sets multiply-color white so it isn't tinted.
+#define HU_SCALE   2
+#define HU_SPACEW  ( 4 * HU_SCALE )     // HU font space = 4px in 320-space
+
+void HU_DrawChar( int uiidx, int sx, int sy )
+{
+    int sh = gen_ui[uiidx][0];
+    int ax = gen_ui[uiidx][1];
+    int ay = gen_ui[uiidx][2];
+    int wd = gen_ui[uiidx][3];
+    int ht = gen_ui[uiidx][4];
+
+    select_texture( sh );
+    select_region( 0 );
+    define_region( ax, ay, ax + wd - 1, ay + ht - 1, ax, ay );  // hotspot = TL
+    set_drawing_scale( 2.0, 2.0 );      // float literals like ST_DrawPatch (= HU_SCALE)
+    draw_region_zoomed_at( sx, sy );
+}
+
+// (x,y) = top-left screen pixel of the text line.
+void HU_DrawText( int x, int y, int* str )
+{
+    int i = 0;
+    int c;
+    int idx;
+
+    while( str[i] != 0 )
+    {
+        c = str[i];
+        i++;
+        if( c >= 'a' && c <= 'z' )
+            c -= 32;                    // upcase: HU_FONT has no lower-case
+        if( c < HU_FONTSTART || c > HU_FONTEND )
+        {
+            x += HU_SPACEW;             // space / unsupported glyph
+            continue;
+        }
+        idx = UI_HUFONT + ( c - HU_FONTSTART );
+        HU_DrawChar( idx, x, y - HU_SCALE * gen_ui[idx][6] );   // apply topoffset
+        x += HU_SCALE * gen_ui[idx][3];                         // advance by width
+    }
+}
+
 // right-aligned number: the ones digit's right edge sits at x200 (STlib_drawNum)
 void ST_DrawNum( int digbase, int x200, int y200, int num, int maxdigits )
 {

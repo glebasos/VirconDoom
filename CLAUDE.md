@@ -345,8 +345,42 @@ bottom); shows SIZE.
    baked vertexes): player projects to EXACTLY (320,148), scale roundtrips 1.0,
    level fits at min zoom. Omitted (future): grid, marks, things/cheat (IDDT),
    pan, secret-line coloring.
-3. **HU pickup messages** = print_at top line w/ timeout (strings in upstream
-   dstrings.h/d_englsh.h — bake or hand-copy the E1 subset).
+3. **HU pickup messages — DONE (session 12, built clean; needs emulator confirm).**
+   player_t gains `int* message` (int[] string) + `int messagetics`.
+   P_TouchSpecialThing sets a local `msg` in every pickup branch (E1 GOT* subset
+   of d_englsh.h #defined at the top of p_inter.h) and the common tail stamps
+   message + `messagetics = MESSAGE_TICS` (4*35, 35Hz literal kept at 30Hz like
+   the power durations). P_PlayerThink counts messagetics down next to bonuscount;
+   P_SpawnPlayer resets both (message = NULL — string-literal→`int*` field + NULL
+   for null both verified to compile; plain `0` is NOT a valid pointer init).
+   QUIET-HUD POLICY (user choice, session 12b — NOT vanilla, which announces
+   every pickup): KEYS + WEAPONS + POWER-UPS + MegaArmor + backpack set `msg`.
+   Announcing: soulsphere(GOTSUPER), blur/radsuit/computer-map/light-visor,
+   shotgun/chaingun/chainsaw/rocket-launcher, the 3 keycards, MegaArmor(GOTMEGA),
+   backpack(GOTBACKPACK). SILENT: green armor, health/armor bonus, stimpack,
+   medikit, clips/shells/rockets (their GOT* strings kept in p_inter.h to re-enable).
+   The common tail is now `if(msg) P_SetMessage(player,msg)` — silent branches
+   leave msg=NULL, so the guard is load-bearing (drawing from NULL(-1) would fault).
+   LOCKED-DOOR DENIALS (session 12b): EV_VerticalDoor (p_spec.h) posts
+   "You need a <color> key to open this door" (PD_BLUEK/YELLOWK/REDK) + SFX_OOF
+   when the player lacks the card. P_SetMessage + MESSAGE_TICS live in p_tick.h
+   (included before BOTH p_spec and p_inter, which both post messages).
+   FONT: drawn in the real DOOM small HU_FONT (not the BIOS print_at font).
+   wadtool bakes STCFN033..STCFN095 (ASCII '!'..'_', punct/digits/UPPERCASE) from
+   DoomSmallFontSquare.pk3 (a square restyle the user supplied; standard DOOM-
+   paletted patches, rendered via draw_patch+PLAYPAL) INTO the existing UI atlas
+   (now 144 elements: 81 + 63 glyphs, still one 1024 sheet). Emits UI_HUFONT (base)
+   + HU_FONTSTART/END. st_bar.h HU_DrawText(x,y,int* str): upcases, per-glyph
+   variable-width advance, space/unknown = fixed gap, topoffset baseline; 2x scale,
+   native red (caller sets multiply white). game.c draws it at (4,2) when
+   messagetics>0 && !gameexit. Offline gate: scratchpad sim re-renders sample
+   messages from uiinfo.bin+ui0.png with the identical advance logic (kerning +
+   baseline confirmed). CHAINSAW + ROCKET-LAUNCHER pickups WIRED (session 12b):
+   they previously had no branch in P_TouchSpecialThing (placed 5×/9× across E1 but
+   UNPICKABLE — a real bug). Added GEN_SPR_CSAW/LAUN branches → P_GiveWeapon(
+   wp_chainsaw/wp_missile) + GOTCHAINSAW/GOTLAUNCHER announce (weaponinfo already
+   filled session 9; CSAWA0/LAUNA0 verified in shareware WAD). wadtool emits
+   GEN_SPR_CSAW/LAUN; reachability unchanged (339 — sprites already placed).
 4. **Texture/flat animation + scroll (P_UpdateSpecials)**: baked texture-index
    ranges (animdefs p_spec.c: NUKAGE1-3 etc.); texturetranslation[] exists +
    honored; flats need the same for gen_flatavg/flatinfo (spans use flat AVERAGE

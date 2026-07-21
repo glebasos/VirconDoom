@@ -426,6 +426,13 @@ void main()
         ST_Drawer();
 
         set_multiply_color( color_white );
+
+        // HUD pickup message: top-left for ~4s after a pickup (upstream HU line),
+        // drawn in the small DOOM font (HU_FONT). Hidden during the intermission
+        // tally (it paints over the whole view).
+        if( player1.messagetics > 0 && !gameexit )
+            HU_DrawText( 4, 2, player1.message );
+
         if( player1.playerstate == PST_DEAD )
             print_at( 220, 250, "YOU DIED - PRESS B" );
 

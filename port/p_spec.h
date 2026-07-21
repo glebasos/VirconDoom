@@ -12,7 +12,7 @@
 //  light-effect thinkers (T_LightFlash/StrobeFlash/Glow/FireFlicker).
 //
 //  Locked doors (26/27/28/32/33/34) ARE key-gated (EV_VerticalDoor checks
-//  player->cards; denied = oof, no message system).
+//  player->cards; denied = oof + a "You need a <color> key" HUD message).
 //  DEVIATIONS: no crush/ceiling movers (no ceiling specials in E1) -- a closing
 //  door/plat won't push things out;
 //  switch TEXTURES aren't swapped (BUTTONS unported -- cosmetic; swtchn still
@@ -287,6 +287,12 @@ void T_VerticalDoor( void* p )
     }
 }
 
+// locked-door denial messages (upstream d_englsh.h; the "open this door" variants
+// used by the manual DR doors 26-28/32-34). Posted via P_SetMessage (p_tick.h).
+#define PD_BLUEK    "You need a blue key to open this door"
+#define PD_YELLOWK  "You need a yellow key to open this door"
+#define PD_REDK     "You need a red key to open this door"
+
 void EV_VerticalDoor( line_t* line, mobj_t* thing )
 {
     sector_t* sec;
@@ -295,14 +301,15 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
     int sp = line->special;
 
     // ---- key locks (p_doors.c). Checked FIRST, before the reversal path, so a
-    // keyless player can't even reverse a moving locked door. No message system;
-    // the denied "oof" is the only feedback. 26/32 blue, 27/34 yellow, 28/33 red.
+    // keyless player can't even reverse a moving locked door. Denied = "oof" +
+    // a HUD message. 26/32 blue, 27/34 yellow, 28/33 red.
     if( sp == 26 || sp == 32 )               // blue lock
     {
         player = (player_t*)thing->player;
         if( !player ) return;
         if( !player->cards[it_bluecard] && !player->cards[it_blueskull] )
         {
+            P_SetMessage( player, PD_BLUEK );
             S_StartSound( NULL, SFX_OOF );
             return;
         }
@@ -313,6 +320,7 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
         if( !player ) return;
         if( !player->cards[it_yellowcard] && !player->cards[it_yellowskull] )
         {
+            P_SetMessage( player, PD_YELLOWK );
             S_StartSound( NULL, SFX_OOF );
             return;
         }
@@ -323,6 +331,7 @@ void EV_VerticalDoor( line_t* line, mobj_t* thing )
         if( !player ) return;
         if( !player->cards[it_redcard] && !player->cards[it_redskull] )
         {
+            P_SetMessage( player, PD_REDK );
             S_StartSound( NULL, SFX_OOF );
             return;
         }

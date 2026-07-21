@@ -4,12 +4,18 @@
 //
 //  Scope/deviations (documented):
 //   - fixed skill 3, single player, shareware: no trainer double-ammo, no
-//     netgame branches, no pickup messages (no HUD message system)
-//   - the full E1 pickup roster is handled: armor/bonuses/health/ammo/weapons,
-//     keycards (session 10), and (session 11) soulsphere, backpack, and the
-//     power-ups that appear in E1 -- blur/radsuit/computer-map/light-visor.
-//     Invulnerability + berserk are wired in P_GivePower but never placed in E1.
-//     An unknown gettable sprite is ignored instead of I_Error.
+//     netgame branches
+//   - pickup messages ARE ported, but QUIETED (user choice): keys / weapons /
+//     power-ups / MegaArmor / backpack set a local `msg` (int[] string, GOT*
+//     defines below); the truly common items (green armor, health/armor bonus,
+//     stimpack, medikit, clips/shells/rockets) are silent. The tail stamps
+//     player->message/messagetics only `if(msg)` (P_SetMessage, p_tick.h);
+//     P_PlayerThink counts down; game.c draws the top HUD line in the HU_FONT.
+//   - the full E1 pickup roster is handled: armor/bonuses/health/ammo, all
+//     obtainable weapons (shotgun/chaingun/CHAINSAW/ROCKET-LAUNCHER), keycards
+//     (session 10), soulsphere, backpack, and the E1 power-ups (session 11) --
+//     blur/radsuit/computer-map/light-visor. Invulnerability + berserk are wired
+//     in P_GivePower but never placed in E1. Unknown gettable sprite is ignored.
 // -----------------------------------------------------------------------------
 #ifndef P_INTER_H
 #define P_INTER_H
@@ -31,6 +37,40 @@ void P_DropWeapon( player_t* player );
 #define INVISTICS  ( 60 * 35 )
 #define INFRATICS  ( 120 * 35 )
 #define IRONTICS   ( 60 * 35 )
+
+// E1 pickup messages (upstream d_englsh.h P_inter.C subset -- one per gettable
+// this port handles). Strings are int[] here; assigned to player->message.
+// QUIET-HUD POLICY (user choice): keys / weapons / power-ups / MegaArmor /
+// backpack announce themselves. The remaining common-item strings below (green
+// armor, health/armor bonus, stimpack, medikit, clips/shells/rockets) are kept
+// for reference but their branches don't set `msg`; re-add a `msg = GOT...;`
+// line to a branch to make it announce again.
+#define GOTARMOR     "Picked up the armor."
+#define GOTMEGA      "Picked up the MegaArmor!"
+#define GOTHTHBONUS  "Picked up a health bonus."
+#define GOTARMBONUS  "Picked up an armor bonus."
+#define GOTSUPER     "Supercharge!"
+#define GOTSTIM      "Picked up a stimpack."
+#define GOTMEDINEED  "Picked up a medikit that you REALLY need!"
+#define GOTMEDIKIT   "Picked up a medikit."
+#define GOTCLIP      "Picked up a clip."
+#define GOTCLIPBOX   "Picked up a box of bullets."
+#define GOTSHELLS    "Picked up 4 shotgun shells."
+#define GOTSHELLBOX  "Picked up a box of shotgun shells."
+#define GOTROCKET    "Picked up a rocket."
+#define GOTROCKBOX   "Picked up a box of rockets."
+#define GOTBACKPACK  "Picked up a backpack full of ammo!"
+#define GOTINVIS     "Partial Invisibility"
+#define GOTSUIT      "Radiation Shielding Suit"
+#define GOTMAP       "Computer Area Map"
+#define GOTVISOR     "Light Amplification Visor"
+#define GOTSHOTGUN   "You got the shotgun!"
+#define GOTCHAINGUN  "You got the chaingun!"
+#define GOTCHAINSAW  "A chainsaw!  Find some meat!"
+#define GOTLAUNCHER  "You got the rocket launcher!"
+#define GOTBLUECARD  "Picked up a blue keycard."
+#define GOTREDCARD   "Picked up a red keycard."
+#define GOTYELWCARD  "Picked up a yellow keycard."
 
 int[NUMAMMO] p_maxammo;          // {200, 50, 300, 50} -- set by P_InitPickups
 int[NUMAMMO] clipammo;           // {10, 4, 20, 1}
@@ -214,6 +254,7 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
     int spr;
     int i;
     int sound = SFX_ITEMUP;
+    int* msg = NULL;             // set by each branch; shown as the HUD message
 
     delta = special->z - toucher->z;
 
@@ -231,12 +272,13 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
     if( spr == GEN_SPR_ARM1 )
     {
         if( !P_GiveArmor( player, 1 ) )
-            return;
+            return;                          // quiet (common item)
     }
     else if( spr == GEN_SPR_ARM2 )
     {
         if( !P_GiveArmor( player, 2 ) )
             return;
+        msg = GOTMEGA;                       // MegaArmor announces (user choice)
     }
     else if( spr == GEN_SPR_BON1 )
     {
@@ -261,17 +303,18 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
         if( player->health > 200 )
             player->health = 200;
         player->mo->health = player->health;
+        msg = GOTSUPER;
         sound = SFX_GETPOW;
     }
     else if( spr == GEN_SPR_STIM )
     {
         if( !P_GiveBody( player, 10 ) )
-            return;
+            return;                          // quiet (common item)
     }
     else if( spr == GEN_SPR_MEDI )
     {
         if( !P_GiveBody( player, 25 ) )
-            return;
+            return;                          // quiet (common item)
     }
     else if( spr == GEN_SPR_CLIP )
     {
@@ -323,6 +366,7 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
         }
         for( i = 0; i < NUMAMMO; i++ )
             P_GiveAmmo( player, i, 1 );
+        msg = GOTBACKPACK;                   // backpack announces (user choice)
     }
     // ---- power-ups (E1 shareware: no invulnerability/berserk placed). Each
     // returns without consuming the pickup if the power is already held.
@@ -330,24 +374,28 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
     {
         if( !P_GivePower( player, pw_invisibility ) )
             return;
+        msg = GOTINVIS;
         sound = SFX_GETPOW;
     }
     else if( spr == GEN_SPR_SUIT )        // radiation suit -> ironfeet
     {
         if( !P_GivePower( player, pw_ironfeet ) )
             return;
+        msg = GOTSUIT;
         sound = SFX_GETPOW;
     }
     else if( spr == GEN_SPR_PMAP )        // computer area map -> allmap
     {
         if( !P_GivePower( player, pw_allmap ) )
             return;
+        msg = GOTMAP;
         sound = SFX_GETPOW;
     }
     else if( spr == GEN_SPR_PVIS )        // light-amp visor -> infrared
     {
         if( !P_GivePower( player, pw_infrared ) )
             return;
+        msg = GOTVISOR;
         sound = SFX_GETPOW;
     }
     else if( spr == GEN_SPR_SHOT )
@@ -355,6 +403,7 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
         if( !P_GiveWeapon( player, wp_shotgun,
                            ( special->flags & MF_DROPPED ) != 0 ) )
             return;
+        msg = GOTSHOTGUN;
         sound = SFX_WPNUP;
     }
     else if( spr == GEN_SPR_MGUN )
@@ -362,16 +411,40 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
         if( !P_GiveWeapon( player, wp_chaingun,
                            ( special->flags & MF_DROPPED ) != 0 ) )
             return;
+        msg = GOTCHAINGUN;
+        sound = SFX_WPNUP;
+    }
+    else if( spr == GEN_SPR_CSAW )        // chainsaw (E1M2 secret etc.)
+    {
+        if( !P_GiveWeapon( player, wp_chainsaw, false ) )
+            return;
+        msg = GOTCHAINSAW;
+        sound = SFX_WPNUP;
+    }
+    else if( spr == GEN_SPR_LAUN )        // rocket launcher (E1M9 etc.)
+    {
+        if( !P_GiveWeapon( player, wp_missile, false ) )
+            return;
+        msg = GOTLAUNCHER;
         sound = SFX_WPNUP;
     }
     // keycards (E1 has no skull keys). Always taken; not MF_COUNTITEM, so the
     // COUNTITEM tail below leaves itemcount alone.
     else if( spr == GEN_SPR_BKEY )
+    {
         P_GiveCard( player, it_bluecard );
+        msg = GOTBLUECARD;
+    }
     else if( spr == GEN_SPR_RKEY )
+    {
         P_GiveCard( player, it_redcard );
+        msg = GOTREDCARD;
+    }
     else if( spr == GEN_SPR_YKEY )
+    {
         P_GiveCard( player, it_yellowcard );
+        msg = GOTYELWCARD;
+    }
     else
         return;                  // unknown gettable: ignore (upstream I_Errors)
 
@@ -379,6 +452,8 @@ void P_TouchSpecialThing( mobj_t* special, mobj_t* toucher )
         player->itemcount++;
     P_RemoveMobj( special );
     player->bonuscount += BONUSADD;
+    if( msg )                             // quiet-HUD: common items leave msg NULL
+        P_SetMessage( player, msg );
     S_StartSound( NULL, sound );          // pickups are non-positional (full vol)
 }
 

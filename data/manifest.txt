@@ -2,7 +2,7 @@ tables: finesine 10240, finetangent 4096, tantoangle 2049 (exact from tables.c)
 textures: 125 walls, 54 flats -> 4 sheet(s)
 sprites: 483 lumps, 138 names, 261 frames, 137 mobjtypes -> 2 sheet(s)
 states: 967 x 7 words, 74 action fns
-ui: 81 elements -> 1 sheet, texid 7
+ui: 144 elements (81 + 63 font glyphs) -> 1 sheet, texid 7
 E1M1: blockmap=3461, linedefs=475, nodes=236, reject=904, sectors=85, segs=732, sidedefs=648, ssectors=237, things=138, vertexes=467
 E1M2: blockmap=5935, linedefs=1033, nodes=447, reject=5000, sectors=200, segs=1463, sidedefs=1323, ssectors=448, things=262, vertexes=942
 E1M3: blockmap=4447, linedefs=1026, nodes=460, reject=3917, sectors=177, segs=1445, sidedefs=1326, ssectors=461, things=380, vertexes=946
@@ -16,5 +16,5 @@ maps: 9 baked, concatenated (E1M1 at base 0)
 state reachability: 339 states validated against sprites
 map integrity: 9 maps, all load-time refs in-slice + player start present
 special coverage: all E1 linedef specials handled by p_spec.h
-sounds: 109 sfx names, 56 WAV assets baked (44100Hz/16-bit mono)
+sounds: 109 sfx names, 62 WAV assets baked (44100Hz/16-bit mono)
 gen_assets.h + gen_checkvals.h written
