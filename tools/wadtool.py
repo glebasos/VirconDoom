@@ -1172,11 +1172,12 @@ def main():
     # ---- sounds (M8): DMX sfx -> WAV assets + sfxenum->sound_id map
     sfxnames, sound_of, sfx_prio, sfx_sing, wav_files = bake_sounds(wad)
     # ---- music (M8): render D_E1M1 MUS -> looping chiptune WAV (id after sfx)
-    music_name = bake_music(wad)
+    # music is RETIRED as a baked WAV: the live synth event player
+    # (port/mus_player.h, data via tools/gen_music.py --events) replaces the
+    # 17MB music_e1m1.vsnd. Leaving music_id = -1 frees that sound_id so the
+    # wavetables below sit right after the sfx. (bake_music is kept for
+    # reference / A/B but no longer called.)
     music_id = -1
-    if music_name:
-        music_id = len(wav_files)
-        wav_files.append(music_name)
     # ---- synth wavetables (live music via port/synth.h): 7 single-cycle tables
     #      in WAVE_* order, appended AFTER sfx+music so the precomputed
     #      data/sfx_sound.bin sound_ids never shift. GEN_WAVE_BASE = sound_id of

@@ -32,16 +32,16 @@
 #include "gen_sounds.h"
 
 // -----------------------------------------------------------------------------
-//  MUSIC BACKEND (A/B):
-//    MUSIC_SYNTH defined  -> live full-polyphony EVENT-PLAYER music via
-//      port/synth.h + port/mus_player.h (faithful to the original bake_music
-//      render; approved in musictest.c). The synth owns SPU channels 6..15 (10
-//      voices, covering E1M1's 9-note peak); sfx use channels 0..5. The 17MB
-//      baked WAV is not played. Software timing is frame-rate slaved
-//      (S_MusicUpdate, once per game-loop iteration) so tempo holds under the
-//      variable-rate renderer -- see synthprobe.c and PLAN.
-//    MUSIC_SYNTH undefined -> the original baked-WAV path (music on channel 15,
-//      sfx on 0..14). Keep for A/B until the synth version is confirmed good.
+//  MUSIC BACKEND:
+//    MUSIC_SYNTH defined (the shipping backend) -> live full-polyphony
+//      EVENT-PLAYER music via port/synth.h + port/mus_player.h, one track per
+//      map (gen_musicev.h). The synth owns SPU channels 6..15 (10 voices); sfx
+//      use channels 0..5. Software timing is frame-rate slaved (S_MusicUpdate,
+//      once per game-loop iteration) so tempo holds under the variable-rate
+//      renderer -- see synthprobe.c and PLAN.
+//    MUSIC_SYNTH undefined -> the old baked-WAV path. RETIRED: the 17MB
+//      music_e1m1.vsnd asset was removed (GEN_MUSIC_SOUND is now -1), so this
+//      branch plays nothing. Kept only as a reference skeleton.
 // -----------------------------------------------------------------------------
 #define MUSIC_SYNTH
 
@@ -116,14 +116,13 @@ void S_StopAllSounds()
 
 // (Re)start the looping level music for the current map.
 #ifdef MUSIC_SYNTH
-// Live synth: restart the event player from the top. (Only E1M1 is generated so
-// far; S_SelectSong-style per-map dispatch is a follow-up once every map's
-// gen_musicev is generated.)
+// Live synth: restart the event player with the current map's track (all 9
+// shareware maps generated into gen_musicev.h; MUS_Start selects by gamemap).
 void S_StartMusic()
 {
     if( GEN_WAVE_BASE < 0 )
         return;
-    MUS_Start();
+    MUS_Start( gamemap );
     s_music_lastfc = get_frame_counter();         // reset catch-up baseline
 }
 

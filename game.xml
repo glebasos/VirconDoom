@@ -68,7 +68,6 @@
         <sound path="obj/snd_052.vsnd" />
         <sound path="obj/snd_053.vsnd" />
         <sound path="obj/snd_054.vsnd" />
-        <sound path="obj/music_e1m1.vsnd" />
         <sound path="obj/wt_sine.vsnd" />
         <sound path="obj/wt_triangle.vsnd" />
         <sound path="obj/wt_saw.vsnd" />

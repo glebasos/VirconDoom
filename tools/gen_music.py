@@ -22,6 +22,8 @@ from wadtool import Wad, ROOT
 WAD_PATH  = os.path.join(ROOT, 'doom.wad')
 ROW_TICKS = 7            # MUS ticks per sequencer row (== 3 frames @60Hz)
 FRAMES_PER_ROW = 3
+PAD_ROWS = 24            # a low note longer than this (~1.2s) is a sustained pad,
+                         # not a bass hit -> soft triangle (a loud square drones/buzzes)
 
 # synth.h sequencer cell sentinels
 SEQ_REST = -2
@@ -143,31 +145,40 @@ def emit_array(name, cells, nrows):
 #  instruments match the baked timbres: 0=square lead, 1=square bass, 2=noise
 #  perc. This is the "recreate the WAV with the synth lib" path.
 # =============================================================================
-def emit_events(lump, wad):
-    events, total = parse_mus(wad.by_name(lump))
-    nrows = int(math.ceil(total / ROW_TICKS))
+def w_bin(path, words):
+    """write a list of ints as little-endian int32 (matches wadtool.w / embedded)."""
+    with open(os.path.join(ROOT, path), 'wb') as f:
+        f.write(struct.pack('<%di' % len(words), *[(v & 0xFFFFFFFF) - ((v & 0x80000000) << 1)
+                                                    for v in words]))
 
-    # (srow, dur_frames, inst, note, vel), sorted by start row
+
+def build_events(events):
+    """MUS events -> (srow, dur_frames, inst, note, vel) list, sorted by start row.
+    Faithful to bake_music: melodic notes are square, and (like bake_music's
+    note<48 *1.25) low notes get the louder 'bass' instrument -- map-agnostic, so
+    it works whatever channel carries the bassline. Percussion splits kick (low
+    punch) from snare/hats (short noise)."""
     rows = []
     for s0, s1, chan, note, vel in events:
         r0 = int(round(s0 / ROW_TICKS))
         r1 = int(round(s1 / ROW_TICKS))
         if r1 <= r0:
             r1 = r0 + 1
-        if chan == 15:                 # percussion, split for definition (else it
-            b = drum_bucket(note)      # washes into mush under dense double-kick)
-            if b == 'kick':
-                inst, nn = 2, note     # kick -> low punchy thump (keep low pitch)
+        if chan == 15:                        # percussion
+            if drum_bucket(note) == 'kick':
+                inst, nn = 2, note            # kick -> low punchy thump
             else:
-                inst, nn = 3, 60       # snare + hats/cymbals -> short crisp noise
-        elif chan == 2:                # bass channel -> louder square
-            inst, nn = 1, note
-        else:                          # melody/harmony -> square lead
+                inst, nn = 3, 60              # snare + hats/cymbals -> short noise
+        elif note < 48:                       # low melodic note
+            if (r1 - r0) > PAD_ROWS:
+                inst, nn = 4, note            # sustained low -> soft triangle pad
+            else:
+                inst, nn = 1, note            # short bass hit -> louder square
+        else:                                 # melody/harmony -> square lead
             inst, nn = 0, note
         rows.append((r0, (r1 - r0) * FRAMES_PER_ROW, inst, nn, vel))
     rows.sort(key=lambda e: e[0])
-
-    # max simultaneous polyphony (voice check)
+    # max simultaneous polyphony (voice-budget check)
     pts = []
     for r0, dur, inst, nn, vel in rows:
         pts.append((r0, 1)); pts.append((r0 + max(1, dur // FRAMES_PER_ROW), -1))
@@ -175,48 +186,79 @@ def emit_events(lump, wad):
     cur = mx = 0
     for _, d in pts:
         cur += d; mx = max(mx, cur)
+    return rows, mx
 
-    key = lump.lower().replace('d_', 'mus_')
-    def arr(name, idx):
-        vals = [str(e[idx]) for e in rows]
-        out = ['int[ %s_NEV ] %s_%s =' % (key.upper(), key, name), '{']
-        line = '    '
-        for v in vals:
-            tok = v + ','
-            if len(line) + len(tok) > 96:
-                out.append(line); line = '    '
-            line += tok + ' '
-        out.append(line.rstrip()); out.append('};')
-        return '\n'.join(out)
+
+def emit_events(wad, maps=range(1, 10)):
+    """Generate every map's event data as binary embedded files + port/gen_musicev.h
+    (defines, embedded decls, and MUS_SelectMap dispatch by gamemap)."""
+    F = ['srow', 'dur', 'inst', 'note', 'vel']
+    meta = []                                 # (map, key, nev, nrows, mx)
+    for m in maps:
+        lump = 'D_E1M%d' % m
+        if lump not in wad.index:
+            continue
+        events, total = parse_mus(wad.by_name(lump))
+        nrows = int(math.ceil(total / ROW_TICKS))
+        rows, mx = build_events(events)
+        key = 'mus_e1m%d' % m
+        cols = list(zip(*rows)) if rows else ([], [], [], [], [])
+        for fi, fname in enumerate(F):
+            w_bin('data/%s_%s.bin' % (key, fname), list(cols[fi]))
+        meta.append((m, key, len(rows), nrows, mx))
+        print('  %s: %d events, %d rows, %.1fs, maxpoly=%d' %
+              (lump, len(rows), nrows, total / 140.0, mx))
 
     L = []
-    L.append('// GENERATED by tools/gen_music.py --events from %s -- do not edit' % lump)
-    L.append('// %d events, %d rows, %.1fs, max polyphony %d' %
-             (len(rows), nrows, total / 140.0, mx))
+    L.append('// GENERATED by tools/gen_music.py --events -- do not edit')
     L.append('#ifndef GEN_MUSICEV_H')
     L.append('#define GEN_MUSICEV_H')
     L.append('')
-    L.append('#define %s_NEV  %d' % (key.upper(), len(rows)))
-    L.append('#define %s_ROWS %d' % (key.upper(), nrows))
     L.append('#define MUS_FRAMES_PER_ROW %d' % FRAMES_PER_ROW)
+    L.append('#define MUS_NUMMAPS %d' % (max(mm[0] for mm in meta) if meta else 0))
     L.append('')
-    L.append(arr('srow', 0)); L.append('')
-    L.append(arr('dur',  1)); L.append('')
-    L.append(arr('inst', 2)); L.append('')
-    L.append(arr('note', 3)); L.append('')
-    L.append(arr('vel',  4)); L.append('')
+    for m, key, nev, nrows, mx in meta:
+        L.append('#define %s_NEV  %d' % (key.upper(), nev))
+        L.append('#define %s_ROWS %d' % (key.upper(), nrows))
+        for fname in F:
+            L.append('embedded int[ %s_NEV ] %s_%s = "data\\\\%s_%s.bin";'
+                     % (key.upper(), key, fname, key, fname))
+        L.append('')
+
+    # active-track pointers + dispatch (assigned at MUS_Start via gamemap)
+    L.append('int* mus_srow;')
+    L.append('int* mus_dur;')
+    L.append('int* mus_inst;')
+    L.append('int* mus_note;')
+    L.append('int* mus_vel;')
+    L.append('int  mus_nev;')
+    L.append('int  mus_rows;')
+    L.append('')
+    L.append('// Point the active-track globals at map `m` (1..MUS_NUMMAPS).')
+    L.append('void MUS_SelectMap( int m )')
+    L.append('{')
+    first = True
+    for m, key, nev, nrows, mx in meta:
+        kw = 'if' if first else 'else if'
+        first = False
+        L.append('    %s( m == %d )' % (kw, m))
+        L.append('    {')
+        L.append('        mus_srow = %s_srow;  mus_dur  = %s_dur;' % (key, key))
+        L.append('        mus_inst = %s_inst;  mus_note = %s_note;' % (key, key))
+        L.append('        mus_vel  = %s_vel;' % key)
+        L.append('        mus_nev  = %s_NEV;  mus_rows = %s_ROWS;' % (key.upper(), key.upper()))
+        L.append('    }')
+    L.append('}')
+    L.append('')
     L.append('#endif')
     outp = os.path.join(ROOT, 'port', 'gen_musicev.h')
     open(outp, 'w').write('\n'.join(L) + '\n')
-    print('wrote %s: %d events, %d rows, %.1fs, MAX POLYPHONY=%d' %
-          (outp, len(rows), nrows, total / 140.0, mx))
+    print('wrote %s (%d maps)' % (outp, len(meta)))
 
 
 def main():
     if '--events' in sys.argv:
-        args = [a for a in sys.argv[1:] if not a.startswith('--')]
-        lump = args[0] if args else 'D_E1M1'
-        emit_events(lump, Wad(WAD_PATH))
+        emit_events(Wad(WAD_PATH))
         return
     lump = sys.argv[1] if len(sys.argv) > 1 else 'D_E1M1'
     wad = Wad(WAD_PATH)
