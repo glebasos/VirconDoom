@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<rom-definition version="1.0">
+    <rom type="cartridge" title="VirconDoom" version="0.2" />
+    <binary path="obj/gameauto.vbin" />
+    <textures>
+        <texture path="obj/sheet0.vtex" />
+        <texture path="obj/sheet1.vtex" />
+        <texture path="obj/sheet2.vtex" />
+        <texture path="obj/sheet3.vtex" />
+        <texture path="obj/white.vtex" />
+        <texture path="obj/spr0.vtex" />
+        <texture path="obj/spr1.vtex" />
+        <texture path="obj/ui0.vtex" />
+    </textures>
+    <sounds>
+        <sound path="obj/snd_000.vsnd" />
+        <sound path="obj/snd_001.vsnd" />
+        <sound path="obj/snd_002.vsnd" />
+        <sound path="obj/snd_003.vsnd" />
+        <sound path="obj/snd_004.vsnd" />
+        <sound path="obj/snd_005.vsnd" />
+        <sound path="obj/snd_006.vsnd" />
+        <sound path="obj/snd_007.vsnd" />
+        <sound path="obj/snd_008.vsnd" />
+        <sound path="obj/snd_009.vsnd" />
+        <sound path="obj/snd_010.vsnd" />
+        <sound path="obj/snd_011.vsnd" />
+        <sound path="obj/snd_012.vsnd" />
+        <sound path="obj/snd_013.vsnd" />
+        <sound path="obj/snd_014.vsnd" />
+        <sound path="obj/snd_015.vsnd" />
+        <sound path="obj/snd_016.vsnd" />
+        <sound path="obj/snd_017.vsnd" />
+        <sound path="obj/snd_018.vsnd" />
+        <sound path="obj/snd_019.vsnd" />
+        <sound path="obj/snd_020.vsnd" />
+        <sound path="obj/snd_021.vsnd" />
+        <sound path="obj/snd_022.vsnd" />
+        <sound path="obj/snd_023.vsnd" />
+        <sound path="obj/snd_024.vsnd" />
+        <sound path="obj/snd_025.vsnd" />
+        <sound path="obj/snd_026.vsnd" />
+        <sound path="obj/snd_027.vsnd" />
+        <sound path="obj/snd_028.vsnd" />
+        <sound path="obj/snd_029.vsnd" />
+        <sound path="obj/snd_030.vsnd" />
+        <sound path="obj/snd_031.vsnd" />
+        <sound path="obj/snd_032.vsnd" />
+        <sound path="obj/snd_033.vsnd" />
+        <sound path="obj/snd_034.vsnd" />
+        <sound path="obj/snd_035.vsnd" />
+        <sound path="obj/snd_036.vsnd" />
+        <sound path="obj/snd_037.vsnd" />
+        <sound path="obj/snd_038.vsnd" />
+        <sound path="obj/snd_039.vsnd" />
+        <sound path="obj/snd_040.vsnd" />
+        <sound path="obj/snd_041.vsnd" />
+        <sound path="obj/snd_042.vsnd" />
+        <sound path="obj/snd_043.vsnd" />
+        <sound path="obj/snd_044.vsnd" />
+        <sound path="obj/snd_045.vsnd" />
+        <sound path="obj/snd_046.vsnd" />
+        <sound path="obj/snd_047.vsnd" />
+        <sound path="obj/snd_048.vsnd" />
+        <sound path="obj/snd_049.vsnd" />
+        <sound path="obj/snd_050.vsnd" />
+        <sound path="obj/snd_051.vsnd" />
+        <sound path="obj/snd_052.vsnd" />
+        <sound path="obj/snd_053.vsnd" />
+        <sound path="obj/snd_054.vsnd" />
+        <sound path="obj/wt_sine.vsnd" />
+        <sound path="obj/wt_triangle.vsnd" />
+        <sound path="obj/wt_saw.vsnd" />
+        <sound path="obj/wt_square.vsnd" />
+        <sound path="obj/wt_pulse25.vsnd" />
+        <sound path="obj/wt_pulse12.vsnd" />
+        <sound path="obj/wt_noise.vsnd" />
+    </sounds>
+</rom-definition>
